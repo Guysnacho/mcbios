@@ -50,45 +50,45 @@
 				</a>
 				<a
 					class="hidden lg:flex lg:max-xl:visible btn btn-sm variant-soft-surface overflow-hidden"
-					href="/"
+					href="/abstract"
 					rel="noreferrer"
 				>
 					Abstract Submission
 				</a>
 				<a
 					class="hidden lg:flex lg:max-xl:visible btn btn-sm variant-soft-surface overflow-hidden"
-					href="/"
+					href="/registration"
 					rel="noreferrer"
 				>
 					Registration
 				</a>
 				<a
 					class="hidden lg:flex lg:max-xl:visible btn btn-sm variant-soft-surface overflow-hidden"
-					href="/"
+					href="/accomodations"
 					rel="noreferrer"
 				>
 					Accomodations
 				</a>
 				<a
 					class="hidden lg:flex lg:max-xl:visible btn btn-sm variant-soft-surface overflow-hidden"
-					href="/"
+					href="/program"
 					rel="noreferrer"
 				>
 					Program
 				</a>
 				<a
 					class="hidden lg:flex lg:max-xl:visible btn btn-sm variant-soft-surface overflow-hidden"
-					href="/"
-					rel="noreferrer"
-				>
-					About Us
-				</a>
-				<a
-					class="hidden lg:flex lg:max-xl:visible btn btn-sm variant-soft-surface overflow-hidden"
-					href="/"
+					href="/ysea"
 					rel="noreferrer"
 				>
 					Young Scientist Excellence Awards
+				</a>
+				<a
+					class="hidden lg:flex lg:max-xl:visible btn btn-sm variant-soft-surface overflow-hidden"
+					href="/about"
+					rel="noreferrer"
+				>
+					About Us
 				</a>
 			</svelte:fragment>
 		</AppBar>
