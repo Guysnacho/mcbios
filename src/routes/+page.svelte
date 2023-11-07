@@ -14,18 +14,18 @@
 		<div
 			class="my-auto max-w-1/3 space-y-5 text-slate-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
 		>
-			<h1 class="h1 fill-token select-none drop-shadow-2xl">MCBIOS 2024</h1>
-			<h4 class="hidden md:flex h4 fill-token select-none drop-shadow-2xl">
+			<h1 class="h1 fill-token select-none drop-shadow-xl">MCBIOS 2024</h1>
+			<h4 class="hidden md:flex h4 fill-token select-none drop-shadow-xl">
 				Everyone from codes to cells to care, transforming health care with AI
 			</h4>
-			<h4 class="h4 fill-token select-none drop-shadow-2xl">20th Annual Meeting of MCBIOS</h4>
-			<h4 class="h4 fill-token select-none drop-shadow-2xl">
+			<h4 class="h4 fill-token select-none drop-shadow-xl">20th Annual Meeting of MCBIOS</h4>
+			<h4 class="h4 fill-token select-none drop-shadow-xl">
 				Emory Univeristy<br /> March 22-24, 2024
 			</h4>
 			<a href="/" class="btn btn-lg outline my-5 select-none">Registration Coming Soon</a>
 		</div>
 	</div>
-	<quote class="md:hidden italic h4 fill-token select-none drop-shadow-2xl m-5 flex justify-center">
+	<quote class="md:hidden italic h4 fill-token select-none drop-shadow-xl m-5 flex justify-center">
 		Everyone from codes to cells to care, transforming health care with AI
 	</quote>
 	<div class="container space-y-10 mx-auto">

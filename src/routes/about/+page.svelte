@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>MCBIOS 2024 | About</title>
+	<title>MCBIOS 2024 | About Us</title>
 </svelte:head>
 
 <UnderConstruction />
