@@ -7,7 +7,6 @@
 	initializeStores();
 
 	const drawerStore = getDrawerStore();
-	let sidebarVisible = false;
 	const drawerSettings: DrawerSettings = {
 		id: 'nav',
 		position: 'right',
@@ -23,7 +22,7 @@
 		<!-- App Bar -->
 		<AppBar>
 			<svelte:fragment slot="lead">
-				<a href="/"><strong class="text-xl uppercase ml-4">MCBIOS</strong></a>
+				<a href="/"><strong class="text-3xl uppercase ml-4">MCBIOS</strong></a>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<div class="flex items-center lg:hidden">

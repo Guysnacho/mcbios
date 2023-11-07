@@ -9,7 +9,7 @@
 <div class="container h-full mx-auto flex justify-center items-center">
 	<div class="space-y-10 text-center flex flex-col items-center">
 		<!-- Animated Logo -->
-		<h2 class="h2 fill-token select-none" aria-disabled="true">Under Construction</h2>
+		<h2 class="h2 fill-token select-none">Under Construction</h2>
 		<h2 class="h2 fill-token" id="img-bg">Under Construction</h2>
 
 		<div class="space-y-2 select-none" aria-disabled="true">
