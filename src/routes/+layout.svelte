@@ -96,7 +96,7 @@
 	<!-- Page Route Content -->
 	<slot />
 	<svelte:fragment slot="pageFooter">
-		<footer class="w-full h-32 bg-surface-900 bg-opacity-70 flex justify-center mt-20">
+		<footer class="w-full h-32 bg-surface-900 bg-opacity-70 flex justify-center mt-72 md:mt-40 lg:mt-20">
 			<p class="text-center my-auto">&copy; MCBIOS 2024</p>
 		</footer>
 	</svelte:fragment>
