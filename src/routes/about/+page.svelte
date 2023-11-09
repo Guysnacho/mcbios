@@ -15,6 +15,20 @@
 			position: 'Co-Chair'
 		}
 	];
+	let members = [
+		{
+			name: 'Steve Qin, PhD',
+			affiliation: 'Emory University',
+			photo: Steve,
+			position: 'MCBIOS President'
+		},
+		{
+			name: 'Chang Su, PhD',
+			affiliation: 'Emory University',
+			photo: Steve,
+			position: 'Co-Chair'
+		}
+	];
 </script>
 
 <svelte:head>
@@ -25,8 +39,16 @@
 
 <h4 class="h2 md:h3 lg:h2 text-center">Co-Chairs</h4>
 <div class="container mx-auto h-full">
-	<section class="grid grid-cols-1 grid-rows-2 justify-between my-5 md:grid-cols-2">
+	<section class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 justify-between my-5">
 		{#each coChairs as rep}
+			<AvatarCard {rep} />
+		{/each}
+	</section>
+
+	<h4 class="h2 md:h3 lg:h2 text-center">Committee Members</h4>
+
+	<section class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 justify-between my-5">
+		{#each members as rep}
 			<AvatarCard {rep} />
 		{/each}
 	</section>
