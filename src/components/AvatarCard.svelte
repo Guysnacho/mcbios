@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class="card rounded-lg w-3/4 md:w-3/5 h-4/5 m-auto md:pb-3 bg-gradient-to-r from-surface-500 to-transparent"
+	class="card rounded-lg w-3/4 md:w-3/5 h-4/5 m-auto mb-5 md:mb-10 md:pb-3 lg:pb-0 bg-gradient-to-r from-surface-500 to-transparent"
 >
 	<div class="card-header p-0 overflow-hidden h-2/3">
 		<img class="rounded-lg mx-auto w-full object-contain" src={rep.photo} alt={rep.name} />

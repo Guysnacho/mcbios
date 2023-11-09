@@ -1,9 +1,15 @@
 <script>
 	import AvatarCard from '../../components/AvatarCard.svelte';
 	import Steve from '$lib/assets/Qin-Steve.jpg';
-	let repList = [
+	let coChairs = [
 		{
-			name: 'Dr. Steve Qin',
+			name: 'Steve Qin, PhD',
+			affiliation: 'Emory University',
+			photo: Steve,
+			position: 'MCBIOS President'
+		},
+		{
+			name: 'Chang Su, PhD',
 			affiliation: 'Emory University',
 			photo: Steve,
 			position: 'Co-Chair'
@@ -15,13 +21,14 @@
 	<title>MCBIOS 2024 | About Us</title>
 </svelte:head>
 
-<h2 class="h3 md:h2 lg:h1 text-center my-24">Organizing Commitee</h2>
+<h2 class="h1 md:h2 lg:h1 text-center my-24">Organizing Commitee</h2>
 
-<h4 class="h4 text-center">Co-Chairs</h4>
+<h4 class="h2 md:h3 lg:h2 text-center">Co-Chairs</h4>
 <div class="container mx-auto h-full">
 	<section class="grid grid-cols-1 grid-rows-2 justify-between my-5 md:grid-cols-2">
-		<AvatarCard rep={repList[0]} />
-		<AvatarCard rep={repList[0]} />
+		{#each coChairs as rep}
+			<AvatarCard {rep} />
+		{/each}
 	</section>
 
 	<!-- <section class="grid grid-cols-2 md:grid-cols-3 gap-4 auto-cols-auto">
