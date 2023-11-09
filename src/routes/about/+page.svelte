@@ -38,7 +38,7 @@
 <h2 class="h1 md:h2 lg:h1 text-center my-24">Organizing Commitee</h2>
 
 <h4 class="h2 md:h3 lg:h2 text-center">Co-Chairs</h4>
-<div class="container mx-auto h-full">
+<div class="container mx-auto">
 	<section class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 justify-between my-5">
 		{#each coChairs as rep}
 			<AvatarCard {rep} />
