@@ -1,21 +1,20 @@
 <script>
-	export let rep = {
-		name: '',
-		affiliation: '',
-		photo: '',
-		position: ''
-	};
+	export let name = '';
+	export let affiliation = '';
+	export let photo = '';
+	export let position = '' || undefined;
 </script>
 
 <div
-	class="card rounded-lg w-3/4 md:w-3/5 h-4/5 m-auto mb-5 md:mb-10 md:pb-3 lg:pb-0 bg-gradient-to-r from-surface-500 to-transparent"
+	class="card rounded-lg w-3/4 md:w-3/5 h-4/5 m-auto mb-5 md:mb-10 md:pb-3 lg:pb-0 bg-gradient-to-r from-tertiary-400 to-surface-700"
 >
-	<div class="card-header p-0 overflow-hidden h-2/3">
-		<img class="rounded-lg mx-auto w-full object-contain" src={rep.photo} alt={rep.name} />
+	<div class="card-header rounded-lg overflow-clip h-4/6 mb-2">
+		<img class="rounded-lg mx-auto w-full object-contain" src={photo} alt={name} />
 	</div>
-	<h5 class="text-center h4 sm:h2 md:h4 my-2">{rep.affiliation}</h5>
-	<h3 class="text-center h3 sm:h1 md:h3">{rep.name}</h3>
-	<h4 class="text-center h4 sm:h2 md:h4">{rep.position}</h4>
-	<!-- <div class="text-center m-auto my-1 md:my-5 lg:my-7" /> -->
+	<h5 class="text-center h5 md:h6">{affiliation}</h5>
+	<h3 class="text-center h3 sm:h2 md:h3 lg:h4">{name}</h3>
+	<h4 class="text-center h4 sm:h3 md:h4 {position == undefined ? 'hidden' : undefined}">
+		{position}
+	</h4>
 	<div class="card-footer"><br /></div>
 </div>
