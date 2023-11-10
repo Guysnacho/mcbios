@@ -29,4 +29,3 @@ jobs:
           port: ${{ secrets.ftp_port }}
           local-dir: './build/'
           server-dir: 'public_html/2024.mcbios.com/'
-          dry-run: true
