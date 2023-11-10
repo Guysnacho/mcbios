@@ -6,7 +6,7 @@
 </script>
 
 <div
-	class="card rounded-lg w-3/4 md:w-3/5 h-4/5 m-auto mb-5 md:mb-10 md:pb-3 lg:pb-0 bg-gradient-to-r from-tertiary-400 to-surface-700"
+	class="card rounded-lg w-3/4 md:w-3/5 h-4/5 m-auto mb-5 md:mb-10 md:pb-3 bg-gradient-to-r from-tertiary-400 to-surface-700"
 >
 	<div class="card-header rounded-lg overflow-clip h-4/6 mb-2">
 		<img class="rounded-lg mx-auto w-full object-contain" src={photo} alt={name} />
@@ -16,5 +16,4 @@
 	<h4 class="text-center h4 sm:h3 md:h4 {position == undefined ? 'hidden' : undefined}">
 		{position}
 	</h4>
-	<div class="card-footer"><br /></div>
 </div>
