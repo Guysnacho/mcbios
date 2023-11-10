@@ -97,7 +97,7 @@
 		{/each}
 	</section>
 
-	<h4 class="h2 md:h3 lg:h2 text-center">Committee Members</h4>
+	<h4 class="h2 md:h3 lg:h2 my-10 text-center">Committee Members</h4>
 
 	<section
 		class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 auto-rows-max justify-center my-5"
