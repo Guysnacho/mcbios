@@ -12,10 +12,12 @@
 	<div class="relative w-full h-1/4 lg:h-auto text-center flex justify-center">
 		<img src={bgImage} alt="City skyline" class="w-full overflow-clip object-cover" />
 		<div
-			class="my-auto max-w-1/3 space-y-5 text-slate-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+			class="my-auto max-w-1/3 space-y-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
 		>
 			<h1 class="h1 fill-token select-none drop-shadow-xl">MCBIOS 2024</h1>
-			<h4 class="hidden md:flex h4 fill-token select-none drop-shadow-xl">
+			<h4
+				class="hidden md:flex h4 fill-token select-none drop-shadow-xl text-center justify-center"
+			>
 				Everyone from codes to cells to care, transforming health care with AI
 			</h4>
 			<h4 class="h4 fill-token select-none drop-shadow-xl">20th Annual Meeting of MCBIOS</h4>
@@ -25,17 +27,19 @@
 			<a href="/" class="btn btn-lg outline my-5 select-none">Registration Coming Soon</a>
 		</div>
 	</div>
-	<quote class="md:hidden italic h4 fill-token select-none drop-shadow-xl m-5 flex justify-center">
+	<quote class="md:hidden italic h4 fill-token select-none drop-shadow-xl my-5 mx-auto flex text-center justify-center max-w-md">
 		Everyone from codes to cells to care, transforming health care with AI
 	</quote>
 	<div class="container space-y-10 mx-auto">
 		<hr class="!border-t-8 !border-double" />
 	</div>
 
-	<div
-		class="flex flex-col-reverse gap-10 lg:flex-none lg:grid lg:grid-cols-3 lg:gap-5 space-y-10 mx-4"
-	>
-		<div class="col-span-2 lg:mt-10">
+	<div class="flex flex-col gap-10 lg:flex-none lg:grid lg:grid-cols-3 lg:gap-5 my-10 mx-4 px-5">
+		<div class="col-span-1">
+			<img src={president} alt="Dr. Steve Qin - MCBIOS President" class="rounded" />
+			<h3 class="h3 text-center my-5">Dr. Steve Qin - Emory University</h3>
+		</div>
+		<div class="col-span-2">
 			<p class="h2">Greetings from the MCBIOS President:</p>
 			<br />
 			<p class="text-md">
@@ -81,6 +85,5 @@
 				abstract deadlines and more. Many thanks for all of your continued support and well wishes!
 			</p>
 		</div>
-		<img src={president} alt="Qin Steve - MCBIOS President" class="rounded my-auto" />
 	</div>
 </div>
