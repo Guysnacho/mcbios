@@ -29,6 +29,7 @@
 		</div>
 	</div>
 </div>
+
 <!-- Flex box 1 -->
 <div class="flex flex-col md:flex-row w-full md:w-10/12 mx-auto">
 	<div class="mx-auto basis-1/2 w-5/6 md:w-6/12 md:px-10">
@@ -62,11 +63,13 @@
 	</div>
 </div>
 
-<hr class="!border-t-4 !border-dotted my-5" />
+<hr class="!border-t-4 !border-dotted my-10 w-1/3 mx-auto" />
 
 <!-- Flex box 2 -->
-<div class="flex flex-col md:flex-row w-full md:w-10/12 mx-auto space-y-8 my-7 mb-80">
-	<div class="mx-auto basis-1/2 w-5/6 md:w-6/12 md:px-10 space-y-4">
+<div
+	class="flex flex-col md:flex-row w-full md:w-10/12 mx-auto space-y-8 my-7 mb-72 sm:mb-0 md:-mb-10"
+>
+	<div class="mx-auto basis-1/2 w-5/6 md:w-6/12 md:px-10 space-y-4 my-10">
 		<p class="-mx-4 font-semibold">
 			The abstract should not exceed 300 words. Please minimize the use of abbreviations and do not
 			cite references in the abstract.
