@@ -1,7 +1,6 @@
 <script>
-	import bgImage from '$lib/assets/2024_bg_brad-huchteman.jpg';
-	import president from '$lib/assets/Qin-Steve.jpg';
-	let vari = '';
+	import bgImage from '$lib/assets/background/2024_bg_brad-huchteman.jpg';
+	import president from '$lib/assets/committee/Qin-Steve.jpg';
 </script>
 
 <svelte:head>
@@ -24,7 +23,7 @@
 			<h4 class="h4 fill-token select-none drop-shadow-xl">
 				Emory Univeristy<br /> March 22-24, 2024
 			</h4>
-			<a href="/" class="btn btn-lg outline my-5 select-none">Registration Coming Soon</a>
+			<a href="/registration" class="btn btn-lg outline my-5 select-none">Registration Coming Soon</a>
 		</div>
 	</div>
 	<quote class="md:hidden italic h4 fill-token select-none drop-shadow-xl my-5 mx-auto flex text-center justify-center max-w-md">

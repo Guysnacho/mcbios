@@ -1,23 +1,23 @@
 <script>
-	import ChangSu from '$lib/assets/Chang-Su.jpg';
-	import GregGibson from '$lib/assets/Greg-Gibson.png';
-	import HongQin from '$lib/assets/Hong-Qin.png';
-	import HuixiaoHong from '$lib/assets/Huixiao-Hong.jpg';
-	import JakeChen from '$lib/assets/Jake-Chen.jpg';
-	import JieChen from '$lib/assets/Jie-Chen.jpg';
-	import KunZhao from '$lib/assets/Kun-Zhao.jpg';
-	import ManojBhasin from '$lib/assets/Manoj-Bhasin.jpg';
-	import MarkBorodovsky from '$lib/assets/Mark-Borodovsky.jpg';
-	import PaulSchliekelman from '$lib/assets/Paul-Schliekelman.jpg';
-	import PengQiu from '$lib/assets/Peng-Qiu.jpg';
-	import Steve from '$lib/assets/Qin-Steve.jpg';
-	import StevePittard from '$lib/assets/Steve-Pittard.jpg';
-	import XiaoHu from '$lib/assets/Xiao-Hu.jpg';
-	import XiuweiZhang from '$lib/assets/Xiuwei-Zhang.png';
-	import YanqingZhang from '$lib/assets/Yanqing-Zhang.jpg';
-	import YongshengBai from '$lib/assets/Yongsheng-Bai.jpg';
-	import ZhanaDuren from '$lib/assets/Zhana-Duren.jpg';
-	import ZongliangYue from '$lib/assets/Zongliang-Yue.jpg';
+	import ChangSu from '$lib/assets/committee/Chang-Su.jpg';
+	import GregGibson from '$lib/assets/committee/Greg-Gibson.png';
+	import HongQin from '$lib/assets/committee/Hong-Qin.png';
+	import HuixiaoHong from '$lib/assets/committee/Huixiao-Hong.jpg';
+	import JakeChen from '$lib/assets/committee/Jake-Chen.jpg';
+	import JieChen from '$lib/assets/committee/Jie-Chen.jpg';
+	import KunZhao from '$lib/assets/committee/Kun-Zhao.jpg';
+	import ManojBhasin from '$lib/assets/committee/Manoj-Bhasin.jpg';
+	import MarkBorodovsky from '$lib/assets/committee/Mark-Borodovsky.jpg';
+	import PaulSchliekelman from '$lib/assets/committee/Paul-Schliekelman.jpg';
+	import PengQiu from '$lib/assets/committee/Peng-Qiu.jpg';
+	import Steve from '$lib/assets/committee/Qin-Steve.jpg';
+	import StevePittard from '$lib/assets/committee/Steve-Pittard.jpg';
+	import XiaoHu from '$lib/assets/committee/Xiao-Hu.jpg';
+	import XiuweiZhang from '$lib/assets/committee/Xiuwei-Zhang.png';
+	import YanqingZhang from '$lib/assets/committee/Yanqing-Zhang.jpg';
+	import YongshengBai from '$lib/assets/committee/Yongsheng-Bai.jpg';
+	import ZhanaDuren from '$lib/assets/committee/Zhana-Duren.jpg';
+	import ZongliangYue from '$lib/assets/committee/Zongliang-Yue.jpg';
 
 	import AvatarCard from '../../components/AvatarCard.svelte';
 	let coChairs = [
