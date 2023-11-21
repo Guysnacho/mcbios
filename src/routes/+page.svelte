@@ -11,7 +11,7 @@
 	<div class="relative w-full h-1/4 lg:h-auto text-center flex justify-center">
 		<img src={bgImage} alt="City skyline" class="w-full overflow-clip object-cover" />
 		<div
-			class="my-auto max-w-1/3 space-y-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+			class="my-auto py-10 px-4 max-w-1/3 space-y-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 bg-opacity-25 rounded-lg"
 		>
 			<h1 class="h1 fill-token select-none drop-shadow-xl">MCBIOS 2024</h1>
 			<h4
