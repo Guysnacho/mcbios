@@ -1,7 +1,12 @@
 <script lang="ts">
+	import {
+		AppBar,
+		AppShell,
+		getDrawerStore,
+		initializeStores,
+		type DrawerSettings
+	} from '@skeletonlabs/skeleton';
 	import '../app.postcss';
-	import { AppShell, AppBar, type DrawerSettings, getDrawerStore } from '@skeletonlabs/skeleton';
-	import { initializeStores } from '@skeletonlabs/skeleton';
 	import MainDrawer from '../components/MainDrawer.svelte';
 
 	initializeStores();
@@ -62,13 +67,13 @@
 				>
 					Registration
 				</a>
-				<a
+				<!-- <a
 					class="hidden lg:flex lg:max-xl:visible btn btn-sm variant-soft-surface overflow-hidden"
 					href="/accomodations"
 					rel="noreferrer"
 				>
 					Accomodations
-				</a>
+				</a> -->
 				<a
 					class="hidden lg:flex lg:max-xl:visible btn btn-sm variant-soft-surface overflow-hidden"
 					href="/program"
@@ -96,7 +101,9 @@
 	<!-- Page Route Content -->
 	<slot />
 	<svelte:fragment slot="pageFooter">
-		<footer class="w-full h-32 bg-surface-900 bg-opacity-70 flex justify-center mt-72 md:mt-40 lg:mt-20">
+		<footer
+			class="w-full h-32 bg-surface-900 bg-opacity-70 flex justify-center mt-72 md:mt-40 lg:mt-20"
+		>
 			<p class="text-center my-auto">&copy; MCBIOS 2024</p>
 		</footer>
 	</svelte:fragment>
