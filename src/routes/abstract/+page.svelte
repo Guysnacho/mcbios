@@ -1,19 +1,14 @@
 <script>
 	import Abstract from '$lib/assets/background/Chang-Su_abstract.jpg';
+	import Hero from '../../components/Hero.svelte';
 </script>
 
 <svelte:head>
 	<title>MCBIOS 2024 | Abstract</title>
 </svelte:head>
 
-<div class="align-middle mx-auto relative text-center flex justify-center h-1/4">
-	<img src={Abstract} alt="Abstract submission" class="w-full overflow-clip object-cover" />
-	<div
-		class="w-full py-3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 bg-opacity-40"
-	>
-		<h1 class="h1 fill-token select-none drop-shadow-sm">Abstract Submissions</h1>
-	</div>
-</div>
+<Hero imageSrc={Abstract} headerText="Abstract Submissions" />
+
 <div class="grid grid-cols-1 space-y-10 my-10">
 	<h4 class="h4 mx-2 text-center">Submission Instructions</h4>
 	<div class="space-y-3 w-5/6 sm:w-4/5 md:w-2/3 lg:w-3/5 mx-auto">

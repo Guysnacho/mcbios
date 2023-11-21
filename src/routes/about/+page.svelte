@@ -19,7 +19,9 @@
 	import ZhanaDuren from '$lib/assets/committee/Zhana-Duren.jpg';
 	import ZongliangYue from '$lib/assets/committee/Zongliang-Yue.jpg';
 
+	import Abstract from '$lib/assets/background/Chang-Su_abstract.jpg';
 	import AvatarCard from '../../components/AvatarCard.svelte';
+	import Hero from '../../components/Hero.svelte';
 	let coChairs = [
 		{
 			name: 'Steve Qin, PhD',
@@ -82,54 +84,56 @@
 	<title>MCBIOS 2024 | About Us</title>
 </svelte:head>
 
-<h2 class="h1 md:h2 lg:h1 text-center mt-24">Organizing Commitee</h2>
+<div>
+	<Hero imageSrc={Abstract} headerText="Organizing Commitee" />
 
-<div class="container mx-auto m-11 space-y-5">
-	<blockquote class="blockquote my-5 mx-auto w-5/6">
-		The purposes of the Society are scientific, educational, literary, charitable, and no other.
-	</blockquote>
-	<div class=" w-5/6 mx-auto">
-		<h4 class="my-3">THE MISSION OF MCBIOS IS TO:</h4>
-		<ul class="list-disc">
-			<li>Advance the understanding of bioinformatics and computational biology</li>
-			<li>Bring together scientists of various backgrounds and disciplines</li>
-			<li>
-				Facilitate the collaboration of researchers with similar or complementary backgrounds to
-				solve biological, health and/or medical problems
-			</li>
-			<li>Promote education in bioinformatics and computational biology</li>
-			<li>
-				Inform the general public on the results and implications of current research in
-				bioinformatics and computational biology
-			</li>
-			<li>
-				Promote other activities that will contribute to the development of bioinformatics and
-				computational biology
-			</li>
-		</ul>
+	<div class="container mx-auto m-11 space-y-5">
+		<blockquote class="blockquote my-5 mx-auto w-5/6">
+			The purposes of the Society are scientific, educational, literary, charitable, and no other.
+		</blockquote>
+		<div class=" w-5/6 mx-auto">
+			<h4 class="my-3">THE MISSION OF MCBIOS IS TO:</h4>
+			<ul class="list-disc">
+				<li>Advance the understanding of bioinformatics and computational biology</li>
+				<li>Bring together scientists of various backgrounds and disciplines</li>
+				<li>
+					Facilitate the collaboration of researchers with similar or complementary backgrounds to
+					solve biological, health and/or medical problems
+				</li>
+				<li>Promote education in bioinformatics and computational biology</li>
+				<li>
+					Inform the general public on the results and implications of current research in
+					bioinformatics and computational biology
+				</li>
+				<li>
+					Promote other activities that will contribute to the development of bioinformatics and
+					computational biology
+				</li>
+			</ul>
+		</div>
 	</div>
-</div>
 
-<h4 class="h2 md:h3 lg:h2 text-center">Co-Chairs</h4>
-<div class="container mx-auto">
-	<section class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 justify-between my-5">
-		{#each coChairs as rep}
-			<AvatarCard
-				name={rep.name}
-				affiliation={rep.affiliation}
-				photo={rep.photo}
-				position={rep.position}
-			/>
-		{/each}
-	</section>
+	<h4 class="h2 md:h3 lg:h2 text-center">Co-Chairs</h4>
+	<div class="container mx-auto">
+		<section class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 justify-between my-5">
+			{#each coChairs as rep}
+				<AvatarCard
+					name={rep.name}
+					affiliation={rep.affiliation}
+					photo={rep.photo}
+					position={rep.position}
+				/>
+			{/each}
+		</section>
 
-	<h4 class="h2 md:h3 lg:h2 my-10 text-center">Committee Members</h4>
+		<h4 class="h2 md:h3 lg:h2 my-10 text-center">Committee Members</h4>
 
-	<section
-		class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 auto-rows-max justify-center my-5"
-	>
-		{#each members as rep}
-			<AvatarCard name={rep.name} affiliation={rep.affiliation} photo={rep.photo} />
-		{/each}
-	</section>
+		<section
+			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 auto-rows-max justify-center my-5"
+		>
+			{#each members as rep}
+				<AvatarCard name={rep.name} affiliation={rep.affiliation} photo={rep.photo} />
+			{/each}
+		</section>
+	</div>
 </div>
