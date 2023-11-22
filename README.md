@@ -1,5 +1,7 @@
 # MCBIOS 2024 Conference Site - created with [svelte](https://github.com/sveltejs/svelte)
 
+[![🚀 Site Deployed w/FTP](https://github.com/Guysnacho/mcbios2024/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/Guysnacho/mcbios2024/actions/workflows/main.yml)
+
 [<img alt="Deployed with FTP Deploy Action" src="https://img.shields.io/badge/Deployed With-FTP DEPLOY ACTION-%3CCOLOR%3E?style=for-the-badge&color=0077b6">](https://github.com/SamKirkland/FTP-Deploy-Action)
 
 Welcome to the home of the 2024 MCBIOS Conference.
