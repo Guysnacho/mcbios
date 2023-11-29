@@ -1,32 +1,34 @@
-# MCBIOS 2024 Conference Site - created with [svelte](https://github.com/sveltejs/svelte)
+# MCBIOS Main Conference Site - created with [next.js](https://github.com/vercel/next.js)
 
-[![🚀 Site Deployed w/FTP](https://github.com/Guysnacho/mcbios2024/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/Guysnacho/mcbios2024/actions/workflows/main.yml)
+Welcome to the future replacement of the main MCBIOS Conference site.
 
-[<img alt="Deployed with FTP Deploy Action" src="https://img.shields.io/badge/Deployed With-FTP DEPLOY ACTION-%3CCOLOR%3E?style=for-the-badge&color=0077b6">](https://github.com/SamKirkland/FTP-Deploy-Action)
+[Pallete](https://www.realtimecolors.com/?colors=100217-f4f2f1-ae2a0f-bfd9d0-764091&fonts=Poppins-DM%20Sans) created with Realtime Colors! @Juxtopposed
 
-Welcome to the home of the 2024 MCBIOS Conference.
+Everything you need to build a [Next.js](https://nextjs.org/) project, powered by [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Getting Started
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install`, start a development server:
+First, run the development server:
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+yarn dev
 ```
 
-## Building
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-To create a production version of the app:
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```bash
-npm run build
-```
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-You can preview the production build with `npm run preview`.
+## Learn More
 
-> Currently I'm building with the static site generator [adapter](https://kit.svelte.dev/docs/adapters) to make deployment to the PHP server easy.
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on ~~Vercel~~Netlify
+
+~~The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.~~ This project will be deployed with Netlify, after tying the repo to a Netlify project deployments will be handled by merge to the `2024` branch.
