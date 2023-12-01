@@ -10,6 +10,7 @@ import {
   Heading,
   Image,
   ListItem,
+  SimpleGrid,
   Stack,
   StackDivider,
   Text,
@@ -22,14 +23,14 @@ export default function Home() {
     <Box
       w="80%"
       mx="auto"
-      mb={20}
+      my={20}
       as={Stack}
       divider={<StackDivider borderColor="gray.500" />}
-      rowGap={3}
+      rowGap={75}
     >
       <Stack
         direction={["column", null, null, "row"]}
-        spacing={75}
+        gap={[0, null, 75]}
         justify="center"
       >
         <Image
@@ -188,23 +189,35 @@ export default function Home() {
           </ListItem>
         </UnorderedList>
       </Box>
-      <Box mx="auto" w={[null, null, "90%"]}>
-        <Heading as="h6">Membership</Heading>
-        <Text as="p" my={5}>
-          Membership in MBIOS includes meeting registration for the annual
-          Conference and access to workshops and collaborative projects hosted
-          by MCBIOS through the year. Students receive a discount for membership
-          and are eligible for student awards. MCBIOS encourages involvement at
-          both the regional and state level.
-        </Text>
-        <Box display="flex" alignItems="center" justifyContent="center">
-          <Button size="md" href="#" as={Link} colorScheme="accent">
-            Registration
-          </Button>
+      <SimpleGrid
+        columns={[1, null, null, 2]}
+        gap={5}
+        mx="auto"
+        w={[null, null, "90%"]}
+      >
+        <Box px={3}>
+          <Heading as="h6">Membership</Heading>
+          <Text as="p" my={5}>
+            Membership in MBIOS includes meeting registration for the annual
+            Conference and access to workshops and collaborative projects hosted
+            by MCBIOS through the year. Students receive a discount for
+            membership and are eligible for student awards. MCBIOS encourages
+            involvement at both the regional and state level.
+          </Text>
+          <Box
+            my={15}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Button size="md" href="#" as={Link} colorScheme="accent">
+              Registration
+            </Button>
+          </Box>
         </Box>
-        <Heading as="h6">Local Chapters</Heading>
-        <Text as="p" my={5}>
-          <UnorderedList my={5}>
+        <Box px={3}>
+          <Heading as="h6">Local Chapters</Heading>
+          <UnorderedList my={5} as="p">
             <ListItem>
               MCBIOS encourages the formation of local chapters. Chapters
               require:
@@ -217,8 +230,8 @@ export default function Home() {
             </ListItem>
             <ListItem>A purpose for organizing</ListItem>
           </UnorderedList>
-        </Text>
-      </Box>
+        </Box>
+      </SimpleGrid>
     </Box>
   );
 }
