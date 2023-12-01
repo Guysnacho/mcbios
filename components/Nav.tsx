@@ -98,6 +98,7 @@ export const Nav = () => {
               height="2px"
               bg="blue"
               borderRadius="1px"
+              // @ts-ignore
               defaultValue={pathMap[path] || 0}
             />
           </Tabs>
