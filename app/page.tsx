@@ -26,7 +26,7 @@ export default function Home() {
       my={20}
       as={Stack}
       divider={<StackDivider borderColor="gray.500" />}
-      rowGap={75}
+      rowGap={50}
     >
       <Stack w={["90%", null, null, "50%"]} mx="auto">
         <Image
@@ -39,6 +39,9 @@ export default function Home() {
               "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 100%)",
           }}
         />
+        <Button size="md" my={5} href="#" as={Link} colorScheme="accent">
+          Become a Member
+        </Button>
       </Stack>
       <Box as={Stack} gap={5} mx="auto" w={[null, null, "90%"]}>
         <Heading as="h6">Greeting from the MCBIOS President:</Heading>
