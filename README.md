@@ -1,6 +1,6 @@
 # MCBIOS Main Conference Site - created with [next.js](https://github.com/vercel/next.js)
 
-Welcome to the future replacement of the main MCBIOS Conference site.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6d25438c-d54b-49dc-9ecb-1caae154b019/deploy-status)](https://app.netlify.com/sites/mcbios/deploys?branch=2024)
 
 [Pallete](https://www.realtimecolors.com/?colors=100217-f4f2f1-ae2a0f-bfd9d0-764091&fonts=Poppins-DM%20Sans) created with Realtime Colors! @Juxtopposed
 
