@@ -1,6 +1,7 @@
 # MCBIOS 2024 Conference Site - created with [svelte](https://github.com/sveltejs/svelte)
 
 [![🚀 Site Deployed w/FTP](https://github.com/Guysnacho/mcbios2024/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/Guysnacho/mcbios2024/actions/workflows/main.yml)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6d25438c-d54b-49dc-9ecb-1caae154b019/deploy-status)](https://app.netlify.com/sites/mcbios/deploys?branch=2024)
 
 [<img alt="Deployed with FTP Deploy Action" src="https://img.shields.io/badge/Deployed With-FTP DEPLOY ACTION-%3CCOLOR%3E?style=for-the-badge&color=0077b6">](https://github.com/SamKirkland/FTP-Deploy-Action)
 
