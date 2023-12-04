@@ -26,14 +26,11 @@ export default function Home() {
       my={20}
       as={Stack}
       divider={<StackDivider borderColor="gray.500" />}
-      rowGap={75}
+      rowGap={50}
     >
-      <Stack
-        direction={["column", null, null, "row"]}
-        gap={[0, null, 75]}
-        justify="center"
-      >
+      <Stack w={["90%", null, null, "50%"]} mx="auto">
         <Image
+          mx="auto"
           src="/images/logo.jpg"
           alt="MCBIOS Logo"
           objectFit="cover"
@@ -42,14 +39,9 @@ export default function Home() {
               "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 100%)",
           }}
         />
-        <Box w={[300, null, null, "25%"]} m="auto">
-          <Heading as="h3" fontSize="5xl">
-            MCBIOS
-          </Heading>
-          <Text as="p">
-            MidSouth Computational Biology and Bioinformatics Society
-          </Text>
-        </Box>
+        <Button size="md" my={5} href="#" as={Link} colorScheme="accent">
+          Become a Member
+        </Button>
       </Stack>
       <Box as={Stack} gap={5} mx="auto" w={[null, null, "90%"]}>
         <Heading as="h6">Greeting from the MCBIOS President:</Heading>

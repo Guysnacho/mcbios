@@ -37,7 +37,7 @@ export const Nav = () => {
   });
 
   return (
-    <Box w="100%" bgColor="rgb(115,62,142,.95)">
+    <Box w="100%" bgColor="rgb(115,62,142,.95)" aria-label="nav-menu">
       <Box
         color="white"
         w="90%"
@@ -103,7 +103,7 @@ export const Nav = () => {
             />
           </Tabs>
         ) : (
-          <Menu>
+          <Menu boundary="scrollParent">
             <MenuButton
               as={IconButton}
               aria-label="nav-menu"
@@ -111,7 +111,14 @@ export const Nav = () => {
             >
               <HamburgerIcon fontSize="x-large" />
             </MenuButton>
-            <MenuList gap={5} py={5} px={10} rounded={10} bgColor="#d3b8e0">
+            <MenuList
+              gap={5}
+              py={5}
+              px={10}
+              rounded={10}
+              bgColor="#d3b8e0"
+              zIndex={1}
+            >
               <MenuItem my={6} as="a" href="/">
                 HOME
               </MenuItem>
