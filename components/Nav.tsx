@@ -37,7 +37,7 @@ export const Nav = () => {
   });
 
   return (
-    <Box w="100%" bgColor="rgb(115,62,142,.95)">
+    <Box w="100%" bgColor="rgb(115,62,142,.95)" aria-label="nav-menu">
       <Box
         color="white"
         w="90%"
