@@ -18,7 +18,7 @@ jobs:
         run: |
           npm install
           npm run build
-      - name: 🚢 Deploy Static Site 
+      - name: 🚢 Deploy Static Site
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.ftp_server }}
@@ -28,10 +28,6 @@ jobs:
           port: ${{ secrets.ftp_port }}
           local-dir: './build/'
           server-dir: '2024.mcbios.com/'
-  post-deploy:
-    name: 🛸 Post Deploy
-    runs-on: ubuntu-latest
-    steps:
       - name: 🛸 Post-Deploy 👽
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
