@@ -57,8 +57,6 @@
 
 		{ name: 'Zhana Duren', affiliation: 'Clemson University', photo: ZhanaDuren },
 
-		{ name: 'Greg Gibson', affiliation: 'Georgia Tech University', photo: GregGibson },
-
 		{ name: 'Huixiao Hong', affiliation: 'FDA NCTR', photo: HuixiaoHong },
 
 		{ name: 'Xiao Hu', affiliation: 'Emory University', photo: XiaoHu },
