@@ -1,6 +1,6 @@
 on:
   push:
-    branches: ['main']
+    branches: ['2024']
 name: 🚀 Deploy Site w/FTP
 jobs:
   web-deploy:
