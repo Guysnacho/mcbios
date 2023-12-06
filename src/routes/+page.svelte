@@ -1,7 +1,9 @@
 <script>
 	import bgImage from '$lib/assets/background/2024_bg_brad-huchteman.jpg';
-	import GregGibson from '$lib/assets/speakers/Greg-Gibson.jpg';
+	import CenterOfAILearning from '$lib/assets/sponsors/Sponsor-CAIL-1.jpg';
+
 	import AnantMadabhushi from '$lib/assets/speakers/Anant-Madabhushi.jpg';
+	import GregGibson from '$lib/assets/speakers/Greg-Gibson.jpg';
 	import NancyCox from '$lib/assets/speakers/Nancy-Cox.jpg';
 </script>
 
@@ -40,7 +42,7 @@
 	</div>
 </div>
 
-<div class="w-full my-5">
+<div class="w-full my-24">
 	<h3 class="h3 text-center text-2xl">Keynote Speakers</h3>
 	<div class="md:flex space-y-5 my-5 md:space-y-0">
 		<div class="w-2/3 md:w-1/4 mx-auto space-y-3 card-hover">
@@ -86,4 +88,20 @@
 
 <div class="container my-10 mx-auto">
 	<hr class="!border-t-8 !border-double" />
+</div>
+
+<div class="w-full my-16">
+	<h3 class="h3 text-center text-2xl">Sponsors</h3>
+	<div class="space-y-5 my-5">
+		<a href="https://ailearning.emory.edu/" target="_blank">
+			<div class="space-y-3 container mx-auto py-4 card-hover">
+				<h4 class="text-center text-lg">Center for AI learning</h4>
+				<img
+					class="w-5/6 md:w-1/2 mx-auto rounded-md shadow-lg border-tertiary-600 border-4"
+					src={CenterOfAILearning}
+					alt="Emory University | Center of AI Learning"
+				/>
+			</div>
+		</a>
+	</div>
 </div>
