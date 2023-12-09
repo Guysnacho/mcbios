@@ -1,10 +1,9 @@
-import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./Providers";
 import "./globals.css";
-import { NewNav } from "@/components/NewNav";
+import { Nav } from "@/components/Nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} style={{ width: "100%" }}>
-        <NewNav />
+        <Nav />
         <main>
           <Providers>{children}</Providers>
         </main>
