@@ -1,6 +1,5 @@
 <script>
 	import ChangSu from '$lib/assets/committee/Chang-Su.jpg';
-	import GregGibson from '$lib/assets/committee/Greg-Gibson.png';
 	import HongQin from '$lib/assets/committee/Hong-Qin.png';
 	import HuixiaoHong from '$lib/assets/committee/Huixiao-Hong.jpg';
 	import JakeChen from '$lib/assets/committee/Jake-Chen.jpg';
@@ -11,6 +10,7 @@
 	import PaulSchliekelman from '$lib/assets/committee/Paul-Schliekelman.jpg';
 	import PengQiu from '$lib/assets/committee/Peng-Qiu.jpg';
 	import Steve from '$lib/assets/committee/Qin-Steve.jpg';
+	import SangeetaKhare from '$lib/assets/committee/Sangeeta-Khare.jpg';
 	import StevePittard from '$lib/assets/committee/Steve-Pittard.jpg';
 	import XiaoHu from '$lib/assets/committee/Xiao-Hu.jpg';
 	import XiuweiZhang from '$lib/assets/committee/Xiuwei-Zhang.png';
@@ -20,9 +20,10 @@
 	import ZongliangYue from '$lib/assets/committee/Zongliang-Yue.jpg';
 
 	import Abstract from '$lib/assets/background/Chang-Su_abstract.jpg';
+	import president from '$lib/assets/committee/Qin-Steve.jpg';
 	import AvatarCard from '../../components/AvatarCard.svelte';
 	import Hero from '../../components/Hero.svelte';
-	import president from '$lib/assets/committee/Qin-Steve.jpg';
+
 	let coChairs = [
 		{
 			name: 'Steve Qin, PhD',
@@ -75,7 +76,8 @@
 
 		{ name: 'Xiuwei Zhang', affiliation: 'Georgia Tech University', photo: XiuweiZhang },
 
-		{ name: 'Kun Zhao', affiliation: 'CDC', photo: KunZhao }
+		{ name: 'Kun Zhao', affiliation: 'CDC', photo: KunZhao },
+		{ name: 'Sangeeta Khare', affiliation: 'FDA NCTR', photo: SangeetaKhare }
 	];
 </script>
 
