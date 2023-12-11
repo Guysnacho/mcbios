@@ -18,6 +18,8 @@ jobs:
         run: |
           npm install
           npm run build
+      - name: 🛸 Enrich Package 👽
+        run: cp ./post-deploy/.htaccess ./build/
       - name: 🚢 Deploy Static Site
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -27,14 +29,4 @@ jobs:
           # protocol: ftps
           port: ${{ secrets.ftp_port }}
           local-dir: './build/'
-          server-dir: '2024.mcbios.com/'
-      - name: 🛸 Post-Deploy 👽
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.ftp_server }}
-          username: ${{ secrets.ftp_user }}
-          password: ${{ secrets.ftp_password }}
-          dangerous-clean-slate: false
-          port: ${{ secrets.ftp_port }}
-          local-dir: './post-deploy/'
           server-dir: '2024.mcbios.com/'
