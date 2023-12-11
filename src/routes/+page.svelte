@@ -1,6 +1,7 @@
 <script>
 	import bgImage from '$lib/assets/background/2024_bg_brad-huchteman.jpg';
 	import CenterOfAILearning from '$lib/assets/sponsors/Sponsor-CAIL-1.jpg';
+	import SocietyOfComputationalBiology from '$lib/assets/sponsors/Sponsor-ISCB-2.png';
 
 	import AnantMadabhushi from '$lib/assets/speakers/Anant-Madabhushi.jpg';
 	import GregGibson from '$lib/assets/speakers/Greg-Gibson.jpg';
@@ -93,13 +94,31 @@
 <div class="w-full my-16">
 	<h3 class="h3 text-center text-2xl">Sponsors</h3>
 	<div class="space-y-5 my-5">
-		<a href="https://ailearning.emory.edu/" target="_blank">
+		<a
+			href="https://ailearning.emory.edu/"
+			target="_blank"
+			aria-label="Emory Center for AI learning"
+		>
 			<div class="space-y-3 container mx-auto py-4 card-hover">
 				<h4 class="text-center text-lg">Center for AI learning</h4>
 				<img
-					class="w-5/6 md:w-1/2 mx-auto rounded-md shadow-lg border-tertiary-600 border-4"
+					class="w-4/6 md:w-1/2 mx-auto rounded-md shadow-lg border-tertiary-600 border-4"
 					src={CenterOfAILearning}
 					alt="Emory University | Center of AI Learning"
+				/>
+			</div>
+		</a>
+		<a
+			href="https://www.iscb.org/index.php"
+			target="_blank"
+			aria-label="International Society for Computational Biology"
+		>
+			<div class="space-y-3 container mx-auto py-4 card-hover">
+				<h4 class="text-center text-lg">International Society for Computational Biology</h4>
+				<img
+					class="object-contain mx-auto rounded-md shadow-lg border-tertiary-600 border-4"
+					src={SocietyOfComputationalBiology}
+					alt="International Society for Computational Biology"
 				/>
 			</div>
 		</a>
