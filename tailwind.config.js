@@ -23,7 +23,9 @@ module.exports = {
           extend: "light",
           colors: {
             text: "#050f0e",
-            background: "#effbfa",
+            background: "#ffffff",
+            ogBg: "#effbfa",
+            purp: "#3a1f47",
             primary: "#63ab9f",
             secondary: "#9ed1cb",
             accent: "#d18461",
