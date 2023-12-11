@@ -5,6 +5,7 @@
 
 	import AnantMadabhushi from '$lib/assets/speakers/Anant-Madabhushi.jpg';
 	import GregGibson from '$lib/assets/speakers/Greg-Gibson.jpg';
+	import HengLi from '$lib/assets/speakers/Heng-Li.jpg';
 	import NancyCox from '$lib/assets/speakers/Nancy-Cox.jpg';
 </script>
 
@@ -45,52 +46,56 @@
 
 <div class="w-full my-24">
 	<h3 class="h3 text-center text-2xl">Keynote Speakers</h3>
-	<div class="md:flex space-y-5 my-5 md:space-y-0">
-		<div class="w-2/3 md:w-1/4 mx-auto space-y-3 card-hover">
+	<blockquote class="text-center my-3">Click to learn more</blockquote>
+	<div class="md:flex space-y-5 my-5 md:space-y-0 flex-wrap">
+		<div class="w-60 mx-auto space-y-3 card-hover">
 			<a
 				href="https://med.emory.edu/departments/radiology/research/research-labs/madabhushi-lab/index.html"
-				target="_blank"
-				><h4 class="h4 text-center underline underline-offset-2">Anant Madabhushi</h4></a
+				target="_blank"><h4 class="h4 text-center anchor">Anant Madabhushi</h4></a
 			>
 			<div class="px-auto flex justify-center">
 				<a
 					href="https://med.emory.edu/departments/radiology/research/research-labs/madabhushi-lab/index.html"
 					target="_blank"
 					><img
-						class="aspect-square w-72"
+						class="aspect-square w-60"
 						src={AnantMadabhushi}
 						alt="Anant Madabhushi Headshot"
 					/></a
 				>
 			</div>
 		</div>
-		<div class="w-2/3 md:w-1/4 mx-auto space-y-3 card-hover">
+		<div class="w-60 mx-auto space-y-3 card-hover">
 			<a href="https://biosciences.gatech.edu/people/gregory-gibson" target="_blank">
-				<h4 class="h4 text-center underline underline-offset-2">Greg Gibson</h4></a
+				<h4 class="h4 text-center anchor">Greg Gibson</h4></a
 			>
 			<div class="px-auto flex justify-center">
 				<a href="https://biosciences.gatech.edu/people/gregory-gibson" target="_blank">
-					<img class="aspect-square w-72" src={GregGibson} alt="Greg Gibson Headshot" /></a
+					<img class="aspect-square w-60" src={GregGibson} alt="Greg Gibson Headshot" /></a
 				>
 			</div>
 		</div>
-		<div class="w-2/3 md:w-1/4 mx-auto space-y-3 card-hover">
+		<div class="w-60 mx-auto space-y-3 card-hover">
 			<a href="https://www.vumc.org/vmac/person/nancy-j-cox-phd" target="_blank">
-				<h4 class="h4 text-center underline underline-offset-2">Nancy J. Cox</h4></a
+				<h4 class="h4 text-center anchor">Nancy J. Cox</h4></a
 			>
 			<div class="px-auto flex justify-center">
 				<a href="https://www.vumc.org/vmac/person/nancy-j-cox-phd" target="_blank">
-					<img class="aspect-square w-72" src={NancyCox} alt="Nancy J. Cox Headshot" />
+					<img class="aspect-square w-60" src={NancyCox} alt="Nancy J. Cox Headshot" />
 				</a>
 			</div>
 		</div>
-		<div class="w-2/3 md:w-1/4 mx-auto space-y-3 card-hover">
+		<div class="w-60 mx-auto space-y-3 card-hover">
 			<a href="https://dbmi.hms.harvard.edu/people/heng-li" target="_blank">
-				<h4 class="h4 text-center underline underline-offset-2">Heng Li</h4></a
+				<h4 class="h4 text-center anchor">Heng Li</h4></a
 			>
 			<div class="px-auto flex justify-center">
-				<a href="https://www.vumc.org/vmac/person/nancy-j-cox-phd" target="_blank">
-					<img class="aspect-square w-72" src={NancyCox} alt="Heng Li Headshot" />
+				<a href="https://dbmi.hms.harvard.edu/people/heng-li" target="_blank">
+					<img
+						class="aspect-square object-cover object-top w-60"
+						src={HengLi}
+						alt="Heng Li Headshot"
+					/>
 				</a>
 			</div>
 		</div>
@@ -135,9 +140,7 @@
 			aria-label="Department of Biostatistics and Bioinformatics, Emory University"
 		>
 			<div class="space-y-3 container mx-auto py-4 card-hover">
-				<h4 class="text-center text-lg">
-					Department of Biostatistics and Bioinformatics
-				</h4>
+				<h4 class="text-center text-lg">Department of Biostatistics and Bioinformatics</h4>
 			</div>
 		</a>
 		<a
