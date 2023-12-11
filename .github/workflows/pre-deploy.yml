@@ -1,0 +1,20 @@
+on:
+  pull_request:
+    branches: ['2024']
+name: 🏗 Build site
+jobs:
+  build-site:
+    name: 🥴 Build 🔧
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.9.0'
+          cache: 'npm'
+      - name: 🔨 Build Project
+        run: |
+          npm install
+          npm run build
