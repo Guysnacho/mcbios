@@ -84,6 +84,16 @@
 				</a>
 			</div>
 		</div>
+		<div class="w-2/3 md:w-1/4 mx-auto space-y-3 card-hover">
+			<a href="https://dbmi.hms.harvard.edu/people/heng-li" target="_blank">
+				<h4 class="h4 text-center underline underline-offset-2">Heng Li</h4></a
+			>
+			<div class="px-auto flex justify-center">
+				<a href="https://www.vumc.org/vmac/person/nancy-j-cox-phd" target="_blank">
+					<img class="aspect-square w-72" src={NancyCox} alt="Heng Li Headshot" />
+				</a>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -102,10 +112,32 @@
 			<div class="space-y-3 container mx-auto py-4 card-hover">
 				<h4 class="text-center text-lg">Center for AI learning</h4>
 				<img
-					class="w-4/6 md:w-1/2 mx-auto rounded-md shadow-lg border-tertiary-600 border-4"
+					class="w-5/6 sm:w-4/6 md:w-1/2 mx-auto rounded-md shadow-lg border-tertiary-600 border-4"
 					src={CenterOfAILearning}
 					alt="Emory University | Center of AI Learning"
 				/>
+			</div>
+		</a>
+		<a
+			href="https://med.emory.edu/departments/human-genetics/research/computational-analytics/index.html"
+			target="_blank"
+			aria-label="Emory Center for Computational and Quantitative Genetics"
+		>
+			<div class="space-y-3 container mx-auto py-4 card-hover">
+				<h4 class="text-center text-lg">
+					Emory Center for Computational and Quantitative Genetics
+				</h4>
+			</div>
+		</a>
+		<a
+			href="https://sph.emory.edu/departments/bios/index.html"
+			target="_blank"
+			aria-label="Department of Biostatistics and Bioinformatics, Emory University"
+		>
+			<div class="space-y-3 container mx-auto py-4 card-hover">
+				<h4 class="text-center text-lg">
+					Department of Biostatistics and Bioinformatics
+				</h4>
 			</div>
 		</a>
 		<a
