@@ -48,11 +48,12 @@
 	<h3 class="h3 text-center text-2xl">Keynote Speakers</h3>
 	<blockquote class="text-center my-3">Click to learn more</blockquote>
 	<div class="md:flex space-y-5 my-5 md:space-y-0 flex-wrap">
-		<div class="w-60 mx-auto space-y-3 card-hover">
+		<div class="w-60 mx-auto space-y-2 card-hover">
 			<a
 				href="https://med.emory.edu/departments/radiology/research/research-labs/madabhushi-lab/index.html"
 				target="_blank"><h4 class="h4 text-center anchor">Anant Madabhushi</h4></a
 			>
+			<h6 class="h6 text-sm text-center">Emory University & Georgia Tech</h6>
 			<div class="px-auto flex justify-center">
 				<a
 					href="https://med.emory.edu/departments/radiology/research/research-labs/madabhushi-lab/index.html"
@@ -65,30 +66,33 @@
 				>
 			</div>
 		</div>
-		<div class="w-60 mx-auto space-y-3 card-hover">
+		<div class="w-60 mx-auto space-y-2 card-hover">
 			<a href="https://biosciences.gatech.edu/people/gregory-gibson" target="_blank">
 				<h4 class="h4 text-center anchor">Greg Gibson</h4></a
 			>
+			<h6 class="h6 text-sm text-center">Georgia Tech</h6>
 			<div class="px-auto flex justify-center">
 				<a href="https://biosciences.gatech.edu/people/gregory-gibson" target="_blank">
 					<img class="aspect-square w-60" src={GregGibson} alt="Greg Gibson Headshot" /></a
 				>
 			</div>
 		</div>
-		<div class="w-60 mx-auto space-y-3 card-hover">
+		<div class="w-60 mx-auto space-y-2 card-hover">
 			<a href="https://www.vumc.org/vmac/person/nancy-j-cox-phd" target="_blank">
 				<h4 class="h4 text-center anchor">Nancy J. Cox</h4></a
 			>
+			<h6 class="h6 text-sm text-center">Vanderbilt University Medical Center</h6>
 			<div class="px-auto flex justify-center">
 				<a href="https://www.vumc.org/vmac/person/nancy-j-cox-phd" target="_blank">
 					<img class="aspect-square w-60" src={NancyCox} alt="Nancy J. Cox Headshot" />
 				</a>
 			</div>
 		</div>
-		<div class="w-60 mx-auto space-y-3 card-hover">
+		<div class="w-60 mx-auto space-y-2 card-hover">
 			<a href="https://dbmi.hms.harvard.edu/people/heng-li" target="_blank">
 				<h4 class="h4 text-center anchor">Heng Li</h4></a
 			>
+			<h6 class="h6 text-sm text-center">Dana Faber Cancer Institute and Harvard Medical School</h6>
 			<div class="px-auto flex justify-center">
 				<a href="https://dbmi.hms.harvard.edu/people/heng-li" target="_blank">
 					<img
