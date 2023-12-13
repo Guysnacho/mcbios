@@ -179,7 +179,7 @@ export default function Home() {
         </div>
         <div className="w-full mb-11">
           <h4 className="text-center">Local Chapters</h4>
-          <ul className="list-disc space-y-1 pl-5 w-5/6 mx-auto">
+          <ul className="list-disc space-y-1 w-5/6 mx-auto pl-4 sm:pl-10 md:pl-16 lg:pl-11">
             <li>
               MCBIOS encourages the formation of local chapters. Chapters
               require:
