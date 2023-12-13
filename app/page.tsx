@@ -2,6 +2,7 @@
 
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import { Button } from "@nextui-org/button";
+import { Card, CardFooter, CardHeader } from "@nextui-org/card";
 import { Divider } from "@nextui-org/divider";
 import { Image } from "@nextui-org/image";
 
@@ -12,6 +13,7 @@ export default function Home() {
         <Image
           className="mx-auto object-cover"
           src="/images/logo.jpg"
+          fallbackSrc="/images/logo.jpg"
           alt="MCBIOS Logo"
           style={{
             maskImage:
@@ -33,13 +35,34 @@ export default function Home() {
 
       <section className="space-y-5 px-10 mx-auto md:w-5/6">
         <h3>Greeting from the MCBIOS President:</h3>
-        <div className="md:flex my-5 gap-5 justify-center align-center mx-auto">
-          <Image
-            src="/images/leadership/Qin-Steve.jpg"
-            alt="Qin Steve, MCBIOS President"
-            width="50%"
-            className="w-1/2 md:1/5 object-cover mx-auto"
-          />
+        <div className="md:flex my-5 gap-5 mx-auto">
+          <Card>
+            <CardHeader>
+              <Image
+                src="/images/leadership/Qin-Steve.jpg"
+                fallbackSrc="/images/leadership/Qin-Steve.jpg"
+                alt="Qin Steve, MCBIOS President"
+                className="w-4/5 md:w-11/12 object-cover mx-auto"
+                classNames={{
+                  wrapper: ["mx-auto"],
+                }}
+              />
+            </CardHeader>
+            <CardFooter>
+              <p className="text-sm">
+                Sincerely, Zhaohui “Steve” Qin, PhD
+                <br />
+                President, Mid-South Computational Biology & Bioinformatics
+                Society
+                <br />
+                Professor
+                <br />
+                Department of Biostatistics, Bioinformatics
+                <br />
+                Emory University
+              </p>
+            </CardFooter>
+          </Card>
           <Accordion>
             <AccordionItem
               aria-label="Introduction and Gratitude"
@@ -96,6 +119,8 @@ export default function Home() {
           </Accordion>
         </div>
       </section>
+
+      <Divider as="hr" className="my-10 border-gray-500" />
 
       {/* <Box as={Stack} gap={5} mx="auto" w={[null, null, "90%"]}>
         <Stack

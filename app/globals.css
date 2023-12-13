@@ -3,19 +3,14 @@
 @tailwind utilities;
 @tailwind variants;
 
-:root {
-  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
-    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
-    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-}
-@import url("https://fonts.googleapis.com/css?family=Poppins:700|DM Sans:400");
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital@0;1&family=Poppins:ital,wght@0,300;1,300&display=swap');
 
 html {
   @apply w-full;
 }
 
-body {
-  font-family: "DM Sans";
+p {
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
 }
 
@@ -23,9 +18,10 @@ h1,
 h2,
 h3,
 h4,
-h5 {
-  font-family: "Poppins";
-  font-weight: 700;
+h5,
+h6 {
+  font-family: 'Josefin Slab', serif;
+  font-weight: 400;
 }
 
 html {

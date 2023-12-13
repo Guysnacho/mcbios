@@ -1,11 +1,19 @@
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Providers } from "./Providers";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+// const poppins = Poppins({
+//   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+//   subsets: ["latin"],
+//   variable: "--font-poppins",
+// });
+// const josefin_slab = Josefin_Slab({
+//   weight: ["100", "200", "300", "400", "500", "600", "700"],
+//   subsets: ["latin"],
+//   variable: "--font-josefin",
+// });
 
 export const metadata: Metadata = {
   title: "MCBIOS",
@@ -20,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <Nav />
         <main>
           <Providers>{children}</Providers>
