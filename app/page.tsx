@@ -1,4 +1,9 @@
-import { Image } from "@nextui-org/react";
+"use client";
+
+import { Accordion, AccordionItem } from "@nextui-org/accordion";
+import { Button } from "@nextui-org/button";
+import { Divider } from "@nextui-org/divider";
+import { Image } from "@nextui-org/image";
 
 export default function Home() {
   return (
@@ -38,7 +43,8 @@ export default function Home() {
           <Accordion>
             <AccordionItem
               aria-label="Introduction and Gratitude"
-              title="Introduction and Gratitude"
+              key="1"
+              title={<p>Introduction and Gratitude</p>}
             >
               It is my great honor to serve as the 19th president of MidSouth
               Computational Biology and Bioinformatics Society (MCBIOS). I want
@@ -49,7 +55,8 @@ export default function Home() {
             </AccordionItem>
             <AccordionItem
               aria-label="Personal Journey"
-              title="Personal Journey"
+              key="2"
+              title={<p>Personal Journey</p>}
             >
               Reflecting my own professional journey, I can&lsquo;t emphasize
               more on the importance of professional organization for a trainee
@@ -63,7 +70,8 @@ export default function Home() {
             </AccordionItem>
             <AccordionItem
               aria-label="Future Events: Upcomming Conference"
-              title="Future Events: Upcomming Conference"
+              key="3"
+              title={<p>Future Events: Upcomming Conference</p>}
             >
               I considered myself very lucky to be introduced to MCBIOS and
               attended my first MCBIOS annual conference in 2019. Over the
@@ -75,6 +83,7 @@ export default function Home() {
               in the 2023 Conference. Looking forward to next year, I sincerely
               hope that you can join us for our 20th annual conference to be
               held in Atlanta, GA on March 22-24, 2024. <br />
+              <br />
               Additionally, I encourage and welcome the scientific community to
               join us and connect with us via social media to stay updated on
               upcoming events such as the career development webinar series and
