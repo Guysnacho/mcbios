@@ -1,7 +1,5 @@
 "use client";
 
-import { Box, Center, Text } from "@chakra-ui/react";
-
 export const Footer = () => {
   return (
     <div

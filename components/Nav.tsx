@@ -80,7 +80,6 @@ export const Nav = () => {
   return (
     <Navbar
       maxWidth="lg"
-      isBlurred={false}
       isBordered
       classNames={{
         item: [
@@ -88,6 +87,7 @@ export const Nav = () => {
           "relative",
           "h-full",
           "items-center",
+          "drop-shadow-md",
           "data-[active=true]:after:content-['']",
           "data-[active=true]:after:absolute",
           "data-[active=true]:after:bottom-0",
