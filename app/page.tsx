@@ -7,10 +7,10 @@ import { Image } from "@nextui-org/image";
 
 export default function Home() {
   return (
-    <div className="w-4/5 mx-auto my-10 gap-10">
-      <div className="flex w-5/6 lg:w-1/2 space-y-8 flex-col mx-auto">
+    <div className="my-10 gap-10">
+      <section className="flex flex-col w-5/6 lg:w-1/2 space-y-8 px-10 items-center mx-auto">
         <Image
-          className="mx-auto object cover"
+          className="mx-auto object-cover"
           src="/images/logo.jpg"
           alt="MCBIOS Logo"
           style={{
@@ -27,18 +27,18 @@ export default function Home() {
         >
           Become a Member
         </Button>
-      </div>
+      </section>
 
       <Divider as="hr" className="my-10 border-gray-500" />
 
-      <div className="space-y-5 mx-auto md:w-5/6">
+      <section className="space-y-5 px-10 mx-auto md:w-5/6">
         <h3>Greeting from the MCBIOS President:</h3>
-        <div className="md:flex my-5 gap-5 justify-center align-center">
+        <div className="md:flex my-5 gap-5 justify-center align-center mx-auto">
           <Image
             src="/images/leadership/Qin-Steve.jpg"
             alt="Qin Steve, MCBIOS President"
             width="50%"
-            className="w-1/2 md:1/5 object-cover"
+            className="w-1/2 md:1/5 object-cover mx-auto"
           />
           <Accordion>
             <AccordionItem
@@ -95,7 +95,7 @@ export default function Home() {
             </AccordionItem>
           </Accordion>
         </div>
-      </div>
+      </section>
 
       {/* <Box as={Stack} gap={5} mx="auto" w={[null, null, "90%"]}>
         <Stack

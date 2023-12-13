@@ -26,10 +26,6 @@ export const Nav = () => {
       name: "HOME",
       path: "/",
     },
-    "/home": {
-      name: "New HOME",
-      path: "/home",
-    },
     "/leadership": {
       name: "LEADERSHIP",
       path: "/leadership",
@@ -79,8 +75,8 @@ export const Nav = () => {
 
   return (
     <Navbar
-      maxWidth="lg"
       isBordered
+      as="nav"
       classNames={{
         item: [
           "flex",
@@ -104,7 +100,7 @@ export const Nav = () => {
         <p className="font-bold text-2xl">MCBIOS</p>
       </NavbarBrand>
 
-      <NavbarContent className="hidden sm:flex gap-4 h-16" justify="center">
+      <NavbarContent className="hidden md:flex gap-4 h-16" justify="center">
         {keys.map((route) =>
           route == "/conferences" ? (
             <Dropdown key={route}>
@@ -155,10 +151,10 @@ export const Nav = () => {
           )
         )}
       </NavbarContent>
-      <NavbarContent className="lg:hidden h-16" justify="end">
+      <NavbarContent className="md:hidden h-16" justify="end">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
+          className="md:hidden"
         />
       </NavbarContent>
       <NavbarMenu>

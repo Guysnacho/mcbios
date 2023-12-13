@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className} style={{ width: "100%" }}>
+      <body className={inter.className}>
         <Nav />
         <main>
           <Providers>{children}</Providers>

@@ -10,6 +10,10 @@
 }
 @import url("https://fonts.googleapis.com/css?family=Poppins:700|DM Sans:400");
 
+html {
+  @apply w-full;
+}
+
 body {
   font-family: "DM Sans";
   font-weight: 400;
