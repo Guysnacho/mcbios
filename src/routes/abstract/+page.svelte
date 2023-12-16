@@ -62,7 +62,7 @@
 
 <!-- Flex box 2 -->
 <div
-	class="flex flex-col md:flex-row w-full md:w-10/12 mx-auto space-y-8 my-7 mb-72 sm:mb-0 md:-mb-36 lg:-mb-52 xl:-mb-64"
+	class="flex flex-col md:flex-row w-full md:w-10/12 mx-auto space-y-8 my-7 sm:mb-0 md:-mb-36 lg:mb-20 xl:mb-15"
 >
 	<div class="mx-auto basis-1/2 w-5/6 md:w-6/12 md:px-10 space-y-4 my-10">
 		<p class="-mx-4 font-semibold">
