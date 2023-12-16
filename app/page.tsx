@@ -34,11 +34,11 @@ export default function Home() {
       <Divider as="hr" className="my-10 border-gray-500" />
 
       <section className="space-y-5 px-10 mx-auto md:w-5/6">
-        <h3 className="underline text-center">
+        <h3 className="underline underline-offset-4 text-center">
           Greeting from the MCBIOS President:
         </h3>
         <div className="md:flex my-5 gap-5 mx-auto">
-          <Card>
+          <Card shadow="md" className="h-fit">
             <CardHeader>
               <Image
                 src="/images/leadership/Qin-Steve.jpg"
@@ -125,7 +125,7 @@ export default function Home() {
       <Divider as="hr" className="my-10 border-gray-500" />
 
       <div className="w-4/5 md:w-2/3 mx-auto">
-        <h3 className="underline text-center">Objectives</h3>
+        <h3 className="underline underline-offset-4 text-center">Objectives</h3>
         <ul className="list-disc space-y-1 pl-5">
           <li>
             Advance the understanding of bioinformatics and computational
@@ -154,7 +154,6 @@ export default function Home() {
 
       <Divider as="hr" className="my-10 border-gray-500" />
 
-      <h3 className="text-center underline">Objectives</h3>
       <div className="columns-1 lg:columns-2 w-5/6 mx-auto">
         <div className="w-full items-center">
           <h4 className="text-center">Membership</h4>
