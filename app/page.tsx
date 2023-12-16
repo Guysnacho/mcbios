@@ -24,7 +24,7 @@ export default function Home() {
           variant="shadow"
           size="md"
           className="my-4 mx-auto"
-          href="#"
+          href="/membership"
           color="secondary"
         >
           Become a Member
@@ -169,7 +169,7 @@ export default function Home() {
               variant="shadow"
               size="md"
               className="my-4 mx-auto"
-              href="#"
+              href="/membership"
               color="secondary"
             >
               Become a Registration
