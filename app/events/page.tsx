@@ -6,6 +6,7 @@ import { Divider, Image, Tab, Tabs } from "@nextui-org/react";
 const events = () => {
   return (
     <div className="container space-y-10 mx-auto">
+      <h3 className="text-center my-10">Events</h3>
       <Tabs
         aria-label="Options"
         size="lg"
