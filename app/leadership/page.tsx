@@ -15,14 +15,14 @@ import { Divider, Tab, Tabs } from "@nextui-org/react";
 
 const boardMembers = [
   {
-    name: "Bernie J. Daigle, Jr., Ph. D.",
+    name: "Bernie J. Daigle, Jr., Ph.D.",
     image: BernieDaigle.src,
     title: "Associate Professor",
     department: "Department of Biological Sciences, Computer Science",
     affiliation: "University of Memphis",
   },
   {
-    name: "Kristina Feye, Ph. D.",
+    name: "Kristina Feye, Ph.D.",
     image: KristinaFeye.src,
     title: "Research Microbiologist",
     affiliation: "U.S. Food and Drug Administration",
@@ -183,6 +183,19 @@ const pastPrez = [
     department: "Chief Bioinformatics Officer, Professor of Genetics",
     affiliation: "Emory University",
   },
+  {
+    name: "Inimary Toby, Ph.D.",
+    title: "Assistant Professor",
+    department:
+      "Department of Biology, Community Assistance Research-affiliated Faculty",
+    affiliation: "University of Dallas",
+  },
+  {
+    name: "Zhaohui “Steve” Qin, Ph.D.",
+    title: "Professor",
+    department: "Department of Biostatistics, Bioinformatics",
+    affiliation: "Emory University",
+  },
 ];
 
 const leadership = () => {
@@ -194,7 +207,7 @@ const leadership = () => {
         <h4 className="text-center">Presidential Office (2023-2024)</h4>
         <div className="columns-1 md:columns-2 w-11/12 mx-auto my-10 space-y-5 md:space-y-0">
           <BoardMemberCard
-            name="Zhaohui “Steve” Qin, PhD"
+            name="Zhaohui “Steve” Qin, Ph.D."
             image={QinSteve.src}
             orgPosition="President"
             title="Professor"
@@ -202,7 +215,7 @@ const leadership = () => {
             affiliation="Emory University"
           />
           <BoardMemberCard
-            name="Inimary Toby, Ph. D."
+            name="Inimary Toby, Ph.D."
             image={InimaryToby.src}
             orgPosition="Past-President"
             title="Assistant Professor"
