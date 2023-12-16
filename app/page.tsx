@@ -23,6 +23,8 @@ export default function Home() {
         <Button
           variant="shadow"
           size="md"
+          as="a"
+          target="_self"
           className="my-4 mx-auto"
           href="/membership"
           color="secondary"
@@ -168,6 +170,8 @@ export default function Home() {
             <Button
               variant="shadow"
               size="md"
+              as="a"
+              target="_self"
               className="my-4 mx-auto"
               href="/membership"
               color="secondary"
