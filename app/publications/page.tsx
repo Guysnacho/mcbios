@@ -111,7 +111,7 @@ const publications = () => {
           archivals:
         </p>
         <div>
-          <ul className="list-disc pl-5">
+          <ul className="list-disc list-inside">
             {publications.reverse().map((pub) => {
               return (
                 <li key={pub.year} className="text-purple-400">

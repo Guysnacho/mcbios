@@ -22,7 +22,7 @@ const membership = () => {
               A society member will enjoy numerous benefits, including but not
               limited to:
             </p>
-            <ul className="list-disc pl-5">
+            <ul className="list-disc list-inside">
               <li>
                 Competing for the society leadership positions such as board
                 members or Presidential Officers.
@@ -48,7 +48,7 @@ const membership = () => {
               The membership follows the conference year and you may join the
               society as a member in two ways:
             </p>
-            <ul className="list-disc pl-5">
+            <ul className="list-disc list-inside">
               <li>
                 If you attend the annual society conference, the registration
                 fee includes one year membership.

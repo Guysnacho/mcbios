@@ -63,7 +63,7 @@ const events = () => {
                 require:
               </p>
 
-              <ul className="list-disc pl-5">
+              <ul className="list-disc list-inside">
                 <li>At least three members</li>
                 <li>An elected chairman</li>
                 <li>
