@@ -1,7 +1,7 @@
 export const Footer = () => {
   return (
     <footer
-      className="w-full flex justify-center align-center bg-purp"
+      className="w-full flex justify-center align-center bg-purp mt-20"
       style={{ height: 150 }}
     >
       <p className="text-center my-auto text-white">
