@@ -1,6 +1,6 @@
 on:
-    pull_request:
-      branches: ['2022']
+  pull_request:
+    branches: ['2022']
 
 name: 🏗 Build site
 jobs:
