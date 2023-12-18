@@ -1,5 +1,6 @@
 <script>
 	// @ts-nocheck
+	import Hero from '../components/Hero.svelte';
 </script>
 
 <svelte:head>
@@ -9,17 +10,19 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="bg-[url('./assets/images/mcbios2023.jpg')]">
 	<div class="hero-container w-100">
-		<div>
-			<h1>"Big Data and Artificial Intelligence<br /> for Genomics and Therapeutics"</h1>
-			<h2>
-				The 19th Annual Meeting of MCBIOS will be held on the campus of University of Dallas <br
-				/>with the theme of "Big Data and Artificial Intelligence for Genomics and Therapeutics"
-				from March 15-17, 2023.
-			</h2>
-			<a href="http://2023.mcbios.com/public/abstract_submission.php" class="btn-get-started"
-				>Abstract Submission</a
-			>
-		</div>
+		<Hero>
+			<div>
+				<h1>"Big Data and Artificial Intelligence<br /> for Genomics and Therapeutics"</h1>
+				<h2>
+					The 19th Annual Meeting of MCBIOS will be held on the campus of University of Dallas <br
+					/>with the theme of "Big Data and Artificial Intelligence for Genomics and Therapeutics"
+					from March 15-17, 2023.
+				</h2>
+				<a href="http://2023.mcbios.com/public/abstract_submission.php" class="btn-get-started"
+					>Abstract Submission</a
+				>
+			</div>
+		</Hero>
 	</div>
 </section>
 <!-- End Hero -->
