@@ -615,7 +615,6 @@
 									class="img-fluid rounded"
 									alt="Dr. Ruth Roberts"
 									title="Professor Ruth Roberts"
-									src="/assets/immages/Ruth-8by6-800x600.jpg"
 									srcset="https://www.apconix.com/wp-content/uploads/2022/10/Ruth-8by6-200x150.jpg 200w, https://www.apconix.com/wp-content/uploads/2022/10/Ruth-8by6-400x300.jpg 400w, https://www.apconix.com/wp-content/uploads/2022/10/Ruth-8by6-600x450.jpg 600w, https://www.apconix.com/wp-content/uploads/2022/10/Ruth-8by6-800x600.jpg 800w, https://www.apconix.com/wp-content/uploads/2022/10/Ruth-8by6-1200x901.jpg 1200w"
 									sizes="(max-width: 800px) 100vw, 400px"
 								/>
