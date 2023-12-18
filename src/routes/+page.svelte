@@ -1,147 +1,222 @@
 <script>
-	import bgImage from '$lib/assets/background/2024_bg_brad-huchteman.jpg';
-	import CenterOfAILearning from '$lib/assets/sponsors/Sponsor-CAIL-1.jpg';
-	import SocietyOfComputationalBiology from '$lib/assets/sponsors/Sponsor-ISCB-2.png';
-
-	import AnantMadabhushi from '$lib/assets/speakers/Anant-Madabhushi.jpg';
-	import GregGibson from '$lib/assets/speakers/Greg-Gibson.jpg';
-	import HengLi from '$lib/assets/speakers/Heng-Li.jpg';
-	import NancyCox from '$lib/assets/speakers/Nancy-Cox.jpg';
-
-	import KeynoteSpeaker from '../components/KeynoteSpeaker.svelte';
-
-	let speakers = [
-		{
-			name: 'Anant Madabhushi',
-			url: 'https://med.emory.edu/departments/radiology/research/research-labs/madabhushi-lab/index.html',
-			affiliation: 'Emory University & Georgia Tech',
-			photo: AnantMadabhushi
-		},
-		{
-			name: 'Greg Gibson',
-			url: 'https://biosciences.gatech.edu/people/gregory-gibson',
-			affiliation: 'Georgia Tech',
-			photo: GregGibson
-		},
-		{
-			name: 'Nancy J. Cox',
-			url: 'https://www.vumc.org/vmac/person/nancy-j-cox-phd',
-			affiliation: 'Vanderbilt University Medical Center',
-			photo: NancyCox
-		},
-		{
-			name: 'Heng Li',
-			url: 'https://dbmi.hms.harvard.edu/people/heng-li',
-			affiliation: 'Dana Faber Cancer Institute & Harvard Medical School',
-			photo: HengLi
-		}
-	];
+	// @ts-nocheck
 </script>
 
 <svelte:head>
-	<title>MCBIOS 2024</title>
+	<title>MCBIOS 2023</title>
 </svelte:head>
 
-<div class="w-full">
-	<div class="relative w-full h-96 lg:h-auto text-center flex justify-center">
-		<img src={bgImage} alt="City skyline" class="w-full overflow-clip object-cover" />
-		<div
-			class="my-auto py-10 px-4 max-w-1/3 space-y-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 bg-opacity-25 rounded-lg"
-		>
-			<h1 class="h1 fill-token select-none drop-shadow-xl">MCBIOS 2024</h1>
-			<h4
-				class="hidden md:flex h4 fill-token select-none drop-shadow-xl text-center justify-center"
-			>
-				Everyone from codes to cells to care, transforming health care with AI
-			</h4>
-			<h4 class="h4 fill-token select-none drop-shadow-xl">20th Annual Meeting of MCBIOS</h4>
-			<h4 class="h4 fill-token select-none drop-shadow-xl">
-				Emory Univeristy<br /> March 22-24, 2024
-			</h4>
-			<a href="/registration" class="btn btn-lg outline my-5 select-none"
-				>Registration Coming Soon</a
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center header-transparent header-scrolled">
+	<div class="container d-flex align-items-center justify-content-between">
+		<div class="logo">
+			<h1><a href="/">MCBIOS 2023</a></h1>
+			<!-- Uncomment below if you prefer to use an image logo -->
+			<!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+		</div>
+
+		<nav id="navbar" class="navbar">
+			<ul>
+				<li><a class="nav-link" href="http://2023.mcbios.com/public/index.php">Home</a></li>
+				<li>
+					<a class="nav-link" href="http://2023.mcbios.com/public/abstract_submission.php"
+						>Abstract Submission</a
+					>
+				</li>
+				<li>
+					<a class="nav-link" href="http://2023.mcbios.com/public/registration.php">Registration</a>
+				</li>
+				<li>
+					<a class="nav-link" href="http://2023.mcbios.com/public/accommodations.php"
+						>Accomodations</a
+					>
+				</li>
+				<li><a class="nav-link" href="http://2023.mcbios.com/public/program.php">Program</a></li>
+				<li><a class="nav-link" href="http://2023.mcbios.com/public/about_us.php">About Us</a></li>
+				<li>
+					<a class="nav-link" href="http://2023.mcbios.com/public/ysea.php"
+						>Young Scientist Excellence Awards</a
+					>
+				</li>
+			</ul>
+
+			<i class="bi bi-list mobile-nav-toggle" />
+		</nav>
+		<!-- .navbar -->
+	</div>
+</header>
+<!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="bg-[url('./assets/images/mcbios2023.jpg')]">
+	<div class="hero-container w-100">
+		<div>
+			<h1>"Big Data and Artificial Intelligence<br /> for Genomics and Therapeutics"</h1>
+			<h2>
+				The 19th Annual Meeting of MCBIOS will be held on the campus of University of Dallas <br
+				/>with the theme of "Big Data and Artificial Intelligence for Genomics and Therapeutics"
+				from March 15-17, 2023.
+			</h2>
+			<a href="http://2023.mcbios.com/public/abstract_submission.php" class="btn-get-started"
+				>Abstract Submission</a
 			>
 		</div>
 	</div>
-	<quote
-		class="md:hidden italic h4 fill-token select-none drop-shadow-xl my-5 mx-auto flex text-center justify-center max-w-md"
-	>
-		Everyone from codes to cells to care, transforming health care with AI
-	</quote>
-	<div class="container space-y-10 mx-auto">
-		<hr class="!border-t-8 !border-double" />
-	</div>
-</div>
+</section>
+<!-- End Hero -->
 
-<div class="w-full my-24">
-	<h3 class="h3 text-center text-2xl">Keynote Speakers</h3>
-	<blockquote class="text-center my-3">Click to learn more</blockquote>
-	<div class="md:flex space-y-5 my-5 md:space-y-0 flex-wrap">
-		{#each speakers as speaker}
-			<KeynoteSpeaker
-				name={speaker.name}
-				url={speaker.url}
-				affiliation={speaker.affiliation}
-				photo={speaker.photo}
-			/>
-		{/each}
-	</div>
-</div>
+<main id="main">
+	<!-- ======= Services Section ======= -->
+	<section id="upcoming" class="services section-bg">
+		<div class="container">
+			<div class="section-title">
+				<h2>Upcoming Important Dates</h2>
+			</div>
 
-<div class="container my-10 mx-auto">
-	<hr class="!border-t-8 !border-double" />
-</div>
+			<div class="row">
+				<div class="col-lg-4 col-md-6 icon-box">
+					<div class="icon"><i class="bi">1</i></div>
+					<h4 class="title">
+						<a href="/#">Call for Conference Participation</a>
+					</h4>
+					<p class="description">Ongoing</p>
+				</div>
+				<div class="col-lg-4 col-md-6 icon-box">
+					<div class="icon"><i class="bi">2</i></div>
+					<h4 class="title"><a href="/#">Late-Breaking Abstracts Due</a></h4>
+					<p class="description">March 1st, 2023</p>
+				</div>
+				<div class="col-lg-4 col-md-6 icon-box">
+					<div class="icon"><i class="bi">3</i></div>
+					<h4 class="title">
+						<a href="/#">Young Scientists Excellence Awards</a>
+					</h4>
+					<p class="description">January 27th, 2023 (EXTENDED)</p>
+				</div>
+				<div class="col-lg-4 col-md-6 icon-box">
+					<div class="icon"><i class="bi">4</i></div>
+					<h4 class="title"><a href="/#">Student Travel Stipends</a></h4>
+					<p class="description">January 13th, 2023</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Services Section -->
+	<!-- ======= About Section ======= -->
+	<section id="greeting" class="about">
+		<div class="container">
+			<div class="row content">
+				<div class="col-lg-6">
+					<img
+						src="/assets/Toby-Inimary-Headshot_.jpg"
+						alt="Dr. Toby Inimary"
+						align="right"
+						width="75%"
+					/>
+				</div>
+				<div class="col-lg-6 pt-4 pt-lg-0">
+					<p>
+						<b>GREETING FROM THE MCBIOS PRESIDENT</b>
+					</p>
+					<p>
+						Greetings,<br /><br />
+						On behalf of the organizing committee, I would like to personally invite you to submit your
+						abstracts for the 2023 annual scientific conference on Big Data and Artificial Intelligence
+						for Genomics and Therapeutics sponsored by the MidSouth Computational Biology and Bioinformatics
+						Society (MCBIOS). The 2023 conference will take place from March 15th-17th at the University
+						of Dallas. The mission of MCBIOS is to foster networking and collaboration and to promote
+						the professional development of members and supporting our student members.
+					</p>
+					<ul>
+						<li>
+							<i class="ri-check-double-line" /> Building resilience and sustainability for the organization.
+						</li>
+						<li>
+							<i class="ri-check-double-line" /> Providing resources and collaborative opportunities
+							to integrate biological data with advanced technologies.
+						</li>
+						<li>
+							<i class="ri-check-double-line" /> Fostering an environment of articulated dialogue with
+							industry stakeholders.
+						</li>
+						<li>
+							<i class="ri-check-double-line" /> Providing teaching and learning opportunities to help
+							nurture the next generation of scientists.
+						</li>
+					</ul>
 
-<div class="w-full my-16">
-	<h3 class="h3 text-center text-2xl">Sponsors</h3>
-	<div class="space-y-10 my-5">
-		<a
-			href="https://ailearning.emory.edu/"
-			target="_blank"
-			aria-label="Emory Center for AI learning"
-		>
-			<div class="space-y-3 my-10 container mx-auto py-4 card-hover">
-				<h4 class="text-center text-lg">Center for AI learning</h4>
-				<img
-					class="w-5/6 sm:w-4/6 md:w-1/2 mx-auto rounded-md shadow-lg border-tertiary-600 border-4"
-					src={CenterOfAILearning}
-					alt="Emory University | Center of AI Learning"
-				/>
+					<p>
+						Our society-sponsored events, such as the annual conference and the drug discovery and
+						development colloquium continue to attract talented scientists from across the globe who
+						gather together for the sharing of scientific information to advance our understanding
+						in many areas. Abstracts submission information <a
+							href="http://2023.mcbios.com/public/abstract_submission"
+							target="_blank"
+						/><a href="http://2023.mcbios.com/public/abstract_submission" target="_blank"
+							><u>can be found here</u></a
+						>. Trainees are also encouraged to submit their application for the Young scientist in
+						Excellence Award competition
+						<a href="http://2023.mcbios.com/public/ysea" target="_blank" /><a
+							href="http://2023.mcbios.com/public/ysea"
+							target="_blank"><u>can be found here</u></a
+						>.
+					</p>
+					<p>
+						MCBIOS is committed to training young scientists from diverse educational and ethnic
+						backgrounds. <strong>Abstracts are due January 27, 2023</strong> and we will also be offering
+						the Young Scientist in Excellence Awards, Poster Awards, and Travel Assistance to trainees.
+						More information about the eligibility, selection criteria, deadlines for these awards and
+						application can be found on the MCBIOS' 2023 conference website. Please also share this with
+						colleagues at your institutions. We look forward to having you join us!!
+					</p>
+					<p>
+						Sincerely,<br />
+						Inimary Toby-Ogundeji, PhD <br />
+						President, Mid-South Computational Biology &amp; Bioinformatics Society <br />
+						Assistant Professor | Department of Biology <br />
+						Community Assistance Research-affiliated Faculty <br />
+						University of Dallas | Constantin College of Liberal Arts <br />
+					</p>
+				</div>
 			</div>
-		</a>
-		<a
-			href="https://med.emory.edu/departments/human-genetics/research/computational-analytics/index.html"
-			target="_blank"
-			aria-label="Emory Center for Computational and Quantitative Genetics"
-		>
-			<div class="space-y-3 my-10 container mx-auto py-4 card-hover">
-				<h4 class="text-center text-lg">
-					Emory Center for Computational and Quantitative Genetics
-				</h4>
+		</div>
+	</section>
+	<!-- End About Section -->
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+	<div class="footer-top">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-6">
+					<h3>MCBIOS 2023</h3>
+					<p>
+						The 19th Annual Meeting of MCBIOS will be held on the campus of University of Dallas <br
+						/>with the theme of "Big Data and Artificial Intelligence for Genomics and Therapeutics"
+						from March 15-17, 2023.
+					</p>
+				</div>
 			</div>
-		</a>
-		<a
-			href="https://sph.emory.edu/departments/bios/index.html"
-			target="_blank"
-			aria-label="Department of Biostatistics and Bioinformatics, Emory University"
-		>
-			<div class="space-y-3 my-10 container mx-auto py-4 card-hover">
-				<h4 class="text-center text-lg">Department of Biostatistics and Bioinformatics</h4>
+
+			<div class="social-links">
+				<a
+					href="https://www.facebook.com/pages/category/Organization/MidSouth-Computational-Biology-and-Bioinformatics-Society-MCBIOS-247738778611609/"
+					class="facebook"><i class="bx bxl-facebook" /></a
+				>
+				<a href="https://www.linkedin.com/groups/9069670/" class="linkedin"
+					><i class="bx bxl-linkedin" /></a
+				>
 			</div>
-		</a>
-		<a
-			href="https://www.iscb.org/index.php"
-			target="_blank"
-			aria-label="International Society for Computational Biology"
-		>
-			<div class="space-y-3 my-10 container mx-auto py-4 card-hover">
-				<h4 class="text-center text-lg">International Society for Computational Biology</h4>
-				<img
-					class="object-contain mx-auto rounded-md shadow-lg border-tertiary-600 border-4"
-					src={SocietyOfComputationalBiology}
-					alt="International Society for Computational Biology"
-				/>
-			</div>
-		</a>
+		</div>
 	</div>
-</div>
+</footer>
+<!-- End Footer -->
+
+<a
+	href="http://2023.mcbios.com/#"
+	class="back-to-top d-flex align-items-center justify-content-center active"
+	><i class="bi bi-arrow-up-short" /></a
+>

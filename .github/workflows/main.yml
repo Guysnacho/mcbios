@@ -1,10 +1,11 @@
 on:
   push:
-    branches: ['2024']
-name: 🚀 Deploy Site w/FTP
+    branches: ['2023']
+
+name: 🏗 Build site
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  build-site:
+    name: 🥴 Build 🔧
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get latest code
@@ -18,15 +19,3 @@ jobs:
         run: |
           npm install
           npm run build
-      - name: 🛸 Enrich Package 👽
-        run: cp ./post-deploy/.htaccess ./build/
-      - name: 🚢 Deploy Static Site
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.ftp_server }}
-          username: ${{ secrets.ftp_user }}
-          password: ${{ secrets.ftp_password }}
-          # protocol: ftps
-          port: ${{ secrets.ftp_port }}
-          local-dir: './build/'
-          server-dir: '2024.mcbios.com/'
