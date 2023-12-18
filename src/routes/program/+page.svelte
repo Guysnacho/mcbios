@@ -36,7 +36,7 @@
 				Select an event to see speaker information
 			</p>
 			<!-- Days -->
-			<div
+			<div 
 				class="row"
 				id="collapseSchedule"
 				aria-labelledby="scheduleSession"
