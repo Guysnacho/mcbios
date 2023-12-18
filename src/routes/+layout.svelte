@@ -6,16 +6,17 @@
 	<script src="./assets/swiper-bundle.min.js.download"></script>
 	<script src="./assets/validate.js.download"></script>
 	<script src="./assets/main.js.download"></script>
+	<script src="./assets/jquery.slim.min.js.download"></script>
 
 	<!-- Vendor CSS Files -->
-	<link href="assets/bootstrap.min.css" rel="stylesheet" />
-	<link href="assets/bootstrap-icons.css" rel="stylesheet" />
-	<link href="assets/boxicons.min.css" rel="stylesheet" />
-	<link href="assets/glightbox.min.css" rel="stylesheet" />
-	<link href="assets/remixicon.css" rel="stylesheet" />
-	<link href="assets/swiper-bundle.min.css" rel="stylesheet" />
+	<link href="./assets/bootstrap.min.css" rel="stylesheet" />
+	<link href="./assets/bootstrap-icons.css" rel="stylesheet" />
+	<link href="./assets/boxicons.min.css" rel="stylesheet" />
+	<link href="./assets/glightbox.min.css" rel="stylesheet" />
+	<link href="./assets/remixicon.css" rel="stylesheet" />
+	<link href="./assets/swiper-bundle.min.css" rel="stylesheet" />
 
-	<link href="assets/style.css" rel="stylesheet" />
+	<link href="./assets/style.css" rel="stylesheet" />
 	<!-- Template Main CSS File -->
 </svelte:head>
 
