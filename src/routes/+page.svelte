@@ -6,48 +6,6 @@
 	<title>MCBIOS 2023</title>
 </svelte:head>
 
-
-<!-- ======= Header ======= -->
-<header id="header" class="fixed-top d-flex align-items-center header-transparent header-scrolled">
-	<div class="container d-flex align-items-center justify-content-between">
-		<div class="logo">
-			<h1><a href="/">MCBIOS 2023</a></h1>
-			<!-- Uncomment below if you prefer to use an image logo -->
-			<!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-		</div>
-
-		<nav id="navbar" class="navbar">
-			<ul>
-				<li><a class="nav-link" href="http://2023.mcbios.com/public/index.php">Home</a></li>
-				<li>
-					<a class="nav-link" href="http://2023.mcbios.com/public/abstract_submission.php"
-						>Abstract Submission</a
-					>
-				</li>
-				<li>
-					<a class="nav-link" href="http://2023.mcbios.com/public/registration.php">Registration</a>
-				</li>
-				<li>
-					<a class="nav-link" href="http://2023.mcbios.com/public/accommodations.php"
-						>Accomodations</a
-					>
-				</li>
-				<li><a class="nav-link" href="http://2023.mcbios.com/public/program.php">Program</a></li>
-				<li><a class="nav-link" href="http://2023.mcbios.com/public/about_us.php">About Us</a></li>
-				<li>
-					<a class="nav-link" href="http://2023.mcbios.com/public/ysea.php"
-						>Young Scientist Excellence Awards</a
-					>
-				</li>
-			</ul>
-
-			<i class="bi bi-list mobile-nav-toggle" />
-		</nav>
-		<!-- .navbar -->
-	</div>
-</header>
-<!-- End Header -->
-
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="bg-[url('./assets/images/mcbios2023.jpg')]">
 	<div class="hero-container w-100">
