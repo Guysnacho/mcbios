@@ -1,6 +1,6 @@
-# MCBIOS 2023 Conference Site - created with [svelte](https://github.com/sveltejs/svelte)
+# MCBIOS 2022 Conference Site - created with [svelte](https://github.com/sveltejs/svelte)
 
-Welcome to the home of the 2023 MCBIOS Conference.
+Welcome to the home of the 2022 MCBIOS Conference.
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
