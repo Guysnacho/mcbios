@@ -76,11 +76,11 @@
 						<br /><br />
 						<b><i>Download the nomination forms:</i></b>
 						<br /><br />
-						<a href="/files/MCBIOS_Board_of_Directors_Nomination_Form.docx" class="btn btn-main"
+						<a href="./assets/docs/MCBIOS_Board_of_Directors_Nomination_Form.docx" class="btn btn-main"
 							>Board of Directors Nomination Form</a
 						>
 						<a
-							href="/files/MCBIOS_Student_Nomination_form_to_Board_of_Directors.docx"
+							href="./assets/docs/MCBIOS_Student_Nomination_form_to_Board_of_Directors.docx"
 							class="btn btn-main">Student Nomination to Board of Directors Form</a
 						>
 					</center>
