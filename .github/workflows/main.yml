@@ -1,6 +1,6 @@
 on:
   push:
-    branches: ['2022']
+    branches: ['2020']
 
 name: 🏗 Build site
 jobs:
