@@ -1,5 +1,20 @@
-<section id="hero" style={"background-image: url('/assets/images/mcbios2023.jpg');"}>
-	<div class="hero-container w-100">
-		<slot />
+<script>
+	export let bannerText = '';
+</script>
+
+<section class="slider">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="block">
+					{#if bannerText}
+						<h1 class="animated fadeInUp">
+							{bannerText}
+						</h1>
+					{/if}
+					<slot />
+				</div>
+			</div>
+		</div>
 	</div>
 </section>

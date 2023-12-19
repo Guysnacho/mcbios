@@ -1,5 +1,6 @@
 <script>
 	// @ts-nocheck
+	import Hero from '../components/Hero.svelte';
 </script>
 
 <svelte:head>
@@ -8,7 +9,7 @@
 
 <body id="body">
 	<!-- Slider Start -->
-	<section class="slider">
+	<Hero>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -21,22 +22,12 @@
 							The 18th Annual Conference for the Mid-South Computational Biology and Bioinformatics
 							Society
 						</p>
-						<!--<a href="#" target="_blank" class="btn btn-main animated fadeInUp" >Registration</a>
-			  <a href="#" target="_blank" class="btn btn-main animated fadeInUp" >View Program</a>-->
-						<a
-							href="http://2022.mcbios.com/abstract-submission.html"
-							target="_blank"
-							class="btn btn-main animated fadeInUp">Abstract Submissions</a
+						<a href="/abstract-submission" target="_blank" class="btn btn-main animated fadeInUp"
+							>Abstract Submissions</a
 						>
-						<a
-							href="http://2022.mcbios.com/ysea.html"
-							target="_blank"
-							class="btn btn-main animated fadeInUp">YSE Awards</a
-						>
-						<a
-							href="http://2022.mcbios.com/registration.php"
-							target="_blank"
-							class="btn btn-main animated fadeInUp">Registration</a
+						<a href="/ysea" target="_blank" class="btn btn-main animated fadeInUp">YSE Awards</a>
+						<a href="/registration" target="_blank" class="btn btn-main animated fadeInUp"
+							>Registration</a
 						>
 						<br /><br />
 						<ul style="font-size: 20px; font-weight: bold; display: inline;">
@@ -58,7 +49,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</Hero>
 	<section class="service-list section bg-gray">
 		<div class="container">
 			<div class="row">
@@ -85,12 +76,11 @@
 						<br /><br />
 						<b><i>Download the nomination forms:</i></b>
 						<br /><br />
-						<a
-							href="http://2022.mcbios.com/files/MCBIOS_Board_of_Directors_Nomination_Form.docx"
-							class="btn btn-main">Board of Directors Nomination Form</a
+						<a href="/files/MCBIOS_Board_of_Directors_Nomination_Form.docx" class="btn btn-main"
+							>Board of Directors Nomination Form</a
 						>
 						<a
-							href="http://2022.mcbios.com/files/MCBIOS_Student_Nomination_form_to_Board_of_Directors.docx"
+							href="/files/MCBIOS_Student_Nomination_form_to_Board_of_Directors.docx"
 							class="btn btn-main">Student Nomination to Board of Directors Form</a
 						>
 					</center>
