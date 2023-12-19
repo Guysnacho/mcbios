@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="./assets/style.css" />
 
 	<script src="./assets/js_bundle/ionicons.esm.js.download" type="module"></script>
-	<script src="./assets/js_bundle/ionicons.js.download"></script>
+	<script src="./assets/js_bundle/ionicons(1).js.download" nomodule></script>
 	<script
 		src="./assets/js_bundle/common.js.download"
 		type="text/javascript"
@@ -44,7 +44,7 @@
 								<span class="icon-bar" />
 								<span class="icon-bar" />
 							</button>
-							<a class="navbar-brand" href="http://2022.mcbios.com/index.html">
+							<a class="navbar-brand" href="/">
 								<img
 									src="./assets/images/MCBIOS_Logo2.png"
 									alt="Logo"
@@ -56,18 +56,18 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
-								<li><a href="http://2022.mcbios.com/index.html">Home</a></li>
+								<li><a href="/">Home</a></li>
 								<li>
-									<a href="http://2022.mcbios.com/abstract-submission.html">Abstract Submission</a>
+									<a href="/abstract-submission">Abstract Submission</a>
 								</li>
-								<li><a href="http://2022.mcbios.com/about-mcbios.html">About Us</a></li>
+								<li><a href="/about-mcbios">About Us</a></li>
 								<li>
-									<a href="http://2022.mcbios.com/ysea.html">Young Scientist Excellence Awards</a>
+									<a href="/ysea">Young Scientist Excellence Awards</a>
 								</li>
 								<li />
-								<li><a href="http://2022.mcbios.com/program.php">Program</a></li>
+								<li><a href="/program">Program</a></li>
 								<li />
-								<li><a href="http://2022.mcbios.com/registration.php">Registration</a></li>
+								<li><a href="/registration">Registration</a></li>
 							</ul>
 						</div>
 						<!-- /.navbar-collapse -->
