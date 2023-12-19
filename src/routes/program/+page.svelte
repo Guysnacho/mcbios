@@ -7,7 +7,7 @@
 </svelte:head>
 
 <main>
-	<Hero bannerText="PROGRAM" />
+	<Hero bannerText="Conference Program" />
 
 	<section class="pricing-table section bg-white">
 		<div class="container">

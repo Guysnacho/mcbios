@@ -7,7 +7,7 @@
 </svelte:head>
 
 <main>
-	<Hero bannerText="ABOUT US">
+	<Hero bannerText="About MCBIOS">
 		<strong>
 			The purposes of the Society are scientific, educational, literary, charitable, and no other.
 		</strong>
