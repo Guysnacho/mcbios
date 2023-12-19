@@ -11,16 +11,33 @@
 	<!-- Owl Carousel CSS -->
 	<link rel="stylesheet" href="./assets/style/slick.css" />
 	<!-- Main Stylesheet -->
-	<link rel="stylesheet" href="./assets/style.css" />
-
-	<script src="./assets/js_bundle/ionicons.esm.js.download" type="module"></script>
-	<script src="./assets/js_bundle/ionicons(1).js.download" nomodule></script>
-	<script
-		src="./assets/js_bundle/common.js.download"
-		type="text/javascript"
-		charset="UTF-8"
-	></script>
-	<script src="./assets/js_bundle/util.js.download" type="text/javascript" charset="UTF-8"></script>
+	<link rel="stylesheet" href="./assets/animations.min.css" />
+	<link rel="stylesheet" href="./assets/css" />
+	<link rel="stylesheet" href="./assets/css(1)" />
+	<link rel="stylesheet" href="./assets/elementor-icons.min.css" />
+	<link rel="stylesheet" href="./assets/font-awesome.min.css" />
+	<link rel="stylesheet" href="./assets/frontend-legacy.min.css" />
+	<link rel="stylesheet" href="./assets/frontend.min.css" />
+	<link rel="stylesheet" href="./assets/global.css" />
+	<link rel="stylesheet" href="./assets/post-313.css" />
+	<link rel="stylesheet" href="./assets/post-4.css" />
+	<link rel="stylesheet" href="./assets/style(1).min.css" />
+	<link rel="stylesheet" href="./assets/style.min.css" />
+	<link rel="stylesheet" href="./assets/swiper.min.css" />
+	<script src="./assets/js_bundle/dialog.min.js.download"></script>
+	<script src="./assets/js_bundle/frontend-modules.min.js.download"></script>
+	<script src="./assets/js_bundle/frontend.min.js.download"></script>
+	<script src="./assets/js_bundle/jquery-migrate.min.js.download"></script>
+	<script src="./assets/js_bundle/jquery.js.download"></script>
+	<script src="./assets/js_bundle/position.min.js.download"></script>
+	<script src="./assets/js_bundle/preloaded-modules.min.js.download"></script>
+	<script src="./assets/js_bundle/share-link.min.js.download"></script>
+	<script src="./assets/js_bundle/style.min.js.download"></script>
+	<script src="./assets/js_bundle/swiper.min.js.download"></script>
+	<script src="./assets/js_bundle/waypoints.min.js.download"></script>
+	<script src="./assets/js_bundle/webpack.runtime.min.js.download"></script>
+	<script src="./assets/js_bundle/wp-embed.min.js.download"></script>
+	<script src="./assets/js_bundle/wp-emoji-release.min.js.download"></script>
 </svelte:head>
 
 <!-- Header Start -->
