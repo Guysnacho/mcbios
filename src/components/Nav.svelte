@@ -1,6 +1,6 @@
 <a
 	class="skip-link screen-reader-text"
-	href="http://www.mcbios2020.mcbios.com/#content"
+	href="/#content"
 	title="Skip to content"
 >
 	Skip to content</a
@@ -27,11 +27,6 @@
 										src="./assets/MCBIOS 2020_files/cropped-MCBIOS2020-3-220x50.png"
 										class="custom-logo"
 										alt="MCBIOS 2020"
-										srcset="
-                            http://www.mcbios2020.mcbios.com/wp-content/uploads/2019/06/cropped-MCBIOS2020-3-220x50.png 220w,
-                            http://www.mcbios2020.mcbios.com/wp-content/uploads/2019/06/cropped-MCBIOS2020-3-300x68.png 300w,
-                            http://www.mcbios2020.mcbios.com/wp-content/uploads/2019/06/cropped-MCBIOS2020-3.png        358w
-                          "
 										sizes="(max-width: 220px) 100vw, 220px"
 									/></a
 								></span
@@ -78,7 +73,7 @@
 											aria-haspopup="true"
 										>
 											<a
-												href="http://www.mcbios2020.mcbios.com/"
+												href="/"
 												aria-current="page"
 												class="menu-link">HOME</a
 											><button class="ast-menu-toggle" aria-expanded="false">
@@ -120,7 +115,7 @@
 													class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224"
 												>
 													<a
-														href="http://www.mcbios2020.mcbios.com/keynote-presentation/"
+														href="/keynote-presentation"
 														class="menu-link">KEYNOTE PRESENTATIONS</a
 													>
 												</li>
@@ -145,7 +140,7 @@
 													class="menu-item menu-item-type-post_type menu-item-object-page menu-item-247"
 												>
 													<a
-														href="http://www.mcbios2020.mcbios.com/conference-venue/"
+														href="/conference-venue"
 														class="menu-link">CONFERENCE VENUE</a
 													>
 												</li>
@@ -156,7 +151,7 @@
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-286"
 										>
 											<a
-												href="http://www.mcbios2020.mcbios.com/abstract-submission/"
+												href="/abstract-submission"
 												class="menu-link">ABSTRACT SUBMISSION</a
 											>
 										</li>
