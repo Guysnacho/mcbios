@@ -1,3 +1,7 @@
+<script>
+	import Nav from '../components/Nav.svelte';
+</script>
+
 <svelte:head>
 	<title>MCBIOS 2020</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -1671,6 +1675,155 @@
 			margin: 0 !important;
 		}
 	</style>
+
+	<link
+		rel="stylesheet"
+		id="e-animations-css"
+		href="./assets/MCBIOS 2020_files/animations.min.css"
+		media="all"
+	/>
+	<script>
+		var astra = {
+			break_point: '921',
+			isRtl: '',
+			is_scroll_to_id: '',
+			is_scroll_to_top: '',
+			is_header_footer_builder_active: ''
+		};
+	</script>
+	<script src="./assets/MCBIOS 2020_files/style.min.js.download"></script>
+	<script src="./assets/MCBIOS 2020_files/wp-embed.min.js.download"></script>
+	<script src="./assets/MCBIOS 2020_files/webpack.runtime.min.js.download"></script>
+	<script src="./assets/MCBIOS 2020_files/jquery.js.download"></script>
+	<script src="./assets/MCBIOS 2020_files/jquery-migrate.min.js.download"></script>
+	<script src="./assets/MCBIOS 2020_files/frontend-modules.min.js.download"></script>
+	<script src="./assets/MCBIOS 2020_files/waypoints.min.js.download"></script>
+	<script src="./assets/MCBIOS 2020_files/position.min.js.download"></script>
+	<script src="./assets/MCBIOS 2020_files/swiper.min.js.download"></script>
+	<script src="./assets/MCBIOS 2020_files/share-link.min.js.download"></script>
+	<script src="./assets/MCBIOS 2020_files/dialog.min.js.download"></script>
+	<script>
+		var elementorFrontendConfig = {
+			environmentMode: {
+				edit: false,
+				wpPreview: false,
+				isScriptDebug: false
+			},
+			i18n: {
+				shareOnFacebook: 'Share on Facebook',
+				shareOnTwitter: 'Share on Twitter',
+				pinIt: 'Pin it',
+				download: 'Download',
+				downloadImage: 'Download image',
+				fullscreen: 'Fullscreen',
+				zoom: 'Zoom',
+				share: 'Share',
+				playVideo: 'Play Video',
+				previous: 'Previous',
+				next: 'Next',
+				close: 'Close'
+			},
+			is_rtl: false,
+			breakpoints: { xs: 0, sm: 480, md: 768, lg: 1025, xl: 1440, xxl: 1600 },
+			responsive: {
+				breakpoints: {
+					mobile: {
+						label: 'Mobile',
+						value: 767,
+						default_value: 767,
+						direction: 'max',
+						is_enabled: true
+					},
+					mobile_extra: {
+						label: 'Mobile Extra',
+						value: 880,
+						default_value: 880,
+						direction: 'max',
+						is_enabled: false
+					},
+					tablet: {
+						label: 'Tablet',
+						value: 1024,
+						default_value: 1024,
+						direction: 'max',
+						is_enabled: true
+					},
+					tablet_extra: {
+						label: 'Tablet Extra',
+						value: 1200,
+						default_value: 1200,
+						direction: 'max',
+						is_enabled: false
+					},
+					laptop: {
+						label: 'Laptop',
+						value: 1366,
+						default_value: 1366,
+						direction: 'max',
+						is_enabled: false
+					},
+					widescreen: {
+						label: 'Widescreen',
+						value: 2400,
+						default_value: 2400,
+						direction: 'min',
+						is_enabled: false
+					}
+				}
+			},
+			version: '3.11.5',
+			is_static: false,
+			experimentalFeatures: {
+				'landing-pages': true,
+				'kit-elements-defaults': true
+			},
+			urls: {
+				assets: 'http://www.mcbios2020.mcbios.com/wp-content/plugins/elementor/assets/'
+			},
+			swiperClass: 'swiper-container',
+			settings: { page: [], editorPreferences: [] },
+			kit: {
+				active_breakpoints: ['viewport_mobile', 'viewport_tablet'],
+				global_image_lightbox: 'yes',
+				lightbox_enable_counter: 'yes',
+				lightbox_enable_fullscreen: 'yes',
+				lightbox_enable_zoom: 'yes',
+				lightbox_enable_share: 'yes',
+				lightbox_title_src: 'title',
+				lightbox_description_src: 'description'
+			},
+			post: {
+				id: 4,
+				title: 'MCBIOS%202020',
+				excerpt: '',
+				featuredImage: false
+			}
+		};
+	</script>
+	<script src="./assets/MCBIOS 2020_files/frontend.min.js.download"></script>
+	<script src="./assets/MCBIOS 2020_files/preloaded-modules.min.js.download"></script>
+	<script>
+		/(trident|msie)/i.test(navigator.userAgent) &&
+			document.getElementById &&
+			window.addEventListener &&
+			window.addEventListener(
+				'hashchange',
+				function () {
+					var t,
+						e = location.hash.substring(1);
+					/^[A-z0-9_-]+$/.test(e) &&
+						(t = document.getElementById(e)) &&
+						(/^(?:a|select|input|button|textarea)$/i.test(t.tagName) || (t.tabIndex = -1),
+						t.focus());
+				},
+				!1
+			);
+	</script>
+	<span id="elementor-device-mode" class="elementor-screen-only" /><svg
+		style="display: none"
+		class="e-font-icon-svg-symbols"
+	/>
 </svelte:head>
 
+<Nav />
 <slot />
