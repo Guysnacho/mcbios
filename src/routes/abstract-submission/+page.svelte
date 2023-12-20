@@ -1,5 +1,4 @@
 <div class="hfeed site" id="page">
-	<!-- #masthead -->
 	<div id="content" class="site-content">
 		<div class="ast-container">
 			<div id="primary" class="content-area primary">
@@ -120,7 +119,7 @@
 																							<div class="elementor-widget-container">
 																								<div class="elementor-button-wrapper">
 																									<a
-																										href="http://www.mcbios2020.mcbios.com/program/"
+																										href="/program"
 																										class="elementor-button-link elementor-button elementor-size-sm elementor-animation-shrink"
 																										role="button"
 																									>
@@ -158,7 +157,7 @@
 																							<div class="elementor-widget-container">
 																								<div class="elementor-button-wrapper">
 																									<a
-																										href="http://www.mcbios2020.mcbios.com/registration/"
+																										href="/registration"
 																										class="elementor-button-link elementor-button elementor-size-sm elementor-animation-shrink"
 																										role="button"
 																									>
@@ -196,7 +195,7 @@
 																							<div class="elementor-widget-container">
 																								<div class="elementor-button-wrapper">
 																									<a
-																										href="http://www.mcbios2020.mcbios.com/conference-venue/"
+																										href="/conference-venue"
 																										class="elementor-button-link elementor-button elementor-size-sm elementor-animation-shrink"
 																										role="button"
 																									>
@@ -402,6 +401,4 @@
 		</div>
 		<!-- ast-container -->
 	</div>
-	<!-- #content -->
-
 </div>
