@@ -122,7 +122,7 @@
 	<link
 		rel="stylesheet"
 		id="astra-theme-css-css"
-		href="./assets/MCBIOS 2020_files/style.min.css"
+		href="/assets/MCBIOS 2020_files/style.min.css"
 		media="all"
 	/>
 	<style id="astra-theme-css-inline-css">

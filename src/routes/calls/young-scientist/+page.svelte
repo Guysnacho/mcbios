@@ -244,7 +244,7 @@
 																	><strong
 																		><span lang="EN"
 																			>, save a copy of the form and email the form to:&nbsp;<a
-																				href="http://mcbios.ysea2020@gmail.com/"
+																				href="mailto:mcbios.ysea2020@gmail.com"
 																				target="_blank"
 																				rel="noopener"
 																				data-saferedirecturl="https://www.google.com/url?q=http://mcbios.ysea2020@gmail.com&amp;source=gmail&amp;ust=1567888404545000&amp;usg=AFQjCNHSS9yQ8-wWJKx1T2VzJ_5uOA-gfQ"
