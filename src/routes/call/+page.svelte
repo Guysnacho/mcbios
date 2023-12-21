@@ -21,7 +21,10 @@
 							data-settings={{ background_background: 'classic' }}
 						>
 							<div class="elementor-background-overlay" />
-							<div class="elementor-container elementor-column-gap-default" style="padding-top: 7rem;">
+							<div
+								class="elementor-container elementor-column-gap-default"
+								style="padding-top: 7rem;"
+							>
 								<div class="elementor-row">
 									<div
 										class="elementor-element elementor-element-f04de28 elementor-column elementor-col-100 elementor-top-column"
@@ -379,9 +382,8 @@
 														<div class="elementor-text-editor elementor-clearfix">
 															<p>
 																Check out the
-																<a
-																	style="text-decoration: underline;"
-																	href="http://mcbios2019.mcbios.com/?page_id=760">Key Dates</a
+																<a style="text-decoration: underline;" href="/key-dates"
+																	>Key Dates</a
 																>
 																page for updates on deadlines and dates.
 															</p>
