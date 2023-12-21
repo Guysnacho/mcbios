@@ -32,6 +32,7 @@
 								<section
 									class="elementor-section elementor-top-section elementor-element elementor-element-6e545d66 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default"
 									data-id="6e545d66"
+									style="background-color: #8a8a8a;"
 									data-element_type="section"
 									data-settings={{ background_background: 'gradient' }}
 								>
@@ -51,7 +52,8 @@
 															data-widget_type="heading.default"
 														>
 															<div class="elementor-widget-container">
-																<h3 class="elementor-heading-title elementor-size-default">
+																<h3 class="elementor-heading-title elementor-size-default" 
+																	style="color: white;">
 																	KEY DATES
 																</h3>
 															</div>
