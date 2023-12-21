@@ -5,11 +5,11 @@
 				class="post-241 page type-page status-publish ast-article-single"
 				id="post-241"
 				itemtype="https://schema.org/CreativeWork"
-				itemscope="itemscope"
+				itemscope
 			>
 				<div class="ast-breadcrumbs-wrapper">
 					<div class="ast-breadcrumbs-inner">
-						<nav role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
+						<nav aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
 							<div class="ast-breadcrumbs">
 								<ul class="trail-items">
 									<li class="trail-item trail-begin">
