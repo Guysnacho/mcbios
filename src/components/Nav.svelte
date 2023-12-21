@@ -68,7 +68,7 @@
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1091"
 											aria-haspopup="true"
 										>
-											<a href="/">HOME</a><button class="ast-menu-toggle" aria-expanded="false">
+											<a href="/welcome">HOME</a><button class="ast-menu-toggle" aria-expanded="false">
 												<span class="screen-reader-text">Menu Toggle</span>
 											</button>
 											<ul class="sub-menu">
