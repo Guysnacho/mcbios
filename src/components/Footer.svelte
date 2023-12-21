@@ -1,42 +1,38 @@
-<footer
-	class="site-footer"
-	id="colophon"
-	itemtype="https://schema.org/WPFooter"
-	itemscope
-	itemid="#colophon"
->
+<footer itemtype="https://schema.org/WPFooter" itemscope id="colophon" class="site-footer">
 	<div class="ast-small-footer footer-sml-layout-2">
 		<div class="ast-footer-overlay">
 			<div class="ast-container">
 				<div class="ast-small-footer-wrap">
 					<div class="ast-row ast-flex">
 						<div
-							class="ast-small-footer-section ast-small-footer-section-2 ast-small-footer-section-equally ast-col-md-12"
+							class="ast-small-footer-section ast-small-footer-section-2 ast-small-footer-section-equally ast-col-xs-12"
 						>
 							<div class="footer-primary-navigation">
-								<ul id="menu-main_website_menu" class="nav-menu">
+								<ul id="menu-main_menu" class="nav-menu">
 									<li
-										class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-has-children menu-item-18"
+										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1091"
 									>
-										<a href="/" aria-current="page" class="menu-link">HOME</a>
+										<a href="/">HOME</a>
 									</li>
 									<li
-										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-206"
+										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-29"
 									>
-										<a href="/program" class="menu-link">PROGRAM</a>
+										<a href="/program">PROGRAM</a>
 									</li>
 									<li
-										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-26"
+										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-30"
 									>
-										<a href="/registration" class="menu-link">REGISTRATION</a>
+										<a href="/registration">REGISTRATION</a>
 									</li>
 									<li
-										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-286"
+										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-908"
 									>
-										<a href="/abstract-submission" class="menu-link">ABSTRACT SUBMISSION</a>
+										ATTENDING
 									</li>
-									<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20">
-										<a href="/about-us" class="menu-link">ABOUT US</a>
+									<li
+										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-513"
+									>
+										<a href="/about-us">ABOUT US</a>
 									</li>
 								</ul>
 							</div>
