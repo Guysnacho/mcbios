@@ -225,9 +225,7 @@
 																		<td width="120">5:00 – 6:00 p.m.</td>
 																		<td colspan="3" width="504"
 																			><strong>Keynote Talk:</strong>
-																			<a
-																				style="text-decoration: underline;"
-																				href="http://mcbios2019.mcbios.com/?page_id=729"
+																			<a style="text-decoration: underline;" href="/program/2"
 																				>Semi-Supervised Learning to the Rescue: Towards Deep
 																				Understanding of Coding Variant Effects</a
 																			>
@@ -350,9 +348,7 @@
 																		<td width="132">11:00 – 12:00 p.m.</td>
 																		<td colspan="3" width="492"
 																			><strong>Keynote Talk:</strong>
-																			<a
-																				style="text-decoration: underline;"
-																				href="http://mcbios2019.mcbios.com/?page_id=711"
+																			<a style="text-decoration: underline;" href="/program/0"
 																				>Brain Genomics</a
 																			>
 																			<br />
@@ -442,9 +438,7 @@
 																		<td width="132">5:00 – 6:00 p.m.</td>
 																		<td colspan="3" width="492"
 																			><strong>Keynote Talk:</strong>
-																			<a
-																				style="text-decoration: underline;"
-																				href="http://mcbios2019.mcbios.com/?page_id=621"
+																			<a style="text-decoration: underline;" href="/program/1"
 																				>Genomic medicine for understudied populations: lessons from
 																				Colombia</a
 																			>
@@ -548,9 +542,7 @@
 																		<td width="131">11:00 – 12:00 p.m.</td>
 																		<td colspan="2" width="492"
 																			><strong>Keynote Talk:</strong>
-																			<a
-																				style="text-decoration: underline;"
-																				href="http://mcbios2019.mcbios.com/?page_id=821"
+																			<a style="text-decoration: underline;" href="/program/3"
 																				>Clinical Applications of Genomic Medicine: The State of the
 																				Art</a
 																			>
