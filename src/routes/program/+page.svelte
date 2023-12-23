@@ -1,525 +1,640 @@
-<div class="ast-container">
-	<div id="primary" class="content-area primary">
-		<main id="main" class="site-main">
-			<article
-				class="post-8 page type-page status-publish ast-article-single"
-				id="post-8"
-				itemtype="https://schema.org/CreativeWork"
-				itemscope
+<main id="main" class="site-main">
+	<article
+		itemtype="https://schema.org/CreativeWork"
+		itemscope
+		id="post-7"
+		class="post-7 page type-page status-publish ast-article-single"
+	>
+		<div class="entry-content clear" itemprop="text">
+			<div
+				data-elementor-type="post"
+				data-elementor-id="7"
+				class="elementor elementor-7"
+				data-elementor-settings="[]"
 			>
-				<div class="ast-breadcrumbs-wrapper">
-					<div class="ast-breadcrumbs-inner">
-						<nav aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
-							<div class="ast-breadcrumbs">
-								<ul class="trail-items">
-									<li class="trail-item trail-begin">
-										<span><a href="/" rel="home"><span>Home</span></a></span>
-									</li>
-									<li class="trail-item trail-end">
-										<span><span>PROGRAM</span></span>
-									</li>
-								</ul>
+				<div class="elementor-inner">
+					<div class="elementor-section-wrap">
+						<section
+							class="elementor-element elementor-element-86dba5a elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section"
+							data-id="86dba5a"
+							data-element_type="section"
+							data-settings={{ background_background: 'classic' }}
+						>
+							<div class="elementor-background-overlay" />
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+									<div
+										class="elementor-element elementor-element-b669238 elementor-column elementor-col-100 elementor-top-column"
+										data-id="b669238"
+										data-element_type="column"
+									>
+										<div class="elementor-column-wrap elementor-element-populated">
+											<div class="elementor-widget-wrap">
+												<div
+													class="elementor-element elementor-element-2a041be elementor-widget elementor-widget-heading"
+													data-id="2a041be"
+													data-element_type="widget"
+													data-widget_type="heading.default"
+												>
+													<div class="elementor-widget-container">
+														<h1
+															class="elementor-heading-title elementor-size-default"
+															style="text-align: center;color: black;margin-top: 4rem;"
+														>
+															Program Overview
+														</h1>
+													</div>
+												</div>
+												<div
+													class="elementor-element elementor-element-5c3b650 elementor-widget elementor-widget-text-editor"
+													data-id="5c3b650"
+													data-element_type="widget"
+													data-widget_type="text-editor.default"
+												>
+													<div class="elementor-widget-container">
+														<div class="elementor-text-editor elementor-clearfix" />
+													</div>
+												</div>
+												<div
+													class="elementor-element elementor-element-403c4d7 elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button"
+													data-id="403c4d7"
+													data-element_type="widget"
+													data-widget_type="button.default"
+												>
+													<div class="elementor-widget-container">
+														<div class="elementor-button-wrapper">
+															<a
+																href="/assets/docs/MCBIOS-2019-Program-FINALVERSION-2.pdf"
+																class="elementor-button-link elementor-button elementor-size-sm elementor-animation-shrink"
+																target="_blank"
+																role="button"
+															>
+																<span class="elementor-button-content-wrapper">
+																	<span class="elementor-button-icon elementor-align-icon-left">
+																		<i class="fa fa-file-pdf-o" aria-hidden="true" />
+																	</span>
+																	<span class="elementor-button-text">Download Agenda</span>
+																</span>
+															</a>
+														</div>
+													</div>
+												</div>
+												<div
+													class="elementor-element elementor-element-f7c2d07 elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button"
+													data-id="f7c2d07"
+													data-element_type="widget"
+													data-widget_type="button.default"
+												>
+													<div class="elementor-widget-container">
+														<div class="elementor-button-wrapper">
+															<a
+																href="https://app.meetingapplication.com/event-app/mcbios-0488"
+																class="elementor-button-link elementor-button elementor-size-sm elementor-animation-shrink"
+																target="_blank"
+																role="button"
+															>
+																<span class="elementor-button-content-wrapper">
+																	<span class="elementor-button-text">Download Conference App</span>
+																</span>
+															</a>
+														</div>
+													</div>
+												</div>
+												<div
+													class="elementor-element elementor-element-f17ea9a elementor-widget elementor-widget-text-editor"
+													data-id="f17ea9a"
+													data-element_type="widget"
+													data-widget_type="text-editor.default"
+												>
+													<div class="elementor-widget-container">
+														<div class="elementor-text-editor elementor-clearfix">
+															<p>&nbsp;</p>
+															<p>&nbsp;</p>
+															<p>&nbsp;</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-						</nav>
+						</section>
+						<section
+							class="elementor-element elementor-element-496082b elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section"
+							data-id="496082b"
+							data-element_type="section"
+						>
+							<div class="elementor-container elementor-column-gap-default">
+								<div class="elementor-row">
+									<div
+										class="elementor-element elementor-element-5069a2a elementor-column elementor-col-100 elementor-top-column"
+										data-id="5069a2a"
+										data-element_type="column"
+									>
+										<div class="elementor-column-wrap elementor-element-populated">
+											<div class="elementor-widget-wrap">
+												<div
+													class="elementor-element elementor-element-0b00022 elementor-widget elementor-widget-text-editor"
+													data-id="0b00022"
+													data-element_type="widget"
+													data-widget_type="text-editor.default"
+												>
+													<div class="elementor-widget-container">
+														<div class="elementor-text-editor elementor-clearfix">
+															<p>
+																The following is a draft agenda. Up-to-date agenda and details will
+																be available from the conference app
+															</p>
+														</div>
+													</div>
+												</div>
+												<div
+													class="elementor-element elementor-element-c072633 elementor-widget elementor-widget-heading"
+													data-id="c072633"
+													data-element_type="widget"
+													data-widget_type="heading.default"
+												>
+													<div class="elementor-widget-container">
+														<h5
+															class="elementor-heading-title elementor-size-default"
+															style="color: black;"
+														>
+															Day 1: Thursday, March 28 (Registration and Poster Setup)
+														</h5>
+													</div>
+												</div>
+												<div
+													class="elementor-element elementor-element-80d1ae9 elementor-widget elementor-widget-text-editor"
+													data-id="80d1ae9"
+													data-element_type="widget"
+													data-widget_type="text-editor.default"
+												>
+													<div class="elementor-widget-container">
+														<div class="elementor-text-editor elementor-clearfix">
+															<table>
+																<tbody>
+																	<tr>
+																		<td width="120">9:00 – 1:00 p.m.</td>
+																		<td colspan="3" width="54"
+																			><strong>Pre-conference Program</strong><br />
+																			UAB ATTIS at MCBIOS 2019</td
+																		>
+																	</tr>
+																	<tr>
+																		<td colspan="4" width="623"
+																			><strong>MCBIOS 2019 Meeting Begins</strong>
+																			<br />
+																			Registration in the Conference Lobby</td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="120">1:00 – 4:00 p.m.</td>
+																		<td width="192"
+																			><strong>Tutorial 1 </strong>
+
+																			Single-cell genomic data analysis
+																			<br />
+																			<span style="color: red;"> Hamilton 2</span></td
+																		>
+																		<td width="156"
+																			><strong>Tutorial 2 </strong>
+
+																			Metabolomics data analysis
+																			<br />
+																			<span style="color: red;"> Skipwith 2 </span></td
+																		>
+																		<td width="156"
+																			><strong>Student Session: </strong>
+
+																			Career Development
+																			<br />
+																			<span style="color: red;"> Skipwith 1</span></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="120">4:00 – 5:00 p.m.</td>
+																		<td colspan="3" width="504"
+																			><strong>Poster Session / Coffee Break</strong>
+																			<br />
+																			Conference Lobby,
+																			<span style="color: red;">Hamilton 1</span></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="120">5:00 – 6:00 p.m.</td>
+																		<td colspan="3" width="504"
+																			><strong>Keynote Talk:</strong>
+																			<a style="text-decoration: underline;" href="/program/2"
+																				>Semi-Supervised Learning to the Rescue: Towards Deep
+																				Understanding of Coding Variant Effects</a
+																			>
+																			<br />
+																			<strong>Presenter:</strong> Predrag Radivojac, Ph.D.,
+																			Northeastern University
+																			<br />
+																			<span style="color: red;"> Hamilton 1</span></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="120">6:00 – 6:30 p.m.</td>
+																		<td colspan="3" width="504"
+																			><strong>Poster Session / Coffee Break </strong>
+																			<br />
+																			Conference Lobby,
+																			<span style="color: red;">Hamilton 1</span></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="120">6:30 – 8:00 p.m.</td>
+																		<td colspan="3" width="504"
+																			><strong>Dinner (Opening Reception) </strong>
+																			<br />
+																			<span style="color: red;"> Hamilton 1</span></td
+																		>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+												<div
+													class="elementor-element elementor-element-51cb282 elementor-widget elementor-widget-heading"
+													data-id="51cb282"
+													data-element_type="widget"
+													data-widget_type="heading.default"
+												>
+													<div class="elementor-widget-container">
+														<h5
+															class="elementor-heading-title elementor-size-default"
+															style="color: black;"
+														>
+															Day 2: Friday, March 29 (Registration)
+														</h5>
+													</div>
+												</div>
+												<div
+													class="elementor-element elementor-element-2811eff elementor-widget elementor-widget-text-editor"
+													data-id="2811eff"
+													data-element_type="widget"
+													data-widget_type="text-editor.default"
+												>
+													<div class="elementor-widget-container">
+														<div class="elementor-text-editor elementor-clearfix">
+															<table>
+																<tbody>
+																	<tr>
+																		<td width="132">&nbsp;</td>
+																		<td width="174"
+																			><strong>Track 1: </strong>
+																			<br />
+																			Clinical Genomics
+																			<br /><span style="color:red"> Hamilton 2</span></td
+																		>
+																		<td width="12"
+																			><strong>Track 2: </strong>
+																			<br />
+																			Drug Discovery and Informatics
+																			<br /><span style="color:red"> Skipwith 2</span></td
+																		>
+																		<td width="156"
+																			>Young Scientist Excellence Award
+																			<br /><span style="color:red"> Skipwith 1</span></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="132">8:00 – 9:20 a.m.</td>
+																		<td width="174"
+																			><strong>Breakout Session 1: </strong><br />Integration of
+																			omics data with clinical information
+																			<br />
+																			<strong>Session Chair:</strong> Chindo Hicks, LSU</td
+																		>
+																		<td width="162"
+																			><strong>Breakout Session 3:</strong> In silico drug discovery
+																			in the era of precision medicine
+																			<br />
+																			<strong>Session Chair:</strong> Zhichao Liu, NCTR/FDA</td
+																		>
+																		<td width="156">Postdoc Award Presentation</td>
+																	</tr>
+																	<tr>
+																		<td width="132">9:25 – 10:45 a.m.</td>
+																		<td width="174"
+																			><strong>Breakout Session 2: </strong>
+																			<br />
+																			Omics data in real-world settings
+
+																			<strong>Session Chair:</strong> Dong Wang, NCTR/FDA</td
+																		>
+																		<td width="162"
+																			><strong>Breakout Session 4:</strong> Computer-aided drug
+																			discovery and development
+																			<br />
+																			<strong>Session Chair: </strong>Daisuke Kihara, Purdue</td
+																		>
+																		<td width="156">Student Award Presentation</td>
+																	</tr>
+																	<tr>
+																		<td width="132">10:45 – 11:00 a.m.</td>
+																		<td colspan="3" width="492"
+																			><strong>Coffee Break </strong>
+																			<br />
+																			Conference Lobby,
+																			<span style="color:red">Hamilton 1</span></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="132">11:00 – 12:00 p.m.</td>
+																		<td colspan="3" width="492"
+																			><strong>Keynote Talk:</strong>
+																			<a style="text-decoration: underline;" href="/program/0"
+																				>Brain Genomics</a
+																			>
+																			<br />
+																			<strong>Presenter:</strong> Mark Gerstein, PhD&nbsp; Yale
+																			University
+																			<br /><span style="color:red"> Hamilton 1</span></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="132">12:00 – 1:20 p.m.</td>
+																		<td colspan="3" width="492"
+																			><strong>Lunch and Sponsor Presentations </strong>
+																			<br /><span style="color:red"> Hamilton 1</span></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="132">&nbsp;</td>
+																		<td width="174"
+																			><strong>Track 3: </strong>
+
+																			Translational Bioinformatics
+																			<br /><span style="color:red"> Hamilton 2</span></td
+																		>
+																		<td width="162"
+																			><strong>Track 4: </strong>
+																			Genome Biology
+																			<br /><span style="color:red"> Skipwith 2</span></td
+																		>
+																		<td width="156"
+																			><strong>Track 5: </strong>
+
+																			Biomedical Informatics
+																			<br /><span style="color:red"> Skipwith 1</span></td
+																		>
+																	</tr>
+																	<tr /><tr>
+																		<td width="132">1:30 – 2:50 p.m.</td>
+																		<td width="174"
+																			><strong>Breakout Session 5:</strong> Protein structural
+																			bioinformatics– Debswapna
+																			<br />
+																			<strong>Session Chair:</strong> Bhattacharya, Auburn</td
+																		>
+																		<td width="162"
+																			><strong>Breakout Session 7:</strong> Microbial genomic
+																			analysis for public health
+																			<br />
+																			<strong>Session Chair:</strong> Steven Foley, NCTR/FDA</td
+																		>
+																		<td width="156"
+																			><strong>Breakout Session 9: </strong>Biomedical Informatics
+																			<br />
+																			<strong>Session Chair:</strong> Wen Zou, NCTR/FDA</td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="132">2:55 – 4:15 p.m.</td>
+																		<td width="174"
+																			><strong>Breakout Session 6:</strong> New informatics methods
+																			for precision medicine
+																			<br />
+																			<strong>Session Chair:</strong> Zhaohui “Steve” Qin, Emory</td
+																		>
+																		<td width="162"
+																			><strong>Breakout Session 8:</strong> Challenges and solutions
+																			for analysis of gene expression data
+																			<br />
+																			<strong>Session Chair:</strong> Wei (Vivian) Zhuang, NCTR/FDA</td
+																		>
+																		<td width="156"
+																			><strong>Breakout Session 10:</strong> Heterogenous biomedical
+																			information visualization
+																			<br />
+																			<strong>Session Chair: </strong>Huanmei Wu, IUPUI</td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="132">4:15 – 5:00 p.m.</td>
+																		<td colspan="3" width="492"
+																			><strong>Poster Session / Coffee Break </strong>
+																			<br />
+																			Conference Lobby,
+																			<span style="color:red">Hamilton 1</span></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="132">5:00 – 6:00 p.m.</td>
+																		<td colspan="3" width="492"
+																			><strong>Keynote Talk:</strong>
+																			<a style="text-decoration: underline;" href="/program/1"
+																				>Genomic medicine for understudied populations: lessons from
+																				Colombia</a
+																			>
+																			<br />
+																			<strong>Presenter:</strong> King Jordan, Ph.D., Georgia
+																			Institute of Technology
+																			<br /><span style="color:red"> Hamilton 1</span></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="132">6:00 – 6:30 p.m.</td>
+																		<td colspan="3" width="492"
+																			><strong>Poster Session / Coffee Break </strong>
+																			<br />
+																			Conference Lobby,
+																			<span style="color:red">Hamilton 1</span></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="132">6:30 – 8:00 p.m.</td>
+																		<td colspan="3" width="492"
+																			><strong>Dinner </strong>
+																			<br /><span style="color:red"> Hamilton 1</span></td
+																		>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+												<div
+													class="elementor-element elementor-element-fc9acf0 elementor-widget elementor-widget-heading"
+													data-id="fc9acf0"
+													data-element_type="widget"
+													data-widget_type="heading.default"
+												>
+													<div class="elementor-widget-container">
+														<h5
+															class="elementor-heading-title elementor-size-default"
+															style="color: black;"
+														>
+															Day 3: Saturday, March 30
+														</h5>
+													</div>
+												</div>
+												<div
+													class="elementor-element elementor-element-d647060 elementor-widget elementor-widget-text-editor"
+													data-id="d647060"
+													data-element_type="widget"
+													data-widget_type="text-editor.default"
+												>
+													<div class="elementor-widget-container">
+														<div class="elementor-text-editor elementor-clearfix">
+															<table>
+																<tbody>
+																	<tr>
+																		<td width="131">7:00-8:00 a.m.</td>
+																		<td width="252"
+																			><strong>Track 6:</strong> Computational Biology and Machine
+																			Learning
+																			<br /><span style="color:red"> Hamilton 2</span></td
+																		>
+																		<td width="240"
+																			><strong>Track 7:</strong> Emerging Technologies
+																			<br /><span style="color:red"> Skipwith 2</span></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="131">8:00 – 9:20 a.m.</td>
+																		<td width="252"
+																			><strong>Breakout Session 11:</strong> Machine learning in
+																			biomedicine
+
+																			<strong>Session Chair:</strong> Thanh Minh Nguyen, UAB</td
+																		>
+																		<td width="240"
+																			><strong>Closed Session:</strong> MCBIOS ’19 Board Meeting</td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="131">9:25 – 10:45 a.m.</td>
+																		<td width="252"
+																			><strong>Breakout Session 12:</strong> Computational Biology
+																			<br />
+																			<strong>Session Chair:</strong> Steve Barnes, UAB</td
+																		>
+																		<td width="240"
+																			><strong>Breakout Session 13:</strong> Emerging computational
+																			approaches for drug discovery and development
+
+																			<strong>Session Chair:</strong> Minjun Chen, NCTR/FDA</td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="131">10:45 – 11:00 a.m.</td>
+																		<td colspan="2" width="492"
+																			><strong>Coffee Break Conference Lobby</strong></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="131">11:00 – 12:00 p.m.</td>
+																		<td colspan="2" width="492"
+																			><strong>Keynote Talk:</strong>
+																			<a style="text-decoration: underline;" href="/program/3"
+																				>Clinical Applications of Genomic Medicine: The State of the
+																				Art</a
+																			>
+																			<br />
+																			<strong>Presenter:</strong> Josh F. Peterson, MD, MPH, FACMI,
+																			Vanderbilt University Medical Center
+																			<br /><span style="color:red"> Hamilton 1</span></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="131">12:00 – 1:15 p.m.</td>
+																		<td colspan="2" width="492"
+																			><strong>Lunch and Award Announcement </strong>
+
+																			Hamilton 1</td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="131">1:15 – 2:00 p.m.</td>
+																		<td width="252"
+																			><strong>Roundtable Discussions </strong>
+																			<br /><span style="color:red"> Hamilton 1</span></td
+																		>
+																		<td width="240"
+																			><strong>Expert Panel</strong>
+																			<br /><span style="color:red"> Hamilton 2</span></td
+																		>
+																	</tr>
+																	<tr>
+																		<td width="131">&nbsp;</td>
+																		<td colspan="2" width="492">MCBIOS 2019 Ends</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section
+							class="elementor-element elementor-element-95a0eb8 elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section"
+							data-id="95a0eb8"
+							data-element_type="section"
+						>
+							<div class="elementor-container elementor-column-gap-wide">
+								<div class="elementor-row">
+									<div
+										class="elementor-element elementor-element-81bcb60 elementor-column elementor-col-100 elementor-top-column"
+										data-id="81bcb60"
+										data-element_type="column"
+									>
+										<div class="elementor-column-wrap elementor-element-populated">
+											<div class="elementor-widget-wrap">
+												<div
+													class="elementor-element elementor-element-06b4662 elementor-widget elementor-widget-spacer"
+													data-id="06b4662"
+													data-element_type="widget"
+													data-widget_type="spacer.default"
+												>
+													<div class="elementor-widget-container">
+														<div class="elementor-spacer">
+															<div class="elementor-spacer-inner" />
+														</div>
+													</div>
+												</div>
+												<div
+													class="elementor-element elementor-element-fe9aa6f elementor-widget elementor-widget-text-editor"
+													data-id="fe9aa6f"
+													data-element_type="widget"
+													data-widget_type="text-editor.default"
+												>
+													<div class="elementor-widget-container">
+														<div class="elementor-text-editor elementor-clearfix">
+															<p>Banner photo Credit: UAB</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
 					</div>
 				</div>
-
-				<header class="entry-header ast-no-thumbnail ast-no-title ast-header-without-markup" />
-				<!-- .entry-header -->
-
-				<div class="entry-content clear" itemprop="text">
-					<div data-elementor-type="wp-post" data-elementor-id="8" class="elementor elementor-8">
-						<div class="elementor-inner">
-							<div class="elementor-section-wrap">
-								<section
-									class="elementor-section elementor-top-section elementor-element elementor-element-35379295 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-									data-id="35379295"
-									style="background-color: #8a8a8a;"
-									data-element_type="section"
-									data-settings={{ background_background: 'gradient' }}
-								>
-									<div class="elementor-container elementor-column-gap-default">
-										<div class="elementor-row">
-											<div
-												class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-262d5a54"
-												data-id="262d5a54"
-												data-element_type="column"
-											>
-												<div class="elementor-column-wrap elementor-element-populated">
-													<div class="elementor-widget-wrap">
-														<div
-															class="elementor-element elementor-element-18cdb859 elementor-widget elementor-widget-heading"
-															data-id="18cdb859"
-															data-element_type="widget"
-															data-widget_type="heading.default"
-														>
-															<div class="elementor-widget-container">
-																<h3
-																	class="elementor-heading-title elementor-size-default"
-																	style="color: white;"
-																>
-																	PROGRAM
-																</h3>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div
-												class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-78bbd60f"
-												data-id="78bbd60f"
-												data-element_type="column"
-											>
-												<div class="elementor-column-wrap elementor-element-populated">
-													<div class="elementor-widget-wrap">
-														<div
-															class="elementor-element elementor-element-254cead0 elementor-widget elementor-widget-text-editor"
-															data-id="254cead0"
-															data-element_type="widget"
-															data-widget_type="text-editor.default"
-														>
-															<div class="elementor-widget-container">
-																<div class="elementor-text-editor elementor-clearfix" />
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</section>
-								<section
-									class="elementor-section elementor-inner-section elementor-element elementor-element-456481d elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-									data-id="456481d"
-									data-element_type="section"
-								>
-									<div class="elementor-container elementor-column-gap-wider">
-										<div class="elementor-row">
-											<div
-												class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-740832c"
-												data-id="740832c"
-												data-element_type="column"
-											>
-												<div class="elementor-column-wrap elementor-element-populated">
-													<div class="elementor-widget-wrap">
-														<div
-															class="elementor-element elementor-element-6e3a471 elementor-align-center animated-slow elementor-mobile-align-center elementor-widget elementor-widget-button"
-															data-id="6e3a471"
-															data-element_type="widget"
-															data-settings={{ _animation: 'none', _animation_delay: 8000 }}
-															data-widget_type="button.default"
-														>
-															<div class="elementor-widget-container">
-																<div class="elementor-button-wrapper">
-																	<a
-																		href="/keynote-presentation"
-																		class="elementor-button-link elementor-button elementor-size-sm elementor-animation-shrink"
-																		role="button"
-																	>
-																		<span class="elementor-button-content-wrapper">
-																			<span class="elementor-button-text">Keynote Speakers</span>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div
-												class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-1523be4"
-												data-id="1523be4"
-												data-element_type="column"
-											>
-												<div class="elementor-column-wrap elementor-element-populated">
-													<div class="elementor-widget-wrap">
-														<div
-															class="elementor-element elementor-element-aa69b03 elementor-align-center animated-slow elementor-mobile-align-center elementor-widget elementor-widget-button"
-															data-id="aa69b03"
-															data-element_type="widget"
-															data-settings={{ _animation: 'none', _animation_delay: 8000 }}
-															data-widget_type="button.default"
-														>
-															<div class="elementor-widget-container">
-																<div class="elementor-button-wrapper">
-																	<a
-																		class="elementor-button elementor-size-sm elementor-animation-shrink"
-																		role="button"
-																	>
-																		<span class="elementor-button-content-wrapper">
-																			<span class="elementor-button-text">Workshops</span>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div
-												class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-06ac2a9"
-												data-id="06ac2a9"
-												data-element_type="column"
-											>
-												<div class="elementor-column-wrap elementor-element-populated">
-													<div class="elementor-widget-wrap">
-														<div
-															class="elementor-element elementor-element-69b5c91 elementor-align-center animated-slow elementor-mobile-align-center elementor-widget elementor-widget-button"
-															data-id="69b5c91"
-															data-element_type="widget"
-															data-settings={{ _animation: 'none', _animation_delay: 8000 }}
-															data-widget_type="button.default"
-														>
-															<div class="elementor-widget-container">
-																<div class="elementor-button-wrapper">
-																	<a
-																		href="https://easychair.org/account/signin?l=BrdLdJp6bn2zS6ngUqxNT6#"
-																		target="_blank"
-																		class="elementor-button-link elementor-button elementor-size-sm elementor-animation-shrink"
-																		role="button"
-																	>
-																		<span class="elementor-button-content-wrapper">
-																			<span class="elementor-button-text">Abstract Submission</span>
-																		</span>
-																	</a>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</section>
-								<section
-									class="elementor-section elementor-top-section elementor-element elementor-element-1d6f14c9 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-									data-id="1d6f14c9"
-									data-element_type="section"
-								>
-									<div class="elementor-container elementor-column-gap-default">
-										<div class="elementor-row">
-											<div
-												class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-74e0756d"
-												data-id="74e0756d"
-												data-element_type="column"
-											>
-												<div class="elementor-column-wrap elementor-element-populated">
-													<div class="elementor-widget-wrap">
-														<div
-															class="elementor-element elementor-element-1c642396 elementor-widget elementor-widget-text-editor"
-															data-id="1c642396"
-															data-element_type="widget"
-															data-widget_type="text-editor.default"
-														>
-															<div class="elementor-widget-container">
-																<div class="elementor-text-editor elementor-clearfix">
-																	<p>
-																		The following is a draft agenda. Up-to-date agenda and details
-																		will be available soon.
-																	</p>
-																</div>
-															</div>
-														</div>
-														<div
-															class="elementor-element elementor-element-638ecf37 elementor-widget elementor-widget-text-editor"
-															data-id="638ecf37"
-															data-element_type="widget"
-															data-widget_type="text-editor.default"
-														>
-															<div class="elementor-widget-container">
-																<div class="elementor-text-editor elementor-clearfix">
-																	<table>
-																		<tbody>
-																			<tr>
-																				<td colspan="4" width="623">
-																					<strong
-																						>Monday April 6,
-																						2020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-																					</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 8:00AM-9:00AM </td>
-																				<td colspan="3" width="486">
-																					<strong>Registration Opens</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 9:00AM-9:45AM </td>
-																				<td colspan="3" width="486">
-																					<strong>Keynote Talk:</strong>
-																					Getting up close and personal with precision medicine: how
-																					computational biology is rapidly advancing single-subject studies
-																					(S3)
-																					<br />
-																					<strong>Presenter:</strong>
-																					Yves A. Lussier, MD
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138">9:45AM</td>
-																				<td colspan="3" width="486">
-																					<strong>Coffee Break</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 10:00AM-12:00PM </td>
-																				<td colspan="3" width="486">
-																					<strong>Young Scientist Award Sessions</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 12:00PM-1:00PM </td>
-																				<td colspan="3" width="486">
-																					<strong>Lunch Break</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 1:00PM-2:30PM </td>
-																				<td width="133">
-																					<strong>Breakout Session 1:</strong>
-																					Terminologies and Standards in Big Data Analysis
-																				</td>
-																				<td width="178">
-																					<strong>Breakout Session 2:</strong>
-																					Personalize Drug Safety to Prevent Drug-Induced Liver Injury
-																				</td>
-																				<td width="175">
-																					<strong>Breakout Session 3:</strong>
-																					SEQing better medicines: the emerging use of genomic technology
-																					in the therapeutic development
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 2:30PM-3:00PM </td>
-																				<td colspan="3" width="486">
-																					<strong>Coffee Break</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 3:00PM-3:45PM </td>
-																				<td colspan="3" width="486">
-																					<strong>Keynote Talk:</strong>
-																					Formula 1: Curated Data + Rigorous Validation = Predictive
-																					Models of Chemical Bioactivity and Safety
-																					<br />
-																					<strong>Presenter:</strong>
-																					Alexander Tropsha, PhD
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 3:45PM-5:00PM </td>
-																				<td colspan="3" width="486"> Business Meeting </td>
-																			</tr>
-																		</tbody>
-																	</table>
-																	<strong>&nbsp;</strong>
-																	<table>
-																		<tbody>
-																			<tr>
-																				<td colspan="6" width="623">
-																					<strong
-																						>Tuesday April 7, 2020&nbsp;&nbsp;&nbsp;&nbsp;
-																					</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 9:00AM-9:45AM </td>
-																				<td colspan="5" width="486">
-																					<strong>Keynote Talk:</strong>
-																					FAIR data for humans and machines
-																					<br />
-																					<strong>Presenter:</strong>
-																					Susanna-Assunta Sansone, PhD
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138">9:45AM</td>
-																				<td colspan="5" width="486">
-																					<strong>Meeting Announcements</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 10:00AM-10:30AM </td>
-																				<td colspan="5" width="486">
-																					<strong>Coffee Break</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 10:30AM-12:00PM </td>
-																				<td width="133">
-																					<strong>Breakout Session 4: </strong>Application of
-																					Machine Learning in Components of Predictive Public Health
-																				</td>
-																				<td colspan="3" width="178">
-																					<strong>Breakout Session 5:</strong>
-																					Cancer Informatics
-																				</td>
-																				<td width="175">
-																					<strong>Breakout Session 6: </strong>Model-Informed Drug
-																					Discovery and Development: Opportunities and Challenges
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 12:00PM-1:00PM </td>
-																				<td colspan="5" width="486">
-																					<strong>Lunch Break</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 1:00PM-2:30PM </td>
-																				<td colspan="2" width="136">
-																					<strong>Breakout Session 7: </strong>Trusted Reproducible
-																					Applications supporting Data Integrity and Evidence
-																					Acceptance in Healthcare
-																				</td>
-																				<td width="174">
-																					<strong>Breakout Session 8: </strong>Optimizing
-																					computer-aided drug discovery and development for swifter
-																					response to public outbreaks
-																				</td>
-																				<td colspan="2" width="176">
-																					<strong>Breakout Session 9: </strong>Omics-Scale Assays
-																					for Chemical Safety and Drug Discovery
-
-																					<strong>&nbsp;</strong>
-
-																					<strong>&nbsp;</strong>
-
-																					<strong>&nbsp;</strong>
-
-																					<strong>&nbsp;</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 2:30PM-3:00PM </td>
-																				<td colspan="5" width="486">
-																					<strong>Coffee Break</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 3:00PM-3:45PM </td>
-																				<td colspan="5" width="486">
-																					<strong>Keynote Talk: </strong>The molecular impact of a
-																					year in space and plans for Mars
-																					<br />
-																					<strong>Presenter: </strong>Christopher Mason, PhD:
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 3:45PM-5:15PM </td>
-																				<td width="133">
-																					<strong>Breakout Session 10:</strong>
-																					Network biology and medicine
-																				</td>
-																				<td colspan="3" width="178">
-																					<strong>Breakout Session 11:</strong>
-																					Animal Microbiome Consortial (AMC): Best Practices and Opportunities
-																					for Advancement
-																				</td>
-																				<td width="175">
-																					<strong>Breakout Session 12:</strong>
-																					Artifcial Intelligence (AI) Shakes Up Drug Discovery
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138" />
-																				<td width="133" />
-																				<td width="3" />
-																				<td width="174" />
-																				<td width="1" />
-																				<td width="175" />
-																			</tr>
-																		</tbody>
-																	</table>
-																	<strong>&nbsp;</strong>
-																	<table>
-																		<tbody>
-																			<tr>
-																				<td colspan="2" width="623">
-																					<strong
-																						>Wednesday April 8,
-																						2020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-																					</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td rowspan="3" width="138"> 9:00AM-12:00PM </td>
-																				<td width="486">
-																					<strong>Joint MCBIOS-MAQC Poster Session 1</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="486">
-																					<strong>Coffee Break</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="486">
-																					<strong>Joint MCBIOS-MAQC Poster Session 2</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 12:00PM-1:00PM </td>
-																				<td width="486">
-																					<strong>Lunch Break</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td rowspan="2" width="138"> 1:00PM-5:00PM </td>
-																				<td width="486">
-																					<strong>Hands-on Workshop 1</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="486">
-																					<strong>Hands-on Workshop 2</strong>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td width="138"> 5:00PM-7:00PM </td>
-																				<td width="486">
-																					<strong>Evening Reception and Awards Presentations</strong
-																					>
-																				</td>
-																			</tr>
-																		</tbody>
-																	</table>
-																	<strong>&nbsp;</strong>
-																</div>
-															</div>
-														</div>
-														<div
-															class="elementor-element elementor-element-18427146 elementor-widget elementor-widget-text-editor"
-															data-id="18427146"
-															data-element_type="widget"
-															data-widget_type="text-editor.default"
-														>
-															<div class="elementor-widget-container">
-																<div class="elementor-text-editor elementor-clearfix">
-																	If you have questions, please contact
-																	<a href="mailto:steven.foley@fda.hhs.gov">Steve Foley</a>
-																	or
-																	<a href="mailto:weida.tong@fda.hhs.gov">Weida Tong</a>
-																	for further information.
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</section>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- .entry-content .clear -->
-			</article>
-			<!-- #post-## -->
-		</main>
-		<!-- #main -->
-	</div>
-	<!-- #primary -->
-</div>
+			</div>
+		</div>
+		<!-- .entry-content .clear -->
+	</article>
+	<!-- #post-## -->
+</main>
