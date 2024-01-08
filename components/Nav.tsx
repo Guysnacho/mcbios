@@ -39,23 +39,19 @@ export const Nav = () => {
       years: [
         {
           year: 2019,
-          url: "http://mcbios19.informatics.uab.edu/",
+          url: "https://2019--mcbios.netlify.app/",
         },
         {
           year: 2020,
-          url: "http://www.mcbios2020.mcbios.com/",
-        },
-        {
-          year: 2021,
-          url: "http://mcbios2021.mcbios.com/",
+          url: "https://2020--mcbios.netlify.app/",
         },
         {
           year: 2022,
-          url: "http://2022.mcbios.com",
+          url: "https://2022--mcbios.netlify.app/",
         },
         {
           year: 2023,
-          url: "http://2023.mcbios.com",
+          url: "https://2023--mcbios.netlify.app/",
         },
         {
           year: 2024,
