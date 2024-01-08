@@ -1,6 +1,6 @@
-# MCBIOS 2022 Conference Site - created with [svelte](https://github.com/sveltejs/svelte)
+# MCBIOS 2020 Conference Site - created with [svelte](https://github.com/sveltejs/svelte)
 
-Welcome to the home of the 2022 MCBIOS Conference.
+Welcome to the home of the 2020 MCBIOS Conference.
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
@@ -13,6 +13,7 @@ npm run dev
 
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
+
 ```
 
 ## Building
