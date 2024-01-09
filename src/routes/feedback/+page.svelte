@@ -349,10 +349,6 @@
 																src="/assets/MCBIOS19_files/pic_2.png"
 																class="attachment-medium_large size-medium_large"
 																alt=""
-																srcset="
-									http://mcbios2019.mcbios.com/wp-content/uploads/2019/04/pic_2.png         751w,
-									http://mcbios2019.mcbios.com/wp-content/uploads/2019/04/pic_2-300x181.png 300w
-								  "
 																sizes="(max-width: 700px) 100vw, 700px"
 															/>
 														</div>
@@ -372,12 +368,6 @@
 																src="/assets/MCBIOS19_files/pic_3-768x432.jpg"
 																class="attachment-medium_large size-medium_large"
 																alt=""
-																srcset="
-									http://mcbios2019.mcbios.com/wp-content/uploads/2019/04/pic_3-768x432.jpg   768w,
-									http://mcbios2019.mcbios.com/wp-content/uploads/2019/04/pic_3-300x169.jpg   300w,
-									http://mcbios2019.mcbios.com/wp-content/uploads/2019/04/pic_3-1024x577.jpg 1024w,
-									http://mcbios2019.mcbios.com/wp-content/uploads/2019/04/pic_3.jpg          1197w
-								  "
 																sizes="(max-width: 700px) 100vw, 700px"
 															/>
 														</div>
@@ -397,12 +387,6 @@
 																src="/assets/MCBIOS19_files/PIcture_1-1-768x364.jpg"
 																class="attachment-medium_large size-medium_large"
 																alt=""
-																srcset="
-									http://mcbios2019.mcbios.com/wp-content/uploads/2019/04/PIcture_1-1-768x364.jpg   768w,
-									http://mcbios2019.mcbios.com/wp-content/uploads/2019/04/PIcture_1-1-300x142.jpg   300w,
-									http://mcbios2019.mcbios.com/wp-content/uploads/2019/04/PIcture_1-1-1024x485.jpg 1024w,
-									http://mcbios2019.mcbios.com/wp-content/uploads/2019/04/PIcture_1-1.jpg          1057w
-								  "
 																sizes="(max-width: 700px) 100vw, 700px"
 															/>
 														</div>
@@ -422,12 +406,6 @@
 																src="/assets/MCBIOS19_files/pic_4-768x486.jpg"
 																class="attachment-medium_large size-medium_large"
 																alt=""
-																srcset="
-									http://mcbios2019.mcbios.com/wp-content/uploads/2019/04/pic_4-768x486.jpg   768w,
-									http://mcbios2019.mcbios.com/wp-content/uploads/2019/04/pic_4-300x190.jpg   300w,
-									http://mcbios2019.mcbios.com/wp-content/uploads/2019/04/pic_4-1024x648.jpg 1024w,
-									http://mcbios2019.mcbios.com/wp-content/uploads/2019/04/pic_4.jpg          1148w
-								  "
 																sizes="(max-width: 700px) 100vw, 700px"
 															/>
 														</div>
