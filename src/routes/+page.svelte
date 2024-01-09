@@ -325,13 +325,10 @@
 																	premier, annual gathering for bioinformaticians, computational
 																	biologists and biological data scientists throughout the Midwest
 																	and Southeast regions of the United States. On behalf of
-																	<a href="http://mcbios2019.mcbios.com/www.mcbios.org">
-																		MCBIOS
-																	</a>and the
-																	<a href="http://%20http//mcbios2019.mcbios.com/?page_id=285/"
-																		>MCBIOS ’19 organizing committee</a
-																	>, I hope you will have a pleasant time in and around Birmingham.<br
-																	/>
+																	<a href="https://www.mcbios.com" target="_blank"> MCBIOS </a>and
+																	the
+																	<a href="/about-us">MCBIOS ’19 organizing committee</a>, I hope
+																	you will have a pleasant time in and around Birmingham.<br />
 																	<br />This year, we will meet to focus the conference theme,
 																	“Informatics for Precision Medicine,” to showcase research
 																	breakthroughs, tool development and biomedical applications in
@@ -344,21 +341,17 @@
 																	standardization, data integration, data processing, data modeling,
 																	data sharing, knowledge discovery, and translational applications.
 																	I am excited that many of you, experts in various informatics
-																	subjects above, will
-																	<a href="http://%20http//mcbios2019.mcbios.com/?page_id=7"
-																		>report at the conference</a
-																	>
-																	biomedical data science research advancements in clinical genomic knowledge-base,
-																	healthcare artificial intelligence (AI) decision making software, disease
-																	therapeutic simulation algorithms, mobile health apps and many more
-																	subjects. Our work today will profoundly impact how we and our children
-																	interact with healthcare systems of the future.<br /><br />While
-																	in Birmingham, we hope you enjoy the beautiful spring weather,
-																	<a href="http://mcbios2019.mcbios.com/?page_id=974">fine dining</a
-																	>,
-																	<a href="http://mcbios2019.mcbios.com/?page_id=964"
-																		>national historical sites</a
-																	>, state parks and Southern hospitality. <br />
+																	subjects above, will report at the conference biomedical data
+																	science research advancements in clinical genomic knowledge-base,
+																	healthcare artificial intelligence (AI) decision making software,
+																	disease therapeutic simulation algorithms, mobile health apps and
+																	many more subjects. Our work today will profoundly impact how we
+																	and our children interact with healthcare systems of the future.<br
+																	/><br />While in Birmingham, we hope you enjoy the beautiful
+																	spring weather,
+																	<a href="/attending/restaurants">fine dining</a>,
+																	<a href="/attending/nearby">national historical sites</a>, state
+																	parks and Southern hospitality. <br />
 																	<br />We thank our various sponsors, including
 																	<a href="https://www.uab.edu/medicine/home/"
 																		>UAB School of Medicine</a
