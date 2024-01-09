@@ -112,7 +112,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/01/Birmingham-dining-768x512.jpg"
+																					src="/assets/MCBIOS19_files/Birmingham-dining-768x512.jpg"
 																					alt="Birmingham dining"
 																				/>
 																			</figure>
@@ -130,7 +130,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/9-1-768x383.jpg"
+																					src="/assets/MCBIOS19_files/9-1-768x383.jpg"
 																					alt="9-1.jpg"
 																				/>
 																			</figure>
@@ -148,7 +148,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/17-768x248.jpg"
+																					src="/assets/MCBIOS19_files/17-768x248.jpg"
 																					alt="17.jpg"
 																				/>
 																			</figure>
@@ -166,7 +166,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/01/Birmingham-dining-768x512.jpg"
+																					src="/assets/MCBIOS19_files/Birmingham-dining-768x512.jpg"
 																					alt="Birmingham dining"
 																				/>
 																			</figure>
@@ -181,7 +181,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/9-1-768x383.jpg"
+																					src="/assets/MCBIOS19_files/9-1-768x383.jpg"
 																					alt="9-1.jpg"
 																				/>
 																			</figure>
@@ -196,7 +196,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/17-768x248.jpg"
+																					src="/assets/MCBIOS19_files/17-768x248.jpg"
 																					alt="17.jpg"
 																				/>
 																			</figure>
@@ -211,7 +211,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/01/Birmingham-dining-768x512.jpg"
+																					src="/assets/MCBIOS19_files/Birmingham-dining-768x512.jpg"
 																					alt="Birmingham dining"
 																				/>
 																			</figure>

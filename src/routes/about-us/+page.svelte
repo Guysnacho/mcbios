@@ -996,7 +996,6 @@
 																						src="/assets/MCBIOS19_files/Info_Insti-300x64.png"
 																						class="attachment-medium size-medium"
 																						alt=""
-																						srcset="http://mcbios2019.mcbios.com/wp-content/uploads/2018/11/Info_Insti-300x64.png 300w, http://mcbios2019.mcbios.com/wp-content/uploads/2018/11/Info_Insti-768x165.png 768w, http://mcbios2019.mcbios.com/wp-content/uploads/2018/11/Info_Insti.png 796w"
 																						sizes="(max-width: 300px) 100vw, 300px"
 																					/>
 																				</div>
@@ -1261,7 +1260,6 @@
 																						src="/assets/MCBIOS19_files/NCTR.png"
 																						class="attachment-large size-large"
 																						alt=""
-																						srcset="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/NCTR.png 359w, http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/NCTR-300x80.png 300w"
 																						sizes="(max-width: 359px) 100vw, 359px"
 																					/>
 																				</div>

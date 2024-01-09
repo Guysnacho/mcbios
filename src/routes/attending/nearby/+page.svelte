@@ -112,7 +112,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/01/campus-fountainRS-768x406.jpg"
+																					src="/assets/MCBIOS19_files/campus-fountainRS-768x406.jpg"
 																					alt="campus fountainRS"
 																				/>
 																			</figure>
@@ -130,7 +130,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Its-nice-to-have-you-in-Birmingham.-768x405.jpg"
+																					src="/assets/MCBIOS19_files/Its-nice-to-have-you-in-Birmingham.-768x405.jpg"
 																					alt="It's nice to have you in Birmingham."
 																				/>
 																			</figure>
@@ -148,7 +148,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/botanicalgardens.jpg"
+																					src="/assets/MCBIOS19_files/botanicalgardens.jpg"
 																					alt="botanicalgardens"
 																				/>
 																			</figure>
@@ -166,7 +166,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/01/Birmingham-dining-768x512.jpg"
+																					src="/assets/MCBIOS19_files/Birmingham-dining-768x512.jpg"
 																					alt="Birmingham dining"
 																				/>
 																			</figure>
@@ -184,7 +184,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Five_Points_South2.jpg"
+																					src="/assets/MCBIOS19_files/Five_Points_South2.jpg"
 																					alt="Five_Points_South2"
 																				/>
 																			</figure>
@@ -202,7 +202,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/birmingham10.jpg"
+																					src="/assets/MCBIOS19_files/birmingham10.jpg"
 																					alt="birmingham10"
 																				/>
 																			</figure>
@@ -220,7 +220,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/01/Historic-Kelly-Ingram-Park-RS-768x508.jpg"
+																					src="/assets/MCBIOS19_files/Historic-Kelly-Ingram-Park-RS-768x508.jpg"
 																					alt="Historic Kelly Ingram Park-RS"
 																				/>
 																			</figure>
@@ -238,7 +238,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/01/Railroad-Park-RS-768x512.jpg"
+																					src="/assets/MCBIOS19_files/Railroad-Park-RS-768x512.jpg"
 																					alt="Lake in Railroad Park, downtown Birmingham, 2018."
 																				/>
 																			</figure>
@@ -256,7 +256,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2018/11/Monument-768x435.jpg"
+																					src="/assets/MCBIOS19_files/Monument-768x435.jpg"
 																					alt="Monument"
 																				/>
 																			</figure>
@@ -274,7 +274,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/01/campus-fountainRS-768x406.jpg"
+																					src="/assets/MCBIOS19_files/campus-fountainRS-768x406.jpg"
 																					alt="campus fountainRS"
 																				/>
 																			</figure>
@@ -289,7 +289,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Its-nice-to-have-you-in-Birmingham.-768x405.jpg"
+																					src="/assets/MCBIOS19_files/Its-nice-to-have-you-in-Birmingham.-768x405.jpg"
 																					alt="It's nice to have you in Birmingham."
 																				/>
 																			</figure>
@@ -304,7 +304,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/botanicalgardens.jpg"
+																					src="/assets/MCBIOS19_files/botanicalgardens.jpg"
 																					alt="botanicalgardens"
 																				/>
 																			</figure>
@@ -319,7 +319,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/01/Birmingham-dining-768x512.jpg"
+																					src="/assets/MCBIOS19_files/Birmingham-dining-768x512.jpg"
 																					alt="Birmingham dining"
 																				/>
 																			</figure>
@@ -334,7 +334,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Five_Points_South2.jpg"
+																					src="/assets/MCBIOS19_files/Five_Points_South2.jpg"
 																					alt="Five_Points_South2"
 																				/>
 																			</figure>
@@ -349,7 +349,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/birmingham10.jpg"
+																					src="/assets/MCBIOS19_files/birmingham10.jpg"
 																					alt="birmingham10"
 																				/>
 																			</figure>
@@ -364,7 +364,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/01/Historic-Kelly-Ingram-Park-RS-768x508.jpg"
+																					src="/assets/MCBIOS19_files/Historic-Kelly-Ingram-Park-RS-768x508.jpg"
 																					alt="Historic Kelly Ingram Park-RS"
 																				/>
 																			</figure>
@@ -379,7 +379,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/01/Railroad-Park-RS-768x512.jpg"
+																					src="/assets/MCBIOS19_files/Railroad-Park-RS-768x512.jpg"
 																					alt="Lake in Railroad Park, downtown Birmingham, 2018."
 																				/>
 																			</figure>
@@ -394,7 +394,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2018/11/Monument-768x435.jpg"
+																					src="/assets/MCBIOS19_files/Monument-768x435.jpg"
 																					alt="Monument"
 																				/>
 																			</figure>
@@ -409,7 +409,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/01/campus-fountainRS-768x406.jpg"
+																					src="/assets/MCBIOS19_files/campus-fountainRS-768x406.jpg"
 																					alt="campus fountainRS"
 																				/>
 																			</figure>
