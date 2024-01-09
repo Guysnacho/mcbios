@@ -627,7 +627,7 @@
 			close: 'Close',
 			noiframes:
 				'This feature requires inline frames. You have iframes disabled or your browser does not support them.',
-			loadingAnimation: 'http://mcbios2019.mcbios.com/wp-includes/js/thickbox/loadingAnimation.gif'
+			loadingAnimation: '/assets/MCBIOS19_files/loadingAnimation.gif'
 		};
 		/* ]]> */
 	</script>
@@ -640,58 +640,11 @@
 		type="text/javascript"
 		src="/assets/MCBIOS19_files/jquery.sticky.min.js.download"
 	></script>
-	<script type="text/javascript">
-		var ElementorProFrontendConfig = {
-			ajaxurl: 'http://mcbios2019.mcbios.com/wp-admin/admin-ajax.php',
-			nonce: 'c8c1ff9a9b',
-			shareButtonsNetworks: {
-				facebook: { title: 'Facebook', has_counter: true },
-				twitter: { title: 'Twitter' },
-				google: { title: 'Google+', has_counter: true },
-				linkedin: { title: 'LinkedIn', has_counter: true },
-				pinterest: { title: 'Pinterest', has_counter: true },
-				reddit: { title: 'Reddit', has_counter: true },
-				vk: { title: 'VK', has_counter: true },
-				odnoklassniki: { title: 'OK', has_counter: true },
-				tumblr: { title: 'Tumblr' },
-				delicious: { title: 'Delicious' },
-				digg: { title: 'Digg' },
-				skype: { title: 'Skype' },
-				stumbleupon: { title: 'StumbleUpon', has_counter: true },
-				telegram: { title: 'Telegram' },
-				pocket: { title: 'Pocket', has_counter: true },
-				xing: { title: 'XING', has_counter: true },
-				whatsapp: { title: 'WhatsApp' },
-				email: { title: 'Email' },
-				print: { title: 'Print' }
-			},
-			facebook_sdk: { lang: 'en_US', app_id: '' }
-		};
-	</script>
 	<script type="text/javascript" src="/assets/MCBIOS19_files/frontend.min.js.download"></script>
 	<script type="text/javascript" src="/assets/MCBIOS19_files/position.min.js.download"></script>
 	<script type="text/javascript" src="/assets/MCBIOS19_files/dialog.min.js.download"></script>
 	<script type="text/javascript" src="/assets/MCBIOS19_files/waypoints.min.js.download"></script>
 	<script type="text/javascript" src="/assets/MCBIOS19_files/swiper.min.js.download"></script>
-	<script type="text/javascript">
-		var elementorFrontendConfig = {
-			environmentMode: { edit: false, wpPreview: false },
-			is_rtl: false,
-			breakpoints: { xs: 0, sm: 480, md: 768, lg: 1025, xl: 1440, xxl: 1600 },
-			version: '2.5.14',
-			urls: {
-				assets: 'http://mcbios2019.mcbios.com/wp-content/plugins/elementor/assets/'
-			},
-			settings: {
-				page: [],
-				general: {
-					elementor_global_image_lightbox: 'yes',
-					elementor_enable_lightbox_in_editor: 'yes'
-				}
-			},
-			post: { id: 22, title: 'Home', excerpt: '' }
-		};
-	</script>
 	<script type="text/javascript" src="/assets/MCBIOS19_files/frontend.min(1).js.download"></script>
 </svelte:head>
 
