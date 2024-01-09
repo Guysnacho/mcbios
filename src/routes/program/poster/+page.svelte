@@ -95,7 +95,7 @@
 										at all sessions as the judges will walk around to evaluate and vote for poster
 										awards. The complete program can be found{' '}<a
 											style="text-decoration: underline;"
-											href="http://mcbios2019.mcbios.com/?page_id=7">here</a
+											href="/program">here</a
 										>.
 									</p>
 									<ul>
