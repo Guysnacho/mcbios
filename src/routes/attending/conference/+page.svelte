@@ -108,7 +108,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Hotel_img1.jpg"
+																					src="/assets/MCBIOS19_files/Hotel_img1.jpg"
 																					alt="Hotel_img1"
 																				/>
 																			</figure>
@@ -126,7 +126,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/ho.jpg"
+																					src="/assets/MCBIOS19_files/ho.jpg"
 																					alt="ho"
 																				/>
 																			</figure>
@@ -144,7 +144,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Hotel_img3.jpg"
+																					src="/assets/MCBIOS19_files/Hotel_img3.jpg"
 																					alt="Hotel_img3"
 																				/>
 																			</figure>
@@ -162,7 +162,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Hotel_img2.jpg"
+																					src="/assets/MCBIOS19_files/Hotel_img2.jpg"
 																					alt="Hotel_img2"
 																				/>
 																			</figure>
@@ -180,7 +180,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Hotel_img1.jpg"
+																					src="/assets/MCBIOS19_files/Hotel_img1.jpg"
 																					alt="Hotel_img1"
 																				/>
 																			</figure>
@@ -195,7 +195,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/ho.jpg"
+																					src="/assets/MCBIOS19_files/ho.jpg"
 																					alt="ho"
 																				/>
 																			</figure>
@@ -210,7 +210,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Hotel_img3.jpg"
+																					src="/assets/MCBIOS19_files/Hotel_img3.jpg"
 																					alt="Hotel_img3"
 																				/>
 																			</figure>
@@ -225,7 +225,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Hotel_img2.jpg"
+																					src="/assets/MCBIOS19_files/Hotel_img2.jpg"
 																					alt="Hotel_img2"
 																				/>
 																			</figure>
@@ -240,7 +240,7 @@
 																			<figure class="slick-slide-inner">
 																				<img
 																					class="slick-slide-image"
-																					src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Hotel_img1.jpg"
+																					src="/assets/MCBIOS19_files/Hotel_img1.jpg"
 																					alt="Hotel_img1"
 																				/>
 																			</figure>
@@ -344,11 +344,10 @@
 															<p class="MsoNormal">
 																The WIFI code is <img
 																	class="alignnone wp-image-1153"
-																	src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/WIFIpassword-300x75.png"
+																	src="/assets/MCBIOS19_files/WIFIpassword-300x75.png"
 																	alt=""
 																	width="78"
 																	height="21"
-																	srcset="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/WIFIpassword-300x75.png 300w, http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/WIFIpassword-768x192.png 768w, http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/WIFIpassword.png 834w"
 																	sizes="(max-width: 78px) 100vw, 78px"
 																/>
 															</p>
@@ -394,10 +393,9 @@
 															<img
 																width="700"
 																height="543"
-																src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Hotel_layout-1024x795.jpg"
+																src="/assets/MCBIOS19_files/Hotel_layout-1024x795.jpg"
 																class="attachment-large size-large"
 																alt=""
-																srcset="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Hotel_layout-1024x795.jpg 1024w, http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Hotel_layout-300x233.jpg 300w, http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Hotel_layout-768x596.jpg 768w, http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/Hotel_layout.jpg 1125w"
 																sizes="(max-width: 700px) 100vw, 700px"
 															/>
 														</div>
@@ -414,10 +412,9 @@
 															<img
 																width="700"
 																height="518"
-																src="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/MCBIOS-Venue-Floor-Plan-3.27.png"
+																src="/assets/MCBIOS19_files/MCBIOS-Venue-Floor-Plan-3.27.png"
 																class="attachment-large size-large"
 																alt=""
-																srcset="http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/MCBIOS-Venue-Floor-Plan-3.27.png 847w, http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/MCBIOS-Venue-Floor-Plan-3.27-300x222.png 300w, http://mcbios2019.mcbios.com/wp-content/uploads/2019/03/MCBIOS-Venue-Floor-Plan-3.27-768x569.png 768w"
 																sizes="(max-width: 700px) 100vw, 700px"
 															/>
 														</div>

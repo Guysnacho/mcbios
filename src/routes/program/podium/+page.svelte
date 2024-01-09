@@ -79,8 +79,7 @@
 																	</li>
 																</ul>
 																<p>
-																	Please refer to the <a
-																		href="http://mcbios2019.mcbios.com/?page_id=7"
+																	Please refer to the <a href="/program/podium"
 																		>conference program</a
 																	>&nbsp;for an overview and the conference app for details.
 																</p>

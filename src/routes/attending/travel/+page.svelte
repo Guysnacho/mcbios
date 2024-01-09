@@ -57,10 +57,9 @@
 															<img
 																width="600"
 																height="400"
-																src="http://mcbios2019.mcbios.com/wp-content/uploads/2018/11/37-birmingham-alabama.jpg"
+																src="/assets/MCBIOS19_files/37-birmingham-alabama.jpg"
 																class="elementor-animation-grow attachment-large size-large"
 																alt=""
-																srcset="http://mcbios2019.mcbios.com/wp-content/uploads/2018/11/37-birmingham-alabama.jpg 600w, http://mcbios2019.mcbios.com/wp-content/uploads/2018/11/37-birmingham-alabama-300x200.jpg 300w"
 																sizes="(max-width: 600px) 100vw, 600px"
 															/>
 														</div>

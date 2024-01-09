@@ -1,108 +1,13 @@
 <script>
 	import Nav from '../components/Nav.svelte';
 	import Footer from '../components/Footer.svelte';
+	import { assets } from '__sveltekit/paths';
 </script>
 
 <svelte:head>
 	<title>MCBIOS19</title>
 	<link rel="dns-prefetch" href="http://fonts.googleapis.com/" />
 	<link rel="dns-prefetch" href="http://s.w.org/" />
-	<link
-		rel="alternate"
-		type="application/rss+xml"
-		title="MCBIOS19 » Feed"
-		href="http://mcbios2019.mcbios.com/?feed=rss2"
-	/>
-	<link
-		rel="alternate"
-		type="application/rss+xml"
-		title="MCBIOS19 » Comments Feed"
-		href="http://mcbios2019.mcbios.com/?feed=comments-rss2"
-	/>
-	<script type="text/javascript">
-		window._wpemojiSettings = {
-			baseUrl: 'https://s.w.org/images/core/emoji/11.2.0/72x72/',
-			ext: '.png',
-			svgUrl: 'https://s.w.org/images/core/emoji/11.2.0/svg/',
-			svgExt: '.svg',
-			source: {
-				concatemoji:
-					'http://mcbios2019.mcbios.com/wp-includes/js/wp-emoji-release.min.js?ver=5.1.17'
-			}
-		};
-		!(function (e, a, t) {
-			var n,
-				r,
-				o,
-				i = a.createElement('canvas'),
-				p = i.getContext && i.getContext('2d');
-			function s(e, t) {
-				var a = String.fromCharCode;
-				p.clearRect(0, 0, i.width, i.height), p.fillText(a.apply(this, e), 0, 0);
-				e = i.toDataURL();
-				return (
-					p.clearRect(0, 0, i.width, i.height),
-					p.fillText(a.apply(this, t), 0, 0),
-					e === i.toDataURL()
-				);
-			}
-			function c(e) {
-				var t = a.createElement('script');
-				(t.src = e),
-					(t.defer = t.type = 'text/javascript'),
-					a.getElementsByTagName('head')[0].appendChild(t);
-			}
-			for (
-				o = Array('flag', 'emoji'),
-					t.supports = { everything: !0, everythingExceptFlag: !0 },
-					r = 0;
-				r < o.length;
-				r++
-			)
-				(t.supports[o[r]] = (function (e) {
-					if (!p || !p.fillText) return !1;
-					switch (((p.textBaseline = 'top'), (p.font = '600 32px Arial'), e)) {
-						case 'flag':
-							return s([55356, 56826, 55356, 56819], [55356, 56826, 8203, 55356, 56819])
-								? !1
-								: !s(
-										[
-											55356, 57332, 56128, 56423, 56128, 56418, 56128, 56421, 56128, 56430, 56128,
-											56423, 56128, 56447
-										],
-										[
-											55356, 57332, 8203, 56128, 56423, 8203, 56128, 56418, 8203, 56128, 56421,
-											8203, 56128, 56430, 8203, 56128, 56423, 8203, 56128, 56447
-										]
-								  );
-						case 'emoji':
-							return !s([55358, 56760, 9792, 65039], [55358, 56760, 8203, 9792, 65039]);
-					}
-					return !1;
-				})(o[r])),
-					(t.supports.everything = t.supports.everything && t.supports[o[r]]),
-					'flag' !== o[r] &&
-						(t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && t.supports[o[r]]);
-			(t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && !t.supports.flag),
-				(t.DOMReady = !1),
-				(t.readyCallback = function () {
-					t.DOMReady = !0;
-				}),
-				t.supports.everything ||
-					((n = function () {
-						t.readyCallback();
-					}),
-					a.addEventListener
-						? (a.addEventListener('DOMContentLoaded', n, !1), e.addEventListener('load', n, !1))
-						: (e.attachEvent('onload', n),
-						  a.attachEvent('onreadystatechange', function () {
-								'complete' === a.readyState && t.readyCallback();
-						  })),
-					(n = t.source || {}).concatemoji
-						? c(n.concatemoji)
-						: n.wpemoji && n.twemoji && (c(n.twemoji), c(n.wpemoji)));
-		})(window, document, window._wpemojiSettings);
-	</script>
 	<script
 		src="/assets/MCBIOS19_files/wp-emoji-release.min.js.download"
 		type="text/javascript"
@@ -491,11 +396,11 @@
 		}
 		@font-face {
 			font-family: 'Astra';
-			src: url(http://mcbios2019.mcbios.com/wp-content/themes/astra/assets/fonts/astra.woff)
+			src: url(/assets/MCBIOS19_files/astra.woff)
 					format('woff'),
-				url(http://mcbios2019.mcbios.com/wp-content/themes/astra/assets/fonts/astra.ttf)
+				url(/assets/MCBIOS19_files/astra.ttf)
 					format('truetype'),
-				url(http://mcbios2019.mcbios.com/wp-content/themes/astra/assets/fonts/astra.svg#astra)
+				url(/assets/MCBIOS19_files/astra.svg#astra)
 					format('svg');
 			font-weight: normal;
 			font-style: normal;
@@ -722,7 +627,7 @@
 			close: 'Close',
 			noiframes:
 				'This feature requires inline frames. You have iframes disabled or your browser does not support them.',
-			loadingAnimation: 'http://mcbios2019.mcbios.com/wp-includes/js/thickbox/loadingAnimation.gif'
+			loadingAnimation: '/assets/MCBIOS19_files/loadingAnimation.gif'
 		};
 		/* ]]> */
 	</script>
@@ -735,58 +640,11 @@
 		type="text/javascript"
 		src="/assets/MCBIOS19_files/jquery.sticky.min.js.download"
 	></script>
-	<script type="text/javascript">
-		var ElementorProFrontendConfig = {
-			ajaxurl: 'http://mcbios2019.mcbios.com/wp-admin/admin-ajax.php',
-			nonce: 'c8c1ff9a9b',
-			shareButtonsNetworks: {
-				facebook: { title: 'Facebook', has_counter: true },
-				twitter: { title: 'Twitter' },
-				google: { title: 'Google+', has_counter: true },
-				linkedin: { title: 'LinkedIn', has_counter: true },
-				pinterest: { title: 'Pinterest', has_counter: true },
-				reddit: { title: 'Reddit', has_counter: true },
-				vk: { title: 'VK', has_counter: true },
-				odnoklassniki: { title: 'OK', has_counter: true },
-				tumblr: { title: 'Tumblr' },
-				delicious: { title: 'Delicious' },
-				digg: { title: 'Digg' },
-				skype: { title: 'Skype' },
-				stumbleupon: { title: 'StumbleUpon', has_counter: true },
-				telegram: { title: 'Telegram' },
-				pocket: { title: 'Pocket', has_counter: true },
-				xing: { title: 'XING', has_counter: true },
-				whatsapp: { title: 'WhatsApp' },
-				email: { title: 'Email' },
-				print: { title: 'Print' }
-			},
-			facebook_sdk: { lang: 'en_US', app_id: '' }
-		};
-	</script>
 	<script type="text/javascript" src="/assets/MCBIOS19_files/frontend.min.js.download"></script>
 	<script type="text/javascript" src="/assets/MCBIOS19_files/position.min.js.download"></script>
 	<script type="text/javascript" src="/assets/MCBIOS19_files/dialog.min.js.download"></script>
 	<script type="text/javascript" src="/assets/MCBIOS19_files/waypoints.min.js.download"></script>
 	<script type="text/javascript" src="/assets/MCBIOS19_files/swiper.min.js.download"></script>
-	<script type="text/javascript">
-		var elementorFrontendConfig = {
-			environmentMode: { edit: false, wpPreview: false },
-			is_rtl: false,
-			breakpoints: { xs: 0, sm: 480, md: 768, lg: 1025, xl: 1440, xxl: 1600 },
-			version: '2.5.14',
-			urls: {
-				assets: 'http://mcbios2019.mcbios.com/wp-content/plugins/elementor/assets/'
-			},
-			settings: {
-				page: [],
-				general: {
-					elementor_global_image_lightbox: 'yes',
-					elementor_enable_lightbox_in_editor: 'yes'
-				}
-			},
-			post: { id: 22, title: 'Home', excerpt: '' }
-		};
-	</script>
 	<script type="text/javascript" src="/assets/MCBIOS19_files/frontend.min(1).js.download"></script>
 </svelte:head>
 

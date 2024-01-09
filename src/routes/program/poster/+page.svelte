@@ -57,7 +57,7 @@
 									author can submit multiple abstracts, as long as that author is the presenting author.
 									The complete information on submission and travel stipend can be found{' '}<a
 										style="text-decoration: underline;"
-										href="https://mcbios.org/conference-registration-and-abstract-submission"
+										href="https://www.mcbios.com/"
 										target="_blank"
 										rel="noopener">here.</a
 									>
@@ -95,7 +95,7 @@
 										at all sessions as the judges will walk around to evaluate and vote for poster
 										awards. The complete program can be found{' '}<a
 											style="text-decoration: underline;"
-											href="http://mcbios2019.mcbios.com/?page_id=7">here</a
+											href="/program">here</a
 										>.
 									</p>
 									<ul>
