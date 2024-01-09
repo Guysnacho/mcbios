@@ -57,7 +57,7 @@
 									author can submit multiple abstracts, as long as that author is the presenting author.
 									The complete information on submission and travel stipend can be found{' '}<a
 										style="text-decoration: underline;"
-										href="https://mcbios.org/conference-registration-and-abstract-submission"
+										href="https://www.mcbios.com/"
 										target="_blank"
 										rel="noopener">here.</a
 									>
