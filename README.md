@@ -32,3 +32,22 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > Currently I'm building with the static site generator [adapter](https://kit.svelte.dev/docs/adapters) to make deployment to the PHP server easy.
+
+<!-- ============================================================== Next steps =========================================================================== -->
+
+# Home Page
+Align keynote speakers
+
+Add accomodations to navbar
+
+Fix Hero Section Box
+
+- From Codes to cells...
+- Emory University
+
+Pay for $300 wildcard SSL, figure out how to enable that on PHP
+Make sure SSL is valid for
+
+Registration
+Program
+YSEA
