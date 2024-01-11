@@ -36,14 +36,12 @@ You can preview the production build with `npm run preview`.
 <!-- ============================================================== Next steps =========================================================================== -->
 
 # Home Page
-Align keynote speakers
-
+~~Align keynote speakers~~
 Add accomodations to navbar
+~~Fix Hero Section Box~~
 
-Fix Hero Section Box
-
-- From Codes to cells...
-- Emory University
+- ~~From Codes to cells...~~
+- ~~Emory University~~
 
 Pay for $300 wildcard SSL, figure out how to enable that on PHP
 Make sure SSL is valid for

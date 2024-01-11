@@ -52,11 +52,11 @@
 			<h4
 				class="hidden md:flex h4 fill-token select-none drop-shadow-xl text-center justify-center"
 			>
-				Everyone from codes to cells to care, transforming health care with AI
+				From codes to cells to care, transforming health care with AI
 			</h4>
 			<h4 class="h4 fill-token select-none drop-shadow-xl">20th Annual Meeting of MCBIOS</h4>
 			<h4 class="h4 fill-token select-none drop-shadow-xl">
-				Emory Univeristy<br /> March 22-24, 2024
+				Emory University<br /> March 22-24, 2024
 			</h4>
 			<a href="/registration" class="btn btn-lg outline my-5 select-none"
 				>Registration Coming Soon</a
@@ -74,7 +74,7 @@
 </div>
 
 <div class="w-full my-24">
-	<h3 class="h3 text-center text-2xl">Keynote Speakers</h3>
+	<h2 class="h2 text-center">Keynote Speakers</h2>
 	<blockquote class="text-center my-3">Click to learn more</blockquote>
 	<div class="md:flex space-y-5 my-5 md:space-y-0 flex-wrap">
 		{#each speakers as speaker}
@@ -93,7 +93,7 @@
 </div>
 
 <div class="w-full my-16">
-	<h3 class="h3 text-center text-2xl">Sponsors</h3>
+	<h2 class="h2 text-center">Sponsors</h2>
 	<div class="space-y-10 my-5">
 		<a
 			href="https://ailearning.emory.edu/"
