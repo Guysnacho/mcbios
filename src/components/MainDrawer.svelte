@@ -35,7 +35,7 @@
 		>
 			Registration
 		</a>
-		<!-- <a
+		<a
 			class="flex btn-xl rounded variant-soft-surface overflow-hidden"
 			href="/accomodations"
 			on:click={() => {
@@ -44,7 +44,7 @@
 			rel="noreferrer"
 		>
 			Accomodations
-		</a> -->
+		</a>
 		<a
 			class="flex btn-xl rounded variant-soft-surface overflow-hidden"
 			href="/program"
