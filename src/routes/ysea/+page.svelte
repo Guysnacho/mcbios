@@ -1,11 +1,51 @@
 <script>
-	import UnderConstruction from '../../components/UnderConstruction.svelte';
+	import AwardPic from '$lib/assets/background/wan-san-yip-ID1yWa1Wpx0-unsplash.jpg';
+	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
+	import Hero from '../../components/Hero.svelte';
+	let tabSet = 0;
 </script>
 
 <svelte:head>
 	<title>MCBIOS 2024 | YSEA</title>
 </svelte:head>
 
-<div class="w-full h-full flex justify-center">
-	<UnderConstruction />
+<div class="w-full justify-center">
+	<Hero imageSrc={AwardPic} headerText="MCBIOS YOUNG SCIENTIST EXCELLENCE AWARDS" />
+</div>
+<div class="w-full justify-center bg-surface-700 shadow-lg py-10 -mt-16">
+	<div class="space-y-5 w-11/12 md:w-5/6 mx-auto">
+		<p class="text-center blockquote">
+			If you are a graduate student or a postdoc, we invite you to apply. If you are a mentor of
+			trainees, please encourage your trainees to apply.
+		</p>
+	</div>
+</div>
+<div class="w-5/6 mx-auto mt-10 mb-5 block md:flex gap-5">
+	<div class="w-full md:w-1/3">
+		<h3 class="h3 underline mb-5 text-center">
+			2024 Young Scientist Excellence Award Applications
+		</h3>
+		<p class="text-center">Theme: To be announced</p>
+		<p class="text-center">Date: To be announced</p>
+		<!-- <p>Venue: To be announced</p> -->
+		<div class="px-auto flex">
+			<a href="#" class="btn btn-lg outline disabled my-7 mx-auto">Coming Soon</a>
+		</div>
+	</div>
+	<div class="w-full md:w-2/3 space-y-3">
+		<h3 class="h3">MCBIOS Young Scientist Excellence</h3>
+		<p>
+			Applications from students and postdoctoral fellows will be rigorously evaluated. The top four
+			candidates will be invited to give an oral presentation in a session dedicated to this award
+			program. In addition to an abstract, participation in this program requires submission of a
+			separate description of the innovation of the research (150 words or less) and the
+			individual's contribution to the work being presented (150 words or less). Selection of the
+			top four candidates is based on the evaluation of the applications by the MCBIOS board members
+			for quality and impact of the research. The finalists are selected by a panel of judges
+			(including keynote speakers) after the oral presentations. The quality of the professional
+			presentation is the primary consideration for selection of the award recipients. Applicants
+			with demonstrated multidisciplinary contribution and initiative are given preference during
+			final selection. Announcement of the awards will be made during the final luncheon.
+		</p>
+	</div>
 </div>
