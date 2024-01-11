@@ -67,13 +67,13 @@
 				>
 					Registration
 				</a>
-				<!-- <a
+				<a
 					class="hidden lg:flex lg:max-xl:visible btn btn-sm variant-soft-surface overflow-hidden"
-					href="/accomodations"
+					href="/accommodations"
 					rel="noreferrer"
 				>
-					Accomodations
-				</a> -->
+					Accommodations
+				</a>
 				<a
 					class="hidden lg:flex lg:max-xl:visible btn btn-sm variant-soft-surface overflow-hidden"
 					href="/program"
