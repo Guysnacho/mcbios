@@ -7,7 +7,6 @@
 
 <div class="w-60 mx-auto space-y-4 card-hover">
 	<a href={url} target="_blank"> <h4 class="h4 text-center anchor">{name}</h4></a>
-	<p class="italic text-sm text-center">{affiliation}</p>
 	<div class="italic mx-auto flex justify-center">
 		<a href={url} target="_blank">
 			<img
@@ -17,4 +16,5 @@
 			/>
 		</a>
 	</div>
+	<p class="italic text-lg text-center">{affiliation}</p>
 </div>

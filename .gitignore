@@ -12,3 +12,4 @@ vite.config.ts.timestamp-*
 # Other sites
 .next
 next-env.d.ts
+mcbios.com.txt
