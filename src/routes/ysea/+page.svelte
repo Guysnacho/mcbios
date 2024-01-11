@@ -1,8 +1,6 @@
 <script>
 	import AwardPic from '$lib/assets/background/wan-san-yip-ID1yWa1Wpx0-unsplash.jpg';
-	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import Hero from '../../components/Hero.svelte';
-	let tabSet = 0;
 </script>
 
 <svelte:head>
