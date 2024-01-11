@@ -1,14 +1,14 @@
 <script>
-	import AccomodationsPic from '$lib/assets/background/photo-1494948858638-8f2f3be0ef78.avif';
+	import AccommodationsPic from '$lib/assets/background/photo-1494948858638-8f2f3be0ef78.avif';
 	import Hero from '../../components/Hero.svelte';
 </script>
 
 <svelte:head>
-	<title>MCBIOS 2024 | Accomodations</title>
+	<title>MCBIOS 2024 | Accommodations</title>
 </svelte:head>
 
 <div class="w-full justify-center">
-	<Hero imageSrc={AccomodationsPic} headerText="Accomodations" />
+	<Hero imageSrc={AccommodationsPic} headerText="Accommodations" />
 </div>
 <div class="w-full justify-center bg-surface-700 shadow-lg py-10 -mt-16">
 	<div class="space-y-5 w-11/12 md:w-5/6 mx-auto">

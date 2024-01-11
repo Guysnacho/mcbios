@@ -69,10 +69,10 @@
 				</a>
 				<a
 					class="hidden lg:flex lg:max-xl:visible btn btn-sm variant-soft-surface overflow-hidden"
-					href="/accomodations"
+					href="/Accommodations"
 					rel="noreferrer"
 				>
-					Accomodations
+					Accommodations
 				</a>
 				<a
 					class="hidden lg:flex lg:max-xl:visible btn btn-sm variant-soft-surface overflow-hidden"

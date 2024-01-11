@@ -37,13 +37,13 @@
 		</a>
 		<a
 			class="flex btn-xl rounded variant-soft-surface overflow-hidden"
-			href="/accomodations"
+			href="/Accommodations"
 			on:click={() => {
 				drawerStore.close();
 			}}
 			rel="noreferrer"
 		>
-			Accomodations
+			Accommodations
 		</a>
 		<a
 			class="flex btn-xl rounded variant-soft-surface overflow-hidden"
@@ -57,16 +57,6 @@
 		</a>
 		<a
 			class="flex btn-xl rounded variant-soft-surface overflow-hidden"
-			href="/about"
-			on:click={() => {
-				drawerStore.close();
-			}}
-			rel="noreferrer"
-		>
-			About Us
-		</a>
-		<a
-			class="flex btn-xl rounded variant-soft-surface overflow-hidden"
 			href="/ysea"
 			on:click={() => {
 				drawerStore.close();
@@ -74,6 +64,16 @@
 			rel="noreferrer"
 		>
 			Young Scientist Excellence Awards
+		</a>
+		<a
+			class="flex btn-xl rounded variant-soft-surface overflow-hidden"
+			href="/about"
+			on:click={() => {
+				drawerStore.close();
+			}}
+			rel="noreferrer"
+		>
+			About Us
 		</a>
 	{/if}
 </Drawer>
