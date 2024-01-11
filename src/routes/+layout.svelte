@@ -69,7 +69,7 @@
 				</a>
 				<a
 					class="hidden lg:flex lg:max-xl:visible btn btn-sm variant-soft-surface overflow-hidden"
-					href="/Accommodations"
+					href="/accommodations"
 					rel="noreferrer"
 				>
 					Accommodations

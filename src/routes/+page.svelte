@@ -73,9 +73,9 @@
 	</div>
 </div>
 
-<div class="w-full my-24">
+<div class="w-full my-20">
 	<h2 class="h2 text-center">Keynote Speakers</h2>
-	<blockquote class="text-center my-3">Click to learn more</blockquote>
+	<blockquote class="text-center mt-3 mb-10">Click to learn more</blockquote>
 	<div class="md:flex space-y-5 my-5 md:space-y-0 flex-wrap">
 		{#each speakers as speaker}
 			<KeynoteSpeaker

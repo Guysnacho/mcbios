@@ -37,7 +37,7 @@
 		</a>
 		<a
 			class="flex btn-xl rounded variant-soft-surface overflow-hidden"
-			href="/Accommodations"
+			href="/accommodations"
 			on:click={() => {
 				drawerStore.close();
 			}}
