@@ -18,16 +18,19 @@
 		</p>
 	</div>
 </div>
-<div class="w-5/6 mx-auto mt-10 mb-5 block md:flex gap-5">
+<div class="w-5/6 mx-auto mt-32 mb-40 block md:flex gap-5">
 	<div class="w-full md:w-1/3">
 		<h3 class="h3 underline mb-5 text-center">
 			2024 Young Scientist Excellence Award Applications
 		</h3>
 		<p class="text-center">Theme: To be announced</p>
-		<p class="text-center">Date: To be announced</p>
-		<!-- <p>Venue: To be announced</p> -->
+		<p class="text-center">Deadline: To be announced</p>
 		<div class="px-auto flex">
-			<a href="#" class="btn btn-lg outline disabled my-7 mx-auto">Coming Soon</a>
+			<a
+				href="https://bit.ly/MCBIOSYoungScientistAward"
+				target="_blank"
+				class="btn btn-lg variant-outline-primary my-7 mx-auto">Apply Now</a
+			>
 		</div>
 	</div>
 	<div class="w-full md:w-2/3 space-y-3">
