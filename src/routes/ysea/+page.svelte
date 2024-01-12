@@ -18,8 +18,8 @@
 		</p>
 	</div>
 </div>
-<div class="w-5/6 mx-auto mt-32 mb-40 block md:flex gap-5">
-	<div class="w-full md:w-1/3">
+<div class="w-5/6 mx-auto mt-32 mb-10 block md:flex gap-5">
+	<div class="w-full md:w-2/5">
 		<h3 class="h3 underline mb-5 text-center">
 			2024 Young Scientist Excellence Award Applications
 		</h3>
@@ -33,20 +33,21 @@
 			>
 		</div>
 	</div>
-	<div class="w-full md:w-2/3 space-y-3">
-		<h3 class="h3">MCBIOS Young Scientist Excellence</h3>
-		<p>
+	<div class="w-full mt-10 md:w-3/5 md:mt-0 space-y-3">
+		<h3 class="text-center md:text-left h3">MCBIOS Young Scientist Excellence</h3>
+		<p class="text-center md:text-left mx-auto md:mx-0 w-4/5">
 			Applications from students and postdoctoral fellows will be rigorously evaluated. The top four
 			candidates will be invited to give an oral presentation in a session dedicated to this award
 			program. In addition to an abstract, participation in this program requires submission of a
 			separate description of the innovation of the research (150 words or less) and the
-			individual's contribution to the work being presented (150 words or less). Selection of the
-			top four candidates is based on the evaluation of the applications by the MCBIOS board members
-			for quality and impact of the research. The finalists are selected by a panel of judges
-			(including keynote speakers) after the oral presentations. The quality of the professional
-			presentation is the primary consideration for selection of the award recipients. Applicants
-			with demonstrated multidisciplinary contribution and initiative are given preference during
-			final selection. Announcement of the awards will be made during the final luncheon.
+			individual's contribution to the work being presented (150 words or less).
+			<br /><br />
+			Selection of the top four candidates is based on the evaluation of the applications by the MCBIOS
+			board members for quality and impact of the research. The finalists are selected by a panel of
+			judges (including keynote speakers) after the oral presentations. The quality of the professional
+			presentation is the primary consideration for selection of the award recipients. Applicants with
+			demonstrated multidisciplinary contribution and initiative are given preference during final selection.
+			Announcement of the awards will be made during the final luncheon.
 		</p>
 	</div>
 </div>
