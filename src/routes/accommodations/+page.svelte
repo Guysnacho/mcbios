@@ -1,7 +1,7 @@
 <script>
-	import AccommodationsPic from '$lib/assets/background/photo-1494948858638-8f2f3be0ef78.avif';
 	import CourtyardAtlanta from '$lib/assets/accom/courtyard-atlanta.jpg';
 	import EmoryConferenceCenter from '$lib/assets/accom/emory-conference-center-hotel.jpg';
+	import AccommodationsPic from '$lib/assets/background/photo-1494948858638-8f2f3be0ef78.avif';
 	import Hero from '../../components/Hero.svelte';
 </script>
 
