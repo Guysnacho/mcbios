@@ -1,7 +1,7 @@
 <script>
 	import Abstract from '$lib/assets/background/Chang-Su_abstract.jpg';
 	import Hero from '../../components/Hero.svelte';
-	let registrationOpen = false;
+	let registrationOpen = true;
 </script>
 
 <svelte:head>
@@ -22,13 +22,19 @@
 	</div>
 	<div class="col-span-3 md:col-span-2 flex m-auto">
 		<div
-			class="card bg-gradient-to-br from-pink-500 to-violet-500 bg-clip-text text-transparent border-violet-500 border-2"
+			class="card bg-gradient-to-br from-pink-500 to-violet-500 bg-clip-text text-transparent border-tertiary-500 border-2"
 		>
-			<header class="card-header"><h3 class="h3">MCBIOS 2024 Registration</h3></header>
+			<header class="card-header text-center"><h3 class="h3">MCBIOS 2024 Registration</h3></header>
 			{#if registrationOpen}
 				<section class="p-4">
 					To register for the 2023 Conference, select your registration type from the list below.
 					Secure payment processing powered by Stripe Checkout.
+					<div class="flex justify-center">
+						<a
+							href="https://form.jotform.com/240087559997173"
+							class="btn btn-lg variant-ringed-primary my-5">Register Now</a
+						>
+					</div>
 				</section>
 			{:else}
 				<section class="p-4 text-xl">

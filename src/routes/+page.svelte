@@ -58,9 +58,7 @@
 			<h4 class="h4 fill-token select-none drop-shadow-xl">
 				Emory University<br /> March 22-24, 2024
 			</h4>
-			<a href="/registration" class="btn btn-lg outline my-5 select-none"
-				>Registration Coming Soon</a
-			>
+			<a href="/registration" class="btn btn-lg outline my-5 select-none">Register Now</a>
 		</div>
 	</div>
 	<quote
