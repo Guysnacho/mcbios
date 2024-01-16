@@ -24,7 +24,7 @@
 
 <div class="justify-center py-10 w-11/12 md:w-5/6 mx-auto block md:flex gap-10">
 	<div class="w-5/6 sm:w-4/5 md:w-1/2 mx-auto">
-		<div class="card bg-gradient-to-br variant-filled-secondary my-8">
+		<div class="card bg-gradient-to-br variant-gradient-secondary-tertiary my-8">
 			<div class="card-header flex items-center">
 				<img
 					src={EmoryConferenceCenter}
@@ -62,7 +62,7 @@
 	</div>
 
 	<div class="w-5/6 sm:w-4/5 md:w-1/2 mx-auto">
-		<div class="card bg-gradient-to-br variant-filled-secondary my-8">
+		<div class="card bg-gradient-to-br variant-gradient-tertiary-secondary my-8">
 			<div class="card-header flex items-center">
 				<img
 					src={CourtyardAtlanta}
