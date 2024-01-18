@@ -29,6 +29,12 @@
 				<section class="p-4">
 					To register for the 2023 Conference, select your registration type from the list below.
 					Secure payment processing powered by Stripe Checkout.
+					<div class="flex justify-center">
+						<script
+							type="text/javascript"
+							src="https://form.jotform.com/jsform/240087559997173"
+						></script>
+					</div>
 				</section>
 			{:else}
 				<section class="p-4 text-xl">
