@@ -51,7 +51,7 @@
 					below.
 				</p>
 			</section>
-			<footer class="card-footer text-center">
+			<footer class="card-footer text-center pb-6">
 				<div class="flex justify-center">
 					<a
 						class="btn-md variant-outline-primary text-amber-300 hover:text-amber-600 active:text-purple-800"
