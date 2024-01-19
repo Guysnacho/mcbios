@@ -32,7 +32,7 @@
 		{
 			name: 'Heng Li',
 			url: 'https://dbmi.hms.harvard.edu/people/heng-li',
-			affiliation: 'Dana Faber Cancer Institute & Harvard Medical School',
+			affiliation: 'Dana Farber Cancer Institute & Harvard Medical School',
 			photo: HengLi
 		}
 	];
