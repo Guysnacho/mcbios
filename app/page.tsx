@@ -176,7 +176,7 @@ export default function Home() {
               href="/membership"
               color="secondary"
             >
-              Become a Registration
+              Registration
             </Button>
           </div>
         </div>
