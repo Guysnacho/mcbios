@@ -39,19 +39,19 @@ export const Nav = () => {
       years: [
         {
           year: 2019,
-          url: "https://2019--mcbios.netlify.app/",
+          url: "https://2019.mcbios.com",
         },
         {
           year: 2020,
-          url: "https://2020--mcbios.netlify.app/",
+          url: "https://2020.mcbios.com",
         },
         {
           year: 2022,
-          url: "https://2022--mcbios.netlify.app/",
+          url: "https://2022.mcbios.com",
         },
         {
           year: 2023,
-          url: "https://2023--mcbios.netlify.app/",
+          url: "https://2023.mcbios.com",
         },
         {
           year: 2024,
