@@ -25,11 +25,11 @@
 	</div>
 </div>
 
-<!-- Flex box 2 -->
 <div
-	class="flex flex-col md:flex-row w-full md:w-10/12 mx-auto space-y-8 sm:mb-0 md:-mb-18 lg:mb-20 xl:mb-15"
+	class="border-secondary-400 border-solid border-2 rounded-md flex flex-col md:flex-row w-10/12 mx-auto
+	space-y-8 md:space-y-0 px-5 py-10 sm:p-10 md:p-16 sm:mb-0 md:-mb-18 lg:mb-20 xl:mb-15"
 >
-	<div class="mx-auto basis-1/2 w-5/6 md:w-6/12 md:px-10 space-y-4 my-10">
+	<div class="mx-auto basis-1/2 w-5/6 md:w-1/2 md:px-10 space-y-4">
 		<p class="-mx-4 font-semibold">
 			The abstract should not exceed 300 words. Please minimize the use of abbreviations and do not
 			cite references in the abstract.
@@ -41,16 +41,7 @@
 			<li>Conclusions: A brief summary and potential implications</li>
 		</ul>
 	</div>
-	<div class="basis-1/2 space-y-3 w-full mx-auto md:w-6/12 md:px-10">
-		<h6 class="text-center">Oral Presentations</h6>
-		<p class="w-5/6 m-auto">
-			There are a limited number of spots for oral presentations. If not selected for oral
-			presentation, you will automatically be considered for poster presentation. Oral presentations
-			will be 10-15 min long including questions, depending on the session program designed by the
-			session chair. Poster size limitation: <span class="font-semibold"
-				>30"W x 20"H (91cm x 61cm)</span
-			>.
-		</p>
+	<div class="basis-1/2 space-y-3 w-full mx-auto md:w-1/2 md:px-10">
 		<h6 class="text-center">Submissions</h6>
 		<p class="w-5/6 m-auto">
 			A registered author can submit multiple abstracts, as long as that author is the presenting
