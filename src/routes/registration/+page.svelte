@@ -27,7 +27,7 @@
 			<header class="card-header text-center"><h3 class="h3">MCBIOS 2024 Registration</h3></header>
 			{#if registrationOpen}
 				<section class="p-4">
-					To register for the 2023 Conference, select your registration type from the list below.
+					To register for the 2024 Conference, select your registration type from the list below.
 					Secure payment processing powered by Stripe Checkout.
 					<div class="flex justify-center">
 						<a
