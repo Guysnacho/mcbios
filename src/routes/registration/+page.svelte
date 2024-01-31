@@ -19,6 +19,10 @@
 			information gathered during registration will be aggregated and utilized by MCBIOS for grant
 			applications. Member's information is never shared or sold.
 		</p>
+		<p class="text-center col-span-3 md:col-span-1 text-lg m-auto">
+			All three types of registration include complimentary 1-year MCBIOS membership, which provides
+			access to workshops and collaborative projects hosted by MCBIOS throughout the year.
+		</p>
 	</div>
 	<div class="col-span-3 md:col-span-2 flex m-auto">
 		<div
@@ -27,7 +31,7 @@
 			<header class="card-header text-center"><h3 class="h3">MCBIOS 2024 Registration</h3></header>
 			{#if registrationOpen}
 				<section class="p-4">
-					To register for the 2023 Conference, select your registration type from the list below.
+					To register for the 2024 Conference, select your registration type from the list below.
 					Secure payment processing powered by Stripe Checkout.
 					<div class="flex justify-center">
 						<a

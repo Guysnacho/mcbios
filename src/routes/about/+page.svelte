@@ -132,7 +132,7 @@
 					consist of energetic professionals working in all aspects of bioinformatics. Because of
 					the pandemic, for the past three years, we have to either postpone or move the annual
 					conferences online. I am really pleased that we are able to get back to normal earlier
-					this year in the 2023 Conference. Looking forward to next year, I sincerely hope that you
+					this year in the 2024 Conference. Looking forward to next year, I sincerely hope that you
 					can join us for our 20th annual conference to be held in Atlanta, GA on March 22-24, 2024.
 				</p>
 				<br />
