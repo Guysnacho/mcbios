@@ -43,7 +43,7 @@
 				</p>
 				<p class="max-h-40 overflow-auto">
 					The Emory Conference Center Hotel is conveniently located within walking distance of the
-					Emory campus. This hotel is offering a discounted rate at $169/night for king or double
+					Emory campus. This hotel is offering a discounted rate at $169/night for a King or Double
 					room. Rooms are limited and we encourage you to make reservations at your earliest
 					convenience. Reservations can be made online and must be made before
 					<span class="text-red-400 underline underline-offset-1">March 1, 2024</span> with the link
