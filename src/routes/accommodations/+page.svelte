@@ -43,9 +43,8 @@
 				</p>
 				<p class="max-h-40 overflow-auto">
 					The Emory Conference Center Hotel is conveniently located within walking distance of the
-					Emory campus. <span class="underline"
-						>This hotel is offering a discounted rate at 169$ per night</span
-					>. Rooms are limited and we encourage you to make reservations at your earliest
+					Emory campus. This hotel is offering a discounted rate at $169/night for king or double
+					room. Rooms are limited and we encourage you to make reservations at your earliest
 					convenience. Reservations can be made online and must be made before
 					<span class="text-red-400 underline underline-offset-1">March 1, 2024</span> with the link
 					below.
@@ -85,10 +84,8 @@
 				<p class="max-h-40 overflow-auto">
 					In North Druid Hills, Courtyard Atlanta Executive Park/Emory offers amenities such as free
 					Wi-Fi, complimentary parking, and a convenient location near leading health facilities.
-					<span class="underline">
-						This hotel is offering a discounted rate at $117/night for a King room and $127/night
-						for a Double room</span
-					>. Reservations must be made before
+					This hotel is offering a discounted rate at $117/night for a King room and $127/night for
+					a Double room. Reservations must be made before
 					<span class="underline">Feb 23, 2024</span> and availability is limited.
 				</p>
 			</section>
