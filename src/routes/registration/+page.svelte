@@ -19,6 +19,10 @@
 			information gathered during registration will be aggregated and utilized by MCBIOS for grant
 			applications. Member's information is never shared or sold.
 		</p>
+		<p class="text-center col-span-3 md:col-span-1 text-lg m-auto">
+			All three types of registration include complimentary 1-year MCBIOS membership, which provides
+			access to workshops and collaborative projects hosted by MCBIOS throughout the year.
+		</p>
 	</div>
 	<div class="col-span-3 md:col-span-2 flex m-auto">
 		<div
