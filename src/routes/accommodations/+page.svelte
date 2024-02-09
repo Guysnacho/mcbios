@@ -24,7 +24,7 @@
 
 <div class="justify-center py-10 w-11/12 md:w-5/6 mx-auto block md:flex gap-10">
 	<div class="w-5/6 sm:w-4/5 md:w-1/2 mx-auto">
-		<div class="card bg-gradient-to-br variant-gradient-secondary-tertiary my-8">
+		<div class="card variant-outline-tertiary my-8">
 			<div class="card-header flex items-center">
 				<img
 					src={EmoryConferenceCenter}
@@ -63,12 +63,12 @@
 	</div>
 
 	<div class="w-5/6 sm:w-4/5 md:w-1/2 mx-auto">
-		<div class="card bg-gradient-to-br variant-gradient-tertiary-secondary my-8">
+		<div class="card variant-outline-tertiary my-8">
 			<div class="card-header flex items-center">
 				<img
 					src={CourtyardAtlanta}
 					alt="Emory Conference Center Hotel"
-					class="object-cover mx-auto rounded-md"
+					class="object-cover mx-auto rounded-md shadow-lg"
 				/>
 			</div>
 			<section class="p-4 space-y-3">
@@ -86,7 +86,7 @@
 					Wi-Fi, complimentary parking, and a convenient location near leading health facilities.
 					This hotel is offering a discounted rate at $117/night for a King room and $127/night for
 					a Double room. Reservations must be made before
-					<span class="underline">Feb 23, 2024</span> and availability is limited.
+					<span class="underline text-red-400">Feb 23, 2024</span> and availability is limited.
 				</p>
 			</section>
 			<footer class="card-footer text-center">
