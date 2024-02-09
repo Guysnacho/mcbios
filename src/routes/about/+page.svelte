@@ -18,6 +18,7 @@
 	import YongshengBai from '$lib/assets/committee/Yongsheng-Bai.jpg';
 	import ZhanaDuren from '$lib/assets/committee/Zhana-Duren.jpg';
 	import ZongliangYue from '$lib/assets/committee/Zongliang-Yue.jpg';
+	import YanaBromberg from '$lib/assets/committee/Yana-Bromberg.jpg';
 
 	import Abstract from '$lib/assets/background/Chang-Su_abstract.jpg';
 	import president from '$lib/assets/committee/Qin-Steve.jpg';
@@ -77,7 +78,8 @@
 		{ name: 'Xiuwei Zhang', affiliation: 'Georgia Tech University', photo: XiuweiZhang },
 
 		{ name: 'Kun Zhao', affiliation: 'CDC', photo: KunZhao },
-		{ name: 'Sangeeta Khare', affiliation: 'FDA NCTR', photo: SangeetaKhare }
+		{ name: 'Sangeeta Khare', affiliation: 'FDA NCTR', photo: SangeetaKhare },
+		{ name: 'Yana Bromberg', affiliation: 'FDA NCTR', photo: YanaBromberg }
 	];
 </script>
 
