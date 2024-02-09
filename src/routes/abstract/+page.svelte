@@ -20,7 +20,11 @@
 		</p>
 		<p class="font-semibold">Poster size limitation: 30"W x 20"H (76cm x 51cm)</p>
 		<div class="px-auto flex">
-			<a href="#" class="btn btn-lg outline disabled my-7 mx-auto">Coming Soon</a>
+			<a
+				href="https://forms.office.com/r/Fx9eVF0A5J"
+				target="_blank"
+				class="btn btn-lg outline disabled my-7 mx-auto">Submit Abstract</a
+			>
 		</div>
 	</div>
 </div>
