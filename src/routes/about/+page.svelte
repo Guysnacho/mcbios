@@ -7,6 +7,7 @@
 	import KunZhao from '$lib/assets/committee/Kun-Zhao.jpg';
 	import ManojBhasin from '$lib/assets/committee/Manoj-Bhasin.jpg';
 	import MarkBorodovsky from '$lib/assets/committee/Mark-Borodovsky.jpg';
+	import MatthewReyna from "$lib/assets/committee/Matthew-Reyna.jpg";
 	import PaulSchliekelman from '$lib/assets/committee/Paul-Schliekelman.jpg';
 	import PengQiu from '$lib/assets/committee/Peng-Qiu.jpg';
 	import Steve from '$lib/assets/committee/Qin-Steve.jpg';
@@ -14,11 +15,11 @@
 	import StevePittard from '$lib/assets/committee/Steve-Pittard.jpg';
 	import XiaoHu from '$lib/assets/committee/Xiao-Hu.jpg';
 	import XiuweiZhang from '$lib/assets/committee/Xiuwei-Zhang.png';
+	import YanaBromberg from '$lib/assets/committee/Yana-Bromberg.jpg';
 	import YanqingZhang from '$lib/assets/committee/Yanqing-Zhang.jpg';
 	import YongshengBai from '$lib/assets/committee/Yongsheng-Bai.jpg';
 	import ZhanaDuren from '$lib/assets/committee/Zhana-Duren.jpg';
 	import ZongliangYue from '$lib/assets/committee/Zongliang-Yue.jpg';
-	import YanaBromberg from '$lib/assets/committee/Yana-Bromberg.jpg';
 
 	import Abstract from '$lib/assets/background/Chang-Su_abstract.jpg';
 	import logo from '$lib/assets/logo.jpg';
@@ -79,7 +80,8 @@
 
 		{ name: 'Kun Zhao', affiliation: 'CDC', photo: KunZhao },
 		{ name: 'Sangeeta Khare', affiliation: 'FDA NCTR', photo: SangeetaKhare },
-		{ name: 'Yana Bromberg', affiliation: 'FDA NCTR', photo: YanaBromberg }
+		{ name: 'Yana Bromberg', affiliation: 'FDA NCTR', photo: YanaBromberg },
+		{ name: 'Matthew A. Reyna', affiliation: 'Emory University', photo: MatthewReyna }
 	];
 </script>
 
