@@ -122,8 +122,11 @@
 					Excellence Award (YSEA) sessions, poster sessions, hackathon and many more fun activities.
 					All registered attendees are eligible to submit their research papers to MCBIOS 2024
 					proceedings to be published as special issues of high-quality Bioinformatics journals. We
-					are looking forward to a great Bioinformatics conference with lasting impact. Please join
-					us!
+					are looking forward to a great Bioinformatics conference with lasting impact. <a
+						href="https://www.mcbios.com"
+						class="underline text-primary-300"
+						target="_blank">Please join us!</a
+					>
 				</p>
 				<br />
 			</div>
