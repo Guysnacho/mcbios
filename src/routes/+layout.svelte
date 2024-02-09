@@ -108,7 +108,7 @@
 				<a href="https://mcbios.com" target="_blank"
 					><p class="text-center my-auto mb-4">&copy; MCBIOS 2024</p></a
 				>
-				<div class="gap-4 flex border-t-2 border-t-primary-400 border-opacity-70 pt-4">
+				<div class="gap-4 md:flex border-t-2 border-t-primary-400 border-opacity-70 pt-4 hidden">
 					<a href="/"> Home </a>
 					<a href="/abstract"> Abstract Submission </a>
 					<a href="/registration"> Registration </a>
