@@ -92,6 +92,23 @@
 	<hr class="!border-t-8 !border-double" />
 </div>
 
+<div class="container mx-auto self-center mt-10 md:mt-0 space-y-3 flex place-content-center">
+	<p class="text-center mx-auto md:mx-0 w-4/5">
+		The conference will take place at the <a
+			href="https://maps.app.goo.gl/CT3n9YrUaExJBTx37"
+			target="_blank"
+			class="underline text-secondary-300">R. Randall Rollins Building</a
+		>. Directions, maps, and parking information can be found
+		<a
+			href="https://sph.emory.edu/about/directions-maps/index.html"
+			target="_blank"
+			class="underline text-secondary-300">here</a
+		>. Parking balidation is available for visitors paring on Friday afternoon. Parking is free
+		Saturday and Sunday, learn more by going to our
+		<a href="/accommodations" class="underline text-secondary-300">accommodations page</a>!
+	</p>
+</div>
+
 <div class="my-20 w-96 mx-auto">
 	<h2
 		class="h2 text-center my-10 fill-token select-none drop-shadow-sm bg-gradient-to-br from-secondary-500 to-tertiary-100 bg-clip-text text-transparent box-decoration-clone"
