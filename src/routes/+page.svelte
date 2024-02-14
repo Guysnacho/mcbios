@@ -1,7 +1,8 @@
 <script>
 	import bgImage from '$lib/assets/background/2024_bg_brad-huchteman.jpg';
+	import AIforGenomics from '$lib/assets/sponsors/Sponsor-AI-Genom.png';
+	import AIforMed from '$lib/assets/sponsors/Sponsor-AI-MED.png';
 	import CenterOfAILearning from '$lib/assets/sponsors/Sponsor-CAIL-1.jpg';
-	import SocietyOfComputationalBiology from '$lib/assets/sponsors/Sponsor-ISCB-2.png';
 
 	import AnantMadabhushi from '$lib/assets/speakers/Anant-Madabhushi.jpg';
 	import GregGibson from '$lib/assets/speakers/Greg-Gibson.jpg';
@@ -98,10 +99,12 @@
 			target="_blank"
 			aria-label="Emory Center for AI learning"
 		>
-			<div class="space-y-3 my-10 container mx-auto py-4 card-hover">
+			<div
+				class="space-y-3 my-10 container mx-auto py-4 card-hover rounded-md shadow-lg border-tertiary-600 border-4"
+			>
 				<h4 class="text-center text-lg">Center for AI learning</h4>
 				<img
-					class="w-5/6 sm:w-4/6 md:w-1/2 mx-auto rounded-md shadow-lg border-tertiary-600 border-4"
+					class="w-5/6 sm:w-4/6 md:w-1/2 mx-auto"
 					src={CenterOfAILearning}
 					alt="Emory University | Center of AI Learning"
 				/>
@@ -112,7 +115,9 @@
 			target="_blank"
 			aria-label="Emory Center for Computational and Quantitative Genetics"
 		>
-			<div class="space-y-3 my-10 container mx-auto py-4 card-hover">
+			<div
+				class="space-y-3 my-10 container mx-auto py-4 card-hover rounded-md shadow-lg border-tertiary-600 border-4"
+			>
 				<h4 class="text-center text-lg">
 					Emory Center for Computational and Quantitative Genetics
 				</h4>
@@ -123,22 +128,26 @@
 			target="_blank"
 			aria-label="Department of Biostatistics and Bioinformatics, Emory University"
 		>
-			<div class="space-y-3 my-10 container mx-auto py-4 card-hover">
+			<div
+				class="space-y-3 my-10 container mx-auto py-4 card-hover rounded-md shadow-lg border-tertiary-600 border-4"
+			>
 				<h4 class="text-center text-lg">Department of Biostatistics and Bioinformatics</h4>
 			</div>
 		</a>
-		<a
-			href="https://www.iscb.org/index.php"
-			target="_blank"
-			aria-label="International Society for Computational Biology"
-		>
-			<div class="space-y-3 my-10 container mx-auto py-4 card-hover">
-				<h4 class="text-center text-lg">International Society for Computational Biology</h4>
-				<img
-					class="object-contain mx-auto rounded-md shadow-lg border-tertiary-600 border-4"
-					src={SocietyOfComputationalBiology}
-					alt="International Society for Computational Biology"
-				/>
+		<a href="https://jianhu-lab.org" target="_blank" aria-label="AI for Genomics">
+			<div
+				class="space-y-3 my-10 container mx-auto py-4 card-hover rounded-md shadow-lg border-tertiary-600 border-4"
+			>
+				<h4 class="text-center text-lg">AI for Genomics</h4>
+				<img class="object-contain mx-auto" src={AIforGenomics} alt="AI for Genomics" />
+			</div>
+		</a>
+		<a href="https://aimed-lab.org" target="_blank" aria-label="AI.MED">
+			<div
+				class="space-y-3 my-10 container mx-auto py-4 card-hover rounded-md shadow-lg border-tertiary-600 border-4"
+			>
+				<h4 class="text-center text-lg">AI.MED</h4>
+				<img class="object-contain mx-auto" src={AIforMed} alt="AI.MED" />
 			</div>
 		</a>
 	</div>
