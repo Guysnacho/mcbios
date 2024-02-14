@@ -10,6 +10,7 @@
 	import NancyCox from '$lib/assets/speakers/Nancy-Cox.jpg';
 
 	import KeynoteSpeaker from '../components/KeynoteSpeaker.svelte';
+	import { invitedSpeakers } from './program/data';
 
 	let speakers = [
 		{
@@ -85,6 +86,28 @@
 			/>
 		{/each}
 	</div>
+</div>
+
+<div class="container my-10 mx-auto">
+	<hr class="!border-t-8 !border-double" />
+</div>
+
+<div class="my-20 w-96 mx-auto">
+	<h2
+		class="h2 text-center my-10 fill-token select-none drop-shadow-sm bg-gradient-to-br from-secondary-500 to-tertiary-100 bg-clip-text text-transparent box-decoration-clone"
+	>
+		Invited speakers
+	</h2>
+	<dl class="list-dl max-h-96 overflow-y-scroll rounded-md outline p-2 mb-5 text-center mx-auto">
+		{#each invitedSpeakers as invitee}
+			<div class="max-w-md overflow-clip">
+				<span class="flex-auto">
+					<dt class="font-bold">{invitee.name}</dt>
+					<dd>{@html invitee.affiliation}</dd>
+				</span>
+			</div>
+		{/each}
+	</dl>
 </div>
 
 <div class="container my-10 mx-auto">
