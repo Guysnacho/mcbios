@@ -23,13 +23,10 @@
 		<h3 class="h3 underline mb-5 text-center">
 			2024 Young Scientist Excellence Award Applications
 		</h3>
-		<p class="text-center">Theme: To be announced</p>
-		<p class="text-center">Deadline: To be announced</p>
+		<p class="text-center">Deadline: January 31st, 2024</p>
 		<div class="px-auto flex">
-			<a
-				href="https://bit.ly/MCBIOSYoungScientistAward"
-				target="_blank"
-				class="btn btn-lg variant-outline-primary my-7 mx-auto">Apply Now</a
+			<a href="#" class="btn btn-lg variant-outline-primary my-7 mx-auto"
+				>Apply Closed</a
 			>
 		</div>
 	</div>
