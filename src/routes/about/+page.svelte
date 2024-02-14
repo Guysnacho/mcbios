@@ -80,7 +80,7 @@
 
 		{ name: 'Kun Zhao', affiliation: 'CDC', photo: KunZhao },
 		{ name: 'Sangeeta Khare', affiliation: 'FDA NCTR', photo: SangeetaKhare },
-		{ name: 'Yana Bromberg', affiliation: 'FDA NCTR', photo: YanaBromberg },
+		{ name: 'Yana Bromberg', affiliation: 'Emory University', photo: YanaBromberg },
 		{ name: 'Matthew A. Reyna', affiliation: 'Emory University', photo: MatthewReyna }
 	];
 </script>
