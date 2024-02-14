@@ -1,4 +1,5 @@
 <script>
+	import Committee from '$lib/assets/background/mapbox-LJtfV2Dkp4U-unsplash.jpg';
 	import ChangSu from '$lib/assets/committee/Chang-Su.jpg';
 	import HongQin from '$lib/assets/committee/Hong-Qin.png';
 	import HuixiaoHong from '$lib/assets/committee/Huixiao-Hong.jpg';
@@ -7,7 +8,7 @@
 	import KunZhao from '$lib/assets/committee/Kun-Zhao.jpg';
 	import ManojBhasin from '$lib/assets/committee/Manoj-Bhasin.jpg';
 	import MarkBorodovsky from '$lib/assets/committee/Mark-Borodovsky.jpg';
-	import MatthewReyna from "$lib/assets/committee/Matthew-Reyna.jpg";
+	import MatthewReyna from '$lib/assets/committee/Matthew-Reyna.jpg';
 	import PaulSchliekelman from '$lib/assets/committee/Paul-Schliekelman.jpg';
 	import PengQiu from '$lib/assets/committee/Peng-Qiu.jpg';
 	import Steve from '$lib/assets/committee/Qin-Steve.jpg';
@@ -21,12 +22,11 @@
 	import ZhanaDuren from '$lib/assets/committee/Zhana-Duren.jpg';
 	import ZongliangYue from '$lib/assets/committee/Zongliang-Yue.jpg';
 
-	import Abstract from '$lib/assets/background/Chang-Su_abstract.jpg';
 	import logo from '$lib/assets/logo.jpg';
 	import AvatarCard from '../../components/AvatarCard.svelte';
 	import Hero from '../../components/Hero.svelte';
 
-	let coChairs = [
+	const coChairs = [
 		{
 			name: 'Steve Qin, PhD',
 			affiliation: 'Emory University',
@@ -40,7 +40,7 @@
 			position: 'Co-Chair'
 		}
 	];
-	let members = [
+	const members = [
 		{
 			name: 'Yongsheng Bai, PhD',
 			affiliation: 'Eastern Michigan University',
@@ -90,7 +90,7 @@
 </svelte:head>
 
 <div>
-	<Hero imageSrc={Abstract} headerText="Organizing Commitee" />
+	<Hero imageSrc={Committee} blur headerText="Organizing Commitee" />
 
 	<div class="container mx-auto m-11 space-y-5">
 		<!-- <blockquote class="blockquote my-5 mx-auto w-5/6">
