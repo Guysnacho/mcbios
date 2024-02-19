@@ -10,9 +10,10 @@
 	import NancyCox from '$lib/assets/speakers/Nancy-Cox.jpg';
 
 	import KeynoteSpeaker from '../components/KeynoteSpeaker.svelte';
+	import SponsorCard from '../components/SponsorCard.svelte';
 	import { invitedSpeakers } from './program/data';
 
-	let speakers = [
+	const speakers = [
 		{
 			name: 'Anant Madabhushi',
 			url: 'https://med.emory.edu/departments/radiology/research/research-labs/madabhushi-lab/index.html',
@@ -36,6 +37,37 @@
 			url: 'https://dbmi.hms.harvard.edu/people/heng-li',
 			affiliation: 'Dana Farber Cancer Institute & Harvard Medical School',
 			photo: HengLi
+		}
+	];
+
+	const sponsors = [
+		{
+			name: 'Center for AI learning',
+			url: 'https://ailearning.emory.edu',
+			label: 'Emory Center for AI learning',
+			imgSrc: CenterOfAILearning
+		},
+		{
+			name: 'Emory Center for Computational and Quantitative Genetics',
+			url: 'https://med.emory.edu/departments/human-genetics/research/computational-analytics/index.html',
+			label: 'Emory Center for Computational and Quantitative Genetics'
+		},
+		{
+			name: 'Department of Biostatistics and Bioinformatics',
+			url: 'https://sph.emory.edu/departments/bios/index.html',
+			label: 'Department of Biostatistics and Bioinformatics, Emory University'
+		},
+		{
+			name: 'AI for Genomics',
+			url: 'https://jianhu-lab.org',
+			label: 'AI for Genomics',
+			imgSrc: AIforGenomics
+		},
+		{
+			name: 'AI.MED',
+			url: 'https://aimed-lab.org',
+			label: 'AI.MED',
+			imgSrc: AIforMed
 		}
 	];
 </script>
@@ -73,7 +105,9 @@
 	</div>
 </div>
 
-<div class="container mx-auto self-center flex place-content-center my-10 variant-glass-secondary rounded-xl py-6">
+<div
+	class="container mx-auto self-center flex place-content-center my-10 variant-glass-secondary rounded-xl py-6"
+>
 	<p class="text-center mx-auto md:mx-0 w-4/5">
 		The conference will take place at the <a
 			href="https://maps.app.goo.gl/CT3n9YrUaExJBTx37"
@@ -109,7 +143,7 @@
 	<hr class="!border-t-8 !border-double" />
 </div>
 
-<div class="my-20 w-96 mx-auto">
+<div class="my-20 w-80 md:w-96 mx-auto">
 	<h2
 		class="h2 text-center my-10 fill-token select-none drop-shadow-sm bg-gradient-to-br from-secondary-500 to-tertiary-100 bg-clip-text text-transparent box-decoration-clone"
 	>
@@ -133,62 +167,14 @@
 
 <div class="w-full my-16">
 	<h2 class="h2 text-center">Sponsors</h2>
-	<div class="space-y-10 my-5">
-		<a
-			href="https://ailearning.emory.edu/"
-			target="_blank"
-			aria-label="Emory Center for AI learning"
-		>
-			<div
-				class="space-y-3 my-10 container mx-auto py-4 card-hover rounded-md shadow-lg border-tertiary-600 border-4"
-			>
-				<h4 class="text-center text-lg">Center for AI learning</h4>
-				<img
-					class="w-5/6 sm:w-4/6 md:w-1/2 mx-auto"
-					src={CenterOfAILearning}
-					alt="Emory University | Center of AI Learning"
-				/>
-			</div>
-		</a>
-		<a
-			href="https://med.emory.edu/departments/human-genetics/research/computational-analytics/index.html"
-			target="_blank"
-			aria-label="Emory Center for Computational and Quantitative Genetics"
-		>
-			<div
-				class="space-y-3 my-10 container mx-auto py-4 card-hover rounded-md shadow-lg border-tertiary-600 border-4"
-			>
-				<h4 class="text-center text-lg">
-					Emory Center for Computational and Quantitative Genetics
-				</h4>
-			</div>
-		</a>
-		<a
-			href="https://sph.emory.edu/departments/bios/index.html"
-			target="_blank"
-			aria-label="Department of Biostatistics and Bioinformatics, Emory University"
-		>
-			<div
-				class="space-y-3 my-10 container mx-auto py-4 card-hover rounded-md shadow-lg border-tertiary-600 border-4"
-			>
-				<h4 class="text-center text-lg">Department of Biostatistics and Bioinformatics</h4>
-			</div>
-		</a>
-		<a href="https://jianhu-lab.org" target="_blank" aria-label="AI for Genomics">
-			<div
-				class="space-y-3 my-10 container mx-auto py-4 card-hover rounded-md shadow-lg border-tertiary-600 border-4"
-			>
-				<h4 class="text-center text-lg">AI for Genomics</h4>
-				<img class="object-contain mx-auto" src={AIforGenomics} alt="AI for Genomics" />
-			</div>
-		</a>
-		<a href="https://aimed-lab.org" target="_blank" aria-label="AI.MED">
-			<div
-				class="space-y-3 my-10 container mx-auto py-4 card-hover rounded-md shadow-lg border-tertiary-600 border-4"
-			>
-				<h4 class="text-center text-lg">AI.MED</h4>
-				<img class="object-contain mx-auto" src={AIforMed} alt="AI.MED" />
-			</div>
-		</a>
+	<div class="space-y-10 my-5 mx-auto w-3/5 md:w-3/4">
+		{#each sponsors as sponsor}
+			<SponsorCard
+				name={sponsor.name}
+				url={sponsor.url}
+				label={sponsor.label}
+				imgSrc={sponsor.imgSrc}
+			/>
+		{/each}
 	</div>
 </div>
