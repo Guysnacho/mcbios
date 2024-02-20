@@ -106,9 +106,9 @@
 </div>
 
 <div
-	class="container mx-auto self-center flex place-content-center my-10 variant-glass-secondary rounded-xl py-6"
+	class="container mx-auto w-4/5 md:w-3/5 self-center flex place-content-center my-10 variant-glass-secondary rounded-xl py-6"
 >
-	<p class="text-center mx-auto md:mx-0 w-4/5">
+	<p class="text-center mx-auto w-4/5 md:w-3/5">
 		The conference will take place at the <a
 			href="https://maps.app.goo.gl/CT3n9YrUaExJBTx37"
 			target="_blank"
