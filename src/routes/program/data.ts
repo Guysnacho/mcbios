@@ -137,3 +137,41 @@ export const invitedSpeakers = [
 	{ name: 'Zhicheng Ji', affiliation: 'Duke University' },
 	{ name: 'Zongliang Yue', affiliation: 'Auburn University' }
 ];
+
+export const dayOneEvents = [
+	{ name: 'Welcome remarks', time: '1:00pm' },
+	{ name: 'Keynote speech (Anant)', time: '1:15 - 2:15' },
+	{ name: 'Break', time: '2:15 - 2:30' },
+	{ name: 'Ashish Sharma Memorial Session', time: '2:30 - 3:45' },
+	{ name: 'Break', time: '3:45 - 4:00' },
+	{ name: 'YSEA sessions (students and postdocs)', time: '4:00 - 5:30' },
+	{ name: 'Poster session and reception', time: '5:30 - 7:30' },
+	{ name: 'MCBIOS business session (by invitation only)', time: '7:00' }
+];
+
+export const dayTwoEvents = [
+	{ name: 'Breakfast', time: '7:30 - 8:30' },
+	{ name: 'Keynote speech (Greg Gibson)', time: '8:30 - 9:30' },
+	{ name: 'Break', time: '9:30 - 9:45' },
+	{ name: 'Breakout sessions (1,2,3,4)	', time: '9:45 -	11:00' },
+	{ name: 'Break', time: '11:00 - 11:15' },
+	{ name: 'Breakout sessions (5,6,7,8)', time: '11:15 - 12:30' },
+	{ name: 'Lunch', time: '12:30 - 1:30' },
+	{ name: 'Workshops (I, II, III)', time: '1:30 - 2:45' },
+	{ name: 'Break', time: '2:45 - 3:00' },
+	{ name: 'Breakout sessions (9,10,11,12)', time: '3:00 -	4:15' },
+	{ name: 'Break', time: '4:15 - 4:30' },
+	{ name: 'Plenary speech (Nancy Cox)', time: '4:30 -	5:30' },
+	{ name: 'Election and banquet', time: '5:30 - 7:00' }
+];
+
+export const dayThreeEvents = [
+	{ name: 'Breakfast', time: '7:30 - 8:30' },
+	{ name: 'Board meeting (by invitation only)', time: '7:30 - 8:30' },
+	{ name: 'Keynote speech (Heng Li)', time: '8:30 - 9:30' },
+	{ name: 'Break', time: '9:30 - 9:45' },
+	{ name: 'Breakout sessions (13,14,15,16)', time: '9:45 - 11:00' },
+	{ name: 'Break', time: '11:00 - 11:15' },
+	{ name: 'Breakout sessions (17,18,19, 20)', time: '11:15 - 12:30' },
+	{ name: 'Awards and closing', time: '12:30 - 1:00' }
+];

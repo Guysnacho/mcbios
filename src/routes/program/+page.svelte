@@ -2,6 +2,8 @@
 	import MicPic from '$lib/assets/background/joao-cruz-IkEpl3JkVqU-unsplash.jpg';
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import Hero from '../../components/Hero.svelte';
+	import { dayOneEvents, dayThreeEvents, dayTwoEvents } from './data';
+
 	let tabSet = 0;
 
 	const keynotes = [
@@ -30,14 +32,37 @@
 	</div>
 </div>
 <div class="w-5/6 mx-auto my-24">
-	<TabGroup>
+	<TabGroup justify="justify-center">
 		<Tab bind:group={tabSet} name="Day 1" value={0}><span>March 22</span></Tab>
 		<Tab bind:group={tabSet} name="Day 2" value={1}><span>March 23</span></Tab>
 		<Tab bind:group={tabSet} name="Day 3" value={2}><span>March 24</span></Tab>
 		<!-- Tab Panels --->
-		<svelte:fragment slot="panel"
-			><h3 class="h3 text-center my-10">Program coming soon</h3></svelte:fragment
-		>
+		<svelte:fragment slot="panel">
+			<ol class="list space-y-2 w-4/5 mx-auto">
+				{#if tabSet === 0}
+					{#each dayOneEvents as event}
+						<li class="h5">
+							<span>{event.time}</span>
+							<span class="flex-auto">{event.name}</span>
+						</li>
+					{/each}
+				{:else if tabSet === 1}
+					{#each dayTwoEvents as event}
+						<li class="h5">
+							<span>{event.time}</span>
+							<span class="flex-auto">{event.name}</span>
+						</li>
+					{/each}
+				{:else if tabSet === 2}
+					{#each dayThreeEvents as event}
+						<li class="h5">
+							<span>{event.time}</span>
+							<span class="flex-auto">{event.name}</span>
+						</li>
+					{/each}
+				{/if}
+			</ol>
+		</svelte:fragment>
 	</TabGroup>
 </div>
 
