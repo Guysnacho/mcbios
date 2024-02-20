@@ -124,7 +124,7 @@ export const Nav = () => {
                   <DropdownItem
                     key={conference.year}
                     href={conference.url}
-                    target="_blank"
+                    target="_self"
                     // description="ACME scales apps to meet user demand, automagically, based on load."
                   >
                     MCBIOS {conference.year}
