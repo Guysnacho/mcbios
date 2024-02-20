@@ -71,7 +71,7 @@
 </div>
 
 <div class="w-5/6 mx-auto mt-10 mb-5 align-middle items-center">
-	<div class="lg:flex place-content-center gap-20">
+	<div class="place-content-center gap-20">
 		<h2
 			class="h2 text-center my-10 fill-token select-none drop-shadow-sm bg-gradient-to-br from-secondary-500 to-tertiary-100 bg-clip-text text-transparent box-decoration-clone"
 		>
