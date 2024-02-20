@@ -21,7 +21,6 @@ export const invitedSpeakers = [
 	},
 	{ name: 'Greg Gibson', affiliation: 'Georgia Institute of Technology' },
 	{ name: 'Hao Feng', affiliation: 'Case Western Reserve University' },
-	{ name: 'Harry Feng', affiliation: 'Case Western Reserve University' },
 	{ name: 'Huixiao Hong', affiliation: 'NCTR | US Food and Drug Administration' },
 	{ name: 'Inimary Toby', affiliation: 'University of Dallas' },
 	{ name: 'Jannatul Ferdous', affiliation: 'University of New Mexico' },
