@@ -19,6 +19,7 @@
 			session.
 		</p>
 		<p class="font-semibold">Poster size limitation: 30"W x 20"H (76cm x 51cm)</p>
+		<p class="font-semibold">The deadline to submit an abstract is March 10, 2024</p>
 		<div class="px-auto flex">
 			<a
 				href="https://forms.office.com/r/Fx9eVF0A5J"
@@ -51,7 +52,7 @@
 			A registered author can submit multiple abstracts, as long as that author is the presenting
 			author. Authors will also have an opportunity to submit and publish a full paper for MCBIOS
 			2024 proceedings in Frontiers in Artificial Intelligence. The deadline for full paper
-			submission is <span class="font-semibold">June 1, 2024</span>.
+			submission is <span class="font-semibold">March 10, 2024</span>.
 		</p>
 	</div>
 </div>

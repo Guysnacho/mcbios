@@ -12,7 +12,7 @@
 <div class="w-full justify-center">
 	<Hero imageSrc={AccommodationsPic} headerText="Accommodations" />
 </div>
-<div class="w-full justify-center bg-surface-700 shadow-lg py-10 -mt-16">
+<div class="w-full justify-center bg-gradient-to-tr from-surface-600 to-surface-800 shadow-lg py-10 -mt-16">
 	<div class="space-y-5 w-11/12 md:w-5/6 mx-auto">
 		<p class="text-center blockquote">
 			A few recommendations on nearby hotels are provided for you to use for the duration of the
