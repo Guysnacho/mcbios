@@ -1,5 +1,6 @@
 <script>
 	import bgImage from '$lib/assets/background/2024_bg_brad-huchteman.jpg';
+	import flyerHorizontal from '$lib/assets/files/flyer_horizontal.jpg';
 	import AIforGenomics from '$lib/assets/sponsors/Sponsor-AI-Genom.png';
 	import AIforMed from '$lib/assets/sponsors/Sponsor-AI-MED.png';
 	import CenterOfAILearning from '$lib/assets/sponsors/Sponsor-CAIL-1.jpg';
@@ -149,6 +150,7 @@
 	>
 		Invited speakers
 	</h2>
+
 	<dl class="list-dl max-h-96 overflow-y-scroll rounded-md outline p-2 mb-5 text-center mx-auto">
 		{#each invitedSpeakers as invitee}
 			<div class="max-w-md overflow-clip">
@@ -160,6 +162,8 @@
 		{/each}
 	</dl>
 </div>
+
+<img src={flyerHorizontal} alt="City skyline" class="w-2/5 mx-auto overflow-clip object-cover" />
 
 <div class="container my-10 mx-auto">
 	<hr class="!border-t-8 !border-double" />
