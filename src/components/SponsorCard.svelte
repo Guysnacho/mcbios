@@ -11,7 +11,7 @@
 	>
 		<h4 class="text-center text-sm md:text-lg">{name}</h4>
 		{#if imgSrc}
-			<img class="object-scale-down mx-auto w-5/6 sm:w-4/6 md:w-1/2" src={imgSrc} alt={label} />
+			<img class="object-scale-down mx-auto w-5/6 sm:w-4/6 md:w-1/2 max-h-20" src={imgSrc} alt={label} />
 		{/if}
 	</div>
 </a>
