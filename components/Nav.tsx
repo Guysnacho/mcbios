@@ -55,7 +55,7 @@ export const Nav = () => {
         },
         {
           year: 2024,
-          url: "http://2024.mcbios.com",
+          url: "https://2024.mcbios.com",
         },
       ],
       path: "/conferences",
