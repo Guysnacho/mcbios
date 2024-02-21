@@ -163,7 +163,14 @@
 	</dl>
 </div>
 
-<img src={flyerHorizontal} alt="City skyline" class="w-2/5 mx-auto overflow-clip object-cover" />
+<a href={flyerHorizontal} target="_blank"
+	><img
+		src={flyerHorizontal}
+		alt="City skyline"
+		class="w-2/5 mx-auto overflow-clip object-cover"
+	/></a
+>
+<p class="text-center mt-4 h6">Click Flyer to Expand</p>
 
 <div class="container my-10 mx-auto">
 	<hr class="!border-t-8 !border-double" />

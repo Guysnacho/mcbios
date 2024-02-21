@@ -26,8 +26,8 @@
 			which cover exciting and novel developments in the field.
 		</p>
 		<p class="text-center">
-			We will touch on machine learning, precision medicine, and more. Additional details will be
-			released as the conference approaches!
+			We will touch on machine learning, precision medicine, and more. Additional details like
+			speakers for specific events and topics will be released as the conference approaches!
 		</p>
 	</div>
 </div>
@@ -68,24 +68,4 @@
 
 <div class="w-1/2 m-auto my-24">
 	<hr class="!border-t-8 !border-double" />
-</div>
-
-<div class="w-5/6 mx-auto mt-10 mb-5 align-middle items-center">
-	<div class="place-content-center gap-20">
-		<h2
-			class="h2 text-center my-10 fill-token select-none drop-shadow-sm bg-gradient-to-br from-secondary-500 to-tertiary-100 bg-clip-text text-transparent box-decoration-clone"
-		>
-			Keynote Speakers
-		</h2>
-		<dl class="list-dl">
-			{#each keynotes as keynote}
-				<div class="container text-center">
-					<span class="flex-auto">
-						<dt class="font-bold">{keynote.name}</dt>
-						<dd>{@html keynote.affiliation}</dd>
-					</span>
-				</div>
-			{/each}
-		</dl>
-	</div>
 </div>
