@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@nextui-org/react": "^2.2.9",
     "framer-motion": "^10.16.16",
     "next": "^14.0.4",
