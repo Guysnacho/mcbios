@@ -8,7 +8,7 @@
 	<header class="align-middle mx-auto relative text-center flex justify-center h-5/6 mb-16">
 		<img
 			src={imageSrc}
-			alt="Abstract submission"
+			alt={headerText}
 			class={blur
 				? 'w-full overflow-clip object-cover blur-sm'
 				: 'w-full overflow-clip object-cover'}
