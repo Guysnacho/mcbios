@@ -19,7 +19,7 @@
 			session.
 		</p>
 		<p class="font-semibold">Poster size limitation: 30"W x 20"H (76cm x 51cm)</p>
-		<p class="font-semibold">The deadline to submit an abstract is June 1, 2024</p>
+		<p class="font-bold">The deadline to submit an abstract is March 15, 2024</p>
 		<div class="px-auto flex">
 			<a
 				href="https://forms.office.com/r/Fx9eVF0A5J"
