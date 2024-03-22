@@ -1,7 +1,7 @@
 <script>
 	import Abstract from '$lib/assets/background/Chang-Su_abstract.jpg';
 	import Hero from '../../components/Hero.svelte';
-	let registrationOpen = true;
+	const registrationOpen = false;
 </script>
 
 <svelte:head>
@@ -34,15 +34,15 @@
 					To register for the 2024 Conference, select your registration type from the list below.
 					Secure payment processing powered by Stripe Checkout.
 					<div class="flex justify-center">
-						<a
-							href="#"
-							class="btn btn-lg variant-ringed-primary my-5">Registration Closed</a
-						>
+						<a href="#" class="btn btn-lg variant-ringed-primary my-5">Registration Closed</a>
 					</div>
 				</section>
 			{:else}
 				<section class="p-4 text-xl">
-					Registration will open up soon, please keep an eye out!
+					Registration is currently closed, but if you are interested please register onsite!
+					<div class="flex justify-center">
+						<a href="#" class="btn btn-lg variant-ringed-primary my-5">Registration Closed</a>
+					</div>
 				</section>
 			{/if}
 		</div>
