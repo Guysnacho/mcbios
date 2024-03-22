@@ -1,10 +1,9 @@
-<script>
+<script lang="ts">
 	import MicPic from '$lib/assets/background/joao-cruz-IkEpl3JkVqU-unsplash.jpg';
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
+	import PdfViewer from 'svelte-pdf';
 	import Hero from '../../components/Hero.svelte';
 	import { dayOneEvents, dayThreeEvents, dayTwoEvents } from './data';
-
-	let tabSet = 0;
 
 	const keynotes = [
 		{ name: 'Anant Madabhushi', affiliation: 'Emory University' },
@@ -12,6 +11,9 @@
 		{ name: 'Nancy J.', affiliation: 'Cox Vanderbilt University' },
 		{ name: 'Heng Li', affiliation: 'Dana Farber Cancer Institute<br/>Harvard Medical School' }
 	];
+	const pdfUrl =
+		'https://ojetquufzwfvbqakaque.supabase.co/storage/v1/object/public/static/MCBIOS%20Program.pdf';
+	let tabSet = 0;
 </script>
 
 <svelte:head>
@@ -92,4 +94,14 @@
 
 <div class="w-1/2 m-auto my-24">
 	<hr class="!border-t-8 !border-double" />
+</div>
+
+<div class="w-5/6 md:w4-/6 lg:w-2/3 xl:w-1/2 mx-auto my-24">
+	<PdfViewer
+		data={undefined}
+		url={pdfUrl}
+		downloadFileName="MCBIOS Program"
+		totalPage={45}
+		showButtons={['navigation', 'zoom', 'download']}
+	/>
 </div>
