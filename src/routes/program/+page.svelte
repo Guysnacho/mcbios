@@ -1,10 +1,20 @@
-<script lang="ts">
+<script>
+	// @ts-nocheck
+
 	import MicPic from '$lib/assets/background/joao-cruz-IkEpl3JkVqU-unsplash.jpg';
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
-	import PdfViewer from 'svelte-pdf';
+	import { onMount } from 'svelte';
 	import Hero from '../../components/Hero.svelte';
 	import { dayOneEvents, dayThreeEvents, dayTwoEvents } from './data';
+	/**
+	 * @type {typeof import("svelte-pdf").default}
+	 */
+	let PdfViewer;
 
+	onMount(async () => {
+		const module = await import('svelte-pdf');
+		PdfViewer = module.default;
+	});
 	const keynotes = [
 		{ name: 'Anant Madabhushi', affiliation: 'Emory University' },
 		{ name: 'Greg Gibson', affiliation: 'Georgia Tech' },
@@ -92,19 +102,18 @@
 	</TabGroup>
 </div>
 
-<div class="w-1/2 m-auto my-24">
+<div class="w-1/2 m-auto my-12">
 	<hr class="!border-t-8 !border-double" />
 </div>
 
 <div class="w-5/6 md:w4-/6 lg:w-2/3 xl:w-1/2 mx-auto my-24">
 	<h3 class="h3 text-3xl text-center">Full Program</h3>
-	<PdfViewer
-		data={undefined}
+	<svelte:component
+		this={PdfViewer}
 		url={pdfUrl}
 		downloadFileName="MCBIOS Program"
 		totalPage={45}
 		scale={1.2}
-		
 		showButtons={['navigation', 'zoom', 'download']}
 	/>
 </div>
