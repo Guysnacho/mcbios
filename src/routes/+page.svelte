@@ -93,7 +93,7 @@
 			<h4 class="h4 fill-token select-none drop-shadow-xl">
 				Emory University<br /> March 22-24, 2024
 			</h4>
-			<a href="/registration" class="btn btn-lg outline my-5 select-none">Register Now</a>
+			<a href="/registration" class="btn btn-lg outline my-5 select-none">Registration Closed</a>
 		</div>
 	</div>
 	<quote
@@ -119,7 +119,7 @@
 			href="https://sph.emory.edu/about/directions-maps/index.html"
 			target="_blank"
 			class="underline text-secondary-300">here</a
-		>. Parking balidation is available for visitors paring on Friday afternoon. Parking is free
+		>. Parking validation is available for visitors paring on Friday afternoon. Parking is free
 		Saturday and Sunday, learn more by going to our
 		<a href="/accommodations" class="underline text-secondary-300">accommodations page</a>!
 	</p>

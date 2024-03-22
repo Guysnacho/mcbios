@@ -22,9 +22,8 @@
 		<p class="font-bold">The deadline to submit an abstract is March 15, 2024</p>
 		<div class="px-auto flex">
 			<a
-				href="https://forms.office.com/r/Fx9eVF0A5J"
-				target="_blank"
-				class="btn btn-lg outline disabled my-7 mx-auto">Submit Abstract</a
+				href="#"
+				class="btn btn-lg outline my-7 mx-auto">Submissions Closed</a
 			>
 		</div>
 	</div>

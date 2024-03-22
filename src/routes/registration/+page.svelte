@@ -35,8 +35,8 @@
 					Secure payment processing powered by Stripe Checkout.
 					<div class="flex justify-center">
 						<a
-							href="https://form.jotform.com/240087559997173"
-							class="btn btn-lg variant-ringed-primary my-5">Register Now</a
+							href="#"
+							class="btn btn-lg variant-ringed-primary my-5">Registration Closed</a
 						>
 					</div>
 				</section>
