@@ -41,10 +41,19 @@
 			We will touch on machine learning, precision medicine, and more. For a full view of the
 			program or details on the 2024 MCBIOS Hackathon, scroll down a bit!
 		</p>
+		<div class="flex justify-center">
+			<a href="/program#hackathon" class="btn btn-lg variant-ringed-primary my-3"
+				>2024 MCBIOS Hackathon</a
+			>
+		</div>
+		<div class="flex justify-center">
+			<a href="/program#full-program" class="btn btn-lg variant-ringed-primary my-3">Full Program</a
+			>
+		</div>
 	</div>
 </div>
 <div class="w-5/6 mx-auto my-16 space-y-4">
-	<h3 class="h3 text-3xl text-center">Program at a Glance</h3>
+	<h3 class="h3 text-3xl text-center mb-12">Program at a Glance</h3>
 	<TabGroup justify="justify-center">
 		<Tab bind:group={tabSet} name="Day 1" value={0}><span>March 22</span></Tab>
 		<Tab bind:group={tabSet} name="Day 2" value={1}><span>March 23</span></Tab>
@@ -107,8 +116,10 @@
 	<hr class="!border-t-8 !border-double" />
 </div>
 
-<div class="w-5/6 md:w4-/6 lg:w-2/3 xl:w-1/2 mx-auto my-24">
-	<a name="hackathon"><h3 class="h3 text-3xl text-center mb-8">MCBIOS Hackathon</h3> </a>
+<div class="w-5/6 md:w4-/6 lg:w-2/3 xl:w-1/2 mx-auto my-12">
+	<a name="hackathon" class="mb-8"
+		><h3 class="h3 text-3xl text-center mb-12">MCBIOS Hackathon</h3></a
+	>
 	<section class="space-y-4">
 		<p>
 			We are pleased to announce the 2024 MCBIOS Hackathon which is open to all attendees. The
@@ -129,7 +140,7 @@
 			especially in the Global South. These paper ECGs document the history and diversity of
 			cardiovascular diseases (CVDs), and algorithms that can digitize and classify these images
 			have the potential to improve our understanding and treatment of CVDs, especially for
-			underrepresented and underserved populations” <br />
+			underrepresented and underserved populations” <br /><br />
 			We ask participants to design and implement working, open-source algorithms that, based only on
 			the provided ECG images, reconstruct the waveforms and/or classify or diagnose the images. The
 			teams with the best scores for these tasks on the hidden test set win the Challenge”
@@ -167,8 +178,9 @@
 	<hr class="!border-t-8 !border-double" />
 </div>
 
-<div class="w-5/6 md:w4-/6 lg:w-2/3 xl:w-1/2 mx-auto my-24">
-	<h3 class="h3 text-3xl text-center mb-8">Full Program</h3>
+<div class="w-5/6 md:w4-/6 lg:w-2/3 xl:w-1/2 mx-auto my-12">
+	<a name="full-program" class="mb-8"><h3 class="h3 text-3xl text-center mb-12">Full Program</h3></a
+	>
 	<svelte:component
 		this={PdfViewer}
 		url={pdfUrl}
@@ -177,4 +189,8 @@
 		scale={1.2}
 		showButtons={['navigation', 'zoom', 'download']}
 	/>
+</div>
+
+<div class="w-1/2 m-auto my-12">
+	<hr class="!border-t-8 !border-double" />
 </div>
