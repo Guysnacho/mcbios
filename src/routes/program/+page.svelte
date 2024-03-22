@@ -47,7 +47,7 @@
 			>
 		</div>
 		<div class="flex justify-center">
-			<a href="/program#full-program" class="btn btn-lg variant-ringed-primary my-3">Full Program</a
+			<a href="/program#fullProgram" class="btn btn-lg variant-ringed-primary my-3">Full Program</a
 			>
 		</div>
 	</div>
@@ -117,7 +117,7 @@
 </div>
 
 <div class="w-5/6 md:w4-/6 lg:w-2/3 xl:w-1/2 mx-auto my-12">
-	<a name="hackathon" class="mb-8"
+	<a id="hackathon" class="mb-8"
 		><h3 class="h3 text-3xl text-center mb-12">MCBIOS Hackathon</h3></a
 	>
 	<section class="space-y-4">
@@ -179,7 +179,7 @@
 </div>
 
 <div class="w-5/6 md:w4-/6 lg:w-2/3 xl:w-1/2 mx-auto my-12">
-	<a name="full-program" class="mb-8"><h3 class="h3 text-3xl text-center mb-12">Full Program</h3></a
+	<a id="fullProgram" class="mb-8"><h3 class="h3 text-3xl text-center mb-12">Full Program</h3></a
 	>
 	<svelte:component
 		this={PdfViewer}
