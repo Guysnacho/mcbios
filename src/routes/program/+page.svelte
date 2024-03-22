@@ -38,27 +38,51 @@
 		<Tab bind:group={tabSet} name="Day 3" value={2}><span>March 24</span></Tab>
 		<!-- Tab Panels --->
 		<svelte:fragment slot="panel">
-			<ol class="list space-y-2 w-4/5 mx-auto">
+			<ol class="list space-y-4 w-4/5 mx-auto">
 				{#if tabSet === 0}
 					{#each dayOneEvents as event}
 						<li class="h5">
 							<span>{event.time}</span>
-							<span class="flex-auto">{event.name}</span>
+							<span class="flex-auto"
+								><div>
+									<p>{event.name}</p>
+									{#if event.speaker}
+										<p class="font-semibold">{event.speaker}</p>
+									{/if}
+								</div></span
+							>
 						</li>
+						<hr class="!border-t-2 !border-solid" />
 					{/each}
 				{:else if tabSet === 1}
 					{#each dayTwoEvents as event}
 						<li class="h5">
 							<span>{event.time}</span>
-							<span class="flex-auto">{event.name}</span>
+							<span class="flex-auto"
+								><div>
+									<p>{event.name}</p>
+									{#if event.speaker}
+										<p class="font-semibold">{event.speaker}</p>
+									{/if}
+								</div></span
+							>
 						</li>
+						<hr class="!border-t-2 !border-solid" />
 					{/each}
 				{:else if tabSet === 2}
 					{#each dayThreeEvents as event}
 						<li class="h5">
 							<span>{event.time}</span>
-							<span class="flex-auto">{event.name}</span>
+							<span class="flex-auto"
+								><div>
+									<p>{event.name}</p>
+									{#if event.speaker}
+										<p class="font-semibold">{event.speaker}</p>
+									{/if}
+								</div></span
+							>
 						</li>
+						<hr class="!border-t-2 !border-solid" />
 					{/each}
 				{/if}
 			</ol>
