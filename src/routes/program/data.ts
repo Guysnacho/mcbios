@@ -139,39 +139,41 @@ export const invitedSpeakers = [
 ];
 
 export const dayOneEvents = [
-	{ name: 'Welcome remarks', time: '1:00pm' },
-	{ name: 'Keynote speech', speaker: 'Anant Madabhushi', time: '1:15 - 2:15' },
+	{ name: 'Welcome Remarks', time: '1:00pm' },
+	{ name: 'Keynote Speech', speaker: 'Anant Madabhushi', time: '1:15 - 2:15' },
 	{ name: 'Break', time: '2:15 - 2:30' },
 	{ name: 'Ashish Sharma Memorial Session', time: '2:30 - 3:45' },
 	{ name: 'Break', time: '3:45 - 4:00' },
-	{ name: 'YSEA sessions (students and postdocs)', time: '4:00 - 5:30' },
-	{ name: 'Poster session and reception', time: '5:30 - 7:30' },
-	{ name: 'MCBIOS business session (by invitation only)', time: '7:00' }
+	{ name: 'YSEA Sessions (Students and Postdocs)', time: '4:00 - 5:15' },
+	{ name: 'Poster Session and Reception', time: '5:15 - 7:00' },
+	{ name: 'MCBIOS Business Session (by invitation only)', time: '7:00' }
 ];
 
 export const dayTwoEvents = [
+	{ name: 'Hackathon', time: 'All Day' },
 	{ name: 'Breakfast', time: '7:30 - 8:30' },
-	{ name: 'Keynote speech', speaker: 'Greg Gibson', time: '8:30 - 9:30' },
+	{ name: 'Keynote Speech', speaker: 'Greg Gibson', time: '8:30 - 9:30' },
 	{ name: 'Break', time: '9:30 - 9:45' },
-	{ name: 'Breakout sessions (1,2,3,4)	', time: '9:45 -	11:00' },
+	{ name: 'Tutorial: Introduction to Tidymodels', time: '9:45 - 12:30' },
+	{ name: 'Breakout Session I (101, 102, 103, 104)', time: '9:45 - 11:00' },
 	{ name: 'Break', time: '11:00 - 11:15' },
-	{ name: 'Breakout sessions (5,6,7,8)', time: '11:15 - 12:30' },
+	{ name: 'Breakout Session II (201, 202, 203, 204)', time: '11:15 - 12:30' },
 	{ name: 'Lunch', time: '12:30 - 1:30' },
-	{ name: 'Workshops (I,II,III)', time: '1:30 - 2:45' },
+	{ name: 'Breakout Session III (301, 302)', time: '1:30 - 2:45' },
 	{ name: 'Break', time: '2:45 - 3:00' },
-	{ name: 'Breakout sessions (9,10,11,12)', time: '3:00 -	4:15' },
+	{ name: 'Breakout Session IV (401, 402, 403, 404)', time: '3:00 - 4:15' },
 	{ name: 'Break', time: '4:15 - 4:30' },
-	{ name: 'Plenary speech', speaker: 'Nancy Cox', time: '4:30 -	5:30' },
-	{ name: 'Election and banquet', time: '5:30 - 7:00' }
+	{ name: 'Plenary Speech', speaker: 'Nancy Cox', time: '4:30 - 5:30' },
+	{ name: 'Election and Banquet', time: '5:30 - 7:00' }
 ];
 
 export const dayThreeEvents = [
 	{ name: 'Breakfast', time: '7:30 - 8:30' },
-	{ name: 'Board meeting (by invitation only)', time: '7:30 - 8:30' },
-	{ name: 'Keynote speech', speaker: 'Heng Li', time: '8:30 - 9:30' },
+	{ name: 'Board Meeting (by invitation only)', time: '7:30 - 8:30' },
+	{ name: 'Keynote Speech', speaker: 'Heng Li', time: '8:30 - 9:30' },
 	{ name: 'Break', time: '9:30 - 9:45' },
-	{ name: 'Breakout sessions (13,14,15,16)', time: '9:45 - 11:00' },
+	{ name: 'Breakout Session V (501, 502, 503, 504, 505)', time: '9:45 - 11:00' },
 	{ name: 'Break', time: '11:00 - 11:15' },
-	{ name: 'Breakout sessions (17,18,19,20)', time: '11:15 - 12:30' },
-	{ name: 'Awards and closing', time: '12:30 - 1:00' }
+	{ name: 'Breakout Session VI (601, 602, 603, 604, 605)', time: '11:15 - 12:30' },
+	{ name: 'Awards and Closing', time: '12:30 - 1:00' }
 ];
