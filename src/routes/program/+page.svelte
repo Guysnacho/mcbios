@@ -97,12 +97,14 @@
 </div>
 
 <div class="w-5/6 md:w4-/6 lg:w-2/3 xl:w-1/2 mx-auto my-24">
+	<h3 class="h3 text-3xl text-center">Full Program</h3>
 	<PdfViewer
 		data={undefined}
 		url={pdfUrl}
 		downloadFileName="MCBIOS Program"
 		totalPage={45}
 		scale={1.2}
+		
 		showButtons={['navigation', 'zoom', 'download']}
 	/>
 </div>
