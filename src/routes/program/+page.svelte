@@ -102,6 +102,7 @@
 		url={pdfUrl}
 		downloadFileName="MCBIOS Program"
 		totalPage={45}
+		scale={1.2}
 		showButtons={['navigation', 'zoom', 'download']}
 	/>
 </div>
