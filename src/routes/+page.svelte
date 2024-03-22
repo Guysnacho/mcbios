@@ -119,7 +119,7 @@
 			href="https://sph.emory.edu/about/directions-maps/index.html"
 			target="_blank"
 			class="underline text-secondary-300">here</a
-		>. Parking balidation is available for visitors paring on Friday afternoon. Parking is free
+		>. Parking validation is available for visitors paring on Friday afternoon. Parking is free
 		Saturday and Sunday, learn more by going to our
 		<a href="/accommodations" class="underline text-secondary-300">accommodations page</a>!
 	</p>
