@@ -1,26 +1,20 @@
 <script>
 	// @ts-nocheck
-
 	import MicPic from '$lib/assets/background/joao-cruz-IkEpl3JkVqU-unsplash.jpg';
 	import { Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
 	import Hero from '../../components/Hero.svelte';
 	import { dayOneEvents, dayThreeEvents, dayTwoEvents } from './data';
+
 	/**
 	 * @type {typeof import("svelte-pdf").default}
 	 */
 	let PdfViewer;
-
 	onMount(async () => {
 		const module = await import('svelte-pdf');
 		PdfViewer = module.default;
 	});
-	const keynotes = [
-		{ name: 'Anant Madabhushi', affiliation: 'Emory University' },
-		{ name: 'Greg Gibson', affiliation: 'Georgia Tech' },
-		{ name: 'Nancy J.', affiliation: 'Cox Vanderbilt University' },
-		{ name: 'Heng Li', affiliation: 'Dana Farber Cancer Institute<br/>Harvard Medical School' }
-	];
+
 	const pdfUrl =
 		'https://ojetquufzwfvbqakaque.supabase.co/storage/v1/object/public/static/MCBIOS%20Program.pdf';
 	let tabSet = 0;
@@ -47,8 +41,7 @@
 			>
 		</div>
 		<div class="flex justify-center">
-			<a href="/program#fullProgram" class="btn btn-lg variant-ringed-primary my-3">Full Program</a
-			>
+			<a href="/program#fullProgram" class="btn btn-lg variant-ringed-primary my-3">Full Program</a>
 		</div>
 	</div>
 </div>
@@ -117,9 +110,7 @@
 </div>
 
 <div class="w-5/6 md:w4-/6 lg:w-2/3 xl:w-1/2 mx-auto my-12">
-	<a id="hackathon" class="mb-8"
-		><h3 class="h3 text-3xl text-center mb-12">MCBIOS Hackathon</h3></a
-	>
+	<a id="hackathon" class="mb-8"><h3 class="h3 text-3xl text-center mb-12">MCBIOS Hackathon</h3></a>
 	<section class="space-y-4">
 		<p>
 			We are pleased to announce the 2024 MCBIOS Hackathon which is open to all attendees. The
@@ -179,15 +170,17 @@
 </div>
 
 <div class="w-5/6 md:w4-/6 lg:w-2/3 xl:w-1/2 mx-auto my-12">
-	<a id="fullProgram" class="mb-8"><h3 class="h3 text-3xl text-center mb-12">Full Program</h3></a
-	>
+	<a id="fullProgram" class="mb-8"><h3 class="h3 text-3xl text-center mb-12">Full Program</h3></a>
+	<div class="flex justify-center">
+		<a href={pdfUrl} target="_blank" class="btn btn-lg variant-ringed-primary my-3"
+			>Download Program</a
+		>
+	</div>
 	<svelte:component
 		this={PdfViewer}
 		url={pdfUrl}
-		downloadFileName="MCBIOS Program"
-		totalPage={45}
 		scale={1.2}
-		showButtons={['navigation', 'zoom', 'download']}
+		showButtons={['navigation', 'zoom']}
 	/>
 </div>
 
