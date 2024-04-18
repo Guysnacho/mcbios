@@ -1,8 +1,8 @@
 # MCBIOS Main Conference Site - created with [next.js](https://github.com/vercel/next.js)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/6d25438c-d54b-49dc-9ecb-1caae154b019/deploy-status)](https://app.netlify.com/sites/mcbios/deploys?branch=2024)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e4477398-f378-49cb-99ec-b2b506e0c1dd/deploy-status)](https://app.netlify.com/sites/mcbios/deploys)
 
-[Pallete](https://www.realtimecolors.com/?colors=100217-f4f2f1-ae2a0f-bfd9d0-764091&fonts=Poppins-DM%20Sans) created with Realtime Colors! @Juxtopposed
+[Pallete](https://www.realtimecolors.com/?colors=100217-f4f2f1-ae2a0f-bfd9d0-764091&fonts=Poppins-DM%20Sans) created with Realtime Colors! @juxtopposed
 
 Everything you need to build a [Next.js](https://nextjs.org/) project, powered by [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -26,9 +26,8 @@ To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [NextUI](https://nextui.org/docs/guide/introduction) - NextUI docs.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Deploy on ~~Vercel~~ Netlify
 
-## Deploy on ~~Vercel~~Netlify
-
-~~The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.~~ This project will be deployed with Netlify, after tying the repo to a Netlify project deployments will be handled by merge to the `2024` branch.
+~~The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.~~ This project will be deployed with Netlify, after tying the repo to a Netlify project deployments will be handled by merge to the main or other configured branches.
