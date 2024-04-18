@@ -43,6 +43,7 @@ const BoardMemberCard = (props: BoardMemberCardProps) => {
               </p>
             ) : undefined}
             <p>{props.title}</p>
+            {props.title ? <Divider className="my-2" /> : undefined}
             <p>{props.department}</p>
             <p>{props.affiliation}</p>
           </div>

@@ -11,6 +11,7 @@ import NishaPillai from "@/public/images/leadership/Nisha-Pillai.jpg";
 import QianqianSong from "@/public/images/leadership/Qianqian-Song.jpg";
 import QinSteve from "@/public/images/leadership/Qin-Steve.jpg";
 import VinayRaj from "@/public/images/leadership/Vinay-Raj.jpg";
+import ChangSu from "@/public/images/leadership/Chang-Su.jpg";
 import { Divider, Tab, Tabs } from "@nextui-org/react";
 
 const boardMembers = [
@@ -66,6 +67,13 @@ const boardMembers = [
     name: "Jonathan Sheridan",
     image: JonathanSheridan.src,
     affiliation: "University of Mississippi",
+  },
+  {
+    name: "Chang Su, Ph.D.",
+    image: ChangSu.src,
+    title: "Assistant Professor",
+    department: "Department of Biostatistics and Bioinformatics",
+    affiliation: "Emory University",
   },
 ];
 const pastPrez = [
