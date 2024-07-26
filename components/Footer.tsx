@@ -18,7 +18,7 @@ export const Footer = () => {
           {keys.map((route) =>
             route == "/conferences" ? (
               <div key={route} className="pb-6 flex flex-col">
-                <p className="text-sm leading-6 text-white hover:text-gray-300 mb-3">
+                <p className="text-md underline underline-offset-2 leading-6 text-white hover:text-gray-300 mb-3">
                   CONFERENCES
                 </p>
                 {ConfYears.map((conference) => (
@@ -34,7 +34,7 @@ export const Footer = () => {
               </div>
             ) : route == "/membership" ? (
               <div key={route} className="pb-6 flex flex-col">
-                <p className="text-sm leading-6 text-white hover:text-gray-300 mb-3">
+                <p className="text-md underline underline-offset-2 leading-6 text-white hover:text-gray-300 mb-3">
                   MEMBERSHIP
                 </p>
                 <a
@@ -59,7 +59,7 @@ export const Footer = () => {
                 color={path == route ? "primary" : "foreground"}
                 aria-current="page"
                 target="_self"
-                className="text-sm leading-6 text-white hover:text-gray-300"
+                className="text-md underline underline-offset-2 leading-6 text-white hover:text-gray-300"
               >
                 {/*@ts-ignore*/}
                 {PathMap[route].name}
