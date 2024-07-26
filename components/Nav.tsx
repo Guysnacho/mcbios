@@ -206,6 +206,13 @@ export const Nav = () => {
                 aria-label="Dropdown menu with icons"
               >
                 <DropdownItem
+                  href="/dashboard"
+                  about="dashboard"
+                  // startContent={<CopyDocumentIcon className={iconClasses} />}
+                >
+                  Dashboard
+                </DropdownItem>
+                <DropdownItem
                   about="logout"
                   onClick={logout}
                   // startContent={<CopyDocumentIcon className={iconClasses} />}
