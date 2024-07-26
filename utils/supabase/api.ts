@@ -1,15 +1,12 @@
-import {
-  createServerClient,
-  type CookieOptions,
-  serializeCookieHeader,
-} from "@supabase/ssr";
+import { createServerClient, serializeCookieHeader } from "@supabase/ssr";
 import { type NextApiRequest, type NextApiResponse } from "next";
+import { Database } from "./types";
 
 export default function createClient(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const supabase = createServerClient(
+  const supabase = createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
