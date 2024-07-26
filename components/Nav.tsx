@@ -1,5 +1,6 @@
 "use client";
 
+import { ConfYears, PathMap } from "@/utils/constants";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Button,
@@ -21,51 +22,9 @@ import { useState } from "react";
 
 export const Nav = () => {
   const path = usePathname();
-  const pathMap = {
-    "/": {
-      name: "HOME",
-      path: "/",
-    },
-    "/leadership": {
-      name: "LEADERSHIP",
-      path: "/leadership",
-    },
-    "/membership": {
-      name: "MEMBERSHIP",
-      path: "/membership",
-    },
-    "/conferences": {
-      name: "CONFERENCES",
-      years: [
-        {
-          year: 2019,
-          url: "https://2019.mcbios.com",
-        },
-        {
-          year: 2020,
-          url: "https://2020.mcbios.com",
-        },
-        {
-          year: 2022,
-          url: "https://2022.mcbios.com",
-        },
-        {
-          year: 2023,
-          url: "https://2023.mcbios.com",
-        },
-        {
-          year: 2024,
-          url: "https://2024.mcbios.com",
-        },
-      ],
-      path: "/conferences",
-    },
-    "/events": { name: "EVENTS", path: "/events" },
-    "/publications": { name: "PUBLICATIONS", path: "/publications" },
-    "/about": { name: "ABOUT", path: "/about" },
-  };
-  const keys = Object.keys(pathMap);
-  const values = Object.values(pathMap);
+
+  const keys = Object.keys(PathMap);
+  const values = Object.values(PathMap);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -100,7 +59,7 @@ export const Nav = () => {
           route == "/conferences" ? (
             <Dropdown key={route}>
               <NavbarItem>
-                <DropdownTrigger>
+                <DropdownTrigger className="-m-3">
                   <Button
                     disableRipple
                     className="bg-transparent data-[hover=true]:bg-transparent"
@@ -108,18 +67,18 @@ export const Nav = () => {
                     radius="sm"
                     variant="light"
                   >
-                    {pathMap["/conferences"].name}
+                    {PathMap["/conferences"].name}
                   </Button>
                 </DropdownTrigger>
               </NavbarItem>
               <DropdownMenu
-                aria-label={pathMap["/conferences"].name}
-                className="w-[340px]"
+                aria-label={PathMap["/conferences"].name}
+                className="w-30"
                 itemClasses={{
                   base: "gap-4",
                 }}
               >
-                {pathMap["/conferences"].years.map((conference) => (
+                {ConfYears.map((conference) => (
                   <DropdownItem
                     key={conference.year}
                     href={conference.url}
@@ -131,16 +90,54 @@ export const Nav = () => {
                 ))}
               </DropdownMenu>
             </Dropdown>
+          ) : route == "/membership" ? (
+            <Dropdown key={route}>
+              <NavbarItem>
+                <DropdownTrigger className="-m-3">
+                  <Button
+                    disableRipple
+                    className="bg-transparent data-[hover=true]:bg-transparent w-32"
+                    endContent={<ChevronDownIcon />}
+                    radius="sm"
+                    variant="light"
+                  >
+                    {PathMap["/membership"].name}
+                  </Button>
+                </DropdownTrigger>
+              </NavbarItem>
+              <DropdownMenu
+                aria-label={PathMap["/membership"].name}
+                className="w-30"
+                itemClasses={{
+                  base: "gap-4",
+                }}
+              >
+                <DropdownItem
+                  href="/login"
+                  target="_self"
+                  // description="ACME scales apps to meet user demand, automagically, based on load."
+                >
+                  Sign In
+                </DropdownItem>
+                <DropdownItem
+                  href="/membership"
+                  target="_self"
+                  // description="ACME scales apps to meet user demand, automagically, based on load."
+                >
+                  Registration
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           ) : (
             <NavbarItem isActive={path == route} key={route}>
               <Link
                 //@ts-ignore
-                href={pathMap[route].path}
+                href={PathMap[route].path}
                 color={path == route ? "primary" : "foreground"}
                 aria-current="page"
               >
                 {/*@ts-ignore*/}
-                {pathMap[route].name}
+                {PathMap[route].name}
               </Link>
             </NavbarItem>
           )
@@ -170,14 +167,8 @@ export const Nav = () => {
                   </Button>
                 </DropdownTrigger>
               </NavbarMenuItem>
-              <DropdownMenu
-                aria-label="conferences"
-                className="w-[340px]"
-                itemClasses={{
-                  base: "gap-4",
-                }}
-              >
-                {pathMap["/conferences"].years.map((conference) => (
+              <DropdownMenu aria-label="conferences" className="w-52">
+                {ConfYears.map((conference) => (
                   <DropdownItem
                     key={conference.year}
                     href={conference.url}
