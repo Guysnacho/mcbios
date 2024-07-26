@@ -1,7 +1,10 @@
 "use client";
 
+import { ConfYears, PathMap } from "@/utils/constants";
+import { createClient } from "@/utils/supabase/client";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
+  Avatar,
   Button,
   Dropdown,
   DropdownItem,
@@ -16,58 +19,50 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@nextui-org/react";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { User } from "@supabase/supabase-js";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { AuthModal } from "./AuthModal";
 
 export const Nav = () => {
+  const supabase = createClient();
+  const router = useRouter();
   const path = usePathname();
-  const pathMap = {
-    "/": {
-      name: "HOME",
-      path: "/",
-    },
-    "/leadership": {
-      name: "LEADERSHIP",
-      path: "/leadership",
-    },
-    "/membership": {
-      name: "MEMBERSHIP",
-      path: "/membership",
-    },
-    "/conferences": {
-      name: "CONFERENCES",
-      years: [
-        {
-          year: 2019,
-          url: "https://2019.mcbios.com",
-        },
-        {
-          year: 2020,
-          url: "https://2020.mcbios.com",
-        },
-        {
-          year: 2022,
-          url: "https://2022.mcbios.com",
-        },
-        {
-          year: 2023,
-          url: "https://2023.mcbios.com",
-        },
-        {
-          year: 2024,
-          url: "https://2024.mcbios.com",
-        },
-      ],
-      path: "/conferences",
-    },
-    "/events": { name: "EVENTS", path: "/events" },
-    "/publications": { name: "PUBLICATIONS", path: "/publications" },
-    "/about": { name: "ABOUT", path: "/about" },
-  };
-  const keys = Object.keys(pathMap);
-  const values = Object.values(pathMap);
+  const keys = Object.keys(PathMap);
+  const values = Object.values(PathMap);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthOpen, setAuthOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+
+  const logout = () => {
+    supabase.auth.signOut({ scope: "local" }).finally(() => {
+      setLoading(false);
+      setUser(null);
+      router.push("/");
+    });
+  };
+
+  const handleOpen = () => {
+    if (user) {
+      router.push("/dashboard");
+    } else {
+      setAuthOpen(true);
+    }
+  };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      if (data) {
+        setUser(data.user);
+      } else {
+        console.log("No user found");
+      }
+    };
+    fetchUser();
+  }, [isAuthOpen, user]);
 
   return (
     <Navbar
@@ -91,61 +86,143 @@ export const Nav = () => {
         ],
       }}
     >
-      {/*@ts-ignore*/}
-      <NavbarBrand onMenuOpenChange={setIsMenuOpen}>
-        <p className="font-bold text-2xl">MCBIOS</p>
+      <NavbarBrand onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <Link href="/" className="font-bold text-gray-800 text-2xl">
+          MCBIOS
+        </Link>
       </NavbarBrand>
 
       <NavbarContent className="hidden md:flex gap-4 h-16" justify="center">
-        {keys.map((route) =>
-          route == "/conferences" ? (
-            <Dropdown key={route}>
-              <NavbarItem>
-                <DropdownTrigger>
-                  <Button
-                    disableRipple
-                    className="bg-transparent data-[hover=true]:bg-transparent"
-                    endContent={<ChevronDownIcon />}
-                    radius="sm"
-                    variant="light"
-                  >
-                    {pathMap["/conferences"].name}
-                  </Button>
-                </DropdownTrigger>
-              </NavbarItem>
-              <DropdownMenu
-                aria-label={pathMap["/conferences"].name}
-                className="w-[340px]"
-                itemClasses={{
-                  base: "gap-4",
-                }}
-              >
-                {pathMap["/conferences"].years.map((conference) => (
+        {keys
+          .filter((val) => val !== "/")
+          .map((route) =>
+            route == "/conferences" ? (
+              <Dropdown key={route}>
+                <NavbarItem>
+                  <DropdownTrigger className="-m-3">
+                    <Button
+                      disableRipple
+                      className="bg-transparent data-[hover=true]:bg-transparent"
+                      endContent={<ChevronDownIcon />}
+                      radius="sm"
+                      variant="light"
+                    >
+                      {PathMap["/conferences"].name}
+                    </Button>
+                  </DropdownTrigger>
+                </NavbarItem>
+                <DropdownMenu
+                  aria-label={PathMap["/conferences"].name}
+                  className="w-30"
+                  itemClasses={{
+                    base: "gap-4",
+                  }}
+                >
+                  {ConfYears.map((conference) => (
+                    <DropdownItem
+                      key={conference.year}
+                      href={conference.url}
+                      target="_self"
+                      // description="ACME scales apps to meet user demand, automagically, based on load."
+                    >
+                      MCBIOS {conference.year}
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </Dropdown>
+            ) : route == "/membership" ? (
+              <Dropdown key={route}>
+                <NavbarItem>
+                  <DropdownTrigger className="-m-3">
+                    <Button
+                      disableRipple
+                      className="bg-transparent data-[hover=true]:bg-transparent w-32"
+                      endContent={<ChevronDownIcon />}
+                      radius="sm"
+                      variant="light"
+                    >
+                      MEMBERSHIP
+                    </Button>
+                  </DropdownTrigger>
+                </NavbarItem>
+                <DropdownMenu
+                  aria-label="MEMBERSHIP"
+                  className="w-30"
+                  itemClasses={{
+                    base: "gap-4",
+                  }}
+                >
                   <DropdownItem
-                    key={conference.year}
-                    href={conference.url}
+                    onClick={handleOpen}
+                    // description="ACME scales apps to meet user demand, automagically, based on load."
+                  >
+                    Sign In
+                  </DropdownItem>
+                  <DropdownItem
+                    href="/membership"
                     target="_self"
                     // description="ACME scales apps to meet user demand, automagically, based on load."
                   >
-                    MCBIOS {conference.year}
+                    Registration
                   </DropdownItem>
-                ))}
+                </DropdownMenu>
+              </Dropdown>
+            ) : (
+              <NavbarItem isActive={path == route} key={route}>
+                <Link
+                  //@ts-ignore
+                  href={PathMap[route].path}
+                  color={path == route ? "primary" : "foreground"}
+                  aria-current="page"
+                >
+                  {/*@ts-ignore*/}
+                  {PathMap[route].name}
+                </Link>
+              </NavbarItem>
+            )
+          )}
+        {user ? (
+          <NavbarItem isActive>
+            <Dropdown>
+              <DropdownTrigger>
+                <Avatar
+                  src="https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75"
+                  // description={
+                  //   <Link
+                  //     href="https://twitter.com/jrgarciadev"
+                  //     size="sm"
+                  //     isExternal
+                  //   >
+                  //     @jrgarciadev
+                  //   </Link>
+                  // }
+                  // avatarProps={{
+                  //   src: "https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75",
+                  // }}
+                />
+              </DropdownTrigger>
+              <DropdownMenu
+                variant="faded"
+                aria-label="Dropdown menu with icons"
+              >
+                <DropdownItem
+                  href="/dashboard"
+                  about="dashboard"
+                  // startContent={<CopyDocumentIcon className={iconClasses} />}
+                >
+                  Dashboard
+                </DropdownItem>
+                <DropdownItem
+                  about="logout"
+                  onClick={logout}
+                  // startContent={<CopyDocumentIcon className={iconClasses} />}
+                >
+                  Logout
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
-          ) : (
-            <NavbarItem isActive={path == route} key={route}>
-              <Link
-                //@ts-ignore
-                href={pathMap[route].path}
-                color={path == route ? "primary" : "foreground"}
-                aria-current="page"
-              >
-                {/*@ts-ignore*/}
-                {pathMap[route].name}
-              </Link>
-            </NavbarItem>
-          )
-        )}
+          </NavbarItem>
+        ) : undefined}
       </NavbarContent>
       <NavbarContent className="md:hidden h-16" justify="end">
         <NavbarMenuToggle
@@ -153,59 +230,84 @@ export const Nav = () => {
           className="md:hidden"
         />
       </NavbarContent>
-      <NavbarMenu>
-        {values.map((item, index) =>
-          item.path === "/conferences" ? (
-            <Dropdown key={item.name}>
-              <NavbarMenuItem>
-                <DropdownTrigger>
-                  <Button
-                    disableRipple
-                    className="bg-transparent data-[hover=true]:bg-transparent p-0"
-                    endContent={<ChevronDownIcon />}
-                    radius="sm"
-                    variant="light"
-                  >
-                    {item.name}
-                  </Button>
-                </DropdownTrigger>
-              </NavbarMenuItem>
-              <DropdownMenu
-                aria-label="conferences"
-                className="w-[340px]"
-                itemClasses={{
-                  base: "gap-4",
-                }}
-              >
-                {pathMap["/conferences"].years.map((conference) => (
-                  <DropdownItem
-                    key={conference.year}
-                    href={conference.url}
-                    target="_blank"
-                    // description="ACME scales apps to meet user demand, automagically, based on load."
-                  >
-                    MCBIOS {conference.year}
+      <NavbarMenu about="Conference List">
+        {values
+          .filter((val) => val.path !== "/")
+          .map((item, index) =>
+            item.path === "/conferences" ? (
+              <Dropdown key={item.name}>
+                <NavbarMenuItem>
+                  <DropdownTrigger>
+                    <Button
+                      about={item.name}
+                      disableRipple
+                      className="bg-transparent data-[hover=true]:bg-transparent p-0"
+                      endContent={<ChevronDownIcon />}
+                      radius="sm"
+                      variant="light"
+                    >
+                      {item.name}
+                    </Button>
+                  </DropdownTrigger>
+                </NavbarMenuItem>
+                <DropdownMenu aria-label="conferences" className="w-52">
+                  {ConfYears.map((conference) => (
+                    <DropdownItem
+                      key={conference.year}
+                      href={conference.url}
+                      target="_blank"
+                      // description="ACME scales apps to meet user demand, automagically, based on load."
+                    >
+                      MCBIOS {conference.year}
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </Dropdown>
+            ) : item.path === "/membership" ? (
+              <Dropdown key={item.name}>
+                <NavbarMenuItem>
+                  <DropdownTrigger>
+                    <Button
+                      about={item.name}
+                      disableRipple
+                      className="bg-transparent data-[hover=true]:bg-transparent p-0"
+                      endContent={<ChevronDownIcon />}
+                      radius="sm"
+                      variant="light"
+                    >
+                      {item.name}
+                    </Button>
+                  </DropdownTrigger>
+                </NavbarMenuItem>
+                <DropdownMenu aria-label="MEMBERSHIP" className="w-52">
+                  <DropdownItem onClick={handleOpen}>Sign In</DropdownItem>
+                  <DropdownItem href="/membership" target="_self">
+                    Registration
                   </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
-          ) : (
-            <NavbarMenuItem
-              isActive={path === item.path}
-              key={`${item}-${index}`}
-            >
-              <Link
-                color={path === item.path ? undefined : "foreground"}
-                className="w-full"
-                href={item.path}
-                size="lg"
+                </DropdownMenu>
+              </Dropdown>
+            ) : (
+              <NavbarMenuItem
+                isActive={path === item.path}
+                key={`${item}-${index}`}
               >
-                {item.name}
-              </Link>
-            </NavbarMenuItem>
-          )
-        )}
+                <Link
+                  color={path === item.path ? undefined : "foreground"}
+                  className="w-full"
+                  href={item.path}
+                  size="lg"
+                >
+                  {item.name}
+                </Link>
+              </NavbarMenuItem>
+            )
+          )}
       </NavbarMenu>
+      <AuthModal
+        isOpen={isAuthOpen}
+        setIsOpen={setAuthOpen}
+        supabase={supabase}
+      />
     </Navbar>
   );
 };
