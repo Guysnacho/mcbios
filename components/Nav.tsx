@@ -91,8 +91,7 @@ export const Nav = () => {
         ],
       }}
     >
-      {/*@ts-ignore*/}
-      <NavbarBrand onMenuOpenChange={setIsMenuOpen}>
+      <NavbarBrand onClick={() => setIsMenuOpen(!isMenuOpen)}>
         <p className="font-bold text-2xl">MCBIOS</p>
       </NavbarBrand>
 
@@ -153,13 +152,14 @@ export const Nav = () => {
           className="md:hidden"
         />
       </NavbarContent>
-      <NavbarMenu>
+      <NavbarMenu about="Conference List">
         {values.map((item, index) =>
           item.path === "/conferences" ? (
             <Dropdown key={item.name}>
               <NavbarMenuItem>
                 <DropdownTrigger>
                   <Button
+                    about={item.name}
                     disableRipple
                     className="bg-transparent data-[hover=true]:bg-transparent p-0"
                     endContent={<ChevronDownIcon />}
