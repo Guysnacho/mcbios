@@ -38,13 +38,6 @@ export const Footer = () => {
                   MEMBERSHIP
                 </p>
                 <a
-                  href="/login"
-                  target="_self"
-                  className="text-sm leading-6 text-white hover:text-gray-300"
-                >
-                  Sign In
-                </a>
-                <a
                   href="/membership"
                   target="_self"
                   className="text-sm leading-6 text-white hover:text-gray-300"

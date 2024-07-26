@@ -19,6 +19,7 @@ import {
 } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { AuthModal } from "./AuthModal";
 
 export const Nav = () => {
   const path = usePathname();
@@ -27,6 +28,7 @@ export const Nav = () => {
   const values = Object.values(PathMap);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthOpen, setAuthOpen] = useState(false);
 
   return (
     <Navbar
@@ -113,8 +115,7 @@ export const Nav = () => {
                 }}
               >
                 <DropdownItem
-                  href="/login"
-                  target="_self"
+                  onClick={() => setAuthOpen(true)}
                   // description="ACME scales apps to meet user demand, automagically, based on load."
                 >
                   Sign In
@@ -180,6 +181,31 @@ export const Nav = () => {
                 ))}
               </DropdownMenu>
             </Dropdown>
+          ) : item.path === "/membership" ? (
+            <Dropdown key={item.name}>
+              <NavbarMenuItem>
+                <DropdownTrigger>
+                  <Button
+                    about={item.name}
+                    disableRipple
+                    className="bg-transparent data-[hover=true]:bg-transparent p-0"
+                    endContent={<ChevronDownIcon />}
+                    radius="sm"
+                    variant="light"
+                  >
+                    {item.name}
+                  </Button>
+                </DropdownTrigger>
+              </NavbarMenuItem>
+              <DropdownMenu aria-label="MEMBERSHIP" className="w-52">
+                <DropdownItem onClick={() => setAuthOpen(true)}>
+                  Sign In
+                </DropdownItem>
+                <DropdownItem href="/membership" target="_self">
+                  Registration
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           ) : (
             <NavbarMenuItem
               isActive={path === item.path}
@@ -197,6 +223,7 @@ export const Nav = () => {
           )
         )}
       </NavbarMenu>
+      <AuthModal isOpen={isAuthOpen} setIsOpen={setAuthOpen} />
     </Navbar>
   );
 };
