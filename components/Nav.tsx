@@ -101,12 +101,12 @@ export const Nav = () => {
                     radius="sm"
                     variant="light"
                   >
-                    {PathMap["/membership"].name}
+                    MEMBERSHIP
                   </Button>
                 </DropdownTrigger>
               </NavbarItem>
               <DropdownMenu
-                aria-label={PathMap["/membership"].name}
+                aria-label="MEMBERSHIP"
                 className="w-30"
                 itemClasses={{
                   base: "gap-4",
