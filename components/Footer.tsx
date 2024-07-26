@@ -10,7 +10,7 @@ export const Footer = () => {
 
   return (
     <footer className="bg-gray-900 border-double border-t-4 border-indigo-600 mt-20">
-      <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
+      <div className="mx-auto max-w-7xl overflow-hidden px-6 py-10 sm:py-12 lg:px-4">
         <nav
           aria-label="Footer"
           className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12"
@@ -53,17 +53,20 @@ export const Footer = () => {
                 </a>
               </div>
             ) : (
-              <Link
-                //@ts-ignore
-                href={PathMap[route].path}
-                color={path == route ? "primary" : "foreground"}
-                aria-current="page"
-                target="_self"
-                className="text-md underline underline-offset-2 leading-6 text-white hover:text-gray-300"
-              >
-                {/*@ts-ignore*/}
-                {PathMap[route].name}
-              </Link>
+              <div key={route} className="pb-6 flex flex-col">
+                <Link
+                  key={route}
+                  //@ts-ignore
+                  href={PathMap[route].path}
+                  color={path == route ? "primary" : "foreground"}
+                  aria-current="page"
+                  target="_self"
+                  className="text-md underline underline-offset-2 leading-6 text-white hover:text-gray-300"
+                >
+                  {/*@ts-ignore*/}
+                  {PathMap[route].name}
+                </Link>
+              </div>
             )
           )}
         </nav>
