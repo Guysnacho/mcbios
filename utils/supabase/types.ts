@@ -9,7 +9,35 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never;
+      member: {
+        Row: {
+          fname: string | null;
+          lname: string | null;
+          role: string | null;
+          user_id: string;
+        };
+        Insert: {
+          fname?: string | null;
+          lname?: string | null;
+          role?: string | null;
+          user_id: string;
+        };
+        Update: {
+          fname?: string | null;
+          lname?: string | null;
+          role?: string | null;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "member_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: true;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
     };
     Views: {
       [_ in never]: never;
