@@ -77,7 +77,9 @@ export const Nav = () => {
       }}
     >
       <NavbarBrand onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        <p className="font-bold text-2xl">MCBIOS</p>
+        <Link href="/" className="font-bold text-gray-800 text-2xl">
+          MCBIOS
+        </Link>
       </NavbarBrand>
 
       <NavbarContent className="hidden md:flex gap-4 h-16" justify="center">
