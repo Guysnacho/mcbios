@@ -1,3 +1,4 @@
+import { Database } from "@/utils/supabase/types";
 import {
   Button,
   Modal,
@@ -7,11 +8,13 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
+import { SupabaseClient } from "@supabase/supabase-js";
 import React, { Dispatch, SetStateAction } from "react";
 
 export const AuthModal = (props: {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  supabase: SupabaseClient<Database>;
 }) => {
   const { onClose } = useDisclosure();
 

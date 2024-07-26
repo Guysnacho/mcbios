@@ -1,6 +1,7 @@
 "use client";
 
 import { ConfYears, PathMap } from "@/utils/constants";
+import { createClient } from "@/utils/supabase/client";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Button,
@@ -17,18 +18,41 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@nextui-org/react";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { User } from "@supabase/supabase-js";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { AuthModal } from "./AuthModal";
 
 export const Nav = () => {
+  const supabase = createClient();
+  const router = useRouter();
   const path = usePathname();
-
   const keys = Object.keys(PathMap);
   const values = Object.values(PathMap);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthOpen, setAuthOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+
+  const handleOpen = () => {
+    if (user) {
+      router.push("/dashboard");
+    } else {
+      setAuthOpen(true);
+    }
+  };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      if (data) {
+        setUser(data.user);
+      } else {
+        console.log("No user found");
+      }
+    };
+    fetchUser();
+  }, []);
 
   return (
     <Navbar
@@ -115,7 +139,7 @@ export const Nav = () => {
                 }}
               >
                 <DropdownItem
-                  onClick={() => setAuthOpen(true)}
+                  onClick={handleOpen}
                   // description="ACME scales apps to meet user demand, automagically, based on load."
                 >
                   Sign In
@@ -198,9 +222,7 @@ export const Nav = () => {
                 </DropdownTrigger>
               </NavbarMenuItem>
               <DropdownMenu aria-label="MEMBERSHIP" className="w-52">
-                <DropdownItem onClick={() => setAuthOpen(true)}>
-                  Sign In
-                </DropdownItem>
+                <DropdownItem onClick={handleOpen}>Sign In</DropdownItem>
                 <DropdownItem href="/membership" target="_self">
                   Registration
                 </DropdownItem>
@@ -223,7 +245,11 @@ export const Nav = () => {
           )
         )}
       </NavbarMenu>
-      <AuthModal isOpen={isAuthOpen} setIsOpen={setAuthOpen} />
+      <AuthModal
+        isOpen={isAuthOpen}
+        setIsOpen={setAuthOpen}
+        supabase={supabase}
+      />
     </Navbar>
   );
 };
