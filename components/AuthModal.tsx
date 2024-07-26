@@ -30,6 +30,7 @@ export const AuthModal = ({
 
   const handleLogin = async () => {
     setLoading(true);
+    setError("");
     if (email && password) {
       // const { data, error } = await supabase.auth.signUp({ email, password, options: {} });
       const { error } = await supabase.auth.signInWithPassword({
@@ -39,7 +40,6 @@ export const AuthModal = ({
       if (error) {
         setError(error.message);
       } else {
-        setError("");
         onClose();
         router.push("/dashboard");
       }
@@ -97,7 +97,13 @@ export const AuthModal = ({
               >
                 Cancel
               </Button>
-              <Button color="primary" onPress={handleLogin} disabled={loading}>
+              <Button
+                color="primary"
+                onPress={() =>
+                  handleLogin().finally(() => (!error ? onClose() : undefined))
+                }
+                disabled={loading}
+              >
                 Login
               </Button>
             </ModalFooter>
