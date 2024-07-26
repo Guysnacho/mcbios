@@ -40,6 +40,7 @@ export const AuthModal = ({
         setError(error.message);
       } else {
         setError("");
+        onClose();
         router.push("/dashboard");
       }
     } else {
