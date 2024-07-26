@@ -4,6 +4,7 @@ import { ConfYears, PathMap } from "@/utils/constants";
 import { createClient } from "@/utils/supabase/client";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
+  Avatar,
   Button,
   Dropdown,
   DropdownItem,
@@ -32,7 +33,16 @@ export const Nav = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthOpen, setAuthOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<User | null>(null);
+
+  const logout = () => {
+    supabase.auth.signOut({ scope: "local" }).finally(() => {
+      setLoading(false);
+      setUser(null);
+      router.push("/");
+    });
+  };
 
   const handleOpen = () => {
     if (user) {
@@ -52,7 +62,7 @@ export const Nav = () => {
       }
     };
     fetchUser();
-  }, []);
+  }, [isAuthOpen, user]);
 
   return (
     <Navbar
@@ -83,92 +93,129 @@ export const Nav = () => {
       </NavbarBrand>
 
       <NavbarContent className="hidden md:flex gap-4 h-16" justify="center">
-        {keys.map((route) =>
-          route == "/conferences" ? (
-            <Dropdown key={route}>
-              <NavbarItem>
-                <DropdownTrigger className="-m-3">
-                  <Button
-                    disableRipple
-                    className="bg-transparent data-[hover=true]:bg-transparent"
-                    endContent={<ChevronDownIcon />}
-                    radius="sm"
-                    variant="light"
-                  >
-                    {PathMap["/conferences"].name}
-                  </Button>
-                </DropdownTrigger>
-              </NavbarItem>
-              <DropdownMenu
-                aria-label={PathMap["/conferences"].name}
-                className="w-30"
-                itemClasses={{
-                  base: "gap-4",
-                }}
-              >
-                {ConfYears.map((conference) => (
+        {keys
+          .filter((val) => val !== "/")
+          .map((route) =>
+            route == "/conferences" ? (
+              <Dropdown key={route}>
+                <NavbarItem>
+                  <DropdownTrigger className="-m-3">
+                    <Button
+                      disableRipple
+                      className="bg-transparent data-[hover=true]:bg-transparent"
+                      endContent={<ChevronDownIcon />}
+                      radius="sm"
+                      variant="light"
+                    >
+                      {PathMap["/conferences"].name}
+                    </Button>
+                  </DropdownTrigger>
+                </NavbarItem>
+                <DropdownMenu
+                  aria-label={PathMap["/conferences"].name}
+                  className="w-30"
+                  itemClasses={{
+                    base: "gap-4",
+                  }}
+                >
+                  {ConfYears.map((conference) => (
+                    <DropdownItem
+                      key={conference.year}
+                      href={conference.url}
+                      target="_self"
+                      // description="ACME scales apps to meet user demand, automagically, based on load."
+                    >
+                      MCBIOS {conference.year}
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </Dropdown>
+            ) : route == "/membership" ? (
+              <Dropdown key={route}>
+                <NavbarItem>
+                  <DropdownTrigger className="-m-3">
+                    <Button
+                      disableRipple
+                      className="bg-transparent data-[hover=true]:bg-transparent w-32"
+                      endContent={<ChevronDownIcon />}
+                      radius="sm"
+                      variant="light"
+                    >
+                      MEMBERSHIP
+                    </Button>
+                  </DropdownTrigger>
+                </NavbarItem>
+                <DropdownMenu
+                  aria-label="MEMBERSHIP"
+                  className="w-30"
+                  itemClasses={{
+                    base: "gap-4",
+                  }}
+                >
                   <DropdownItem
-                    key={conference.year}
-                    href={conference.url}
+                    onClick={handleOpen}
+                    // description="ACME scales apps to meet user demand, automagically, based on load."
+                  >
+                    Sign In
+                  </DropdownItem>
+                  <DropdownItem
+                    href="/membership"
                     target="_self"
                     // description="ACME scales apps to meet user demand, automagically, based on load."
                   >
-                    MCBIOS {conference.year}
+                    Registration
                   </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
-          ) : route == "/membership" ? (
-            <Dropdown key={route}>
-              <NavbarItem>
-                <DropdownTrigger className="-m-3">
-                  <Button
-                    disableRipple
-                    className="bg-transparent data-[hover=true]:bg-transparent w-32"
-                    endContent={<ChevronDownIcon />}
-                    radius="sm"
-                    variant="light"
-                  >
-                    MEMBERSHIP
-                  </Button>
-                </DropdownTrigger>
+                </DropdownMenu>
+              </Dropdown>
+            ) : (
+              <NavbarItem isActive={path == route} key={route}>
+                <Link
+                  //@ts-ignore
+                  href={PathMap[route].path}
+                  color={path == route ? "primary" : "foreground"}
+                  aria-current="page"
+                >
+                  {/*@ts-ignore*/}
+                  {PathMap[route].name}
+                </Link>
               </NavbarItem>
+            )
+          )}
+        {user ? (
+          <NavbarItem isActive>
+            <Dropdown>
+              <DropdownTrigger>
+                <Avatar
+                  src="https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75"
+                  // description={
+                  //   <Link
+                  //     href="https://twitter.com/jrgarciadev"
+                  //     size="sm"
+                  //     isExternal
+                  //   >
+                  //     @jrgarciadev
+                  //   </Link>
+                  // }
+                  // avatarProps={{
+                  //   src: "https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75",
+                  // }}
+                />
+              </DropdownTrigger>
               <DropdownMenu
-                aria-label="MEMBERSHIP"
-                className="w-30"
-                itemClasses={{
-                  base: "gap-4",
-                }}
+                variant="faded"
+                aria-label="Dropdown menu with icons"
               >
                 <DropdownItem
-                  onClick={handleOpen}
-                  // description="ACME scales apps to meet user demand, automagically, based on load."
+                  about="logout"
+                  onClick={logout}
+                  // startContent={<CopyDocumentIcon className={iconClasses} />}
                 >
-                  Sign In
-                </DropdownItem>
-                <DropdownItem
-                  href="/membership"
-                  target="_self"
-                  // description="ACME scales apps to meet user demand, automagically, based on load."
-                >
-                  Registration
+                  Logout
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
-          ) : (
-            <NavbarItem isActive={path == route} key={route}>
-              <Link
-                //@ts-ignore
-                href={PathMap[route].path}
-                color={path == route ? "primary" : "foreground"}
-                aria-current="page"
-              >
-                {/*@ts-ignore*/}
-                {PathMap[route].name}
-              </Link>
-            </NavbarItem>
-          )
-        )}
+          </NavbarItem>
+        ) : undefined}
       </NavbarContent>
       <NavbarContent className="md:hidden h-16" justify="end">
         <NavbarMenuToggle
@@ -177,75 +224,77 @@ export const Nav = () => {
         />
       </NavbarContent>
       <NavbarMenu about="Conference List">
-        {values.map((item, index) =>
-          item.path === "/conferences" ? (
-            <Dropdown key={item.name}>
-              <NavbarMenuItem>
-                <DropdownTrigger>
-                  <Button
-                    about={item.name}
-                    disableRipple
-                    className="bg-transparent data-[hover=true]:bg-transparent p-0"
-                    endContent={<ChevronDownIcon />}
-                    radius="sm"
-                    variant="light"
-                  >
-                    {item.name}
-                  </Button>
-                </DropdownTrigger>
-              </NavbarMenuItem>
-              <DropdownMenu aria-label="conferences" className="w-52">
-                {ConfYears.map((conference) => (
-                  <DropdownItem
-                    key={conference.year}
-                    href={conference.url}
-                    target="_blank"
-                    // description="ACME scales apps to meet user demand, automagically, based on load."
-                  >
-                    MCBIOS {conference.year}
+        {values
+          .filter((val) => val.path !== "/")
+          .map((item, index) =>
+            item.path === "/conferences" ? (
+              <Dropdown key={item.name}>
+                <NavbarMenuItem>
+                  <DropdownTrigger>
+                    <Button
+                      about={item.name}
+                      disableRipple
+                      className="bg-transparent data-[hover=true]:bg-transparent p-0"
+                      endContent={<ChevronDownIcon />}
+                      radius="sm"
+                      variant="light"
+                    >
+                      {item.name}
+                    </Button>
+                  </DropdownTrigger>
+                </NavbarMenuItem>
+                <DropdownMenu aria-label="conferences" className="w-52">
+                  {ConfYears.map((conference) => (
+                    <DropdownItem
+                      key={conference.year}
+                      href={conference.url}
+                      target="_blank"
+                      // description="ACME scales apps to meet user demand, automagically, based on load."
+                    >
+                      MCBIOS {conference.year}
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </Dropdown>
+            ) : item.path === "/membership" ? (
+              <Dropdown key={item.name}>
+                <NavbarMenuItem>
+                  <DropdownTrigger>
+                    <Button
+                      about={item.name}
+                      disableRipple
+                      className="bg-transparent data-[hover=true]:bg-transparent p-0"
+                      endContent={<ChevronDownIcon />}
+                      radius="sm"
+                      variant="light"
+                    >
+                      {item.name}
+                    </Button>
+                  </DropdownTrigger>
+                </NavbarMenuItem>
+                <DropdownMenu aria-label="MEMBERSHIP" className="w-52">
+                  <DropdownItem onClick={handleOpen}>Sign In</DropdownItem>
+                  <DropdownItem href="/membership" target="_self">
+                    Registration
                   </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
-          ) : item.path === "/membership" ? (
-            <Dropdown key={item.name}>
-              <NavbarMenuItem>
-                <DropdownTrigger>
-                  <Button
-                    about={item.name}
-                    disableRipple
-                    className="bg-transparent data-[hover=true]:bg-transparent p-0"
-                    endContent={<ChevronDownIcon />}
-                    radius="sm"
-                    variant="light"
-                  >
-                    {item.name}
-                  </Button>
-                </DropdownTrigger>
-              </NavbarMenuItem>
-              <DropdownMenu aria-label="MEMBERSHIP" className="w-52">
-                <DropdownItem onClick={handleOpen}>Sign In</DropdownItem>
-                <DropdownItem href="/membership" target="_self">
-                  Registration
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          ) : (
-            <NavbarMenuItem
-              isActive={path === item.path}
-              key={`${item}-${index}`}
-            >
-              <Link
-                color={path === item.path ? undefined : "foreground"}
-                className="w-full"
-                href={item.path}
-                size="lg"
+                </DropdownMenu>
+              </Dropdown>
+            ) : (
+              <NavbarMenuItem
+                isActive={path === item.path}
+                key={`${item}-${index}`}
               >
-                {item.name}
-              </Link>
-            </NavbarMenuItem>
-          )
-        )}
+                <Link
+                  color={path === item.path ? undefined : "foreground"}
+                  className="w-full"
+                  href={item.path}
+                  size="lg"
+                >
+                  {item.name}
+                </Link>
+              </NavbarMenuItem>
+            )
+          )}
       </NavbarMenu>
       <AuthModal
         isOpen={isAuthOpen}
