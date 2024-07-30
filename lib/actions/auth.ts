@@ -5,7 +5,7 @@ import { createClient } from "../utils/supabase/server";
 
 const AuthSchema = z.object({
   email: z.string().email().describe("Email // Invalid email provided"),
-  password: z.string().min(1).describe("Password // Invalid password provided"),
+  password: z.string().min(6).describe("Password // Invalid password provided"),
 });
 
 export const login = async (formData: FormData) => {
