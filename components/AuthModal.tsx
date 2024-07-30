@@ -1,5 +1,5 @@
 import { login, signup } from "@/lib/actions/auth";
-import { Database } from "@/lib/utils/supabase/types";
+import { createClient } from "@/lib/utils/supabase/client";
 import {
   Button,
   Modal,
@@ -27,6 +27,32 @@ export const AuthModal = ({
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { onClose } = useDisclosure();
+  const client = createClient();
+
+  const handleLogin = async (isSignUp: boolean) => {
+    setLoading(true);
+    setError("");
+    if (email && password) {
+      // const { data, error } = await supabase.auth.signUp({ email, password, options: {} });
+      const { error } = await client.auth[
+        isSignUp ? "signUp" : "signInWithPassword"
+      ]({
+        email,
+        password,
+      });
+      if (error) {
+        setError(error.message);
+      } else {
+        onClose();
+        router.push("/dashboard");
+      }
+    } else {
+      setEmail("");
+      setPassword("");
+      setError("Invalid email or password provided");
+    }
+    setLoading(false);
+  };
 
   return (
     <Modal
@@ -40,38 +66,31 @@ export const AuthModal = ({
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1 text-xl">
-              Login
-            </ModalHeader>
+            <ModalHeader className="flex flex-col gap-1 text-xl"></ModalHeader>
             <ModalBody>
               {error ? (
                 <blockquote className="blockquote">{error}</blockquote>
               ) : undefined}
 
-              <form name="login" action={login} className="space-y-3">
-                <div className="flex flex-col">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    onChange={(e) => setEmail(e.currentTarget.value)}
-                    placeholder="abcd@university.edu"
-                    disabled={loading}
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label htmlFor="password">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    onChange={(e) => setPassword(e.currentTarget.value)}
-                    placeholder="top secret password"
-                    disabled={loading}
-                  />
-                </div>
-              </form>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                onChange={(e) => setEmail(e.currentTarget.value)}
+                placeholder="abcd@university.edu"
+                disabled={loading}
+              />
+              <label htmlFor="email">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                autoComplete={isSignUp ? "new-password" : "current-password"}
+                onChange={(e) => setPassword(e.currentTarget.value)}
+                placeholder="top secret password"
+                disabled={loading}
+              />
             </ModalBody>
             <ModalFooter>
               <Button
@@ -85,7 +104,11 @@ export const AuthModal = ({
               {isSignUp ? (
                 <Button
                   type="submit"
-                  formAction={signup}
+                  onPress={() =>
+                    handleLogin(true).finally(() =>
+                      !error ? onClose() : undefined
+                    )
+                  }
                   color="primary"
                   disabled={loading}
                 >
@@ -94,7 +117,11 @@ export const AuthModal = ({
               ) : (
                 <Button
                   type="submit"
-                  formAction={login}
+                  onPress={() =>
+                    handleLogin(false).finally(() =>
+                      !error ? onClose() : undefined
+                    )
+                  }
                   color="primary"
                   disabled={loading}
                 >

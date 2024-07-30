@@ -33,12 +33,10 @@ export const Nav = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthOpen, setAuthOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
   const logout = () => {
     supabase.auth.signOut({ scope: "local" }).finally(() => {
-      setLoading(false);
       setUser(null);
       router.push("/");
     });
@@ -62,7 +60,7 @@ export const Nav = () => {
       }
     };
     fetchUser();
-  }, [isAuthOpen, user]);
+  }, [isAuthOpen]);
 
   return (
     <Navbar
