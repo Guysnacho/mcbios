@@ -153,7 +153,7 @@ export const AuthModal = ({
                   type="submit"
                   onPress={() =>
                     handleLogin(false).finally(() =>
-                      !error ? onClose() : undefined
+                      error !== "" ? onClose() : undefined
                     )
                   }
                   color="primary"
