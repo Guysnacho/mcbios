@@ -1,6 +1,6 @@
 "use client";
 
-import { ConfYears, PathMap } from "@/utils/constants";
+import { ConfYears, PathMap } from "@/lib/utils/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 

@@ -1,7 +1,7 @@
 "use client";
 
-import { ConfYears, PathMap } from "@/utils/constants";
-import { createClient } from "@/utils/supabase/client";
+import { ConfYears, PathMap } from "@/lib/utils/constants";
+import { createClient } from "@/lib/utils/supabase/client";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Avatar,
@@ -33,12 +33,10 @@ export const Nav = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthOpen, setAuthOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
   const logout = () => {
     supabase.auth.signOut({ scope: "local" }).finally(() => {
-      setLoading(false);
       setUser(null);
       router.push("/");
     });
@@ -62,7 +60,7 @@ export const Nav = () => {
       }
     };
     fetchUser();
-  }, [isAuthOpen, user]);
+  }, [isAuthOpen]);
 
   return (
     <Navbar
@@ -303,11 +301,7 @@ export const Nav = () => {
             )
           )}
       </NavbarMenu>
-      <AuthModal
-        isOpen={isAuthOpen}
-        setIsOpen={setAuthOpen}
-        supabase={supabase}
-      />
+      <AuthModal isOpen={isAuthOpen} setIsOpen={setAuthOpen} />
     </Navbar>
   );
 };

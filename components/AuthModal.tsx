@@ -1,4 +1,4 @@
-import { Database } from "@/utils/supabase/types";
+import { createClient } from "@/lib/utils/supabase/client";
 import {
   Button,
   Modal,
@@ -8,34 +8,41 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
-import { SupabaseClient } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 export const AuthModal = ({
   isOpen,
   setIsOpen,
-  supabase,
+  isSignUp,
 }: {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  supabase: SupabaseClient<Database>;
+  isSignUp?: boolean;
 }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { onClose } = useDisclosure();
+  const client = createClient();
 
-  const handleLogin = async () => {
+  const handleLogin = async (isSignUp: boolean) => {
     setLoading(true);
     setError("");
     if (email && password) {
       // const { data, error } = await supabase.auth.signUp({ email, password, options: {} });
-      const { error } = await supabase.auth.signInWithPassword({
+      const { error } = await client.auth[
+        isSignUp ? "signUp" : "signInWithPassword"
+      ]({
         email,
         password,
+        options: isSignUp
+          ? { data: { fname, lname, role: "student" } }
+          : undefined,
       });
       if (error) {
         setError(error.message);
@@ -56,6 +63,7 @@ export const AuthModal = ({
       size="lg"
       isOpen={isOpen}
       onClose={() => {
+        setError("");
         setIsOpen(false);
         onClose();
       }}
@@ -65,8 +73,37 @@ export const AuthModal = ({
           <>
             <ModalHeader className="flex flex-col gap-1 text-xl"></ModalHeader>
             <ModalBody>
+              {isSignUp ? (
+                <h4 className="h4 underline">Join the Community</h4>
+              ) : (
+                <h4 className="h4 underline">Log In</h4>
+              )}
               {error ? (
-                <blockquote className="blockquote">{error}</blockquote>
+                <blockquote className="blockquote text-orange-800">
+                  {error}
+                </blockquote>
+              ) : undefined}
+              {isSignUp ? (
+                <>
+                  <label htmlFor="fname">First Name</label>
+                  <input
+                    type="text"
+                    name="fname"
+                    id="fname"
+                    onChange={(e) => setFname(e.currentTarget.value)}
+                    placeholder="Jane"
+                    disabled={loading}
+                  />
+                  <label htmlFor="email">Last Name</label>
+                  <input
+                    type="lname"
+                    name="lname"
+                    id="lname"
+                    onChange={(e) => setLname(e.currentTarget.value)}
+                    placeholder="Doe"
+                    disabled={loading}
+                  />
+                </>
               ) : undefined}
 
               <label htmlFor="email">Email</label>
@@ -83,6 +120,7 @@ export const AuthModal = ({
                 type="password"
                 name="password"
                 id="password"
+                autoComplete={isSignUp ? "new-password" : "current-password"}
                 onChange={(e) => setPassword(e.currentTarget.value)}
                 placeholder="top secret password"
                 disabled={loading}
@@ -97,15 +135,33 @@ export const AuthModal = ({
               >
                 Cancel
               </Button>
-              <Button
-                color="primary"
-                onPress={() =>
-                  handleLogin().finally(() => (!error ? onClose() : undefined))
-                }
-                disabled={loading}
-              >
-                Login
-              </Button>
+              {isSignUp ? (
+                <Button
+                  type="submit"
+                  onPress={() =>
+                    handleLogin(true).finally(() =>
+                      !error ? onClose() : undefined
+                    )
+                  }
+                  color="primary"
+                  disabled={loading}
+                >
+                  Sign Up
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  onPress={() =>
+                    handleLogin(false).finally(() =>
+                      error !== "" ? onClose() : undefined
+                    )
+                  }
+                  color="primary"
+                  disabled={loading}
+                >
+                  Login
+                </Button>
+              )}
             </ModalFooter>
           </>
         )}
