@@ -1,7 +1,7 @@
 "use client";
 
 import { AuthModal } from "@/components/AuthModal";
-import { Image } from "@nextui-org/react";
+import { Button, Image } from "@nextui-org/react";
 import { useState } from "react";
 
 const Membership = () => {
@@ -11,7 +11,7 @@ const Membership = () => {
       <AuthModal
         isOpen={isAuthOpen}
         setIsOpen={setAuthOpen}
-        isSignUp={process.env.NEXT_PUBLIC_SIGNUP_ENABLED ? true : false}
+        isSignUp
       />
       <div className="container space-y-10 mx-auto">
         <Image
@@ -74,9 +74,13 @@ const Membership = () => {
         <section className="text-center">
           <p>MCBIOS 2023 Annual Membership Fee</p>
           <p>🏗️ Membership form coming soon 👷🏾‍♀️</p>
-          {/* <Button aria-description="member sign up" type="button">
+          <Button
+            aria-description="member sign up"
+            type="button"
+            onClick={() => setAuthOpen(true)}
+          >
             Sign Up
-          </Button> */}
+          </Button>
         </section>
       </div>
     </>

@@ -301,11 +301,7 @@ export const Nav = () => {
             )
           )}
       </NavbarMenu>
-      <AuthModal
-        isOpen={isAuthOpen}
-        setIsOpen={setAuthOpen}
-        isSignUp={process.env.NEXT_PUBLIC_SIGNUP_ENABLED ? true : false}
-      />
+      <AuthModal isOpen={isAuthOpen} setIsOpen={setAuthOpen} />
     </Navbar>
   );
 };

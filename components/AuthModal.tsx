@@ -1,4 +1,3 @@
-import { login, signup } from "@/lib/actions/auth";
 import { createClient } from "@/lib/utils/supabase/client";
 import {
   Button,
@@ -19,11 +18,13 @@ export const AuthModal = ({
 }: {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  isSignUp: boolean | undefined;
+  isSignUp?: boolean;
 }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { onClose } = useDisclosure();
@@ -39,6 +40,9 @@ export const AuthModal = ({
       ]({
         email,
         password,
+        options: isSignUp
+          ? { data: { fname, lname, role: "student" } }
+          : undefined,
       });
       if (error) {
         setError(error.message);
@@ -70,6 +74,28 @@ export const AuthModal = ({
             <ModalBody>
               {error ? (
                 <blockquote className="blockquote">{error}</blockquote>
+              ) : undefined}
+              {isSignUp ? (
+                <>
+                  <label htmlFor="fname">First Name</label>
+                  <input
+                    type="text"
+                    name="fname"
+                    id="fname"
+                    onChange={(e) => setFname(e.currentTarget.value)}
+                    placeholder="Jane"
+                    disabled={loading}
+                  />
+                  <label htmlFor="email">Last Name</label>
+                  <input
+                    type="lname"
+                    name="lname"
+                    id="lname"
+                    onChange={(e) => setLname(e.currentTarget.value)}
+                    placeholder="Doe"
+                    disabled={loading}
+                  />
+                </>
               ) : undefined}
 
               <label htmlFor="email">Email</label>
