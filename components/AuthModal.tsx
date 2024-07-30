@@ -63,6 +63,7 @@ export const AuthModal = ({
       size="lg"
       isOpen={isOpen}
       onClose={() => {
+        setError("");
         setIsOpen(false);
         onClose();
       }}
@@ -72,8 +73,15 @@ export const AuthModal = ({
           <>
             <ModalHeader className="flex flex-col gap-1 text-xl"></ModalHeader>
             <ModalBody>
+              {isSignUp ? (
+                <h4 className="h4 underline">Join the Community</h4>
+              ) : (
+                <h4 className="h4 underline">Log In</h4>
+              )}
               {error ? (
-                <blockquote className="blockquote">{error}</blockquote>
+                <blockquote className="blockquote text-orange-800">
+                  {error}
+                </blockquote>
               ) : undefined}
               {isSignUp ? (
                 <>
