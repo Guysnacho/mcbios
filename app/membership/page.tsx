@@ -74,13 +74,13 @@ const Membership = () => {
         <section className="text-center">
           <p>MCBIOS 2023 Annual Membership Fee</p>
           <p>🏗️ Membership form coming soon 👷🏾‍♀️</p>
-          <Button
+          {/* <Button
             aria-description="member sign up"
             type="button"
             onClick={() => setAuthOpen(true)}
           >
             Sign Up
-          </Button>
+          </Button> */}
         </section>
       </div>
     </>
