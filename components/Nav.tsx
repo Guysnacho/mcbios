@@ -1,7 +1,7 @@
 "use client";
 
-import { ConfYears, PathMap } from "@/utils/constants";
-import { createClient } from "@/utils/supabase/client";
+import { ConfYears, PathMap } from "@/lib/utils/constants";
+import { createClient } from "@/lib/utils/supabase/client";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Avatar,
@@ -306,7 +306,7 @@ export const Nav = () => {
       <AuthModal
         isOpen={isAuthOpen}
         setIsOpen={setAuthOpen}
-        supabase={supabase}
+        isSignUp={process.env.NEXT_PUBLIC_SIGNUP_ENABLED ? true : false}
       />
     </Navbar>
   );
