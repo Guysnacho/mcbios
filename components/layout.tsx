@@ -1,8 +1,7 @@
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import type { Metadata } from "next";
-import { Providers } from "./Providers";
-import "./globals.css";
+import { Providers } from "@/components/Providers";
 
 // const poppins = Poppins({
 //   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -15,26 +14,16 @@ import "./globals.css";
 //   variable: "--font-josefin",
 // });
 
-export const metadata: Metadata = {
-  title: "MCBIOS",
-  description:
-    "MCBIOS | MidSouth Computational Biology and Bioinformatics Society",
-};
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <Nav />
-        <main>
-          <Providers>{children}</Providers>
-        </main>
-        <Footer />
-      </body>
-    </html>
+    <Providers>
+      <Nav />
+      <main>{children}</main>
+      <Footer />
+    </Providers>
   );
 }

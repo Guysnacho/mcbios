@@ -1,4 +1,4 @@
-"use client";
+import Head from "next/head";
 
 const publications = () => {
   const publications = [
@@ -69,6 +69,10 @@ const publications = () => {
   ];
   return (
     <div className="container space-y-10 mx-auto">
+      <Head>
+        <title>MCBIOS Publications</title>
+        <meta content="MCBIOS Publications | MidSouth Computational Biology and Bioinformatics Society" />
+      </Head>
       <h3 className="text-center my-10">Publications</h3>
 
       <section className="w-3/4 xl:w-1/2 mx-auto space-y-5">

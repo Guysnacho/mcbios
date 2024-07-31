@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/component";
 import {
   Button,
   Modal,

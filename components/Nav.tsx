@@ -1,7 +1,5 @@
-"use client";
-
 import { ConfYears, PathMap } from "@/lib/utils/constants";
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/component";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Avatar,

@@ -1,11 +1,14 @@
-"use client";
-
 import CareerDev from "@/public/images/banners/career-development.jpg";
 import { Divider, Image, Tab, Tabs } from "@nextui-org/react";
+import Head from "next/head";
 
 const events = () => {
   return (
     <div className="container space-y-10 mx-auto">
+      <Head>
+        <title>MCBIOS Events</title>
+        <meta content="Upcomming MCBIOS Events | MidSouth Computational Biology and Bioinformatics Society" />
+      </Head>
       <h3 className="text-center my-10">Events</h3>
       <Tabs
         aria-label="Options"

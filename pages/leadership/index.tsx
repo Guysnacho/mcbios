@@ -1,5 +1,3 @@
-"use client";
-
 import BoardMemberCard from "@/components/BoardMemberCard";
 import AikChoonTan from "@/public/images/leadership/Aik-Choon-Tan.jpg";
 import BernieDaigle from "@/public/images/leadership/Bernie-Daigle.jpg";
@@ -13,6 +11,7 @@ import QinSteve from "@/public/images/leadership/Qin-Steve.jpg";
 import VinayRaj from "@/public/images/leadership/Vinay-Raj.jpg";
 import ChangSu from "@/public/images/leadership/Chang-Su.jpg";
 import { Divider, Tab, Tabs } from "@nextui-org/react";
+import Head from "next/head";
 
 const boardMembers = [
   {
@@ -209,6 +208,10 @@ const pastPrez = [
 const leadership = () => {
   return (
     <div className="w-full space-y-10">
+      <Head>
+        <title>MCBIOS Leadership</title>
+        <meta content="MCBIOS Leadership | MidSouth Computational Biology and Bioinformatics Society" />
+      </Head>
       <h2 className="text-center my-10">Board of Directors</h2>
       <section>
         <Divider className="w-1/2 mx-auto mb-10" />

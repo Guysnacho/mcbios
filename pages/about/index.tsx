@@ -1,4 +1,5 @@
 import { Divider } from "@nextui-org/react";
+import Head from "next/head";
 
 const about = () => {
   const tableOfContents = [
@@ -62,6 +63,10 @@ const about = () => {
   ];
   return (
     <div className="space-y-10 mx-auto">
+      <Head>
+        <title>About Us</title>
+        <meta content="About Us | MidSouth Computational Biology and Bioinformatics Society" />
+      </Head>
       <h4 className="text-center my-10 mx-auto w-5/6 lg:w-3/4">
         BYLAWS OF THE MIDSOUTH COMPUTATIONAL BIOLOGY AND BIOINFORMATICS SOCIETY
         (MCBIOS)

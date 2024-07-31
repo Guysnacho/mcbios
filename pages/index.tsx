@@ -1,5 +1,3 @@
-"use client";
-
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import { Button } from "@nextui-org/button";
 import { Card, CardFooter, CardHeader } from "@nextui-org/card";
@@ -160,7 +158,7 @@ export default function Home() {
         <div className="w-full items-center">
           <h4 className="text-center">Membership</h4>
           <p className="my-5">
-            Membership in MBIOS includes meeting registration for the annual
+            Membership in MCBIOS includes meeting registration for the annual
             Conference and access to workshops and collaborative projects hosted
             by MCBIOS through the year. Students receive a discount for
             membership and are eligible for student awards. MCBIOS encourages
