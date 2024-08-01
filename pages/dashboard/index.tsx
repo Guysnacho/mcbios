@@ -1,5 +1,6 @@
 // get serverside props here with videos and whatnot. Profile info updates and video content
 
+import VideoUploader from "@/components/dashboard/VideoUploader";
 import { ConfYears } from "@/lib/utils/constants";
 import { createClient } from "@/lib/utils/supabase/server-props";
 import { Database } from "@/lib/utils/supabase/types";
@@ -121,12 +122,7 @@ export default function Dashboard(props: User) {
           {props.user?.role === "admin" ? (
             <Tab title="Admin">
               <div className="my-5 flex gap-3 mx-auto justify-center">
-                <div>
-                  <h5 className="text-center">Manage Content</h5>
-                  <form action="">
-                    
-                  </form>
-                </div>
+                <VideoUploader />
               </div>
             </Tab>
           ) : undefined}
