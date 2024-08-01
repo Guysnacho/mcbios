@@ -1,9 +1,23 @@
 // get serverside props here with videos and whatnot. Profile info updates and video content
 
+import { ConfYears } from "@/lib/utils/constants";
 import { createClient } from "@/lib/utils/supabase/server-props";
 import { Database } from "@/lib/utils/supabase/types";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Divider,
+  Image,
+  Select,
+  SelectItem,
+  Tab,
+  Tabs,
+  User,
+} from "@nextui-org/react";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Head from "next/head";
+import { ChangeEvent, useState } from "react";
 
 type User =
   | {
@@ -26,7 +40,27 @@ export const getServerSideProps = (async (
   return { props: { user: undefined } };
 }) satisfies GetServerSideProps<User>;
 
+let tabs = [
+  {
+    id: "content",
+    label: "Conference Content",
+  },
+  {
+    id: "user",
+    label: "Profile",
+  },
+];
+
+const videos = [1, 2, 3, 4, 5];
+
 export default function Dashboard(props: User) {
+  const [currYear, setCurrYear] = useState("");
+
+  const handleSelectionChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setCurrYear(e.target.value);
+    console.debug("Current year " + currYear);
+  };
+
   return (
     <>
       <Head>
@@ -34,7 +68,88 @@ export default function Dashboard(props: User) {
         <meta content="MCBIOS Videos | MidSouth Computational Biology and Bioinformatics Society" />
       </Head>
       <div className="container mx-auto justify-center">
-        <h3 className="text-center">Welcome {props.user?.fname}</h3>
+        <div className="h-20 flex justify-center align-middle">
+          <h3 className="text-center my-auto">Welcome {props.user?.fname}</h3>
+        </div>
+        <Divider className="my-5" />
+        <Tabs
+          aria-label="Dashboard tabs"
+          color="secondary"
+          items={tabs}
+          className="mx-auto"
+        >
+          <Tab title="Conference Content">
+            <div className="my-5">
+              <h5 className="text-center">
+                You can watch past conference recordings below
+              </h5>
+              <Select
+                label="Select a year"
+                // label={currYear !== "" ? currYear : "Select a year"}
+                className="max-w-xs"
+                selectionMode="single"
+                variant="bordered"
+                selectedKeys={[currYear]}
+                onChange={(e) => {
+                  console.log(e);
+                  handleSelectionChange(e);
+                }}
+              >
+                {ConfYears.map((conf) => (
+                  <SelectItem key={`${conf.year}`}>{conf.year}</SelectItem>
+                ))}
+              </Select>
+            </div>
+            <div className="container flex flex-row flex-wrap gap-5 mx-auto">
+              {videos.map((vid) => (
+                <Card key={vid} className="max-w-xs">
+                  <CardHeader>
+                    {`${currYear} ` || undefined} Video Title
+                  </CardHeader>
+                  <CardBody>
+                    <p>Video Body</p>
+                    <Image
+                      width={300}
+                      alt="NextUI hero Image"
+                      src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
+                    />
+                  </CardBody>
+                </Card>
+              ))}
+            </div>
+          </Tab>
+          {props.user?.role === "admin" ? (
+            <Tab title="Admin">
+              <div className="my-5 flex gap-3 mx-auto justify-center">
+                <div>
+                  <h5 className="text-center">Manage Content</h5>
+                  <form action="">
+                    
+                  </form>
+                </div>
+              </div>
+            </Tab>
+          ) : undefined}
+          <Tab title="Profile">
+            <div className="my-5 flex gap-3 mx-auto justify-center">
+              <div>
+                <h5 className="text-center">Your Member Info</h5>
+                <User
+                  name={`${props.user?.fname} ${props.user?.lname}`}
+                  about="current user"
+                  description={
+                    props.user?.role === "admin"
+                      ? "MCBIOS Admin"
+                      : "MCBIOS Member"
+                  }
+                  avatarProps={{
+                    src: "https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75",
+                  }}
+                />
+              </div>
+            </div>
+          </Tab>
+        </Tabs>
       </div>
     </>
   );
