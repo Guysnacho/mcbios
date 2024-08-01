@@ -13,19 +13,19 @@ export type Database = {
         Row: {
           fname: string | null;
           lname: string | null;
-          role: string | null;
+          role: Database["public"]["Enums"]["user_role"];
           user_id: string;
         };
         Insert: {
           fname?: string | null;
           lname?: string | null;
-          role?: string | null;
+          role?: Database["public"]["Enums"]["user_role"];
           user_id: string;
         };
         Update: {
           fname?: string | null;
           lname?: string | null;
-          role?: string | null;
+          role?: Database["public"]["Enums"]["user_role"];
           user_id?: string;
         };
         Relationships: [
@@ -46,7 +46,7 @@ export type Database = {
       [_ in never]: never;
     };
     Enums: {
-      [_ in never]: never;
+      user_role: "professional" | "student" | "admin";
     };
     CompositeTypes: {
       [_ in never]: never;

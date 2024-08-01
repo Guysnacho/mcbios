@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate": "npx supabase gen types --lang=typescript --project-id kwuzgazdedqjxlvymyke --schema public > ./utils/supabase/types.ts"
+    "generate": "npx supabase gen types --lang=typescript --project-id kwuzgazdedqjxlvymyke --schema public > ./lib/utils/supabase/types.ts"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
@@ -22,7 +22,9 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sharp": "^0.33.0",
-    "zod": "^3.23.8"
+    "swr": "^2.2.5",
+    "zod": "^3.23.8",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -3,10 +3,15 @@ import { Button } from "@nextui-org/button";
 import { Card, CardFooter, CardHeader } from "@nextui-org/card";
 import { Divider } from "@nextui-org/divider";
 import { Image } from "@nextui-org/image";
+import Head from "next/head";
 
 export default function Home() {
   return (
     <div className="my-10 gap-10">
+      <Head>
+        <title>MCBIOS</title>
+        <meta content="MCBIOS | MidSouth Computational Biology and Bioinformatics Society" />
+      </Head>
       <section className="flex flex-col w-5/6 lg:w-1/2 space-y-8 px-10 items-center mx-auto">
         <Image
           className="mx-auto object-cover"
