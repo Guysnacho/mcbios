@@ -21,6 +21,7 @@ import { User } from "@supabase/supabase-js";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AuthModal } from "./AuthModal";
+import { useUserStore } from "@/providers/UserStateProvider";
 
 export const Nav = () => {
   const supabase = createClient();
@@ -28,20 +29,20 @@ export const Nav = () => {
   const path = usePathname();
   const keys = Object.keys(PathMap);
   const values = Object.values(PathMap);
+  const store = useUserStore((state) => state);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthOpen, setAuthOpen] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
 
   const logout = () => {
     supabase.auth.signOut({ scope: "local" }).finally(() => {
-      setUser(null);
+      store.setId();
       router.push("/");
     });
   };
 
   const handleOpen = () => {
-    if (user) {
+    if (store.id) {
       router.push("/dashboard");
     } else {
       setAuthOpen(true);
@@ -52,7 +53,7 @@ export const Nav = () => {
     const fetchUser = async () => {
       const { data } = await supabase.auth.getUser();
       if (data) {
-        setUser(data.user);
+        store.setId(data.user?.id);
       } else {
         console.log("No user found");
       }
@@ -177,7 +178,7 @@ export const Nav = () => {
               </NavbarItem>
             )
           )}
-        {user ? (
+        {store.id ? (
           <NavbarItem isActive>
             <Dropdown>
               <DropdownTrigger>
