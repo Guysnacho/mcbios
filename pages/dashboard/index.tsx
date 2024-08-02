@@ -1,5 +1,3 @@
-// get serverside props here with videos and whatnot. Profile info updates and video content
-
 import VideoUploader from "@/components/dashboard/VideoUploader";
 import { ConfYears } from "@/lib/utils/constants";
 import { createClient } from "@/lib/utils/supabase/server-props";
@@ -55,9 +53,11 @@ let tabs = [
 const videos = [1, 2, 3, 4, 5];
 
 export default function Dashboard(props: User) {
-  const [currYear, setCurrYear] = useState("");
+  const [currYear, setCurrYear] = useState<string>("");
 
   const handleSelectionChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    console.debug("event ");
+    console.debug(e);
     setCurrYear(e.target.value);
     console.debug("Current year " + currYear);
   };
@@ -88,16 +88,12 @@ export default function Dashboard(props: User) {
                 label="Select a year"
                 // label={currYear !== "" ? currYear : "Select a year"}
                 className="max-w-xs"
-                selectionMode="single"
                 variant="bordered"
                 selectedKeys={[currYear]}
-                onChange={(e) => {
-                  console.log(e);
-                  handleSelectionChange(e);
-                }}
+                onChange={handleSelectionChange}
               >
                 {ConfYears.map((conf) => (
-                  <SelectItem key={`${conf.year}`}>{conf.year}</SelectItem>
+                  <SelectItem key={`${conf.year}`}>{`${conf.year}`}</SelectItem>
                 ))}
               </Select>
             </div>
