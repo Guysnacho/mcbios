@@ -38,6 +38,27 @@ export type Database = {
           }
         ];
       };
+      videos: {
+        Row: {
+          date: string;
+          id: number;
+          path: string;
+          title: string;
+        };
+        Insert: {
+          date: string;
+          id?: number;
+          path: string;
+          title: string;
+        };
+        Update: {
+          date?: string;
+          id?: number;
+          path?: string;
+          title?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;

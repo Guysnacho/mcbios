@@ -72,14 +72,14 @@ export default function Dashboard(props: User) {
         <div className="h-20 flex justify-center align-middle">
           <h3 className="text-center my-auto">Welcome {props.user?.fname}</h3>
         </div>
-        <Divider className="my-5" />
         <Tabs
           aria-label="Dashboard tabs"
           color="secondary"
           items={tabs}
-          className="mx-auto"
+          className="flex justify-center"
         >
           <Tab title="Conference Content">
+            <Divider className="my-5" />
             <div className="my-5">
               <h5 className="text-center">
                 You can watch past conference recordings below
@@ -87,7 +87,7 @@ export default function Dashboard(props: User) {
               <Select
                 label="Select a year"
                 // label={currYear !== "" ? currYear : "Select a year"}
-                className="max-w-xs"
+                className="max-w-xs flex"
                 variant="bordered"
                 selectedKeys={[currYear]}
                 onChange={handleSelectionChange}
@@ -117,12 +117,14 @@ export default function Dashboard(props: User) {
           </Tab>
           {props.user?.role === "admin" ? (
             <Tab title="Admin">
+              <Divider className="my-5" />
               <div className="my-5 flex gap-3 mx-auto justify-center">
                 <VideoUploader />
               </div>
             </Tab>
           ) : undefined}
           <Tab title="Profile">
+            <Divider className="my-5" />
             <div className="my-5 flex gap-3 mx-auto justify-center">
               <div>
                 <h5 className="text-center">Your Member Info</h5>
