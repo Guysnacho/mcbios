@@ -65,8 +65,8 @@ export default function Dashboard(props: User) {
   return (
     <>
       <Head>
-        <title>MCBIOS Videos</title>
-        <meta content="MCBIOS Videos | MidSouth Computational Biology and Bioinformatics Society" />
+        <title>Dashboard</title>
+        <meta content="Dashboard | MidSouth Computational Biology and Bioinformatics Society" />
       </Head>
       <div className="container mx-auto justify-center">
         <div className="h-20 flex justify-center align-middle">

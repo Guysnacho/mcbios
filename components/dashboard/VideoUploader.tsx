@@ -9,7 +9,7 @@ export const VideoUploader = () => {
   const [dateError, setDateError] = useState("");
   const [title, setTitle] = useState("");
   const [titleError, setTitleError] = useState("");
-  const [video, setVideo] = useState("");
+  const [video, setVideo] = useState<File | null>();
   const [videoError, setVideoError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -20,7 +20,7 @@ export const VideoUploader = () => {
   useEffect(() => {
     console.debug("Video Selected");
     console.debug(video);
-  }, video);
+  }, [video]);
 
   useEffect(() => {
     console.debug("Date Updated");
@@ -58,7 +58,9 @@ export const VideoUploader = () => {
     // Upload video
     const { data: uploadData, error: uploadErr } = await client.storage
       .from("content")
-      .uploadToSignedUrl(urlData?.path, urlData?.token, video);
+      .uploadToSignedUrl(urlData?.path, urlData?.token, video!, {
+        duplex: "half",
+      });
 
     // Insert entry into video table
     // TODO make a trigger and function for this, needs to be scopped down to content table though
@@ -110,6 +112,7 @@ export const VideoUploader = () => {
             type="text"
             name="Title"
             id="title"
+            isClearable
             onChange={(e) => setTitle(e.currentTarget.value)}
             placeholder="Speaker Series II"
             disabled={loading}
@@ -124,10 +127,7 @@ export const VideoUploader = () => {
             name="Content"
             id="content"
             onChange={(e) => {
-              console.log(e);
-              new Blob()
-              const rs = new ReadableStream()
-              setVideo(e.target.value)
+              setVideo(e.target.files![0]);
             }}
             disabled={loading}
             errorMessage={videoError}
