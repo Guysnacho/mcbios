@@ -93,7 +93,7 @@ export default function Dashboard(props: {
               <h5 className="text-center">
                 You can watch past conference recordings below
               </h5>
-              <Select
+              {/* <Select
                 label="Select a year"
                 // label={currYear !== "" ? currYear : "Select a year"}
                 className="max-w-xs flex"
@@ -104,12 +104,12 @@ export default function Dashboard(props: {
                 {ConfYears.map((conf) => (
                   <SelectItem key={`${conf.year}`}>{`${conf.year}`}</SelectItem>
                 ))}
-              </Select>
+              </Select> */}
             </div>
-            <div className="container flex flex-row flex-wrap gap-5 mx-auto">
+            <div className="container flex flex-row flex-wrap gap-5 mx-auto justify-center">
               {props.videos
                 ? props.videos.map((vid) => (
-                    <Card key={vid.id} className="max-w-xs">
+                    <Card key={vid.id} className="max-w-md">
                       <CardHeader className="block text-center">
                         <h6>{vid.title ?? undefined}</h6>
                         <p>
@@ -119,6 +119,7 @@ export default function Dashboard(props: {
                       </CardHeader>
                       <CardBody>
                         <iframe
+                          className="mx-auto"
                           src={vid.path}
                           width={300}
                           allow="autoplay"
