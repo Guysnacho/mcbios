@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/utils/supabase/component";
+import { uploadFile } from "@/lib/utils/supabase/upload";
 import { getLocalTimeZone, now, parseDate } from "@internationalized/date";
 import { Button, DatePicker, DateValue, Input } from "@nextui-org/react";
 import { useDateFormatter } from "@react-aria/i18n";
@@ -56,11 +57,17 @@ export const VideoUploader = () => {
       return;
     }
     // Upload video
-    const { data: uploadData, error: uploadErr } = await client.storage
-      .from("content")
-      .uploadToSignedUrl(urlData?.path, urlData?.token, video!, {
-        duplex: "half",
-      });
+    // const { data: uploadData, error: uploadErr } = await client.storage
+    //   .from("content")
+    //   .uploadToSignedUrl(urlData?.path, urlData?.token, video!, {
+    //     duplex: "half",
+    //   });
+    const { data: uploadData, error: uploadErr } = await uploadFile(
+      "content",
+      urlData?.path,
+      video!,
+      client
+    );
 
     // Insert entry into video table
     // TODO make a trigger and function for this, needs to be scopped down to content table though
@@ -74,7 +81,7 @@ export const VideoUploader = () => {
     const { error } = await client.from("videos").insert({
       title,
       date: date.toDate(getLocalTimeZone()).toDateString(),
-      path: uploadData?.fullPath,
+      path: uploadData.fullPath,
     });
 
     if (error) {
