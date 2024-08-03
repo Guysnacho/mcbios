@@ -1,7 +1,7 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { DetailedError } from "tus-js-client";
-// const tus = require("tus-js-client");
-import tus from "tus-js-client";
+const tus = require("tus-js-client");
+// import tus from "tus-js-client";
 
 export async function uploadFile(
   bucketName: string,
@@ -23,20 +23,9 @@ export async function uploadFile(
         error: Error | DetailedError;
       }
   >(async (resolve, reject) => {
-    var uppy = new Uppy
     var upload = new tus.Upload(file, {
       endpoint: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/upload/resumable`,
       retryDelays: [0, 3000, 5000, 10000, 20000],
-      httpStack: {
-        createRequest(method, url) {
-          return fetch(url, {
-            method: "PATCH",
-          });
-        },
-        getName() {
-          return "thing";
-        },
-      },
       overridePatchMethod: true,
       headers: {
         // authorization: `Bearer ${session.access_token}`,
