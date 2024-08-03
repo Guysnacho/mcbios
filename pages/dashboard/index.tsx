@@ -21,9 +21,6 @@ import { ChangeEvent, useState } from "react";
 type User =
   | {
       user: Database["public"]["Tables"]["member"]["Row"];
-    }
-  | {
-      user: undefined;
     };
 
 export const getServerSideProps = (async (
@@ -44,7 +41,7 @@ export const getServerSideProps = (async (
     return { props: { user: data } };
   }
   return { props: { user: undefined } };
-}) satisfies GetServerSideProps<User>;
+}) satisfies GetServerSideProps<{user: User, videos: }>;
 
 let tabs = [
   {
@@ -79,7 +76,7 @@ export default function Dashboard(props: {
       </Head>
       <div className="container mx-auto justify-center">
         <div className="h-20 flex justify-center align-middle">
-          <h3 className="text-center my-auto">Welcome {props.user?.fname}</h3>
+          <h3 className="text-center my-auto">Welcome</h3>
         </div>
         <Tabs
           aria-label="Dashboard tabs"

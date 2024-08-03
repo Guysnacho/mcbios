@@ -1,19 +1,7 @@
 import { createClient } from "@/lib/utils/supabase/component";
 import { Database } from "@/lib/utils/supabase/types";
-import { uploadFile } from "@/lib/utils/supabase/upload";
-import { getLocalTimeZone, now, parseDate } from "@internationalized/date";
-import {
-  Button,
-  DatePicker,
-  DateValue,
-  Input,
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
-} from "@nextui-org/react";
+import { getLocalTimeZone, now } from "@internationalized/date";
+import { Button, DatePicker, DateValue, Input } from "@nextui-org/react";
 import { useDateFormatter } from "@react-aria/i18n";
 import { useEffect, useState } from "react";
 
