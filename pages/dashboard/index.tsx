@@ -7,13 +7,13 @@ import {
   CardBody,
   CardHeader,
   Divider,
-  Image,
   Select,
   SelectItem,
   Tab,
   Tabs,
   User,
 } from "@nextui-org/react";
+import { useDateFormatter } from "@react-aria/i18n";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Head from "next/head";
 import { ChangeEvent, useState } from "react";
@@ -32,8 +32,15 @@ export const getServerSideProps = (async (
   // Fetch data from external API
   const client = createClient(context);
   const { data } = await client.from("member").select("*").single();
+  const { data: videos } = await client
+    .from("videos")
+    .select("*")
+    .order("date", { ascending: false });
 
   if (data) {
+    if (videos) {
+      return { props: { user: data, videos } };
+    }
     return { props: { user: data } };
   }
   return { props: { user: undefined } };
@@ -50,9 +57,10 @@ let tabs = [
   },
 ];
 
-const videos = [1, 2, 3, 4, 5];
-
-export default function Dashboard(props: User) {
+export default function Dashboard(props: {
+  user: User;
+  videos: Database["public"]["Tables"]["videos"]["Row"][];
+}) {
   const [currYear, setCurrYear] = useState<string>("");
 
   const handleSelectionChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -61,6 +69,7 @@ export default function Dashboard(props: User) {
     setCurrYear(e.target.value);
     console.debug("Current year " + currYear);
   };
+  let formatter = useDateFormatter({ dateStyle: "full" });
 
   return (
     <>
@@ -98,21 +107,28 @@ export default function Dashboard(props: User) {
               </Select>
             </div>
             <div className="container flex flex-row flex-wrap gap-5 mx-auto">
-              {videos.map((vid) => (
-                <Card key={vid} className="max-w-xs">
-                  <CardHeader>
-                    {`${currYear} ` || undefined} Video Title
-                  </CardHeader>
-                  <CardBody>
-                    <p>Video Body</p>
-                    <Image
-                      width={300}
-                      alt="NextUI hero Image"
-                      src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
-                    />
-                  </CardBody>
-                </Card>
-              ))}
+              {props.videos
+                ? props.videos.map((vid) => (
+                    <Card key={vid.id} className="max-w-xs">
+                      <CardHeader className="block text-center">
+                        <h6>{vid.title ?? undefined}</h6>
+                        <p>
+                          {`${formatter.format(new Date(vid.date))} ` ||
+                            undefined}
+                        </p>
+                      </CardHeader>
+                      <CardBody>
+                        <iframe
+                          src={vid.path}
+                          width={300}
+                          allow="autoplay"
+                          loading="lazy"
+                          allowFullScreen
+                        ></iframe>
+                      </CardBody>
+                    </Card>
+                  ))
+                : undefined}
             </div>
           </Tab>
           {props.user?.role === "admin" ? (
