@@ -153,6 +153,12 @@ export default function Dashboard(props: {
                 />
               </div>
             </div>
+            <Divider />
+            <h6>Welcome to MCBIOS!</h6>
+            <p>
+              If you haven't already please pay your dues to finish MCBIOS
+              onboarding
+            </p>
           </Tab>
         </Tabs>
       </div>
