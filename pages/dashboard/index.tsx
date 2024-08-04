@@ -10,7 +10,7 @@ import {
   Tabs,
   User,
 } from "@nextui-org/react";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useDateFormatter } from "@react-aria/i18n";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Head from "next/head";
@@ -154,11 +154,33 @@ export default function Dashboard(props: {
               </div>
             </div>
             <Divider />
-            <h6>Welcome to MCBIOS!</h6>
-            <p>
-              If you haven't already please pay your dues to finish MCBIOS
-              onboarding
-            </p>
+            <div className="container text-center space-y-4">
+              {!props.user.dues_paid_at ? (
+                <>
+                  <h4>Welcome to MCBIOS!</h4>
+                  <p>
+                    If you haven&apos;t already, please pay your dues to finish
+                    MCBIOS onboarding and to gain access to past conference
+                    recordings, upcomming elections, and more coming soon!
+                  </p>
+                  <PayPalButtons
+                    style={{
+                      shape: "pill",
+                      height: 55,
+                    }}
+                  />
+                </>
+              ) : (
+                <>
+                  <h4>Welcome to MCBIOS!</h4>
+                  <p>
+                    If you haven&apos;t already, please pay your dues to finish
+                    MCBIOS onboarding and to gain access to past conference
+                    recordings, upcomming elections, and more coming soon!
+                  </p>
+                </>
+              )}
+            </div>
           </Tab>
         </Tabs>
       </div>
@@ -170,8 +192,8 @@ Dashboard.getLayout = function getLayout(page) {
   return (
     <PayPalScriptProvider
       options={{
-        clientId: process.env.NEXT_PRIVATE_PAYPAL_ID!,
-        environment: "sandbox",
+        clientId: process.env.NEXT_PUBLIC_PAYPAL_ID!,
+        environment: "production",
         debug: true,
         currency: "USD",
       }}
