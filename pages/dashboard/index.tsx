@@ -1,5 +1,4 @@
 import VideoUploader from "@/components/dashboard/VideoUploader";
-import { ConfYears } from "@/lib/utils/constants";
 import { createClient } from "@/lib/utils/supabase/server-props";
 import { Database } from "@/lib/utils/supabase/types";
 import {
@@ -7,21 +6,14 @@ import {
   CardBody,
   CardHeader,
   Divider,
-  Select,
-  SelectItem,
   Tab,
   Tabs,
   User,
 } from "@nextui-org/react";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useDateFormatter } from "@react-aria/i18n";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Head from "next/head";
-import { ChangeEvent, useState } from "react";
-
-type User =
-  | {
-      user: Database["public"]["Tables"]["member"]["Row"];
-    };
 
 export const getServerSideProps = (async (
   context: GetServerSidePropsContext
@@ -38,10 +30,13 @@ export const getServerSideProps = (async (
     if (videos) {
       return { props: { user: data, videos } };
     }
-    return { props: { user: data } };
+    return { props: { user: data, videos: [] } };
   }
-  return { props: { user: undefined } };
-}) satisfies GetServerSideProps<{user: User, videos: }>;
+  return { props: { user: undefined, videos: [] } };
+}) satisfies GetServerSideProps<{
+  user: Database["public"]["Tables"]["member"]["Row"] | undefined;
+  videos: Database["public"]["Tables"]["videos"]["Row"][];
+}>;
 
 let tabs = [
   {
@@ -55,17 +50,17 @@ let tabs = [
 ];
 
 export default function Dashboard(props: {
-  user: User;
+  user: Database["public"]["Tables"]["member"]["Row"];
   videos: Database["public"]["Tables"]["videos"]["Row"][];
 }) {
-  const [currYear, setCurrYear] = useState<string>("");
+  // const [currYear, setCurrYear] = useState<string>("");
 
-  const handleSelectionChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.debug("event ");
-    console.debug(e);
-    setCurrYear(e.target.value);
-    console.debug("Current year " + currYear);
-  };
+  // const handleSelectionChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  //   console.debug("event ");
+  //   console.debug(e);
+  //   setCurrYear(e.target.value);
+  //   console.debug("Current year " + currYear);
+  // };
   let formatter = useDateFormatter({ dateStyle: "full" });
 
   return (
@@ -84,13 +79,14 @@ export default function Dashboard(props: {
           items={tabs}
           className="flex justify-center"
         >
-          <Tab title="Conference Content">
-            <Divider className="my-5" />
-            <div className="my-5">
-              <h5 className="text-center">
-                You can watch past conference recordings below
-              </h5>
-              {/* <Select
+          {props.user.dues_paid_at ? (
+            <Tab title="Conference Content">
+              <Divider className="my-5" />
+              <div className="my-5">
+                <h5 className="text-center">
+                  You can watch past conference recordings below
+                </h5>
+                {/* <Select
                 label="Select a year"
                 // label={currYear !== "" ? currYear : "Select a year"}
                 className="max-w-xs flex"
@@ -102,33 +98,34 @@ export default function Dashboard(props: {
                   <SelectItem key={`${conf.year}`}>{`${conf.year}`}</SelectItem>
                 ))}
               </Select> */}
-            </div>
-            <div className="container flex flex-row flex-wrap gap-5 mx-auto justify-center">
-              {props.videos
-                ? props.videos.map((vid) => (
-                    <Card key={vid.id} className="max-w-md">
-                      <CardHeader className="block text-center">
-                        <h6>{vid.title ?? undefined}</h6>
-                        <p>
-                          {`${formatter.format(new Date(vid.date))} ` ||
-                            undefined}
-                        </p>
-                      </CardHeader>
-                      <CardBody>
-                        <iframe
-                          className="mx-auto"
-                          src={vid.path}
-                          width={300}
-                          allow="autoplay"
-                          loading="lazy"
-                          allowFullScreen
-                        ></iframe>
-                      </CardBody>
-                    </Card>
-                  ))
-                : undefined}
-            </div>
-          </Tab>
+              </div>
+              <div className="container flex flex-row flex-wrap gap-5 mx-auto justify-center">
+                {props.videos
+                  ? props.videos.map((vid) => (
+                      <Card key={vid.id} className="max-w-md">
+                        <CardHeader className="block text-center">
+                          <h6>{vid.title ?? undefined}</h6>
+                          <p>
+                            {`${formatter.format(new Date(vid.date))} ` ||
+                              undefined}
+                          </p>
+                        </CardHeader>
+                        <CardBody>
+                          <iframe
+                            className="mx-auto"
+                            src={vid.path}
+                            width={300}
+                            allow="autoplay"
+                            loading="lazy"
+                            allowFullScreen
+                          ></iframe>
+                        </CardBody>
+                      </Card>
+                    ))
+                  : undefined}
+              </div>
+            </Tab>
+          ) : undefined}
           {props.user?.role === "admin" ? (
             <Tab title="Admin">
               <Divider className="my-5" />
@@ -162,3 +159,18 @@ export default function Dashboard(props: {
     </>
   );
 }
+
+Dashboard.getLayout = function getLayout(page) {
+  return (
+    <PayPalScriptProvider
+      options={{
+        clientId: process.env.NEXT_PRIVATE_PAYPAL_ID!,
+        environment: "sandbox",
+        debug: true,
+        currency: "USD",
+      }}
+    >
+      {page}
+    </PayPalScriptProvider>
+  );
+};
