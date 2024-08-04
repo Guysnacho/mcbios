@@ -14,7 +14,6 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useDateFormatter } from "@react-aria/i18n";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Head from "next/head";
-import Script from "next/script";
 
 export const getServerSideProps = (async (
   context: GetServerSidePropsContext
@@ -164,25 +163,12 @@ export default function Dashboard(props: {
                     MCBIOS onboarding and to gain access to past conference
                     recordings, upcomming elections, and more coming soon!
                   </p>
-                  <div className="flex justify-center">
-                    <Script
-                      src="https://www.paypal.com/sdk/js?client-id=BAAaWKKJH9d9_1A9lYbo-zc52pLBBTCR9boQNSGOQk7OR76lLHGsUvjZDTAm4ONcsLFqflVbaKH-ylGe-0&components=hosted-buttons&enable-funding=venmo&currency=USD"
-                      onReady={() => {
-                        paypal
-                          .HostedButtons({
-                            hostedButtonId: "VEMTS2QGYVFQ8",
-                          })
-                          .render("#paypal-container-VEMTS2QGYVFQ8");
-                      }}
-                    ></Script>
-                    <div id="paypal-container-VEMTS2QGYVFQ8"></div>
-                    <PayPalButtons
-                      style={{
-                        shape: "pill",
-                        height: 55,
-                      }}
-                    />
-                  </div>
+                  <PayPalButtons
+                    style={{
+                      shape: "pill",
+                      height: 55,
+                    }}
+                  />
                 </>
               ) : (
                 <>
