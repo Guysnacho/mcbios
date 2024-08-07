@@ -70,7 +70,7 @@ export type Database = {
       [_ in never]: never;
     };
     Enums: {
-      user_role: "professional" | "student" | "admin";
+      user_role: "professional" | "student" | "admin" | "postdoctorial";
     };
     CompositeTypes: {
       [_ in never]: never;
