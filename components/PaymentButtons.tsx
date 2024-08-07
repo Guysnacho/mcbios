@@ -11,7 +11,7 @@ import {
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const tiers = [
   { key: "student", label: "Student - 10.00 USD" },
@@ -45,6 +45,11 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    // @ts-expect-error Don't feel like typing this
+    store.setRole(value.anchorKey);
+  }, [value]);
 
   return (
     <div className="container my-5 space-y-5">
@@ -81,11 +86,14 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
                 try {
                   const response = await fetch("/api/orders", {
                     method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
                     // use the "body" param to optionally pass additional order information
                     // like product ids and quantities
-                    headers: {
-                      role: value.currentKey as string,
-                    },
+                    body: JSON.stringify({
+                      role: store.selectedRole as string,
+                    }),
                   });
                   const orderData = await response.json();
                   if (orderData.id) {
@@ -107,6 +115,9 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
                 try {
                   const response = await fetch(`/api/orders/${data.orderID}`, {
                     method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
                   });
 
                   const orderData = await response.json();
