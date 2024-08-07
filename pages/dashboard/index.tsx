@@ -2,6 +2,7 @@ import VideoUploader from "@/components/dashboard/VideoUploader";
 import PaymentButtons from "@/components/PaymentButtons";
 import { getPaypalId } from "@/lib/utils/paypal";
 import { createClient } from "@/lib/utils/supabase/server-props";
+import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
 import { Database } from "@/lib/utils/supabase/types";
 import {
   Card,
@@ -64,6 +65,7 @@ export default function Dashboard(props: {
   //   console.debug("Current year " + currYear);
   // };
   let formatter = useDateFormatter({ dateStyle: "full" });
+  const client = createCompoentClient();
 
   return (
     <>
@@ -165,7 +167,7 @@ export default function Dashboard(props: {
                     MCBIOS onboarding and to gain access to past conference
                     recordings, upcomming elections, and more coming soon!
                   </p>
-                  <PaymentButtons />
+                  <PaymentButtons client={client} />
                 </>
               ) : (
                 <>
