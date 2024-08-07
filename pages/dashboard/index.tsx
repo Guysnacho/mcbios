@@ -1,4 +1,5 @@
 import VideoUploader from "@/components/dashboard/VideoUploader";
+import PaymentButtons from "@/components/PaymentButtons";
 import { createClient } from "@/lib/utils/supabase/server-props";
 import { Database } from "@/lib/utils/supabase/types";
 import {
@@ -10,7 +11,7 @@ import {
   Tabs,
   User,
 } from "@nextui-org/react";
-import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useDateFormatter } from "@react-aria/i18n";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Head from "next/head";
@@ -163,12 +164,7 @@ export default function Dashboard(props: {
                     MCBIOS onboarding and to gain access to past conference
                     recordings, upcomming elections, and more coming soon!
                   </p>
-                  <PayPalButtons
-                    style={{
-                      shape: "pill",
-                      height: 55,
-                    }}
-                  />
+                  <PaymentButtons />
                 </>
               ) : (
                 <>
@@ -192,8 +188,13 @@ Dashboard.getLayout = function getLayout(page) {
   return (
     <PayPalScriptProvider
       options={{
-        clientId: process.env.NEXT_PUBLIC_PAYPAL_ID!,
-        environment: "production",
+        clientId:
+          process.env.NODE_ENV === "development"
+            ? process.env.NEXT_PUBLIC_SANDBOX_PAYPAL_ID!
+            : process.env.NEXT_PUBLIC_PAYPAL_ID!,
+        environment: "sandbox",
+        "enable-funding": "venmo,card",
+        "disable-funding": "paylater",
         debug: true,
         currency: "USD",
       }}
