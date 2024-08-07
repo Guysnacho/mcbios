@@ -1,16 +1,22 @@
-import { Card, CardBody, Select, SelectItem } from "@nextui-org/react";
+import {
+  Card,
+  CardBody,
+  Select,
+  SelectItem,
+  SharedSelection,
+} from "@nextui-org/react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { useState } from "react";
 
 export const tiers = [
-  { key: "student", label: "Student" },
-  { key: "professional", label: "Professional" },
-  { key: "postdoc", label: "Postdoctorial" },
+  { key: "student", label: "Student", amount: 10 },
+  { key: "postdoc", label: "Postdoctorial", amount: 20 },
+  { key: "professional", label: "Professional", amount: 50 },
 ];
 
 const PaymentButtons = () => {
   const [message, setMessage] = useState("");
-  const [value, setValue] = useState(new Set([]));
+  const [value, setValue] = useState<SharedSelection>(new Set([]));
 
   return (
     <div className="container my-5 space-y-5">
@@ -22,7 +28,9 @@ const PaymentButtons = () => {
         onSelectionChange={setValue}
       >
         {tiers.map((tier) => (
-          <SelectItem key={tier.key}>{tier.label}</SelectItem>
+          <SelectItem key={tier.key}>
+            {tier.label} - {tier.amount}.00 USD
+          </SelectItem>
         ))}
       </Select>
       {message ? (
@@ -51,7 +59,7 @@ const PaymentButtons = () => {
                 body: JSON.stringify({
                   cart: [
                     {
-                      id: "YOUR_PRODUCT_ID",
+                      id: value.currentKey,
                       quantity: 1,
                     },
                   ],
