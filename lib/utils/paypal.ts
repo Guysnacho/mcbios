@@ -33,3 +33,9 @@ export const getPaypalSecret = () => {
     return process.env.NEXT_PRIVATE_SANDBOX_SECRET!;
   return process.env.NEXT_PRIVATE_SECRET!;
 };
+
+export const getBaseUrl = () => {
+  return process.env.NODE_ENV === "development"
+    ? "https://api-m.sandbox.paypal.com"
+    : "https://api-m.paypal.com";
+};

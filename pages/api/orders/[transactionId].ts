@@ -1,4 +1,4 @@
-import { generateAccessToken } from "@/lib/utils/paypal";
+import { generateAccessToken, getBaseUrl } from "@/lib/utils/paypal";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type ResponseData = {
@@ -10,6 +10,7 @@ export default async function handler(
   res: NextApiResponse<ResponseData>
 ) {
   const accessToken = await generateAccessToken();
+  const base = getBaseUrl();
   const url = `${base}/v2/checkout/orders/${req.query.transactionId}`;
 
   const response = await fetch(url, {
