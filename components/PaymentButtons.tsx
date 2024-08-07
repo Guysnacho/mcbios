@@ -164,7 +164,7 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
                 setMessage(
                   "Something went wrong while submitting your payment. Please try again later."
                 );
-                console.error(err);
+                // console.error(err);
               }}
             />
           </div>
