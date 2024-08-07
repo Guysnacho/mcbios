@@ -11,21 +11,24 @@ export type Database = {
     Tables: {
       member: {
         Row: {
+          dues_paid_at: string | null;
           fname: string | null;
           lname: string | null;
-          role: string | null;
+          role: Database["public"]["Enums"]["user_role"];
           user_id: string;
         };
         Insert: {
+          dues_paid_at?: string | null;
           fname?: string | null;
           lname?: string | null;
-          role?: string | null;
+          role?: Database["public"]["Enums"]["user_role"];
           user_id: string;
         };
         Update: {
+          dues_paid_at?: string | null;
           fname?: string | null;
           lname?: string | null;
-          role?: string | null;
+          role?: Database["public"]["Enums"]["user_role"];
           user_id?: string;
         };
         Relationships: [
@@ -38,6 +41,27 @@ export type Database = {
           }
         ];
       };
+      videos: {
+        Row: {
+          date: string;
+          id: number;
+          path: string;
+          title: string;
+        };
+        Insert: {
+          date: string;
+          id?: number;
+          path: string;
+          title: string;
+        };
+        Update: {
+          date?: string;
+          id?: number;
+          path?: string;
+          title?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;
@@ -46,7 +70,7 @@ export type Database = {
       [_ in never]: never;
     };
     Enums: {
-      [_ in never]: never;
+      user_role: "professional" | "student" | "admin" | "postdoctorial";
     };
     CompositeTypes: {
       [_ in never]: never;

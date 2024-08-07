@@ -1,5 +1,3 @@
-"use client";
-
 import { ConfYears, PathMap } from "@/lib/utils/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -37,13 +35,13 @@ export const Footer = () => {
                 <p className="text-md underline underline-offset-2 leading-6 text-white hover:text-gray-300 mb-3">
                   MEMBERSHIP
                 </p>
-                <a
+                <Link
                   href="/membership"
                   target="_self"
                   className="text-sm leading-6 text-white hover:text-gray-300"
                 >
                   Registration
-                </a>
+                </Link>
               </div>
             ) : (
               <div key={route} className="pb-6 flex flex-col">

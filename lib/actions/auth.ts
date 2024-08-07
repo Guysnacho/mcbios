@@ -1,7 +1,5 @@
-"use server";
-
 import { z } from "zod";
-import { createClient } from "../utils/supabase/server";
+import { createClient } from "../utils/supabase/component";
 
 const AuthSchema = z.object({
   email: z.string().email().describe("Email // Invalid email provided"),

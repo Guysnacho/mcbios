@@ -1,4 +1,5 @@
-import { createClient } from "@/lib/utils/supabase/client";
+import { createClient } from "@/lib/utils/supabase/component";
+import { useUserStore } from "@/providers/UserStateProvider";
 import {
   Button,
   Modal,
@@ -29,13 +30,14 @@ export const AuthModal = ({
   const [error, setError] = useState("");
   const { onClose } = useDisclosure();
   const client = createClient();
+  const store = useUserStore((store) => store);
 
   const handleLogin = async (isSignUp: boolean) => {
     setLoading(true);
     setError("");
     if (email && password) {
       // const { data, error } = await supabase.auth.signUp({ email, password, options: {} });
-      const { error } = await client.auth[
+      const { data, error } = await client.auth[
         isSignUp ? "signUp" : "signInWithPassword"
       ]({
         email,
@@ -46,7 +48,9 @@ export const AuthModal = ({
       });
       if (error) {
         setError(error.message);
+        store.setId();
       } else {
+        store.setId(data.user?.id);
         onClose();
         router.push("/dashboard");
       }
@@ -140,7 +144,7 @@ export const AuthModal = ({
                   type="submit"
                   onPress={() =>
                     handleLogin(true).finally(() =>
-                      !error ? onClose() : undefined
+                      error === "" ? onClose() : undefined
                     )
                   }
                   color="primary"
@@ -153,7 +157,7 @@ export const AuthModal = ({
                   type="submit"
                   onPress={() =>
                     handleLogin(false).finally(() =>
-                      error !== "" ? onClose() : undefined
+                      error === "" ? onClose() : undefined
                     )
                   }
                   color="primary"
