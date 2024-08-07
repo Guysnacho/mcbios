@@ -47,6 +47,7 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
   };
 
   useEffect(() => {
+    setMessage("");
     // @ts-expect-error Don't feel like typing this
     if (value.size !== 1) {
       // @ts-expect-error Don't feel like typing this
