@@ -100,6 +100,7 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
                 } catch (error) {
                   console.error(error);
                   setMessage(`Could not initiate PayPal Checkout...${error}`);
+                  throw error;
                 }
               }}
               onApprove={async (data, actions) => {
