@@ -1,5 +1,6 @@
 import VideoUploader from "@/components/dashboard/VideoUploader";
 import PaymentButtons from "@/components/PaymentButtons";
+import { getPaypalId } from "@/lib/utils/paypal";
 import { createClient } from "@/lib/utils/supabase/server-props";
 import { Database } from "@/lib/utils/supabase/types";
 import {
@@ -188,14 +189,12 @@ Dashboard.getLayout = function getLayout(page) {
   return (
     <PayPalScriptProvider
       options={{
-        clientId:
-          process.env.NODE_ENV === "development"
-            ? process.env.NEXT_PUBLIC_SANDBOX_PAYPAL_ID!
-            : process.env.NEXT_PUBLIC_PAYPAL_ID!,
-        environment: "sandbox",
+        clientId: getPaypalId(),
+        environment:
+          process.env.NODE_ENV === "development" ? "sandbox" : "production",
         "enable-funding": "venmo,card",
         "disable-funding": "paylater",
-        debug: true,
+        debug: process.env.NODE_ENV === "development" ? true : false,
         currency: "USD",
       }}
     >
