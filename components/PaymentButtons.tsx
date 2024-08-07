@@ -112,15 +112,12 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
               }}
               onApprove={async (data, actions) => {
                 try {
-                  const response = await fetch(
-                    `/api/orders/${data.orderID}/capture`,
-                    {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                    }
-                  );
+                  const response = await fetch(`/api/orders/${data.orderID}`, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  });
 
                   const orderData = await response.json();
                   // Three cases to handle:
