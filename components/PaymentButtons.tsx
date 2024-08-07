@@ -47,8 +47,10 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
   };
 
   useEffect(() => {
-    // @ts-expect-error Don't feel like typing this
-    store.setRole(value.anchorKey);
+    if (value) {
+      // @ts-expect-error Don't feel like typing this
+      store.setRole(value.anchorKey);
+    }
   }, [value]);
 
   return (
@@ -83,6 +85,8 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
                 height: 55,
               }}
               createOrder={async () => {
+                console.log("store.selectedRole");
+                console.log(store.selectedRole);
                 try {
                   const response = await fetch("/api/orders", {
                     method: "POST",

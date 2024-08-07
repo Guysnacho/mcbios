@@ -7,9 +7,7 @@ export interface UserState {
 
 export interface UserActions {
   setId: (id?: string) => void;
-  setRole: (
-    role: "student" | "postdoctorial" | "professional" | undefined
-  ) => void;
+  setRole: (role: "student" | "postdoctorial" | "professional") => void;
 }
 
 export type UserStore = UserState & UserActions;
@@ -23,8 +21,7 @@ export const createUserStore = (initState: UserState = defaultInitState) => {
   return createStore<UserStore>()((set) => ({
     ...initState,
     setId: (id?: string) => set(() => ({ id })),
-    setRole: (
-      role?: "student" | "postdoctorial" | "professional" | undefined
-    ) => set(() => ({ selectedRole: role })),
+    setRole: (role: "student" | "postdoctorial" | "professional") =>
+      set(() => ({ selectedRole: role })),
   }));
 };

@@ -7,7 +7,6 @@ export default async function handler(
 ) {
   if (req.method != "POST") res.status(404).json({ message: "Not Found" });
   const role = req.body.role;
-
   if (
     !role ||
     !role.includes("student") ||
