@@ -21,7 +21,8 @@ export const tiers = [
 
 const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
   const [message, setMessage] = useState("");
-  const [value, setValue] = useState<SharedSelection>(new Set([]));
+  const [value, setValue] = useState<Set<string>>(new Set<string>([]));
+  const [newValue, setNewValue] = useState("");
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
@@ -33,7 +34,7 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
     const { error } = await props.client.from("member").update({
       user_id: store.id,
       dues_paid_at: new Date().toDateString(),
-      role: value.currentKey as "student" | "postdoctorial" | "professional",
+      role: newValue as "student" | "postdoctorial" | "professional",
     });
     if (error) {
       setMessage(
@@ -47,13 +48,13 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
   };
 
   useEffect(() => {
-    setMessage("");
-    // @ts-expect-error Don't feel like typing this
-    if (value.size !== 1) {
+    if (value.size > 0) {
+      // setMessage("");
+      const blaaah = new String(value.entries().toArray()[0][0]);
       // @ts-expect-error Don't feel like typing this
-      store.setRole(value.anchorKey);
+      setNewValue(blaaah);
     }
-  }, [value]);
+  }, [newValue]);
 
   return (
     <div className="container my-5 space-y-5">
@@ -81,7 +82,6 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
           ) : undefined}
           <div style={{ width: "75%", marginInline: "auto" }}>
             <PayPalButtons
-              // @ts-expect-error Don't feel like typing this
               disabled={value.size !== 1}
               style={{
                 shape: "pill",
@@ -90,8 +90,8 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
               }}
               createOrder={async () => {
                 try {
-                  // console.log("store.selectedRole");
-                  // console.log(store.selectedRole);
+                  // console.log("store.role");
+                  // console.log(store.role);
                   const response = await fetch("/api/orders", {
                     method: "POST",
                     headers: {
@@ -100,7 +100,7 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
                     // use the "body" param to optionally pass additional order information
                     // like product ids and quantities
                     body: JSON.stringify({
-                      role: store.selectedRole as string,
+                      role: newValue as string,
                     }),
                   });
                   const orderData = await response.json();

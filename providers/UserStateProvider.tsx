@@ -17,7 +17,7 @@ export const UserStoreProvider = ({ children }: UserStoreProviderProps) => {
   if (!storeRef.current) {
     storeRef.current = createUserStore({
       id: undefined,
-      selectedRole: undefined,
+      role: undefined,
     });
   }
 

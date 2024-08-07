@@ -2,7 +2,7 @@ import { createStore } from "zustand";
 
 export interface UserState {
   id: string | undefined;
-  selectedRole: "student" | "postdoctorial" | "professional" | undefined;
+  role: "student" | "postdoctorial" | "professional" | undefined;
 }
 
 export interface UserActions {
@@ -14,7 +14,7 @@ export type UserStore = UserState & UserActions;
 
 export const defaultInitState: UserState = {
   id: undefined,
-  selectedRole: undefined,
+  role: undefined,
 };
 
 export const createUserStore = (initState: UserState = defaultInitState) => {
@@ -22,6 +22,6 @@ export const createUserStore = (initState: UserState = defaultInitState) => {
     ...initState,
     setId: (id?: string) => set(() => ({ id })),
     setRole: (role: "student" | "postdoctorial" | "professional") =>
-      set(() => ({ selectedRole: role })),
+      set(() => ({ role: role })),
   }));
 };
