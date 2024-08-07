@@ -5,16 +5,16 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method != "POST")
-    return res.status(404).json({ message: "Not Found" });
-  const role = req.headers.role;
+  if (req.method != "POST") res.status(404).json({ message: "Not Found" });
+  const role = req.body.role;
+
   if (
     !role ||
     !role.includes("student") ||
     !role.includes("postdoctorial") ||
     !role.includes("professional")
   )
-    return res.status(403).json({ message: "Bad Request" });
+    res.status(403);
 
   const accessToken = await generateAccessToken();
 
@@ -62,7 +62,7 @@ export default async function handler(
       break;
 
     default:
-      return res.status(404);
+      res.status(404);
   }
 
   const response = await fetch(url, {
