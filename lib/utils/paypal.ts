@@ -1,8 +1,12 @@
+// export const generateAccessToken = async (simple?: boolean) => {
 export const generateAccessToken = async () => {
   try {
     const auth = Buffer.from(getPaypalId() + ":" + getPaypalSecret()).toString(
       "base64"
     );
+    // if (simple) {
+    //   return auth;
+    // }
 
     const response = await fetch(`${getBaseUrl()}/v1/oauth2/token`, {
       method: "POST",

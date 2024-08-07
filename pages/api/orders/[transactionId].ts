@@ -26,6 +26,8 @@ export default async function handler(
     },
   });
 
+  // console.debug(response);
+
   try {
     res.status(200).json(await response.json());
   } catch (err) {
