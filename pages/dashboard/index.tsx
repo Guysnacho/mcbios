@@ -187,6 +187,7 @@ export default function Dashboard(props: {
   );
 }
 
+// @ts-expect-error Don't feel like typing this
 Dashboard.getLayout = function getLayout(page) {
   return (
     <PayPalScriptProvider

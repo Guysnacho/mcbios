@@ -47,7 +47,8 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
   };
 
   useEffect(() => {
-    if (value) {
+    // @ts-expect-error Don't feel like typing this
+    if (value.size !== 1) {
       // @ts-expect-error Don't feel like typing this
       store.setRole(value.anchorKey);
     }
@@ -73,21 +74,23 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
           {message ? (
             <Card>
               <CardBody>
-                <p>{message}</p>
+                <p className="text-center">{message}</p>
               </CardBody>
             </Card>
           ) : undefined}
           <div style={{ width: "75%", marginInline: "auto" }}>
             <PayPalButtons
+              // @ts-expect-error Don't feel like typing this
               disabled={value.size !== 1}
               style={{
                 shape: "pill",
                 height: 55,
+                disableMaxWidth: true,
               }}
               createOrder={async () => {
-                console.log("store.selectedRole");
-                console.log(store.selectedRole);
                 try {
+                  // console.log("store.selectedRole");
+                  // console.log(store.selectedRole);
                   const response = await fetch("/api/orders", {
                     method: "POST",
                     headers: {
@@ -160,7 +163,7 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
                 } catch (error) {
                   console.error(error);
                   setMessage(
-                    `Sorry, your transaction could not be processed...${error}`
+                    `Sorry, your transaction could not be processed...`
                   );
                 }
               }}

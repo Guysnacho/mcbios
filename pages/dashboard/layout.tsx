@@ -1,12 +1,3 @@
-import { Nav } from "@/components/Nav";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Dashboard",
-  description:
-    "MCBIOS Member Dashboard | MidSouth Computational Biology and Bioinformatics Society",
-};
-
 const tabs = [
   { name: "Conference Videos", href: "/dashboard/videos", current: true },
 ];
