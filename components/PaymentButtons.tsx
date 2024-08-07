@@ -81,19 +81,11 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
                 try {
                   const response = await fetch("/api/orders", {
                     method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
                     // use the "body" param to optionally pass additional order information
                     // like product ids and quantities
-                    body: JSON.stringify({
-                      cart: [
-                        {
-                          id: value.currentKey,
-                          quantity: 1,
-                        },
-                      ],
-                    }),
+                    headers: {
+                      role: value.currentKey as string,
+                    },
                   });
                   const orderData = await response.json();
                   if (orderData.id) {
@@ -114,9 +106,6 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
                 try {
                   const response = await fetch(`/api/orders/${data.orderID}`, {
                     method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
                   });
 
                   const orderData = await response.json();
