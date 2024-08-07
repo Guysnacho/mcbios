@@ -77,7 +77,7 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
               </CardBody>
             </Card>
           ) : undefined}
-          <div className="flex justify-center">
+          <div style={{ width: "75%", marginInline: "auto" }}>
             <PayPalButtons
               disabled={value.size !== 1}
               style={{
