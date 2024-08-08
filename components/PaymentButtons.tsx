@@ -50,7 +50,10 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
   useEffect(() => {
     if (value.size > 0) {
       // setMessage("");
-      const blaaah = new String(value.entries().toArray()[0][0]);
+      const blaaah = new String(
+        // @ts-expect-error Don't feel like typing this
+        (value.values() as Iterator<string>).return().value()
+      );
       // @ts-expect-error Don't feel like typing this
       setNewValue(blaaah);
     }
@@ -67,6 +70,7 @@ const PaymentButtons = (props: { client: SupabaseClient<Database> }) => {
             className="max-w-xs"
             variant="bordered"
             selectedKeys={value}
+            // @ts-expect-error Don't feel like typing this
             onSelectionChange={setValue}
           >
             {tiers.map((tier) => (
