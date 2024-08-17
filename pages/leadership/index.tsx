@@ -25,7 +25,7 @@ const boardMembers = [
     name: "Kristina Feye, Ph.D.",
     image: KristinaFeye.src,
     title: "Research Microbiologist",
-    affiliation: "U.S. Food and Drug Administration",
+    affiliation: "",
   },
   {
     name: "Mazen Istanbouli, M.S.",
