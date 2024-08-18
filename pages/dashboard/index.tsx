@@ -1,10 +1,11 @@
+import UserConfirm from "@/components/dashboard/UserConfirm";
 import VideoUploader from "@/components/dashboard/VideoUploader";
-import PaymentButtons from "@/components/PaymentButtons";
 import { getPaypalId } from "@/lib/utils/paypal";
-import { createClient } from "@/lib/utils/supabase/server-props";
 import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
+import { createClient } from "@/lib/utils/supabase/server-props";
 import { Database } from "@/lib/utils/supabase/types";
 import {
+  Button,
   Card,
   CardBody,
   CardHeader,
@@ -17,6 +18,7 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useDateFormatter } from "@react-aria/i18n";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Head from "next/head";
+import Script from "next/script";
 
 export const getServerSideProps = (async (
   context: GetServerSidePropsContext
@@ -136,6 +138,10 @@ export default function Dashboard(props: {
               <div className="my-5 flex gap-3 mx-auto justify-center">
                 <VideoUploader />
               </div>
+              <Divider className="my-5" />
+              <div className="my-5 flex gap-3 mx-auto justify-center">
+                <UserConfirm />
+              </div>
             </Tab>
           ) : undefined}
           <Tab title="Profile">
@@ -167,17 +173,31 @@ export default function Dashboard(props: {
                     MCBIOS onboarding and to gain access to past conference
                     recordings, upcomming elections, and more coming soon!
                   </p>
-                  <PaymentButtons client={client} />
+                  <div className="container">
+                    <p>
+                      If you have paid your dues, notify us here so we can
+                      confirm and grant access to everything MCBIOS!
+                    </p>
+                    <Button color="success" className="my-5">
+                      My dues are paid
+                    </Button>
+                  </div>
+                  <div className="flex justify-center">
+                    <Script
+                      src="https://www.paypal.com/sdk/js?client-id=BAAaWKKJH9d9_1A9lYbo-zc52pLBBTCR9boQNSGOQk7OR76lLHGsUvjZDTAm4ONcsLFqflVbaKH-ylGe-0&components=hosted-buttons&enable-funding=venmo&currency=USD"
+                      onReady={() => {
+                        paypal
+                          .HostedButtons({
+                            hostedButtonId: "VEMTS2QGYVFQ8",
+                          })
+                          .render("#paypal-container-VEMTS2QGYVFQ8");
+                      }}
+                    ></Script>
+                    <div id="paypal-container-VEMTS2QGYVFQ8"></div>
+                  </div>
                 </>
               ) : (
-                <>
-                  <h4>Welcome to MCBIOS!</h4>
-                  <p>
-                    If you haven&apos;t already, please pay your dues to finish
-                    MCBIOS onboarding and to gain access to past conference
-                    recordings, upcomming elections, and more coming soon!
-                  </p>
-                </>
+                <></>
               )}
             </div>
           </Tab>
