@@ -9,6 +9,32 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      confirm_request: {
+        Row: {
+          created_at: string;
+          id: number;
+          user_id: string | null;
+        };
+        Insert: {
+          created_at?: string;
+          id?: number;
+          user_id?: string | null;
+        };
+        Update: {
+          created_at?: string;
+          id?: number;
+          user_id?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "confirm_request_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: true;
+            referencedRelation: "member";
+            referencedColumns: ["user_id"];
+          }
+        ];
+      };
       member: {
         Row: {
           dues_paid_at: string | null;
