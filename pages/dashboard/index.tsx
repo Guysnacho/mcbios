@@ -4,6 +4,7 @@ import { getPaypalId } from "@/lib/utils/paypal";
 import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
 import { createClient } from "@/lib/utils/supabase/server-props";
 import { Database } from "@/lib/utils/supabase/types";
+import { useUserStore } from "@/providers/UserStateProvider";
 import {
   Button,
   Card,
@@ -68,6 +69,7 @@ export default function Dashboard(props: {
   // };
   let formatter = useDateFormatter({ dateStyle: "full" });
   const client = createCompoentClient();
+  const store = useUserStore((store) => store);
 
   return (
     <>
@@ -178,7 +180,28 @@ export default function Dashboard(props: {
                       If you have paid your dues, notify us here so we can
                       confirm and grant access to everything MCBIOS!
                     </p>
-                    <Button color="success" className="my-5">
+                    <Button
+                      color="success"
+                      className="my-5"
+                      onClick={() => {
+                        client
+                          .from("confirm_request")
+                          .insert({ user_id: store.id })
+                          .then(({ error }) => {
+                            if (error) {
+                              alert(
+                                "Something went wrong while we submitting your membership request - " +
+                                  error.message
+                              );
+                              console.error(error);
+                            } else {
+                              alert(
+                                "Thank you for letting us know, we'll confirm your membership status ASAP!"
+                              );
+                            }
+                          });
+                      }}
+                    >
                       My dues are paid
                     </Button>
                   </div>
