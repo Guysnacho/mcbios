@@ -1,6 +1,5 @@
 import UserConfirm from "@/components/dashboard/admin/UserConfirm";
 import VideoUploader from "@/components/dashboard/admin/VideoUploader";
-import { getPaypalId } from "@/lib/utils/paypal";
 import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
 import { createClient } from "@/lib/utils/supabase/server-props";
 import { Database } from "@/lib/utils/supabase/types";
@@ -15,7 +14,6 @@ import {
   Tabs,
   User,
 } from "@nextui-org/react";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useDateFormatter } from "@react-aria/i18n";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Head from "next/head";
@@ -229,22 +227,3 @@ export default function Dashboard(props: {
     </>
   );
 }
-
-// @ts-expect-error Don't feel like typing this
-Dashboard.getLayout = function getLayout(page) {
-  return (
-    <PayPalScriptProvider
-      options={{
-        clientId: getPaypalId(),
-        environment:
-          process.env.NODE_ENV === "development" ? "sandbox" : "production",
-        "enable-funding": "venmo,card",
-        "disable-funding": "paylater",
-        debug: process.env.NODE_ENV === "development" ? true : false,
-        currency: "USD",
-      }}
-    >
-      {page}
-    </PayPalScriptProvider>
-  );
-};
