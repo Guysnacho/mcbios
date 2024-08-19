@@ -141,7 +141,7 @@ export default function Dashboard(props: {
                 <VideoUploader />
               </div>
               <Divider className="my-5" />
-              <div className="my-5 flex gap-3 mx-auto justify-center">
+              <div className="max-w-[500]px my-5 flex gap-3 mx-auto justify-center">
                 <UserConfirm client={client} />
               </div>
             </Tab>

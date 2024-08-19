@@ -31,9 +31,10 @@ export const tiers = [
 ];
 
 const columns = [
-  { name: "NAME", uid: "name" },
-  { name: "MEMBERSHIP TYPE", uid: "role" },
-  { name: "CONFIRM DATE", uid: "date" },
+  { name: "ID", uid: "id" },
+  { name: "MEMBER", uid: "member" },
+  { name: "CURRENT ROLE", uid: "current role" },
+  { name: "DUES PAID ON", uid: "date" },
   { name: "ACTIONS", uid: "actions" },
 ];
 
@@ -46,7 +47,6 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
     {
       id: number;
       user_id: string;
-      selected_role: "professional" | "student" | "admin" | "postdoctorial";
       dues_paid_at: string | null;
       fname: string | null;
       lname: string | null;
@@ -68,7 +68,7 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
     setUsersLoading(true);
     client
       .from("confirm_request")
-      .select(`id, user_id, selected_role, ...member(*)`)
+      .select(`id, user_id, ...member(*)`)
       .then(({ data, error, statusText }) => {
         if (error) {
           alert(
@@ -77,7 +77,6 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
           );
           console.error(error);
         } else {
-          console.debug(data);
           setUsers(data);
         }
         setUsersLoading(false);
@@ -150,39 +149,46 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
     const cellValue = user[columnKey];
 
     switch (columnKey) {
-      case "name":
+      case "member":
         return (
           <User
-            avatarProps={{ radius: "lg", src: user.avatar }}
-            description={user.email}
+            avatarProps={{ radius: "lg" }}
+            description={user.fname + " " + user.lname}
             name={cellValue}
           >
             {user.email}
           </User>
         );
-      case "role":
+      case "current role":
         return (
-          <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{cellValue}</p>
-            <p className="text-bold text-sm capitalize text-default-400">
-              {user.team}
-            </p>
-          </div>
-        );
-      case "status":
-        return (
-          <Chip
-            className="capitalize"
-            color="secondary"
-            size="sm"
-            variant="flat"
+          <Select
+            label="Select a Membership"
+            fullWidth
+            variant="bordered"
+            selectedKeys={value}
+            // @ts-expect-error Don't feel like typing this
+            onSelectionChange={setValue}
           >
-            {cellValue}
-          </Chip>
+            {tiers.map((tier) => (
+              <SelectItem key={tier.key}>{tier.label}</SelectItem>
+            ))}
+          </Select>
+        );
+      case "date":
+        return (
+          <DatePicker
+            aria-label="Dues Paid On"
+            variant="underlined"
+            className="mt-4"
+            value={date}
+            onChange={setDate}
+            isRequired
+            errorMessage={dateError}
+          />
         );
       case "actions":
         return (
-          <div className="relative flex items-center gap-2">
+          <div className="relative flex items-center justify-center gap-2">
             <Tooltip content="Confirm">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                 <CheckIcon />
@@ -204,45 +210,17 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
     <div>
       <h5 className="text-center">Confirm User Registration</h5>
       <div className="flex flex-col gap-5 mx-auto">
-        <div>
-          <DatePicker
-            label="Conference Date"
-            variant="underlined"
-            className="max-w-[284px] mt-4"
-            value={date}
-            onChange={setDate}
-            isRequired
-            errorMessage={dateError}
-          />
-        </div>
-
-        <Select
-          label="Select a Membership"
-          className="max-w-xs"
-          variant="bordered"
-          selectedKeys={value}
-          // @ts-expect-error Don't feel like typing this
-          onSelectionChange={setValue}
-        >
-          {tiers.map((tier) => (
-            <SelectItem key={tier.key}>{tier.label}</SelectItem>
-          ))}
-        </Select>
-
         {usersLoading ? (
           <Spinner about="users loading" color="secondary" />
         ) : (
           <Table
             aria-label="Confirm Request Table"
             title="Confirm Request"
-            className="mt-10 min-w-96"
+            className="mt-10"
           >
             <TableHeader columns={columns}>
               {(column) => (
-                <TableColumn
-                  key={column.uid}
-                  align={column.uid === "actions" ? "center" : "start"}
-                >
+                <TableColumn key={column.uid} align="center" width={400}>
                   {column.name}
                 </TableColumn>
               )}
@@ -261,13 +239,6 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
             </TableBody>
           </Table>
         )}
-
-        <Button
-          color={dateError ? "warning" : "success"}
-          onClick={handleSubmit}
-        >
-          Submit
-        </Button>
       </div>
     </div>
   );
