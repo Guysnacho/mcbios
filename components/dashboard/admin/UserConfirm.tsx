@@ -38,7 +38,7 @@ export const tiers = [
 ];
 
 const columns = [
-  { name: "ID", uid: "id" },
+  { name: "CONFIRM REQUEST", uid: "id" },
   { name: "MEMBER", uid: "member" },
   { name: "ACTIONS", uid: "actions" },
 ];
@@ -78,6 +78,27 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
       });
   }, []);
 
+  useEffect(() => {
+    setLoading(true);
+    if (id === "") {
+      props.client
+        .from("confirm_request")
+        .select(`id, user_id, ...member(*)`)
+        .then(({ data, error, statusText }) => {
+          if (error) {
+            alert(
+              "Something went wrong while we were updating this user's membership - " +
+                statusText
+            );
+            console.error(error);
+          } else {
+            setUsers(data);
+          }
+          setLoading(false);
+        });
+    }
+  }, [id]);
+
   const renderCell = useCallback((user: UserRequest, columnKey: Key) => {
     // @ts-expect-error Type mismatch because inputs are goofy
     const cellValue = user[columnKey];
@@ -104,11 +125,11 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
                 />
               </span>
             </Tooltip>
-            <Tooltip color="danger" content="Reject user">
+            {/* <Tooltip color="danger" content="Reject user">
               <span className="text-lg text-danger cursor-pointer active:opacity-50">
                 <DeleteIcon />
               </span>
-            </Tooltip>
+            </Tooltip> */}
           </div>
         );
       default:
