@@ -1,5 +1,5 @@
-import UserConfirm from "@/components/dashboard/UserConfirm";
-import VideoUploader from "@/components/dashboard/VideoUploader";
+import UserConfirm from "@/components/dashboard/admin/UserConfirm";
+import VideoUploader from "@/components/dashboard/admin/VideoUploader";
 import { getPaypalId } from "@/lib/utils/paypal";
 import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
 import { createClient } from "@/lib/utils/supabase/server-props";
