@@ -1,6 +1,12 @@
 import { Database } from "@/lib/utils/supabase/types";
-import { CheckIcon, DeleteIcon } from "@chakra-ui/icons";
-import { getLocalTimeZone, now } from "@internationalized/date";
+import { CheckIcon, ChevronDownIcon, DeleteIcon } from "@chakra-ui/icons";
+import { Select as ChakraSelect } from "@chakra-ui/react";
+import {
+  CalendarDate,
+  getLocalTimeZone,
+  now,
+  today,
+} from "@internationalized/date";
 import {
   DatePicker,
   DateValue,
@@ -16,9 +22,15 @@ import {
   Tooltip,
   User,
 } from "@nextui-org/react";
-import { useDateFormatter } from "@react-aria/i18n";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { Key, useCallback, useEffect, useState } from "react";
+import {
+  Dispatch,
+  Key,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
 export const tiers = [
   { key: "student", label: "Student" },
@@ -45,22 +57,17 @@ type UserRequest = {
 };
 
 export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
-  const [date, setDate] = useState<DateValue>(now(getLocalTimeZone()));
-  const [dateError, setDateError] = useState("");
+  const [date, setDate] = useState(today(getLocalTimeZone()));
+  const [role, setRole] = useState<
+    "student" | "postdoctorial" | "professional" | "admin" | undefined
+  >();
   const [loading, setLoading] = useState(false);
-  const [usersLoading, setUsersLoading] = useState(false);
+  const [updateLoading, setUpdateLoading] = useState(false);
   const [users, setUsers] = useState<UserRequest[]>([]);
   const [value, setValue] = useState<Set<string>>(new Set<string>([]));
 
-  let formatter = useDateFormatter({ dateStyle: "full" });
-
   useEffect(() => {
-    console.debug("Date Updated");
-    console.debug(formatter.format(date.toDate(getLocalTimeZone())));
-  }, [date]);
-
-  useEffect(() => {
-    setUsersLoading(true);
+    setLoading(true);
     props.client
       .from("confirm_request")
       .select(`id, user_id, ...member(*)`)
@@ -74,23 +81,30 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
         } else {
           setUsers(data);
         }
-        setUsersLoading(false);
+        setLoading(false);
       });
   }, []);
 
-  const handleSubmit = async () => {
-    // if (!isValidUpload()) {
-    //   setLoading(false);
-    //   return;
-    // }
+  const isValidUpdate = () => {
+    if (!value || value.size < 1) {
+      return false;
+    }
+  };
+
+  const handleUpdate = async (uid: string) => {
+    setUpdateLoading(true);
+    if (!isValidUpdate()) {
+      setUpdateLoading(false);
+    }
 
     // Add reference to video in db
     const { data, error } = await props.client
       .from("member")
       .update({
-        // role: value.values()[value.size - 1],
-        dues_paid_at: formatter.format(date.toDate(getLocalTimeZone())),
+        role,
+        dues_paid_at: date.toString(),
       })
+      .eq("user_id", uid)
       .select()
       .single();
     console.log(data);
@@ -107,7 +121,7 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
           error.message
       );
     }
-    setLoading(false);
+    setUpdateLoading(false);
   };
 
   const renderCell = useCallback((user: UserRequest, columnKey: Key) => {
@@ -124,37 +138,35 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
         );
       case "current role":
         return (
-          <Select
-            label="Select a Membership"
-            fullWidth
-            variant="bordered"
-            selectedKeys={value}
-            // @ts-expect-error Don't feel like typing this
-            onSelectionChange={setValue}
+          <ChakraSelect
+            variant="outline"
+            icon={<ChevronDownIcon />}
+            onChange={(e) =>
+              setRole(
+                // @ts-expect-error Type mismatch because inputs are capitalized
+                e.target.value ? e.target.value.toLowerCase() : undefined
+              )
+            }
+            placeholder="Select a Membership"
           >
             {tiers.map((tier) => (
-              <SelectItem key={tier.key}>{tier.label}</SelectItem>
+              <option key={tier.key} value="option1">
+                {tier.label}
+              </option>
             ))}
-          </Select>
+          </ChakraSelect>
         );
       case "date":
-        return (
-          <DatePicker
-            aria-label="Dues Paid On"
-            variant="underlined"
-            className="mt-4"
-            value={date}
-            onChange={setDate}
-            isRequired
-            errorMessage={dateError}
-          />
-        );
+        return <UserDate date={date} setDate={setDate} />;
       case "actions":
         return (
           <div className="relative flex items-center justify-center gap-2">
-            <Tooltip content="Confirm">
+            <Tooltip color="success" content="Confirm">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <CheckIcon />
+                <CheckIcon
+                  color="green"
+                  onClick={() => handleUpdate(user.user_id)}
+                />
               </span>
             </Tooltip>
             <Tooltip color="danger" content="Reject user">
@@ -173,37 +185,52 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
     <div>
       <h5 className="text-center">Confirm User Registration</h5>
       <div className="flex flex-col gap-5 mx-auto">
-        {usersLoading ? (
-          <Spinner about="users loading" color="secondary" />
-        ) : (
-          <Table
-            aria-label="Confirm Request Table"
-            title="Confirm Request"
-            className="mt-10"
+        <Table
+          aria-label="Confirm Request Table"
+          title="Confirm Request"
+          className="mt-10"
+        >
+          <TableHeader columns={columns}>
+            {(column) => (
+              <TableColumn key={column.uid} align="center" width={400}>
+                {column.name}
+              </TableColumn>
+            )}
+          </TableHeader>
+          <TableBody
+            emptyContent={loading ? <Spinner /> : "No rows to display."}
+            items={users || []}
           >
-            <TableHeader columns={columns}>
-              {(column) => (
-                <TableColumn key={column.uid} align="center" width={400}>
-                  {column.name}
-                </TableColumn>
-              )}
-            </TableHeader>
-            <TableBody
-              emptyContent={loading ? <Spinner /> : "No rows to display."}
-              items={users || []}
-            >
-              {(item) => (
-                <TableRow key={item.id}>
-                  {(columnKey) => (
-                    <TableCell>{renderCell(item, columnKey)}</TableCell>
-                  )}
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        )}
+            {(item) => (
+              <TableRow key={item.id}>
+                {(columnKey) => (
+                  <TableCell>{renderCell(item, columnKey)}</TableCell>
+                )}
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
       </div>
     </div>
+  );
+};
+
+const UserDate = (props: {
+  date: CalendarDate;
+  setDate: Dispatch<SetStateAction<CalendarDate>>;
+}) => {
+  return (
+    <DatePicker
+      aria-label="Dues Paid On"
+      variant="underlined"
+      className="mt-4"
+      value={props.date}
+      maxValue={now(getLocalTimeZone())}
+      onChange={(e) => {
+        console.debug(e);
+        props.setDate(e);
+      }}
+    />
   );
 };
 
