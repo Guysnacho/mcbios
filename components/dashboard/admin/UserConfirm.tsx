@@ -125,6 +125,7 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
   };
 
   const renderCell = useCallback((user: UserRequest, columnKey: Key) => {
+    // @ts-expect-error Type mismatch because inputs are goofy
     const cellValue = user[columnKey];
 
     switch (columnKey) {
@@ -141,16 +142,12 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
           <ChakraSelect
             variant="outline"
             icon={<ChevronDownIcon />}
-            onChange={(e) =>
-              setRole(
-                // @ts-expect-error Type mismatch because inputs are capitalized
-                e.target.value ? e.target.value.toLowerCase() : undefined
-              )
-            }
+            // @ts-expect-error Type mismatch because inputs are capitalized
+            onChange={setRole}
             placeholder="Select a Membership"
           >
             {tiers.map((tier) => (
-              <option key={tier.key} value="option1">
+              <option key={tier.key} value={tier.label.toLowerCase()}>
                 {tier.label}
               </option>
             ))}
