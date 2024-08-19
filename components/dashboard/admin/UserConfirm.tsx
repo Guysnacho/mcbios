@@ -78,43 +78,6 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
       });
   }, []);
 
-  const handleUpdate = async (
-    uid: string,
-    date: string,
-    role: "student" | "postdoctorial" | "professional" | "admin"
-  ) => {
-    setUpdateLoading(true);
-    if (!role) {
-      setUpdateLoading(false);
-    }
-
-    // Add reference to video in db
-    const { data, error } = await props.client
-      .from("member")
-      .update({
-        role,
-        dues_paid_at: date.toString(),
-      })
-      .eq("user_id", uid)
-      .select()
-      .single();
-    console.log(data);
-
-    if (data) {
-      alert(
-        `Successfully updated membership for ${
-          data.fname + " " + data.lname
-        } with the following role: ${data.role}`
-      );
-    } else if (error) {
-      alert(
-        "Something went wrong while we were updating this user's membership - " +
-          error.message
-      );
-    }
-    setUpdateLoading(false);
-  };
-
   const renderCell = useCallback((user: UserRequest, columnKey: Key) => {
     // @ts-expect-error Type mismatch because inputs are goofy
     const cellValue = user[columnKey];
@@ -160,7 +123,6 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
         id={id}
         open={open}
         setId={setId}
-        handleUpdate={handleUpdate}
         setOpen={setOpen}
       />
       <h5 className="text-center">Confirm User Registration</h5>
@@ -207,16 +169,49 @@ const ConfirmModal = (props: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   setId: Dispatch<SetStateAction<string>>;
-  handleUpdate: (
-    uid: string,
-    date: string,
-    role: "student" | "postdoctorial" | "professional" | "admin"
-  ) => Promise<void>;
 }) => {
   const [date, setDate] = useState(today(getLocalTimeZone()));
   const [role, setRole] = useState<
     "student" | "postdoctorial" | "professional" | "admin" | undefined
   >();
+  const [updateLoading, setUpdateLoading] = useState(false);
+
+  const handleUpdate = async (
+    uid: string,
+    date: string,
+    role: "student" | "postdoctorial" | "professional" | "admin"
+  ) => {
+    setUpdateLoading(true);
+    if (!role) {
+      setUpdateLoading(false);
+    }
+
+    // Add reference to video in db
+    const { data, error } = await props.client
+      .from("member")
+      .update({
+        role,
+        dues_paid_at: date.toString(),
+      })
+      .eq("user_id", uid)
+      .select()
+      .single();
+    console.log(data);
+
+    if (data) {
+      alert(
+        `Successfully updated membership for ${
+          data.fname + " " + data.lname
+        } with the following role: ${data.role}`
+      );
+    } else if (error) {
+      alert(
+        "Something went wrong while we were updating this user's membership - " +
+          error.message
+      );
+    }
+    setUpdateLoading(false);
+  };
 
   return (
     <Modal
@@ -236,8 +231,10 @@ const ConfirmModal = (props: {
           <ChakraSelect
             variant="outline"
             icon={<ChevronDownIcon />}
-            // @ts-expect-error Type mismatch because inputs are capitalized
-            onChange={setRole}
+            onChange={(e) => {
+              // @ts-expect-error Type mismatch because inputs are nullable
+              setRole(e.target.value || undefined);
+            }}
             placeholder="Select a Membership"
           >
             {tiers.map((tier) => (
@@ -272,10 +269,11 @@ const ConfirmModal = (props: {
             variant={
               role === undefined || date === undefined ? "ghost" : "solid"
             }
-            disabled={role === undefined || date === undefined}
-            onClick={() => props.handleUpdate(props.id, date.toString(), role!)}
+            // @ts-expect-error Ignore sumn
+            disabled={role === undefined || role === "" || date === undefined}
+            onClick={() => handleUpdate(props.id, date.toString(), role!)}
           >
-            Submit
+            {updateLoading ? <Spinner /> : "Submit"}
           </Button>
         </ModalFooter>
       </ModalContent>
