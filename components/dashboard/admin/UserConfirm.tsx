@@ -1,10 +1,7 @@
-import { createClient } from "@/lib/utils/supabase/component";
 import { Database } from "@/lib/utils/supabase/types";
 import { CheckIcon, DeleteIcon } from "@chakra-ui/icons";
 import { getLocalTimeZone, now } from "@internationalized/date";
 import {
-  Button,
-  Chip,
   DatePicker,
   DateValue,
   Select,
@@ -21,7 +18,7 @@ import {
 } from "@nextui-org/react";
 import { useDateFormatter } from "@react-aria/i18n";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { useCallback, useEffect, useState } from "react";
+import { Key, useCallback, useEffect, useState } from "react";
 
 export const tiers = [
   { key: "student", label: "Student" },
@@ -38,24 +35,22 @@ const columns = [
   { name: "ACTIONS", uid: "actions" },
 ];
 
+type UserRequest = {
+  id: number;
+  user_id: string;
+  dues_paid_at: string | null;
+  fname: string | null;
+  lname: string | null;
+  role: Database["public"]["Enums"]["user_role"];
+};
+
 export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
   const [date, setDate] = useState<DateValue>(now(getLocalTimeZone()));
   const [dateError, setDateError] = useState("");
   const [loading, setLoading] = useState(false);
   const [usersLoading, setUsersLoading] = useState(false);
-  const [users, setUsers] = useState<
-    {
-      id: number;
-      user_id: string;
-      dues_paid_at: string | null;
-      fname: string | null;
-      lname: string | null;
-      role: Database["public"]["Enums"]["user_role"];
-    }[]
-  >([]);
+  const [users, setUsers] = useState<UserRequest[]>([]);
   const [value, setValue] = useState<Set<string>>(new Set<string>([]));
-
-  const client = createClient();
 
   let formatter = useDateFormatter({ dateStyle: "full" });
 
@@ -66,7 +61,7 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
 
   useEffect(() => {
     setUsersLoading(true);
-    client
+    props.client
       .from("confirm_request")
       .select(`id, user_id, ...member(*)`)
       .then(({ data, error, statusText }) => {
@@ -88,39 +83,9 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
     //   setLoading(false);
     //   return;
     // }
-    // Create presigned url upfront
-    // const { data: urlData, error: urlErr } = await client.storage
-    //   .from("content")
-    //   .createSignedUploadUrl(`video/${date.year}/${title}`);
-
-    // if (urlErr) {
-    //   alert("Something went wrong while making the url - " + urlErr?.message);
-    //   setLoading(false);
-    //   return;
-    // }
-    // Upload video
-    // const { data: uploadData, error: uploadErr } = await client.storage
-    //   .from("content")
-    //   .uploadToSignedUrl(urlData?.path, urlData?.token, video!, {
-    //     duplex: "half",
-    //   });
-    // const { data: uploadData, error: uploadErr } = await uploadFile(
-    //   "content",
-    //   urlData?.path,
-    //   video!,
-    //   client
-    // );
-
-    // Insert entry into video table
-    // TODO make a trigger and function for this, needs to be scopped down to content table though
-    // if (uploadErr) {
-    //   alert("Error during upload - " + uploadErr.message);
-    //   setLoading(false);
-    //   return;
-    // }
 
     // Add reference to video in db
-    const { data, error } = await client
+    const { data, error } = await props.client
       .from("member")
       .update({
         // role: value.values()[value.size - 1],
@@ -145,7 +110,7 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
     setLoading(false);
   };
 
-  const renderCell = useCallback((user, columnKey) => {
+  const renderCell = useCallback((user: UserRequest, columnKey: Key) => {
     const cellValue = user[columnKey];
 
     switch (columnKey) {
@@ -155,9 +120,7 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
             avatarProps={{ radius: "lg" }}
             description={user.fname + " " + user.lname}
             name={cellValue}
-          >
-            {user.email}
-          </User>
+          />
         );
       case "current role":
         return (
