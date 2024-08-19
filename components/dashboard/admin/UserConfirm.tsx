@@ -175,6 +175,7 @@ const ConfirmModal = (props: {
     "student" | "postdoctorial" | "professional" | "admin" | undefined
   >();
   const [updateLoading, setUpdateLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleUpdate = async (
     uid: string,
@@ -184,6 +185,7 @@ const ConfirmModal = (props: {
     setUpdateLoading(true);
     if (!role) {
       setUpdateLoading(false);
+      throw Error("Invalid role");
     }
 
     // Add reference to video in db
@@ -205,22 +207,24 @@ const ConfirmModal = (props: {
         } with the following role: ${data.role}`
       );
     } else if (error) {
-      alert(
+      throw Error(
         "Something went wrong while we were updating this user's membership - " +
           error.message
       );
     }
-    setUpdateLoading(false);
   };
-
   return (
     <Modal
       isOpen={props.open}
+      onClose={() => {
+        props.setId("");
+        setMessage("");
+        props.setOpen(false);
+      }}
       onOpenChange={(event) => {
-        if (!event) {
-          props.setId("");
-          props.setOpen(false);
-        }
+        props.setId("");
+        setMessage("");
+        props.setOpen(false);
       }}
     >
       <ModalContent>
@@ -255,6 +259,7 @@ const ConfirmModal = (props: {
               setDate(e);
             }}
           />
+          <blockquote className="text-center">{message}</blockquote>
         </ModalBody>
         <ModalFooter>
           <Button
@@ -271,7 +276,17 @@ const ConfirmModal = (props: {
             }
             // @ts-expect-error Ignore sumn
             disabled={role === undefined || role === "" || date === undefined}
-            onClick={() => handleUpdate(props.id, date.toString(), role!)}
+            onClick={() =>
+              handleUpdate(props.id, date.toString(), role!)
+                .then(() => {
+                  props.setId("");
+                  props.setOpen(false);
+                })
+                .catch((err: Error) => {
+                  setMessage(err.message);
+                })
+                .finally(() => setUpdateLoading(false))
+            }
           >
             {updateLoading ? <Spinner /> : "Submit"}
           </Button>
