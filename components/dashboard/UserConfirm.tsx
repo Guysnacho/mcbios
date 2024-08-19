@@ -1,29 +1,48 @@
 import { createClient } from "@/lib/utils/supabase/component";
-import { Database } from "@/lib/utils/supabase/types";
+import { CheckIcon, DeleteIcon } from "@chakra-ui/icons";
 import { getLocalTimeZone, now } from "@internationalized/date";
-import { Button, DatePicker, DateValue, Input } from "@nextui-org/react";
+import {
+  Button,
+  Chip,
+  DatePicker,
+  DateValue,
+  Select,
+  SelectItem,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+  Tooltip,
+  User,
+} from "@nextui-org/react";
 import { useDateFormatter } from "@react-aria/i18n";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-export const UserConfirm = () => {
+export const tiers = [
+  { key: "student", label: "Student" },
+  { key: "postdoctorial", label: "Postdoctorial" },
+  { key: "professional", label: "Professional" },
+  { key: "admin", label: "Admin" },
+];
+
+const columns = [
+  { name: "NAME", uid: "name" },
+  { name: "MEMBERSHIP TYPE", uid: "role" },
+  { name: "CONFIRM DATE", uid: "date" },
+  { name: "ACTIONS", uid: "actions" },
+];
+
+export const UserConfirm = (props: { users: any | undefined }) => {
   const [date, setDate] = useState<DateValue>(now(getLocalTimeZone()));
   const [dateError, setDateError] = useState("");
-  const [title, setTitle] = useState("");
-  const [titleError, setTitleError] = useState("");
-  const [video, setVideo] = useState("");
-  const [videoError, setVideoError] = useState("");
-  const [vidList, setVidList] =
-    useState<Database["public"]["Tables"]["videos"]["Row"][]>();
   const [loading, setLoading] = useState(false);
+  const [value, setValue] = useState<Set<string>>(new Set<string>([]));
 
   const client = createClient();
 
   let formatter = useDateFormatter({ dateStyle: "full" });
-
-  useEffect(() => {
-    console.debug("Video Selected");
-    console.debug(video);
-  }, [video]);
 
   useEffect(() => {
     console.debug("Date Updated");
@@ -107,6 +126,60 @@ export const UserConfirm = () => {
     setLoading(false);
   };
 
+  const renderCell = useCallback((user, columnKey) => {
+    const cellValue = user[columnKey];
+
+    switch (columnKey) {
+      case "name":
+        return (
+          <User
+            avatarProps={{ radius: "lg", src: user.avatar }}
+            description={user.email}
+            name={cellValue}
+          >
+            {user.email}
+          </User>
+        );
+      case "role":
+        return (
+          <div className="flex flex-col">
+            <p className="text-bold text-sm capitalize">{cellValue}</p>
+            <p className="text-bold text-sm capitalize text-default-400">
+              {user.team}
+            </p>
+          </div>
+        );
+      case "status":
+        return (
+          <Chip
+            className="capitalize"
+            color="secondary"
+            size="sm"
+            variant="flat"
+          >
+            {cellValue}
+          </Chip>
+        );
+      case "actions":
+        return (
+          <div className="relative flex items-center gap-2">
+            <Tooltip content="Confirm">
+              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                <CheckIcon />
+              </span>
+            </Tooltip>
+            <Tooltip color="danger" content="Reject user">
+              <span className="text-lg text-danger cursor-pointer active:opacity-50">
+                <DeleteIcon />
+              </span>
+            </Tooltip>
+          </div>
+        );
+      default:
+        return cellValue;
+    }
+  }, []);
+
   return (
     <div>
       <h5 className="text-center">Confirm User Registration</h5>
@@ -123,60 +196,54 @@ export const UserConfirm = () => {
           />
         </div>
 
-        <div className="flex flex-col">
-          <label htmlFor="title">Title</label>
-          <Input
-            type="text"
-            name="Title"
-            id="title"
-            isClearable
-            onChange={(e) => setTitle(e.currentTarget.value)}
-            placeholder="Speaker Series II"
-            disabled={loading}
-            errorMessage={titleError}
-          />
-        </div>
-
-        <div className="flex flex-col">
-          <label htmlFor="video">Content Url</label>
-          <Input
-            type="text"
-            name="Content Url"
-            id="content"
-            onChange={(e) => {
-              setVideo(e.target.value);
-            }}
-            disabled={loading}
-            errorMessage={videoError}
-          />
-        </div>
+        <Select
+          label="Select a Membership"
+          className="max-w-xs"
+          variant="bordered"
+          selectedKeys={value}
+          // @ts-expect-error Don't feel like typing this
+          onSelectionChange={setValue}
+        >
+          {tiers.map((tier) => (
+            <SelectItem key={tier.key}>{tier.label}</SelectItem>
+          ))}
+        </Select>
+        <Table
+          aria-label="Confirm Request Table"
+          title="Confirm Request"
+          className="mt-10 min-w-96"
+        >
+          <TableHeader columns={columns}>
+            {(column) => (
+              <TableColumn
+                key={column.uid}
+                align={column.uid === "actions" ? "center" : "start"}
+              >
+                {column.name}
+              </TableColumn>
+            )}
+          </TableHeader>
+          <TableBody
+            emptyContent={"No rows to display."}
+            items={props?.users || []}
+          >
+            {(item) => (
+              <TableRow key={item.id}>
+                {(columnKey) => (
+                  <TableCell>{renderCell(item, columnKey)}</TableCell>
+                )}
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
 
         <Button
-          color={dateError || titleError || videoError ? "warning" : "success"}
+          color={dateError ? "warning" : "success"}
           onClick={handleSubmit}
         >
           Submit
         </Button>
       </div>
-
-      {/* <Table aria-label="Content Table" title="Saved Videos" className="mt-10 min-w-96">
-        <TableHeader>
-          <TableColumn>TITLE</TableColumn>
-          <TableColumn>DATE</TableColumn>
-          <TableColumn>PATH</TableColumn>
-        </TableHeader>
-        <TableBody emptyContent={"No rows to display."}>
-          {vidList
-            ? vidList.map((vid, idx) => (
-                <TableRow key={idx}>
-                  <TableCell>{vid.title}</TableCell>
-                  <TableCell>{vid.date}</TableCell>
-                  <TableCell>{vid.path}</TableCell>
-                </TableRow>
-              ))
-            : []}
-        </TableBody>
-      </Table> */}
     </div>
   );
 };
