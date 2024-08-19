@@ -207,6 +207,7 @@ export default function Dashboard(props: {
                     <Script
                       src="https://www.paypal.com/sdk/js?client-id=BAAaWKKJH9d9_1A9lYbo-zc52pLBBTCR9boQNSGOQk7OR76lLHGsUvjZDTAm4ONcsLFqflVbaKH-ylGe-0&components=hosted-buttons&enable-funding=venmo&currency=USD"
                       onReady={() => {
+                        // @ts-expect-error Baaaaahhhhh issokay
                         paypal
                           .HostedButtons({
                             hostedButtonId: "VEMTS2QGYVFQ8",
