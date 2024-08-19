@@ -1,17 +1,15 @@
 import { Database } from "@/lib/utils/supabase/types";
 import { CheckIcon, ChevronDownIcon, DeleteIcon } from "@chakra-ui/icons";
 import { Select as ChakraSelect } from "@chakra-ui/react";
+import { getLocalTimeZone, now, today } from "@internationalized/date";
 import {
-  CalendarDate,
-  getLocalTimeZone,
-  now,
-  today,
-} from "@internationalized/date";
-import {
+  Button,
   DatePicker,
-  DateValue,
-  Select,
-  SelectItem,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
   Spinner,
   Table,
   TableBody,
@@ -42,8 +40,6 @@ export const tiers = [
 const columns = [
   { name: "ID", uid: "id" },
   { name: "MEMBER", uid: "member" },
-  { name: "CURRENT ROLE", uid: "current role" },
-  { name: "DUES PAID ON", uid: "date" },
   { name: "ACTIONS", uid: "actions" },
 ];
 
@@ -57,14 +53,11 @@ type UserRequest = {
 };
 
 export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
-  const [date, setDate] = useState(today(getLocalTimeZone()));
-  const [role, setRole] = useState<
-    "student" | "postdoctorial" | "professional" | "admin" | undefined
-  >();
+  const [id, setId] = useState("");
+  const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [updateLoading, setUpdateLoading] = useState(false);
   const [users, setUsers] = useState<UserRequest[]>([]);
-  const [value, setValue] = useState<Set<string>>(new Set<string>([]));
 
   useEffect(() => {
     setLoading(true);
@@ -85,15 +78,13 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
       });
   }, []);
 
-  const isValidUpdate = () => {
-    if (!value || value.size < 1) {
-      return false;
-    }
-  };
-
-  const handleUpdate = async (uid: string) => {
+  const handleUpdate = async (
+    uid: string,
+    date: string,
+    role: "student" | "postdoctorial" | "professional" | "admin"
+  ) => {
     setUpdateLoading(true);
-    if (!isValidUpdate()) {
+    if (!role) {
       setUpdateLoading(false);
     }
 
@@ -133,28 +124,9 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
         return (
           <User
             avatarProps={{ radius: "lg" }}
-            description={user.fname + " " + user.lname}
-            name={cellValue}
+            name={user.fname + " " + user.lname}
           />
         );
-      case "current role":
-        return (
-          <ChakraSelect
-            variant="outline"
-            icon={<ChevronDownIcon />}
-            // @ts-expect-error Type mismatch because inputs are capitalized
-            onChange={setRole}
-            placeholder="Select a Membership"
-          >
-            {tiers.map((tier) => (
-              <option key={tier.key} value={tier.label.toLowerCase()}>
-                {tier.label}
-              </option>
-            ))}
-          </ChakraSelect>
-        );
-      case "date":
-        return <UserDate date={date} setDate={setDate} />;
       case "actions":
         return (
           <div className="relative flex items-center justify-center gap-2">
@@ -162,7 +134,10 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                 <CheckIcon
                   color="green"
-                  onClick={() => handleUpdate(user.user_id)}
+                  onClick={() => {
+                    setId(user.user_id);
+                    setOpen(true);
+                  }}
                 />
               </span>
             </Tooltip>
@@ -180,6 +155,14 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
 
   return (
     <div>
+      <ConfirmModal
+        client={props.client}
+        id={id}
+        open={open}
+        setId={setId}
+        handleUpdate={handleUpdate}
+        setOpen={setOpen}
+      />
       <h5 className="text-center">Confirm User Registration</h5>
       <div className="flex flex-col gap-5 mx-auto">
         <Table
@@ -198,13 +181,19 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
             emptyContent={loading ? <Spinner /> : "No rows to display."}
             items={users || []}
           >
-            {(item) => (
+            {users.map((item) => (
               <TableRow key={item.id}>
-                {(columnKey) => (
-                  <TableCell>{renderCell(item, columnKey)}</TableCell>
-                )}
+                {(columnKey) =>
+                  updateLoading ? (
+                    <TableCell>
+                      <Spinner />
+                    </TableCell>
+                  ) : (
+                    <TableCell>{renderCell(item, columnKey)}</TableCell>
+                  )
+                }
               </TableRow>
-            )}
+            ))}
           </TableBody>
         </Table>
       </div>
@@ -212,22 +201,85 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
   );
 };
 
-const UserDate = (props: {
-  date: CalendarDate;
-  setDate: Dispatch<SetStateAction<CalendarDate>>;
+const ConfirmModal = (props: {
+  client: SupabaseClient<Database>;
+  id: string;
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setId: Dispatch<SetStateAction<string>>;
+  handleUpdate: (
+    uid: string,
+    date: string,
+    role: "student" | "postdoctorial" | "professional" | "admin"
+  ) => Promise<void>;
 }) => {
+  const [date, setDate] = useState(today(getLocalTimeZone()));
+  const [role, setRole] = useState<
+    "student" | "postdoctorial" | "professional" | "admin" | undefined
+  >();
+
   return (
-    <DatePicker
-      aria-label="Dues Paid On"
-      variant="underlined"
-      className="mt-4"
-      value={props.date}
-      maxValue={now(getLocalTimeZone())}
-      onChange={(e) => {
-        console.debug(e);
-        props.setDate(e);
+    <Modal
+      isOpen={props.open}
+      onOpenChange={(event) => {
+        if (!event) {
+          props.setId("");
+          props.setOpen(false);
+        }
       }}
-    />
+    >
+      <ModalContent>
+        <ModalHeader className="flex flex-col gap-1">
+          Confirm User Properties
+        </ModalHeader>
+        <ModalBody>
+          <ChakraSelect
+            variant="outline"
+            icon={<ChevronDownIcon />}
+            // @ts-expect-error Type mismatch because inputs are capitalized
+            onChange={setRole}
+            placeholder="Select a Membership"
+          >
+            {tiers.map((tier) => (
+              <option key={tier.key} value={tier.label.toLowerCase()}>
+                {tier.label}
+              </option>
+            ))}
+          </ChakraSelect>
+          <DatePicker
+            label="Dues Paid On"
+            aria-label="Dues Paid On"
+            variant="underlined"
+            className="mt-4"
+            value={date}
+            maxValue={now(getLocalTimeZone())}
+            onChange={(e) => {
+              console.debug(e);
+              setDate(e);
+            }}
+          />
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            color="danger"
+            variant="light"
+            onClick={() => props.setOpen(false)}
+          >
+            Cancel
+          </Button>
+          <Button
+            color="primary"
+            variant={
+              role === undefined || date === undefined ? "ghost" : "solid"
+            }
+            disabled={role === undefined || date === undefined}
+            onClick={() => props.handleUpdate(props.id, date.toString(), role!)}
+          >
+            Submit
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 };
 
