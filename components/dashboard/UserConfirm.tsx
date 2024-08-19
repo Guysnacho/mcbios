@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/utils/supabase/component";
+import { Database } from "@/lib/utils/supabase/types";
 import { CheckIcon, DeleteIcon } from "@chakra-ui/icons";
 import { getLocalTimeZone, now } from "@internationalized/date";
 import {
@@ -8,6 +9,7 @@ import {
   DateValue,
   Select,
   SelectItem,
+  Spinner,
   Table,
   TableBody,
   TableCell,
@@ -18,6 +20,7 @@ import {
   User,
 } from "@nextui-org/react";
 import { useDateFormatter } from "@react-aria/i18n";
+import { SupabaseClient } from "@supabase/supabase-js";
 import { useCallback, useEffect, useState } from "react";
 
 export const tiers = [
@@ -34,10 +37,22 @@ const columns = [
   { name: "ACTIONS", uid: "actions" },
 ];
 
-export const UserConfirm = (props: { users: any | undefined }) => {
+export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
   const [date, setDate] = useState<DateValue>(now(getLocalTimeZone()));
   const [dateError, setDateError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [usersLoading, setUsersLoading] = useState(false);
+  const [users, setUsers] = useState<
+    {
+      id: number;
+      user_id: string;
+      selected_role: "professional" | "student" | "admin" | "postdoctorial";
+      dues_paid_at: string | null;
+      fname: string | null;
+      lname: string | null;
+      role: Database["public"]["Enums"]["user_role"];
+    }[]
+  >([]);
   const [value, setValue] = useState<Set<string>>(new Set<string>([]));
 
   const client = createClient();
@@ -49,24 +64,31 @@ export const UserConfirm = (props: { users: any | undefined }) => {
     console.debug(formatter.format(date.toDate(getLocalTimeZone())));
   }, [date]);
 
-  function isValidUpload() {
-    setDateError("");
-    setTitleError("");
-    setVideoError("");
-    setLoading(true);
-    if (!date) setDateError("Invalid date");
-    if (!title) setTitleError("Invalid title");
-    if (!video) {
-      setVideoError("Invalid video");
-    }
-    return !dateError && !titleError && !videoError;
-  }
+  useEffect(() => {
+    setUsersLoading(true);
+    client
+      .from("confirm_request")
+      .select(`id, user_id, selected_role, ...member(*)`)
+      .then(({ data, error, statusText }) => {
+        if (error) {
+          alert(
+            "Something went wrong while we were updating this user's membership - " +
+              statusText
+          );
+          console.error(error);
+        } else {
+          console.debug(data);
+          setUsers(data);
+        }
+        setUsersLoading(false);
+      });
+  }, []);
 
   const handleSubmit = async () => {
-    if (!isValidUpload()) {
-      setLoading(false);
-      return;
-    }
+    // if (!isValidUpload()) {
+    //   setLoading(false);
+    //   return;
+    // }
     // Create presigned url upfront
     // const { data: urlData, error: urlErr } = await client.storage
     //   .from("content")
@@ -100,28 +122,26 @@ export const UserConfirm = (props: { users: any | undefined }) => {
 
     // Add reference to video in db
     const { data, error } = await client
-      .from("videos")
-      .insert({
-        title,
-        date: date.toDate(getLocalTimeZone()).toDateString(),
-        path: video,
+      .from("member")
+      .update({
+        // role: value.values()[value.size - 1],
+        dues_paid_at: formatter.format(date.toDate(getLocalTimeZone())),
       })
       .select()
       .single();
     console.log(data);
 
     if (data) {
-      setVidList(vidList?.concat(data));
-    }
-    if (error) {
       alert(
-        "Something went wrong while we were saving a reference to the video - " +
+        `Successfully updated membership for ${
+          data.fname + " " + data.lname
+        } with the following role: ${data.role}`
+      );
+    } else if (error) {
+      alert(
+        "Something went wrong while we were updating this user's membership - " +
           error.message
       );
-      setLoading(false);
-      return;
-    } else {
-      alert("Mission accomplished");
     }
     setLoading(false);
   };
@@ -224,8 +244,8 @@ export const UserConfirm = (props: { users: any | undefined }) => {
             )}
           </TableHeader>
           <TableBody
-            emptyContent={"No rows to display."}
-            items={props?.users || []}
+            emptyContent={loading ? <Spinner /> : "No rows to display."}
+            items={users || []}
           >
             {(item) => (
               <TableRow key={item.id}>

@@ -140,7 +140,7 @@ export default function Dashboard(props: {
               </div>
               <Divider className="my-5" />
               <div className="my-5 flex gap-3 mx-auto justify-center">
-                <UserConfirm />
+                <UserConfirm client={client} />
               </div>
             </Tab>
           ) : undefined}
