@@ -228,34 +228,39 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
             <SelectItem key={tier.key}>{tier.label}</SelectItem>
           ))}
         </Select>
-        <Table
-          aria-label="Confirm Request Table"
-          title="Confirm Request"
-          className="mt-10 min-w-96"
-        >
-          <TableHeader columns={columns}>
-            {(column) => (
-              <TableColumn
-                key={column.uid}
-                align={column.uid === "actions" ? "center" : "start"}
-              >
-                {column.name}
-              </TableColumn>
-            )}
-          </TableHeader>
-          <TableBody
-            emptyContent={loading ? <Spinner /> : "No rows to display."}
-            items={users || []}
+
+        {usersLoading ? (
+          <Spinner about="users loading" color="secondary" />
+        ) : (
+          <Table
+            aria-label="Confirm Request Table"
+            title="Confirm Request"
+            className="mt-10 min-w-96"
           >
-            {(item) => (
-              <TableRow key={item.id}>
-                {(columnKey) => (
-                  <TableCell>{renderCell(item, columnKey)}</TableCell>
-                )}
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+            <TableHeader columns={columns}>
+              {(column) => (
+                <TableColumn
+                  key={column.uid}
+                  align={column.uid === "actions" ? "center" : "start"}
+                >
+                  {column.name}
+                </TableColumn>
+              )}
+            </TableHeader>
+            <TableBody
+              emptyContent={loading ? <Spinner /> : "No rows to display."}
+              items={users || []}
+            >
+              {(item) => (
+                <TableRow key={item.id}>
+                  {(columnKey) => (
+                    <TableCell>{renderCell(item, columnKey)}</TableCell>
+                  )}
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        )}
 
         <Button
           color={dateError ? "warning" : "success"}
