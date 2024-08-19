@@ -1,7 +1,7 @@
 import { Database } from "@/lib/utils/supabase/types";
 import { CheckIcon, ChevronDownIcon, DeleteIcon } from "@chakra-ui/icons";
 import { Select as ChakraSelect } from "@chakra-ui/react";
-import { getLocalTimeZone, now, today } from "@internationalized/date";
+import { getLocalTimeZone, today } from "@internationalized/date";
 import {
   Button,
   DatePicker,
@@ -268,18 +268,17 @@ const ConfirmModal = (props: {
               </option>
             ))}
           </ChakraSelect>
-          <DatePicker
+          {/* <DatePicker
             label="Dues Paid On"
             aria-label="Dues Paid On"
             variant="underlined"
             className="mt-4"
             value={date}
-            maxValue={now(getLocalTimeZone())}
             onChange={(e) => {
               console.debug(e);
               setDate(e);
             }}
-          />
+          /> */}
           <blockquote className="text-center">{message}</blockquote>
         </ModalBody>
         <ModalFooter>
