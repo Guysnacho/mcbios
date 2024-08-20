@@ -14,7 +14,6 @@ import {
   Tabs,
   User,
 } from "@nextui-org/react";
-import { useDateFormatter } from "@react-aria/i18n";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Head from "next/head";
 import Script from "next/script";
@@ -65,7 +64,7 @@ export default function Dashboard(props: {
   //   setCurrYear(e.target.value);
   //   console.debug("Current year " + currYear);
   // };
-  let formatter = useDateFormatter({ dateStyle: "full" });
+  // let formatter = useDateFormatter({ dateStyle: "full" });
   const client = createCompoentClient();
   const store = useUserStore((store) => store);
 
@@ -112,8 +111,9 @@ export default function Dashboard(props: {
                         <CardHeader className="block text-center">
                           <h6>{vid.title ?? undefined}</h6>
                           <p>
-                            {`${formatter.format(new Date(vid.date))} ` ||
-                              undefined}
+                            {/* {`${formatter.format(new Date(vid.date))} ` ||
+                              undefined} */}
+                            {vid.date.substring(0, vid.date.indexOf("T"))}
                           </p>
                         </CardHeader>
                         <CardBody>

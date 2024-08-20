@@ -2,7 +2,6 @@ import { createClient } from "@/lib/utils/supabase/component";
 import { Database } from "@/lib/utils/supabase/types";
 import { getLocalTimeZone, now } from "@internationalized/date";
 import { Button, DatePicker, DateValue, Input } from "@nextui-org/react";
-import { useDateFormatter } from "@react-aria/i18n";
 import { useEffect, useState } from "react";
 
 export const VideoUploader = () => {
@@ -18,17 +17,10 @@ export const VideoUploader = () => {
 
   const client = createClient();
 
-  let formatter = useDateFormatter({ dateStyle: "full" });
-
   useEffect(() => {
     console.debug("Video Selected");
     console.debug(video);
   }, [video]);
-
-  useEffect(() => {
-    console.debug("Date Updated");
-    console.debug(formatter.format(date.toDate(getLocalTimeZone())));
-  }, [date]);
 
   function isValidUpload() {
     setDateError("");
