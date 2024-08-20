@@ -56,7 +56,6 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
   const [id, setId] = useState("");
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [updateLoading, setUpdateLoading] = useState(false);
   const [users, setUsers] = useState<UserRequest[]>([]);
 
   useEffect(() => {
@@ -166,15 +165,9 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
           >
             {users.map((item) => (
               <TableRow key={item.id}>
-                {(columnKey) =>
-                  updateLoading ? (
-                    <TableCell>
-                      <Spinner />
-                    </TableCell>
-                  ) : (
-                    <TableCell>{renderCell(item, columnKey)}</TableCell>
-                  )
-                }
+                {(columnKey) => (
+                  <TableCell>{renderCell(item, columnKey)}</TableCell>
+                )}
               </TableRow>
             ))}
           </TableBody>
@@ -268,17 +261,18 @@ const ConfirmModal = (props: {
               </option>
             ))}
           </ChakraSelect>
-          {/* <DatePicker
+          <DatePicker
             label="Dues Paid On"
             aria-label="Dues Paid On"
             variant="underlined"
+            maxValue={today(getLocalTimeZone())}
             className="mt-4"
             value={date}
             onChange={(e) => {
               console.debug(e);
               setDate(e);
             }}
-          /> */}
+          />
           <blockquote className="text-center">{message}</blockquote>
         </ModalBody>
         <ModalFooter>
