@@ -1,6 +1,5 @@
 import { Database } from "@/lib/utils/supabase/types";
-import { CheckIcon, ChevronDownIcon, DeleteIcon } from "@chakra-ui/icons";
-import { Select as ChakraSelect } from "@chakra-ui/react";
+import { CheckIcon } from "@chakra-ui/icons";
 import { getLocalTimeZone, today } from "@internationalized/date";
 import {
   Button,
@@ -246,7 +245,7 @@ const ConfirmModal = (props: {
           Confirm User Properties
         </ModalHeader>
         <ModalBody>
-          <ChakraSelect
+          {/* <ChakraSelect
             variant="outline"
             icon={<ChevronDownIcon />}
             onChange={(e) => {
@@ -260,7 +259,7 @@ const ConfirmModal = (props: {
                 {tier.label}
               </option>
             ))}
-          </ChakraSelect>
+          </ChakraSelect> */}
           <DatePicker
             label="Dues Paid On"
             aria-label="Dues Paid On"
