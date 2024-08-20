@@ -1,5 +1,5 @@
 import { Database } from "@/lib/utils/supabase/types";
-import { CheckIcon, ChevronDownIcon, DeleteIcon } from "@chakra-ui/icons";
+import { CheckIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Select as ChakraSelect } from "@chakra-ui/react";
 import { getLocalTimeZone, today } from "@internationalized/date";
 import {
