@@ -1,4 +1,12 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  modularizeImports: {
+    "@react-aria": {
+      transform: "@react-aria/{{member}}",
+      skipDefaultConversion: true,
+      preventFullImport: true,
+    },
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
