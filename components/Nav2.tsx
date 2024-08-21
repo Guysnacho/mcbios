@@ -1,32 +1,88 @@
+import { ConfYears, PathMap } from "@/lib/utils/constants";
+import { createClient } from "@/lib/utils/supabase/component";
+import { useUserStore } from "@/providers/UserStateProvider";
 import {
-  Box,
-  Flex,
-  Text,
-  IconButton,
-  Button,
-  Stack,
-  Collapse,
-  Icon,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  useColorModeValue,
-  useBreakpointValue,
-  useDisclosure,
-} from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
+  CloseIcon,
+  HamburgerIcon,
 } from "@chakra-ui/icons";
-import { ConfYears } from "@/lib/utils/constants";
+import {
+  Avatar,
+  Box,
+  Button,
+  Collapse,
+  Flex,
+  Icon,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Stack,
+  Text,
+  useBreakpointValue,
+  useColorModeValue,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { AuthModal } from "./AuthModal";
 
 export default function Nav2() {
   const { isOpen, onToggle } = useDisclosure();
+  const supabase = createClient();
+  const router = useRouter();
+  const store = useUserStore((state) => state);
+  const path = usePathname();
+  const keys = Object.keys(PathMap);
+  const values = Object.values(PathMap);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthOpen, setAuthOpen] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
+
+  const handleLogout = () => {
+    supabase.auth.signOut({ scope: "local" }).finally(() => {
+      store.setId();
+      router.push("/");
+    });
+  };
+
+  const handleOpen = (isSignUp: boolean) => {
+    setIsSignUp(isSignUp);
+    if (store.id) {
+      router.push("/dashboard");
+    } else {
+      setAuthOpen(true);
+    }
+  };
+
+  useEffect(() => {
+    if (isAuthOpen === true) {
+      const fetchUser = async () => {
+        const { data } = await supabase.auth.getUser();
+        if (data) {
+          store.setId(data.user?.id);
+        } else {
+          console.log("No user found");
+        }
+      };
+      fetchUser();
+    }
+  }, [isAuthOpen]);
 
   return (
     <Box>
+      <AuthModal
+        isSignUp={isSignUp}
+        isOpen={isAuthOpen}
+        setIsOpen={setAuthOpen}
+      />
       <Flex
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
@@ -66,36 +122,61 @@ export default function Nav2() {
           </Flex>
         </Flex>
 
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"#"}
+        {store.id ? (
+          <Flex alignItems={"center"}>
+            <Menu>
+              <MenuButton
+                as={Button}
+                rounded={"full"}
+                variant={"link"}
+                cursor={"pointer"}
+                minW={0}
+              >
+                <Avatar
+                  size={"sm"}
+                  src={
+                    "https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75"
+                  }
+                />
+              </MenuButton>
+              <MenuList>
+                <MenuItem onClick={() => router.push("/dashboard")}>
+                  Dashboard
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+              </MenuList>
+            </Menu>
+          </Flex>
+        ) : (
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify={"flex-end"}
+            direction={"row"}
+            spacing={6}
           >
-            Sign In
-          </Button>
-          <Button
-            as={"a"}
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"pink.400"}
-            href={"#"}
-            _hover={{
-              bg: "pink.300",
-            }}
-          >
-            Sign Up
-          </Button>
-        </Stack>
+            <Button
+              fontSize={"sm"}
+              fontWeight={400}
+              variant={"link"}
+              onClick={() => handleOpen(false)}
+            >
+              Sign In
+            </Button>
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"pink.400"}
+              onClick={() => handleOpen(true)}
+              _hover={{
+                bg: "pink.300",
+              }}
+            >
+              Sign Up
+            </Button>
+          </Stack>
+        )}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -111,46 +192,48 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   return (
-    <Stack direction={"row"} spacing={4}>
-      {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label}>
-          <Popover trigger={"hover"} placement={"bottom-start"}>
-            <PopoverTrigger>
-              <Box
-                as="a"
-                p={2}
-                href={navItem.href ?? "#"}
-                fontSize={"sm"}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
-              >
-                {navItem.label}
-              </Box>
-            </PopoverTrigger>
+    <Stack direction={"row"} justifyItems="stretch">
+      <Stack direction={"row"} spacing={4}>
+        {NAV_ITEMS.map((navItem) => (
+          <Box key={navItem.label}>
+            <Popover trigger={"hover"} placement={"bottom-start"}>
+              <PopoverTrigger>
+                <Box
+                  as="a"
+                  p={2}
+                  href={navItem.href ?? "#"}
+                  fontSize={"sm"}
+                  fontWeight={500}
+                  color={linkColor}
+                  _hover={{
+                    textDecoration: "none",
+                    color: linkHoverColor,
+                  }}
+                >
+                  {navItem.label}
+                </Box>
+              </PopoverTrigger>
 
-            {navItem.children && (
-              <PopoverContent
-                border={0}
-                boxShadow={"xl"}
-                bg={popoverContentBgColor}
-                p={4}
-                rounded={"xl"}
-                minW={"sm"}
-              >
-                <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
-                  ))}
-                </Stack>
-              </PopoverContent>
-            )}
-          </Popover>
-        </Box>
-      ))}
+              {navItem.children && (
+                <PopoverContent
+                  border={0}
+                  boxShadow={"xl"}
+                  bg={popoverContentBgColor}
+                  p={4}
+                  rounded={"xl"}
+                  minW={"sm"}
+                >
+                  <Stack>
+                    {navItem.children.map((child) => (
+                      <DesktopSubNav key={child.label} {...child} />
+                    ))}
+                  </Stack>
+                </PopoverContent>
+              )}
+            </Popover>
+          </Box>
+        ))}
+      </Stack>
     </Stack>
   );
 };
