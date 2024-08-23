@@ -53,7 +53,9 @@ export const AuthModal = ({
       } else {
         store?.setId(data.user?.id);
         setIsOpen(false);
-        router.push("/dashboard");
+        router.push("/dashboard", undefined, {
+          shallow: false,
+        });
       }
     } else {
       setEmail("");

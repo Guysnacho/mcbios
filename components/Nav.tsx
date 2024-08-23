@@ -8,7 +8,7 @@ import {
   CloseIcon,
   HamburgerIcon,
 } from "@chakra-ui/icons";
-import { Link } from "@chakra-ui/next-js";
+import { Link } from "@chakra-ui/react";
 import {
   Avatar,
   Box,
@@ -30,6 +30,7 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { AuthModal } from "./AuthModal";
@@ -53,7 +54,9 @@ export default function Nav() {
   const handleOpen = (isSignUp: boolean) => {
     setIsSignUp(isSignUp);
     if (store?.id) {
-      router.push("/dashboard");
+      router.push("/dashboard", undefined, {
+        shallow: false,
+      });
     } else {
       setAuthOpen(true);
     }
@@ -149,7 +152,7 @@ export default function Nav() {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem as={Link} href="/dashboard">
+                <MenuItem as={NextLink} href="/dashboard">
                   Dashboard
                 </MenuItem>
                 <MenuItem onClick={handleLogout}>Log Out</MenuItem>
