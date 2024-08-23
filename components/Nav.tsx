@@ -1,47 +1,60 @@
 import { ConfYears, PathMap } from "@/lib/utils/constants";
 import { createClient } from "@/lib/utils/supabase/component";
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { useUserStore } from "@/providers/UserStateProvider";
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+  CloseIcon,
+  HamburgerIcon,
+} from "@chakra-ui/icons";
 import {
   Avatar,
+  Box,
   Button,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-  Link,
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuToggle,
-} from "@nextui-org/react";
-import { User } from "@supabase/supabase-js";
-import { usePathname, useRouter } from "next/navigation";
+  Collapse,
+  Flex,
+  Icon,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Stack,
+  Text,
+  useBreakpointValue,
+  useColorModeValue,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { AuthModal } from "./AuthModal";
-import { useUserStore } from "@/providers/UserStateProvider";
 
-export const Nav = () => {
+export default function Nav() {
+  const { isOpen, onToggle } = useDisclosure();
   const supabase = createClient();
   const router = useRouter();
+  const store = useUserStore((state) => state);
   const path = usePathname();
   const keys = Object.keys(PathMap);
   const values = Object.values(PathMap);
-  const store = useUserStore((state) => state);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthOpen, setAuthOpen] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
 
-  const logout = () => {
+  const handleLogout = () => {
     supabase.auth.signOut({ scope: "local" }).finally(() => {
       store.setId();
       router.push("/");
     });
   };
 
-  const handleOpen = () => {
+  const handleOpen = (isSignUp: boolean) => {
+    setIsSignUp(isSignUp);
     if (store.id) {
       router.push("/dashboard");
     } else {
@@ -50,257 +63,328 @@ export const Nav = () => {
   };
 
   useEffect(() => {
-    const fetchUser = async () => {
-      const { data } = await supabase.auth.getUser();
-      if (data) {
-        store.setId(data.user?.id);
-      } else {
-        console.log("No user found");
-      }
-    };
-    fetchUser();
+    if (isAuthOpen === true) {
+      const fetchUser = async () => {
+        const { data } = await supabase.auth.getUser();
+        if (data) {
+          store.setId(data.user?.id);
+        } else {
+          console.log("No user found");
+        }
+      };
+      fetchUser();
+    }
   }, [isAuthOpen]);
 
   return (
-    <Navbar
-      isBordered
-      as="nav"
-      classNames={{
-        item: [
-          "flex",
-          "relative",
-          "h-full",
-          "items-center",
-          "drop-shadow-md",
-          "data-[active=true]:after:content-['']",
-          "data-[active=true]:after:absolute",
-          "data-[active=true]:after:bottom-0",
-          "data-[active=true]:after:left-0",
-          "data-[active=true]:after:right-0",
-          "data-[active=true]:after:h-[2px]",
-          "data-[active=true]:after:rounded-[2px]",
-          "data-[active=true]:after:bg-primary",
-        ],
-      }}
-    >
-      <NavbarBrand onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        <Link href="/" className="font-bold text-gray-800 text-2xl">
-          MCBIOS
-        </Link>
-      </NavbarBrand>
+    <Box>
+      <AuthModal
+        isSignUp={isSignUp}
+        isOpen={isAuthOpen}
+        setIsOpen={setAuthOpen}
+      />
+      <Flex
+        bg={useColorModeValue("white", "gray.800")}
+        color={useColorModeValue("gray.600", "white")}
+        minH={"60px"}
+        py={{ base: 2 }}
+        px={{ base: 4 }}
+        borderBottom={1}
+        borderStyle={"solid"}
+        borderColor={useColorModeValue("gray.200", "gray.900")}
+        align={"center"}
+      >
+        <Flex
+          flex={{ base: 1, md: "auto" }}
+          ml={{ base: -2 }}
+          display={{ base: "flex", md: "none" }}
+        >
+          <IconButton
+            onClick={onToggle}
+            icon={
+              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+            }
+            variant={"ghost"}
+            aria-label={"Toggle Navigation"}
+          />
+        </Flex>
+        <Flex
+          flex={{ base: 1 }}
+          justify={{ base: "center", md: "start" }}
+          align="center"
+        >
+          <Text
+            textAlign={useBreakpointValue({ base: "center", md: "left" })}
+            fontFamily={"heading"}
+            fontWeight={600}
+            fontSize="x-large"
+            color={useColorModeValue("gray.800", "white")}
+          >
+            MCBIOS
+          </Text>
 
-      <NavbarContent className="hidden md:flex gap-4 h-16" justify="center">
-        {keys
-          .filter((val) => val !== "/")
-          .map((route) =>
-            route == "/conferences" ? (
-              <Dropdown key={route}>
-                <NavbarItem>
-                  <DropdownTrigger className="-m-3">
-                    <Button
-                      disableRipple
-                      className="bg-transparent data-[hover=true]:bg-transparent"
-                      endContent={<ChevronDownIcon />}
-                      radius="sm"
-                      variant="light"
-                    >
-                      {PathMap["/conferences"].name}
-                    </Button>
-                  </DropdownTrigger>
-                </NavbarItem>
-                <DropdownMenu
-                  aria-label={PathMap["/conferences"].name}
-                  className="w-30"
-                  itemClasses={{
-                    base: "gap-4",
-                  }}
-                >
-                  {ConfYears.map((conference) => (
-                    <DropdownItem
-                      key={conference.year}
-                      href={conference.url}
-                      target="_self"
-                      // description="ACME scales apps to meet user demand, automagically, based on load."
-                    >
-                      MCBIOS {conference.year}
-                    </DropdownItem>
-                  ))}
-                </DropdownMenu>
-              </Dropdown>
-            ) : route == "/membership" ? (
-              <Dropdown key={route}>
-                <NavbarItem>
-                  <DropdownTrigger className="-m-3">
-                    <Button
-                      disableRipple
-                      className="bg-transparent data-[hover=true]:bg-transparent w-32"
-                      endContent={<ChevronDownIcon />}
-                      radius="sm"
-                      variant="light"
-                    >
-                      MEMBERSHIP
-                    </Button>
-                  </DropdownTrigger>
-                </NavbarItem>
-                <DropdownMenu
-                  aria-label="MEMBERSHIP"
-                  className="w-30"
-                  itemClasses={{
-                    base: "gap-4",
-                  }}
-                >
-                  <DropdownItem
-                    onClick={handleOpen}
-                    // description="ACME scales apps to meet user demand, automagically, based on load."
-                  >
-                    Sign In
-                  </DropdownItem>
-                  <DropdownItem
-                    href="/membership"
-                    target="_self"
-                    // description="ACME scales apps to meet user demand, automagically, based on load."
-                  >
-                    Registration
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            ) : (
-              <NavbarItem isActive={path == route} key={route}>
-                <Link
-                  //@ts-ignore
-                  href={PathMap[route].path}
-                  color={path == route ? "primary" : "foreground"}
-                  aria-current="page"
-                >
-                  {/*@ts-ignore*/}
-                  {PathMap[route].name}
-                </Link>
-              </NavbarItem>
-            )
-          )}
+          <Flex display={{ base: "none", md: "flex" }} ml={10}>
+            <DesktopNav />
+          </Flex>
+        </Flex>
+
         {store.id ? (
-          <NavbarItem isActive>
-            <Dropdown>
-              <DropdownTrigger>
+          <Flex alignItems={"center"}>
+            <Menu>
+              <MenuButton
+                as={Button}
+                rounded={"full"}
+                variant={"link"}
+                cursor={"pointer"}
+                minW={0}
+              >
                 <Avatar
-                  src="https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75"
-                  // description={
-                  //   <Link
-                  //     href="https://twitter.com/jrgarciadev"
-                  //     size="sm"
-                  //     isExternal
-                  //   >
-                  //     @jrgarciadev
-                  //   </Link>
-                  // }
-                  // avatarProps={{
-                  //   src: "https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75",
-                  // }}
+                  size={"sm"}
+                  src={
+                    "https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75"
+                  }
                 />
-              </DropdownTrigger>
-              <DropdownMenu
-                variant="faded"
-                aria-label="Dropdown menu with icons"
-              >
-                <DropdownItem
-                  href="/dashboard"
-                  about="dashboard"
-                  // startContent={<CopyDocumentIcon className={iconClasses} />}
-                >
+              </MenuButton>
+              <MenuList>
+                <MenuItem onClick={() => router.push("/dashboard")}>
                   Dashboard
-                </DropdownItem>
-                <DropdownItem
-                  about="logout"
-                  onClick={logout}
-                  // startContent={<CopyDocumentIcon className={iconClasses} />}
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+              </MenuList>
+            </Menu>
+          </Flex>
+        ) : (
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify={"flex-end"}
+            direction={"row"}
+            spacing={6}
+          >
+            <Button
+              fontSize={"sm"}
+              fontWeight={400}
+              variant={"link"}
+              onClick={() => handleOpen(false)}
+            >
+              Sign In
+            </Button>
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"pink.400"}
+              onClick={() => handleOpen(true)}
+              _hover={{
+                bg: "pink.300",
+              }}
+            >
+              Sign Up
+            </Button>
+          </Stack>
+        )}
+      </Flex>
+
+      <Collapse in={isOpen} animateOpacity>
+        <MobileNav />
+      </Collapse>
+    </Box>
+  );
+}
+
+const DesktopNav = () => {
+  const linkColor = useColorModeValue("gray.600", "gray.200");
+  const linkHoverColor = useColorModeValue("gray.800", "white");
+  const popoverContentBgColor = useColorModeValue("white", "gray.800");
+
+  return (
+    <Stack direction={"row"} justifyItems="stretch">
+      <Stack direction={"row"} spacing={4}>
+        {NAV_ITEMS.map((navItem) => (
+          <Box key={navItem.label}>
+            <Popover trigger={"hover"} placement={"bottom-start"}>
+              <PopoverTrigger>
+                <Box
+                  as="a"
+                  p={2}
+                  href={navItem.href ?? "#"}
+                  fontSize={"sm"}
+                  fontWeight={500}
+                  color={linkColor}
+                  _hover={{
+                    textDecoration: "none",
+                    color: linkHoverColor,
+                  }}
                 >
-                  Logout
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </NavbarItem>
-        ) : undefined}
-      </NavbarContent>
-      <NavbarContent className="md:hidden h-16" justify="end">
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="md:hidden"
-        />
-      </NavbarContent>
-      <NavbarMenu about="Conference List">
-        {values
-          .filter((val) => val.path !== "/")
-          .map((item, index) =>
-            item.path === "/conferences" ? (
-              <Dropdown key={item.name}>
-                <NavbarMenuItem>
-                  <DropdownTrigger>
-                    <Button
-                      about={item.name}
-                      disableRipple
-                      className="bg-transparent data-[hover=true]:bg-transparent p-0"
-                      endContent={<ChevronDownIcon />}
-                      radius="sm"
-                      variant="light"
-                    >
-                      {item.name}
-                    </Button>
-                  </DropdownTrigger>
-                </NavbarMenuItem>
-                <DropdownMenu aria-label="conferences" className="w-52">
-                  {ConfYears.map((conference) => (
-                    <DropdownItem
-                      key={conference.year}
-                      href={conference.url}
-                      target="_blank"
-                      // description="ACME scales apps to meet user demand, automagically, based on load."
-                    >
-                      MCBIOS {conference.year}
-                    </DropdownItem>
-                  ))}
-                </DropdownMenu>
-              </Dropdown>
-            ) : item.path === "/membership" ? (
-              <Dropdown key={item.name}>
-                <NavbarMenuItem>
-                  <DropdownTrigger>
-                    <Button
-                      about={item.name}
-                      disableRipple
-                      className="bg-transparent data-[hover=true]:bg-transparent p-0"
-                      endContent={<ChevronDownIcon />}
-                      radius="sm"
-                      variant="light"
-                    >
-                      {item.name}
-                    </Button>
-                  </DropdownTrigger>
-                </NavbarMenuItem>
-                <DropdownMenu aria-label="MEMBERSHIP" className="w-52">
-                  <DropdownItem onClick={handleOpen}>Sign In</DropdownItem>
-                  <DropdownItem href="/membership" target="_self">
-                    Registration
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            ) : (
-              <NavbarMenuItem
-                isActive={path === item.path}
-                key={`${item}-${index}`}
-              >
-                <Link
-                  color={path === item.path ? undefined : "foreground"}
-                  className="w-full"
-                  href={item.path}
-                  size="lg"
+                  {navItem.label}
+                </Box>
+              </PopoverTrigger>
+
+              {navItem.children && (
+                <PopoverContent
+                  border={0}
+                  boxShadow={"xl"}
+                  bg={popoverContentBgColor}
+                  p={4}
+                  rounded={"xl"}
+                  minW={"sm"}
                 >
-                  {item.name}
-                </Link>
-              </NavbarMenuItem>
-            )
-          )}
-      </NavbarMenu>
-      <AuthModal isOpen={isAuthOpen} setIsOpen={setAuthOpen} />
-    </Navbar>
+                  <Stack>
+                    {navItem.children.map((child) => (
+                      <DesktopSubNav key={child.label} {...child} />
+                    ))}
+                  </Stack>
+                </PopoverContent>
+              )}
+            </Popover>
+          </Box>
+        ))}
+      </Stack>
+    </Stack>
   );
 };
+
+const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+  return (
+    <Box
+      as="a"
+      href={href}
+      role={"group"}
+      display={"block"}
+      p={2}
+      rounded={"md"}
+      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+    >
+      <Stack direction={"row"} align={"center"}>
+        <Box>
+          <Text
+            transition={"all .3s ease"}
+            _groupHover={{ color: "pink.400" }}
+            fontWeight={500}
+          >
+            {label}
+          </Text>
+          <Text fontSize={"sm"}>{subLabel}</Text>
+        </Box>
+        <Flex
+          transition={"all .3s ease"}
+          transform={"translateX(-10px)"}
+          opacity={0}
+          _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
+          justify={"flex-end"}
+          align={"center"}
+          flex={1}
+        >
+          <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
+        </Flex>
+      </Stack>
+    </Box>
+  );
+};
+
+const MobileNav = () => {
+  return (
+    <Stack
+      bg={useColorModeValue("white", "gray.800")}
+      p={4}
+      display={{ md: "none" }}
+    >
+      {NAV_ITEMS.map((navItem) => (
+        <MobileNavItem key={navItem.label} {...navItem} />
+      ))}
+    </Stack>
+  );
+};
+
+const MobileNavItem = ({ label, children, href }: NavItem) => {
+  const { isOpen, onToggle } = useDisclosure();
+
+  return (
+    <Stack spacing={4} onClick={children && onToggle}>
+      <Box
+        py={2}
+        as="a"
+        href={href ?? "#"}
+        justifyContent="space-between"
+        alignItems="center"
+        _hover={{
+          textDecoration: "none",
+        }}
+      >
+        <Text
+          fontWeight={600}
+          color={useColorModeValue("gray.600", "gray.200")}
+        >
+          {label}
+        </Text>
+        {children && (
+          <Icon
+            as={ChevronDownIcon}
+            transition={"all .25s ease-in-out"}
+            transform={isOpen ? "rotate(180deg)" : ""}
+            w={6}
+            h={6}
+          />
+        )}
+      </Box>
+
+      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
+        <Stack
+          mt={2}
+          pl={4}
+          borderLeft={1}
+          borderStyle={"solid"}
+          borderColor={useColorModeValue("gray.200", "gray.700")}
+          align={"start"}
+        >
+          {children &&
+            children.map((child) => (
+              <Box as="a" key={child.label} py={2} href={child.href}>
+                {child.label}
+              </Box>
+            ))}
+        </Stack>
+      </Collapse>
+    </Stack>
+  );
+};
+
+interface NavItem {
+  label: string;
+  subLabel?: string;
+  children?: Array<NavItem>;
+  href?: string;
+}
+
+const NAV_ITEMS: Array<NavItem> = [
+  {
+    label: "Leadership",
+    href: "/leadership",
+  },
+  {
+    label: "Membership",
+    subLabel: "Gain access to past recordings, board votes and more!",
+    href: "/membership",
+  },
+  {
+    label: "Conferences",
+    children: ConfYears.reverse().map((conference) => {
+      return {
+        label: "MCBIOS " + conference.year,
+        href: conference.url,
+      };
+    }),
+  },
+  {
+    label: "Events",
+    href: "/events",
+  },
+  {
+    label: "Publications",
+    href: "/publications",
+  },
+  {
+    label: "About",
+    href: "/about",
+  },
+];

@@ -1,7 +1,6 @@
 import { Footer } from "@/components/Footer";
-import { Nav } from "@/components/Nav";
 import { Providers } from "@/providers/Providers";
-import Nav2 from "./Nav2";
+import Nav from "./Nav";
 
 // const poppins = Poppins({
 //   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -23,7 +22,6 @@ export default function RootLayout({
   return (
     <Providers>
       <Nav />
-      <Nav2 />
       <main>{children}</main>
       <Footer />
     </Providers>
