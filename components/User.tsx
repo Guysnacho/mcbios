@@ -6,9 +6,12 @@ export const User = ({
   lname,
   role,
 }: {
-  fname: string | null;
-  lname: string | null;
-  role: Database["public"]["Tables"]["member"]["Row"]["role"];
+  fname: string | undefined | null;
+  lname: string | undefined | null;
+  role:
+    | Database["public"]["Tables"]["member"]["Row"]["role"]
+    | undefined
+    | null;
 }) => {
   return (
     <Flex>

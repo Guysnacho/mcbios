@@ -5,8 +5,7 @@ import { User } from "@/components/User";
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
 import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
-import { createClient } from "@/lib/utils/supabase/server-props";
-import { Database } from "@/lib/utils/supabase/types";
+import { authFetcher } from "@/lib/utils/swrFetchers";
 import {
   Button,
   Divider,
@@ -16,32 +15,9 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Head from "next/head";
 import Script from "next/script";
-
-export const getServerSideProps = (async (
-  context: GetServerSidePropsContext
-) => {
-  // Fetch data from external API
-  const client = createClient(context);
-  const { data } = await client.from("member").select("*").single();
-  const { data: videos } = await client
-    .from("videos")
-    .select("*")
-    .order("date", { ascending: false });
-
-  if (data) {
-    if (videos) {
-      return { props: { user: data, videos } };
-    }
-    return { props: { user: data, videos: [] } };
-  }
-  return { props: { user: undefined, videos: [] } };
-}) satisfies GetServerSideProps<{
-  user: Database["public"]["Tables"]["member"]["Row"] | undefined;
-  videos: Database["public"]["Tables"]["videos"]["Row"][];
-}>;
+import useSWR from "swr";
 
 let tabs = [
   {
@@ -54,21 +30,11 @@ let tabs = [
   },
 ];
 
-export default function Dashboard(props: {
-  user: Database["public"]["Tables"]["member"]["Row"];
-  videos: Database["public"]["Tables"]["videos"]["Row"][];
-}) {
-  // const [currYear, setCurrYear] = useState<string>("");
-
-  // const handleSelectionChange = (e: ChangeEvent<HTMLSelectElement>) => {
-  //   console.debug("event ");
-  //   console.debug(e);
-  //   setCurrYear(e.target.value);
-  //   console.debug("Current year " + currYear);
-  // };
-  // let formatter = useDateFormatter({ dateStyle: "full" });
+export default function Dashboard() {
   const client = createCompoentClient();
   const store = useStore(useUserStore, (store) => store);
+
+  const { data, error } = useSWR("/auth/user", () => authFetcher(client));
 
   return (
     <>
@@ -93,12 +59,12 @@ export default function Dashboard(props: {
           </TabList>
           <TabPanels>
             <TabPanel>
-              {props.user && props.user.dues_paid_at ? (
-                <MemberContent videos={props.videos} />
+              {data?.user && data?.user.dues_paid_at ? (
+                <MemberContent videos={data?.videos} />
               ) : undefined}
             </TabPanel>
 
-            {props.user && props.user.role === "admin" ? (
+            {data?.user && data?.user.role === "admin" ? (
               <TabPanel>
                 <div className="my-5 flex gap-3 mx-auto justify-center">
                   <VideoUploader />
@@ -115,15 +81,15 @@ export default function Dashboard(props: {
                 <div>
                   <h5 className="text-center">Your Member Info</h5>
                   <User
-                    fname={props.user?.fname}
-                    lname={props.user?.lname}
-                    role={props.user?.role}
+                    fname={data?.user?.fname}
+                    lname={data?.user?.lname}
+                    role={data?.user?.role}
                   />
                 </div>
               </div>
               <Divider />
               <div className="container text-center space-y-4">
-                {!props.user || !props.user?.dues_paid_at ? (
+                {!data?.user || !data?.user?.dues_paid_at ? (
                   <>
                     <h4>Welcome to MCBIOS!</h4>
                     <p>
