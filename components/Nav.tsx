@@ -129,7 +129,12 @@ export default function Nav() {
         </Flex>
 
         {store.id ? (
-          <Flex alignItems={"center"}>
+          <Stack
+            flex={{ base: 1, md: "auto" }}
+            justify={"flex-end"}
+            direction={"row"}
+            spacing={6}
+          >
             <Menu>
               <MenuButton
                 as={Button}
@@ -152,10 +157,10 @@ export default function Nav() {
                 <MenuItem onClick={handleLogout}>Log Out</MenuItem>
               </MenuList>
             </Menu>
-          </Flex>
+          </Stack>
         ) : (
           <Stack
-            flex={{ base: 1, md: 0 }}
+            flex={{ base: 1, md: "auto" }}
             justify={"flex-end"}
             direction={"row"}
             spacing={6}
@@ -169,7 +174,7 @@ export default function Nav() {
               Sign In
             </Button>
             <Button
-              display={{ base: "none", md: "inline-flex" }}
+              display="inline-flex"
               fontSize={"sm"}
               fontWeight={600}
               color={"white"}
