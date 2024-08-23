@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/utils/supabase/component";
 import { Database } from "@/lib/utils/supabase/types";
-import { Button, Input, Stack, Text } from "@chakra-ui/react";
+import { Button, Flex, Input, Stack, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 
@@ -34,44 +34,21 @@ export const VideoUploader = () => {
     if (!video || video.length === 0) {
       setVideoError("Invalid video");
     }
-    return !dateError && !titleError && !videoError;
+    console.debug(dateError);
+    console.debug(titleError);
+    console.debug(videoError);
+    return dateError === "" && titleError === "" && videoError === "";
   }
 
   const handleSubmit = async () => {
-    if (!isValidUpload()) {
+    const isValid = isValidUpload();
+    console.debug(isValid);
+    if (!isValid) {
       setLoading(false);
       throw new Error("Bad Request");
     }
-    // Create presigned url upfront
-    // const { data: urlData, error: urlErr } = await client.storage
-    //   .from("content")
-    //   .createSignedUploadUrl(`video/${date.year}/${title}`);
-
-    // if (urlErr) {
-    //   alert("Something went wrong while making the url - " + urlErr?.message);
-    //   setLoading(false);
-    //   return;
-    // }
-    // Upload video
-    // const { data: uploadData, error: uploadErr } = await client.storage
-    //   .from("content")
-    //   .uploadToSignedUrl(urlData?.path, urlData?.token, video!, {
-    //     duplex: "half",
-    //   });
-    // const { data: uploadData, error: uploadErr } = await uploadFile(
-    //   "content",
-    //   urlData?.path,
-    //   video!,
-    //   client
-    // );
-
     // Insert entry into video table
     // TODO make a trigger and function for this, needs to be scopped down to content table though
-    // if (uploadErr) {
-    //   alert("Error during upload - " + uploadErr.message);
-    //   setLoading(false);
-    //   return;
-    // }
 
     // Add reference to video in db
     const { data, error } = await client
@@ -102,11 +79,13 @@ export const VideoUploader = () => {
   };
 
   return (
-    <div>
+    <div className="w-[300px] sm:w-1/3">
       <h5 className="text-center">Upload Content</h5>
-      <div className="flex flex-col gap-5 mx-auto">
-        <Stack>
-          <label htmlFor="title">Conference Date</label>
+      <div className="space-y-5">
+        <Stack gap={2}>
+          <Text mt={3} mb={-5}>
+            Conference Date
+          </Text>
           <DatePicker
             className="max-w-[284px] mt-4"
             selected={date}
@@ -116,7 +95,7 @@ export const VideoUploader = () => {
           <Text>{dateError}</Text>
         </Stack>
 
-        <div className="flex flex-col">
+        <div>
           <label htmlFor="title">Title</label>
           <Input
             type="text"
@@ -129,7 +108,7 @@ export const VideoUploader = () => {
           <Text>{titleError}</Text>
         </div>
 
-        <div className="flex flex-col">
+        <div>
           <label htmlFor="video">Content Url</label>
           <Input
             type="text"
@@ -138,17 +117,22 @@ export const VideoUploader = () => {
             onChange={(e) => {
               setVideo(e.target.value);
             }}
+            placeholder="drive.google.com/file/d/asdf1234/preview"
             disabled={loading}
           />
           <Text>{videoError}</Text>
         </div>
 
-        <Button
-          colorScheme={dateError || titleError || videoError ? "red" : "green"}
-          onClick={() => handleSubmit().catch((err) => console.error(err))}
-        >
-          Submit
-        </Button>
+        <Flex justify="center">
+          <Button
+            colorScheme={
+              dateError || titleError || videoError ? "red" : "green"
+            }
+            onClick={() => handleSubmit().catch((err) => console.error(err))}
+          >
+            Submit
+          </Button>
+        </Flex>
       </div>
 
       {/* <Table aria-label="Content Table" title="Saved Videos" className="mt-10 min-w-96">
