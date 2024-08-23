@@ -1,11 +1,13 @@
 import { createClient } from "@/lib/utils/supabase/component";
 import { Database } from "@/lib/utils/supabase/types";
-import { getLocalTimeZone, now } from "@internationalized/date";
-import { Button, DatePicker, DateValue, Input } from "@nextui-org/react";
+import { Button, Flex, Input, Stack, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 export const VideoUploader = () => {
-  const [date, setDate] = useState<DateValue>(now(getLocalTimeZone()));
+  const [date, setDate] = useState<Date | null>(new Date());
   const [dateError, setDateError] = useState("");
   const [title, setTitle] = useState("");
   const [titleError, setTitleError] = useState("");
@@ -29,54 +31,31 @@ export const VideoUploader = () => {
     setLoading(true);
     if (!date) setDateError("Invalid date");
     if (!title) setTitleError("Invalid title");
-    if (!video) {
+    if (!video || video.length === 0) {
       setVideoError("Invalid video");
     }
-    return !dateError && !titleError && !videoError;
+    console.debug(dateError);
+    console.debug(titleError);
+    console.debug(videoError);
+    return dateError === "" && titleError === "" && videoError === "";
   }
 
   const handleSubmit = async () => {
-    if (!isValidUpload()) {
+    const isValid = isValidUpload();
+    console.debug(isValid);
+    if (!isValid) {
       setLoading(false);
-      return;
+      throw new Error("Bad Request");
     }
-    // Create presigned url upfront
-    // const { data: urlData, error: urlErr } = await client.storage
-    //   .from("content")
-    //   .createSignedUploadUrl(`video/${date.year}/${title}`);
-
-    // if (urlErr) {
-    //   alert("Something went wrong while making the url - " + urlErr?.message);
-    //   setLoading(false);
-    //   return;
-    // }
-    // Upload video
-    // const { data: uploadData, error: uploadErr } = await client.storage
-    //   .from("content")
-    //   .uploadToSignedUrl(urlData?.path, urlData?.token, video!, {
-    //     duplex: "half",
-    //   });
-    // const { data: uploadData, error: uploadErr } = await uploadFile(
-    //   "content",
-    //   urlData?.path,
-    //   video!,
-    //   client
-    // );
-
     // Insert entry into video table
     // TODO make a trigger and function for this, needs to be scopped down to content table though
-    // if (uploadErr) {
-    //   alert("Error during upload - " + uploadErr.message);
-    //   setLoading(false);
-    //   return;
-    // }
 
     // Add reference to video in db
     const { data, error } = await client
       .from("videos")
       .insert({
         title,
-        date: date.toDate(getLocalTimeZone()).toDateString(),
+        date: date!.toISOString(),
         path: video,
       })
       .select()
@@ -100,36 +79,36 @@ export const VideoUploader = () => {
   };
 
   return (
-    <div>
+    <div className="w-[300px] sm:w-1/3">
       <h5 className="text-center">Upload Content</h5>
-      <div className="flex flex-col gap-5 mx-auto">
-        <div>
+      <div className="space-y-5">
+        <Stack gap={2}>
+          <Text mt={3} mb={-5}>
+            Conference Date
+          </Text>
           <DatePicker
-            label="Conference Date"
-            variant="underlined"
             className="max-w-[284px] mt-4"
-            value={date}
+            selected={date}
+            maxDate={new Date()}
             onChange={setDate}
-            isRequired
-            errorMessage={dateError}
           />
-        </div>
+          <Text>{dateError}</Text>
+        </Stack>
 
-        <div className="flex flex-col">
+        <div>
           <label htmlFor="title">Title</label>
           <Input
             type="text"
             name="Title"
             id="title"
-            isClearable
             onChange={(e) => setTitle(e.currentTarget.value)}
             placeholder="Speaker Series II"
             disabled={loading}
-            errorMessage={titleError}
           />
+          <Text>{titleError}</Text>
         </div>
 
-        <div className="flex flex-col">
+        <div>
           <label htmlFor="video">Content Url</label>
           <Input
             type="text"
@@ -138,17 +117,22 @@ export const VideoUploader = () => {
             onChange={(e) => {
               setVideo(e.target.value);
             }}
+            placeholder="drive.google.com/file/d/asdf1234/preview"
             disabled={loading}
-            errorMessage={videoError}
           />
+          <Text>{videoError}</Text>
         </div>
 
-        <Button
-          color={dateError || titleError || videoError ? "warning" : "success"}
-          onClick={handleSubmit}
-        >
-          Submit
-        </Button>
+        <Flex justify="center">
+          <Button
+            colorScheme={
+              dateError || titleError || videoError ? "red" : "green"
+            }
+            onClick={() => handleSubmit().catch((err) => console.error(err))}
+          >
+            Submit
+          </Button>
+        </Flex>
       </div>
 
       {/* <Table aria-label="Content Table" title="Saved Videos" className="mt-10 min-w-96">

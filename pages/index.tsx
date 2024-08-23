@@ -1,11 +1,23 @@
-import { Accordion, AccordionItem } from "@nextui-org/accordion";
-import { Button } from "@nextui-org/button";
-import { Card, CardFooter, CardHeader } from "@nextui-org/card";
-import { Divider } from "@nextui-org/divider";
-import { Image } from "@nextui-org/image";
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Button,
+  Card,
+  CardFooter,
+  CardHeader,
+  Divider,
+  Image,
+} from "@chakra-ui/react";
 import Head from "next/head";
+import NextLink from "next/link";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
   return (
     <div className="my-10 gap-10">
       <Head>
@@ -24,13 +36,10 @@ export default function Home() {
           }}
         />
         <Button
-          variant="shadow"
+          type="button"
           size="md"
-          as="a"
-          target="_self"
-          className="my-4 mx-auto"
-          href="/membership"
-          color="secondary"
+          onClick={() => router.push("/membership")}
+          colorScheme="pink"
         >
           Become a Member
         </Button>
@@ -43,85 +52,104 @@ export default function Home() {
           Greeting from the MCBIOS President:
         </h3>
         <div className="md:flex my-5 gap-5 mx-auto">
-          <Card shadow="md" className="h-fit">
-            <CardHeader>
-              <Image
-                src="/images/leadership/Qin-Steve.jpg"
-                fallbackSrc="/images/leadership/Qin-Steve.jpg"
-                alt="Qin Steve, MCBIOS President"
-                className="w-4/5 md:w-11/12 object-cover mx-auto"
-                classNames={{
-                  wrapper: ["mx-auto"],
-                }}
-              />
-            </CardHeader>
-            <CardFooter>
-              <p className="text-sm">
-                <strong className="mx-auto">Zhaohui “Steve” Qin, PhD</strong>
-                <br />
-                President, Mid-South Computational Biology & Bioinformatics
-                Society
-                <br />
-                Professor
-                <br />
-                Department of Biostatistics, Bioinformatics
-                <br />
-                Emory University
-              </p>
-            </CardFooter>
-          </Card>
-          <Accordion>
-            <AccordionItem
-              aria-label="Introduction and Gratitude"
-              key="1"
-              title={<p>Introduction and Gratitude</p>}
-            >
-              It is my great honor to serve as the 19th president of MidSouth
-              Computational Biology and Bioinformatics Society (MCBIOS). I want
-              to thank members of the society for trusting me and giving me this
-              opportunity to lead a regional bioinformatics powerhouse. I also
-              want to thank the board of directors and past presidents for their
-              unwavering support and guidance.
+          <div className="20vw">
+            <Card shadow="md">
+              <CardHeader>
+                <Image
+                  src="/images/leadership/Qin-Steve.jpg"
+                  fallbackSrc="/images/leadership/Qin-Steve.jpg"
+                  alt="Qin Steve, MCBIOS President"
+                  className="mx-auto"
+                />
+              </CardHeader>
+              <Divider w="80%" mx="auto" />
+              <CardFooter>
+                <p className="text-sm">
+                  <strong className="mx-auto">Zhaohui “Steve” Qin, PhD</strong>
+                  <br />
+                  President, Mid-South Computational Biology & Bioinformatics
+                  Society
+                  <br />
+                  Professor
+                  <br />
+                  Department of Biostatistics, Bioinformatics
+                  <br />
+                  Emory University
+                </p>
+              </CardFooter>
+            </Card>
+          </div>
+          <Accordion defaultIndex={[0]} allowMultiple w="60vw">
+            <AccordionItem aria-label="Introduction and Gratitude">
+              <h2>
+                <AccordionButton>
+                  <Box as="span" flex="1" textAlign="left">
+                    Introduction and Gratitude
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                It is my great honor to serve as the 19th president of MidSouth
+                Computational Biology and Bioinformatics Society (MCBIOS). I
+                want to thank members of the society for trusting me and giving
+                me this opportunity to lead a regional bioinformatics
+                powerhouse. I also want to thank the board of directors and past
+                presidents for their unwavering support and guidance.
+              </AccordionPanel>
             </AccordionItem>
-            <AccordionItem
-              aria-label="Personal Journey"
-              key="2"
-              title={<p>Personal Journey</p>}
-            >
-              Reflecting my own professional journey, I can&lsquo;t emphasize
-              more on the importance of professional organization for a trainee
-              and junior professionals. I didn&lsquo;t discover bioinformatics
-              until in my postdoc years. Joining ISCB and attending my first
-              ISMB conference really made a difference. I felt that I found the
-              community of like-minded people, especially young professionals,
-              that I belong. Therefore, I encourage colleagues, especially
-              trainees, no matter where you are located, to please consider
-              joining us.
+            <AccordionItem aria-label="Personal Journey">
+              <h2>
+                <AccordionButton>
+                  <Box as="span" flex="1" textAlign="left">
+                    Personal Journey
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                Reflecting my own professional journey, I can&lsquo;t emphasize
+                more on the importance of professional organization for a
+                trainee and junior professionals. I didn&lsquo;t discover
+                bioinformatics until in my postdoc years. Joining ISCB and
+                attending my first ISMB conference really made a difference. I
+                felt that I found the community of like-minded people,
+                especially young professionals, that I belong. Therefore, I
+                encourage colleagues, especially trainees, no matter where you
+                are located, to please consider joining us.
+              </AccordionPanel>
             </AccordionItem>
-            <AccordionItem
-              aria-label="Future Events: Upcomming Conference"
-              key="3"
-              title={<p>Future Events: Upcomming Conference</p>}
-            >
-              I considered myself very lucky to be introduced to MCBIOS and
-              attended my first MCBIOS annual conference in 2019. Over the
-              years, I found MCBIOS to be a very welcoming community consist of
-              energetic professionals working in all aspects of bioinformatics.
-              Because of the pandemic, for the past three years, we have to
-              either postpone or move the annual conferences online. I am really
-              pleased that we are able to get back to normal earlier this year
-              in the 2023 Conference. Looking forward to next year, I sincerely
-              hope that you can join us for our 20th annual conference to be
-              held in Atlanta, GA on March 22-24, 2024. <br />
-              <br />
-              Additionally, I encourage and welcome the scientific community to
-              join us and connect with us via social media to stay updated on
-              upcoming events such as the career development webinar series and
-              our 2024 annual conference. Over the coming months, we will be
-              sharing more information on upcoming webinar dates, 2024
-              conference call for session proposals, abstract deadlines and
-              more. Many thanks for all of your continued support and well
-              wishes!
+            <AccordionItem aria-label="Future Events: Upcomming Conference">
+              <h2>
+                <AccordionButton>
+                  <Box as="span" flex="1" textAlign="left">
+                    Future Events: Upcomming Conference
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                I considered myself very lucky to be introduced to MCBIOS and
+                attended my first MCBIOS annual conference in 2019. Over the
+                years, I found MCBIOS to be a very welcoming community consist
+                of energetic professionals working in all aspects of
+                bioinformatics. Because of the pandemic, for the past three
+                years, we have to either postpone or move the annual conferences
+                online. I am really pleased that we are able to get back to
+                normal earlier this year in the 2023 Conference. Looking forward
+                to next year, I sincerely hope that you can join us for our 20th
+                annual conference to be held in Atlanta, GA on March 22-24,
+                2024. <br />
+                <br />
+                Additionally, I encourage and welcome the scientific community
+                to join us and connect with us via social media to stay updated
+                on upcoming events such as the career development webinar series
+                and our 2024 annual conference. Over the coming months, we will
+                be sharing more information on upcoming webinar dates, 2024
+                conference call for session proposals, abstract deadlines and
+                more. Many thanks for all of your continued support and well
+                wishes!
+              </AccordionPanel>
             </AccordionItem>
           </Accordion>
         </div>
@@ -169,15 +197,11 @@ export default function Home() {
             membership and are eligible for student awards. MCBIOS encourages
             involvement at both the regional and state level.
           </p>
-          <div className="w-full flex">
+          <div className="w-full flex justify-center">
             <Button
-              variant="shadow"
               size="md"
-              as="a"
-              target="_self"
-              className="my-4 mx-auto"
-              href="/membership"
-              color="secondary"
+              onClick={() => router.push("/membership")}
+              colorScheme="purple"
             >
               Registration
             </Button>

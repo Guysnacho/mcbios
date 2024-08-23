@@ -1,10 +1,11 @@
 import { AuthModal } from "@/components/AuthModal";
-import { Button, Image } from "@nextui-org/react";
+import { Button, Image } from "@chakra-ui/react";
 import Head from "next/head";
 import { useState } from "react";
 
 const Membership = () => {
   const [isAuthOpen, setAuthOpen] = useState(false);
+
   return (
     <>
       <Head>
@@ -13,15 +14,15 @@ const Membership = () => {
       </Head>
       <AuthModal isOpen={isAuthOpen} setIsOpen={setAuthOpen} isSignUp />
       <div className="container space-y-10 mx-auto">
-        <Image
-          src="https://blush.design/api/download?shareUri=zp2x6bt35MyJr384&c=Hair_0%7Ef3ddb4-0.0.2%7E765227-0.0.3%7E765227-0.0.4%7Eee4e2f-0.0.5%7E8ae0d3_Skin_0%7Ea15122-0.0.2%7Effd4aa-0.0.3%7Edb8c5c-0.0.4%7Effc280-0.0.5%7Edb8c5c&bg=ffffff&w=800&h=800&fm=png"
-          alt="People talking"
-          className="mx-auto"
-          removeWrapper
-          classNames={{
-            wrapper: ["mx-auto", "aspect-square", "mb-5", "sm:mb-0"],
-          }}
-        />
+        <div className="h-1/2 w-1/2 mx-auto">
+          <Image
+            src="https://blush.design/api/download?shareUri=zp2x6bt35MyJr384&c=Hair_0%7Ef3ddb4-0.0.2%7E765227-0.0.3%7E765227-0.0.4%7Eee4e2f-0.0.5%7E8ae0d3_Skin_0%7Ea15122-0.0.2%7Effd4aa-0.0.3%7Edb8c5c-0.0.4%7Effc280-0.0.5%7Edb8c5c&bg=ffffff&w=800&h=800&fm=png"
+            alt="People talking"
+            className="mx-auto object-contain"
+            width={800}
+            height="auto"
+          />
+        </div>
         <section>
           <h3 className="text-center my-10">Join the Community</h3>
           <div className="w-3/4 xl:w-1/2 mx-auto space-y-5">
@@ -70,12 +71,12 @@ const Membership = () => {
             </div>
           </div>
         </section>
-        <section className="text-center">
-          <p>MCBIOS 2023 Annual Membership Fee</p>
-          <p>🏗️ Membership form coming soon 👷🏾‍♀️</p>
+        <section className="text-center space-y-3">
+          <p>MCBIOS Site Registration now Available</p>
           <Button
-            aria-description="member sign up"
+            aria-describedby="member sign up"
             type="button"
+            colorScheme="purple"
             onClick={() => setAuthOpen(true)}
           >
             Sign Up
