@@ -1,4 +1,4 @@
-import { Divider } from "@nextui-org/react";
+import { Divider } from "@chakra-ui/react";
 import Head from "next/head";
 
 const about = () => {

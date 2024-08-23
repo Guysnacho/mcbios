@@ -7,8 +7,9 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  useDisclosure,
-} from "@nextui-org/react";
+  ModalOverlay,
+  Stack,
+} from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
 
@@ -28,7 +29,6 @@ export const AuthModal = ({
   const [lname, setLname] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { onClose } = useDisclosure();
   const client = createClient();
   const store = useUserStore((store) => store);
 
@@ -51,7 +51,7 @@ export const AuthModal = ({
         store.setId();
       } else {
         store.setId(data.user?.id);
-        onClose();
+        setIsOpen(false);
         router.push("/dashboard");
       }
     } else {
@@ -69,106 +69,103 @@ export const AuthModal = ({
       onClose={() => {
         setError("");
         setIsOpen(false);
-        onClose();
       }}
     >
+      <ModalOverlay />
       <ModalContent>
-        {(onClose) => (
-          <>
-            <ModalHeader className="flex flex-col gap-1 text-xl"></ModalHeader>
-            <ModalBody>
-              {isSignUp ? (
-                <h4 className="h4 underline">Join the Community</h4>
-              ) : (
-                <h4 className="h4 underline">Log In</h4>
-              )}
-              {error ? (
-                <blockquote className="blockquote text-orange-800">
-                  {error}
-                </blockquote>
-              ) : undefined}
-              {isSignUp ? (
-                <>
-                  <label htmlFor="fname">First Name</label>
-                  <input
-                    type="text"
-                    name="fname"
-                    id="fname"
-                    onChange={(e) => setFname(e.currentTarget.value)}
-                    placeholder="Jane"
-                    disabled={loading}
-                  />
-                  <label htmlFor="email">Last Name</label>
-                  <input
-                    type="lname"
-                    name="lname"
-                    id="lname"
-                    onChange={(e) => setLname(e.currentTarget.value)}
-                    placeholder="Doe"
-                    disabled={loading}
-                  />
-                </>
-              ) : undefined}
+        <ModalHeader className="flex flex-col gap-1 text-xl"></ModalHeader>
+        <ModalBody>
+          {isSignUp ? (
+            <h4 className="h4 underline">Join the Community</h4>
+          ) : (
+            <h4 className="h4 underline">Log In</h4>
+          )}
+          {error ? (
+            <blockquote className="blockquote text-orange-800">
+              {error}
+            </blockquote>
+          ) : undefined}
+          {isSignUp ? (
+            <Stack direction="column">
+              <label htmlFor="fname">First Name:</label>
+              <input
+                type="text"
+                name="fname"
+                id="fname"
+                onChange={(e) => setFname(e.currentTarget.value)}
+                placeholder="Jane"
+                disabled={loading}
+              />
+              <label htmlFor="email">Last Name:</label>
+              <input
+                type="lname"
+                name="lname"
+                id="lname"
+                onChange={(e) => setLname(e.currentTarget.value)}
+                placeholder="Doe"
+                disabled={loading}
+              />
+            </Stack>
+          ) : undefined}
 
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                onChange={(e) => setEmail(e.currentTarget.value)}
-                placeholder="abcd@university.edu"
-                disabled={loading}
-              />
-              <label htmlFor="email">Password</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                autoComplete={isSignUp ? "new-password" : "current-password"}
-                onChange={(e) => setPassword(e.currentTarget.value)}
-                placeholder="top secret password"
-                disabled={loading}
-              />
-            </ModalBody>
-            <ModalFooter>
-              <Button
-                color="danger"
-                variant="light"
-                onPress={onClose}
-                disabled={loading}
-              >
-                Cancel
-              </Button>
-              {isSignUp ? (
-                <Button
-                  type="submit"
-                  onPress={() =>
-                    handleLogin(true).finally(() =>
-                      error === "" ? onClose() : undefined
-                    )
-                  }
-                  color="primary"
-                  disabled={loading}
-                >
-                  Sign Up
-                </Button>
-              ) : (
-                <Button
-                  type="submit"
-                  onPress={() =>
-                    handleLogin(false).finally(() =>
-                      error === "" ? onClose() : undefined
-                    )
-                  }
-                  color="primary"
-                  disabled={loading}
-                >
-                  Login
-                </Button>
-              )}
-            </ModalFooter>
-          </>
-        )}
+          <Stack direction="column">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              onChange={(e) => setEmail(e.currentTarget.value)}
+              placeholder="abcd@university.edu"
+              disabled={loading}
+            />
+            <label htmlFor="email">Password:</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              autoComplete={isSignUp ? "new-password" : "current-password"}
+              onChange={(e) => setPassword(e.currentTarget.value)}
+              placeholder="top secret password"
+              disabled={loading}
+            />
+          </Stack>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            onClick={() => setIsOpen(false)}
+            disabled={loading}
+            className="mr-3"
+          >
+            Cancel
+          </Button>
+          {isSignUp ? (
+            <Button
+              type="submit"
+              onClick={() =>
+                handleLogin(true).finally(() =>
+                  error === "" ? setIsOpen(false) : undefined
+                )
+              }
+              colorScheme="green"
+              disabled={loading}
+            >
+              Sign Up
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              onClick={() =>
+                handleLogin(false).finally(() =>
+                  error === "" ? setIsOpen(false) : undefined
+                )
+              }
+              colorScheme="green"
+              disabled={loading}
+            >
+              Login
+            </Button>
+          )}
+        </ModalFooter>
       </ModalContent>
     </Modal>
   );

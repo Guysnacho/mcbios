@@ -23,7 +23,7 @@ export const Footer = () => {
                   <a
                     key={conference.year}
                     href={conference.url}
-                    target="_self"
+                    target="_blank"
                     className="text-sm leading-6 text-white hover:text-gray-300"
                   >
                     MCBIOS {conference.year}

@@ -1,25 +1,27 @@
+import { User } from "@/components/User";
 import { Database } from "@/lib/utils/supabase/types";
 import { CheckIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import { Select as ChakraSelect } from "@chakra-ui/react";
-import { getLocalTimeZone, today } from "@internationalized/date";
 import {
   Button,
-  DatePicker,
   Modal,
   ModalBody,
+  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
+  ModalOverlay,
+  Select,
   Spinner,
   Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
+  TableCaption,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
   Tooltip,
-  User,
-} from "@nextui-org/react";
+  Tr,
+} from "@chakra-ui/react";
 import { SupabaseClient } from "@supabase/supabase-js";
 import {
   Dispatch,
@@ -29,6 +31,9 @@ import {
   useEffect,
   useState,
 } from "react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 export const tiers = [
   { key: "student", label: "Student" },
@@ -38,9 +43,9 @@ export const tiers = [
 ];
 
 const columns = [
-  { name: "CONFIRM REQUEST", uid: "id" },
-  { name: "MEMBER", uid: "member" },
-  { name: "ACTIONS", uid: "actions" },
+  { name: "REQUEST ID" },
+  { name: "MEMBER" },
+  { name: "ACTIONS" },
 ];
 
 type UserRequest = {
@@ -52,7 +57,11 @@ type UserRequest = {
   role: Database["public"]["Enums"]["user_role"];
 };
 
-export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
+export const UserConfirm = ({
+  client,
+}: {
+  client: SupabaseClient<Database>;
+}) => {
   const [id, setId] = useState("");
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -60,7 +69,7 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
 
   useEffect(() => {
     setLoading(true);
-    props.client
+    client
       .from("confirm_request")
       .select(`id, user_id, ...member(*)`)
       .then(({ data, error, statusText }) => {
@@ -80,7 +89,7 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
   useEffect(() => {
     setLoading(true);
     if (id === "") {
-      props.client
+      client
         .from("confirm_request")
         .select(`id, user_id, ...member(*)`)
         .then(({ data, error, statusText }) => {
@@ -104,12 +113,7 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
 
     switch (columnKey) {
       case "member":
-        return (
-          <User
-            avatarProps={{ radius: "lg" }}
-            name={user.fname + " " + user.lname}
-          />
-        );
+        return <User fname={user.fname} lname={user.lname} role={user.role} />;
       case "actions":
         return (
           <div className="relative flex items-center justify-center gap-2">
@@ -139,52 +143,58 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
   return (
     <div>
       <ConfirmModal
-        client={props.client}
+        client={client}
         id={id}
         open={open}
         setId={setId}
         setOpen={setOpen}
       />
-      <h5 className="text-center">Confirm User Registration</h5>
       <div className="flex flex-col gap-5 mx-auto">
-        <Table
-          aria-label="Confirm Request Table"
-          title="Confirm Request"
-          className="mt-10"
-        >
-          <TableHeader columns={columns}>
-            {(column) => (
-              <TableColumn key={column.uid} align="center" width={400}>
-                {column.name}
-              </TableColumn>
-            )}
-          </TableHeader>
-          <TableBody
-            emptyContent={loading ? <Spinner /> : "No rows to display."}
-            items={users || []}
-          >
-            {users.map((item) => (
-              <TableRow key={item.id}>
-                {(columnKey) => (
-                  <TableCell>{renderCell(item, columnKey)}</TableCell>
-                )}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <TableContainer>
+          <Table variant="striped">
+            <TableCaption>
+              {users.length
+                ? users.length + " members pending admin confirmation"
+                : "No users pending admin confirmation"}
+            </TableCaption>
+            <Thead>
+              <Tr>
+                {columns.map(({ name }) => (
+                  <Th key={name}>{name}</Th>
+                ))}
+              </Tr>
+            </Thead>
+
+            <Tbody>
+              {users.map((user) => (
+                <Tr key={user.id}>
+                  <Td>{renderCell(user, "id")}</Td>
+                  <Td>{renderCell(user, "member")}</Td>
+                  <Td>{renderCell(user, "actions")}</Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
       </div>
     </div>
   );
 };
 
-const ConfirmModal = (props: {
+const ConfirmModal = ({
+  client,
+  id,
+  open,
+  setOpen,
+  setId,
+}: {
   client: SupabaseClient<Database>;
   id: string;
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   setId: Dispatch<SetStateAction<string>>;
 }) => {
-  const [date, setDate] = useState(today(getLocalTimeZone()));
+  const [date, setDate] = useState<Date | null>(new Date());
   const [role, setRole] = useState<
     "student" | "postdoctorial" | "professional" | "admin" | undefined
   >();
@@ -193,7 +203,7 @@ const ConfirmModal = (props: {
 
   const handleUpdate = async (
     uid: string,
-    date: string,
+    date: Date | null,
     role: "student" | "postdoctorial" | "professional" | "admin"
   ) => {
     setUpdateLoading(true);
@@ -203,11 +213,11 @@ const ConfirmModal = (props: {
     }
 
     // Add reference to video in db
-    const { data, error } = await props.client
+    const { data, error } = await client
       .from("member")
       .update({
         role,
-        dues_paid_at: date.toString(),
+        dues_paid_at: date?.toISOString(),
       })
       .eq("user_id", uid)
       .select()
@@ -229,24 +239,29 @@ const ConfirmModal = (props: {
   };
   return (
     <Modal
-      isOpen={props.open}
+      isOpen={open}
       onClose={() => {
-        props.setId("");
+        setId("");
         setMessage("");
-        props.setOpen(false);
+        setOpen(false);
       }}
-      onOpenChange={(event) => {
-        props.setId("");
+      closeOnOverlayClick
+      blockScrollOnMount
+      autoFocus
+      onOverlayClick={() => {
+        setId("");
         setMessage("");
-        props.setOpen(false);
+        setOpen(false);
       }}
     >
+      <ModalOverlay />
       <ModalContent>
         <ModalHeader className="flex flex-col gap-1">
           Confirm User Properties
         </ModalHeader>
+        <ModalCloseButton />
         <ModalBody>
-          <ChakraSelect
+          <Select
             variant="outline"
             icon={<ChevronDownIcon />}
             onChange={(e) => {
@@ -260,27 +275,18 @@ const ConfirmModal = (props: {
                 {tier.label}
               </option>
             ))}
-          </ChakraSelect>
+          </Select>
           <DatePicker
-            label="Dues Paid On"
             aria-label="Dues Paid On"
-            variant="underlined"
-            maxValue={today(getLocalTimeZone())}
             className="mt-4"
-            value={date}
-            onChange={(e) => {
-              console.debug(e);
-              setDate(e);
-            }}
+            selected={date}
+            maxDate={new Date()}
+            onChange={setDate}
           />
           <blockquote className="text-center">{message}</blockquote>
         </ModalBody>
         <ModalFooter>
-          <Button
-            color="danger"
-            variant="light"
-            onClick={() => props.setOpen(false)}
-          >
+          <Button color="danger" variant="light" onClick={() => setOpen(false)}>
             Cancel
           </Button>
           <Button
@@ -291,10 +297,10 @@ const ConfirmModal = (props: {
             // @ts-expect-error Ignore sumn
             disabled={role === undefined || role === "" || date === undefined}
             onClick={() =>
-              handleUpdate(props.id, date.toString(), role!)
+              handleUpdate(id, date, role!)
                 .then(() => {
-                  props.setId("");
-                  props.setOpen(false);
+                  setId("");
+                  setOpen(false);
                 })
                 .catch((err: Error) => {
                   setMessage(err.message);
