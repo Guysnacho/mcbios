@@ -1,6 +1,4 @@
-import { Card, CardBody, CardHeader } from "@nextui-org/card";
-import { Image } from "@nextui-org/image";
-import { Divider } from "@nextui-org/react";
+import { Card, CardBody, CardHeader, Divider, Image } from "@chakra-ui/react";
 
 type BoardMemberCardProps = {
   name: string;
@@ -14,7 +12,7 @@ type BoardMemberCardProps = {
 };
 const BoardMemberCard = (props: BoardMemberCardProps) => {
   return (
-    <Card shadow="md" className="m-auto h-fit w-5/6 md:w-unit-7xl">
+    <Card shadow="md" className="m-auto w-[450px]">
       {props.index !== undefined ? (
         <h6 className="mx-auto italic mt-2">#{props.index + 1}</h6>
       ) : undefined}
@@ -35,7 +33,7 @@ const BoardMemberCard = (props: BoardMemberCardProps) => {
               }}
             />
           ) : undefined}
-          <div className="text-medium my-auto">
+          <div className="text-medium my-auto mx-auto">
             {props.orgPosition ? (
               <p className="font-bold">
                 {props.orgPosition}, Mid-South Computational Biology &
