@@ -92,12 +92,12 @@ export default function Dashboard(props: {
           </TabList>
           <TabPanels>
             <TabPanel>
-              {props.user.dues_paid_at ? (
+              {props.user && props.user.dues_paid_at ? (
                 <MemberContent videos={props.videos} />
               ) : undefined}
             </TabPanel>
 
-            {props.user?.role === "admin" ? (
+            {props.user && props.user.role === "admin" ? (
               <TabPanel>
                 <div className="my-5 flex gap-3 mx-auto justify-center">
                   <VideoUploader />
@@ -122,7 +122,7 @@ export default function Dashboard(props: {
               </div>
               <Divider />
               <div className="container text-center space-y-4">
-                {!props.user.dues_paid_at ? (
+                {!props.user || !props.user?.dues_paid_at ? (
                   <>
                     <h4>Welcome to MCBIOS!</h4>
                     <p>
