@@ -1,4 +1,5 @@
-import { createStore } from "zustand";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 export interface UserState {
   id: string | undefined;
@@ -17,11 +18,16 @@ export const defaultInitState: UserState = {
   role: undefined,
 };
 
-export const createUserStore = (initState: UserState = defaultInitState) => {
-  return createStore<UserStore>()((set) => ({
-    ...initState,
-    setId: (id?: string) => set(() => ({ id })),
-    setRole: (role: "student" | "postdoctorial" | "professional") =>
-      set(() => ({ role: role })),
-  }));
-};
+export const useUserStore = create<UserStore>()(
+  persist(
+    (set) => ({
+      ...defaultInitState,
+      setId: (id?: string) => set(() => ({ id })),
+      setRole: (role: "student" | "postdoctorial" | "professional") =>
+        set(() => ({ role: role })),
+    }),
+    {
+      name: "user",
+    }
+  )
+);

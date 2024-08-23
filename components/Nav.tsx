@@ -1,6 +1,7 @@
+import { useUserStore } from "@/lib/store/userStore";
+import useStore from "@/lib/store/useStore";
 import { ConfYears } from "@/lib/utils/constants";
 import { createClient } from "@/lib/utils/supabase/component";
-import { useUserStore } from "@/providers/UserStateProvider";
 import {
   ChevronDownIcon,
   ChevronRightIcon,
@@ -37,7 +38,7 @@ export default function Nav() {
   const { isOpen, onToggle } = useDisclosure();
   const supabase = createClient();
   const router = useRouter();
-  const store = useUserStore((state) => state);
+  const store = useStore(useUserStore, (store) => store);
 
   const [isAuthOpen, setAuthOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
@@ -51,7 +52,7 @@ export default function Nav() {
 
   const handleOpen = (isSignUp: boolean) => {
     setIsSignUp(isSignUp);
-    if (store.id) {
+    if (store?.id) {
       router.push("/dashboard");
     } else {
       setAuthOpen(true);
@@ -125,7 +126,7 @@ export default function Nav() {
           </Flex>
         </Flex>
 
-        {store.id ? (
+        {store && store.id ? (
           <Stack
             flex={{ base: 1, md: "auto" }}
             justify={"flex-end"}
