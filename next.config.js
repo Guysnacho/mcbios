@@ -7,6 +7,13 @@ const nextConfig = {
   //     preventFullImport: true,
   //   },
   // },
+  images: {
+    remotePatterns: [
+      {
+        hostname: "blush.design",
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
