@@ -156,12 +156,17 @@ export default function Nav() {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem>
-                  <Link as={NextLink} href="/dashboard">
-                    Dashboard
-                  </Link>
+                <MenuItem as={Link} href="/dashboard">
+                  Dashboard
                 </MenuItem>
-                <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+                <MenuItem
+                  onClick={handleLogout}
+                  _hover={{
+                    textDecoration: "underline",
+                  }}
+                >
+                  Log Out
+                </MenuItem>
               </MenuList>
             </Menu>
           </Stack>
