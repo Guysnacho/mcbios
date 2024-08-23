@@ -10,7 +10,7 @@ import {
   ModalOverlay,
   Stack,
 } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, useState } from "react";
 
 export const AuthModal = ({
