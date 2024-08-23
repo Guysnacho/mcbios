@@ -1,4 +1,4 @@
-import { ConfYears, PathMap } from "@/lib/utils/constants";
+import { ConfYears } from "@/lib/utils/constants";
 import { createClient } from "@/lib/utils/supabase/component";
 import { useUserStore } from "@/providers/UserStateProvider";
 import {
@@ -7,6 +7,7 @@ import {
   CloseIcon,
   HamburgerIcon,
 } from "@chakra-ui/icons";
+import { Link } from "@chakra-ui/next-js";
 import {
   Avatar,
   Box,
@@ -15,7 +16,6 @@ import {
   Flex,
   Icon,
   IconButton,
-  Link,
   Menu,
   MenuButton,
   MenuItem,
@@ -29,7 +29,6 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { AuthModal } from "./AuthModal";
@@ -39,11 +38,7 @@ export default function Nav() {
   const supabase = createClient();
   const router = useRouter();
   const store = useUserStore((state) => state);
-  const path = usePathname();
-  const keys = Object.keys(PathMap);
-  const values = Object.values(PathMap);
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthOpen, setAuthOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
 
@@ -153,7 +148,7 @@ export default function Nav() {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem onClick={() => router.push("/dashboard")}>
+                <MenuItem as={Link} href="/dashboard">
                   Dashboard
                 </MenuItem>
                 <MenuItem onClick={handleLogout}>Log Out</MenuItem>
@@ -212,7 +207,7 @@ const DesktopNav = () => {
             <Popover trigger={"hover"} placement={"bottom-start"}>
               <PopoverTrigger>
                 <Box
-                  as="a"
+                  as={Link}
                   p={2}
                   href={navItem.href ?? "#"}
                   fontSize={"sm"}
@@ -254,13 +249,17 @@ const DesktopNav = () => {
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
     <Box
-      as="a"
+      as={Link}
       href={href}
+      target="_blank"
       role={"group"}
       display={"block"}
       p={2}
       rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+      _hover={{
+        bg: useColorModeValue("pink.50", "gray.900"),
+        textDecoration: "none",
+      }}
     >
       <Stack direction={"row"} align={"center"}>
         <Box>
@@ -308,12 +307,12 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
-      <Box
+      <Flex
         py={2}
-        as="a"
+        as={Link}
         href={href ?? "#"}
-        justifyContent="space-between"
-        alignItems="center"
+        target={label.includes("MCBIOS ") ? "_blank" : "_self"}
+        justifyContent="start"
         _hover={{
           textDecoration: "none",
         }}
@@ -333,7 +332,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
             h={6}
           />
         )}
-      </Box>
+      </Flex>
 
       <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
         <Stack

@@ -20,7 +20,7 @@ const Membership = () => {
             alt="People talking"
             className="mx-auto object-contain"
             width={800}
-            height={600}
+            height="auto"
           />
         </div>
         <section>
