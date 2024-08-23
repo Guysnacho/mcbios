@@ -1,11 +1,13 @@
 import { createClient } from "@/lib/utils/supabase/component";
 import { Database } from "@/lib/utils/supabase/types";
-import { getLocalTimeZone, now } from "@internationalized/date";
-import { Button, DatePicker, DateValue, Input } from "@nextui-org/react";
+import { Button, Input, Stack, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 export const VideoUploader = () => {
-  const [date, setDate] = useState<DateValue>(now(getLocalTimeZone()));
+  const [date, setDate] = useState<Date | null>(new Date());
   const [dateError, setDateError] = useState("");
   const [title, setTitle] = useState("");
   const [titleError, setTitleError] = useState("");
@@ -29,7 +31,7 @@ export const VideoUploader = () => {
     setLoading(true);
     if (!date) setDateError("Invalid date");
     if (!title) setTitleError("Invalid title");
-    if (!video) {
+    if (!video || video.length === 0) {
       setVideoError("Invalid video");
     }
     return !dateError && !titleError && !videoError;
@@ -38,7 +40,7 @@ export const VideoUploader = () => {
   const handleSubmit = async () => {
     if (!isValidUpload()) {
       setLoading(false);
-      return;
+      throw new Error("Bad Request");
     }
     // Create presigned url upfront
     // const { data: urlData, error: urlErr } = await client.storage
@@ -76,7 +78,7 @@ export const VideoUploader = () => {
       .from("videos")
       .insert({
         title,
-        date: date.toDate(getLocalTimeZone()).toDateString(),
+        date: date!.toISOString(),
         path: video,
       })
       .select()
@@ -103,17 +105,16 @@ export const VideoUploader = () => {
     <div>
       <h5 className="text-center">Upload Content</h5>
       <div className="flex flex-col gap-5 mx-auto">
-        <div>
+        <Stack>
+          <label htmlFor="title">Conference Date</label>
           <DatePicker
-            label="Conference Date"
-            variant="underlined"
             className="max-w-[284px] mt-4"
-            value={date}
+            selected={date}
+            maxDate={new Date()}
             onChange={setDate}
-            isRequired
-            errorMessage={dateError}
           />
-        </div>
+          <Text>{dateError}</Text>
+        </Stack>
 
         <div className="flex flex-col">
           <label htmlFor="title">Title</label>
@@ -121,12 +122,11 @@ export const VideoUploader = () => {
             type="text"
             name="Title"
             id="title"
-            isClearable
             onChange={(e) => setTitle(e.currentTarget.value)}
             placeholder="Speaker Series II"
             disabled={loading}
-            errorMessage={titleError}
           />
+          <Text>{titleError}</Text>
         </div>
 
         <div className="flex flex-col">
@@ -139,13 +139,13 @@ export const VideoUploader = () => {
               setVideo(e.target.value);
             }}
             disabled={loading}
-            errorMessage={videoError}
           />
+          <Text>{videoError}</Text>
         </div>
 
         <Button
-          color={dateError || titleError || videoError ? "warning" : "success"}
-          onClick={handleSubmit}
+          colorScheme={dateError || titleError || videoError ? "red" : "green"}
+          onClick={() => handleSubmit().catch((err) => console.error(err))}
         >
           Submit
         </Button>
