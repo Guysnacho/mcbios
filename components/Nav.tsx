@@ -45,7 +45,7 @@ export default function Nav() {
 
   const handleLogout = () => {
     supabase.auth.signOut({ scope: "local" }).finally(() => {
-      store.setId();
+      store?.setId();
       router.push("/");
     });
   };
@@ -64,7 +64,7 @@ export default function Nav() {
       const fetchUser = async () => {
         const { data } = await supabase.auth.getUser();
         if (data) {
-          store.setId(data.user?.id);
+          store?.setId(data.user?.id);
         } else {
           console.log("No user found");
         }
