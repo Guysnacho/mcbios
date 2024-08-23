@@ -2,10 +2,11 @@ import { MemberContent } from "@/components/dashboard/admin/MemberContent";
 import UserConfirm from "@/components/dashboard/admin/UserConfirm";
 import VideoUploader from "@/components/dashboard/admin/VideoUploader";
 import { User } from "@/components/User";
+import { useUserStore } from "@/lib/store/userStore";
+import useStore from "@/lib/store/useStore";
 import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
 import { createClient } from "@/lib/utils/supabase/server-props";
 import { Database } from "@/lib/utils/supabase/types";
-import { useUserStore } from "@/providers/UserStateProvider";
 import {
   Button,
   Divider,
@@ -67,7 +68,7 @@ export default function Dashboard(props: {
   // };
   // let formatter = useDateFormatter({ dateStyle: "full" });
   const client = createCompoentClient();
-  const store = useUserStore((store) => store);
+  const store = useStore(useUserStore, (store) => store);
 
   return (
     <>
@@ -142,7 +143,7 @@ export default function Dashboard(props: {
                         onClick={() => {
                           client
                             .from("confirm_request")
-                            .insert({ user_id: store.id })
+                            .insert({ user_id: store?.id })
                             .then(({ error }) => {
                               if (error) {
                                 alert(

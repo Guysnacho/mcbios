@@ -1,5 +1,6 @@
+import { useUserStore } from "@/lib/store/userStore";
+import useStore from "@/lib/store/useStore";
 import { createClient } from "@/lib/utils/supabase/component";
-import { useUserStore } from "@/providers/UserStateProvider";
 import {
   Button,
   Modal,
@@ -30,7 +31,7 @@ export const AuthModal = ({
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const client = createClient();
-  const store = useUserStore((store) => store);
+  const store = useStore(useUserStore, (store) => store);
 
   const handleLogin = async (isSignUp: boolean) => {
     setLoading(true);
@@ -48,9 +49,9 @@ export const AuthModal = ({
       });
       if (error) {
         setError(error.message);
-        store.setId();
+        store?.setId();
       } else {
-        store.setId(data.user?.id);
+        store?.setId(data.user?.id);
         setIsOpen(false);
         router.push("/dashboard");
       }

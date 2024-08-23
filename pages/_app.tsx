@@ -4,7 +4,6 @@ import type { AppProps } from "next/app";
 import "@/styles/globals.css";
 import RootLayout from "@/components/layout";
 import { ChakraProvider } from "@chakra-ui/react";
-import { UserStoreProvider } from "@/providers/UserStateProvider";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -20,11 +19,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return getLayout(
     <ChakraProvider>
-      <UserStoreProvider>
-        <RootLayout>
-          <Component {...pageProps} />
-        </RootLayout>
-      </UserStoreProvider>
+      <RootLayout>
+        <Component {...pageProps} />
+      </RootLayout>
     </ChakraProvider>
   );
 }
