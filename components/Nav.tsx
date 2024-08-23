@@ -15,6 +15,7 @@ import {
   Flex,
   Icon,
   IconButton,
+  Link,
   Menu,
   MenuButton,
   MenuItem,
@@ -113,15 +114,16 @@ export default function Nav() {
           justify={{ base: "center", md: "start" }}
           align="center"
         >
-          <Text
+          <Link
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
             fontWeight={600}
             fontSize="x-large"
+            href="/"
             color={useColorModeValue("gray.800", "white")}
           >
             MCBIOS
-          </Text>
+          </Link>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />

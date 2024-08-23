@@ -1,6 +1,7 @@
 import BoardMemberCard from "@/components/BoardMemberCard";
 import AikChoonTan from "@/public/images/leadership/Aik-Choon-Tan.jpg";
 import BernieDaigle from "@/public/images/leadership/Bernie-Daigle.jpg";
+import ChangSu from "@/public/images/leadership/Chang-Su.jpg";
 import InimaryToby from "@/public/images/leadership/Inimary-Toby.jpg";
 import JonathanSheridan from "@/public/images/leadership/Jonathan-Sheridan.jpg";
 import KristinaFeye from "@/public/images/leadership/Kristina-Feye.jpg";
@@ -9,8 +10,6 @@ import NishaPillai from "@/public/images/leadership/Nisha-Pillai.jpg";
 import QianqianSong from "@/public/images/leadership/Qianqian-Song.jpg";
 import QinSteve from "@/public/images/leadership/Qin-Steve.jpg";
 import VinayRaj from "@/public/images/leadership/Vinay-Raj.jpg";
-import ChangSu from "@/public/images/leadership/Chang-Su.jpg";
-import Head from "next/head";
 import {
   Divider,
   Tab,
@@ -19,6 +18,7 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
+import Head from "next/head";
 
 const boardMembers = [
   {
@@ -242,11 +242,7 @@ const leadership = () => {
           />
         </div>
       </section>
-      <Tabs
-        align="center"
-        variant="enclosed"
-        size="lg"
-      >
+      <Tabs align="center" variant="enclosed" size="lg">
         <TabList>
           <Tab key="board" title="Current Board">
             Current Board

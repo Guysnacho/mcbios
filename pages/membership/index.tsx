@@ -1,7 +1,6 @@
 import { AuthModal } from "@/components/AuthModal";
-import { Button } from "@chakra-ui/react";
+import { Button, Image } from "@chakra-ui/react";
 import Head from "next/head";
-import Image from "next/image";
 import { useState } from "react";
 
 const Membership = () => {
@@ -20,9 +19,8 @@ const Membership = () => {
             src="https://blush.design/api/download?shareUri=zp2x6bt35MyJr384&c=Hair_0%7Ef3ddb4-0.0.2%7E765227-0.0.3%7E765227-0.0.4%7Eee4e2f-0.0.5%7E8ae0d3_Skin_0%7Ea15122-0.0.2%7Effd4aa-0.0.3%7Edb8c5c-0.0.4%7Effc280-0.0.5%7Edb8c5c&bg=ffffff&w=800&h=800&fm=png"
             alt="People talking"
             className="mx-auto object-contain"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             width={800}
-            height={800}
+            height={600}
           />
         </div>
         <section>
