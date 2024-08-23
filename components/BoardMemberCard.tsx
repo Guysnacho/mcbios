@@ -28,9 +28,6 @@ const BoardMemberCard = (props: BoardMemberCardProps) => {
               fallbackSrc={props.image}
               alt={props.name + " " + props.affiliation}
               className="object-cover aspect-square object-top mx-auto w-52"
-              classNames={{
-                wrapper: ["mx-auto", "aspect-square", "mb-5", "sm:mb-0"],
-              }}
             />
           ) : undefined}
           <div className="text-medium my-auto mx-auto">
