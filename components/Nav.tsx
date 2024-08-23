@@ -8,7 +8,6 @@ import {
   CloseIcon,
   HamburgerIcon,
 } from "@chakra-ui/icons";
-import { Link } from "@chakra-ui/next-js";
 import {
   Avatar,
   Box,
@@ -17,6 +16,7 @@ import {
   Flex,
   Icon,
   IconButton,
+  Link,
   Menu,
   MenuButton,
   MenuItem,
@@ -30,6 +30,7 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { AuthModal } from "./AuthModal";
@@ -53,7 +54,9 @@ export default function Nav() {
   const handleOpen = (isSignUp: boolean) => {
     setIsSignUp(isSignUp);
     if (store?.id) {
-      router.push("/dashboard");
+      router.push("/dashboard", undefined, {
+        shallow: false,
+      });
     } else {
       setAuthOpen(true);
     }
@@ -65,6 +68,9 @@ export default function Nav() {
         const { data } = await supabase.auth.getUser();
         if (data) {
           store?.setId(data.user?.id);
+          router.push("/dashboard", undefined, {
+            shallow: false,
+          });
         } else {
           console.log("No user found");
         }
@@ -111,6 +117,7 @@ export default function Nav() {
           align="center"
         >
           <Link
+            as={NextLink}
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
             fontWeight={600}
@@ -149,8 +156,10 @@ export default function Nav() {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem as={Link} href="/dashboard">
-                  Dashboard
+                <MenuItem>
+                  <Link as={NextLink} href="/dashboard">
+                    Dashboard
+                  </Link>
                 </MenuItem>
                 <MenuItem onClick={handleLogout}>Log Out</MenuItem>
               </MenuList>
@@ -208,9 +217,7 @@ const DesktopNav = () => {
             <Popover trigger={"hover"} placement={"bottom-start"}>
               <PopoverTrigger>
                 <Box
-                  as={Link}
                   p={2}
-                  href={navItem.href ?? "#"}
                   fontSize={"sm"}
                   fontWeight={500}
                   color={linkColor}
@@ -219,7 +226,9 @@ const DesktopNav = () => {
                     color: linkHoverColor,
                   }}
                 >
-                  {navItem.label}
+                  <Link as={NextLink} href={navItem.href ?? "#"}>
+                    {navItem.label}
+                  </Link>
                 </Box>
               </PopoverTrigger>
 

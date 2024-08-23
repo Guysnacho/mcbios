@@ -1,5 +1,6 @@
 import { ConfYears, PathMap } from "@/lib/utils/constants";
-import Link from "next/link";
+import { Link } from "@chakra-ui/react";
+import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 
 export const Footer = () => {
@@ -36,6 +37,7 @@ export const Footer = () => {
                   MEMBERSHIP
                 </p>
                 <Link
+                  as={NextLink}
                   href="/membership"
                   target="_self"
                   className="text-sm leading-6 text-white hover:text-gray-300"
@@ -46,6 +48,7 @@ export const Footer = () => {
             ) : (
               <div key={route} className="pb-6 flex flex-col">
                 <Link
+                  as={NextLink}
                   key={route}
                   //@ts-ignore
                   href={PathMap[route].path}

@@ -1,10 +1,27 @@
 import { AuthModal } from "@/components/AuthModal";
+import { useUserStore } from "@/lib/store";
+import useStore from "@/lib/store/useStore";
 import { Button, Image } from "@chakra-ui/react";
 import Head from "next/head";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const Membership = () => {
+  const store = useStore(useUserStore, (store) => store);
+  const router = useRouter();
   const [isAuthOpen, setAuthOpen] = useState(false);
+
+  useEffect(() => {
+    if (isAuthOpen) {
+      if (store?.id) {
+        router.push("/dashboard", undefined, {
+          shallow: false,
+        });
+      } else {
+        setAuthOpen(true);
+      }
+    }
+  }, [isAuthOpen]);
 
   return (
     <>
