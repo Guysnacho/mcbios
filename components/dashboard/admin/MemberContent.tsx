@@ -1,7 +1,6 @@
 import { Database } from "@/lib/utils/supabase/types";
 import { Card, CardBody, CardHeader } from "@chakra-ui/react";
 
-import "react-datepicker/dist/react-datepicker.css";
 import VideoUploader from "./VideoUploader";
 
 export const MemberContent = ({
