@@ -1,22 +1,19 @@
 import { MemberContent } from "@/components/dashboard/admin/MemberContent";
 import UserConfirm from "@/components/dashboard/admin/UserConfirm";
 import VideoUploader from "@/components/dashboard/admin/VideoUploader";
+import { User } from "@/components/User";
 import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
 import { createClient } from "@/lib/utils/supabase/server-props";
 import { Database } from "@/lib/utils/supabase/types";
 import { useUserStore } from "@/providers/UserStateProvider";
 import {
-  Avatar,
-  Box,
   Button,
   Divider,
-  Flex,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
-  Text,
 } from "@chakra-ui/react";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Head from "next/head";
@@ -116,19 +113,11 @@ export default function Dashboard(props: {
               <div className="my-5 flex gap-3 mx-auto justify-center">
                 <div>
                   <h5 className="text-center">Your Member Info</h5>
-                  <Flex>
-                    <Avatar src="https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75" />
-                    <Box ml="3">
-                      <Text fontWeight="bold">
-                        {props.user?.fname} {props.user?.lname}
-                      </Text>
-                      <Text fontSize="sm">
-                        {props.user?.role === "admin"
-                          ? "MCBIOS Admin"
-                          : "MCBIOS Member"}
-                      </Text>
-                    </Box>
-                  </Flex>
+                  <User
+                    fname={props.user?.fname}
+                    lname={props.user?.lname}
+                    role={props.user?.role}
+                  />
                 </div>
               </div>
               <Divider />
