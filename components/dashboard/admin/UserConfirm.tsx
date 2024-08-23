@@ -52,7 +52,11 @@ type UserRequest = {
   role: Database["public"]["Enums"]["user_role"];
 };
 
-export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
+export const UserConfirm = ({
+  client,
+}: {
+  client: SupabaseClient<Database>;
+}) => {
   const [id, setId] = useState("");
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -60,7 +64,7 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
 
   useEffect(() => {
     setLoading(true);
-    props.client
+    client
       .from("confirm_request")
       .select(`id, user_id, ...member(*)`)
       .then(({ data, error, statusText }) => {
@@ -80,7 +84,7 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
   useEffect(() => {
     setLoading(true);
     if (id === "") {
-      props.client
+      client
         .from("confirm_request")
         .select(`id, user_id, ...member(*)`)
         .then(({ data, error, statusText }) => {
@@ -139,7 +143,7 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
   return (
     <div>
       <ConfirmModal
-        client={props.client}
+        client={client}
         id={id}
         open={open}
         setId={setId}
@@ -177,7 +181,13 @@ export const UserConfirm = (props: { client: SupabaseClient<Database> }) => {
   );
 };
 
-const ConfirmModal = (props: {
+const ConfirmModal = ({
+  client,
+  id,
+  open,
+  setOpen,
+  setId,
+}: {
   client: SupabaseClient<Database>;
   id: string;
   open: boolean;
@@ -203,7 +213,7 @@ const ConfirmModal = (props: {
     }
 
     // Add reference to video in db
-    const { data, error } = await props.client
+    const { data, error } = await client
       .from("member")
       .update({
         role,
@@ -229,16 +239,16 @@ const ConfirmModal = (props: {
   };
   return (
     <Modal
-      isOpen={props.open}
+      isOpen={open}
       onClose={() => {
-        props.setId("");
+        setId("");
         setMessage("");
-        props.setOpen(false);
+        setOpen(false);
       }}
       onOpenChange={(event) => {
-        props.setId("");
+        setId("");
         setMessage("");
-        props.setOpen(false);
+        setOpen(false);
       }}
     >
       <ModalContent>
@@ -276,11 +286,7 @@ const ConfirmModal = (props: {
           <blockquote className="text-center">{message}</blockquote>
         </ModalBody>
         <ModalFooter>
-          <Button
-            color="danger"
-            variant="light"
-            onClick={() => props.setOpen(false)}
-          >
+          <Button color="danger" variant="light" onClick={() => setOpen(false)}>
             Cancel
           </Button>
           <Button
@@ -291,10 +297,10 @@ const ConfirmModal = (props: {
             // @ts-expect-error Ignore sumn
             disabled={role === undefined || role === "" || date === undefined}
             onClick={() =>
-              handleUpdate(props.id, date.toString(), role!)
+              handleUpdate(id, date.toString(), role!)
                 .then(() => {
-                  props.setId("");
-                  props.setOpen(false);
+                  setId("");
+                  setOpen(false);
                 })
                 .catch((err: Error) => {
                   setMessage(err.message);
