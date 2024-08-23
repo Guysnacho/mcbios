@@ -1,5 +1,4 @@
 import { Footer } from "@/components/Footer";
-import { Providers } from "@/providers/Providers";
 import Nav from "./Nav";
 
 // const poppins = Poppins({
@@ -20,10 +19,10 @@ export default function RootLayout({
 }) {
   // const { data, error } = useSWR('/auth/user', fetcher)
   return (
-    <Providers>
+    <>
       <Nav />
       <main>{children}</main>
       <Footer />
-    </Providers>
+    </>
   );
 }
