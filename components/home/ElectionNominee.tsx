@@ -7,6 +7,7 @@ import {
   Box,
   Card,
   CardBody,
+  CardFooter,
   Divider,
   Heading,
   Image,
@@ -15,23 +16,28 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import EmbeddedVideo from "./EmbeddedVideo";
 
-export default function ElectionNominee({
-  name,
-  avatar,
-  plans,
-  isPrez,
-  overview,
-}: {
+export type ElectionProps = {
   name?: string;
   avatar?: string;
   plans?: string[];
   isPrez?: boolean;
+  recording?: string;
   overview?: {
     heading: string;
     content: string;
   }[];
-}) {
+};
+
+export default function ElectionNominee({
+  name,
+  avatar,
+  recording,
+  plans,
+  isPrez,
+  overview,
+}: ElectionProps) {
   return (
     <Card maxW="2xl">
       <CardBody>
@@ -78,6 +84,16 @@ export default function ElectionNominee({
         </Stack>
       </CardBody>
       <Divider />
+      {recording ? (
+        <CardFooter>
+          <Box textAlign="center" w="full">
+            <Text color="blue.600" fontSize="lg">
+              {name}&apos;s Address
+            </Text>
+            <EmbeddedVideo className="max-w-md" mx="auto" src={recording!} />
+          </Box>
+        </CardFooter>
+      ) : undefined}
     </Card>
   );
 }

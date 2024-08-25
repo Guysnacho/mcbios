@@ -11,22 +11,15 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import ElectionNominee from "./ElectionNominee";
+import ElectionNominee, { ElectionProps } from "./ElectionNominee";
 
-const nominees: {
-  name: string;
-  avatar: string;
-  plans: string[];
-  isPrez?: boolean;
-  overview: {
-    heading: string;
-    content: string;
-  }[];
-}[] = [
+const nominees: ElectionProps[] = [
   {
     avatar: "/images/election/DrAikChoonTan.jpg",
     name: "Dr. Aik Choon Tan",
     isPrez: true,
+    recording:
+      "https://drive.google.com/file/d/1RnGVmTZSE-FN8J8xwEakJSEyfYqbk6LW/preview",
     plans: [
       "Mentoring and Career Development: Dr. Tan plans to establish an Education sub-committee within MCBIOS to support the career growth of junior faculty, post-docs, and graduate students by recruiting diverse mentors and providing career development feedback.",
       "National Membership Expansion: He aims to broaden MCBIOS’s reach beyond the traditional Mid-South region by increasing membership across the USA, leveraging recent conference trends to attract a wider audience.",
@@ -48,6 +41,8 @@ const nominees: {
   {
     avatar: "/images/election/PelumiAbimbola.jpg",
     name: "Pelumi Abimbola",
+    recording:
+      "https://drive.google.com/file/d/1LO_FoXe4DzhuQktFcUPlmGbnV9JVZDn0/preview",
     plans: [
       "Mentoring and Career Development: Dr. Tan plans to establish an Education sub-committee within MCBIOS to support the career growth of junior faculty, post-docs, and graduate students by recruiting diverse mentors and providing career development feedback.",
       "National Membership Expansion: He aims to broaden MCBIOS’s reach beyond the traditional Mid-South region by increasing membership across the USA, leveraging recent conference trends to attract a wider audience.",
@@ -183,6 +178,7 @@ export default function ElectionHero() {
             name={nominee.name}
             overview={nominee.overview}
             plans={nominee.plans}
+            recording={nominee.recording}
           />
         ))}
       </Stack>
