@@ -54,7 +54,9 @@ export default function Dashboard() {
         >
           <TabList>
             <Tab title="Conference Content">Conference Content</Tab>
-            <Tab title="Admin">Admin</Tab>
+            {data?.user && data.user.role === "admin" ? (
+              <Tab title="Admin">Admin</Tab>
+            ) : undefined}
             <Tab title="Profile">Profile</Tab>
           </TabList>
           <TabPanels>

@@ -1,3 +1,4 @@
+import ElectionHero from "@/components/home/ElectionHero";
 import {
   Accordion,
   AccordionButton,
@@ -153,6 +154,10 @@ export default function Home() {
           </Accordion>
         </div>
       </section>
+
+      <Divider as="hr" className="my-10 border-gray-500" />
+
+      <ElectionHero />
 
       <Divider as="hr" className="my-10 border-gray-500" />
 
