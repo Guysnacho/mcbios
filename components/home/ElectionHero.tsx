@@ -18,6 +18,7 @@ const nominees: {
   name: string;
   avatar: string;
   plans: string[];
+  isPrez?: boolean;
   overview: {
     heading: string;
     content: string;
@@ -26,22 +27,45 @@ const nominees: {
   {
     avatar: "/images/election/DrAikChoonTan.jpg",
     name: "Dr. Aik Choon Tan",
+    isPrez: true,
     plans: [
       "Mentoring and Career Development: Dr. Tan plans to establish an Education sub-committee within MCBIOS to support the career growth of junior faculty, post-docs, and graduate students by recruiting diverse mentors and providing career development feedback.",
       "National Membership Expansion: He aims to broaden MCBIOS’s reach beyond the traditional Mid-South region by increasing membership across the USA, leveraging recent conference trends to attract a wider audience.",
       "Conference Leadership: Dr. Tan intends to capitalize on the success of recent MCBIOS conferences by bringing the 2025 conference to Salt Lake City, Utah, to enhance regional engagement and showcase national expertise.",
     ],
-    overview: [{ heading: "", content: "" }],
+    overview: [
+      {
+        heading: "Scientific Leadership",
+        content:
+          "Dr. Aik Choon Tan has advanced the field of cancer bioinformatics through his role as Senior Director of Data Science at the Huntsman Cancer Institute and his development of computational methods for cancer data analysis. He has also mentored numerous junior researchers and published over 220 peer-reviewed papers.",
+      },
+      {
+        heading: "MCBIOS Involvement",
+        content:
+          "Dr. Tan has been an active MCBIOS Board member since 2021, organizing webinars, co-chairing workshops, and contributing to conference committees, including his current role as Program Chair for MCBIOS 2025 Conference.",
+      },
+    ],
   },
   {
     avatar: "/images/election/PelumiAbimbola.jpg",
-    name: "Dr. Aik Choon Tan",
+    name: "Pelumi Abimbola",
     plans: [
       "Mentoring and Career Development: Dr. Tan plans to establish an Education sub-committee within MCBIOS to support the career growth of junior faculty, post-docs, and graduate students by recruiting diverse mentors and providing career development feedback.",
       "National Membership Expansion: He aims to broaden MCBIOS’s reach beyond the traditional Mid-South region by increasing membership across the USA, leveraging recent conference trends to attract a wider audience.",
       "Conference Leadership: Dr. Tan intends to capitalize on the success of recent MCBIOS conferences by bringing the 2025 conference to Salt Lake City, Utah, to enhance regional engagement and showcase national expertise.",
     ],
-    overview: [{ heading: "", content: "" }],
+    overview: [
+      {
+        heading: "Scientific and Professional Experience",
+        content:
+          "As a Graduate Research Assistant at Mississippi State University, Pelumi has over six years of experience in NLP and Big Data, with two published papers and one in progress. Her background includes roles such as NLP Research Assistant in India and Data Analyst for a humanitarian project in Nigeria, showcasing a strong track record in cutting-edge research and analytics.",
+      },
+      {
+        heading: "Leadership and Mentorship",
+        content:
+          "Pelumi is a current MCBIOS member. She has demonstrated leadership both professionally and personally, including roles as Program Director for the African Students Association and Academic Director during undergraduate studies. She has also mentored interns and graduate trainees, reflecting a commitment to developing new talent.",
+      },
+    ],
   },
 ];
 
@@ -102,19 +126,20 @@ export default function ElectionHero() {
             direction={{ base: "column", sm: "row" }}
           >
             <Button
-              as={NextLink}
-              href="https://x3yn84lm.forms.app/elections-2024"
-              target="_blank"
+              //   as={NextLink}
+              //   href="https://x3yn84lm.forms.app/elections-2024"
+              //   target="_blank"
               rounded={"full"}
               size={"lg"}
               fontWeight={"normal"}
               px={6}
               mx="auto"
+              disabled
               colorScheme={"red"}
-              bg={"red.400"}
-              _hover={{ bg: "red.500" }}
+              bg={"red.200"}
+              _hover={{ bg: "red.200" }}
             >
-              Election Form
+              Form Available Soon
             </Button>
           </Stack>
         </Stack>
@@ -147,12 +172,14 @@ export default function ElectionHero() {
       <Stack
         maxW="5xl"
         mx="auto"
+        px={7}
         gap={5}
         direction={["column", "column", "column", "row"]}
       >
         {nominees.map((nominee) => (
           <ElectionNominee
             key={nominee.name}
+            isPrez={nominee.isPrez}
             avatar={nominee.avatar}
             name={nominee.name}
             overview={nominee.overview}

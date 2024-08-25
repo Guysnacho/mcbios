@@ -1,9 +1,12 @@
 import {
-  Button,
-  ButtonGroup,
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
   Card,
   CardBody,
-  CardFooter,
   Divider,
   Heading,
   Image,
@@ -17,11 +20,13 @@ export default function ElectionNominee({
   name,
   avatar,
   plans,
+  isPrez,
   overview,
 }: {
   name?: string;
   avatar?: string;
   plans?: string[];
+  isPrez?: boolean;
   overview?: {
     heading: string;
     content: string;
@@ -31,20 +36,34 @@ export default function ElectionNominee({
     <Card maxW="2xl">
       <CardBody>
         {avatar ? (
-          <Image src={avatar} alt={name + " photo"} borderRadius="lg" />
+          <Image
+            src={avatar}
+            alt={name + " photo"}
+            mx="auto"
+            borderRadius="lg"
+          />
         ) : undefined}
         <Stack mt="6" spacing="3">
           {name ? <Heading size="md">{name}</Heading> : undefined}
           <Text color="blue.600" fontSize="lg">
-            Brief overview of candidate for President-Elect:
+            Brief overview of candidate for{" "}
+            {isPrez ? "President" : "Student Board"}-Elect
           </Text>
-          {overview?.map(({ content, heading }) => (
-            <>
-              <Text>
-                {heading}: <Text>{content}</Text>
-              </Text>
-            </>
-          ))}
+          <Accordion allowMultiple>
+            {overview?.map(({ content, heading }) => (
+              <AccordionItem key={heading} aria-label={heading}>
+                <h2>
+                  <AccordionButton>
+                    <Box as="span" flex="1" textAlign="left">
+                      {heading}
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>{content}</AccordionPanel>
+              </AccordionItem>
+            ))}
+          </Accordion>
           <Text color="blue.600" fontSize="lg">
             If elected, how do you plan to contribute to MCBIOS as the
             president?
@@ -59,16 +78,6 @@ export default function ElectionNominee({
         </Stack>
       </CardBody>
       <Divider />
-      <CardFooter>
-        <ButtonGroup spacing="2">
-          <Button variant="solid" colorScheme="blue">
-            Buy now
-          </Button>
-          <Button variant="ghost" colorScheme="blue">
-            Add to cart
-          </Button>
-        </ButtonGroup>
-      </CardFooter>
     </Card>
   );
 }
