@@ -60,7 +60,7 @@ export default function ElectionNominee({
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4}>{content}</AccordionPanel>
+                <AccordionPanel>{content}</AccordionPanel>
               </AccordionItem>
             ))}
           </Accordion>

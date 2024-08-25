@@ -11,7 +11,6 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import NextLink from "next/link";
 import ElectionNominee from "./ElectionNominee";
 
 const nominees: {
@@ -94,14 +93,14 @@ export default function ElectionHero() {
                 position: "absolute",
                 bottom: 1,
                 left: 0,
-                bg: "red.400",
+                bg: "pink.400",
                 zIndex: -1,
               }}
             >
               2024 Board Elections
             </Text>
             <br />
-            <Text as={"span"} color={"red.400"}>
+            <Text as={"span"} color={"pink.400"}>
               Its time to vote!
             </Text>
           </Heading>
@@ -135,9 +134,9 @@ export default function ElectionHero() {
               px={6}
               mx="auto"
               disabled
-              colorScheme={"red"}
-              bg={"red.200"}
-              _hover={{ bg: "red.200" }}
+              colorScheme={"pink"}
+              bg={"pink.200"}
+              _hover={{ bg: "pink.200" }}
             >
               Form Available Soon
             </Button>
