@@ -19,7 +19,7 @@ import { useRouter } from "next/router";
 export default function Home() {
   const router = useRouter();
   return (
-    <div className="my-10 gap-10">
+    <div className="my-5 md:my-10 gap-10">
       <Head>
         <title>MCBIOS</title>
         <meta content="MCBIOS | MidSouth Computational Biology and Bioinformatics Society" />

@@ -44,20 +44,24 @@ const nominees: ElectionProps[] = [
     recording:
       "https://drive.google.com/file/d/1LO_FoXe4DzhuQktFcUPlmGbnV9JVZDn0/preview",
     plans: [
-      "Mentoring and Career Development: Dr. Tan plans to establish an Education sub-committee within MCBIOS to support the career growth of junior faculty, post-docs, and graduate students by recruiting diverse mentors and providing career development feedback.",
-      "National Membership Expansion: He aims to broaden MCBIOS’s reach beyond the traditional Mid-South region by increasing membership across the USA, leveraging recent conference trends to attract a wider audience.",
-      "Conference Leadership: Dr. Tan intends to capitalize on the success of recent MCBIOS conferences by bringing the 2025 conference to Salt Lake City, Utah, to enhance regional engagement and showcase national expertise.",
+      "Scientific and Professional Experience: As a Graduate Research Assistant at Mississippi State University, Pelumi has over six years of experience in NLP and Big Data, with two published papers and one in progress. Her background includes roles such as NLP Research Assistant in India and Data Analyst for a humanitarian project in Nigeria, showcasing a strong track record in cutting-edge research and analytics.",
+      "Leadership and Mentorship: Pelumi is a current MCBIOS member. She has demonstrated leadership both professionally and personally, including roles as Program Director for the African Students Association and Academic Director during undergraduate studies. She has also mentored interns and graduate trainees, reflecting a commitment to developing new talent.",
     ],
     overview: [
       {
-        heading: "Scientific and Professional Experience",
+        heading: "Establishing a Student Chapter",
         content:
-          "As a Graduate Research Assistant at Mississippi State University, Pelumi has over six years of experience in NLP and Big Data, with two published papers and one in progress. Her background includes roles such as NLP Research Assistant in India and Data Analyst for a humanitarian project in Nigeria, showcasing a strong track record in cutting-edge research and analytics.",
+          "Pelumi plans to create a student chapter of MCBIOS at Mississippi State University, which will enhance community engagement and provide support for peers in bioinformatics and computational biology.",
       },
       {
-        heading: "Leadership and Mentorship",
+        heading: "Promoting Bioinformatics Activities",
         content:
           "Pelumi is a current MCBIOS member. She has demonstrated leadership both professionally and personally, including roles as Program Director for the African Students Association and Academic Director during undergraduate studies. She has also mentored interns and graduate trainees, reflecting a commitment to developing new talent.",
+      },
+      {
+        heading: "Fostering Collaboration amongst trainee members",
+        content:
+          "By facilitating collaboration and engagement, Pelumi seeks to strengthen the MCBIOS trainee network and amplify its influence within the academic and scientific communities.",
       },
     ],
   },
@@ -65,56 +69,64 @@ const nominees: ElectionProps[] = [
 
 export default function ElectionHero() {
   return (
-    <Container maxW={"7xl"}>
+    <>
       <Stack
         align={"center"}
-        spacing={{ base: 8, md: 10 }}
         py={{ base: 20, md: 28 }}
         direction={{ base: "column", md: "row" }}
       >
-        <Stack flex={1} spacing={{ base: 5, md: 10 }}>
-          <Heading
-            lineHeight={1.1}
-            fontWeight={600}
-            fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
-          >
-            <Text
-              as={"span"}
-              position={"relative"}
-              _after={{
-                content: "''",
-                width: "full",
-                height: "30%",
-                position: "absolute",
-                bottom: 1,
-                left: 0,
-                bg: "pink.400",
-                zIndex: -1,
-              }}
+        <Stack
+          direction="column"
+          spacing={{ base: 5, md: 10 }}
+          mb={["-60", null, "-15"]}
+          ml={10}
+          w="80%"
+          mx="auto"
+        >
+          <Container>
+            <Heading
+              lineHeight={1.1}
+              fontWeight={600}
+              fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
             >
-              2024 Board Elections
-            </Text>
-            <br />
-            <Text as={"span"} color={"pink.400"}>
-              Its time to vote!
-            </Text>
-          </Heading>
-          <Stack gap={3}>
-            <Text color={"gray.500"}>
-              The MCBIOS board member elections will take place in September
-              2024. According to the MCBIOS Bylaws, every member is entitled to
-              one vote. This is a great chance for you to help shape the future
-              of our organization.
-            </Text>
-            <Text color={"gray.500"}>
-              This year, we have one candidate for the position of President
-              Elect and one candidate for the Student Board Member position.
-              Detailed information about each candidate is provided below. The
-              election will be conducted electronically. Please keep an eye on
-              your email for notifications, candidate speeches, and instructions
-              on how to cast your vote.
-            </Text>
-          </Stack>
+              <Text
+                as={"span"}
+                position={"relative"}
+                _after={{
+                  content: "''",
+                  width: "full",
+                  height: "30%",
+                  position: "absolute",
+                  bottom: 1,
+                  left: 0,
+                  bg: "pink.400",
+                  zIndex: -1,
+                }}
+              >
+                2024 Board Elections
+              </Text>
+              <br />
+              <Text as={"span"} color={"pink.400"}>
+                Its time to vote!
+              </Text>
+            </Heading>
+            <Stack gap={3} w="80%">
+              <Text color={"gray.500"}>
+                The MCBIOS board member elections will take place in September
+                2024. According to the MCBIOS Bylaws, every member is entitled
+                to one vote. This is a great chance for you to help shape the
+                future of our organization.
+              </Text>
+              <Text color={"gray.500"}>
+                This year, we have one candidate for the position of President
+                Elect and one candidate for the Student Board Member position.
+                Detailed information about each candidate is provided below. The
+                election will be conducted electronically. Please keep an eye on
+                your email for notifications, candidate speeches, and
+                instructions on how to cast your vote.
+              </Text>
+            </Stack>
+          </Container>
           <Stack
             spacing={{ base: 4, sm: 6 }}
             direction={{ base: "column", sm: "row" }}
@@ -168,6 +180,7 @@ export default function ElectionHero() {
         mx="auto"
         px={7}
         gap={5}
+        alignItems={["center", "center", "center", "normal"]}
         direction={["column", "column", "column", "row"]}
       >
         {nominees.map((nominee) => (
@@ -182,7 +195,7 @@ export default function ElectionHero() {
           />
         ))}
       </Stack>
-    </Container>
+    </>
   );
 }
 
