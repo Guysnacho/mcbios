@@ -39,7 +39,7 @@ export default function ElectionNominee({
   overview,
 }: ElectionProps) {
   return (
-    <Card maxW="2xl">
+    <Card w={{ base: "90%", md: "xl", xl: "2xl" }}>
       <CardBody>
         {avatar ? (
           <Image
@@ -90,7 +90,12 @@ export default function ElectionNominee({
             <Text color="blue.600" fontSize="lg">
               {name}&apos;s Address
             </Text>
-            <EmbeddedVideo className="max-w-md" mx="auto" src={recording!} />
+            <EmbeddedVideo
+              w={{ base: "none", md: "xl", xl: "2xl" }}
+              className="max-w-md"
+              mx="auto"
+              src={recording!}
+            />
           </Box>
         </CardFooter>
       ) : undefined}

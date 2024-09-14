@@ -69,10 +69,9 @@ const nominees: ElectionProps[] = [
 
 export default function ElectionHero() {
   return (
-    <Container maxW={"7xl"}>
+    <Container w={["full", null, "md"]}>
       <Stack
         align={"center"}
-        spacing={{ base: 8, md: 10 }}
         py={{ base: 20, md: 28 }}
         direction={{ base: "column", md: "row" }}
       >
