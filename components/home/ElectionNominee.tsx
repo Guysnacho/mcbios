@@ -11,8 +11,6 @@ import {
   Divider,
   Heading,
   Image,
-  ListItem,
-  OrderedList,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -39,7 +37,7 @@ export default function ElectionNominee({
   overview,
 }: ElectionProps) {
   return (
-    <Card maxW="2xl">
+    <Card w={{ base: "90%", md: "xl", xl: "2xl" }}>
       <CardBody>
         {avatar ? (
           <Image
@@ -75,23 +73,36 @@ export default function ElectionNominee({
             president?
           </Text>
           {plans ? (
-            <OrderedList>
+            <Accordion allowToggle>
               {plans.map((plan, idx) => (
-                <ListItem key={idx}>{plan}</ListItem>
+                <AccordionItem key={idx} aria-label={"plans " + idx}>
+                  <h2>
+                    <AccordionButton>
+                      <Box as="span" flex="1" textAlign="left">
+                        {`${plan.split(":")[0]}`}
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel>{plan.split(":")[1]}</AccordionPanel>
+                </AccordionItem>
               ))}
-            </OrderedList>
+            </Accordion>
           ) : undefined}
         </Stack>
       </CardBody>
       <Divider />
       {recording ? (
-        <CardFooter>
-          <Box textAlign="center" w="full">
-            <Text color="blue.600" fontSize="lg">
-              {name}&apos;s Address
-            </Text>
-            <EmbeddedVideo className="max-w-md" mx="auto" src={recording!} />
-          </Box>
+        <CardFooter display="flex" flexDirection="column" alignItems="center">
+          <Text align="center" color="blue.600" fontSize="lg">
+            {name}&apos;s Address
+          </Text>
+          <EmbeddedVideo
+            w={{ base: "full", md: "xl", xl: "2xl" }}
+            className="max-w-md"
+            mx="auto"
+            src={recording!}
+          />
         </CardFooter>
       ) : undefined}
     </Card>
