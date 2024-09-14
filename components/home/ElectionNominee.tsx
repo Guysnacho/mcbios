@@ -11,8 +11,6 @@ import {
   Divider,
   Heading,
   Image,
-  ListItem,
-  OrderedList,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -75,11 +73,21 @@ export default function ElectionNominee({
             president?
           </Text>
           {plans ? (
-            <OrderedList>
+            <Accordion allowToggle>
               {plans.map((plan, idx) => (
-                <ListItem key={idx}>{plan}</ListItem>
+                <AccordionItem key={idx} aria-label={"plans " + idx}>
+                  <h2>
+                    <AccordionButton>
+                      <Box as="span" flex="1" textAlign="left">
+                        {`${plan.split(":")[0]}`}
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel>{plan.split(":")[1]}</AccordionPanel>
+                </AccordionItem>
               ))}
-            </OrderedList>
+            </Accordion>
           ) : undefined}
         </Stack>
       </CardBody>
@@ -90,7 +98,7 @@ export default function ElectionNominee({
             {name}&apos;s Address
           </Text>
           <EmbeddedVideo
-            w={{ base: "none", md: "xl", xl: "2xl" }}
+            w={{ base: "full", md: "xl", xl: "2xl" }}
             className="max-w-md"
             mx="auto"
             src={recording!}
