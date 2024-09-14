@@ -75,7 +75,7 @@ export default function ElectionHero() {
         py={{ base: 20, md: 28 }}
         direction={{ base: "column", md: "row" }}
       >
-        <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+        <Stack flex={1} spacing={{ base: 5, md: 10 }} mb={["-60", null, "-15"]}>
           <Heading
             lineHeight={1.1}
             fontWeight={600}
