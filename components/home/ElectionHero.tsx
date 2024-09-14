@@ -69,7 +69,7 @@ const nominees: ElectionProps[] = [
 
 export default function ElectionHero() {
   return (
-    <Container w={["full", null, "md"]}>
+    <>
       <Stack
         align={"center"}
         py={{ base: 20, md: 28 }}
@@ -171,6 +171,7 @@ export default function ElectionHero() {
         mx="auto"
         px={7}
         gap={5}
+        alignItems={["center", "center", "center", "normal"]}
         direction={["column", "column", "column", "row"]}
       >
         {nominees.map((nominee) => (
@@ -185,7 +186,7 @@ export default function ElectionHero() {
           />
         ))}
       </Stack>
-    </Container>
+    </>
   );
 }
 

@@ -85,18 +85,16 @@ export default function ElectionNominee({
       </CardBody>
       <Divider />
       {recording ? (
-        <CardFooter>
-          <Box textAlign="center" w="full">
-            <Text color="blue.600" fontSize="lg">
-              {name}&apos;s Address
-            </Text>
-            <EmbeddedVideo
-              w={{ base: "none", md: "xl", xl: "2xl" }}
-              className="max-w-md"
-              mx="auto"
-              src={recording!}
-            />
-          </Box>
+        <CardFooter display="flex" flexDirection="column" alignItems="center">
+          <Text align="center" color="blue.600" fontSize="lg">
+            {name}&apos;s Address
+          </Text>
+          <EmbeddedVideo
+            w={{ base: "none", md: "xl", xl: "2xl" }}
+            className="max-w-md"
+            mx="auto"
+            src={recording!}
+          />
         </CardFooter>
       ) : undefined}
     </Card>
