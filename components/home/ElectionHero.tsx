@@ -75,49 +75,58 @@ export default function ElectionHero() {
         py={{ base: 20, md: 28 }}
         direction={{ base: "column", md: "row" }}
       >
-        <Stack flex={1} spacing={{ base: 5, md: 10 }} mb={["-60", null, "-15"]}>
-          <Heading
-            lineHeight={1.1}
-            fontWeight={600}
-            fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
-          >
-            <Text
-              as={"span"}
-              position={"relative"}
-              _after={{
-                content: "''",
-                width: "full",
-                height: "30%",
-                position: "absolute",
-                bottom: 1,
-                left: 0,
-                bg: "pink.400",
-                zIndex: -1,
-              }}
+        <Stack
+          direction="column"
+          spacing={{ base: 5, md: 10 }}
+          mb={["-60", null, "-15"]}
+          ml={10}
+          w="80%"
+          mx="auto"
+        >
+          <Container>
+            <Heading
+              lineHeight={1.1}
+              fontWeight={600}
+              fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
             >
-              2024 Board Elections
-            </Text>
-            <br />
-            <Text as={"span"} color={"pink.400"}>
-              Its time to vote!
-            </Text>
-          </Heading>
-          <Stack gap={3}>
-            <Text color={"gray.500"}>
-              The MCBIOS board member elections will take place in September
-              2024. According to the MCBIOS Bylaws, every member is entitled to
-              one vote. This is a great chance for you to help shape the future
-              of our organization.
-            </Text>
-            <Text color={"gray.500"}>
-              This year, we have one candidate for the position of President
-              Elect and one candidate for the Student Board Member position.
-              Detailed information about each candidate is provided below. The
-              election will be conducted electronically. Please keep an eye on
-              your email for notifications, candidate speeches, and instructions
-              on how to cast your vote.
-            </Text>
-          </Stack>
+              <Text
+                as={"span"}
+                position={"relative"}
+                _after={{
+                  content: "''",
+                  width: "full",
+                  height: "30%",
+                  position: "absolute",
+                  bottom: 1,
+                  left: 0,
+                  bg: "pink.400",
+                  zIndex: -1,
+                }}
+              >
+                2024 Board Elections
+              </Text>
+              <br />
+              <Text as={"span"} color={"pink.400"}>
+                Its time to vote!
+              </Text>
+            </Heading>
+            <Stack gap={3} w="80%">
+              <Text color={"gray.500"}>
+                The MCBIOS board member elections will take place in September
+                2024. According to the MCBIOS Bylaws, every member is entitled
+                to one vote. This is a great chance for you to help shape the
+                future of our organization.
+              </Text>
+              <Text color={"gray.500"}>
+                This year, we have one candidate for the position of President
+                Elect and one candidate for the Student Board Member position.
+                Detailed information about each candidate is provided below. The
+                election will be conducted electronically. Please keep an eye on
+                your email for notifications, candidate speeches, and
+                instructions on how to cast your vote.
+              </Text>
+            </Stack>
+          </Container>
           <Stack
             spacing={{ base: 4, sm: 6 }}
             direction={{ base: "column", sm: "row" }}
