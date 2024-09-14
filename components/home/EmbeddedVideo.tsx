@@ -9,7 +9,7 @@ export default function EmbeddedVideo(
         <iframe
           className="mx-auto"
           src={props.src}
-          width={300}
+          width="100%"
           allow="autoplay"
           loading="lazy"
           allowFullScreen
