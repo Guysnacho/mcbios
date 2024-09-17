@@ -81,7 +81,7 @@ const Membership = () => {
                 </li>
                 <li>
                   You may become or maintain the membership status by paying the
-                  membership fee. For 2023, we offer the introductory membership
+                  membership fee. For 2024, we offer the introductory membership
                   rate of $100/30 for Professional/Student.
                 </li>
               </ul>
