@@ -11,6 +11,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import NextLink from "next/link";
 import ElectionNominee, { ElectionProps } from "./ElectionNominee";
 
 const nominees: ElectionProps[] = [
@@ -132,20 +133,20 @@ export default function ElectionHero() {
             direction={{ base: "column", sm: "row" }}
           >
             <Button
-              //   as={NextLink}
-              //   href="https://x3yn84lm.forms.app/elections-2024"
-              //   target="_blank"
+              as={NextLink}
+              href="https://x3yn84lm.forms.app/elections-2024"
+              target="_blank"
               rounded={"full"}
               size={"lg"}
               fontWeight={"normal"}
               px={6}
               mx="auto"
-              disabled
+              disabled={new Date().getMonth() > 10 && new Date().getDay() >= 15}
               colorScheme={"pink"}
-              bg={"pink.200"}
-              _hover={{ bg: "pink.200" }}
+              bg={"pink.500"}
+              _hover={{ bg: "pink.700" }}
             >
-              Form Available Soon
+              Vote Today!
             </Button>
           </Stack>
         </Stack>
