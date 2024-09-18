@@ -133,7 +133,7 @@ export default function ElectionHero() {
             direction={{ base: "column", sm: "row" }}
           >
             <Button
-              as="a"
+              as={NextLink}
               href="https://x3yn84lm.forms.app/elections-2024"
               target="_blank"
               rounded={"full"}
