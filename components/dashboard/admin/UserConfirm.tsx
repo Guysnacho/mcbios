@@ -67,6 +67,7 @@ export const UserConfirm = ({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState<UserRequest[]>([]);
+  const toast = useToast();
 
   useEffect(() => {
     setLoading(true);
@@ -75,10 +76,12 @@ export const UserConfirm = ({
       .select(`id, user_id, ...member(*)`)
       .then(({ data, error, statusText }) => {
         if (error) {
-          alert(
-            "Something went wrong while we were updating this user's membership - " +
-              statusText
-          );
+          toast({
+            title: "Something went wrong collecting confirmation requests",
+            description: statusText,
+            duration: 5000,
+            status: "error",
+          });
           console.error(error);
         } else {
           setUsers(data);
@@ -95,10 +98,12 @@ export const UserConfirm = ({
         .select(`id, user_id, ...member(*)`)
         .then(({ data, error, statusText }) => {
           if (error) {
-            alert(
-              "Something went wrong while we were updating this user's membership - " +
-                statusText
-            );
+            toast({
+              title: "Something went wrong collecting user info",
+              description: statusText,
+              duration: 5000,
+              status: "error",
+            });
             console.error(error);
           } else {
             setUsers(data);
