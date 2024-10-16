@@ -1,5 +1,10 @@
 import { Database } from "@/lib/utils/supabase/types";
-import { Flex, Avatar, Box, Text } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
+
+type RoleProp =
+  | Database["public"]["Tables"]["member"]["Row"]["role"]
+  | undefined
+  | null;
 
 export const User = ({
   fname,
@@ -8,12 +13,9 @@ export const User = ({
 }: {
   fname: string | undefined | null;
   lname: string | undefined | null;
-  role:
-    | Database["public"]["Tables"]["member"]["Row"]["role"]
-    | undefined
-    | null;
+  role: RoleProp;
 }) => {
-  const deriveRole = (role) => {
+  const deriveRole = (role: RoleProp) => {
     switch (role) {
       case "admin":
         return "MCBIOS Admin";
