@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/utils/supabase/component";
 import { Database } from "@/lib/utils/supabase/types";
-import { Button, Flex, Input, Stack, Text } from "@chakra-ui/react";
+import { Button, Flex, Input, Stack, Text, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 
@@ -16,6 +16,7 @@ export const VideoUploader = () => {
   const [vidList, setVidList] =
     useState<Database["public"]["Tables"]["videos"]["Row"][]>();
   const [loading, setLoading] = useState(false);
+  const toast = useToast();
 
   const client = createClient();
 
@@ -24,13 +25,13 @@ export const VideoUploader = () => {
     console.debug(video);
   }, [video]);
 
-  function isValidUpload() {
+  const isValidUpload = () => {
     setDateError("");
     setTitleError("");
     setVideoError("");
     setLoading(true);
     if (!date) setDateError("Invalid date");
-    if (!title) setTitleError("Invalid title");
+    if (!title || title === "") setTitleError("Invalid title");
     if (!video || video.length === 0) {
       setVideoError("Invalid video");
     }
@@ -38,14 +39,18 @@ export const VideoUploader = () => {
     console.debug(titleError);
     console.debug(videoError);
     return dateError === "" && titleError === "" && videoError === "";
-  }
+  };
 
   const handleSubmit = async () => {
-    const isValid = isValidUpload();
-    console.debug(isValid);
+    const isValid = await isValidUpload();
     if (!isValid) {
       setLoading(false);
-      throw new Error("Bad Request");
+      toast({
+        title: "Bad upload Request",
+        duration: 5000,
+        status: "warning",
+      });
+      throw new Error();
     }
     // Insert entry into video table
     // TODO make a trigger and function for this, needs to be scopped down to content table though
@@ -64,16 +69,20 @@ export const VideoUploader = () => {
 
     if (data) {
       setVidList(vidList?.concat(data));
-    }
-    if (error) {
-      alert(
-        "Something went wrong while we were saving a reference to the video - " +
-          error.message
-      );
+      toast({
+        title: "Mission accomplished",
+        duration: 5000,
+        status: "success",
+      });
+    } else if (error) {
+      toast({
+        title: "Something went wrong",
+        description: error.message,
+        duration: 5000,
+        status: "error",
+      });
       setLoading(false);
       return;
-    } else {
-      alert("Mission accomplished");
     }
     setLoading(false);
   };

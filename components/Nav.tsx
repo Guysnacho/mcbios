@@ -80,7 +80,7 @@ export default function Nav() {
   }, [isAuthOpen]);
 
   return (
-    <Box>
+    <Box as="nav">
       <AuthModal
         isSignUp={isSignUp}
         isOpen={isAuthOpen}
