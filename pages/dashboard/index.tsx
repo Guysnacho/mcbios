@@ -56,20 +56,14 @@ export default function Dashboard() {
           variant="enclosed"
         >
           <TabList>
-            <Tab title="Conference Content">Conference Content</Tab>
             {data?.user && data.user.role === "admin" ? (
               <Tab title="Admin">Admin</Tab>
             ) : undefined}
+            <Tab title="Conference Content">Conference Content</Tab>
             <Tab title="Profile">Profile</Tab>
           </TabList>
           <TabPanels>
-            <TabPanel>
-              {data?.user && data?.user.dues_paid_at ? (
-                <MemberContent videos={data?.videos} />
-              ) : undefined}
-            </TabPanel>
-
-            {data?.user && data?.user.role === "admin" ? (
+          {data?.user && data?.user.role === "admin" ? (
               <TabPanel>
                 <div className="my-5 flex gap-3 mx-auto justify-center">
                   <VideoUploader />
@@ -80,6 +74,12 @@ export default function Dashboard() {
                 </div>
               </TabPanel>
             ) : undefined}
+
+            <TabPanel>
+              {data?.user && data?.user.dues_paid_at ? (
+                <MemberContent videos={data?.videos} />
+              ) : undefined}
+            </TabPanel>
 
             <TabPanel>
               <div className="my-5 flex gap-3 mx-auto justify-center">

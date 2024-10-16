@@ -13,6 +13,17 @@ export const User = ({
     | undefined
     | null;
 }) => {
+  const deriveRole = (role) => {
+    switch (role) {
+      case "admin":
+        return "MCBIOS Admin";
+      case "professional":
+        return "MCBIOS Professional";
+
+      default:
+        return "MCBIOS Member";
+    }
+  };
   return (
     <Flex>
       <Avatar src="https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75" />
@@ -20,9 +31,7 @@ export const User = ({
         <Text fontWeight="bold">
           {fname} {lname}
         </Text>
-        <Text fontSize="sm">
-          {role === "admin" ? "MCBIOS Admin" : "MCBIOS Member"}
-        </Text>
+        <Text fontSize="sm">{deriveRole(role)}</Text>
       </Box>
     </Flex>
   );
