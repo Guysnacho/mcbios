@@ -4,6 +4,7 @@ import VideoUploader from "@/components/dashboard/admin/VideoUploader";
 import { User } from "@/components/User";
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
+import { DUPLICATE_ROW } from "@/lib/utils/constants";
 import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
 import { authFetcher } from "@/lib/utils/swrFetchers";
 import {
@@ -14,6 +15,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
+  useToast,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import Script from "next/script";
@@ -33,6 +35,7 @@ let tabs = [
 export default function Dashboard() {
   const client = createCompoentClient();
   const store = useStore(useUserStore, (store) => store);
+  const toast = useToast();
 
   const { data, error } = useSWR("/auth/user", () => authFetcher(client));
 
@@ -114,15 +117,33 @@ export default function Dashboard() {
                             .insert({ user_id: store?.id })
                             .then(({ error }) => {
                               if (error) {
-                                alert(
-                                  "Something went wrong while we submitting your membership request - " +
-                                    error.message
-                                );
-                                console.error(error);
+                                if (error?.code === DUPLICATE_ROW) {
+                                  toast({
+                                    status: "error",
+                                    duration: 6000,
+                                    isClosable: true,
+                                    description:
+                                      "Gotcha, we'll update your access as soon as we confirm.",
+                                  });
+                                } else {
+                                  toast({
+                                    status: "error",
+                                    duration: 6000,
+                                    isClosable: true,
+                                    description:
+                                      "Something went wrong while we submitting your membership request - " +
+                                      error.message,
+                                  });
+                                  console.error(error);
+                                }
                               } else {
-                                alert(
-                                  "Thank you for letting us know, we'll confirm your membership status ASAP!"
-                                );
+                                toast({
+                                  status: "success",
+                                  duration: 6000,
+                                  isClosable: true,
+                                  description:
+                                    "Thank you for letting us know, we'll confirm your membership status ASAP!",
+                                });
                               }
                             });
                         }}

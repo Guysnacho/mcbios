@@ -42,3 +42,5 @@ export const ConfYears = [
     url: "https://2024.mcbios.com",
   },
 ];
+
+export const DUPLICATE_ROW = "23505";
