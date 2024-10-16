@@ -21,6 +21,7 @@ import {
   Thead,
   Tooltip,
   Tr,
+  useToast,
 } from "@chakra-ui/react";
 import { SupabaseClient } from "@supabase/supabase-js";
 import {
@@ -199,7 +200,7 @@ const ConfirmModal = ({
     "student" | "postdoctorial" | "professional" | "admin" | undefined
   >();
   const [updateLoading, setUpdateLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const toast = useToast();
 
   const handleUpdate = async (
     uid: string,
@@ -222,19 +223,27 @@ const ConfirmModal = ({
       .eq("user_id", uid)
       .select()
       .single();
-    console.log(data);
 
-    if (data) {
-      alert(
-        `Successfully updated membership for ${
+    if (error) {
+      toast({
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+        description:
+          "Something went wrong while we were updating this user's membership - " +
+          error.message,
+      });
+      console.error(error);
+    } else {
+      toast({
+        status: "success",
+        duration: 6000,
+        isClosable: true,
+        title: "Mission Accomplished",
+        description: `Successfully updated membership for ${
           data.fname + " " + data.lname
-        } with the following role: ${data.role}`
-      );
-    } else if (error) {
-      throw Error(
-        "Something went wrong while we were updating this user's membership - " +
-          error.message
-      );
+        } with the following role: ${data.role}`,
+      });
     }
   };
   return (
@@ -242,7 +251,6 @@ const ConfirmModal = ({
       isOpen={open}
       onClose={() => {
         setId("");
-        setMessage("");
         setOpen(false);
       }}
       closeOnOverlayClick
@@ -250,7 +258,6 @@ const ConfirmModal = ({
       autoFocus
       onOverlayClick={() => {
         setId("");
-        setMessage("");
         setOpen(false);
       }}
     >
@@ -283,7 +290,6 @@ const ConfirmModal = ({
             maxDate={new Date()}
             onChange={setDate}
           />
-          <blockquote className="text-center">{message}</blockquote>
         </ModalBody>
         <ModalFooter>
           <Button color="danger" variant="light" onClick={() => setOpen(false)}>
@@ -301,9 +307,6 @@ const ConfirmModal = ({
                 .then(() => {
                   setId("");
                   setOpen(false);
-                })
-                .catch((err: Error) => {
-                  setMessage(err.message);
                 })
                 .finally(() => setUpdateLoading(false))
             }
