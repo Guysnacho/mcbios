@@ -1,13 +1,9 @@
 "use client";
 
+import KeyDates from "@/components/KeyDates";
 import { Button, Divider, Flex, Stack, Text, VStack } from "@chakra-ui/react";
 import localFont from "next/font/local";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -19,9 +15,10 @@ export default function Home() {
     <div className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         {/* <Logo /> */}
+        {/* Hero Section */}
         <Flex
           w={"full"}
-          h={"100vh"}
+          h={"75vh"}
           backgroundImage={"/24-0287-MEIKLE-Background.jpg"}
           backgroundSize={"cover"}
           backgroundPosition={"top center"}
@@ -39,6 +36,7 @@ export default function Home() {
               textAlign="center"
               borderRadius={10}
               p={4}
+              py={6}
               bgColor={"blackAlpha.500"}
             >
               <Text
@@ -104,6 +102,11 @@ export default function Home() {
             </Stack>
           </VStack>
         </Flex>
+
+        {/* Important Dates (sticky on mobile) */}
+        <KeyDates />
+        {/* Accomodation blurb */}
+        {/* Keynote Speakers */}
       </main>
     </div>
   );
