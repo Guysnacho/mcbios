@@ -1,6 +1,18 @@
 "use client";
 
-import { Button, Flex, Stack, Text, VStack } from "@chakra-ui/react";
+import { Button, Divider, Flex, Stack, Text, VStack } from "@chakra-ui/react";
+import localFont from "next/font/local";
+
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-geist-sans",
+  weight: "100 900",
+});
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+});
 
 export default function Home() {
   return (
@@ -23,7 +35,7 @@ export default function Home() {
             <Stack
               maxW={"3xl"}
               align={"flex-start"}
-              spacing={6}
+              spacing={4}
               textAlign="center"
               borderRadius={10}
               p={4}
@@ -49,8 +61,27 @@ export default function Home() {
                 Data-Driven Discovery: Harnessing the power of AI to transform
                 health
               </Text>
-              <Text mx="auto" color={"white"} fontWeight={400} fontSize="md">
+              <Text mx="auto" color={"white"} fontWeight={400} fontSize="lg">
                 The 21st annual meeting of MCBIOS
+              </Text>
+              <Divider />
+              <Text
+                mx="auto"
+                color={"white"}
+                fontWeight={700}
+                fontSize="lg"
+                className={geistMono.className}
+              >
+                University of Utah
+              </Text>
+              <Text
+                mx="auto"
+                color={"white"}
+                fontWeight={700}
+                fontSize="lg"
+                className={geistMono.className}
+              >
+                March 27-29, 2025
               </Text>
               <Stack direction={"row"} mx="auto">
                 <Button
