@@ -6,6 +6,7 @@ Welcome to the home of the 2025 MCBIOS Conference.
 
 Everything you need to build a Next.js project, powered by `create-next-app@latest`.
 
+
 ## Developing
 
 Once you've cloned the project run `yarn install` to install dependencies, then run `yarn dev` to start a development server:
