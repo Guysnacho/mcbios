@@ -141,12 +141,12 @@ export default function ElectionHero() {
               fontWeight={"normal"}
               px={6}
               mx="auto"
-              disabled={new Date().getMonth() > 10 && new Date().getDay() >= 15}
+              disabled
               colorScheme={"pink"}
               bg={"pink.500"}
               _hover={{ bg: "pink.700" }}
             >
-              Vote Today!
+              Voting Closed
             </Button>
           </Stack>
         </Stack>
