@@ -147,19 +147,19 @@ export default function Home() {
         <KeynoteSpeakers />
         {/* Invited Speakers */}
         {/* @ts-expect-error marquee is disabled */}
-        <Flex as="marquee" m="auto" justifyItems="space-evenly" h="sm">
+        <Box as="marquee" justifyItems="space-evenly">
           <Heading
             as="h2"
             m="auto"
-            my={25}
+            my="auto"
             p={5}
             size="3xl"
             bgGradient="linear(to-l, #7928CA, #FF0080)"
             bgClip="text"
           >
-            Other invited speakers will be announced soon
+            More invited speakers will be announced soon
           </Heading>
-        </Flex>
+        </Box>
       </main>
     </div>
   );
