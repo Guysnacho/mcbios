@@ -19,7 +19,7 @@ import {
 import NextLink from "next/link";
 
 export default function Nav() {
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen } = useDisclosure();
   //   const supabase = createClient();
   //   const router = useRouter();
   //   const store = useStore(useUserStore, (store) => store);
