@@ -59,7 +59,12 @@ const Speaker = ({ name, photo, url, affiliation }: SpeakerProps) => {
 
 export default function KeynoteSpeakers() {
   return (
-    <Box p={4} mx="auto">
+    <Box
+      w="full"
+      mx="auto"
+      py="20"
+      bgGradient="linear(to-tl, whiteAlpha.200, whiteAlpha.400, orange.100, blue.300)"
+    >
       <Stack
         direction={{ base: "column", md: "row" }}
         wrap="wrap"
