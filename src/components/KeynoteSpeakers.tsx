@@ -17,7 +17,7 @@ import { PiLink } from "react-icons/pi";
 interface SpeakerProps {
   name: string;
   photo: string;
-  url: string;
+  url?: string;
   affiliation?: string;
 }
 
@@ -32,7 +32,7 @@ const Speaker = ({ name, photo, url, affiliation }: SpeakerProps) => {
           borderRadius="lg"
         />
         <Stack mt="6" spacing="3">
-          <Heading size="md" color="blue.700">
+          <Heading size="md" color="blue.700" textAlign="center">
             {name}
           </Heading>
           {affiliation && <Text>{affiliation}</Text>}
@@ -42,6 +42,9 @@ const Speaker = ({ name, photo, url, affiliation }: SpeakerProps) => {
         <CardFooter>
           <ButtonGroup spacing="2" mx="auto">
             <Button
+              as="a"
+              href={url}
+              target="_blank"
               color={"white"}
               rounded={"full"}
               alignItems="center"
@@ -65,6 +68,9 @@ export default function KeynoteSpeakers() {
       py="20"
       bgGradient="linear(to-tl, whiteAlpha.200, whiteAlpha.400, orange.100, blue.300)"
     >
+      <Heading size="2xl" mb={38} color="blue.700" textAlign="center">
+        Keynote Speakers
+      </Heading>
       <Stack
         direction={{ base: "column", md: "row" }}
         wrap="wrap"
@@ -76,28 +82,24 @@ export default function KeynoteSpeakers() {
         alignSelf="center"
       >
         <Speaker
-          name="Samuel Adetunji"
-          photo="https://media.licdn.com/dms/image/v2/C4E03AQFA4qZDyN1hsA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1642438097060?e=1735171200&v=beta&t=vgBt253jgvc-0XqR__pHrGT2ZLq_gxp7AU7DtgLEwOs"
-          url="https://tunjiproductions.com"
-          affiliation="Texas Tech University"
+          name="Speaker coming soon"
+          photo="https://api.dicebear.com/9.x/thumbs/svg?seed=Katherine&size=250"
+          affiliation=""
         />
         <Speaker
-          name="Samuel Adetunji"
-          photo="https://media.licdn.com/dms/image/v2/C4E03AQFA4qZDyN1hsA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1642438097060?e=1735171200&v=beta&t=vgBt253jgvc-0XqR__pHrGT2ZLq_gxp7AU7DtgLEwOs"
-          url="https://tunjiproductions.com"
-          affiliation="Texas Tech University"
+          name="Speaker coming soon"
+          photo="https://api.dicebear.com/9.x/thumbs/svg?seed=Caleb&size=250"
+          affiliation=""
         />
         <Speaker
-          name="Samuel Adetunji"
-          photo="https://media.licdn.com/dms/image/v2/C4E03AQFA4qZDyN1hsA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1642438097060?e=1735171200&v=beta&t=vgBt253jgvc-0XqR__pHrGT2ZLq_gxp7AU7DtgLEwOs"
-          url="https://tunjiproductions.com"
-          affiliation="Texas Tech University"
+          name="Speaker coming soon"
+          photo="https://api.dicebear.com/9.x/thumbs/svg?seed=Destiny&size=250"
+          affiliation=""
         />
         <Speaker
-          name="Samuel Adetunji"
-          photo="https://media.licdn.com/dms/image/v2/C4E03AQFA4qZDyN1hsA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1642438097060?e=1735171200&v=beta&t=vgBt253jgvc-0XqR__pHrGT2ZLq_gxp7AU7DtgLEwOs"
-          url="https://tunjiproductions.com"
-          affiliation="Texas Tech University"
+          name="Speaker coming soon"
+          photo="https://api.dicebear.com/9.x/thumbs/svg?seed=Vivian&size=250"
+          affiliation=""
         />
       </Stack>
     </Box>
