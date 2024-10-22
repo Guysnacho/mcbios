@@ -153,7 +153,6 @@ export default function Home() {
             m="auto"
             my="auto"
             p={5}
-            size="3xl"
             bgGradient="linear(to-l, #7928CA, #FF0080)"
             bgClip="text"
           >
