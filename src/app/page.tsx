@@ -3,6 +3,7 @@
 import KeyDates from "@/components/KeyDates";
 import KeynoteSpeakers from "@/components/KeynoteSpeakers";
 import {
+  Box,
   Button,
   Divider,
   Flex,
@@ -116,6 +117,32 @@ export default function Home() {
         <KeyDates />
         <Divider />
         {/* Accomodation blurb */}
+        <Box className="container mx-auto w-4/5 md:w-3/5 self-center flex place-content-center my-10 shadow-lg shadow-indigo-500/40 rounded-xl py-6">
+          <p className="text-center mx-auto w-4/5 md:w-3/5">
+            The conference will take place at the{" "}
+            <a
+              href="https://ecclesalumnihouse.utah.edu/"
+              target="_blank"
+              className="underline text-secondary-300"
+            >
+              Cleone Peterson Eccles Alumni House
+            </a>
+            . Directions, maps, and parking information can be found{" "}
+            <a
+              href="https://ecclesalumnihouse.utah.edu/directions-parking/"
+              target="_blank"
+              className="underline text-secondary-300"
+            >
+              here
+            </a>
+            . Parking is free on Saturday. We encourage you to take ride share
+            to the conference{" "}
+            <a href="/accommodations" className="underline text-secondary-300">
+              accommodations page
+            </a>
+            !
+          </p>
+        </Box>
         {/* Keynote Speakers */}
         <KeynoteSpeakers />
         {/* Invited Speakers */}
