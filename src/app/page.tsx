@@ -2,7 +2,15 @@
 
 import KeyDates from "@/components/KeyDates";
 import KeynoteSpeakers from "@/components/KeynoteSpeakers";
-import { Button, Divider, Flex, Stack, Text, VStack } from "@chakra-ui/react";
+import {
+  Button,
+  Divider,
+  Flex,
+  Heading,
+  Stack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import localFont from "next/font/local";
 
 const geistMono = localFont({
@@ -108,8 +116,22 @@ export default function Home() {
         <KeyDates />
         <Divider />
         {/* Accomodation blurb */}
-        <KeynoteSpeakers />
         {/* Keynote Speakers */}
+        <KeynoteSpeakers />
+        {/* Invited Speakers */}
+        {/* @ts-expect-error marquee is disabled */}
+        <Flex as="marquee" m="auto" justifyItems="space-around" h="sm">
+          <Heading
+            as="h2"
+            m="auto"
+            p={5}
+            size="3xl"
+            bgGradient="linear(to-l, #7928CA, #FF0080)"
+            bgClip="text"
+          >
+            Speakers coming soon
+          </Heading>
+        </Flex>
       </main>
     </div>
   );
