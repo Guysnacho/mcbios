@@ -1,11 +1,20 @@
 "use client";
 
-import { Box, Flex, Icon, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  SimpleGrid,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { ReactElement } from "react";
 import {
   PiBirdLight,
   PiBlueprint,
   PiChalkboardTeacher,
+  PiFileDoc,
   PiStudent,
 } from "react-icons/pi";
 
@@ -14,9 +23,10 @@ interface ConfDayProps {
   text?: string;
   deadline?: string;
   icon: ReactElement;
+  isProposal?: boolean;
 }
 
-const Date = ({ title, text, deadline, icon }: ConfDayProps) => {
+const Date = ({ title, text, deadline, icon, isProposal }: ConfDayProps) => {
   return (
     <Stack border="2px" borderColor="gray.300" p={4} borderRadius={5}>
       <Flex
@@ -34,6 +44,27 @@ const Date = ({ title, text, deadline, icon }: ConfDayProps) => {
       <Text fontWeight={600}>{title}</Text>
       {text && <Text color={"gray.600"}>{text}</Text>}
       {deadline && <Text color={"maroon"}>{deadline}</Text>}
+      {isProposal && (
+        <Box justifyContent="space-around" alignSelf="center">
+          <Button
+            as="a"
+            mx="auto"
+            variant="outline"
+            mt="5"
+            alignSelf="center"
+            href={
+              process.env.NEXT_PUBLIC_SUPABASE_URL +
+              "/storage/v1/object/public/assets/MCBIOS%202025%20Session%20Proposal%20Form.docx"
+            }
+            target="_blank"
+            rounded={"full"}
+            alignItems="center"
+            rightIcon={<PiFileDoc />}
+          >
+            Proposal Template
+          </Button>
+        </Box>
+      )}
     </Stack>
   );
 };
@@ -49,6 +80,7 @@ export default function KeyDates() {
             "If you'd like to hold a session or conduct a workshop during the conference, the deadline is"
           }
           deadline="November 25th, 2024"
+          isProposal
         />
         <Date
           icon={<Icon as={PiBlueprint} w={10} h={10} />}
