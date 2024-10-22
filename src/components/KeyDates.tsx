@@ -1,8 +1,13 @@
 "use client";
 
+import { Box, Flex, Icon, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import { ReactElement } from "react";
-import { Box, SimpleGrid, Icon, Text, Stack, Flex } from "@chakra-ui/react";
-import { PiChalkboardTeacher } from "react-icons/pi";
+import {
+  PiBirdLight,
+  PiBlueprint,
+  PiChalkboardTeacher,
+  PiStudent,
+} from "react-icons/pi";
 
 interface ConfDayProps {
   title: string;
@@ -46,7 +51,7 @@ export default function KeyDates() {
           deadline="November 25th, 2024"
         />
         <Date
-          icon={<Icon as={PiChalkboardTeacher} w={10} h={10} />}
+          icon={<Icon as={PiBlueprint} w={10} h={10} />}
           title={"Call for Poster Submissions"}
           text={
             "If you have reasearch and applicable development that you want to showcase, please let the team know! The deadline for submitting a poster is"
@@ -54,7 +59,7 @@ export default function KeyDates() {
           deadline="December 15th, 2024"
         />
         <Date
-          icon={<Icon as={PiChalkboardTeacher} w={10} h={10} />}
+          icon={<Icon as={PiStudent} w={10} h={10} />}
           title={"Young Scientist Excellence Award Application Deadline"}
           text={
             "This awards program recognizes students and postdoctoral fellows that exhibit scientific excellence in the field of Bioinformatics. The deadline for this award is"
@@ -62,7 +67,7 @@ export default function KeyDates() {
           deadline="January 15th, 2024"
         />
         <Date
-          icon={<Icon as={PiChalkboardTeacher} w={10} h={10} />}
+          icon={<Icon as={PiBirdLight} w={10} h={10} />}
           title={"Early Bird Registration"}
           deadline="February 1st, 2024"
         />
