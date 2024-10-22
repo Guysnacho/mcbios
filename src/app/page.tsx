@@ -1,15 +1,34 @@
 "use client";
 
-import { Button, Flex, Stack, Text, VStack } from "@chakra-ui/react";
+import KeyDates from "@/components/KeyDates";
+import KeynoteSpeakers from "@/components/KeynoteSpeakers";
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Heading,
+  Stack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import localFont from "next/font/local";
+
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+});
 
 export default function Home() {
   return (
     <div className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         {/* <Logo /> */}
+        {/* Hero Section */}
         <Flex
           w={"full"}
-          h={"100vh"}
+          h={"75vh"}
           backgroundImage={"/24-0287-MEIKLE-Background.jpg"}
           backgroundSize={"cover"}
           backgroundPosition={"top center"}
@@ -23,10 +42,11 @@ export default function Home() {
             <Stack
               maxW={"3xl"}
               align={"flex-start"}
-              spacing={6}
+              spacing={4}
               textAlign="center"
               borderRadius={10}
               p={4}
+              py={6}
               bgColor={"blackAlpha.500"}
             >
               <Text
@@ -49,8 +69,27 @@ export default function Home() {
                 Data-Driven Discovery: Harnessing the power of AI to transform
                 health
               </Text>
-              <Text mx="auto" color={"white"} fontWeight={400} fontSize="md">
+              <Text mx="auto" color={"white"} fontWeight={400} fontSize="lg">
                 The 21st annual meeting of MCBIOS
+              </Text>
+              <Divider />
+              <Text
+                mx="auto"
+                color={"white"}
+                fontWeight={700}
+                fontSize="lg"
+                className={geistMono.className}
+              >
+                University of Utah
+              </Text>
+              <Text
+                mx="auto"
+                color={"white"}
+                fontWeight={700}
+                fontSize="lg"
+                className={geistMono.className}
+              >
+                March 27-29, 2025
               </Text>
               <Stack direction={"row"} mx="auto">
                 <Button
@@ -72,6 +111,54 @@ export default function Home() {
               </Stack>
             </Stack>
           </VStack>
+        </Flex>
+
+        {/* Important Dates (sticky on mobile) */}
+        <KeyDates />
+        <Divider />
+        {/* Accomodation blurb */}
+        <Box className="container mx-auto w-4/5 md:w-3/5 self-center flex place-content-center my-10 shadow-lg shadow-indigo-500/40 rounded-xl py-6">
+          <p className="text-center mx-auto w-4/5 md:w-3/5">
+            The conference will take place at the{" "}
+            <a
+              href="https://ecclesalumnihouse.utah.edu/"
+              target="_blank"
+              className="underline text-secondary-300"
+            >
+              Cleone Peterson Eccles Alumni House
+            </a>
+            . Directions, maps, and parking information can be found{" "}
+            <a
+              href="https://ecclesalumnihouse.utah.edu/directions-parking/"
+              target="_blank"
+              className="underline text-secondary-300"
+            >
+              here
+            </a>
+            . Parking is free on Saturday. We encourage you to take ride share
+            to the conference
+            {/* <a href="/accommodations" className="underline text-secondary-300">
+              {" "}accommodations page
+            </a> */}
+            !
+          </p>
+        </Box>
+        {/* Keynote Speakers */}
+        <KeynoteSpeakers />
+        {/* Invited Speakers */}
+        {/* @ts-expect-error marquee is disabled */}
+        <Flex as="marquee" m="auto" justifyItems="space-evenly" h="sm">
+          <Heading
+            as="h2"
+            m="auto"
+            my={25}
+            p={5}
+            size="3xl"
+            bgGradient="linear(to-l, #7928CA, #FF0080)"
+            bgClip="text"
+          >
+            Other invited speakers will be announced soon
+          </Heading>
         </Flex>
       </main>
     </div>
