@@ -136,10 +136,10 @@ export default function Home() {
               here
             </a>
             . Parking is free on Saturday. We encourage you to take ride share
-            to the conference{" "}
-            <a href="/accommodations" className="underline text-secondary-300">
-              accommodations page
-            </a>
+            to the conference
+            {/* <a href="/accommodations" className="underline text-secondary-300">
+              {" "}accommodations page
+            </a> */}
             !
           </p>
         </Box>
