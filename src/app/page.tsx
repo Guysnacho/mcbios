@@ -1,6 +1,7 @@
 "use client";
 
 import KeyDates from "@/components/KeyDates";
+import KeynoteSpeakers from "@/components/KeynoteSpeakers";
 import { Button, Divider, Flex, Stack, Text, VStack } from "@chakra-ui/react";
 import localFont from "next/font/local";
 
@@ -105,7 +106,9 @@ export default function Home() {
 
         {/* Important Dates (sticky on mobile) */}
         <KeyDates />
+        <Divider />
         {/* Accomodation blurb */}
+        <KeynoteSpeakers />
         {/* Keynote Speakers */}
       </main>
     </div>
