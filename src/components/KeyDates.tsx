@@ -79,7 +79,7 @@ export default function KeyDates() {
           text={
             "If you'd like to hold a session or conduct a workshop during the conference, the deadline is"
           }
-          deadline="November 25th, 2024"
+          deadline="December 1st, 2024"
           isProposal
         />
         <Date
@@ -88,7 +88,7 @@ export default function KeyDates() {
           text={
             "If you have reasearch and applicable development that you want to showcase, please let the team know! The deadline for submitting a poster is"
           }
-          deadline="December 15th, 2024"
+          deadline="February 1st, 2025"
         />
         <Date
           icon={<Icon as={PiStudent} w={10} h={10} />}
@@ -96,12 +96,12 @@ export default function KeyDates() {
           text={
             "This awards program recognizes students and postdoctoral fellows that exhibit scientific excellence in the field of Bioinformatics. The deadline for this award is"
           }
-          deadline="January 15th, 2024"
+          deadline="January 15th, 2025"
         />
         <Date
           icon={<Icon as={PiBirdLight} w={10} h={10} />}
           title={"Early Bird Registration"}
-          deadline="February 1st, 2024"
+          deadline="February 1st, 2025"
         />
       </SimpleGrid>
     </Box>
