@@ -29,7 +29,7 @@ export default function Home() {
         <Flex
           w={"full"}
           h={"75vh"}
-          backgroundImage={"/24-0287-MEIKLE-Background.jpg"}
+          backgroundImage={"/Winter Campus View 2018-4.jpg"}
           backgroundSize={"cover"}
           backgroundPosition={"top center"}
         >
@@ -70,7 +70,8 @@ export default function Home() {
                 health
               </Text>
               <Text mx="auto" color={"white"} fontWeight={400} fontSize="lg">
-                The 21st annual meeting of MCBIOS
+                The 21st Annual Meeting of the MidSouth Computational Biology
+                and Bioinformatics Society
               </Text>
               <Divider />
               <Text
