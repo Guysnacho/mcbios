@@ -95,7 +95,6 @@ export default function Page() {
                       size="lg"
                       w="md"
                       href="https://forms.gle/RVYFXmoodnGdAupX9"
-                      disabled
                       target="_blank"
                       color={"white"}
                       rounded={"full"}
