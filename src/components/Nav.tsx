@@ -1,11 +1,18 @@
 "use client";
 
-import { ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { PathMap } from "@/lib/constants";
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+  CloseIcon,
+  HamburgerIcon,
+} from "@chakra-ui/icons";
 import {
   Box,
   Collapse,
   Flex,
   Icon,
+  IconButton,
   Link,
   Popover,
   PopoverContent,
@@ -19,7 +26,7 @@ import {
 import NextLink from "next/link";
 
 export default function Nav() {
-  const { isOpen } = useDisclosure();
+  const { isOpen, onToggle } = useDisclosure();
   //   const supabase = createClient();
   //   const router = useRouter();
   //   const store = useStore(useUserStore, (store) => store);
@@ -80,7 +87,7 @@ export default function Nav() {
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
       >
-        {/* <Flex
+        <Flex
           flex={{ base: 1, md: "auto" }}
           ml={{ base: -2 }}
           display={{ base: "flex", md: "none" }}
@@ -93,7 +100,7 @@ export default function Nav() {
             variant={"ghost"}
             aria-label={"Toggle Navigation"}
           />
-        </Flex> */}
+        </Flex>
         <Flex
           flex={{ base: 1 }}
           justify={{ base: "center", md: "start" }}
@@ -200,7 +207,7 @@ const DesktopNav = () => {
   return (
     <Stack direction={"row"} justifyItems="stretch">
       <Stack direction={"row"} spacing={4}>
-        {NAV_ITEMS.map((navItem) => (
+        {NAV_ITEMS.filter((item) => item.href !== "/").map((navItem) => (
           <Box key={navItem.label}>
             <Popover trigger={"hover"} placement={"bottom-start"}>
               <PopoverTrigger>
@@ -360,7 +367,7 @@ interface NavItem {
   href?: string;
 }
 
-const NAV_ITEMS: Array<NavItem> = [];
-// const NAV_ITEMS: Array<NavItem> = Object.entries(PathMap).map(
-//   ([route, label]) => ({ label, href: route })
-// );
+// const NAV_ITEMS: Array<NavItem> = [];
+const NAV_ITEMS: Array<NavItem> = Object.entries(PathMap).map(
+  ([route, label]) => ({ label, href: route })
+);
