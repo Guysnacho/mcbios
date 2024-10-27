@@ -1,4 +1,4 @@
 export const PathMap = {
   "/": "HOME",
-  "/ysea": "YSEA",
+  "/ysea": "Young Scientist Excellence Awards",
 };

@@ -6,7 +6,6 @@ import {
   Button,
   Center,
   Container,
-  Divider,
   Flex,
   Heading,
   ListItem,
@@ -63,8 +62,8 @@ export default function Page() {
         </Flex>
         {/* YSEA Instructions */}
         <Box bg={"gray.800"} position={"relative"} w="full">
-          <Container w="full">
-            <Stack direction={{ base: "column", lg: "row" }} my={7}>
+          <Container>
+            <Stack direction={{ base: "column", lg: "row" }} my={12}>
               <Stack
                 color={"gray.400"}
                 justify={{ lg: "center" }}
@@ -107,32 +106,29 @@ export default function Page() {
                   </Center>
                 </Box>
 
-                <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+                <SimpleGrid columns={{ base: 1, md: 2, "2xl": 3 }} spacing={10}>
                   {blurbs.map((blurb) => (
-                    <>
-                      <Box key={blurb.title}>
-                        <Text
-                          fontFamily={"heading"}
-                          fontSize={"3xl"}
-                          color={"white"}
-                          mb={3}
-                        >
-                          {blurb.title}
-                        </Text>
-                        <Text fontSize={"xl"} color={"gray.400"}>
-                          {blurb.content}
-                        </Text>
-                        {blurb.list &&
-                          blurb.list.map((item) => (
-                            <UnorderedList key={item} my={4}>
-                              <ListItem>
-                                <Text>{item}</Text>
-                              </ListItem>
-                            </UnorderedList>
-                          ))}
-                      </Box>
-                      <Divider />
-                    </>
+                    <Box key={blurb.title} w="full">
+                      <Text
+                        fontFamily={"heading"}
+                        fontSize={"3xl"}
+                        color={"white"}
+                        mb={3}
+                      >
+                        {blurb.title}
+                      </Text>
+                      <Text fontSize={"xl"} color={"gray.400"}>
+                        {blurb.content}
+                      </Text>
+                      {blurb.list &&
+                        blurb.list.map((item) => (
+                          <UnorderedList key={item} my={4}>
+                            <ListItem>
+                              <Text>{item}</Text>
+                            </ListItem>
+                          </UnorderedList>
+                        ))}
+                    </Box>
                   ))}
                 </SimpleGrid>
               </Stack>
