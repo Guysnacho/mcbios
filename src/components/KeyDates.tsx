@@ -63,15 +63,12 @@ const Date = ({
             colorScheme="blue"
             variant="ghost"
             mt="5"
-            href={
-              process.env.NEXT_PUBLIC_SUPABASE_URL +
-              "/storage/v1/object/public/assets/MCBIOS%202025%20Session%20Proposal%20Form.docx"
-            }
+            href="https://forms.gle/Ao8hxxD3KfBjrnEt7"
             target="_blank"
             rounded={"full"}
-            rightIcon={<PiFileDoc />}
+            rightIcon={<EditIcon />}
           >
-            Proposal Template
+            Session Proposal Form
           </Button>
         )}
         {isAbstract && (
@@ -81,7 +78,7 @@ const Date = ({
             colorScheme="blue"
             variant="ghost"
             mt="5"
-            href="https://forms.gle/2RmV1j4EzeUXK9pG9"
+            href="https://forms.gle/mkRcchVaWhN4DuRY8"
             target="_blank"
             rounded={"full"}
             rightIcon={<EditIcon />}
