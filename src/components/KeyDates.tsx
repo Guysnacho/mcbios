@@ -15,7 +15,6 @@ import {
   PiBirdLight,
   PiBlueprint,
   PiChalkboardTeacher,
-  PiFileDoc,
   PiStudent,
 } from "react-icons/pi";
 
