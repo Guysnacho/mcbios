@@ -27,8 +27,10 @@ const Speaker = ({ name, photo, url, affiliation }: SpeakerProps) => {
       <CardBody>
         <Image
           src={photo}
+          fallbackSrc="/User.png"
           alt={`${name} from ${affiliation}`}
-          w={{ base: 40, extraSmall: 50, small: 55 }}
+          w={{ base: 40, extraSmall: 50, small: 55, md: 70 }}
+          boxSize="xxs"
           borderRadius="lg"
         />
         <Stack mt="6" spacing="3">
@@ -81,26 +83,10 @@ export default function KeynoteSpeakers() {
         alignContent="center"
         alignSelf="center"
       >
-        <Speaker
-          name="Speaker coming soon"
-          photo="https://api.dicebear.com/9.x/thumbs/svg?seed=Katherine&size=250"
-          affiliation=""
-        />
-        <Speaker
-          name="Speaker coming soon"
-          photo="https://api.dicebear.com/9.x/thumbs/svg?seed=Caleb&size=250"
-          affiliation=""
-        />
-        <Speaker
-          name="Speaker coming soon"
-          photo="https://api.dicebear.com/9.x/thumbs/svg?seed=Destiny&size=250"
-          affiliation=""
-        />
-        <Speaker
-          name="Speaker coming soon"
-          photo="https://api.dicebear.com/9.x/thumbs/svg?seed=Vivian&size=250"
-          affiliation=""
-        />
+        <Speaker name="Speaker coming soon" photo="/User.png" affiliation="" />
+        <Speaker name="Speaker coming soon" photo="/User.png" affiliation="" />
+        <Speaker name="Speaker coming soon" photo="/User.png" affiliation="" />
+        <Speaker name="Speaker coming soon" photo="/User.png" affiliation="" />
       </Stack>
     </Box>
   );
