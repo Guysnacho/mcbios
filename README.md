@@ -1,6 +1,6 @@
 # MCBIOS 2025 Conference Site - created with [svelte](https://github.com/sveltejs/svelte)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/6d25438c-d54b-49dc-9ecb-1caae154b019/deploy-status)](https://app.netlify.com/sites/mcbios/deploys?branch=2025)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e4477398-f378-49cb-99ec-b2b506e0c1dd/deploy-status?branch=2025)](https://app.netlify.com/sites/mcbios/deploys)
 
 Welcome to the home of the 2025 MCBIOS Conference.
 
