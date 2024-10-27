@@ -1,5 +1,6 @@
 "use client";
 
+import { EditIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -24,11 +25,21 @@ interface ConfDayProps {
   deadline?: string;
   icon: ReactElement;
   isProposal?: boolean;
+  isAbstract?: boolean;
+  isYSEA?: boolean;
 }
 
-const Date = ({ title, text, deadline, icon, isProposal }: ConfDayProps) => {
+const Date = ({
+  title,
+  text,
+  deadline,
+  icon,
+  isProposal,
+  isAbstract,
+  isYSEA,
+}: ConfDayProps) => {
   return (
-    <Stack border="2px" borderColor="gray.300" p={4} borderRadius={5}>
+    <Stack border="1px" borderColor="gray.500" p={3} borderRadius={5}>
       <Flex
         w={16}
         h={16}
@@ -44,27 +55,55 @@ const Date = ({ title, text, deadline, icon, isProposal }: ConfDayProps) => {
       <Text fontWeight={600}>{title}</Text>
       {text && <Text color={"gray.600"}>{text}</Text>}
       {deadline && <Text color={"maroon"}>{deadline}</Text>}
-      {isProposal && (
-        <Box justifyContent="space-around" alignSelf="center">
+      <Flex justifyItems="center">
+        {isProposal && (
           <Button
             as="a"
             mx="auto"
-            variant="outline"
+            colorScheme="blue"
+            variant="ghost"
             mt="5"
-            alignSelf="center"
             href={
               process.env.NEXT_PUBLIC_SUPABASE_URL +
               "/storage/v1/object/public/assets/MCBIOS%202025%20Session%20Proposal%20Form.docx"
             }
             target="_blank"
             rounded={"full"}
-            alignItems="center"
             rightIcon={<PiFileDoc />}
           >
             Proposal Template
           </Button>
-        </Box>
-      )}
+        )}
+        {isAbstract && (
+          <Button
+            as="a"
+            mx="auto"
+            colorScheme="blue"
+            variant="ghost"
+            mt="5"
+            href="https://forms.gle/2RmV1j4EzeUXK9pG9"
+            target="_blank"
+            rounded={"full"}
+            rightIcon={<EditIcon />}
+          >
+            Abstract Submission Form
+          </Button>
+        )}
+        {isYSEA && (
+          <Button
+            as="a"
+            mx="auto"
+            colorScheme="blue"
+            variant="ghost"
+            mt="5"
+            href="/ysea"
+            rounded={"full"}
+            rightIcon={<ExternalLinkIcon />}
+          >
+            Learn More
+          </Button>
+        )}
+      </Flex>
     </Stack>
   );
 };
@@ -89,6 +128,7 @@ export default function KeyDates() {
             "If you have reasearch and applicable development that you want to showcase, please let the team know! The deadline for submitting a poster is"
           }
           deadline="February 1st, 2025"
+          isAbstract
         />
         <Date
           icon={<Icon as={PiStudent} w={10} h={10} />}
@@ -97,6 +137,7 @@ export default function KeyDates() {
             "This awards program recognizes students and postdoctoral fellows that exhibit scientific excellence in the field of Bioinformatics. The deadline for this award is"
           }
           deadline="January 15th, 2025"
+          isYSEA
         />
         <Date
           icon={<Icon as={PiBirdLight} w={10} h={10} />}

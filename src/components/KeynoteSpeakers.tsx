@@ -8,34 +8,79 @@ import {
   CardBody,
   CardFooter,
   Heading,
+  HStack,
+  Icon,
   Image,
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { PiLink } from "react-icons/pi";
+import { FaSchool } from "react-icons/fa";
+import { PiLink, PiReadCvLogo, PiStudent } from "react-icons/pi";
 
 interface SpeakerProps {
+  title?: string;
+  program?: string[];
   name: string;
   photo: string;
   url?: string;
   affiliation?: string;
 }
 
-const Speaker = ({ name, photo, url, affiliation }: SpeakerProps) => {
+const Speaker = ({
+  title,
+  program,
+  name,
+  photo,
+  url,
+  affiliation,
+}: SpeakerProps) => {
   return (
-    <Card maxW="sm" _hover={{ shadow: 5 }} mb={1} mx="auto">
+    <Card
+      maxW="300px"
+      _hover={{ shadow: "xl", borderColor: "blue.600" }}
+      mb={1}
+      mx="auto"
+      borderColor="blue.400"
+      borderWidth={1}
+    >
       <CardBody>
         <Image
           src={photo}
+          fallbackSrc="/User.png"
           alt={`${name} from ${affiliation}`}
-          w={{ base: 40, extraSmall: 50, small: 55 }}
+          w={{ base: 40, extraSmall: 50, small: 55, md: 70 }}
+          boxSize="250px"
           borderRadius="lg"
+          shadow="lg"
         />
         <Stack mt="6" spacing="3">
-          <Heading size="md" color="blue.700" textAlign="center">
+          <Heading
+            size="md"
+            color="blue.700"
+            textAlign="center"
+            textDecoration="underline"
+          >
             {name}
           </Heading>
-          {affiliation && <Text>{affiliation}</Text>}
+          {title && (
+            <HStack gap={3}>
+              <Icon as={PiStudent} boxSize={5} />
+              <Text fontWeight={300}>{title}</Text>
+            </HStack>
+          )}
+          {program &&
+            program.map((item, idx) => (
+              <HStack key={idx} gap={3}>
+                <Icon as={PiReadCvLogo} boxSize={5} />
+                <Text fontWeight={300}>{item}</Text>
+              </HStack>
+            ))}
+          {affiliation && (
+            <HStack gap={3}>
+              <Icon as={FaSchool} boxSize={5} />
+              <Text fontWeight={300}>{affiliation}</Text>
+            </HStack>
+          )}
         </Stack>
       </CardBody>
       {url && (
@@ -82,25 +127,18 @@ export default function KeynoteSpeakers() {
         alignSelf="center"
       >
         <Speaker
-          name="Speaker coming soon"
-          photo="https://api.dicebear.com/9.x/thumbs/svg?seed=Katherine&size=250"
-          affiliation=""
+          name="Xihong Lin, Ph.D."
+          photo="/keynote/XihongLin.png"
+          title="Professor of Biostatistics"
+          program={[
+            "Coordinating Director",
+            "Program in Quantitative Genomics",
+          ]}
+          affiliation="Harvard T.H. Chan School of Public Health"
         />
-        <Speaker
-          name="Speaker coming soon"
-          photo="https://api.dicebear.com/9.x/thumbs/svg?seed=Caleb&size=250"
-          affiliation=""
-        />
-        <Speaker
-          name="Speaker coming soon"
-          photo="https://api.dicebear.com/9.x/thumbs/svg?seed=Destiny&size=250"
-          affiliation=""
-        />
-        <Speaker
-          name="Speaker coming soon"
-          photo="https://api.dicebear.com/9.x/thumbs/svg?seed=Vivian&size=250"
-          affiliation=""
-        />
+        <Speaker name="Speaker coming soon" photo="/User.png" affiliation="" />
+        <Speaker name="Speaker coming soon" photo="/User.png" affiliation="" />
+        <Speaker name="Speaker coming soon" photo="/User.png" affiliation="" />
       </Stack>
     </Box>
   );
