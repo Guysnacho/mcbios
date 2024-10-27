@@ -61,11 +61,11 @@ export default function Page() {
           </VStack>
         </Flex>
         {/* YSEA Instructions */}
-        <Box bg={"gray.800"} position={"relative"} w="full">
+        <Box bgColor="blue.800" position={"relative"} w="full">
           <Container>
             <Stack direction={{ base: "column", lg: "row" }} my={12}>
               <Stack
-                color={"gray.400"}
+                color={"blue.400"}
                 justify={{ lg: "center" }}
                 py={{ base: 4, md: 20, xl: 50 }}
                 gap={5}
@@ -77,7 +77,8 @@ export default function Page() {
                     textTransform={"uppercase"}
                     mb={3}
                     fontSize={"xl"}
-                    color={"gray.500"}
+                    color={"blue.100"}
+                    decoration="underline"
                   >
                     Deadline: January 15th, 2025
                   </Text>
