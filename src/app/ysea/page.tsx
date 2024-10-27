@@ -107,7 +107,11 @@ export default function Page() {
                   </Center>
                 </Box>
 
-                <SimpleGrid columns={{ base: 1, md: 2, "2xl": 3 }} spacing={10}>
+                <SimpleGrid
+                  columns={{ base: 1, md: 2 }}
+                  spacing={10}
+                  mx={{ base: 5, md: 0 }}
+                >
                   {blurbs.map((blurb) => (
                     <Box key={blurb.title} w="full">
                       <Text
