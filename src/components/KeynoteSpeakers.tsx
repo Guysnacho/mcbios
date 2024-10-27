@@ -7,7 +7,6 @@ import {
   Card,
   CardBody,
   CardFooter,
-  Flex,
   Heading,
   HStack,
   Icon,
