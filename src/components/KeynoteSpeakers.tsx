@@ -36,7 +36,14 @@ const Speaker = ({
   affiliation,
 }: SpeakerProps) => {
   return (
-    <Card maxW="300px" _hover={{ shadow: 5 }} mb={1} mx="auto">
+    <Card
+      maxW="300px"
+      _hover={{ shadow: "xl", borderColor: "blue.600" }}
+      mb={1}
+      mx="auto"
+      borderColor="blue.400"
+      borderWidth={1}
+    >
       <CardBody>
         <Image
           src={photo}
