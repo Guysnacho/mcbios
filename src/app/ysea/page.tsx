@@ -65,7 +65,7 @@ export default function Page() {
           <Container>
             <Stack direction={{ base: "column", lg: "row" }} my={12}>
               <Stack
-                color={"blue.400"}
+                color={"blue.100"}
                 justify={{ lg: "center" }}
                 py={{ base: 4, md: 20, xl: 50 }}
                 gap={5}
