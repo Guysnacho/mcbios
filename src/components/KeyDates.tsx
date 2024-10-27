@@ -1,5 +1,6 @@
 "use client";
 
+import { EditIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -83,7 +84,7 @@ const Date = ({
             href="https://forms.gle/2RmV1j4EzeUXK9pG9"
             target="_blank"
             rounded={"full"}
-            rightIcon={<PiFileDoc />}
+            rightIcon={<EditIcon />}
           >
             Abstract Submission Form
           </Button>
@@ -97,7 +98,7 @@ const Date = ({
             mt="5"
             href="/ysea"
             rounded={"full"}
-            rightIcon={<PiFileDoc />}
+            rightIcon={<ExternalLinkIcon />}
           >
             Learn More
           </Button>
