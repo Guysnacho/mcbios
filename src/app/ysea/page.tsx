@@ -91,20 +91,19 @@ export default function Page() {
                   </Heading>
                   <Center>
                     <Button
-                      // as="a"
+                      as="a"
                       size="lg"
                       w="md"
-                      // href="/"
+                      href="https://forms.gle/RVYFXmoodnGdAupX9"
                       disabled
-                      // target="_blank"
+                      target="_blank"
                       color={"white"}
                       rounded={"full"}
                       alignItems="center"
                       rightIcon={<ExternalLinkIcon />}
                       bg={"blue.600"}
                     >
-                      {/* YSEA Application */}
-                      Coming Soon
+                      YSEA Application
                     </Button>
                   </Center>
                 </Box>
