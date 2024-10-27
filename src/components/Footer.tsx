@@ -13,7 +13,7 @@ export const Footer = () => {
     <Box
       as="footer"
       bgColor="blue.900"
-      className="border-double border-t-4 border-indigo-600 mt-20"
+      className="border-double border-t-4 border-indigo-600"
     >
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-7 sm:py-10 lg:px-4">
         <Stack

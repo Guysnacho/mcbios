@@ -1,21 +1,35 @@
-import { Button, Divider, Flex, Stack, Text, VStack } from "@chakra-ui/react";
-import localFont from "next/font/local";
+"use client";
 
-const geistMono = localFont({
-  src: "../fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import { ExternalLinkIcon } from "@chakra-ui/icons";
+import {
+  Box,
+  Button,
+  Center,
+  Container,
+  Divider,
+  Flex,
+  Heading,
+  ListItem,
+  SimpleGrid,
+  Stack,
+  Text,
+  UnorderedList,
+  VStack,
+} from "@chakra-ui/react";
+import { ReactNode } from "react";
 
 export default function Page() {
   return (
-    <div className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <VStack className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
+      <Box
+        w="full"
+        className="flex flex-col row-start-2 items-center sm:items-start"
+      >
         {/* <Logo /> */}
         {/* Hero Section */}
         <Flex
           w={"full"}
-          h={"75vh"}
+          h={"40vh"}
           backgroundImage={"/Winter Campus View 2018-4.jpg"}
           backgroundSize={"cover"}
           backgroundPosition={"top center"}
@@ -37,70 +51,144 @@ export default function Page() {
               bgColor={"blackAlpha.500"}
             >
               <Text
-                mx="auto"
-                color={"white"}
-                fontWeight={700}
-                lineHeight={1.2}
-                textUnderlineOffset={4}
-                textDecorationLine="underline"
-                fontSize={["3xl", null, null, "4xl"]}
-              >
-                MCBIOS 2025
-              </Text>
-              <Text
                 color={"white"}
                 fontWeight={700}
                 lineHeight={1.2}
                 fontSize={["3xl", null, null, "4xl"]}
               >
-                Data-Driven Discovery: Harnessing the power of AI to transform
-                health
+                MCBIOS Young Scientist Excellence Awards
               </Text>
-              <Text mx="auto" color={"white"} fontWeight={400} fontSize="lg">
-                The 21st Annual Meeting of the MidSouth Computational Biology
-                and Bioinformatics Society
-              </Text>
-              <Divider />
-              <Text
-                mx="auto"
-                color={"white"}
-                fontWeight={700}
-                fontSize="lg"
-                className={geistMono.className}
-              >
-                University of Utah
-              </Text>
-              <Text
-                mx="auto"
-                color={"white"}
-                fontWeight={700}
-                fontSize="lg"
-                className={geistMono.className}
-              >
-                March 27-29, 2025
-              </Text>
-              <Stack direction={"row"} mx="auto">
-                <Button
-                  bg={"blue.400"}
-                  rounded={"full"}
-                  color={"white"}
-                  _hover={{ bg: "blue.500" }}
-                >
-                  Program Coming Soon
-                </Button>
-                {/* <Button
-                  bg={"whiteAlpha.300"}
-                  rounded={"full"}
-                  color={"white"}
-                  _hover={{ bg: "whiteAlpha.500" }}
-                >
-                  Show me more
-                </Button> */}
-              </Stack>
             </Stack>
           </VStack>
         </Flex>
-      </main>
-    </div>
+        {/* YSEA Instructions */}
+        <Box bg={"gray.800"} position={"relative"} w="full">
+          <Container w="full">
+            <Stack direction={{ base: "column", lg: "row" }} my={7}>
+              <Stack
+                color={"gray.400"}
+                justify={{ lg: "center" }}
+                py={{ base: 4, md: 20, xl: 50 }}
+                gap={5}
+              >
+                <Box mb={{ base: 8, md: 20 }}>
+                  <Text
+                    fontFamily={"heading"}
+                    fontWeight={700}
+                    textTransform={"uppercase"}
+                    mb={3}
+                    fontSize={"xl"}
+                    color={"gray.500"}
+                  >
+                    Deadline: January 15th, 2025
+                  </Text>
+                  <Heading
+                    color={"white"}
+                    mb={5}
+                    fontSize={{ base: "3xl", md: "5xl" }}
+                  >
+                    2024 Young Scientist Excellence Award Applications
+                  </Heading>
+                  <Center>
+                    <Button
+                      as="a"
+                      size="lg"
+                      w="md"
+                      href="/"
+                      target="_blank"
+                      color={"white"}
+                      rounded={"full"}
+                      alignItems="center"
+                      rightIcon={<ExternalLinkIcon />}
+                      bg={"blue.600"}
+                    >
+                      YSEA Application
+                    </Button>
+                  </Center>
+                </Box>
+
+                <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+                  {blurbs.map((blurb) => (
+                    <>
+                      <Box key={blurb.title}>
+                        <Text
+                          fontFamily={"heading"}
+                          fontSize={"3xl"}
+                          color={"white"}
+                          mb={3}
+                        >
+                          {blurb.title}
+                        </Text>
+                        <Text fontSize={"xl"} color={"gray.400"}>
+                          {blurb.content}
+                        </Text>
+                        {blurb.list &&
+                          blurb.list.map((item) => (
+                            <UnorderedList key={item} my={4}>
+                              <ListItem>
+                                <Text>{item}</Text>
+                              </ListItem>
+                            </UnorderedList>
+                          ))}
+                      </Box>
+                      <Divider />
+                    </>
+                  ))}
+                </SimpleGrid>
+              </Stack>
+            </Stack>
+          </Container>
+        </Box>
+      </Box>
+    </VStack>
   );
 }
+
+const TextHighlight = ({ children }: { children: ReactNode }) => (
+  <Text as={"span"} fontWeight={700} color={"white"}>
+    {children}
+  </Text>
+);
+
+const blurbs = [
+  {
+    title: "Application and Evaluation Process",
+    content: (
+      <>
+        Applications from students and postdoctoral fellows will be rigorously
+        evaluated. The <TextHighlight>top four candidates</TextHighlight> will
+        be invited to give an oral presentation in a session dedicated to this
+        award program.
+        <br />
+        <br />
+        In addition to an abstract, participation in this program requires
+        submission of two additional documents: <br />
+      </>
+    ),
+    list: [
+      "A description of the innovation of the research (150 words or less).",
+      "An explanation of the individual's contribution to the work being presented (150 words or less).",
+    ],
+  },
+  {
+    title: "Selection Criteria",
+    content: (
+      <>
+        The selection of the top four candidates is based on an evaluation by
+        the MCBIOS board members, who assess{" "}
+        <TextHighlight>the quality and impact</TextHighlight> of the research.
+        After the oral presentations, a panel of judges (including keynote
+        speakers) selects the finalists.
+        <br />
+        <br /> The primary consideration for awarding is the quality of the
+        professional presentation. Applicants demonstrating a multidisciplinary
+        contribution and initiative receive preference during the final
+        selection process.
+      </>
+    ),
+  },
+  {
+    title: "Award Announcement",
+    content: <>The awards will be announced during the final luncheon.</>,
+  },
+];
