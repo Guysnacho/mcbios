@@ -87,7 +87,7 @@ export default function Page() {
                     mb={5}
                     fontSize={{ base: "3xl", md: "5xl" }}
                   >
-                    2024 Young Scientist Excellence Award Applications
+                    2025 Young Scientist Excellence Award Applications
                   </Heading>
                   <Center>
                     <Button
