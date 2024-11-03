@@ -119,9 +119,9 @@ export default function KeyDates() {
         />
         <Date
           icon={<Icon as={PiBlueprint} w={10} h={10} />}
-          title={"Call for Poster Submissions"}
+          title={"Call for Abstract Submissions"}
           text={
-            "If you have reasearch and applicable development that you want to showcase, please let the team know! The deadline for submitting a poster is"
+            "If you have reasearch and applicable development that you want to showcase, please let the team know! The deadline for submitting abstract is"
           }
           deadline="February 1st, 2025"
           isAbstract
