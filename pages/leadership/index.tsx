@@ -1,5 +1,4 @@
 import BoardMemberCard from "@/components/BoardMemberCard";
-import PelumiAbimbola from "@/public/images/election/PelumiAbimbola.jpg";
 import AikChoonTan from "@/public/images/leadership/Aik-Choon-Tan.jpg";
 import BernieDaigle from "@/public/images/leadership/Bernie-Daigle.jpg";
 import ChangSu from "@/public/images/leadership/Chang-Su.jpg";
@@ -7,6 +6,7 @@ import JonathanSheridan from "@/public/images/leadership/Jonathan-Sheridan.jpg";
 import KristinaFeye from "@/public/images/leadership/Kristina-Feye.jpg";
 import MazenIstanbouli from "@/public/images/leadership/Mazen-Istanbouli.jpg";
 import NishaPillai from "@/public/images/leadership/Nisha-Pillai.jpg";
+import PelumiAbimbola from "@/public/images/leadership/Pelumi-Abimbola.jpg";
 import QianqianSong from "@/public/images/leadership/Qianqian-Song.jpg";
 import QinSteve from "@/public/images/leadership/Qin-Steve.jpg";
 import VinayRaj from "@/public/images/leadership/Vinay-Raj.jpg";

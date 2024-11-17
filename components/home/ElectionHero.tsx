@@ -17,7 +17,7 @@ import ElectionNominee, { ElectionProps } from "./ElectionNominee";
 // Nominee info
 const nominees: ElectionProps[] = [
   {
-    avatar: "/images/election/DrAikChoonTan.jpg",
+    avatar: "/images/leadership/Aik-Choon-Tan.jpg",
     name: "Dr. Aik Choon Tan",
     isPrez: true,
     recording:
@@ -41,7 +41,7 @@ const nominees: ElectionProps[] = [
     ],
   },
   {
-    avatar: "/images/election/PelumiAbimbola.jpg",
+    avatar: "/images/leadership/Pelumi-Abimbola.jpg",
     name: "Pelumi Abimbola",
     recording:
       "https://drive.google.com/file/d/1LO_FoXe4DzhuQktFcUPlmGbnV9JVZDn0/preview",
