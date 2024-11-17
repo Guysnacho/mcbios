@@ -14,6 +14,7 @@ import {
 import NextLink from "next/link";
 import ElectionNominee, { ElectionProps } from "./ElectionNominee";
 
+// Nominee info
 const nominees: ElectionProps[] = [
   {
     avatar: "/images/election/DrAikChoonTan.jpg",
@@ -69,7 +70,105 @@ const nominees: ElectionProps[] = [
 ];
 
 export default function ElectionHero() {
-  return (
+  // Election is over
+  return true ? (
+    <>
+      <Stack
+        align={"center"}
+        py={{ base: 20, md: 28 }}
+        direction={{ base: "column", md: "row" }}
+      >
+        <Stack
+          direction="column"
+          spacing={{ base: 5, md: 10 }}
+          mb={["-60", null, "-15"]}
+          ml={10}
+          w="80%"
+          mx="auto"
+        >
+          <Container>
+            <Heading
+              lineHeight={1.1}
+              fontWeight={600}
+              fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
+            >
+              <Text
+                as={"span"}
+                position={"relative"}
+                _after={{
+                  content: "''",
+                  width: "full",
+                  height: "30%",
+                  position: "absolute",
+                  bottom: 1,
+                  left: 0,
+                  bg: "pink.400",
+                  zIndex: -1,
+                }}
+              >
+                2024 Board Elections
+              </Text>
+              <br />
+            </Heading>
+            <Stack gap={3} w="80%">
+              <Text color={"gray.500"}>
+                Thank you to everyone who participated in the 2024 MCBIOS Board
+                Member Elections! According to the MCBIOS Bylaws, every member
+                is entitled to one vote and as usual its been a great chance for
+                members to help shape the future of our organization.
+              </Text>
+            </Stack>
+          </Container>
+        </Stack>
+        <Flex
+          flex={1}
+          justify={"center"}
+          align={"center"}
+          overflowX="clip"
+          position={"relative"}
+          w={"full"}
+        >
+          <Blob
+            w={"150%"}
+            h={"150%"}
+            position={"absolute"}
+            top={"-20%"}
+            left={0}
+            zIndex={-1}
+            color={useColorModeValue("red.50", "red.400")}
+          />
+          <Box
+            position={"relative"}
+            height={"300px"}
+            rounded={"2xl"}
+            width={"full"}
+            overflow={"hidden"}
+          ></Box>
+        </Flex>
+      </Stack>
+      <Stack
+        maxW="5xl"
+        mx="auto"
+        px={7}
+        gap={5}
+        alignItems={["center", "center", "center", "normal"]}
+        direction={["column", "column", "column", "row"]}
+      >
+        {nominees.map((nominee) => (
+          <ElectionNominee
+            key={nominee.name}
+            isPrez={nominee.isPrez}
+            avatar={nominee.avatar}
+            name={nominee.name}
+            overview={nominee.overview}
+            plans={nominee.plans}
+            recording={nominee.recording}
+            electionOver
+          />
+        ))}
+      </Stack>
+    </>
+  ) : (
     <>
       <Stack
         align={"center"}
