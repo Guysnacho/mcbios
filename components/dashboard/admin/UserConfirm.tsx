@@ -88,6 +88,7 @@ export const UserConfirm = ({
         }
         setLoading(false);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -111,6 +112,7 @@ export const UserConfirm = ({
           setLoading(false);
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const renderCell = useCallback((user: UserRequest, columnKey: Key) => {

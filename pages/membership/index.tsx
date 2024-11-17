@@ -21,7 +21,7 @@ const Membership = () => {
         setAuthOpen(true);
       }
     }
-  }, [isAuthOpen]);
+  }, [isAuthOpen, router, store?.id]);
 
   return (
     <>
