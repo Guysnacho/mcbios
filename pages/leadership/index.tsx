@@ -225,20 +225,20 @@ const leadership = () => {
         <h4 className="text-center">Presidential Office (2024-2025)</h4>
         <div className="columns-1 md:columns-2 w-11/12 mx-auto my-10 space-y-5 md:space-y-0">
           <BoardMemberCard
+            name="Aik Choon Tan, Ph.D."
+            image={AikChoonTan.src}
+            orgPosition="President"
+            title="Professor | Senior Director of Data Science"
+            department="Departments of Oncological Sciences and Biomedical Informatics"
+            affiliation="University of Utah"
+          />
+          <BoardMemberCard
             name="Zhaohui “Steve” Qin, Ph.D."
             image={QinSteve.src}
-            orgPosition="President"
+            orgPosition="Past-President"
             title="Professor"
             department="Department of Biostatistics, Bioinformatics"
             affiliation="Emory University"
-          />
-          <BoardMemberCard
-            name="Inimary Toby, Ph.D."
-            image={InimaryToby.src}
-            orgPosition="Past-President"
-            title="Assistant Professor"
-            department="Department of Biology, Community Assistance Research"
-            affiliation="University of Dallas"
           />
         </div>
       </section>
