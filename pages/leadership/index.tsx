@@ -222,7 +222,7 @@ const leadership = () => {
       <h2 className="text-center my-10">Board of Directors</h2>
       <section>
         <Divider className="w-1/2 mx-auto mb-10" />
-        <h4 className="text-center">Presidential Office (2023-2024)</h4>
+        <h4 className="text-center">Presidential Office (2024-2025)</h4>
         <div className="columns-1 md:columns-2 w-11/12 mx-auto my-10 space-y-5 md:space-y-0">
           <BoardMemberCard
             name="Zhaohui “Steve” Qin, Ph.D."
@@ -277,11 +277,11 @@ const leadership = () => {
               <Divider className="w-1/2 mx-auto mb-10" />
               <h4 className="text-center">Past Presidents</h4>
               <div className="md:flex w-11/12 mx-auto flex-wrap gap-8 items-center space-y-6 md:space-y-5">
-                {pastPrez.map((member, index) => {
+                {pastPrez.reverse().map((member, index) => {
                   return (
                     <BoardMemberCard
                       key={member.name}
-                      index={index}
+                      index={pastPrez.length - 1 - index}
                       name={member.name}
                       title={member.title}
                       department={member.department}
