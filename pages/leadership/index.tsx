@@ -90,105 +90,10 @@ const boardMembers = [
 ];
 const pastPrez = [
   {
-    name: "Steven F. Jennings, Ph.D.",
-    formerMember: true,
+    name: "Zhaohui “Steve” Qin, Ph.D.",
     title: "Professor",
-    department: "Department of Information Science",
-    affiliation: "University Arkansas at Little Rock",
-  },
-  {
-    name: "William Slikker, Jr., Ph.D.",
-    formerMember: true,
-    title: "Director",
-    affiliation: "U.S. Food and Drug Administration",
-  },
-  {
-    name: "Stephen Winters-Hilt, Ph.D.",
-    formerMember: true,
-    title: "PhD Candidate",
-    department: "Department of Computer Science",
-    affiliation: "University of New Orleans",
-  },
-  {
-    name: "Jonathan Wren, Ph.D.",
-    formerMember: true,
-    title: "Assistant Member",
-    affiliation:
-      "Arthritis & Immunology Department Oklahoma Medical Research Foundation",
-  },
-  {
-    name: "Dawn Wilkins Ph.D.",
-    formerMember: true,
-    title: "Associate Professor",
-    department: "Department of Computer and Information Science",
-    affiliation: "University of Mississippi",
-  },
-  {
-    name: "Daniel Berleant, Ph.D.",
-    formerMember: true,
-    title: "Assistant Professor",
-    department: "Department of Information Science",
-    affiliation: "University Arkansas at Little Rock",
-  },
-  {
-    name: "Ulisses Braga-Neto, Ph.D.",
-    formerMember: true,
-    title: "Assistant Professor",
-    department: "Department of Electrical and Computer Engineering",
-    affiliation: "Texas A&M University",
-  },
-  {
-    name: "Doris M. Kupfer, Ph.D.",
-    formerMember: true,
-    title: "Research Scientist",
-    department: "Functional Genomics Civil Aerospace Medical Institute",
-    affiliation: "FAA",
-  },
-  {
-    name: "Ed Perkins, Ph.D.",
-    formerMember: true,
-    title: "Senior Research Scientist",
-    department: "Engineer Research and Development Center",
-    affiliation: "US Army Corps of Engineers",
-  },
-  {
-    name: "Andy D. Perkins, Ph.D.",
-    formerMember: true,
-    title: "Associate Professor",
-    department: "Department of Computer Science and Engineering",
-    affiliation: "Mississippi State University",
-  },
-  {
-    name: "Chaoyang (Joe) Zhang, Ph.D.",
-    formerMember: true,
-    title: "Professor",
-    affiliation: "University of Southern Mississippi",
-  },
-  {
-    name: "Cesar M. Compadre, Ph.D.",
-    formerMember: true,
-    title: "Professor",
-    department: "Medical Sciences",
-    affiliation: "University of Arkansas",
-  },
-  {
-    name: "Bindu Nanduri, Ph.D.",
-    formerMember: true,
-    title: "Associate Professor",
-    department: "College of Veterinary Medicine",
-    affiliation: "Mississippi State University",
-  },
-  {
-    name: "Ramin Homayouni, Ph.D.",
-    title: "Director of Bioinformatics",
-    department: "Biology, Bioinformatics",
-    affiliation: "University of Memphis",
-  },
-  {
-    name: "Weida Tong, Ph.D.",
-    title: "Division Director",
-    department: "Bioinformatics & Biostatistics",
-    affiliation: "NCTR FDA",
+    department: "Department of Biostatistics, Bioinformatics",
+    affiliation: "Emory University",
   },
   {
     name: "Inimary Toby, Ph.D.",
@@ -211,10 +116,92 @@ const pastPrez = [
     affiliation: "University of Dallas",
   },
   {
-    name: "Zhaohui “Steve” Qin, Ph.D.",
+    name: "Weida Tong, Ph.D.",
+    title: "Division Director",
+    department: "Bioinformatics & Biostatistics",
+    affiliation: "NCTR FDA",
+  },
+  {
+    name: "Ramin Homayouni, Ph.D.",
+    title: "Director of Bioinformatics",
+    department: "Biology, Bioinformatics",
+    affiliation: "University of Memphis",
+  },
+  {
+    name: "Bindu Nanduri, Ph.D.",
+    title: "Associate Professor",
+    department: "College of Veterinary Medicine",
+    affiliation: "Mississippi State University",
+  },
+  {
+    name: "Cesar M. Compadre, Ph.D.",
     title: "Professor",
-    department: "Department of Biostatistics, Bioinformatics",
-    affiliation: "Emory University",
+    department: "Medical Sciences",
+    affiliation: "University of Arkansas",
+  },
+  {
+    name: "Chaoyang (Joe) Zhang, Ph.D.",
+    title: "Professor",
+    affiliation: "University of Southern Mississippi",
+  },
+  {
+    name: "Andy D. Perkins, Ph.D.",
+    title: "Associate Professor",
+    department: "Department of Computer Science and Engineering",
+    affiliation: "Mississippi State University",
+  },
+  {
+    name: "Ed Perkins, Ph.D.",
+    title: "Senior Research Scientist",
+    department: "Engineer Research and Development Center",
+    affiliation: "US Army Corps of Engineers",
+  },
+  {
+    name: "Doris M. Kupfer, Ph.D.",
+    title: "Research Scientist",
+    department: "Functional Genomics Civil Aerospace Medical Institute",
+    affiliation: "FAA",
+  },
+  {
+    name: "Ulisses Braga-Neto, Ph.D.",
+    title: "Assistant Professor",
+    department: "Department of Electrical and Computer Engineering",
+    affiliation: "Texas A&M University",
+  },
+  {
+    name: "Daniel Berleant, Ph.D.",
+    title: "Assistant Professor",
+    department: "Department of Information Science",
+    affiliation: "University Arkansas at Little Rock",
+  },
+  {
+    name: "Dawn Wilkins Ph.D.",
+    title: "Associate Professor",
+    department: "Department of Computer and Information Science",
+    affiliation: "University of Mississippi",
+  },
+  {
+    name: "Jonathan Wren, Ph.D.",
+    title: "Assistant Member",
+    affiliation:
+      "Arthritis & Immunology Department Oklahoma Medical Research Foundation",
+  },
+  {
+    name: "Stephen Winters-Hilt, Ph.D.",
+    title: "PhD Candidate",
+    department: "Department of Computer Science",
+    affiliation: "University of New Orleans",
+  },
+  {
+    name: "William Slikker, Jr., Ph.D.",
+    title: "Director",
+    affiliation: "U.S. Food and Drug Administration",
+  },
+  {
+    name: "Steven F. Jennings, Ph.D.",
+    title: "Professor",
+    department: "Department of Information Science",
+    affiliation: "University Arkansas at Little Rock",
   },
 ];
 
@@ -283,7 +270,7 @@ const leadership = () => {
               <Divider className="w-1/2 mx-auto mb-10" />
               <h4 className="text-center">Past Presidents</h4>
               <div className="md:flex w-11/12 mx-auto flex-wrap gap-8 items-center space-y-6 md:space-y-5">
-                {pastPrez.reverse().map((member, index) => {
+                {pastPrez.map((member, index) => {
                   return (
                     <BoardMemberCard
                       key={member.name}
