@@ -1,8 +1,8 @@
 import BoardMemberCard from "@/components/BoardMemberCard";
+import PelumiAbimbola from "@/public/images/election/PelumiAbimbola.jpg";
 import AikChoonTan from "@/public/images/leadership/Aik-Choon-Tan.jpg";
 import BernieDaigle from "@/public/images/leadership/Bernie-Daigle.jpg";
 import ChangSu from "@/public/images/leadership/Chang-Su.jpg";
-import InimaryToby from "@/public/images/leadership/Inimary-Toby.jpg";
 import JonathanSheridan from "@/public/images/leadership/Jonathan-Sheridan.jpg";
 import KristinaFeye from "@/public/images/leadership/Kristina-Feye.jpg";
 import MazenIstanbouli from "@/public/images/leadership/Mazen-Istanbouli.jpg";
@@ -21,6 +21,12 @@ import {
 import Head from "next/head";
 
 const boardMembers = [
+  {
+    name: "Pelumi Abimbola",
+    image: PelumiAbimbola.src,
+    title: "Student",
+    affiliation: "Mississippi State University",
+  },
   {
     name: "Bernie J. Daigle, Jr., Ph.D.",
     image: BernieDaigle.src,
