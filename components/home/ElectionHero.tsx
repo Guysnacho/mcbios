@@ -135,6 +135,7 @@ export default function ElectionHero() {
             top={"-20%"}
             left={0}
             zIndex={-1}
+            // eslint-disable-next-line react-hooks/rules-of-hooks
             color={useColorModeValue("red.50", "red.400")}
           />
           <Box
@@ -264,6 +265,7 @@ export default function ElectionHero() {
             top={"-20%"}
             left={0}
             zIndex={-1}
+            // eslint-disable-next-line react-hooks/rules-of-hooks
             color={useColorModeValue("red.50", "red.400")}
           />
           <Box

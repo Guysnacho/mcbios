@@ -77,7 +77,7 @@ export default function Nav() {
       };
       fetchUser();
     }
-  }, [isAuthOpen]);
+  }, [isAuthOpen, router, store, supabase.auth]);
 
   return (
     <Box as="nav">
