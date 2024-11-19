@@ -181,9 +181,9 @@ export default function Home() {
 
       <Divider as="hr" className="my-10 border-gray-500" />
 
-      <ElectionHero />
+      {/* <ElectionHero />
 
-      <Divider as="hr" className="my-10 border-gray-500" />
+      <Divider as="hr" className="my-10 border-gray-500" /> */}
 
       <div className="w-4/5 md:w-2/3 mx-auto">
         <h3 className="underline underline-offset-4 text-center">Objectives</h3>
