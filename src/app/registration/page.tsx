@@ -61,85 +61,37 @@ export default function Page() {
           </VStack>
         </Flex>
         {/* YSEA Instructions */}
-        <Box bgColor="blue.800" position={"relative"} w="full">
-          <Container>
-            <Stack direction={{ base: "column", lg: "row" }} my={12}>
-              <Stack
-                color={"blue.100"}
-                justify={{ lg: "center" }}
-                py={{ base: 4, md: 20, xl: 50 }}
-                gap={5}
-              >
-                <Box mb={{ base: 8, md: 20 }}>
-                  <Text
-                    fontFamily={"heading"}
-                    fontWeight={700}
-                    textTransform={"uppercase"}
-                    mb={3}
-                    fontSize={"xl"}
-                    color={"blue.100"}
-                    decoration="underline"
-                  >
-                    Deadline: January 15th, 2025
-                  </Text>
-                  <Heading
-                    color={"white"}
-                    mb={5}
-                    fontSize={{ base: "3xl", md: "5xl" }}
-                  >
-                    2025 Young Scientist Excellence Award Applications
-                  </Heading>
-                  <Center>
-                    <Button
-                      as="a"
-                      size="lg"
-                      w="md"
-                      href="https://forms.gle/RVYFXmoodnGdAupX9"
-                      target="_blank"
-                      color={"white"}
-                      rounded={"full"}
-                      alignItems="center"
-                      rightIcon={<ExternalLinkIcon />}
-                      bg={"blue.600"}
-                    >
-                      YSEA Application
-                    </Button>
-                  </Center>
-                </Box>
-
-                <SimpleGrid
-                  columns={{ base: 1, md: 2 }}
-                  spacing={10}
-                  mx={{ base: 5, md: 0 }}
-                >
-                  {blurbs.map((blurb) => (
-                    <Box key={blurb.title} w="full">
-                      <Text
-                        fontFamily={"heading"}
-                        fontSize={"3xl"}
-                        color={"white"}
-                        mb={3}
-                      >
-                        {blurb.title}
-                      </Text>
-                      <Text fontSize={"xl"} color={"gray.400"}>
-                        {blurb.content}
-                      </Text>
-                      {blurb.list &&
-                        blurb.list.map((item) => (
-                          <UnorderedList key={item} my={4}>
-                            <ListItem>
-                              <Text>{item}</Text>
-                            </ListItem>
-                          </UnorderedList>
-                        ))}
-                    </Box>
-                  ))}
-                </SimpleGrid>
-              </Stack>
-            </Stack>
-          </Container>
-        </Box>
+        <SimpleGrid
+          w="full"
+          mx="auto"
+          justifyContent="space-evenly"
+          py="20"
+          bgGradient="linear(to-br, whiteAlpha.200, whiteAlpha.400, orange.100, blue.300)"
+          columns={{ base: 1, lg: 2 }}
+        >
+          <VStack w={{ base: "90%", lg: "75%" }} mx="auto" spacing={5}>
+            <Heading size="lg" color="blue.800">
+              Information Regarding Registration
+            </Heading>
+            <Text>
+              Payment is expected at the time of registration (Credit or Debit
+              Card). Demographic information gathered during registration will
+              be aggregated and utilized by MCBIOS for grant applications.
+              Member&apos;s information is never shared or sold.
+            </Text>
+            <Text>
+              All three types of registration include complimentary 1-year
+              MCBIOS membership, which provides access to workshops and
+              collaborative projects hosted by MCBIOS throughout the year.
+            </Text>
+          </VStack>
+          <VStack w={{ base: "90%", lg: "50%" }} mx="auto" spacing={7}>
+            <Heading size="2xl" color="blue.800" textAlign="center">
+              MCBIOS 2024 Registration
+            </Heading>
+            <Text textAlign="center">asdfasdfasdf</Text>
+          </VStack>
+        </SimpleGrid>
       </Box>
     </VStack>
   );
