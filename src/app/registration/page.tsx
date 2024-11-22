@@ -23,7 +23,7 @@ const geistMono = localFont({
 });
 
 export default function Page() {
-  const [registrationOpen] = useState(true);
+  const [registrationOpen] = useState(false);
   return (
     <VStack className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
       <Box
@@ -113,23 +113,31 @@ export default function Page() {
                   >
                     MCBIOS 2024 Registration
                   </Heading>
-                  <Text mx="auto" fontSize="lg">
-                    To register for the 2024 Conference, create your MCBIOS
-                    account and select your registration type. Secure payment
-                    processing powered by Stripe Checkout.
-                  </Text>
-                  <Button
-                    as={Link}
-                    mx="auto"
-                    href="https://mcbios.com/membership"
-                    target="_blank"
-                    bg={"blue.400"}
-                    rounded={"full"}
-                    color={"white"}
-                    _hover={{ bg: "blue.500" }}
-                  >
-                    Register Today!
-                  </Button>
+                  {!registrationOpen ? (
+                    <Text textAlign="center">
+                      Registration opening soon. Construction is underway!
+                    </Text>
+                  ) : (
+                    <>
+                      <Text mx="auto" fontSize="lg">
+                        To register for the 2024 Conference, create your MCBIOS
+                        account and select your registration type. Secure
+                        payment processing powered by Stripe Checkout.
+                      </Text>
+                      <Button
+                        as={Link}
+                        mx="auto"
+                        href="https://mcbios.com/membership"
+                        target="_blank"
+                        bg={"blue.400"}
+                        rounded={"full"}
+                        color={"white"}
+                        _hover={{ bg: "blue.500" }}
+                      >
+                        Register Today!
+                      </Button>
+                    </>
+                  )}
                 </Stack>
               </CardBody>
             </Card>
