@@ -2,6 +2,7 @@
 
 import KeyDates from "@/components/KeyDates";
 import KeynoteSpeakers from "@/components/KeynoteSpeakers";
+import { Link } from "@chakra-ui/next-js";
 import {
   Box,
   Button,
@@ -94,21 +95,23 @@ export default function Home() {
               </Text>
               <Stack direction={"row"} mx="auto">
                 <Button
+                  as={Link}
+                  href="/registration"
                   bg={"blue.400"}
                   rounded={"full"}
                   color={"white"}
                   _hover={{ bg: "blue.500" }}
                 >
-                  Program Coming Soon
+                  Registration
                 </Button>
-                {/* <Button
+                <Button
                   bg={"whiteAlpha.300"}
                   rounded={"full"}
                   color={"white"}
                   _hover={{ bg: "whiteAlpha.500" }}
                 >
-                  Show me more
-                </Button> */}
+                  Program Coming Soon
+                </Button>
               </Stack>
             </Stack>
           </VStack>
