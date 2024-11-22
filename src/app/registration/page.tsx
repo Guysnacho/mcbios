@@ -14,7 +14,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import localFont from "next/font/local";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 
 const geistMono = localFont({
   src: "../fonts/GeistMonoVF.woff",
@@ -147,52 +147,3 @@ export default function Page() {
     </VStack>
   );
 }
-
-const TextHighlight = ({ children }: { children: ReactNode }) => (
-  <Text as={"span"} fontWeight={700} color={"white"}>
-    {children}
-  </Text>
-);
-
-const blurbs = [
-  {
-    title: "Application and Evaluation Process",
-    content: (
-      <>
-        Applications from students and postdoctoral fellows will be rigorously
-        evaluated. The <TextHighlight>top four candidates</TextHighlight> will
-        be invited to give an oral presentation in a session dedicated to this
-        award program.
-        <br />
-        <br />
-        In addition to an abstract, participation in this program requires
-        submission of two additional documents: <br />
-      </>
-    ),
-    list: [
-      "A description of the innovation of the research (150 words or less).",
-      "An explanation of the individual's contribution to the work being presented (150 words or less).",
-    ],
-  },
-  {
-    title: "Selection Criteria",
-    content: (
-      <>
-        The selection of the top four candidates is based on an evaluation by
-        the MCBIOS board members, who assess{" "}
-        <TextHighlight>the quality and impact</TextHighlight> of the research.
-        After the oral presentations, a panel of judges (including keynote
-        speakers) selects the finalists.
-        <br />
-        <br /> The primary consideration for awarding is the quality of the
-        professional presentation. Applicants demonstrating a multidisciplinary
-        contribution and initiative receive preference during the final
-        selection process.
-      </>
-    ),
-  },
-  {
-    title: "Award Announcement",
-    content: <>The awards will be announced during the final luncheon.</>,
-  },
-];
