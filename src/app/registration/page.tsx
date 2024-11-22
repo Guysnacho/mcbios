@@ -1,23 +1,29 @@
 "use client";
 
-import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { Link } from "@chakra-ui/next-js";
 import {
   Box,
   Button,
-  Center,
-  Container,
+  Card,
+  CardBody,
   Flex,
   Heading,
-  ListItem,
   SimpleGrid,
   Stack,
   Text,
-  UnorderedList,
   VStack,
 } from "@chakra-ui/react";
-import { ReactNode } from "react";
+import localFont from "next/font/local";
+import { ReactNode, useState } from "react";
+
+const geistMono = localFont({
+  src: "../fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+});
 
 export default function Page() {
+  const [registrationOpen] = useState(true);
   return (
     <VStack className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
       <Box
@@ -45,7 +51,7 @@ export default function Page() {
               spacing={4}
               textAlign="center"
               borderRadius={10}
-              p={4}
+              px={[15, null, 20]}
               py={6}
               bgColor={"blackAlpha.500"}
             >
@@ -68,6 +74,7 @@ export default function Page() {
           py="20"
           bgGradient="linear(to-br, whiteAlpha.200, whiteAlpha.400, orange.100, blue.300)"
           columns={{ base: 1, lg: 2 }}
+          spacing={10}
         >
           <VStack w={{ base: "90%", lg: "75%" }} mx="auto" spacing={5}>
             <Heading size="lg" color="blue.800">
@@ -85,11 +92,47 @@ export default function Page() {
               collaborative projects hosted by MCBIOS throughout the year.
             </Text>
           </VStack>
-          <VStack w={{ base: "90%", lg: "50%" }} mx="auto" spacing={7}>
-            <Heading size="2xl" color="blue.800" textAlign="center">
-              MCBIOS 2024 Registration
-            </Heading>
-            <Text textAlign="center">asdfasdfasdf</Text>
+          <VStack
+            w={{ base: "90%", lg: "50%" }}
+            mx="auto"
+            justifyContent="space-around"
+          >
+            <Card
+              w={{ base: "full", md: "md" }}
+              _hover={{ shadow: "xl", borderColor: "blue.600" }}
+              borderColor="blue.400"
+              borderWidth={0.5}
+            >
+              <CardBody>
+                <Stack spacing="3">
+                  <Heading
+                    size="xl"
+                    color="blue.800"
+                    textAlign="center"
+                    className={geistMono.className}
+                  >
+                    MCBIOS 2024 Registration
+                  </Heading>
+                  <Text mx="auto" fontSize="lg">
+                    To register for the 2024 Conference, select your
+                    registration type from the list below to create your MCBIOS
+                    account. Secure payment processing powered by Stripe
+                    Checkout.
+                  </Text>
+                  <Button
+                    as={Link}
+                    mx="auto"
+                    href="#"
+                    bg={"blue.400"}
+                    rounded={"full"}
+                    color={"white"}
+                    _hover={{ bg: "blue.500" }}
+                  >
+                    Register Today!
+                  </Button>
+                </Stack>
+              </CardBody>
+            </Card>
           </VStack>
         </SimpleGrid>
       </Box>
