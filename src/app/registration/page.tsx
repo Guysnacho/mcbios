@@ -114,15 +114,15 @@ export default function Page() {
                     MCBIOS 2024 Registration
                   </Heading>
                   <Text mx="auto" fontSize="lg">
-                    To register for the 2024 Conference, select your
-                    registration type from the list below to create your MCBIOS
-                    account. Secure payment processing powered by Stripe
-                    Checkout.
+                    To register for the 2024 Conference, create your MCBIOS
+                    account and select your registration type. Secure payment
+                    processing powered by Stripe Checkout.
                   </Text>
                   <Button
                     as={Link}
                     mx="auto"
-                    href="#"
+                    href="https://mcbios.com/membership"
+                    target="_blank"
                     bg={"blue.400"}
                     rounded={"full"}
                     color={"white"}
