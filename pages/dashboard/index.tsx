@@ -177,22 +177,22 @@ export default function Dashboard() {
                             }}
                           >
                             <option value="student">
-                              Conference and Membership | Student
+                              Conference and Membership | Student | $200
                             </option>
                             <option value="postdoctorial">
-                              Conference and Membership | Postdoctorial
+                              Conference and Membership | Postdoctorial | $300
                             </option>
                             <option value="professional">
-                              Conference and Membership | Professional
+                              Conference and Membership | Professional | $400
                             </option>
                             <option value="member_only_student">
-                              Membership | Student
+                              Membership | Student | $10
                             </option>
                             <option value="member_only_postdoctorial">
-                              Membership | Postdoctorial
+                              Membership | Postdoctorial | $20
                             </option>
                             <option value="member_only_professional">
-                              Membership | Professional
+                              Membership | Professional | $50
                             </option>
                           </Select>
                         )}
