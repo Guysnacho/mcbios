@@ -14,11 +14,18 @@ export type PaymentHandlerType =
   | Database["public"]["Enums"]["user_role"]
   | undefined;
 
-export const PaymentHandler = ({ tier }: { tier: PaymentHandlerType }) => {
+export const PaymentHandler = ({
+  tier,
+  userId,
+}: {
+  tier: PaymentHandlerType;
+  userId: string;
+}) => {
   const fetchClientSecret = useCallback(async () => {
     // Create a Checkout Session
-    const res = await fetch(`/api/checkout?tier=${tier}`, {
+    const res = await fetch("/api/checkout", {
       method: "POST",
+      body: JSON.stringify({ tier, userId }),
     });
     const data = await res.json();
     return data.clientSecret;

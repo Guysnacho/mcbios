@@ -11,8 +11,8 @@ export default async function handler(
   switch (req.method) {
     case "POST":
       try {
-        const price = derivePriceId(req.query.tier as PaymentHandlerType);
-        console.debug("price - ", price);
+        const body = JSON.parse(req.body);
+        const price = derivePriceId(body.tier as PaymentHandlerType);
         // Create Checkout Sessions from body params.
         const session = await stripe.checkout.sessions.create({
           ui_mode: "embedded",
@@ -26,6 +26,9 @@ export default async function handler(
           ],
           mode: "payment",
           return_url: `${req.headers.origin}/dashboard/payment/{CHECKOUT_SESSION_ID}`,
+          metadata: {
+            user_id: body.userId,
+          },
         });
 
         res.send({ clientSecret: session.client_secret });
