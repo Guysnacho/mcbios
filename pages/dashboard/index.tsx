@@ -99,80 +99,82 @@ export default function Dashboard() {
               </div>
               <Divider />
               <div className="container text-center space-y-4">
-                {!data?.user || !data?.user?.dues_paid_at ? (
-                  <>
-                    <h4>Welcome to MCBIOS!</h4>
-                    <p>
-                      If you haven&apos;t already, please pay your dues to
-                      finish MCBIOS onboarding and to gain you access to past
-                      conference recordings, upcomming elections, and more!
-                    </p>
-                    <div className="container">
+                {!data?.user ||
+                  (!data?.user?.dues_paid_at && (
+                    <>
+                      <h4>Welcome to MCBIOS!</h4>
                       <p>
-                        If you have paid your dues, notify us here so we can
-                        confirm and grant access to everything MCBIOS!
+                        If you haven&apos;t already, please pay your dues to
+                        finish MCBIOS onboarding and to gain you access to past
+                        conference recordings, upcomming elections, and more!
                       </p>
-                      <Button
-                        colorScheme="green"
-                        className="my-5"
-                        onClick={() => {
-                          client
-                            .from("confirm_request")
-                            .insert({ user_id: store?.id })
-                            .then(({ error }) => {
-                              if (error) {
-                                if (error?.code === DUPLICATE_ROW) {
-                                  toast({
-                                    status: "error",
-                                    duration: 6000,
-                                    isClosable: true,
-                                    description:
-                                      "Gotcha, we'll update your access as soon as we confirm.",
-                                  });
+                      <div className="container">
+                        <p>
+                          <span className="underline">
+                            If you have paid your dues
+                          </span>
+                          , notify us here so we can confirm and grant access to
+                          everything MCBIOS!
+                        </p>
+                        <Button
+                          colorScheme="green"
+                          className="my-5"
+                          onClick={() => {
+                            client
+                              .from("confirm_request")
+                              .insert({ user_id: store?.id })
+                              .then(({ error }) => {
+                                if (error) {
+                                  if (error?.code === DUPLICATE_ROW) {
+                                    toast({
+                                      status: "error",
+                                      duration: 6000,
+                                      isClosable: true,
+                                      description:
+                                        "Gotcha, we'll update your access as soon as we confirm.",
+                                    });
+                                  } else {
+                                    toast({
+                                      status: "error",
+                                      duration: 6000,
+                                      isClosable: true,
+                                      description:
+                                        "Something went wrong while we submitting your membership request - " +
+                                        error.message,
+                                    });
+                                    console.error(error);
+                                  }
                                 } else {
                                   toast({
-                                    status: "error",
+                                    status: "success",
                                     duration: 6000,
                                     isClosable: true,
                                     description:
-                                      "Something went wrong while we submitting your membership request - " +
-                                      error.message,
+                                      "Thank you for letting us know, we'll confirm your membership status ASAP!",
                                   });
-                                  console.error(error);
                                 }
-                              } else {
-                                toast({
-                                  status: "success",
-                                  duration: 6000,
-                                  isClosable: true,
-                                  description:
-                                    "Thank you for letting us know, we'll confirm your membership status ASAP!",
-                                });
-                              }
-                            });
-                        }}
-                      >
-                        My dues are paid
-                      </Button>
-                    </div>
-                    <div className="flex justify-center">
-                      <Script
-                        src="https://www.paypal.com/sdk/js?client-id=BAAaWKKJH9d9_1A9lYbo-zc52pLBBTCR9boQNSGOQk7OR76lLHGsUvjZDTAm4ONcsLFqflVbaKH-ylGe-0&components=hosted-buttons&enable-funding=venmo&currency=USD"
-                        onReady={() => {
-                          // @ts-expect-error Baaaaahhhhh issokay
-                          paypal
-                            .HostedButtons({
-                              hostedButtonId: "VEMTS2QGYVFQ8",
-                            })
-                            .render("#paypal-container-VEMTS2QGYVFQ8");
-                        }}
-                      ></Script>
-                      <div id="paypal-container-VEMTS2QGYVFQ8"></div>
-                    </div>
-                  </>
-                ) : (
-                  <></>
-                )}
+                              });
+                          }}
+                        >
+                          My dues are paid
+                        </Button>
+                      </div>
+                      <div className="flex justify-center">
+                        <Script
+                          src="https://www.paypal.com/sdk/js?client-id=BAAaWKKJH9d9_1A9lYbo-zc52pLBBTCR9boQNSGOQk7OR76lLHGsUvjZDTAm4ONcsLFqflVbaKH-ylGe-0&components=hosted-buttons&enable-funding=venmo&currency=USD"
+                          onReady={() => {
+                            // @ts-expect-error Baaaaahhhhh issokay
+                            paypal
+                              .HostedButtons({
+                                hostedButtonId: "VEMTS2QGYVFQ8",
+                              })
+                              .render("#paypal-container-VEMTS2QGYVFQ8");
+                          }}
+                        ></Script>
+                        <div id="paypal-container-VEMTS2QGYVFQ8"></div>
+                      </div>
+                    </>
+                  ))}
               </div>
             </TabPanel>
           </TabPanels>
