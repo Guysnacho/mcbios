@@ -121,7 +121,7 @@ const Membership = () => {
           </div>
         </section>
         <section className="text-center space-y-3">
-          <p>MCBIOS Site Registration now Available</p>
+          <p>MCBIOS site and conference registration now available</p>
           <Button
             aria-describedby="member sign up"
             type="button"
