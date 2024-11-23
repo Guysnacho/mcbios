@@ -5,6 +5,11 @@ import { SupabaseClient } from "@supabase/supabase-js";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Stripe } from "stripe";
 
+/**
+ * MCBIOS Payment Endpoint
+ * @param req
+ * @param res
+ */
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -12,6 +17,7 @@ export default async function handler(
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
   switch (req.method) {
+    // Request embedded form using params
     case "POST":
       try {
         const body = JSON.parse(req.body);
@@ -43,6 +49,7 @@ export default async function handler(
         res.status(err.statusCode || 500).json(err.message);
       }
       break;
+    // Fetch session result on confirmation page
     case "GET":
       try {
         console.log(req.query);
@@ -72,6 +79,12 @@ export default async function handler(
       res.status(405).end("Method Not Allowed");
   }
 }
+
+/**
+ * Derive the price ID from ID's listed in env file
+ * @param tier
+ * @returns
+ */
 function derivePriceId(tier: PaymentHandlerType): string {
   switch (tier) {
     case "professional":
@@ -89,6 +102,12 @@ function derivePriceId(tier: PaymentHandlerType): string {
       break;
   }
 }
+
+/**
+ * Update user's role and payment date in DB
+ * @param client
+ * @param session
+ */
 async function handleUpdate(
   client: SupabaseClient<Database>,
   session: Stripe.Response<Stripe.Checkout.Session>
