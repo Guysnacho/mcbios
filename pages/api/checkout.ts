@@ -91,14 +91,23 @@ export default async function handler(
  */
 function derivePriceId(tier: PaymentHandlerType): string {
   switch (tier) {
-    case "professional":
-      return process.env.CONF_REGISTRATION!;
+    case "student":
+      return process.env.EB_CONF_REGISTRATION_STUDENT!;
       break;
     case "postdoctorial":
-      return process.env.CONF_REGISTRATION!;
+      return process.env.EB_CONF_REGISTRATION_POSTDOC!;
       break;
-    case "student":
-      return process.env.CONF_REGISTRATION!;
+    case "professional":
+      return process.env.EB_CONF_REGISTRATION_PROFESSIONAL!;
+      break;
+    case "member_only_student":
+      return process.env.STUDENT!;
+      break;
+    case "member_only_postdoctorial":
+      return process.env.POSTDOC!;
+      break;
+    case "member_only_professional":
+      return process.env.PROFESSIONAL!;
       break;
 
     default:

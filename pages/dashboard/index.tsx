@@ -176,9 +176,24 @@ export default function Dashboard() {
                               );
                             }}
                           >
-                            <option value="student">Student</option>
-                            <option value="postdoctorial">Postdoctorial</option>
-                            <option value="professional">Professional</option>
+                            <option value="student">
+                              Conference and Membership | Student
+                            </option>
+                            <option value="postdoctorial">
+                              Conference and Membership | Postdoctorial
+                            </option>
+                            <option value="professional">
+                              Conference and Membership | Professional
+                            </option>
+                            <option value="member_only_student">
+                              Membership | Student
+                            </option>
+                            <option value="member_only_postdoctorial">
+                              Membership | Postdoctorial
+                            </option>
+                            <option value="member_only_professional">
+                              Membership | Professional
+                            </option>
                           </Select>
                         )}
                       </Flex>

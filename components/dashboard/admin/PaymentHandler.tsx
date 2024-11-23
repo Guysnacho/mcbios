@@ -1,4 +1,3 @@
-import { Database } from "@/lib/utils/supabase/types";
 import {
   EmbeddedCheckout,
   EmbeddedCheckoutProvider,
@@ -11,7 +10,12 @@ const stripePromise = loadStripe(
 );
 
 export type PaymentHandlerType =
-  | Database["public"]["Enums"]["user_role"]
+  | "professional"
+  | "student"
+  | "postdoctorial"
+  | "member_only_professional"
+  | "member_only_student"
+  | "member_only_postdoctorial"
   | undefined;
 
 export const PaymentHandler = ({
