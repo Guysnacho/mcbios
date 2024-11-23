@@ -26,6 +26,11 @@ export default async function handler(
           ],
           mode: "payment",
           return_url: `${req.headers.origin}/dashboard/payment/{CHECKOUT_SESSION_ID}`,
+          customer_email: body.email,
+          customer_creation: "always",
+          invoice_creation: {
+            enabled: true,
+          },
           metadata: {
             user_id: body.userId,
           },
@@ -56,7 +61,6 @@ export default async function handler(
   }
 }
 function derivePriceId(tier: PaymentHandlerType): string {
-  console.debug("tier - ", tier);
   switch (tier) {
     case "professional":
       return process.env.CONF_REGISTRATION!;
