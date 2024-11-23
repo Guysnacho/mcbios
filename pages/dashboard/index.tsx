@@ -104,9 +104,8 @@ export default function Dashboard() {
                     <h4>Welcome to MCBIOS!</h4>
                     <p>
                       If you haven&apos;t already, please pay your dues to
-                      finish MCBIOS onboarding and to gain access to past
-                      conference recordings, upcomming elections, and more
-                      coming soon!
+                      finish MCBIOS onboarding and to gain you access to past
+                      conference recordings, upcomming elections, and more!
                     </p>
                     <div className="container">
                       <p>
