@@ -77,9 +77,12 @@ export const AuthModal = ({
       <ModalOverlay />
       <ModalContent>
         <ModalHeader className="flex flex-col gap-1 text-xl"></ModalHeader>
-        <ModalBody>
+        <ModalBody gap={3}>
           {isSignUp ? (
-            <h4 className="h4 underline">Join the Community</h4>
+            <>
+              <h4 className="h4 underline">Join the Community</h4>
+
+            </>
           ) : (
             <h4 className="h4 underline">Log In</h4>
           )}
