@@ -33,6 +33,8 @@ export default async function handler(
           },
           metadata: {
             user_id: body.userId,
+            email: body.email,
+            tier: body.tier,
           },
         });
 
