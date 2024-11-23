@@ -110,31 +110,50 @@ export const AuthModal = ({
                 </Heading>
               )}
             </Stack>
+
+            {/* Form fields */}
             <Stack spacing={4}>
+              {error ? (
+                <blockquote className="blockquote text-orange-800">
+                  {error}
+                </blockquote>
+              ) : undefined}
               {isSignUp && (
                 <HStack>
                   <Box>
-                    <FormControl id="firstName" isRequired>
+                    <FormControl id="firstName" isRequired isDisabled={loading}>
                       <FormLabel>First Name</FormLabel>
-                      <Input type="text" />
+                      <Input
+                        type="text"
+                        onChange={(e) => setFname(e.currentTarget.value)}
+                      />
                     </FormControl>
                   </Box>
                   <Box>
-                    <FormControl id="lastName">
+                    <FormControl id="lastName" isDisabled={loading}>
                       <FormLabel>Last Name</FormLabel>
-                      <Input type="text" />
+                      <Input
+                        type="text"
+                        onChange={(e) => setLname(e.currentTarget.value)}
+                      />
                     </FormControl>
                   </Box>
                 </HStack>
               )}
-              <FormControl id="email" isRequired>
+              <FormControl id="email" isRequired isDisabled={loading}>
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <Input
+                  type="email"
+                  onChange={(e) => setEmail(e.currentTarget.value)}
+                />
               </FormControl>
-              <FormControl id="password" isRequired>
+              <FormControl id="password" isRequired isDisabled={loading}>
                 <FormLabel>Password</FormLabel>
                 <InputGroup>
-                  <Input type={showPassword ? "text" : "password"} />
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    onChange={(e) => setPassword(e.currentTarget.value)}
+                  />
                   <InputRightElement h={"full"}>
                     <Button
                       variant={"ghost"}
@@ -152,7 +171,7 @@ export const AuthModal = ({
                   {isSignUp ? "Already a user? " : "Haven't signed up yet? "}
                   <Link
                     color={"blue.400"}
-                    onClick={() => setIsSignUp(!isSignUp)}
+                    onClick={() => !loading && setIsSignUp(!isSignUp)}
                   >
                     {isSignUp ? "Login" : "Sign Up"}
                   </Link>
@@ -160,64 +179,8 @@ export const AuthModal = ({
               </Stack>
             </Stack>
           </Box>
-
-          {isSignUp ? (
-            <>
-              <h4 className="h4 underline">Join the Community</h4>
-            </>
-          ) : (
-            <h4 className="h4 underline">Log In</h4>
-          )}
-          {error ? (
-            <blockquote className="blockquote text-orange-800">
-              {error}
-            </blockquote>
-          ) : undefined}
-          {isSignUp ? (
-            <Stack direction="column">
-              <label htmlFor="fname">First Name:</label>
-              <input
-                type="text"
-                name="fname"
-                id="fname"
-                onChange={(e) => setFname(e.currentTarget.value)}
-                placeholder="Jane"
-                disabled={loading}
-              />
-              <label htmlFor="email">Last Name:</label>
-              <input
-                type="lname"
-                name="lname"
-                id="lname"
-                onChange={(e) => setLname(e.currentTarget.value)}
-                placeholder="Doe"
-                disabled={loading}
-              />
-            </Stack>
-          ) : undefined}
-
-          <Stack direction="column">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              onChange={(e) => setEmail(e.currentTarget.value)}
-              placeholder="abcd@university.edu"
-              disabled={loading}
-            />
-            <label htmlFor="email">Password:</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              autoComplete={isSignUp ? "new-password" : "current-password"}
-              onChange={(e) => setPassword(e.currentTarget.value)}
-              placeholder="top secret password"
-              disabled={loading}
-            />
-          </Stack>
         </ModalBody>
+
         <ModalFooter>
           <Button
             onClick={() => setIsOpen(false)}
