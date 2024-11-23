@@ -1,4 +1,8 @@
 import { MemberContent } from "@/components/dashboard/admin/MemberContent";
+import {
+  PaymentHandler,
+  PaymentHandlerType,
+} from "@/components/dashboard/admin/PaymentHandler";
 import UserConfirm from "@/components/dashboard/admin/UserConfirm";
 import VideoUploader from "@/components/dashboard/admin/VideoUploader";
 import { User } from "@/components/User";
@@ -7,9 +11,12 @@ import useStore from "@/lib/store/useStore";
 import { DUPLICATE_ROW } from "@/lib/utils/constants";
 import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
 import { authFetcher } from "@/lib/utils/swrFetchers";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
 import {
   Button,
   Divider,
+  Flex,
+  Select,
   Tab,
   TabList,
   TabPanel,
@@ -19,23 +26,14 @@ import {
 } from "@chakra-ui/react";
 import Head from "next/head";
 import Script from "next/script";
+import { useState } from "react";
 import useSWR from "swr";
-
-let tabs = [
-  {
-    id: "content",
-    label: "Conference Content",
-  },
-  {
-    id: "user",
-    label: "Profile",
-  },
-];
 
 export default function Dashboard() {
   const client = createCompoentClient();
   const store = useStore(useUserStore, (store) => store);
   const toast = useToast();
+  const [tier, setTier] = useState<PaymentHandlerType>();
 
   const { data, error } = useSWR("/auth/user", () => authFetcher(client));
 
@@ -159,6 +157,32 @@ export default function Dashboard() {
                           My dues are paid
                         </Button>
                       </div>
+                      <Flex mx="auto" w={[null, "sm", "lg"]}>
+                        {tier ? (
+                          <Button
+                            mx="auto"
+                            leftIcon={<ChevronLeftIcon />}
+                            onClick={() => setTier(undefined)}
+                          >
+                            Select a different tier
+                          </Button>
+                        ) : (
+                          <Select
+                            variant="outline"
+                            placeholder="Select a membership level"
+                            onChange={(e) => {
+                              setTier(
+                                e.currentTarget.value as PaymentHandlerType
+                              );
+                            }}
+                          >
+                            <option value="student">Student</option>
+                            <option value="postdoctorial">Postdoctorial</option>
+                            <option value="professional">Professional</option>
+                          </Select>
+                        )}
+                      </Flex>
+                      {tier && <PaymentHandler tier={tier} />}
                       <div className="flex justify-center">
                         <Script
                           src="https://www.paypal.com/sdk/js?client-id=BAAaWKKJH9d9_1A9lYbo-zc52pLBBTCR9boQNSGOQk7OR76lLHGsUvjZDTAm4ONcsLFqflVbaKH-ylGe-0&components=hosted-buttons&enable-funding=venmo&currency=USD"
