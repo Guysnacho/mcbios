@@ -8,12 +8,13 @@ export const authFetcher = async (client: SupabaseClient<Database>) => {
     .from("videos")
     .select("*")
     .order("date", { ascending: false });
+  const user = await client.auth.getUser();
 
   if (data) {
     if (videos) {
-      return { user: data, videos };
+      return { user: { ...data, email: user.data.user?.email }, videos };
     }
-    return { user: data, videos: [] };
+    return { user: { ...data, email: user.data.user?.email }, videos: [] };
   }
   return { user: undefined, videos: [] };
 };

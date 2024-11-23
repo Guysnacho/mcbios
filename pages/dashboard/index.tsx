@@ -1,4 +1,8 @@
 import { MemberContent } from "@/components/dashboard/admin/MemberContent";
+import {
+  PaymentHandler,
+  PaymentHandlerType,
+} from "@/components/dashboard/admin/PaymentHandler";
 import UserConfirm from "@/components/dashboard/admin/UserConfirm";
 import VideoUploader from "@/components/dashboard/admin/VideoUploader";
 import { User } from "@/components/User";
@@ -7,9 +11,12 @@ import useStore from "@/lib/store/useStore";
 import { DUPLICATE_ROW } from "@/lib/utils/constants";
 import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
 import { authFetcher } from "@/lib/utils/swrFetchers";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
 import {
   Button,
   Divider,
+  Flex,
+  Select,
   Tab,
   TabList,
   TabPanel,
@@ -19,23 +26,14 @@ import {
 } from "@chakra-ui/react";
 import Head from "next/head";
 import Script from "next/script";
+import { useState } from "react";
 import useSWR from "swr";
-
-let tabs = [
-  {
-    id: "content",
-    label: "Conference Content",
-  },
-  {
-    id: "user",
-    label: "Profile",
-  },
-];
 
 export default function Dashboard() {
   const client = createCompoentClient();
   const store = useStore(useUserStore, (store) => store);
   const toast = useToast();
+  const [tier, setTier] = useState<PaymentHandlerType>();
 
   const { data, error } = useSWR("/auth/user", () => authFetcher(client));
 
@@ -45,9 +43,14 @@ export default function Dashboard() {
         <title>Dashboard</title>
         <meta content="Dashboard | MidSouth Computational Biology and Bioinformatics Society" />
       </Head>
+
       <div className="container mx-auto justify-center">
         <div className="h-20 flex justify-center align-middle">
-          <h3 className="text-center my-auto">Welcome</h3>
+          <h3 className="text-center my-auto">
+            {data?.user && data?.user.fname
+              ? `Hey ${data?.user.fname}`
+              : "Welcome"}
+          </h3>
         </div>
         <Tabs
           aria-label="Dashboard Tabs"
@@ -63,7 +66,7 @@ export default function Dashboard() {
             <Tab title="Profile">Profile</Tab>
           </TabList>
           <TabPanels>
-          {data?.user && data?.user.role === "admin" ? (
+            {data?.user && data?.user.role === "admin" ? (
               <TabPanel>
                 <div className="my-5 flex gap-3 mx-auto justify-center">
                   <VideoUploader />
@@ -94,81 +97,115 @@ export default function Dashboard() {
               </div>
               <Divider />
               <div className="container text-center space-y-4">
-                {!data?.user || !data?.user?.dues_paid_at ? (
-                  <>
-                    <h4>Welcome to MCBIOS!</h4>
-                    <p>
-                      If you haven&apos;t already, please pay your dues to
-                      finish MCBIOS onboarding and to gain access to past
-                      conference recordings, upcomming elections, and more
-                      coming soon!
-                    </p>
-                    <div className="container">
+                {!data?.user ||
+                  (!data?.user?.dues_paid_at && (
+                    <>
+                      <h4>Welcome to MCBIOS!</h4>
                       <p>
-                        If you have paid your dues, notify us here so we can
-                        confirm and grant access to everything MCBIOS!
+                        If you haven&apos;t already, please pay your dues to
+                        finish MCBIOS onboarding and to gain you access to past
+                        conference recordings, upcomming elections, and more!
                       </p>
-                      <Button
-                        colorScheme="green"
-                        className="my-5"
-                        onClick={() => {
-                          client
-                            .from("confirm_request")
-                            .insert({ user_id: store?.id })
-                            .then(({ error }) => {
-                              if (error) {
-                                if (error?.code === DUPLICATE_ROW) {
-                                  toast({
-                                    status: "error",
-                                    duration: 6000,
-                                    isClosable: true,
-                                    description:
-                                      "Gotcha, we'll update your access as soon as we confirm.",
-                                  });
+                      <div className="container">
+                        <p>
+                          <span className="underline">
+                            If you have paid your dues
+                          </span>
+                          , notify us here so we can confirm and grant access to
+                          everything MCBIOS!
+                        </p>
+                        <Button
+                          colorScheme="green"
+                          className="my-5"
+                          onClick={() => {
+                            client
+                              .from("confirm_request")
+                              .insert({ user_id: store?.id })
+                              .then(({ error }) => {
+                                if (error) {
+                                  if (error?.code === DUPLICATE_ROW) {
+                                    toast({
+                                      status: "error",
+                                      duration: 6000,
+                                      isClosable: true,
+                                      description:
+                                        "Gotcha, we'll update your access as soon as we confirm.",
+                                    });
+                                  } else {
+                                    toast({
+                                      status: "error",
+                                      duration: 6000,
+                                      isClosable: true,
+                                      description:
+                                        "Something went wrong while we submitting your membership request - " +
+                                        error.message,
+                                    });
+                                    console.error(error);
+                                  }
                                 } else {
                                   toast({
-                                    status: "error",
+                                    status: "success",
                                     duration: 6000,
                                     isClosable: true,
                                     description:
-                                      "Something went wrong while we submitting your membership request - " +
-                                      error.message,
+                                      "Thank you for letting us know, we'll confirm your membership status ASAP!",
                                   });
-                                  console.error(error);
                                 }
-                              } else {
-                                toast({
-                                  status: "success",
-                                  duration: 6000,
-                                  isClosable: true,
-                                  description:
-                                    "Thank you for letting us know, we'll confirm your membership status ASAP!",
-                                });
-                              }
-                            });
-                        }}
-                      >
-                        My dues are paid
-                      </Button>
-                    </div>
-                    <div className="flex justify-center">
-                      <Script
-                        src="https://www.paypal.com/sdk/js?client-id=BAAaWKKJH9d9_1A9lYbo-zc52pLBBTCR9boQNSGOQk7OR76lLHGsUvjZDTAm4ONcsLFqflVbaKH-ylGe-0&components=hosted-buttons&enable-funding=venmo&currency=USD"
-                        onReady={() => {
-                          // @ts-expect-error Baaaaahhhhh issokay
-                          paypal
-                            .HostedButtons({
-                              hostedButtonId: "VEMTS2QGYVFQ8",
-                            })
-                            .render("#paypal-container-VEMTS2QGYVFQ8");
-                        }}
-                      ></Script>
-                      <div id="paypal-container-VEMTS2QGYVFQ8"></div>
-                    </div>
-                  </>
-                ) : (
-                  <></>
-                )}
+                              });
+                          }}
+                        >
+                          My dues are paid
+                        </Button>
+                      </div>
+                      <Flex mx="auto" w={[null, "sm", "lg"]}>
+                        {tier ? (
+                          <Button
+                            mx="auto"
+                            leftIcon={<ChevronLeftIcon />}
+                            onClick={() => setTier(undefined)}
+                          >
+                            Select a different tier
+                          </Button>
+                        ) : (
+                          <Select
+                            variant="outline"
+                            placeholder="Select a membership level"
+                            onChange={(e) => {
+                              setTier(
+                                e.currentTarget.value as PaymentHandlerType
+                              );
+                            }}
+                          >
+                            <option value="student">
+                              Conference and Membership | Student | $200
+                            </option>
+                            <option value="postdoctorial">
+                              Conference and Membership | Postdoctorial | $300
+                            </option>
+                            <option value="professional">
+                              Conference and Membership | Professional | $400
+                            </option>
+                            <option value="member_only_student">
+                              Membership | Student | $10
+                            </option>
+                            <option value="member_only_postdoctorial">
+                              Membership | Postdoctorial | $20
+                            </option>
+                            <option value="member_only_professional">
+                              Membership | Professional | $50
+                            </option>
+                          </Select>
+                        )}
+                      </Flex>
+                      {tier ? (
+                        <PaymentHandler
+                          tier={tier}
+                          userId={data.user.user_id}
+                          email={data.user.email!}
+                        />
+                      ) : undefined}
+                    </>
+                  ))}
               </div>
             </TabPanel>
           </TabPanels>
