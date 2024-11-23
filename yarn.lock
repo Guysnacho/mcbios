@@ -2008,6 +2008,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stripe/react-stripe-js@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@stripe/react-stripe-js@npm:3.0.0"
+  dependencies:
+    prop-types: "npm:^15.7.2"
+  peerDependencies:
+    "@stripe/stripe-js": ^1.44.1 || ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/863b434f28a700432312a12116873f63ff26fa1ed11e025af59cba5eed940f9c8f226768dc05b237b17836fc50d1f956b749124488e8c33146499d08fc9783f9
+  languageName: node
+  linkType: hard
+
 "@stripe/stripe-js@npm:^5.2.0":
   version: 5.2.0
   resolution: "@stripe/stripe-js@npm:5.2.0"
@@ -4832,6 +4845,7 @@ __metadata:
     "@chakra-ui/react": "npm:^2.8.2"
     "@emotion/react": "npm:^11.13.3"
     "@emotion/styled": "npm:^11.13.0"
+    "@stripe/react-stripe-js": "npm:^3.0.0"
     "@stripe/stripe-js": "npm:^5.2.0"
     "@supabase/ssr": "npm:^0.5.1"
     "@supabase/supabase-js": "npm:^2.45.4"
