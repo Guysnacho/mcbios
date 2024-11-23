@@ -85,6 +85,7 @@ export default function Nav() {
         isSignUp={isSignUp}
         isOpen={isAuthOpen}
         setIsOpen={setAuthOpen}
+        setIsSignUp={setIsSignUp}
       />
       <Flex
         bg={useColorModeValue("white", "gray.800")}

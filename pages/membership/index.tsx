@@ -39,7 +39,7 @@ const Membership = () => {
         <meta content="MCBIOS Membership | MidSouth Computational Biology and Bioinformatics Society" />
       </Head>
       <AuthModal
-        isOpen={true}
+        isOpen={isAuthOpen}
         setIsOpen={setAuthOpen}
         isSignUp={isSignUp}
         setIsSignUp={setIsSignUp}
