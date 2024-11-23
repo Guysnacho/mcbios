@@ -46,6 +46,7 @@ export default async function handler(
 
         res.send({ clientSecret: session.client_secret });
       } catch (err) {
+        // @ts-expect-error error fields are unknown
         res.status(err.statusCode || 500).json(err.message);
       }
       break;
@@ -75,6 +76,7 @@ export default async function handler(
           customer_email: session!.customer_details!.email,
         });
       } catch (err) {
+        // @ts-expect-error error fields are unknown
         res.status(err.statusCode || 500).json(err.message);
       }
       break;

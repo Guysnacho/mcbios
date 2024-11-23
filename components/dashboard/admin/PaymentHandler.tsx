@@ -35,7 +35,7 @@ export const PaymentHandler = ({
     });
     const data = await res.json();
     return data.clientSecret;
-  }, [tier]);
+  }, [email, tier, userId]);
 
   const options = { fetchClientSecret };
 
