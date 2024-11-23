@@ -39,12 +39,12 @@ export default async function handler(
     case "GET":
       try {
         const session = await stripe.checkout.sessions.retrieve(
-          req.query.session_id
+          req.query.session_id as string
         );
 
         res.send({
           status: session.status,
-          customer_email: session.customer_details.email,
+          customer_email: session!.customer_details!.email,
         });
       } catch (err) {
         res.status(err.statusCode || 500).json(err.message);

@@ -183,22 +183,11 @@ export default function Dashboard() {
                         )}
                       </Flex>
                       {tier ? (
-                        <PaymentHandler tier={tier} userId={data.user.user_id} />
+                        <PaymentHandler
+                          tier={tier}
+                          userId={data.user.user_id}
+                        />
                       ) : undefined}
-                      <div className="flex justify-center">
-                        <Script
-                          src="https://www.paypal.com/sdk/js?client-id=BAAaWKKJH9d9_1A9lYbo-zc52pLBBTCR9boQNSGOQk7OR76lLHGsUvjZDTAm4ONcsLFqflVbaKH-ylGe-0&components=hosted-buttons&enable-funding=venmo&currency=USD"
-                          onReady={() => {
-                            // @ts-expect-error Baaaaahhhhh issokay
-                            paypal
-                              .HostedButtons({
-                                hostedButtonId: "VEMTS2QGYVFQ8",
-                              })
-                              .render("#paypal-container-VEMTS2QGYVFQ8");
-                          }}
-                        ></Script>
-                        <div id="paypal-container-VEMTS2QGYVFQ8"></div>
-                      </div>
                     </>
                   ))}
               </div>
