@@ -17,15 +17,17 @@ export type PaymentHandlerType =
 export const PaymentHandler = ({
   tier,
   userId,
+  email,
 }: {
   tier: PaymentHandlerType;
   userId: string;
+  email: string;
 }) => {
   const fetchClientSecret = useCallback(async () => {
     // Create a Checkout Session
     const res = await fetch("/api/checkout", {
       method: "POST",
-      body: JSON.stringify({ tier, userId }),
+      body: JSON.stringify({ tier, userId, email }),
     });
     const data = await res.json();
     return data.clientSecret;

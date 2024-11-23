@@ -186,6 +186,7 @@ export default function Dashboard() {
                         <PaymentHandler
                           tier={tier}
                           userId={data.user.user_id}
+                          email={data.user.email!}
                         />
                       ) : undefined}
                     </>
