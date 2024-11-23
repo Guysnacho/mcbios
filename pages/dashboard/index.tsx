@@ -45,9 +45,14 @@ export default function Dashboard() {
         <title>Dashboard</title>
         <meta content="Dashboard | MidSouth Computational Biology and Bioinformatics Society" />
       </Head>
+
       <div className="container mx-auto justify-center">
         <div className="h-20 flex justify-center align-middle">
-          <h3 className="text-center my-auto">Welcome</h3>
+          <h3 className="text-center my-auto">
+            {data?.user && data?.user.fname
+              ? `Hey ${data?.user.fname}`
+              : "Welcome"}
+          </h3>
         </div>
         <Tabs
           aria-label="Dashboard Tabs"
@@ -63,7 +68,7 @@ export default function Dashboard() {
             <Tab title="Profile">Profile</Tab>
           </TabList>
           <TabPanels>
-          {data?.user && data?.user.role === "admin" ? (
+            {data?.user && data?.user.role === "admin" ? (
               <TabPanel>
                 <div className="my-5 flex gap-3 mx-auto justify-center">
                   <VideoUploader />
