@@ -20,6 +20,7 @@ export default function PaymentConfirmation() {
   const [customerEmail, setCustomerEmail] = useState("");
 
   useEffect(() => {
+    console.debug(router.query);
     fetch(`/api/checkout?session_id=${router.query.id}`, {
       method: "GET",
     })

@@ -45,6 +45,7 @@ export default async function handler(
       break;
     case "GET":
       try {
+        console.log(req.query);
         const session = await stripe.checkout.sessions.retrieve(
           req.query.session_id as string
         );
@@ -94,6 +95,9 @@ async function handleUpdate(
 ) {
   await client
     .from("member")
-    .update({ dues_paid_at: new Date().toISOString() })
+    .update({
+      dues_paid_at: new Date().toISOString(),
+      role: session!.metadata!.tier as Database["public"]["Enums"]["user_role"],
+    })
     .eq("user_id", session!.metadata!.userId);
 }
