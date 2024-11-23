@@ -1,21 +1,26 @@
 // get serverside props here with videos and whatnot. Profile info updates and video content
 
-import { Container, Stack, Text } from "@chakra-ui/react";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
+import {
+  Button,
+  Center,
+  Container,
+  Image,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
+// import Image from "next/image";
 export default function PaymentConfirmation() {
   const router = useRouter();
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState("");
 
   useEffect(() => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const sessionId = urlParams.get("session_id");
-
-    fetch(`/api/checkout?session_id=${sessionId}`, {
+    fetch(`/api/checkout?session_id=${router.query.id}`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -35,24 +40,53 @@ export default function PaymentConfirmation() {
         <title>MCBIOS Due Confirmation</title>
         <meta content="MCBIOS Due Confirmation | MidSouth Computational Biology and Bioinformatics Society" />
       </Head>
-      {status === "complete" ? (
+      <Center h="md" mt={5}>
         <Stack gap={5}>
-          <Text>
-            Thank you for your contribution to the society! A confirmation email
-            will be sent to {customerEmail}.
-          </Text>
-          <Text>Payment ID: {router.query.id}</Text>
+          <Image
+            className="mx-auto object-cover"
+            src="/images/logo.jpg"
+            alt="MCBIOS Logo"
+            style={{
+              maskImage:
+                "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 100%)",
+            }}
+          />
+          {/* Dynamic message */}
+          {status === "complete" ? (
+            <Text>
+              Thank you for your contribution to the society! A confirmation
+              email will be sent to - {customerEmail}.
+            </Text>
+          ) : (
+            <Text>
+              Something went wrong while submitting your payment. Click the{" "}
+              <span className="text-green-900">
+                &quot;My dues are paid&quot;
+              </span>{" "}
+              button on the Member Dashboard and we&apos;ll confirm your
+              membership ass soon as possible.
+            </Text>
+          )}
+          <Button
+            mx="auto"
+            colorScheme="teal"
+            leftIcon={<ChevronLeftIcon />}
+            onClick={() => router.push("/dashboard")}
+          >
+            Member Dashboard
+          </Button>
           <Text>
             If you have any questions, please email{" "}
-            <a href="mailto:mcbios.society@gmail.com">
-              mcbios.society@gmail.com
+            <a
+              className="underline text-blue-800"
+              href="mailto:support@mcbios.com"
+            >
+              support@mcbios.com
             </a>
             .
           </Text>
         </Stack>
-      ) : (
-        <Text>Something awkward went wrong</Text>
-      )}
+      </Center>
     </Container>
   );
 }
