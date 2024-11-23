@@ -1,14 +1,20 @@
+import { PaymentHandlerType } from "@/components/dashboard/admin/PaymentHandler";
 import type { NextApiRequest, NextApiResponse } from "next";
-
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+import { Stripe } from "stripe";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+
   switch (req.method) {
     case "POST":
       try {
+        console.debug("req.body");
+        console.debug(req.body);
+        const price = derivePriceId(req.body.tier);
+        console.debug("price - ", price);
         // Create Checkout Sessions from body params.
         const session = await stripe.checkout.sessions.create({
           ui_mode: "embedded",
@@ -16,7 +22,7 @@ export default async function handler(
             {
               // Provide the exact Price ID (for example, pr_1234) of
               // the product you want to sell
-              price: "{{PRICE_ID}}",
+              price,
               quantity: 1,
             },
           ],
@@ -46,5 +52,23 @@ export default async function handler(
     default:
       res.setHeader("Allow", req.method);
       res.status(405).end("Method Not Allowed");
+  }
+}
+function derivePriceId(tier: PaymentHandlerType): string {
+  console.debug("tier - ", tier);
+  switch (tier) {
+    case "professional":
+      return process.env.CONF_REGISTRATION!;
+      break;
+    case "postdoctorial":
+      return process.env.CONF_REGISTRATION!;
+      break;
+    case "student":
+      return process.env.CONF_REGISTRATION!;
+      break;
+
+    default:
+      return "";
+      break;
   }
 }

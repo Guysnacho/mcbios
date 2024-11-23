@@ -182,7 +182,7 @@ export default function Dashboard() {
                           </Select>
                         )}
                       </Flex>
-                      {tier && <PaymentHandler tier={tier} />}
+                      {tier ? <PaymentHandler tier={tier} /> : undefined}
                       <div className="flex justify-center">
                         <Script
                           src="https://www.paypal.com/sdk/js?client-id=BAAaWKKJH9d9_1A9lYbo-zc52pLBBTCR9boQNSGOQk7OR76lLHGsUvjZDTAm4ONcsLFqflVbaKH-ylGe-0&components=hosted-buttons&enable-funding=venmo&currency=USD"
