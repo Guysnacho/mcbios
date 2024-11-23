@@ -63,7 +63,11 @@ export default async function handler(
           );
           const client = createClient(req, res);
           await handleUpdate(client, session);
-          console.log(`Table update complete`);
+          console.log(
+            `Table update complete | user_role=${
+              session!.metadata!.tier
+            } user_id=${session!.metadata!.userId}`
+          );
         }
 
         res.send({
