@@ -1,4 +1,7 @@
 import { PaymentHandlerType } from "@/components/dashboard/admin/PaymentHandler";
+import createClient from "@/lib/utils/supabase/service";
+import { Database } from "@/lib/utils/supabase/types";
+import { SupabaseClient } from "@supabase/supabase-js";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Stripe } from "stripe";
 
@@ -28,11 +31,8 @@ export default async function handler(
           return_url: `${req.headers.origin}/dashboard/payment/{CHECKOUT_SESSION_ID}`,
           customer_email: body.email,
           customer_creation: "always",
-          invoice_creation: {
-            enabled: true,
-          },
           metadata: {
-            user_id: body.userId,
+            userId: body.userId,
             email: body.email,
             tier: body.tier,
           },
@@ -48,6 +48,15 @@ export default async function handler(
         const session = await stripe.checkout.sessions.retrieve(
           req.query.session_id as string
         );
+
+        if (session.status === "complete") {
+          console.log(
+            `Payment completed for user ${session!.metadata!.userId}!`
+          );
+          const client = createClient(req, res);
+          await handleUpdate(client, session);
+          console.log(`Table update complete`);
+        }
 
         res.send({
           status: session.status,
@@ -78,4 +87,13 @@ function derivePriceId(tier: PaymentHandlerType): string {
       return "";
       break;
   }
+}
+async function handleUpdate(
+  client: SupabaseClient<Database>,
+  session: Stripe.Response<Stripe.Checkout.Session>
+) {
+  await client
+    .from("member")
+    .update({ dues_paid_at: new Date().toISOString() })
+    .eq("user_id", session!.metadata!.userId);
 }
