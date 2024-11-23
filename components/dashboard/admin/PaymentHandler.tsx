@@ -17,9 +17,8 @@ export type PaymentHandlerType =
 export const PaymentHandler = ({ tier }: { tier: PaymentHandlerType }) => {
   const fetchClientSecret = useCallback(async () => {
     // Create a Checkout Session
-    const res = await fetch("/api/checkout", {
+    const res = await fetch(`/api/checkout?tier=${tier}`, {
       method: "POST",
-      body: JSON.stringify({ tier }),
     });
     const data = await res.json();
     return data.clientSecret;
