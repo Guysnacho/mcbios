@@ -111,20 +111,22 @@ export const AuthModal = ({
               )}
             </Stack>
             <Stack spacing={4}>
-              <HStack>
-                <Box>
-                  <FormControl id="firstName" isRequired>
-                    <FormLabel>First Name</FormLabel>
-                    <Input type="text" />
-                  </FormControl>
-                </Box>
-                <Box>
-                  <FormControl id="lastName">
-                    <FormLabel>Last Name</FormLabel>
-                    <Input type="text" />
-                  </FormControl>
-                </Box>
-              </HStack>
+              {isSignUp && (
+                <HStack>
+                  <Box>
+                    <FormControl id="firstName" isRequired>
+                      <FormLabel>First Name</FormLabel>
+                      <Input type="text" />
+                    </FormControl>
+                  </Box>
+                  <Box>
+                    <FormControl id="lastName">
+                      <FormLabel>Last Name</FormLabel>
+                      <Input type="text" />
+                    </FormControl>
+                  </Box>
+                </HStack>
+              )}
               <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>
                 <Input type="email" />
@@ -147,12 +149,12 @@ export const AuthModal = ({
               </FormControl>
               <Stack pt={6}>
                 <Text align={"center"}>
-                  Already a user?{" "}
+                  {isSignUp ? "Already a user? " : "Haven't signed up yet? "}
                   <Link
                     color={"blue.400"}
                     onClick={() => setIsSignUp(!isSignUp)}
                   >
-                    Login
+                    {isSignUp ? "Login" : "Sign Up"}
                   </Link>
                 </Text>
               </Stack>
