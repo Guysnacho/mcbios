@@ -29,7 +29,7 @@ export default async function handler(
             {
               // Provide the exact Price ID (for example, pr_1234) of
               // the product you want to sell
-              price,
+              price: price.id,
               quantity: 1,
             },
           ],
@@ -40,7 +40,7 @@ export default async function handler(
           metadata: {
             userId: body.userId,
             email: body.email,
-            tier: body.tier,
+            tier: price.tier || "student",
           },
         });
 
@@ -79,7 +79,7 @@ export default async function handler(
       }
       break;
     default:
-      res.setHeader("Allow", req.method);
+      res.setHeader("Allow", req.method!);
       res.status(405).end("Method Not Allowed");
   }
 }
@@ -89,29 +89,41 @@ export default async function handler(
  * @param tier
  * @returns
  */
-function derivePriceId(tier: PaymentHandlerType): string {
+function derivePriceId(tier: PaymentHandlerType): {
+  id?: string;
+  tier?: Database["public"]["Enums"]["user_role"];
+} {
   switch (tier) {
     case "student":
-      return process.env.EB_CONF_REGISTRATION_STUDENT!;
+      return {
+        id: process.env.EB_CONF_REGISTRATION_STUDENT!,
+        tier: "student",
+      };
       break;
     case "postdoctorial":
-      return process.env.EB_CONF_REGISTRATION_POSTDOC!;
+      return {
+        id: process.env.EB_CONF_REGISTRATION_POSTDOC!,
+        tier: "postdoctorial",
+      };
       break;
     case "professional":
-      return process.env.EB_CONF_REGISTRATION_PROFESSIONAL!;
+      return {
+        id: process.env.EB_CONF_REGISTRATION_PROFESSIONAL!,
+        tier: "professional",
+      };
       break;
     case "member_only_student":
-      return process.env.STUDENT!;
+      return { id: process.env.STUDENT!, tier: "student" };
       break;
     case "member_only_postdoctorial":
-      return process.env.POSTDOC!;
+      return { id: process.env.POSTDOC!, tier: "postdoctorial" };
       break;
     case "member_only_professional":
-      return process.env.PROFESSIONAL!;
+      return { id: process.env.PROFESSIONAL!, tier: "professional" };
       break;
 
     default:
-      return "";
+      return {};
       break;
   }
 }
