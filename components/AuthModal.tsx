@@ -168,7 +168,7 @@ export const AuthModal = ({
               </FormControl>
               <Stack pt={6}>
                 <Text align={"center"}>
-                  {isSignUp ? "Already a user? " : "Haven't signed up yet? "}
+                  {isSignUp ? "Already a member? " : "Haven't signed up yet? "}
                   <Link
                     color={"blue.400"}
                     onClick={() => !loading && setIsSignUp(!isSignUp)}
