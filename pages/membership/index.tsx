@@ -18,6 +18,7 @@ const Membership = () => {
   const store = useStore(useUserStore, (store) => store);
   const router = useRouter();
   const [isAuthOpen, setAuthOpen] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(true);
 
   useEffect(() => {
     if (isAuthOpen) {
@@ -37,7 +38,12 @@ const Membership = () => {
         <title>MCBIOS Membership</title>
         <meta content="MCBIOS Membership | MidSouth Computational Biology and Bioinformatics Society" />
       </Head>
-      <AuthModal isOpen={isAuthOpen} setIsOpen={setAuthOpen} isSignUp />
+      <AuthModal
+        isOpen={true}
+        setIsOpen={setAuthOpen}
+        isSignUp={isSignUp}
+        setIsSignUp={setIsSignUp}
+      />
       <div className="container space-y-10 mx-auto">
         <div className="h-1/2 w-1/2 mx-auto">
           <Image

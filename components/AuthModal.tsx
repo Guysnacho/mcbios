@@ -1,8 +1,18 @@
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
 import { createClient } from "@/lib/utils/supabase/component";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
+  Box,
   Button,
+  FormControl,
+  FormLabel,
+  Heading,
+  HStack,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Link,
   Modal,
   ModalBody,
   ModalContent,
@@ -10,6 +20,8 @@ import {
   ModalHeader,
   ModalOverlay,
   Stack,
+  Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, useState } from "react";
@@ -18,10 +30,12 @@ export const AuthModal = ({
   isOpen,
   setIsOpen,
   isSignUp,
+  setIsSignUp,
 }: {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   isSignUp?: boolean;
+  setIsSignUp: Dispatch<SetStateAction<boolean>>;
 }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -32,6 +46,7 @@ export const AuthModal = ({
   const [error, setError] = useState("");
   const client = createClient();
   const store = useStore(useUserStore, (store) => store);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (isSignUp: boolean) => {
     setLoading(true);
@@ -78,10 +93,75 @@ export const AuthModal = ({
       <ModalContent>
         <ModalHeader className="flex flex-col gap-1 text-xl"></ModalHeader>
         <ModalBody gap={3}>
+          <Box rounded={"lg"} bg={useColorModeValue("white", "gray.700")} p={8}>
+            <Stack align={"center"} mb={5}>
+              {isSignUp ? (
+                <>
+                  <Heading fontSize={"4xl"} textAlign={"center"}>
+                    Join the Community
+                  </Heading>
+                  <Text color={"gray.600"}>
+                    Signing up will allow you to register for the conference.
+                  </Text>
+                </>
+              ) : (
+                <Heading fontSize={"4xl"} textAlign={"center"}>
+                  Log In
+                </Heading>
+              )}
+            </Stack>
+            <Stack spacing={4}>
+              <HStack>
+                <Box>
+                  <FormControl id="firstName" isRequired>
+                    <FormLabel>First Name</FormLabel>
+                    <Input type="text" />
+                  </FormControl>
+                </Box>
+                <Box>
+                  <FormControl id="lastName">
+                    <FormLabel>Last Name</FormLabel>
+                    <Input type="text" />
+                  </FormControl>
+                </Box>
+              </HStack>
+              <FormControl id="email" isRequired>
+                <FormLabel>Email address</FormLabel>
+                <Input type="email" />
+              </FormControl>
+              <FormControl id="password" isRequired>
+                <FormLabel>Password</FormLabel>
+                <InputGroup>
+                  <Input type={showPassword ? "text" : "password"} />
+                  <InputRightElement h={"full"}>
+                    <Button
+                      variant={"ghost"}
+                      onClick={() =>
+                        setShowPassword((showPassword) => !showPassword)
+                      }
+                    >
+                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+              </FormControl>
+              <Stack pt={6}>
+                <Text align={"center"}>
+                  Already a user?{" "}
+                  <Link
+                    color={"blue.400"}
+                    onClick={() => setIsSignUp(!isSignUp)}
+                  >
+                    Login
+                  </Link>
+                </Text>
+              </Stack>
+            </Stack>
+          </Box>
+
           {isSignUp ? (
             <>
               <h4 className="h4 underline">Join the Community</h4>
-
             </>
           ) : (
             <h4 className="h4 underline">Log In</h4>
