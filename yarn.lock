@@ -4863,7 +4863,7 @@ __metadata:
     react-dom: "npm:^18.2.0"
     sharp: "npm:^0.33.0"
     stripe: "npm:^17.4.0"
-    supabase: "npm:^1.204.3"
+    supabase: "npm:1.223.10"
     swr: "npm:^2.2.5"
     tailwindcss: "npm:3.4.0"
     typescript: "npm:^5"
@@ -6395,9 +6395,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"supabase@npm:^1.204.3":
-  version: 1.204.3
-  resolution: "supabase@npm:1.204.3"
+"supabase@npm:1.223.10":
+  version: 1.223.10
+  resolution: "supabase@npm:1.223.10"
   dependencies:
     bin-links: "npm:^5.0.0"
     https-proxy-agent: "npm:^7.0.2"
@@ -6405,7 +6405,7 @@ __metadata:
     tar: "npm:7.4.3"
   bin:
     supabase: bin/supabase
-  checksum: 10c0/5ad386692190e3adb4c1c299529cda6fe7df041e57144d738531e0c0a928cd42b2982380eed9f07e1d543ca68a90a470bdfd64ffa3155c6283a3ff43ff1729ec
+  checksum: 10c0/ae27b92e3643d246b2d24d01970be9b861b0f7ab418d6fd0331b84e0779c7498538f944456c8a9c0164736b899401caf6c16d862edad01e2bcd485fef362fa83
   languageName: node
   linkType: hard
 

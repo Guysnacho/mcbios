@@ -41,6 +41,7 @@ export default async function handler(
             userId: body.userId,
             email: body.email,
             tier: price.tier || "student",
+            memberOnly: price.memberOnly!,
           },
         });
 
@@ -62,12 +63,14 @@ export default async function handler(
           console.log(
             `Payment completed for user ${session!.metadata!.userId}!`
           );
-          const client = createClient(req, res);
+          const client = createClient();
           await handleUpdate(client, session);
           console.log(
             `Table update complete | user_role=${
               session!.metadata!.tier
-            } user_id=${session!.metadata!.userId}`
+            } | user_id=${session!.metadata!.userId} | member_only=${
+              session!.metadata!.memberOnly
+            }`
           );
         }
 
@@ -94,34 +97,46 @@ export default async function handler(
 function derivePriceId(tier: PaymentHandlerType): {
   id?: string;
   tier?: Database["public"]["Enums"]["user_role"];
+  memberOnly?: string;
 } {
   switch (tier) {
     case "student":
       return {
         id: process.env.EB_CONF_REGISTRATION_STUDENT!,
         tier: "student",
+        memberOnly: "false",
       };
       break;
     case "postdoctorial":
       return {
         id: process.env.EB_CONF_REGISTRATION_POSTDOC!,
         tier: "postdoctorial",
+        memberOnly: "false",
       };
       break;
     case "professional":
       return {
         id: process.env.EB_CONF_REGISTRATION_PROFESSIONAL!,
         tier: "professional",
+        memberOnly: "false",
       };
       break;
     case "member_only_student":
-      return { id: process.env.STUDENT!, tier: "student" };
+      return { id: process.env.STUDENT!, tier: "student", memberOnly: "true" };
       break;
     case "member_only_postdoctorial":
-      return { id: process.env.POSTDOC!, tier: "postdoctorial" };
+      return {
+        id: process.env.POSTDOC!,
+        tier: "postdoctorial",
+        memberOnly: "true",
+      };
       break;
     case "member_only_professional":
-      return { id: process.env.PROFESSIONAL!, tier: "professional" };
+      return {
+        id: process.env.PROFESSIONAL!,
+        tier: "professional",
+        memberOnly: "true",
+      };
       break;
 
     default:
@@ -144,6 +159,13 @@ async function handleUpdate(
     .update({
       dues_paid_at: new Date().toISOString(),
       role: session!.metadata!.tier as Database["public"]["Enums"]["user_role"],
+    })
+    .eq("user_id", session!.metadata!.userId);
+  await client
+    .from("registration")
+    .upsert({
+      user_id: session!.metadata!.userId,
+      member_only: session!.metadata!.memberOnly === "true",
     })
     .eq("user_id", session!.metadata!.userId);
 }

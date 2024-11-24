@@ -21,6 +21,8 @@ export const User = ({
         return "MCBIOS Admin";
       case "professional":
         return "MCBIOS Professional";
+      case "postdoctorial":
+        return "MCBIOS Postdoctorial";
 
       default:
         return "MCBIOS Member";
