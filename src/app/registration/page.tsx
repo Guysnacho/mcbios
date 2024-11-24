@@ -113,7 +113,7 @@ export default function Page() {
                   >
                     MCBIOS 2024 Registration
                   </Heading>
-                  {registrationOpen ? (
+                  {!registrationOpen ? (
                     <Text textAlign="center">
                       Registration opening soon. Construction is underway!
                     </Text>
