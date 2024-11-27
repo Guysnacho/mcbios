@@ -119,7 +119,18 @@ export default function KeyDates() {
         icon={<Icon as={PiBirdLight} w={10} h={10} />}
         title={"Early Bird Registration"}
         deadline="February 1st, 2025"
-        stack={{ my: "5", mx: "auto", width: [null, "sm", null, "lg"] }}
+        stack={{
+          mt: "5",
+          mb: "12",
+          mx: "auto",
+          width: [null, "sm", null, "lg"],
+          direction: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: "xl",
+          shadow: "xl",
+          _hover: { shadow: "2xl" },
+        }}
       />
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
         <Date
