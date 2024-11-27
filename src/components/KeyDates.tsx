@@ -127,9 +127,14 @@ export default function KeyDates() {
           direction: "row",
           justifyContent: "center",
           alignItems: "center",
+          borderColor: "gold",
           borderRadius: "xl",
           shadow: "xl",
-          _hover: { shadow: "2xl" },
+          _hover: {
+            shadow: "2xl",
+            borderColor: "goldenrod",
+            borderWidth: "xl",
+          },
         }}
       />
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
