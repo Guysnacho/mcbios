@@ -28,6 +28,8 @@ export default function Home() {
         {/* <Logo /> */}
         {/* Hero Section */}
         <Flex
+          id="sunm"
+          flexFlow="column"
           w={"full"}
           h={"75vh"}
           backgroundImage={"/Winter Campus View 2018-4.jpg"}
@@ -35,20 +37,19 @@ export default function Home() {
           backgroundPosition={"top center"}
         >
           <VStack
-            w={"full"}
-            justify={"center"}
-            px={[4, null, null, 8]}
+            h="full"
+            justifyContent="center"
             bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
           >
             <Stack
-              maxW={"3xl"}
-              align={"flex-start"}
+              maxW={["90%", "80%", "md", "xl"]}
               spacing={4}
               textAlign="center"
               borderRadius={10}
-              p={4}
               py={6}
               bgColor={"blackAlpha.500"}
+              justifySelf="center"
+              mx="auto"
             >
               <Text
                 mx="auto"
@@ -65,12 +66,18 @@ export default function Home() {
                 color={"white"}
                 fontWeight={700}
                 lineHeight={1.2}
-                fontSize={["3xl", null, null, "4xl"]}
+                fontSize={["2xl", "3xl", null, "4xl"]}
               >
                 Data-Driven Discovery: Harnessing the power of AI to transform
                 health
               </Text>
-              <Text mx="auto" color={"white"} fontWeight={400} fontSize="lg">
+              <Text
+                mx="auto"
+                w="90%"
+                color={"white"}
+                fontWeight={400}
+                fontSize="lg"
+              >
                 The 21st Annual Meeting of the MidSouth Computational Biology
                 and Bioinformatics Society
               </Text>
@@ -93,7 +100,7 @@ export default function Home() {
               >
                 March 27-29, 2025
               </Text>
-              <Stack direction={"row"} mx="auto">
+              <Stack direction={["column", "row"]} mx="auto">
                 <Button
                   as={Link}
                   href="/registration"

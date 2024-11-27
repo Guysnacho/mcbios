@@ -14,7 +14,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { FaSchool } from "react-icons/fa";
+import { FaBriefcase, FaSchool } from "react-icons/fa";
 import { PiLink, PiReadCvLogo, PiStudent } from "react-icons/pi";
 
 interface SpeakerProps {
@@ -24,6 +24,7 @@ interface SpeakerProps {
   photo: string;
   url?: string;
   affiliation?: string;
+  professional?: boolean;
 }
 
 const Speaker = ({
@@ -33,13 +34,15 @@ const Speaker = ({
   photo,
   url,
   affiliation,
+  professional,
 }: SpeakerProps) => {
   return (
     <Card
-      maxW="300px"
+      maxW={["90%", "sm", "md", "xl"]}
       _hover={{ shadow: "xl", borderColor: "blue.600" }}
       mb={1}
       mx="auto"
+      justifySelf="center"
       borderColor="blue.400"
       borderWidth={1}
     >
@@ -52,6 +55,8 @@ const Speaker = ({
           boxSize="250px"
           borderRadius="lg"
           shadow="lg"
+          objectFit="cover"
+          mx="auto"
         />
         <Stack mt="6" spacing="3">
           <Heading
@@ -77,7 +82,7 @@ const Speaker = ({
             ))}
           {affiliation && (
             <HStack gap={3}>
-              <Icon as={FaSchool} boxSize={5} />
+              <Icon as={professional ? FaBriefcase : FaSchool} boxSize={5} />
               <Text fontWeight={300}>{affiliation}</Text>
             </HStack>
           )}
@@ -109,7 +114,6 @@ export default function KeynoteSpeakers() {
   return (
     <Box
       w="full"
-      mx="auto"
       py="20"
       bgGradient="linear(to-tl, whiteAlpha.200, whiteAlpha.400, orange.100, blue.300)"
     >
@@ -122,7 +126,7 @@ export default function KeynoteSpeakers() {
         spacing={10}
         mx="auto"
         justifyItems="center"
-        alignItems="center"
+        alignItems="start"
         alignContent="center"
         alignSelf="center"
       >
@@ -136,7 +140,16 @@ export default function KeynoteSpeakers() {
           ]}
           affiliation="Harvard T.H. Chan School of Public Health"
         />
-        <Speaker name="Speaker coming soon" photo="/User.png" affiliation="" />
+        <Speaker
+          professional
+          name="Imran Haque, Ph.D."
+          photo="/keynote/ImranHaque.jpg"
+          title="Senior Vice President AI & Digital Sciences"
+          program={["Senior Vice President AI & Digital Sciences"]}
+          affiliation="Recursion Pharmaceuticals"
+          url="https://www.recursion.com/team-members/imran-haque"
+        />
+
         <Speaker name="Speaker coming soon" photo="/User.png" affiliation="" />
         <Speaker name="Speaker coming soon" photo="/User.png" affiliation="" />
       </Stack>

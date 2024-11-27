@@ -8,6 +8,7 @@ import {
   Icon,
   SimpleGrid,
   Stack,
+  StackProps,
   Text,
 } from "@chakra-ui/react";
 import { ReactElement } from "react";
@@ -36,16 +37,23 @@ const Date = ({
   isProposal,
   isAbstract,
   isYSEA,
-}: ConfDayProps) => {
+  stack,
+}: ConfDayProps & { stack?: StackProps }) => {
   return (
-    <Stack border="1px" borderColor="gray.500" p={3} borderRadius={5}>
+    <Stack
+      border="1px"
+      borderColor="gray.500"
+      p={3}
+      borderRadius={5}
+      {...stack}
+    >
       <Flex
-        w={16}
-        h={16}
+        w={[7, 10, 14]}
+        h={[7, 10, 14]}
         align={"center"}
         justify={"center"}
         color={"white"}
-        rounded={"full"}
+        rounded={["xl", "full"]}
         bg={"blue.500"}
         mb={1}
       >
@@ -107,9 +115,37 @@ const Date = ({
 export default function KeyDates() {
   return (
     <Box p={4} mx={{ base: 3, md: 10 }}>
+      <Date
+        icon={<Icon as={PiBirdLight} w={[5, null, 10]} h={[5, null, 10]} />}
+        title={"Early Bird Registration"}
+        deadline="February 1st, 2025"
+        stack={{
+          mt: "5",
+          mb: "12",
+          mx: "auto",
+          width: [null, "sm", null, "lg"],
+          direction: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          borderColor: "gold",
+          borderRadius: "xl",
+          shadow: "xl",
+          _hover: {
+            shadow: "2xl",
+            borderColor: "goldenrod",
+            borderWidth: "xl",
+          },
+        }}
+      />
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
         <Date
-          icon={<Icon as={PiChalkboardTeacher} w={10} h={10} />}
+          icon={
+            <Icon
+              as={PiChalkboardTeacher}
+              w={[5, null, 10]}
+              h={[5, null, 10]}
+            />
+          }
           title={"Call for Session Proposals"}
           text={
             "If you'd like to hold a session or conduct a workshop during the conference, the deadline is"
@@ -118,7 +154,7 @@ export default function KeyDates() {
           isProposal
         />
         <Date
-          icon={<Icon as={PiBlueprint} w={10} h={10} />}
+          icon={<Icon as={PiBlueprint} w={[5, null, 10]} h={[5, null, 10]} />}
           title={"Call for Abstract Submissions"}
           text={
             "If you have reasearch and applicable development that you want to showcase, please let the team know! The deadline for submitting abstract is"
@@ -127,18 +163,13 @@ export default function KeyDates() {
           isAbstract
         />
         <Date
-          icon={<Icon as={PiStudent} w={10} h={10} />}
+          icon={<Icon as={PiStudent} w={[5, null, 10]} h={[5, null, 10]} />}
           title={"Young Scientist Excellence Award Application Deadline"}
           text={
             "This awards program recognizes students and postdoctoral fellows that exhibit scientific excellence in the field of Bioinformatics. The deadline for this award is"
           }
           deadline="January 15th, 2025"
           isYSEA
-        />
-        <Date
-          icon={<Icon as={PiBirdLight} w={10} h={10} />}
-          title={"Early Bird Registration"}
-          deadline="February 1st, 2025"
         />
       </SimpleGrid>
     </Box>
