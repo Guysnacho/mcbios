@@ -42,7 +42,7 @@ export default function Home() {
             bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
           >
             <Stack
-              maxW={["80%", "md", "xl"]}
+              maxW={["90%", "80%", "md", "xl"]}
               spacing={4}
               textAlign="center"
               borderRadius={10}
@@ -66,12 +66,18 @@ export default function Home() {
                 color={"white"}
                 fontWeight={700}
                 lineHeight={1.2}
-                fontSize={["3xl", null, null, "4xl"]}
+                fontSize={["2xl", "3xl", null, "4xl"]}
               >
                 Data-Driven Discovery: Harnessing the power of AI to transform
                 health
               </Text>
-              <Text mx="auto" color={"white"} fontWeight={400} fontSize="lg">
+              <Text
+                mx="auto"
+                w="90%"
+                color={"white"}
+                fontWeight={400}
+                fontSize="lg"
+              >
                 The 21st Annual Meeting of the MidSouth Computational Biology
                 and Bioinformatics Society
               </Text>
