@@ -38,10 +38,11 @@ const Speaker = ({
 }: SpeakerProps) => {
   return (
     <Card
-      maxW="300px"
+      maxW={["90%", "sm", "md", "xl"]}
       _hover={{ shadow: "xl", borderColor: "blue.600" }}
       mb={1}
       mx="auto"
+      justifySelf="center"
       borderColor="blue.400"
       borderWidth={1}
     >
@@ -55,6 +56,7 @@ const Speaker = ({
           borderRadius="lg"
           shadow="lg"
           objectFit="cover"
+          mx="auto"
         />
         <Stack mt="6" spacing="3">
           <Heading
@@ -112,7 +114,6 @@ export default function KeynoteSpeakers() {
   return (
     <Box
       w="full"
-      mx="auto"
       py="20"
       bgGradient="linear(to-tl, whiteAlpha.200, whiteAlpha.400, orange.100, blue.300)"
     >
