@@ -8,6 +8,7 @@ import {
   Icon,
   SimpleGrid,
   Stack,
+  StackProps,
   Text,
 } from "@chakra-ui/react";
 import { ReactElement } from "react";
@@ -36,9 +37,16 @@ const Date = ({
   isProposal,
   isAbstract,
   isYSEA,
-}: ConfDayProps) => {
+  stack,
+}: ConfDayProps & { stack?: StackProps }) => {
   return (
-    <Stack border="1px" borderColor="gray.500" p={3} borderRadius={5}>
+    <Stack
+      border="1px"
+      borderColor="gray.500"
+      p={3}
+      borderRadius={5}
+      {...stack}
+    >
       <Flex
         w={16}
         h={16}
@@ -107,6 +115,12 @@ const Date = ({
 export default function KeyDates() {
   return (
     <Box p={4} mx={{ base: 3, md: 10 }}>
+      <Date
+        icon={<Icon as={PiBirdLight} w={10} h={10} />}
+        title={"Early Bird Registration"}
+        deadline="February 1st, 2025"
+        stack={{ my: "5", mx: "auto", width: [null, "sm", null, "lg"] }}
+      />
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
         <Date
           icon={<Icon as={PiChalkboardTeacher} w={10} h={10} />}
@@ -134,11 +148,6 @@ export default function KeyDates() {
           }
           deadline="January 15th, 2025"
           isYSEA
-        />
-        <Date
-          icon={<Icon as={PiBirdLight} w={10} h={10} />}
-          title={"Early Bird Registration"}
-          deadline="February 1st, 2025"
         />
       </SimpleGrid>
     </Box>
