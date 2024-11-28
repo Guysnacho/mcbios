@@ -18,14 +18,21 @@ import {
   Flex,
   Select,
   Tab,
+  Table,
+  TableCaption,
+  TableContainer,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
   useToast,
 } from "@chakra-ui/react";
 import Head from "next/head";
-import Script from "next/script";
 import { useState } from "react";
 import useSWR from "swr";
 
@@ -101,6 +108,50 @@ export default function Dashboard() {
                   (!data?.user?.fees_paid_at && (
                     <>
                       <h4>Welcome to MCBIOS Registration!</h4>
+
+                      {/* Registration Tiers */}
+                      <TableContainer
+                        overflowX="scroll"
+                        w={["90%", "sm", "auto"]}
+                        mx="auto"
+                      >
+                        <Table variant="striped" colorScheme="green">
+                          <TableCaption>Registration Pricing</TableCaption>
+                          <Thead>
+                            <Tr>
+                              <Th>Membership Level</Th>
+                              <Th>
+                                Early Bird
+                                <br />
+                                (Until Feb. 1st, 2025)
+                              </Th>
+                              <Th>Standard</Th>
+                              <Th>Membership Only</Th>
+                            </Tr>
+                          </Thead>
+                          <Tbody>
+                            <Tr>
+                              <Td>Student</Td>
+                              <Td>$200</Td>
+                              <Td>$250</Td>
+                              <Td>$10</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>Postdoctorial</Td>
+                              <Td>$300</Td>
+                              <Td>$350</Td>
+                              <Td>$20</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>Professional</Td>
+                              <Td>$400</Td>
+                              <Td>$450</Td>
+                              <Td>$50</Td>
+                            </Tr>
+                          </Tbody>
+                        </Table>
+                      </TableContainer>
+
                       <p>
                         If you haven&apos;t already, please pay your
                         registration fees to finish MCBIOS onboarding.
