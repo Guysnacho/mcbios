@@ -79,7 +79,7 @@ export default function Dashboard() {
             ) : undefined}
 
             <TabPanel>
-              {data?.user && data?.user.dues_paid_at ? (
+              {data?.user && data?.user.fees_paid_at ? (
                 <MemberContent videos={data?.videos} />
               ) : undefined}
             </TabPanel>
@@ -98,18 +98,19 @@ export default function Dashboard() {
               <Divider />
               <div className="container text-center space-y-4">
                 {!data?.user ||
-                  (!data?.user?.dues_paid_at && (
+                  (!data?.user?.fees_paid_at && (
                     <>
-                      <h4>Welcome to MCBIOS!</h4>
+                      <h4>Welcome to MCBIOS Registration!</h4>
                       <p>
-                        If you haven&apos;t already, please pay your dues to
-                        finish MCBIOS onboarding and to gain you access to past
-                        conference recordings, upcomming elections, and more!
+                        If you haven&apos;t already, please pay your
+                        registration fees to finish MCBIOS onboarding and to
+                        gain you access to past conference recordings, upcomming
+                        elections, and more!
                       </p>
                       <div className="container">
                         <p>
                           <span className="underline">
-                            If you have paid your dues
+                            If you have paid the required fees
                           </span>
                           , notify us here so we can confirm and grant access to
                           everything MCBIOS!
@@ -154,7 +155,7 @@ export default function Dashboard() {
                               });
                           }}
                         >
-                          My dues are paid
+                          My fees are paid
                         </Button>
                       </div>
                       <Flex mx="auto" w={[null, "sm", "lg"]}>

@@ -52,7 +52,7 @@ const columns = [
 type UserRequest = {
   id: number;
   user_id: string;
-  dues_paid_at: string | null;
+  fees_paid_at: string | null;
   fname: string | null;
   lname: string | null;
   role: Database["public"]["Enums"]["user_role"];
@@ -225,7 +225,7 @@ const ConfirmModal = ({
       .from("member")
       .update({
         role,
-        dues_paid_at: date?.toISOString(),
+        fees_paid_at: date?.toISOString(),
       })
       .eq("user_id", uid)
       .select()

@@ -37,21 +37,21 @@ export type Database = {
       };
       member: {
         Row: {
-          dues_paid_at: string | null;
+          fees_paid_at: string | null;
           fname: string | null;
           lname: string | null;
           role: Database["public"]["Enums"]["user_role"];
           user_id: string;
         };
         Insert: {
-          dues_paid_at?: string | null;
+          fees_paid_at?: string | null;
           fname?: string | null;
           lname?: string | null;
           role?: Database["public"]["Enums"]["user_role"];
           user_id: string;
         };
         Update: {
-          dues_paid_at?: string | null;
+          fees_paid_at?: string | null;
           fname?: string | null;
           lname?: string | null;
           role?: Database["public"]["Enums"]["user_role"];

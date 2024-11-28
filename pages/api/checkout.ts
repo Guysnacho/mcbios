@@ -157,7 +157,7 @@ async function handleUpdate(
   await client
     .from("member")
     .update({
-      dues_paid_at: new Date().toISOString(),
+      fees_paid_at: new Date().toISOString(),
       role: session!.metadata!.tier as Database["public"]["Enums"]["user_role"],
     })
     .eq("user_id", session!.metadata!.userId);
