@@ -103,9 +103,11 @@ export default function Dashboard() {
                       <h4>Welcome to MCBIOS Registration!</h4>
                       <p>
                         If you haven&apos;t already, please pay your
-                        registration fees to finish MCBIOS onboarding and to
-                        gain you access to past conference recordings, upcomming
-                        elections, and more!
+                        registration fees to finish MCBIOS onboarding.
+                        Registration fees include access to all scientific
+                        sessions, meals, receptions, banquet, and 1 year of
+                        MCBIOS membership. Membership gives you access to past
+                        conference recordings, upcomming elections, and more!
                       </p>
                       <div className="container">
                         <p>
