@@ -1,13 +1,10 @@
 "use client";
 
-import { PathMap } from "@/lib/constants";
-import { Box, Link, Stack, Text } from "@chakra-ui/react";
-import NextLink from "next/link";
-import { usePathname } from "next/navigation";
+import { Box, Text } from "@chakra-ui/react";
 
 export const Footer = () => {
-  const path = usePathname();
-  const routes = Object.entries(PathMap);
+  // const path = usePathname();
+  // const routes = Object.entries(PathMap);
 
   return (
     <Box
@@ -16,7 +13,7 @@ export const Footer = () => {
       className="border-double border-t-4 border-indigo-600"
     >
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-7 sm:py-10 lg:px-4">
-        <Stack
+        {/* <Stack
           aria-label="Footer"
           justifyContent="center"
           direction="row"
@@ -38,7 +35,7 @@ export const Footer = () => {
               </Link>
             </div>
           ))}
-        </Stack>
+        </Stack> */}
         <Text color="white" className="text-center leading-5">
           &copy; 2025 MCBIOS, All rights reserved.
         </Text>
