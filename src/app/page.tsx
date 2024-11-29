@@ -36,7 +36,7 @@ export default function Home() {
           backgroundPosition={"top center"}
         >
           <VStack
-            py="10"
+            py="16"
             h="full"
             justifyContent="center"
             bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
