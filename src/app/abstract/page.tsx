@@ -5,11 +5,14 @@ import {
   Button,
   Card,
   CardBody,
+  Divider,
   Flex,
   Heading,
+  ListItem,
   SimpleGrid,
   Stack,
   Text,
+  UnorderedList,
   VStack,
 } from "@chakra-ui/react";
 import localFont from "next/font/local";
@@ -100,7 +103,6 @@ export default function Page() {
           <Text>
             Poster size limitation: 30&quot;W x 20&quot;H (76cm x 51cm)
           </Text>
-          <Text>The deadline to submit an abstract is February 1st, 2025</Text>
         </VStack>
         <Box
           w={{ base: "85%", md: "md", lg: "md" }}
@@ -123,6 +125,9 @@ export default function Page() {
                 >
                   Abstract submissions are open!
                 </Heading>
+                <Text>
+                  The deadline to submit an abstract is February 1st, 2025.
+                </Text>
                 <Button
                   as="a"
                   colorScheme="blue"
@@ -136,6 +141,46 @@ export default function Page() {
               </Stack>
             </CardBody>
           </Card>
+        </Box>
+        {/* More info */}
+        <VStack
+          w={{ base: "90%", lg: "75%" }}
+          mx="auto"
+          align="stretch"
+          spacing={5}
+        >
+          <Divider borderColor="black" />
+          <Text>
+            The abstract should not exceed 300 words. Please minimize the use of
+            abbreviations and do not cite references in the abstract.
+          </Text>
+          <Text>
+            The abstract must include the following separate sections:
+          </Text>
+          <UnorderedList>
+            <ListItem>Background: Context and purpose of the study</ListItem>
+            <ListItem>Results: Main findings</ListItem>
+            <ListItem>
+              Conclusions: A brief summary and potential implications
+            </ListItem>
+          </UnorderedList>
+        </VStack>
+        <Box
+          w={{ base: "85%", md: "md", lg: "md" }}
+          mx="auto"
+          justifyContent="space-around"
+          gap={5}
+        >
+          <Heading size="lg" color="blue.800" mb={4}>
+            Submissions
+          </Heading>
+          <Text>
+            A registered author can submit multiple abstracts, as long as that
+            author is the presenting author. Authors will also have an
+            opportunity to submit and publish a full paper for MCBIOS 2025
+            proceedings in Frontiers in Artificial Intelligence. The deadline
+            for full paper submission is February 1st, 2025.
+          </Text>
         </Box>
       </SimpleGrid>
     </VStack>
