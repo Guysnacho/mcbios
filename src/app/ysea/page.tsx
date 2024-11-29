@@ -1,5 +1,3 @@
-"use client";
-
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -15,7 +13,14 @@ import {
   UnorderedList,
   VStack,
 } from "@chakra-ui/react";
+import { Metadata } from "next/types";
 import { ReactNode } from "react";
+
+export const metadata: Metadata = {
+  title: "2025 MCBIOS | YSEA",
+  description:
+    "The selection of the top four candidates is based on an evaluation by the MCBIOS board members, who assess the quality and impact of the research.",
+};
 
 export default function Page() {
   return (
