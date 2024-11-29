@@ -144,7 +144,6 @@ export default function KeynoteSpeakers() {
           professional
           name="Imran Haque, Ph.D."
           photo="/keynote/ImranHaque.jpg"
-          title="Senior Vice President AI & Digital Sciences"
           program={["Senior Vice President AI & Digital Sciences"]}
           affiliation="Recursion Pharmaceuticals"
           url="https://www.recursion.com/team-members/imran-haque"
