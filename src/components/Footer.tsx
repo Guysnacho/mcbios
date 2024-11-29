@@ -1,13 +1,10 @@
 "use client";
 
-import { PathMap } from "@/lib/constants";
-import { Box, Link, Stack, Text } from "@chakra-ui/react";
-import NextLink from "next/link";
-import { usePathname } from "next/navigation";
+import { Box, Text } from "@chakra-ui/react";
 
 export const Footer = () => {
-  const path = usePathname();
-  const routes = Object.entries(PathMap);
+  // const path = usePathname();
+  // const routes = Object.entries(PathMap);
 
   return (
     <Box
