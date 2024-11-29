@@ -31,12 +31,12 @@ export default function Home() {
           id="sunm"
           flexFlow="column"
           w={"full"}
-          h={"75vh"}
           backgroundImage={"/Winter Campus View 2018-4.jpg"}
           backgroundSize={"cover"}
           backgroundPosition={"top center"}
         >
           <VStack
+            py="10"
             h="full"
             justifyContent="center"
             bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
