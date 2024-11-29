@@ -1,12 +1,18 @@
 "use client";
 
 import { Box, Flex, Stack, Text, VStack } from "@chakra-ui/react";
-import { useState } from "react";
+import Head from "next/head";
 
 export default function Page() {
-  const [registrationOpen] = useState(false);
   return (
     <VStack className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
+      <Head>
+        <title>2025 MCBIOS | Abstract Submissions</title>
+        <meta
+          name="description"
+          content="A registered author can submit multiple abstracts, as long as that author is the presenting author. Authors will also have an opportunity to submit and publish a full paper for MCBIOS 2024 proceedings in Frontiers in Artificial Intelligence."
+        />
+      </Head>
       <Box
         w="full"
         className="flex flex-col row-start-2 items-center sm:items-start"
@@ -42,7 +48,7 @@ export default function Page() {
                 lineHeight={1.2}
                 fontSize={["3xl", null, null, "4xl"]}
               >
-                Conference Registration
+                Abstract Submissions
               </Text>
             </Stack>
           </VStack>
