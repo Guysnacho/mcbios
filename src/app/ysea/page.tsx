@@ -1,3 +1,5 @@
+"use client";
+
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -13,18 +15,20 @@ import {
   UnorderedList,
   VStack,
 } from "@chakra-ui/react";
-import { Metadata } from "next/types";
+import Head from "next/head";
 import { ReactNode } from "react";
 
-export const metadata: Metadata = {
-  title: "2025 MCBIOS | YSEA",
-  description:
-    "The selection of the top four candidates is based on an evaluation by the MCBIOS board members, who assess the quality and impact of the research.",
-};
 
 export default function Page() {
   return (
     <VStack className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
+      <Head>
+        <title>2025 MCBIOS | YSEA</title>
+        <meta
+          name="description"
+          content="The selection of the top four candidates is based on an evaluation by the MCBIOS board members, who assess the quality and impact of the research."
+        />
+      </Head>
       <Box
         w="full"
         className="flex flex-col row-start-2 items-center sm:items-start"
