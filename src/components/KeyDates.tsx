@@ -85,7 +85,6 @@ const Date = ({
             colorScheme="blue"
             mt="5"
             href="/abstract"
-            target="_blank"
             rounded={"full"}
             rightIcon={<ExternalLinkIcon />}
           >
