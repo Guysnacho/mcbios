@@ -150,7 +150,7 @@ export default function KeyDates() {
           text={
             "If you'd like to hold a session or conduct a workshop during the conference, the deadline is"
           }
-          deadline="December 20th, 2025"
+          deadline="December 20th, 2024"
           isProposal
         />
         <Date
