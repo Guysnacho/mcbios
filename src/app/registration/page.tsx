@@ -23,7 +23,7 @@ const geistMono = localFont({
 });
 
 export default function Page() {
-  const [registrationOpen] = useState(false);
+  const [registrationOpen] = useState(true);
   return (
     <VStack className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
       <Box
