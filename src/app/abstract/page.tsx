@@ -31,7 +31,7 @@ export default function Page() {
         <title>2025 MCBIOS | Abstract Submissions</title>
         <meta
           name="description"
-          content="A registered author can submit multiple abstracts, as long as that author is the presenting author. Authors will also have an opportunity to submit and publish a full paper for MCBIOS 2024 proceedings in Frontiers in Artificial Intelligence."
+          content="A registered author can submit multiple abstracts, as long as that author is the presenting author. Authors will also have an opportunity to submit and publish a full paper for MCBIOS 2025 proceedings in Frontiers in Artificial Intelligence."
         />
       </Head>
       <Box

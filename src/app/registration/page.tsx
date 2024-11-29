@@ -111,7 +111,7 @@ export default function Page() {
                     textAlign="center"
                     className={geistMono.className}
                   >
-                    MCBIOS 2024 Registration
+                    MCBIOS 2025 Registration
                   </Heading>
                   {!registrationOpen ? (
                     <Text textAlign="center">
@@ -120,7 +120,7 @@ export default function Page() {
                   ) : (
                     <>
                       <Text mx="auto" fontSize="lg">
-                        To register for the 2024 Conference, create your MCBIOS
+                        To register for the 2025 Conference, create your MCBIOS
                         account and select your registration type. Secure
                         payment processing powered by Stripe Checkout.
                       </Text>
