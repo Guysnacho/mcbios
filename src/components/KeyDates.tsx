@@ -83,14 +83,13 @@ const Date = ({
             as="a"
             mx="auto"
             colorScheme="blue"
-            variant="ghost"
             mt="5"
-            href="https://forms.gle/mkRcchVaWhN4DuRY8"
+            href="/abstract"
             target="_blank"
             rounded={"full"}
-            rightIcon={<EditIcon />}
+            rightIcon={<ExternalLinkIcon />}
           >
-            Abstract Submission Form
+            Abstract Submissions
           </Button>
         )}
         {isYSEA && (
@@ -98,7 +97,6 @@ const Date = ({
             as="a"
             mx="auto"
             colorScheme="blue"
-            variant="ghost"
             mt="5"
             href="/ysea"
             rounded={"full"}
