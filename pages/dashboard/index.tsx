@@ -18,14 +18,21 @@ import {
   Flex,
   Select,
   Tab,
+  Table,
+  TableCaption,
+  TableContainer,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
   useToast,
 } from "@chakra-ui/react";
 import Head from "next/head";
-import Script from "next/script";
 import { useState } from "react";
 import useSWR from "swr";
 
@@ -79,7 +86,7 @@ export default function Dashboard() {
             ) : undefined}
 
             <TabPanel>
-              {data?.user && data?.user.dues_paid_at ? (
+              {data?.user && data?.user.fees_paid_at ? (
                 <MemberContent videos={data?.videos} />
               ) : undefined}
             </TabPanel>
@@ -98,18 +105,65 @@ export default function Dashboard() {
               <Divider />
               <div className="container text-center space-y-4">
                 {!data?.user ||
-                  (!data?.user?.dues_paid_at && (
+                  (!data?.user?.fees_paid_at && (
                     <>
-                      <h4>Welcome to MCBIOS!</h4>
+                      <h4>Welcome to MCBIOS Registration!</h4>
+
+                      {/* Registration Tiers */}
+                      <TableContainer
+                        overflowX="scroll"
+                        w={["90%", "sm", "auto"]}
+                        mx="auto"
+                      >
+                        <Table variant="striped" colorScheme="green">
+                          <TableCaption>Registration Pricing</TableCaption>
+                          <Thead>
+                            <Tr>
+                              <Th>Membership Level</Th>
+                              <Th>
+                                Early Bird
+                                <br />
+                                (Until Feb. 1st, 2025)
+                              </Th>
+                              <Th>Standard</Th>
+                              <Th>Membership Only</Th>
+                            </Tr>
+                          </Thead>
+                          <Tbody>
+                            <Tr>
+                              <Td>Student</Td>
+                              <Td>$200</Td>
+                              <Td>$250</Td>
+                              <Td>$10</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>Postdoctorial</Td>
+                              <Td>$300</Td>
+                              <Td>$350</Td>
+                              <Td>$20</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>Professional</Td>
+                              <Td>$400</Td>
+                              <Td>$450</Td>
+                              <Td>$50</Td>
+                            </Tr>
+                          </Tbody>
+                        </Table>
+                      </TableContainer>
+
                       <p>
-                        If you haven&apos;t already, please pay your dues to
-                        finish MCBIOS onboarding and to gain you access to past
+                        If you haven&apos;t already, please pay your
+                        registration fees to finish MCBIOS onboarding.
+                        Registration fees include access to all scientific
+                        sessions, meals, receptions, banquet, and 1 year of
+                        MCBIOS membership. Membership gives you access to past
                         conference recordings, upcomming elections, and more!
                       </p>
                       <div className="container">
                         <p>
                           <span className="underline">
-                            If you have paid your dues
+                            If you have paid the required fees
                           </span>
                           , notify us here so we can confirm and grant access to
                           everything MCBIOS!
@@ -154,7 +208,7 @@ export default function Dashboard() {
                               });
                           }}
                         >
-                          My dues are paid
+                          My fees are paid
                         </Button>
                       </div>
                       <Flex mx="auto" w={[null, "sm", "lg"]}>
