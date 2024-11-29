@@ -2,6 +2,7 @@
 
 import {
   Box,
+  Button,
   Card,
   CardBody,
   Flex,
@@ -9,7 +10,7 @@ import {
   SimpleGrid,
   Stack,
   Text,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
 import localFont from "next/font/local";
 import Head from "next/head";
@@ -73,7 +74,6 @@ export default function Page() {
         {/* Abstract Submissions */}
       </Box>
       <SimpleGrid
-        w="full"
         mx="auto"
         justifyContent="space-evenly"
         py="20"
@@ -88,7 +88,7 @@ export default function Page() {
           spacing={5}
         >
           <Heading size="lg" color="blue.800">
-            Abstract Submission Instructions
+            Submission Instructions
           </Heading>
           <Text>
             There are a limited number of spots for oral presentations. If not
@@ -103,7 +103,7 @@ export default function Page() {
           <Text>The deadline to submit an abstract is February 1st, 2025</Text>
         </VStack>
         <Box
-          w={{ base: "90%", lg: "50%" }}
+          w={{ base: "85%", md: "md", lg: "md" }}
           mx="auto"
           justifyContent="space-around"
         >
@@ -121,8 +121,18 @@ export default function Page() {
                   textAlign="center"
                   className={geistMono.className}
                 >
-                  MCBIOS 2024 Registration
+                  Abstract submissions are open!
                 </Heading>
+                <Button
+                  as="a"
+                  colorScheme="blue"
+                  mt="5"
+                  href="https://forms.gle/mkRcchVaWhN4DuRY8"
+                  target="_blank"
+                  rounded={"full"}
+                >
+                  Abstract Submission Form
+                </Button>
               </Stack>
             </CardBody>
           </Card>
