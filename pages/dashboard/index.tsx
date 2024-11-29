@@ -111,8 +111,8 @@ export default function Dashboard() {
 
                       {/* Registration Tiers */}
                       <TableContainer
-                        overflowX="scroll"
-                        w={["90%", "sm", "auto"]}
+                        overflowX="auto"
+                        w={["90%", "sm", "lg", "2xl"]}
                         mx="auto"
                       >
                         <Table variant="striped" colorScheme="green">
@@ -126,7 +126,7 @@ export default function Dashboard() {
                                 (Until Feb. 1st, 2025)
                               </Th>
                               <Th>Standard</Th>
-                              <Th>Membership Only</Th>
+                              {/* <Th>Membership Only</Th> */}
                             </Tr>
                           </Thead>
                           <Tbody>
@@ -134,19 +134,19 @@ export default function Dashboard() {
                               <Td>Student</Td>
                               <Td>$200</Td>
                               <Td>$250</Td>
-                              <Td>$10</Td>
+                              {/* <Td>$10</Td> */}
                             </Tr>
                             <Tr>
                               <Td>Postdoctorial</Td>
                               <Td>$300</Td>
                               <Td>$350</Td>
-                              <Td>$20</Td>
+                              {/* <Td>$20</Td> */}
                             </Tr>
                             <Tr>
                               <Td>Professional</Td>
                               <Td>$400</Td>
                               <Td>$450</Td>
-                              <Td>$50</Td>
+                              {/* <Td>$50</Td> */}
                             </Tr>
                           </Tbody>
                         </Table>
@@ -239,7 +239,7 @@ export default function Dashboard() {
                             <option value="professional">
                               Conference and Membership | Professional | $400
                             </option>
-                            <option value="member_only_student">
+                            {/* <option value="member_only_student">
                               Membership | Student | $10
                             </option>
                             <option value="member_only_postdoctorial">
@@ -247,7 +247,7 @@ export default function Dashboard() {
                             </option>
                             <option value="member_only_professional">
                               Membership | Professional | $50
-                            </option>
+                            </option> */}
                           </Select>
                         )}
                       </Flex>

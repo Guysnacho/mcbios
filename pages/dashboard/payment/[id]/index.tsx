@@ -32,7 +32,7 @@ export default function PaymentConfirmation() {
         setCustomerEmail(data.customer_email);
       })
       .finally(() => setLoading(false));
-  }, 200);
+  }, 500);
 
   // if (status === "open") {
   //   return redirect("/dashboard");
