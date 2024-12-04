@@ -15,20 +15,11 @@ import {
   UnorderedList,
   VStack,
 } from "@chakra-ui/react";
-import Head from "next/head";
 import { ReactNode } from "react";
-
 
 export default function Page() {
   return (
     <VStack className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
-      <Head>
-        <title>2025 MCBIOS | YSEA</title>
-        <meta
-          name="description"
-          content="The selection of the top four candidates is based on an evaluation by the MCBIOS board members, who assess the quality and impact of the research."
-        />
-      </Head>
       <Box
         w="full"
         className="flex flex-col row-start-2 items-center sm:items-start"

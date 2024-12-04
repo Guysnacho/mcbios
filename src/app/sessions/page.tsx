@@ -16,6 +16,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import localFont from "next/font/local";
+import { ReactNode } from "react";
 
 const geistMono = localFont({
   src: "../fonts/GeistMonoVF.woff",
@@ -61,12 +62,12 @@ export default function Page() {
                 lineHeight={1.2}
                 fontSize={["3xl", null, null, "4xl"]}
               >
-                Abstract Submissions
+                Session Proposals
               </Text>
             </Stack>
           </VStack>
         </Flex>
-        {/* Abstract Submissions */}
+        {/* Session Proposals */}
       </Box>
       <SimpleGrid
         mx="auto"
@@ -74,11 +75,11 @@ export default function Page() {
         py="20"
         bgGradient="linear(to-br, whiteAlpha.200, whiteAlpha.400, orange.100, blue.300)"
         columns={{ base: 1, lg: 2 }}
-        spacing={10}
+        spacing={5}
       >
         <VStack
           w={{ base: "90%", lg: "75%" }}
-          mx="auto"
+          m="auto"
           align="stretch"
           spacing={5}
         >
@@ -86,15 +87,12 @@ export default function Page() {
             Submission Instructions
           </Heading>
           <Text>
-            There are a limited number of spots for oral presentations. If not
-            selected for oral presentation, you will automatically be considered
-            for poster presentation. Oral presentations will generally be 15 min
-            long and the speaker would participate in a panel question and
-            answer session.
+            We offer the chance to present a Scientific Session of your
+            choosing. Typically a session will have 90 minutes. You can propose
+            the topic, and invite 3-5 speakers per session. If selected, please
+            invite your speakers to attend the conference and present in person.
           </Text>
-          <Text>
-            Poster size limitation: 30&quot;W x 20&quot;H (76cm x 51cm)
-          </Text>
+          <Divider borderColor="black" />
         </VStack>
         <Box
           w={{ base: "85%", md: "md", lg: "md" }}
@@ -115,20 +113,20 @@ export default function Page() {
                   textAlign="center"
                   className={geistMono.className}
                 >
-                  Abstract submissions are open!
+                  Session proposals are open!
                 </Heading>
                 <Text>
-                  The deadline to submit an abstract is February 1st, 2025.
+                  The deadline to submit an abstract is December 20th, 2024.
                 </Text>
                 <Button
                   as="a"
                   colorScheme="blue"
                   mt="5"
-                  href="https://forms.gle/mkRcchVaWhN4DuRY8"
+                  href="https://forms.gle/Ao8hxxD3KfBjrnEt7"
                   target="_blank"
                   rounded={"full"}
                 >
-                  Submission Form
+                  Proposal Form
                 </Button>
               </Stack>
             </CardBody>
@@ -141,19 +139,29 @@ export default function Page() {
           align="stretch"
           spacing={5}
         >
-          <Divider borderColor="black" />
-          <Text>
-            The abstract should not exceed 300 words. Please minimize the use of
-            abbreviations and do not cite references in the abstract.
-          </Text>
-          <Text>
-            The abstract must include the following separate sections:
-          </Text>
+          <Heading size={["md", null, "lg"]} color="blue.800">
+            Session Types
+          </Heading>
           <UnorderedList>
-            <ListItem>Background: Context and purpose of the study</ListItem>
-            <ListItem>Results: Main findings</ListItem>
             <ListItem>
-              Conclusions: A brief summary and potential implications
+              <TextHighlight>Technical session</TextHighlight>: Presentations
+              showcasing cutting-edge research and advancements in computational
+              biology and bioinformatics.
+            </ListItem>
+            <ListItem>
+              <TextHighlight>Tutorial</TextHighlight>: In-depth, hands-on
+              learning experiences designed to teach specific tools, techniques,
+              or methodologies.
+            </ListItem>
+            <ListItem>
+              <TextHighlight>Workshop</TextHighlight>: Interactive sessions
+              focused on collaborative problem-solving and skill development in
+              emerging topics.
+            </ListItem>
+            <ListItem>
+              <TextHighlight>Panel discussion</TextHighlight>: Engaging
+              conversations where experts share insights, debate trends, and
+              answer audience questions on key issues in the field.
             </ListItem>
           </UnorderedList>
         </VStack>
@@ -163,18 +171,22 @@ export default function Page() {
           justifyContent="space-around"
           gap={5}
         >
-          <Heading size="lg" color="blue.800" mb={4}>
-            Submissions
+          <Heading size={["md", null, "lg"]} color="blue.800" mb={4}>
+            Additional Perks
           </Heading>
           <Text>
-            A registered author can submit multiple abstracts, as long as that
-            author is the presenting author. Authors will also have an
-            opportunity to submit and publish a full paper for MCBIOS 2025
-            proceedings in Frontiers in Artificial Intelligence. The deadline
-            for full paper submission is February 1st, 2025.
+            Authors will also have the opportunity to submit and publish a full
+            paper for MCBIOS 2025 proceedings in Frontiers in Artificial
+            Intelligence.
           </Text>
         </Box>
       </SimpleGrid>
     </VStack>
   );
 }
+
+const TextHighlight = ({ children }: { children: ReactNode }) => (
+  <Text as={"span"} fontWeight={700}>
+    {children}
+  </Text>
+);
