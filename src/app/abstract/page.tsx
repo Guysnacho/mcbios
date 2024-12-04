@@ -128,7 +128,7 @@ export default function Page() {
                   target="_blank"
                   rounded={"full"}
                 >
-                  Abstract Submission Form
+                  Submission Form
                 </Button>
               </Stack>
             </CardBody>
