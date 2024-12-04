@@ -1,6 +1,6 @@
 "use client";
 
-import { EditIcon, ExternalLinkIcon } from "@chakra-ui/icons";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
