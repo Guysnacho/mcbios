@@ -68,12 +68,10 @@ const Date = ({
             as="a"
             mx="auto"
             colorScheme="blue"
-            variant="ghost"
             mt="5"
-            href="https://forms.gle/Ao8hxxD3KfBjrnEt7"
-            target="_blank"
+            href="/sessions"
             rounded={"full"}
-            rightIcon={<EditIcon />}
+            rightIcon={<ExternalLinkIcon />}
           >
             Session Proposal Form
           </Button>
@@ -122,7 +120,7 @@ export default function KeyDates() {
           mx: "auto",
           width: [null, "sm", null, "lg"],
           direction: "row",
-          justifyContent: "center",
+          justifyContent: "space-evenly",
           alignItems: "center",
           borderColor: "gold",
           borderRadius: "xl",
@@ -149,6 +147,7 @@ export default function KeyDates() {
           }
           deadline="December 20th, 2024"
           isProposal
+          stack={{ justifyContent: "space-evenly" }}
         />
         <Date
           icon={<Icon as={PiBlueprint} w={[5, null, 10]} h={[5, null, 10]} />}
@@ -158,6 +157,7 @@ export default function KeyDates() {
           }
           deadline="February 1st, 2025"
           isAbstract
+          stack={{ justifyContent: "space-evenly" }}
         />
         <Date
           icon={<Icon as={PiStudent} w={[5, null, 10]} h={[5, null, 10]} />}
@@ -167,6 +167,7 @@ export default function KeyDates() {
           }
           deadline="January 15th, 2025"
           isYSEA
+          stack={{ justifyContent: "space-evenly" }}
         />
       </SimpleGrid>
     </Box>
