@@ -73,12 +73,14 @@ export default function Page() {
         </HStack>
 
         {/* Accommodations */}
-        <Stack direction={["column", null, "row"]}>
+        <Stack direction={["column", null, "row"]} mx="auto">
           <ImageCard
-            src="https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
-            title="Title"
-            blurb="bluuurrrb bluuurrrb bluuurrrb bluuurrrb bluuurrrb bluuurrrb"
-            url="asdfasdf"
+            w={["85%", "70%", "lg"]}
+            mx="auto"
+            src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/16/16/30/caption.jpg?w=1400&h=-1&s=1"
+            url="https://www.universityguesthouse.com/"
+            title="The University of Utah Guest House"
+            blurb="An on-campus hotel & conference center.||128 guest rooms and suites feature spectacular views of the Salt Lake Valley, Chapel Glen and the surrounding campus. Its proximity to both a TRAX train station and a campus shuttle stop allows you to explore both campus and Salt Lake City easily. Add affordable, comfortable rooms with fantastic amenities and you'll understand why visitors love the Guest House.||Complimentary hot & cold continental breakfast & parking||Walking distance to campus, sports venues and some hospitals & clinics||Adjacent to TRAX light rail stop"
           />
         </Stack>
       </Box>

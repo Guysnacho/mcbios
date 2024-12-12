@@ -9,6 +9,7 @@ import {
   Stack,
   Text,
   useColorModeValue,
+  VStack,
 } from "@chakra-ui/react";
 import { PiHouse } from "react-icons/pi";
 
@@ -25,7 +26,6 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
       <Box
         role={"group"}
         p={6}
-        maxW={"330px"}
         w={"full"}
         bg={useColorModeValue("white", "gray.800")}
         boxShadow={"2xl"}
@@ -58,6 +58,7 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
         >
           <Image
             rounded={"lg"}
+            mx="auto"
             height={[200, 230]}
             width={[242, 282]}
             objectFit={"cover"}
@@ -66,13 +67,26 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
           />
         </Box>
         <Stack pt={10} align={"center"}>
-          <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
+          <Heading
+            textAlign="center"
+            fontSize={"2xl"}
+            fontFamily={"body"}
+            fontWeight={500}
+          >
             {props.title}
           </Heading>
           {props.blurb && (
-            <Box>
-              <Text>{props.blurb}</Text>
-            </Box>
+            <VStack
+              my={4}
+              w="80%"
+              mx="auto"
+              display={["none", null, "unset"]}
+              className="space-y-3"
+            >
+              {props.blurb.split("||").map((blurb, idx) => (
+                <Text key={idx}>{blurb}</Text>
+              ))}
+            </VStack>
           )}
           {props.url && (
             <ButtonGroup spacing="2" mx="auto">
