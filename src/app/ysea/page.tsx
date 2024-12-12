@@ -99,7 +99,7 @@ export default function Page() {
                       color={"white"}
                       rounded={"full"}
                       alignItems="center"
-                      rightIcon={<ExternalLinkIcon />}
+                      leftIcon={<ExternalLinkIcon />}
                       bg={"blue.600"}
                     >
                       YSEA Application

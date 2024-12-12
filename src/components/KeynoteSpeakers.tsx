@@ -98,7 +98,7 @@ const Speaker = ({
               color={"white"}
               rounded={"full"}
               alignItems="center"
-              rightIcon={<PiLink />}
+              leftIcon={<PiLink />}
               bg={"blue.600"}
             >
               Link

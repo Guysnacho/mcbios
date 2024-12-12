@@ -1,5 +1,7 @@
 import {
   Box,
+  Button,
+  ButtonGroup,
   Center,
   CenterProps,
   Heading,
@@ -8,11 +10,13 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { PiHouse } from "react-icons/pi";
 
 type ImageCardProps = {
   src: string;
   title: string;
   blurb?: string;
+  url?: string;
 };
 
 export default function ImageCard(props: ImageCardProps & CenterProps) {
@@ -69,6 +73,22 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
             <Box>
               <Text>{props.blurb}</Text>
             </Box>
+          )}
+          {props.url && (
+            <ButtonGroup spacing="2" mx="auto">
+              <Button
+                as="a"
+                href={props.url}
+                target="_blank"
+                color={"white"}
+                rounded={"full"}
+                alignItems="center"
+                leftIcon={<PiHouse />}
+                bg={"blue.600"}
+              >
+                Book Today
+              </Button>
+            </ButtonGroup>
           )}
         </Stack>
       </Box>
