@@ -1,5 +1,6 @@
 "use client";
 
+import ImageCard from "@/components/ImageCard";
 import {
   Box,
   Flex,
@@ -10,7 +11,7 @@ import {
   StatNumber,
   Text,
   useColorModeValue,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
 
 export default function Page() {
@@ -70,9 +71,16 @@ export default function Page() {
             or not."
           />
         </HStack>
+
         {/* Accommodations */}
+        <Stack direction={["column", null, "row"]}>
+          <ImageCard
+            src="https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+            title="Title"
+            blurb="bluuurrrb bluuurrrb bluuurrrb bluuurrrb bluuurrrb bluuurrrb"
+          />
+        </Stack>
       </Box>
-      <VStack></VStack>
     </VStack>
   );
 }
