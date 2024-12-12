@@ -73,14 +73,22 @@ export default function Page() {
         </HStack>
 
         {/* Accommodations */}
-        <Stack direction={["column", null, "row"]} mx="auto">
+        <Stack direction={["column", null, "row"]} gap={5} mx="auto">
           <ImageCard
-            w={["85%", "70%", "lg"]}
+            w={["85%", "75%", "45%", "lg"]}
             mx="auto"
             src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/16/16/30/caption.jpg?w=1400&h=-1&s=1"
             url="https://www.universityguesthouse.com/"
             title="The University of Utah Guest House"
             blurb="An on-campus hotel & conference center.||128 guest rooms and suites feature spectacular views of the Salt Lake Valley, Chapel Glen and the surrounding campus. Its proximity to both a TRAX train station and a campus shuttle stop allows you to explore both campus and Salt Lake City easily. Add affordable, comfortable rooms with fantastic amenities and you'll understand why visitors love the Guest House.||Complimentary hot & cold continental breakfast & parking||Walking distance to campus, sports venues and some hospitals & clinics||Adjacent to TRAX light rail stop"
+          />
+          <ImageCard
+            w={["85%", "75%", "45%", "lg"]}
+            mx="auto"
+            src="https://images.squarespace-cdn.com/content/v1/5da6119c160b7b30077ebf80/1d81eb3e-86f4-480a-9d71-f062f6da7f81/022051010016.jpg?format=600w"
+            url="https://ellerbeckbedandbreakfast.com/"
+            title="Ellerbeck Bed & Breakfast"
+            blurb="Ellerbeck Bed & Breakfast is a six room hotel in the beautiful historic mansion of Thomas & Henrietta Ellerbeck, built in 1892.||Just a five minute walk to downtown Salt Lake, and a short drive to world famous mountains and resorts, Ellerbeck Bed & Breakfast has a location that can't be beat. Ellerbeck has six suites for guests to choose from. Each room is decorated in turn-of-the-century style with attention to details from the Utah and Mormon history this house is famous for."
           />
         </Stack>
       </Box>
@@ -126,24 +134,3 @@ export function FocusCard(props: FocusCardProps) {
     </Stat>
   );
 }
-
-// function BasicFocus() {
-//   return (
-//     <Box maxW="7xl" mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
-//       <Heading
-//         as="h1"
-//         textAlign={"center"}
-//         fontSize={"4xl"}
-//         py={10}
-//         fontWeight={"bold"}
-//       >
-//         What is our company doing?
-//       </Heading>
-//       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
-//         <FocusCard title="We serve" blurb="50,000 people" />
-//         <FocusCard title="In" blurb="30 different countries" />
-//         <FocusCard title="Who speak" blurb="100 different languages" />
-//       </SimpleGrid>
-//     </Box>
-//   );
-// }

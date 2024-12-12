@@ -27,6 +27,7 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
         role={"group"}
         p={6}
         w={"full"}
+        h={"full"}
         bg={useColorModeValue("white", "gray.800")}
         boxShadow={"2xl"}
         rounded={"lg"}
