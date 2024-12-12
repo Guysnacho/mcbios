@@ -109,12 +109,11 @@ export default function Page() {
   );
 }
 
-interface FocusCardProps {
+type FocusCardProps = {
   title?: string;
   blurb: string;
-}
-export function FocusCard(props: FocusCardProps) {
-  const { title, blurb } = props;
+};
+function FocusCard({ title, blurb }: FocusCardProps) {
   return (
     <Stat
       px={{ base: 4, md: 8 }}
