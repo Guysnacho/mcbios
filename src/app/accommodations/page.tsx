@@ -2,8 +2,10 @@
 
 import {
   Box,
-  chakra,
+  Divider,
   Flex,
+  Heading,
+  HStack,
   SimpleGrid,
   Stack,
   Stat,
@@ -13,17 +15,13 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
-import localFont from "next/font/local";
-
-localFont({
-  src: "../fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export default function Page() {
   return (
-    <VStack className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
+    <VStack
+      minH="2xl"
+      className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]"
+    >
       <Box
         w="full"
         className="flex flex-col row-start-2 items-center sm:items-start"
@@ -64,6 +62,17 @@ export default function Page() {
             </Stack>
           </VStack>
         </Flex>
+        {/* block quote */}
+        <HStack>
+          <Divider size="xl" />
+          <Text>
+            A few recommendations on nearby hotels are provided for you to use
+            for the duration of the conference. Being near the venue may ease
+            time and traffic concerns so we urge you to consider distance when
+            ultimately selecting your accommodations, whether they are the below
+            or not.
+          </Text>
+        </HStack>
         {/* Accommodations */}
       </Box>
       <VStack></VStack>
@@ -99,14 +108,15 @@ function StatsCard(props: StatsCardProps) {
 export function BasicStatistics() {
   return (
     <Box maxW="7xl" mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
-      <chakra.h1
+      <Heading
+        as="h1"
         textAlign={"center"}
         fontSize={"4xl"}
         py={10}
         fontWeight={"bold"}
       >
         What is our company doing?
-      </chakra.h1>
+      </Heading>
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
         <StatsCard title={"We serve"} stat={"50,000 people"} />
         <StatsCard title={"In"} stat={"30 different countries"} />
