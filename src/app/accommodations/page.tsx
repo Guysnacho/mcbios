@@ -2,18 +2,15 @@
 
 import {
   Box,
-  Divider,
   Flex,
-  Heading,
   HStack,
-  SimpleGrid,
   Stack,
   Stat,
   StatLabel,
   StatNumber,
   Text,
   useColorModeValue,
-  VStack,
+  VStack
 } from "@chakra-ui/react";
 
 export default function Page() {
@@ -63,15 +60,15 @@ export default function Page() {
           </VStack>
         </Flex>
         {/* block quote */}
-        <HStack>
-          <Divider size="xl" />
-          <Text>
-            A few recommendations on nearby hotels are provided for you to use
-            for the duration of the conference. Being near the venue may ease
+        <HStack my={5} mx="auto" w={["80%", null, "50%", "40%"]}>
+          <FocusCard
+            title="Quick Notes"
+            blurb="A few recommendations on nearby hotels are provided for you to use
+            for the duration of the conference.||Being near the venue may ease
             time and traffic concerns so we urge you to consider distance when
             ultimately selecting your accommodations, whether they are the below
-            or not.
-          </Text>
+            or not."
+          />
         </HStack>
         {/* Accommodations */}
       </Box>
@@ -80,12 +77,12 @@ export default function Page() {
   );
 }
 
-interface StatsCardProps {
-  title: string;
-  stat: string;
+interface FocusCardProps {
+  title?: string;
+  blurb: string;
 }
-function StatsCard(props: StatsCardProps) {
-  const { title, stat } = props;
+export function FocusCard(props: FocusCardProps) {
+  const { title, blurb } = props;
   return (
     <Stat
       px={{ base: 4, md: 8 }}
@@ -95,33 +92,47 @@ function StatsCard(props: StatsCardProps) {
       borderColor={useColorModeValue("gray.800", "gray.500")}
       rounded={"lg"}
     >
-      <StatLabel fontWeight={"medium"} isTruncated>
-        {title}
-      </StatLabel>
-      <StatNumber fontSize={"2xl"} fontWeight={"medium"}>
-        {stat}
-      </StatNumber>
+      <VStack gap={3}>
+        {title && (
+          <StatLabel
+            fontSize={["md", "lg", "xl"]}
+            fontWeight={"medium"}
+            isTruncated
+          >
+            {title}
+          </StatLabel>
+        )}
+        {blurb.split("||").map((text) => (
+          <StatNumber
+            key={text}
+            fontSize={["sm", "md", "lg"]}
+            fontWeight={"medium"}
+          >
+            {text}
+          </StatNumber>
+        ))}
+      </VStack>
     </Stat>
   );
 }
 
-export function BasicStatistics() {
-  return (
-    <Box maxW="7xl" mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
-      <Heading
-        as="h1"
-        textAlign={"center"}
-        fontSize={"4xl"}
-        py={10}
-        fontWeight={"bold"}
-      >
-        What is our company doing?
-      </Heading>
-      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
-        <StatsCard title={"We serve"} stat={"50,000 people"} />
-        <StatsCard title={"In"} stat={"30 different countries"} />
-        <StatsCard title={"Who speak"} stat={"100 different languages"} />
-      </SimpleGrid>
-    </Box>
-  );
-}
+// function BasicFocus() {
+//   return (
+//     <Box maxW="7xl" mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
+//       <Heading
+//         as="h1"
+//         textAlign={"center"}
+//         fontSize={"4xl"}
+//         py={10}
+//         fontWeight={"bold"}
+//       >
+//         What is our company doing?
+//       </Heading>
+//       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
+//         <FocusCard title="We serve" blurb="50,000 people" />
+//         <FocusCard title="In" blurb="30 different countries" />
+//         <FocusCard title="Who speak" blurb="100 different languages" />
+//       </SimpleGrid>
+//     </Box>
+//   );
+// }
