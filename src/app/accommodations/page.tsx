@@ -73,7 +73,12 @@ export default function Page() {
         </HStack>
 
         {/* Accommodations */}
-        <Stack direction={["column", null, "row"]} gap={5} mx="auto">
+        <Stack
+          direction={["column", null, "row"]}
+          wrap="wrap"
+          gap={5}
+          mx="auto"
+        >
           <ImageCard
             w={["85%", "75%", "45%", "lg"]}
             mx="auto"
@@ -89,6 +94,14 @@ export default function Page() {
             url="https://ellerbeckbedandbreakfast.com/"
             title="Ellerbeck Bed & Breakfast"
             blurb="Ellerbeck Bed & Breakfast is a six room hotel in the beautiful historic mansion of Thomas & Henrietta Ellerbeck, built in 1892.||Just a five minute walk to downtown Salt Lake, and a short drive to world famous mountains and resorts, Ellerbeck Bed & Breakfast has a location that can't be beat. Ellerbeck has six suites for guests to choose from. Each room is decorated in turn-of-the-century style with attention to details from the Utah and Mormon history this house is famous for."
+          />
+          <ImageCard
+            w={["85%", "75%", "45%", "lg"]}
+            mx="auto"
+            src="https://cache.marriott.com/content/dam/marriott-renditions/SLCUP/slcup-exterior-0050-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1215px:*"
+            url="https://www.marriott.com/en-us/hotels/slcup-salt-lake-city-marriott-university-park/overview/"
+            title="Salt Lake City Marriott University Park"
+            blurb="Salt Lake City Marriott University Park is next to the University of Utah with stunning mountain and city views. Minutes from downtown Salt Lake City, our hotel features an updated look and an exclusive M Club. With modern amenities and an excellent location adjacent to Rice-Eccles Stadium, our hotel provides smart, stylish lodging for business and leisure travelers visiting the Salt Lake City area."
           />
         </Stack>
       </Box>
