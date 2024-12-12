@@ -3,7 +3,7 @@
 import { PathMap } from "@/lib/constants";
 import {
   ChevronDownIcon,
-  ChevronRightIcon,
+  ChevronLeftIcon,
   CloseIcon,
   HamburgerIcon,
 } from "@chakra-ui/icons";
@@ -286,7 +286,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           align={"center"}
           flex={1}
         >
-          <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
+          <Icon color={"pink.400"} w={5} h={5} as={ChevronLeftIcon} />
         </Flex>
       </Stack>
     </Box>

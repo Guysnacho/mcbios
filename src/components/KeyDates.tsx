@@ -71,7 +71,7 @@ const Date = ({
             mt="5"
             href="/sessions"
             rounded={"full"}
-            rightIcon={<ExternalLinkIcon />}
+            leftIcon={<ExternalLinkIcon />}
           >
             Session Proposal Form
           </Button>
@@ -84,7 +84,7 @@ const Date = ({
             mt="5"
             href="/abstract"
             rounded={"full"}
-            rightIcon={<ExternalLinkIcon />}
+            leftIcon={<ExternalLinkIcon />}
           >
             Abstract Submissions
           </Button>
@@ -97,7 +97,7 @@ const Date = ({
             mt="5"
             href="/ysea"
             rounded={"full"}
-            rightIcon={<ExternalLinkIcon />}
+            leftIcon={<ExternalLinkIcon />}
           >
             Learn More
           </Button>
