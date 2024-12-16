@@ -1,164 +1,77 @@
 "use client";
 
-import KeyDates from "@/components/KeyDates";
-import KeynoteSpeakers from "@/components/KeynoteSpeakers";
-import { Link } from "@chakra-ui/next-js";
+import { FocusCard } from "@/components/FocusCard";
 import {
   Box,
-  Button,
-  Divider,
   Flex,
   Heading,
+  HStack,
   Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import localFont from "next/font/local";
 
-const geistMono = localFont({
-  src: "../fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
-export default function About() {
+export default function Page() {
   return (
-    <div className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        {/* <Logo /> */}
+    <VStack
+      minH="2xl"
+      className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]"
+    >
+      <Box
+        w="full"
+        className="flex flex-col row-start-2 items-center sm:items-start"
+      >
         {/* Hero Section */}
         <Flex
-          id="sunm"
-          flexFlow="column"
           w={"full"}
+          h={"40vh"}
           backgroundImage={"/Winter Campus View 2018-4.jpg"}
           backgroundSize={"cover"}
           backgroundPosition={"top center"}
         >
           <VStack
-            py="16"
-            h="full"
-            justifyContent="center"
+            w={"full"}
+            justify={"center"}
+            px={[4, null, null, 8]}
             bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
           >
             <Stack
-              maxW={["90%", "80%", "md", "xl"]}
+              maxW={"3xl"}
+              align={"flex-start"}
               spacing={4}
               textAlign="center"
               borderRadius={10}
+              px={[15, null, 20]}
               py={6}
               bgColor={"blackAlpha.500"}
-              justifySelf="center"
-              mx="auto"
             >
               <Text
-                mx="auto"
                 color={"white"}
                 fontWeight={700}
                 lineHeight={1.2}
-                textUnderlineOffset={4}
-                textDecorationLine="underline"
                 fontSize={["3xl", null, null, "4xl"]}
               >
-                MCBIOS 2025
+                Organizing Committee
               </Text>
-              <Text
-                color={"white"}
-                fontWeight={700}
-                lineHeight={1.2}
-                fontSize={["2xl", "3xl", null, "4xl"]}
-              >
-                Data-Driven Discovery: Harnessing the power of AI to transform
-                health
-              </Text>
-              <Text
-                mx="auto"
-                w="90%"
-                color={"white"}
-                fontWeight={400}
-                fontSize="lg"
-              >
-                The 21st Annual Meeting of the MidSouth Computational Biology
-                and Bioinformatics Society
-              </Text>
-              <Divider />
-              <Text
-                mx="auto"
-                color={"white"}
-                fontWeight={700}
-                fontSize="lg"
-                className={geistMono.className}
-              >
-                University of Utah
-              </Text>
-              <Text
-                mx="auto"
-                color={"white"}
-                fontWeight={700}
-                fontSize="lg"
-                className={geistMono.className}
-              >
-                March 27-29, 2025
-              </Text>
-              <Stack direction={["column", "row"]} mx="auto">
-                <Button
-                  as={Link}
-                  href="/registration"
-                  bg={"blue.400"}
-                  rounded={"full"}
-                  color={"white"}
-                  _hover={{ bg: "blue.500" }}
-                >
-                  Registration
-                </Button>
-                <Button
-                  bg={"whiteAlpha.300"}
-                  rounded={"full"}
-                  color={"white"}
-                  _hover={{ bg: "whiteAlpha.500" }}
-                >
-                  Program Coming Soon
-                </Button>
-              </Stack>
             </Stack>
           </VStack>
         </Flex>
-
-        {/* Accomodation blurb */}
-        <Stack
-          gap={3}
-          className="container mx-auto w-4/5 md:w-3/5 self-center place-content-center my-10 shadow-lg shadow-indigo-500/40 rounded-xl py-6"
-        >
-          <Heading size="lg" color="blue.700" textAlign="center">
-            Conference Day Logistics
+        {/* <Logo /> */}
+        <VStack w={["90%", "75%", "80%"]} mx="auto">
+          <Heading textAlign="center" mx="auto" size={["md", null, "lg"]}>
+            MidSouth Computational Biology and Bioinformatics Society (MCBIOS)
           </Heading>
-          <p className="text-center mx-auto w-4/5 md:w-3/5">
-            The conference will take place at the{" "}
-            <a
-              href="https://ecclesalumnihouse.utah.edu/"
-              target="_blank"
-              className="underline text-secondary-300"
-            >
-              Cleone Peterson Eccles Alumni House
-            </a>
-            . Directions, maps, and parking information can be found{" "}
-            <a
-              href="https://ecclesalumnihouse.utah.edu/directions-parking/"
-              target="_blank"
-              className="underline text-secondary-300"
-            >
-              here
-            </a>
-            . Parking is free on Saturday. We encourage you to take ride share
-            to the conference
-            {/* <a href="/accommodations" className="underline text-secondary-300">
-              {" "}accommodations page
-            </a> */}
-            !
-          </p>
-        </Stack>
-        {/* Invited Speakers */}
-      </main>
-    </div>
+        </VStack>
+        {/* block quote */}
+        <HStack my={5} mx="auto" w={["80%", null, "50%", "40%"]}>
+          <FocusCard
+            title="Quick Notes"
+            blurb="MCBIOS is a non-profit organization found in 2003, started as a grassroots effort spearheaded by a small group of researchers at FDA NCTR (located in Little Rock, Arkansas). It has since been expanded significantly. It is now one of only two regional societies in North America (with GLBIO) affiliated with ISCB, the biggest international bioinformatics society.||||The mission of MCBIOS is to foster networking and collaboration and to promote the professional development of members and supporting our student members. The annual conference is the flagship event for MCBIOS, which attract talented scientists from across the nation who gather together for the sharing of scientific information to advance our understanding in nature and health. The annual conferences have enjoyed a long history."
+          />
+        </HStack>
+
+        {/* Organizing Committee */}
+      </Box>
+    </VStack>
   );
 }
