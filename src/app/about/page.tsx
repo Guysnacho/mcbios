@@ -57,11 +57,15 @@ export default function Page() {
           </VStack>
         </Flex>
         {/* <Logo /> */}
-        <VStack w={["80%", null, "70%", "60%"]} mx="auto" my="10" gap={10}>
+        <VStack w={["80%", null, "75%", "70%"]} mx="auto" my="10" gap={10}>
           <Heading textAlign="center" mx="auto" size={["md", null, "lg"]}>
             MidSouth Computational Biology and Bioinformatics Society (MCBIOS)
           </Heading>
-          <FocusCard blurb="MCBIOS is a non-profit organization found in 2003, started as a grassroots effort spearheaded by a small group of researchers at FDA NCTR (located in Little Rock, Arkansas). It has since been expanded significantly. It is now one of only two regional societies in North America (with GLBIO) affiliated with ISCB, the biggest international bioinformatics society.||||The mission of MCBIOS is to foster networking and collaboration and to promote the professional development of members and supporting our student members. The annual conference is the flagship event for MCBIOS, which attract talented scientists from across the nation who gather together for the sharing of scientific information to advance our understanding in nature and health. The annual conferences have enjoyed a long history." />
+          <FocusCard
+            maxH={["md", null, "fit-content"]}
+            overflowY="auto"
+            blurb="MCBIOS is a non-profit organization founded in 2003. What began as a grassroots effort led by a small group of researchers at the FDA NCTR (located in Little Rock, Arkansas) has since grown significantly. We are now one of only two regional societies in North America (alongside GLBIO) affiliated with ISCB, the world's largest bioinformatics society.||The mission of MCBIOS is to foster networking, collaboration, and professional development among members at all levels of skill and education. Our annual conference is the flagship event, bringing together talented scientists from across the nation to share scientific insights and discoveries, advancing our understanding of nature and health. Guided by these goals, the annual conference has enjoyed a rich and enduring history.||The 2025 iteration will mark the 21st in a series of exceptional conferences. For MCBIOS 2025, we are excited to host four plenary speakers and a myriad of world-class researchers presenting in technical sessions, workshops, and tutorials. Additionally, the Young Scientist Excellence Award (YSEA) will be awarded, alongside poster sessions and other engaging activities.||All registered attendees are invited to submit their research papers for consideration in the MCBIOS 2025 proceedings, which will be published as special issues in high-quality bioinformatics journals. We look forward to hosting an impactful bioinformatics conference and hope you'll join us on this exciting journey!"
+          />
         </VStack>
         {/* block quote */}
 
