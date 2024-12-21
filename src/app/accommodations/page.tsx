@@ -1,18 +1,8 @@
 "use client";
 
+import { FocusCard } from "@/components/FocusCard";
 import ImageCard from "@/components/ImageCard";
-import {
-  Box,
-  Flex,
-  HStack,
-  Stack,
-  Stat,
-  StatLabel,
-  StatNumber,
-  Text,
-  useColorModeValue,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Flex, HStack, Stack, Text, VStack } from "@chakra-ui/react";
 
 export default function Page() {
   return (
