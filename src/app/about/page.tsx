@@ -1,11 +1,16 @@
 "use client";
 
 import { FocusCard } from "@/components/FocusCard";
+import { Logo } from "@/components/Logo";
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Box,
   Flex,
   Heading,
-  HStack,
   Stack,
   Text,
   VStack,
@@ -56,16 +61,81 @@ export default function Page() {
             </Stack>
           </VStack>
         </Flex>
-        {/* <Logo /> */}
+        <Logo my={5} />
         <VStack w={["80%", null, "75%", "70%"]} mx="auto" my="10" gap={10}>
           <Heading textAlign="center" mx="auto" size={["md", null, "lg"]}>
             MidSouth Computational Biology and Bioinformatics Society (MCBIOS)
           </Heading>
-          <FocusCard
-            maxH={["md", null, "fit-content"]}
-            overflowY="auto"
-            blurb="MCBIOS is a non-profit organization founded in 2003. What began as a grassroots effort led by a small group of researchers at the FDA NCTR (located in Little Rock, Arkansas) has since grown significantly. We are now one of only two regional societies in North America (alongside GLBIO) affiliated with ISCB, the world's largest bioinformatics society.||The mission of MCBIOS is to foster networking, collaboration, and professional development among members at all levels of skill and education. Our annual conference is the flagship event, bringing together talented scientists from across the nation to share scientific insights and discoveries, advancing our understanding of nature and health. Guided by these goals, the annual conference has enjoyed a rich and enduring history.||The 2025 iteration will mark the 21st in a series of exceptional conferences. For MCBIOS 2025, we are excited to host four plenary speakers and a myriad of world-class researchers presenting in technical sessions, workshops, and tutorials. Additionally, the Young Scientist Excellence Award (YSEA) will be awarded, alongside poster sessions and other engaging activities.||All registered attendees are invited to submit their research papers for consideration in the MCBIOS 2025 proceedings, which will be published as special issues in high-quality bioinformatics journals. We look forward to hosting an impactful bioinformatics conference and hope you'll join us on this exciting journey!"
-          />
+          <Accordion defaultIndex={[0]} defaultChecked allowToggle w="full">
+            <AccordionItem id="1">
+              <h2>
+                <AccordionButton>
+                  <Box as="span" flex="1" textAlign="left">
+                    Our Origins and Growth
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <FocusCard
+                  maxH={["md", null, "fit-content"]}
+                  overflowY="auto"
+                  blurb="MCBIOS is a non-profit organization founded in 2003. What began as a grassroots effort led by a small group of researchers at the FDA NCTR (located in Little Rock, Arkansas) has since grown significantly. We are now one of only two regional societies in North America (alongside GLBIO) affiliated with ISCB, the world's largest bioinformatics society."
+                />
+              </AccordionPanel>
+            </AccordionItem>
+            <AccordionItem id="2">
+              <h2>
+                <AccordionButton>
+                  <Box as="span" flex="1" textAlign="left">
+                    Our Mission
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <FocusCard
+                  maxH={["md", null, "fit-content"]}
+                  overflowY="auto"
+                  blurb="The mission of MCBIOS is to foster networking, collaboration, and professional development among members at all levels of skill and education. Our annual conference is the flagship event, bringing together talented scientists from across the nation to share scientific insights and discoveries, advancing our understanding of nature and health. Guided by these goals, the annual conference has enjoyed a rich and enduring history."
+                />
+              </AccordionPanel>
+            </AccordionItem>
+            <AccordionItem id="3">
+              <h2>
+                <AccordionButton>
+                  <Box as="span" flex="1" textAlign="left">
+                    Looking Ahead to MCBIOS 2025
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <FocusCard
+                  maxH={["md", null, "fit-content"]}
+                  overflowY="auto"
+                  blurb="The 2025 iteration will mark the 21st in a series of exceptional conferences. For MCBIOS 2025, we are excited to host four plenary speakers and a myriad of world-class researchers presenting in technical sessions, workshops, and tutorials. Additionally, the Young Scientist Excellence Award (YSEA) will be awarded, alongside poster sessions and other engaging activities."
+                />
+              </AccordionPanel>
+            </AccordionItem>
+            <AccordionItem id="4">
+              <h2>
+                <AccordionButton>
+                  <Box as="span" flex="1" textAlign="left">
+                    Opportunities for Attendees
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <FocusCard
+                  maxH={["md", null, "fit-content"]}
+                  overflowY="auto"
+                  blurb="All registered attendees are invited to submit their research papers for consideration in the MCBIOS 2025 proceedings, which will be published as special issues in high-quality bioinformatics journals. We look forward to hosting an impactful bioinformatics conference and hope you'll join us on this exciting journey!"
+                />
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
         </VStack>
         {/* block quote */}
 
