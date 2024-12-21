@@ -1,18 +1,8 @@
 "use client";
 
+import { FocusCard } from "@/components/FocusCard";
 import ImageCard from "@/components/ImageCard";
-import {
-  Box,
-  Flex,
-  HStack,
-  Stack,
-  Stat,
-  StatLabel,
-  StatNumber,
-  Text,
-  useColorModeValue,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Flex, HStack, Stack, Text, VStack } from "@chakra-ui/react";
 
 export default function Page() {
   return (
@@ -24,7 +14,6 @@ export default function Page() {
         w="full"
         className="flex flex-col row-start-2 items-center sm:items-start"
       >
-        {/* <Logo /> */}
         {/* Hero Section */}
         <Flex
           w={"full"}
@@ -106,43 +95,5 @@ export default function Page() {
         </Stack>
       </Box>
     </VStack>
-  );
-}
-
-type FocusCardProps = {
-  title?: string;
-  blurb: string;
-};
-function FocusCard({ title, blurb }: FocusCardProps) {
-  return (
-    <Stat
-      px={{ base: 4, md: 8 }}
-      py={"5"}
-      shadow={"xl"}
-      border={"1px solid"}
-      borderColor={useColorModeValue("gray.800", "gray.500")}
-      rounded={"lg"}
-    >
-      <VStack gap={3}>
-        {title && (
-          <StatLabel
-            fontSize={["md", "lg", "xl"]}
-            fontWeight={"medium"}
-            isTruncated
-          >
-            {title}
-          </StatLabel>
-        )}
-        {blurb.split("||").map((text) => (
-          <StatNumber
-            key={text}
-            fontSize={["sm", "md", "lg"]}
-            fontWeight={"medium"}
-          >
-            {text}
-          </StatNumber>
-        ))}
-      </VStack>
-    </Stat>
   );
 }

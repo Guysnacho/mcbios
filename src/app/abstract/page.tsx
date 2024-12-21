@@ -30,7 +30,6 @@ export default function Page() {
         w="full"
         className="flex flex-col row-start-2 items-center sm:items-start"
       >
-        {/* <Logo /> */}
         {/* Hero Section */}
         <Flex
           w={"full"}
