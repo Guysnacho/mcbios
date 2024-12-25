@@ -1,6 +1,7 @@
 "use client";
 
 import { FocusCard } from "@/components/FocusCard";
+import { Speaker } from "@/components/KeynoteSpeakers";
 import { Logo } from "@/components/Logo";
 import {
   Accordion,
@@ -11,6 +12,7 @@ import {
   Box,
   Flex,
   Heading,
+  HStack,
   Stack,
   Text,
   VStack,
@@ -136,10 +138,33 @@ export default function Page() {
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
-        </VStack>
-        {/* block quote */}
 
-        {/* Organizing Committee */}
+          {/* Organizing Committee */}
+          <Heading textAlign="center" mx="auto" size={["md", null, "lg"]}>
+            Organizing Committee
+          </Heading>
+          <HStack gap={5} wrap="wrap">
+            <Speaker
+              name="Aik Choon Tan, Ph.D."
+              photo="committee/Aik-Choon-Tan.jpg"
+              affiliation="University of Utah"
+              title="Conference Co-Chair"
+            />
+            <Speaker
+              name="Jincheng Shen, Ph.D."
+              photo="committee/Jincheng Shen.jpg"
+              affiliation="University of Utah"
+              title="Conference Co-Chair"
+            />
+          </HStack>
+          <HStack gap={5} wrap="wrap">
+            <Speaker
+              name="January Day, MSIS"
+              photo="committee/January-Day.jpg"
+              affiliation="University of Utah"
+            />
+          </HStack>
+        </VStack>
       </Box>
     </VStack>
   );
