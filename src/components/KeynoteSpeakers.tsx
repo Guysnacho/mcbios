@@ -27,7 +27,7 @@ interface SpeakerProps {
   professional?: boolean;
 }
 
-const Speaker = ({
+export const Speaker = ({
   title,
   program,
   name,
