@@ -22,9 +22,10 @@ import {
   Stack,
   Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 export const AuthModal = ({
   isOpen,
@@ -47,8 +48,17 @@ export const AuthModal = ({
   const client = createClient();
   const store = useStore(useUserStore, (store) => store);
   const [showPassword, setShowPassword] = useState(false);
+  const toast = useToast();
 
-  const handleLogin = async (isSignUp: boolean) => {
+  const handleClose = () => {
+    setEmail("");
+    setPassword("");
+    setFname("");
+    setLname("");
+    setIsOpen(false);
+  };
+
+  const handleAuth = async (isSignUp: boolean) => {
     setLoading(true);
     setError("");
     if (email && password) {
@@ -65,11 +75,17 @@ export const AuthModal = ({
       if (error) {
         setError(error.message);
         store?.setId();
-      } else {
+      } else if (!isSignUp) {
         store?.setId(data.user?.id);
         setIsOpen(false);
-        router.push("/dashboard", undefined, {
-          shallow: false,
+        router.push("/dashboard");
+      } else {
+        setIsOpen(false);
+        toast({
+          status: "success",
+          duration: 6000,
+          isClosable: true,
+          description: "Please check your email for a confirmation.",
         });
       }
     } else {
@@ -80,15 +96,10 @@ export const AuthModal = ({
     setLoading(false);
   };
 
+  useEffect(() => console.debug(`isSignUp - ${isSignUp}`), [isSignUp]);
+
   return (
-    <Modal
-      size="lg"
-      isOpen={isOpen}
-      onClose={() => {
-        setError("");
-        setIsOpen(false);
-      }}
-    >
+    <Modal size="lg" isOpen={isOpen} onClose={handleClose}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader className="flex flex-col gap-1 text-xl"></ModalHeader>
@@ -125,7 +136,10 @@ export const AuthModal = ({
                       <FormLabel>First Name</FormLabel>
                       <Input
                         type="text"
+                        inputMode="text"
+                        autoComplete="given-name"
                         onChange={(e) => setFname(e.currentTarget.value)}
+                        value={fname}
                       />
                     </FormControl>
                   </Box>
@@ -134,7 +148,10 @@ export const AuthModal = ({
                       <FormLabel>Last Name</FormLabel>
                       <Input
                         type="text"
+                        inputMode="text"
+                        autoComplete="family-name"
                         onChange={(e) => setLname(e.currentTarget.value)}
+                        value={lname}
                       />
                     </FormControl>
                   </Box>
@@ -144,7 +161,10 @@ export const AuthModal = ({
                 <FormLabel>Email address</FormLabel>
                 <Input
                   type="email"
+                  inputMode="email"
+                  autoComplete="email"
                   onChange={(e) => setEmail(e.currentTarget.value)}
+                  value={email}
                 />
               </FormControl>
               <FormControl id="password" isRequired isDisabled={loading}>
@@ -152,7 +172,9 @@ export const AuthModal = ({
                 <InputGroup>
                   <Input
                     type={showPassword ? "text" : "password"}
+                    autoComplete="new-password"
                     onChange={(e) => setPassword(e.currentTarget.value)}
+                    value={password}
                   />
                   <InputRightElement h={"full"}>
                     <Button
@@ -182,19 +204,15 @@ export const AuthModal = ({
         </ModalBody>
 
         <ModalFooter>
-          <Button
-            onClick={() => setIsOpen(false)}
-            disabled={loading}
-            className="mr-3"
-          >
+          <Button onClick={handleClose} disabled={loading} className="mr-3">
             Cancel
           </Button>
           {isSignUp ? (
             <Button
               type="submit"
               onClick={() =>
-                handleLogin(true).finally(() =>
-                  error === "" ? setIsOpen(false) : undefined
+                handleAuth(true).finally(() =>
+                  error === "" ? handleClose() : undefined
                 )
               }
               colorScheme="green"
@@ -206,8 +224,8 @@ export const AuthModal = ({
             <Button
               type="submit"
               onClick={() =>
-                handleLogin(false).finally(() =>
-                  error === "" ? setIsOpen(false) : undefined
+                handleAuth(false).finally(() =>
+                  error === "" ? handleClose() : undefined
                 )
               }
               colorScheme="green"

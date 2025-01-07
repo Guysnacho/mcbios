@@ -34,11 +34,13 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { AuthModal } from "./AuthModal";
+import { usePathname } from "next/navigation";
 
 export default function Nav() {
   const { isOpen, onToggle } = useDisclosure();
   const supabase = createClient();
   const router = useRouter();
+  const path = usePathname();
   const store = useStore(useUserStore, (store) => store);
 
   const [isAuthOpen, setAuthOpen] = useState(false);
@@ -54,9 +56,7 @@ export default function Nav() {
   const handleOpen = (isSignUp: boolean) => {
     setIsSignUp(isSignUp);
     if (store?.id) {
-      router.push("/dashboard", undefined, {
-        shallow: false,
-      });
+      router.push("/dashboard");
     } else {
       setAuthOpen(true);
     }
@@ -66,18 +66,18 @@ export default function Nav() {
     if (isAuthOpen === true) {
       const fetchUser = async () => {
         const { data } = await supabase.auth.getUser();
-        if (data) {
+        if (data && data.user) {
           store?.setId(data.user?.id);
           router.push("/dashboard", undefined, {
             shallow: false,
           });
         } else {
-          console.log("No user found");
+          console.debug("No user found");
         }
       };
       fetchUser();
     }
-  }, [isAuthOpen, router, store, supabase.auth]);
+  }, [isAuthOpen, path]);
 
   return (
     <Box as="nav">
