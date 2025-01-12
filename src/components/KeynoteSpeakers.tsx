@@ -152,7 +152,7 @@ export default function KeynoteSpeakers() {
           name="Jill S. Barnholtz-Sloan, Ph.D."
           photo="/keynote/JillBarnholtzSloan.png"
           program={["CBIIT Acting Director", "IDS Associate Director"]}
-          affiliation="Center for Biomedical Informatics & Information Technology"
+          affiliation="National Cancer Institute - Center for Biomedical Informatics & Information Technology"
           url="https://datascience.cancer.gov/about/staff-directory/jill-barnholtz-sloan"
         />
 
