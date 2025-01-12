@@ -138,6 +138,7 @@ export default function KeynoteSpeakers() {
             "Program in Quantitative Genomics",
           ]}
           affiliation="Harvard T.H. Chan School of Public Health"
+          url="https://hsph.harvard.edu/profile/xihong-lin/"
         />
         <Speaker
           professional
@@ -151,7 +152,11 @@ export default function KeynoteSpeakers() {
           professional
           name="Jill S. Barnholtz-Sloan, Ph.D."
           photo="/keynote/JillBarnholtzSloan.png"
-          program={["CBIIT Acting Director", "IDS Associate Director"]}
+          program={[
+            "CBIIT Acting Director",
+            "IDS Associate Director",
+            "TDRP Senior Investigator, DCEG",
+          ]}
           affiliation="National Cancer Institute - Center for Biomedical Informatics & Information Technology"
           url="https://datascience.cancer.gov/about/staff-directory/jill-barnholtz-sloan"
         />
