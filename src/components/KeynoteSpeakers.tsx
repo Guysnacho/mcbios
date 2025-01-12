@@ -41,7 +41,6 @@ export const Speaker = ({
       maxW={["90%", "sm", "md", "xl"]}
       _hover={{ shadow: "xl", borderColor: "blue.600" }}
       mb={1}
-      mx="auto"
       justifySelf="center"
       borderColor="blue.400"
       borderWidth={1}
@@ -58,7 +57,7 @@ export const Speaker = ({
           objectFit="cover"
           mx="auto"
         />
-        <Stack mt="6" spacing="3">
+        <Stack mt="6" spacing="3" maxW={250}>
           <Heading
             size="md"
             color="blue.700"
@@ -128,7 +127,7 @@ export default function KeynoteSpeakers() {
         justifyItems="center"
         alignItems="start"
         alignContent="center"
-        alignSelf="center"
+        justifyContent="center"
       >
         <Speaker
           name="Xihong Lin, Ph.D."
@@ -148,8 +147,15 @@ export default function KeynoteSpeakers() {
           affiliation="Recursion Pharmaceuticals"
           url="https://www.recursion.com/team-members/imran-haque"
         />
+        <Speaker
+          professional
+          name="Jill S. Barnholtz-Sloan, Ph.D."
+          photo="/keynote/JillBarnholtzSloan.png"
+          program={["CBIIT Acting Director", "IDS Associate Director"]}
+          affiliation="Center for Biomedical Informatics & Information Technology"
+          url="https://datascience.cancer.gov/about/staff-directory/jill-barnholtz-sloan"
+        />
 
-        <Speaker name="Speaker coming soon" photo="/User.png" affiliation="" />
         <Speaker name="Speaker coming soon" photo="/User.png" affiliation="" />
       </Stack>
     </Box>
