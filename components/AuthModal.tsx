@@ -25,7 +25,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 export const AuthModal = ({
   isOpen,
@@ -62,7 +62,7 @@ export const AuthModal = ({
     setLoading(true);
     setError("");
     if (email && password) {
-      // const { data, error } = await supabase.auth.signUp({ email, password, options: {} });
+      // Perform auth
       const { data, error } = await client.auth[
         isSignUp ? "signUp" : "signInWithPassword"
       ]({
@@ -72,9 +72,9 @@ export const AuthModal = ({
           ? { data: { fname, lname, role: "student" } }
           : undefined,
       });
+      // Handle response
       if (error) {
-        setError(error.message);
-        store?.setId();
+        throw error;
       } else if (!isSignUp) {
         store?.setId(data.user?.id);
         setIsOpen(false);
@@ -95,8 +95,6 @@ export const AuthModal = ({
     }
     setLoading(false);
   };
-
-  useEffect(() => console.debug(`isSignUp - ${isSignUp}`), [isSignUp]);
 
   return (
     <Modal size="lg" isOpen={isOpen} onClose={handleClose}>
@@ -211,9 +209,10 @@ export const AuthModal = ({
             <Button
               type="submit"
               onClick={() =>
-                handleAuth(true).finally(() =>
-                  error === "" ? handleClose() : undefined
-                )
+                handleAuth(true)
+                  .then(() => handleClose())
+                  .catch((error) => setError(error.message))
+                  .finally(() => setLoading(false))
               }
               colorScheme="green"
               disabled={loading}
@@ -224,9 +223,10 @@ export const AuthModal = ({
             <Button
               type="submit"
               onClick={() =>
-                handleAuth(false).finally(() =>
-                  error === "" ? handleClose() : undefined
-                )
+                handleAuth(false)
+                  .then(() => handleClose())
+                  .catch((error) => setError(error.message))
+                  .finally(() => setLoading(false))
               }
               colorScheme="green"
               disabled={loading}
