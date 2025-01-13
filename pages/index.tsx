@@ -1,4 +1,3 @@
-import ElectionHero from "@/components/home/ElectionHero";
 import {
   Accordion,
   AccordionButton,
@@ -14,12 +13,27 @@ import {
   Image,
   Stack,
   Text,
+  useTimeout,
+  useToast,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
 export default function Home() {
   const router = useRouter();
+  const toast = useToast();
+
+  useTimeout(() => {
+    if (router.query.error_description) {
+      toast({
+        description: router.query.error_description,
+        status: "warning",
+        duration: 8000,
+        isClosable: true,
+      });
+    }
+  }, 500);
+
   return (
     <div className="my-5 md:my-10 gap-10">
       <Head>
