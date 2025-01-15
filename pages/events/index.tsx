@@ -146,10 +146,18 @@ const ConferenceRegistration = () => {
     <TabPanel>
       <section>
         <div className="w-3/4 xl:w-1/2 mx-auto space-y-5">
-          <Stack align={"center"} mb={5}>
+          <Stack align={"center"} my={5}>
             <Heading fontSize={"4xl"} textAlign={"center"}>
               MCBIOS 2025 Registration
             </Heading>
+            <Text color={"gray.600"}>
+              If you haven&apos;t already and plan on attending this year&apos;s
+              conference please pay your registration fees. Registration fees
+              include access to all scientific sessions, meals, receptions,
+              banquet, and 1 year of MCBIOS membership. Membership gives you
+              access to past conference recordings, upcomming elections, and
+              more!
+            </Text>
           </Stack>
           <Stepper index={activeStep}>
             <Step>
@@ -310,7 +318,12 @@ const ConferenceRegistration = () => {
           )}
 
           {tier && activeStep === 2 ? (
-            <PaymentHandler tier={tier} email={email} fname={fname} lname={lname}  />
+            <PaymentHandler
+              tier={tier}
+              email={email}
+              fname={fname}
+              lname={lname}
+            />
           ) : undefined}
           {activeStep === 2 && (
             <Flex>
