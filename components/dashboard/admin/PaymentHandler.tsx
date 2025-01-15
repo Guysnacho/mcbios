@@ -24,7 +24,7 @@ export const PaymentHandler = ({
   email,
 }: {
   tier: PaymentHandlerType;
-  userId: string;
+  userId?: string;
   email: string;
 }) => {
   const fetchClientSecret = useCallback(async () => {

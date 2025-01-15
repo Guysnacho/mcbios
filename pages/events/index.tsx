@@ -3,14 +3,19 @@ import {
   PaymentHandlerType,
 } from "@/components/dashboard/admin/PaymentHandler";
 import CareerDev from "@/public/images/banners/career-development.jpg";
-import { ChevronLeftIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
   Divider,
   Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  HStack,
   Image,
+  Input,
   Select,
+  Stack,
   Step,
   StepIcon,
   StepIndicator,
@@ -24,8 +29,10 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
+  Text,
+  useColorModeValue,
   useSteps,
-  VStack,
+  useToast,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useState } from "react";
@@ -117,15 +124,33 @@ const steps = [
 ];
 const ConferenceRegistration = () => {
   const [tier, setTier] = useState<PaymentHandlerType>();
-  const { activeStep } = useSteps({
+  const [email, setEmail] = useState("");
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
+  const { activeStep, goToNext, goToPrevious } = useSteps({
     index: 0,
     count: steps.length,
   });
+  // email check
+  const isInvalid =
+    email === "" ||
+    !(email.includes("@") && email.includes(".")) ||
+    fname === "" ||
+    lname === "" ||
+    !email ||
+    !fname ||
+    !lname;
+  const toast = useToast();
 
   return (
     <TabPanel>
       <section>
         <div className="w-3/4 xl:w-1/2 mx-auto space-y-5">
+          <Stack align={"center"} mb={5}>
+            <Heading fontSize={"4xl"} textAlign={"center"}>
+              MCBIOS 2025 Registration
+            </Heading>
+          </Stack>
           <Stepper index={activeStep}>
             <Step>
               <StepIndicator>
@@ -144,6 +169,8 @@ const ConferenceRegistration = () => {
               <StepSeparator />
             </Step>
 
+            {/* Tier Selection Step */}
+
             <Step>
               <StepIndicator>
                 <StepStatus
@@ -160,6 +187,8 @@ const ConferenceRegistration = () => {
 
               <StepSeparator />
             </Step>
+
+            {/* Payment Step */}
 
             <Step>
               <StepIndicator>
@@ -178,34 +207,81 @@ const ConferenceRegistration = () => {
               <StepSeparator />
             </Step>
           </Stepper>
-          <VStack>
-            <Flex mx="auto" w={[null, "sm", "lg"]}>
-              {tier ? (
+          {activeStep === 0 && (
+            <Box
+              rounded={"lg"}
+              bg={useColorModeValue("white", "gray.700")}
+              p={8}
+            >
+              {/* Form fields */}
+              <Stack spacing={4}>
+                <HStack justify="space-evenly">
+                  <Box>
+                    <FormControl id="firstName" isRequired>
+                      <FormLabel>First Name</FormLabel>
+                      <Input
+                        type="text"
+                        inputMode="text"
+                        autoComplete="given-name"
+                        onChange={(e) => setFname(e.currentTarget.value)}
+                        value={fname}
+                      />
+                    </FormControl>
+                  </Box>
+                  <Box>
+                    <FormControl id="lastName">
+                      <FormLabel>Last Name</FormLabel>
+                      <Input
+                        type="text"
+                        inputMode="text"
+                        autoComplete="family-name"
+                        onChange={(e) => setLname(e.currentTarget.value)}
+                        value={lname}
+                      />
+                    </FormControl>
+                  </Box>
+                </HStack>
+                <FormControl id="email" isRequired>
+                  <FormLabel>Email address</FormLabel>
+                  <Input
+                    type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    onChange={(e) => setEmail(e.currentTarget.value)}
+                    value={email}
+                  />
+                </FormControl>
                 <Button
-                  mx="auto"
-                  leftIcon={<ChevronLeftIcon />}
-                  onClick={() => setTier(undefined)}
+                  type="submit"
+                  onClick={goToNext}
+                  colorScheme="green"
+                  isDisabled={isInvalid}
                 >
-                  Select a different tier
+                  Next
                 </Button>
-              ) : (
-                <Select
-                  variant="outline"
-                  placeholder="Select a membership level"
-                  onChange={(e) => {
-                    setTier(e.currentTarget.value as PaymentHandlerType);
-                  }}
-                >
-                  <option value="student">
-                    Conference and Membership | Student | $200
-                  </option>
-                  <option value="postdoctorial">
-                    Conference and Membership | Postdoctorial | $300
-                  </option>
-                  <option value="professional">
-                    Conference and Membership | Professional | $400
-                  </option>
-                  {/* <option value="member_only_student">
+              </Stack>
+            </Box>
+          )}
+
+          {activeStep === 1 && (
+            <Flex mx="auto" w={[null, "sm", "lg"]}>
+              <Select
+                variant="outline"
+                placeholder="Select a membership level"
+                onChange={(e) => {
+                  setTier(e.currentTarget.value as PaymentHandlerType);
+                }}
+              >
+                <option value="student">
+                  Conference and Membership | Student | $200
+                </option>
+                <option value="postdoctorial">
+                  Conference and Membership | Postdoctorial | $300
+                </option>
+                <option value="professional">
+                  Conference and Membership | Professional | $400
+                </option>
+                {/* <option value="member_only_student">
                               Membership | Student | $10
                             </option>
                             <option value="member_only_postdoctorial">
@@ -214,17 +290,35 @@ const ConferenceRegistration = () => {
                             <option value="member_only_professional">
                               Membership | Professional | $50
                             </option> */}
-                </Select>
-              )}
+              </Select>
             </Flex>
-            {tier ? (
-              <PaymentHandler
-                tier={tier}
-                // userId={data.user.user_id}
-                // email={data.user.email!}
-              />
-            ) : undefined}
-          </VStack>
+          )}
+          {activeStep === 1 && (
+            <Flex justify="center">
+              <Button onClick={goToPrevious} className="mr-3">
+                Back
+              </Button>
+              <Button
+                type="submit"
+                onClick={goToNext}
+                colorScheme="green"
+                isDisabled={tier === undefined}
+              >
+                Next
+              </Button>
+            </Flex>
+          )}
+
+          {tier && activeStep === 2 ? (
+            <PaymentHandler tier={tier} email={email} />
+          ) : undefined}
+          {activeStep === 2 && (
+            <Flex>
+              <Button onClick={goToPrevious} className="mr-3">
+                Back
+              </Button>
+            </Flex>
+          )}
         </div>
       </section>
     </TabPanel>
