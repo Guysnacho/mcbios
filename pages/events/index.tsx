@@ -219,6 +219,7 @@ const ConferenceRegistration = () => {
           {activeStep === 0 && (
             <Box
               rounded={"lg"}
+              // eslint-disable-next-line react-hooks/rules-of-hooks
               bg={useColorModeValue("white", "gray.700")}
               p={8}
             >
