@@ -119,14 +119,19 @@ export default function Page() {
                   ) : (
                     <>
                       <Text mx="auto" fontSize="lg">
+                        To register for the 2025 Conference, complete the form
+                        available on the main MCBIOS Society site. Secure
+                        payment processing powered by Stripe Checkout.
+                      </Text>
+                      {/* <Text mx="auto" fontSize="lg">
                         To register for the 2025 Conference, create your MCBIOS
                         account and select your registration type. Secure
                         payment processing powered by Stripe Checkout.
-                      </Text>
+                      </Text> */}
                       <Button
                         as={Link}
                         mx="auto"
-                        href="https://mcbios.com/membership"
+                        href="https://mcbios.com/events"
                         target="_blank"
                         bg={"blue.400"}
                         rounded={"full"}
