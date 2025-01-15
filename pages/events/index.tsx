@@ -1,14 +1,34 @@
-import CareerDev from "@/public/images/banners/career-development.jpg";
 import {
+  PaymentHandler,
+  PaymentHandlerType,
+} from "@/components/dashboard/admin/PaymentHandler";
+import CareerDev from "@/public/images/banners/career-development.jpg";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
+import {
+  Box,
+  Button,
   Divider,
+  Flex,
   Image,
+  Select,
+  Step,
+  StepIcon,
+  StepIndicator,
+  StepNumber,
+  Stepper,
+  StepSeparator,
+  StepStatus,
+  StepTitle,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
+  useSteps,
+  VStack,
 } from "@chakra-ui/react";
 import Head from "next/head";
+import { useState } from "react";
 
 const events = () => {
   return (
@@ -25,15 +45,7 @@ const events = () => {
           <Tab title="Working Groups">Working Groups</Tab>
         </TabList>
         <TabPanels>
-          <TabPanel>
-            <section>
-              <div className="w-3/4 xl:w-1/2 mx-auto space-y-5">
-                <h5 className="text-center text-primary">
-                  Check in with us later for updates
-                </h5>
-              </div>
-            </section>
-          </TabPanel>
+          <ConferenceRegistration />
           <TabPanel>
             <Image
               src={CareerDev.src}
@@ -95,6 +107,127 @@ const events = () => {
         </TabPanels>
       </Tabs>
     </div>
+  );
+};
+
+const steps = [
+  { title: "First", description: "Contact Info" },
+  { title: "Second", description: "Date & Time" },
+  { title: "Third", description: "Select Rooms" },
+];
+const ConferenceRegistration = () => {
+  const [tier, setTier] = useState<PaymentHandlerType>();
+  const { activeStep } = useSteps({
+    index: 0,
+    count: steps.length,
+  });
+
+  return (
+    <TabPanel>
+      <section>
+        <div className="w-3/4 xl:w-1/2 mx-auto space-y-5">
+          <Stepper index={activeStep}>
+            <Step>
+              <StepIndicator>
+                <StepStatus
+                  complete={<StepIcon />}
+                  incomplete={<StepNumber />}
+                  active={<StepNumber />}
+                />
+              </StepIndicator>
+
+              <Box flexShrink="0">
+                <StepTitle>Contact Info</StepTitle>
+                {/* <StepDescription>{step.description}</StepDescription> */}
+              </Box>
+
+              <StepSeparator />
+            </Step>
+
+            <Step>
+              <StepIndicator>
+                <StepStatus
+                  complete={<StepIcon />}
+                  incomplete={<StepNumber />}
+                  active={<StepNumber />}
+                />
+              </StepIndicator>
+
+              <Box flexShrink="0">
+                <StepTitle>Registration Tier</StepTitle>
+                {/* <StepDescription>{step.description}</StepDescription> */}
+              </Box>
+
+              <StepSeparator />
+            </Step>
+
+            <Step>
+              <StepIndicator>
+                <StepStatus
+                  complete={<StepIcon />}
+                  incomplete={<StepNumber />}
+                  active={<StepNumber />}
+                />
+              </StepIndicator>
+
+              <Box flexShrink="0">
+                <StepTitle>Payment</StepTitle>
+                {/* <StepDescription>{step.description}</StepDescription> */}
+              </Box>
+
+              <StepSeparator />
+            </Step>
+          </Stepper>
+          <VStack>
+            <Flex mx="auto" w={[null, "sm", "lg"]}>
+              {tier ? (
+                <Button
+                  mx="auto"
+                  leftIcon={<ChevronLeftIcon />}
+                  onClick={() => setTier(undefined)}
+                >
+                  Select a different tier
+                </Button>
+              ) : (
+                <Select
+                  variant="outline"
+                  placeholder="Select a membership level"
+                  onChange={(e) => {
+                    setTier(e.currentTarget.value as PaymentHandlerType);
+                  }}
+                >
+                  <option value="student">
+                    Conference and Membership | Student | $200
+                  </option>
+                  <option value="postdoctorial">
+                    Conference and Membership | Postdoctorial | $300
+                  </option>
+                  <option value="professional">
+                    Conference and Membership | Professional | $400
+                  </option>
+                  {/* <option value="member_only_student">
+                              Membership | Student | $10
+                            </option>
+                            <option value="member_only_postdoctorial">
+                              Membership | Postdoctorial | $20
+                            </option>
+                            <option value="member_only_professional">
+                              Membership | Professional | $50
+                            </option> */}
+                </Select>
+              )}
+            </Flex>
+            {tier ? (
+              <PaymentHandler
+                tier={tier}
+                // userId={data.user.user_id}
+                // email={data.user.email!}
+              />
+            ) : undefined}
+          </VStack>
+        </div>
+      </section>
+    </TabPanel>
   );
 };
 
