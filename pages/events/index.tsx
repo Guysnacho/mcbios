@@ -146,10 +146,11 @@ const ConferenceRegistration = () => {
     <TabPanel>
       <section>
         <div className="w-3/4 xl:w-1/2 mx-auto space-y-5">
-          <Stack align={"center"} my={5}>
+          <Stack align={"center"} my={5} gap={3}>
             <Heading fontSize={"4xl"} textAlign={"center"}>
               MCBIOS 2025 Registration
             </Heading>
+            <Divider />
             <Text color={"gray.600"}>
               If you haven&apos;t already and plan on attending this year&apos;s
               conference please pay your registration fees. Registration fees
@@ -327,7 +328,7 @@ const ConferenceRegistration = () => {
           ) : undefined}
           {activeStep === 2 && (
             <Flex>
-              <Button onClick={goToPrevious} className="mr-3">
+              <Button onClick={goToPrevious} className="mx-auto" w="70%">
                 Back
               </Button>
             </Flex>
