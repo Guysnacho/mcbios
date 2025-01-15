@@ -310,7 +310,7 @@ const ConferenceRegistration = () => {
           )}
 
           {tier && activeStep === 2 ? (
-            <PaymentHandler tier={tier} email={email} />
+            <PaymentHandler tier={tier} email={email} fname={fname} lname={lname}  />
           ) : undefined}
           {activeStep === 2 && (
             <Flex>
