@@ -1,9 +1,12 @@
+import { InfoIcon } from "@chakra-ui/icons";
 import {
   Accordion,
   AccordionButton,
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Alert,
+  AlertIcon,
   Box,
   Button,
   Card,
@@ -61,6 +64,20 @@ export default function Home() {
         </Button>
       </section>
 
+      <Divider as="hr" className="my-10 border-gray-500" />
+      <Alert
+        as="a"
+        href="/events"
+        _hover={{ shadow: "lg" }}
+        borderRadius="xl"
+        w={["80%", "fit-content"]}
+        mx="auto"
+      >
+        <AlertIcon>
+          <InfoIcon m="auto" />
+        </AlertIcon>
+        Conference Registration is now open!
+      </Alert>
       <Divider as="hr" className="my-10 border-gray-500" />
 
       <section className="space-y-5 px-10 mx-auto md:w-5/6">
