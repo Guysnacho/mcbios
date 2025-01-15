@@ -7,12 +7,18 @@ type BoardMemberCardProps = {
   title?: string;
   department?: string;
   affiliation?: string;
-  formerMember?: boolean;
   index?: number;
 };
 const BoardMemberCard = (props: BoardMemberCardProps) => {
   return (
-    <Card shadow="md" className="m-auto w-[450px]">
+    <Card
+      shadow="md"
+      variant="outline"
+      className="m-auto w-[450px] md:w-[550px]"
+      _hover={{
+        shadow: "lg",
+      }}
+    >
       {props.index !== undefined ? (
         <h6 className="mx-auto italic mt-2">#{props.index + 1}</h6>
       ) : undefined}

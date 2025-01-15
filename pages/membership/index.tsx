@@ -1,7 +1,15 @@
 import { AuthModal } from "@/components/AuthModal";
 import { useUserStore } from "@/lib/store";
 import useStore from "@/lib/store/useStore";
-import { Button, Image } from "@chakra-ui/react";
+import {
+  Button,
+  Heading,
+  Image,
+  Text,
+  ListItem,
+  UnorderedList,
+  VStack,
+} from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -10,6 +18,7 @@ const Membership = () => {
   const store = useStore(useUserStore, (store) => store);
   const router = useRouter();
   const [isAuthOpen, setAuthOpen] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(true);
 
   useEffect(() => {
     if (isAuthOpen) {
@@ -21,7 +30,7 @@ const Membership = () => {
         setAuthOpen(true);
       }
     }
-  }, [isAuthOpen]);
+  }, [isAuthOpen, router, store?.id]);
 
   return (
     <>
@@ -29,7 +38,12 @@ const Membership = () => {
         <title>MCBIOS Membership</title>
         <meta content="MCBIOS Membership | MidSouth Computational Biology and Bioinformatics Society" />
       </Head>
-      <AuthModal isOpen={isAuthOpen} setIsOpen={setAuthOpen} isSignUp />
+      <AuthModal
+        isOpen={isAuthOpen}
+        setIsOpen={setAuthOpen}
+        isSignUp={isSignUp}
+        setIsSignUp={setIsSignUp}
+      />
       <div className="container space-y-10 mx-auto">
         <div className="h-1/2 w-1/2 mx-auto">
           <Image
@@ -41,55 +55,79 @@ const Membership = () => {
           />
         </div>
         <section>
-          <h3 className="text-center my-10">Join the Community</h3>
+          <h3 className="text-center my-10">Join the MCBIOS Community</h3>
           <div className="w-3/4 xl:w-1/2 mx-auto space-y-5">
-            <div className="space-y-2">
-              <p>
-                A society member will enjoy numerous benefits, including but not
-                limited to:
-              </p>
-              <ul className="list-disc list-inside">
-                <li>
-                  Competing for the society leadership positions such as board
-                  members or Presidential Officers.
-                </li>
-                <li>
-                  Hosting the auxiliary events such as virtual webinars and
-                  workshops.
-                </li>
-                <li>Running a local chapter.</li>
-                <li>
-                  Enjoying a discount rate of registration for the annual
-                  conference.
-                </li>
-                <li>
-                  An opportunity of receiving a discount publication fee for the
-                  conference proceedings.
-                </li>
-              </ul>
-            </div>
+            <VStack gap={3}>
+              <Heading size="md">Unlock Benefits as a Society Member</Heading>
+              <UnorderedList>
+                <ListItem>
+                  <Text fontWeight={600}>Leadership Opportunities</Text>
+                  <Text>
+                    Take your career to the next level by competing for
+                    prestigious leadership roles, including board member or
+                    Presidential Officer positions.
+                  </Text>
+                </ListItem>
+                <ListItem>
+                  <Text fontWeight={600}>Host High-Impact Events</Text>
+                  <Text>
+                    Lead the way in knowledge sharing by organizing auxiliary
+                    events like virtual webinars and hands-on workshops.
+                  </Text>
+                </ListItem>
+                <ListItem>
+                  <Text fontWeight={600}>Run a Local Chapter</Text>
+                  <Text>
+                    Champion the society&apos;s mission in your community by
+                    establishing and managing a local chapter.
+                  </Text>
+                </ListItem>
+                <ListItem>
+                  <Text fontWeight={600}>Conference Discounts</Text>
+                  <Text>
+                    Save big with exclusive discounted registration fees for our
+                    annual conference, the premier event for networking and
+                    sharing breakthroughs.
+                  </Text>
+                </ListItem>
+                <ListItem>
+                  <Text fontWeight={600}>Reduced Publication Fees</Text>
+                  <Text>
+                    Publish your work more affordably with discounted fees for
+                    the conference proceedings—a unique benefit for members.
+                  </Text>
+                </ListItem>
+              </UnorderedList>
+            </VStack>
 
-            <div className="space-y-2">
-              <p>
-                The membership follows the conference year and you may join the
-                society as a member in two ways:
-              </p>
-              <ul className="list-disc list-inside">
-                <li>
-                  If you attend the annual society conference, the registration
-                  fee includes one year membership.
-                </li>
-                <li>
-                  You may become or maintain the membership status by paying the
-                  membership fee. For 2023, we offer the introductory membership
-                  rate of $100/30 for Professional/Student.
-                </li>
-              </ul>
-            </div>
+            <VStack gap={3}>
+              <Heading size="md">
+                Simple and Affordable Membership Options
+              </Heading>
+              <UnorderedList>
+                <ListItem>
+                  <Text>
+                    <span className="font-bold">Conference Attendees: </span>
+                    Your annual conference registration fee automatically
+                    includes a one-year society membership.
+                  </Text>
+                </ListItem>
+                <ListItem>
+                  <Text>
+                    <span className="font-bold">Direct Membership: </span>
+                    Prefer to join or renew without attending? For 2025, enjoy
+                    our special introductory rates:{" "}
+                    <span className="font-bold">
+                      $100 for Professionals and $30 for Students.
+                    </span>
+                  </Text>
+                </ListItem>
+              </UnorderedList>
+            </VStack>
           </div>
         </section>
         <section className="text-center space-y-3">
-          <p>MCBIOS Site Registration now Available</p>
+          <p>MCBIOS site and conference registration now available</p>
           <Button
             aria-describedby="member sign up"
             type="button"

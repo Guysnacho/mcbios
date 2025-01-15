@@ -40,3 +40,6 @@ next-env.d.ts
 
 # Other Repos
 .svelte-kit
+
+# Sensitive files
+sensa_*.csv

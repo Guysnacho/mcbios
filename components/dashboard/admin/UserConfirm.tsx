@@ -21,6 +21,7 @@ import {
   Thead,
   Tooltip,
   Tr,
+  useToast,
 } from "@chakra-ui/react";
 import { SupabaseClient } from "@supabase/supabase-js";
 import {
@@ -51,7 +52,7 @@ const columns = [
 type UserRequest = {
   id: number;
   user_id: string;
-  dues_paid_at: string | null;
+  fees_paid_at: string | null;
   fname: string | null;
   lname: string | null;
   role: Database["public"]["Enums"]["user_role"];
@@ -66,6 +67,7 @@ export const UserConfirm = ({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState<UserRequest[]>([]);
+  const toast = useToast();
 
   useEffect(() => {
     setLoading(true);
@@ -74,16 +76,19 @@ export const UserConfirm = ({
       .select(`id, user_id, ...member(*)`)
       .then(({ data, error, statusText }) => {
         if (error) {
-          alert(
-            "Something went wrong while we were updating this user's membership - " +
-              statusText
-          );
+          toast({
+            title: "Something went wrong collecting confirmation requests",
+            description: statusText,
+            duration: 5000,
+            status: "error",
+          });
           console.error(error);
         } else {
           setUsers(data);
         }
         setLoading(false);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -94,10 +99,12 @@ export const UserConfirm = ({
         .select(`id, user_id, ...member(*)`)
         .then(({ data, error, statusText }) => {
           if (error) {
-            alert(
-              "Something went wrong while we were updating this user's membership - " +
-                statusText
-            );
+            toast({
+              title: "Something went wrong collecting user info",
+              description: statusText,
+              duration: 5000,
+              status: "error",
+            });
             console.error(error);
           } else {
             setUsers(data);
@@ -105,6 +112,7 @@ export const UserConfirm = ({
           setLoading(false);
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const renderCell = useCallback((user: UserRequest, columnKey: Key) => {
@@ -199,7 +207,7 @@ const ConfirmModal = ({
     "student" | "postdoctorial" | "professional" | "admin" | undefined
   >();
   const [updateLoading, setUpdateLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const toast = useToast();
 
   const handleUpdate = async (
     uid: string,
@@ -217,24 +225,32 @@ const ConfirmModal = ({
       .from("member")
       .update({
         role,
-        dues_paid_at: date?.toISOString(),
+        fees_paid_at: date?.toISOString(),
       })
       .eq("user_id", uid)
       .select()
       .single();
-    console.log(data);
 
-    if (data) {
-      alert(
-        `Successfully updated membership for ${
+    if (error) {
+      toast({
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+        description:
+          "Something went wrong while we were updating this user's membership - " +
+          error.message,
+      });
+      console.error(error);
+    } else {
+      toast({
+        status: "success",
+        duration: 6000,
+        isClosable: true,
+        title: "Mission Accomplished",
+        description: `Successfully updated membership for ${
           data.fname + " " + data.lname
-        } with the following role: ${data.role}`
-      );
-    } else if (error) {
-      throw Error(
-        "Something went wrong while we were updating this user's membership - " +
-          error.message
-      );
+        } with the following role: ${data.role}`,
+      });
     }
   };
   return (
@@ -242,7 +258,6 @@ const ConfirmModal = ({
       isOpen={open}
       onClose={() => {
         setId("");
-        setMessage("");
         setOpen(false);
       }}
       closeOnOverlayClick
@@ -250,7 +265,6 @@ const ConfirmModal = ({
       autoFocus
       onOverlayClick={() => {
         setId("");
-        setMessage("");
         setOpen(false);
       }}
     >
@@ -283,7 +297,6 @@ const ConfirmModal = ({
             maxDate={new Date()}
             onChange={setDate}
           />
-          <blockquote className="text-center">{message}</blockquote>
         </ModalBody>
         <ModalFooter>
           <Button color="danger" variant="light" onClick={() => setOpen(false)}>
@@ -301,9 +314,6 @@ const ConfirmModal = ({
                 .then(() => {
                   setId("");
                   setOpen(false);
-                })
-                .catch((err: Error) => {
-                  setMessage(err.message);
                 })
                 .finally(() => setUpdateLoading(false))
             }

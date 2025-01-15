@@ -26,6 +26,7 @@ export type ElectionProps = {
     heading: string;
     content: string;
   }[];
+  electionOver?: boolean;
 };
 
 export default function ElectionNominee({
@@ -35,6 +36,7 @@ export default function ElectionNominee({
   plans,
   isPrez,
   overview,
+  electionOver,
 }: ElectionProps) {
   return (
     <Card w={{ base: "90%", md: "xl", xl: "2xl" }}>
@@ -50,7 +52,7 @@ export default function ElectionNominee({
         <Stack mt="6" spacing="3">
           {name ? <Heading size="md">{name}</Heading> : undefined}
           <Text color="blue.600" fontSize="lg">
-            Brief overview of candidate for{" "}
+            Brief overview {electionOver ? undefined : "of candidate"} for{" "}
             {isPrez ? "President" : "Student Board"}-Elect
           </Text>
           <Accordion allowMultiple>
@@ -69,8 +71,18 @@ export default function ElectionNominee({
             ))}
           </Accordion>
           <Text color="blue.600" fontSize="lg">
-            If elected, how do you plan to contribute to MCBIOS as the
-            president?
+            {isPrez &&
+              electionOver &&
+              "How do you plan to contribute to MCBIOS as the president?"}
+            {isPrez &&
+              !electionOver &&
+              "If elected, how do you plan to contribute to MCBIOS as the president?"}
+            {!isPrez &&
+              electionOver &&
+              "How do you plan to contribute to MCBIOS as a board member?"}
+            {!isPrez &&
+              !electionOver &&
+              "If elected, how do you plan to contribute to MCBIOS as a board member?"}
           </Text>
           {plans ? (
             <Accordion allowToggle>
@@ -92,7 +104,7 @@ export default function ElectionNominee({
         </Stack>
       </CardBody>
       <Divider />
-      {recording ? (
+      {recording && !electionOver ? (
         <CardFooter display="flex" flexDirection="column" alignItems="center">
           <Text align="center" color="blue.600" fontSize="lg">
             {name}&apos;s Address

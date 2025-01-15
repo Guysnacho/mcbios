@@ -65,7 +65,7 @@ export const Footer = () => {
           )}
         </nav>
         <p className="mt-10 text-center text-xs leading-5 text-gray-100">
-          &copy; 2024 MCBIOS, All rights reserved.
+          &copy; 2025 MCBIOS, All rights reserved.
         </p>
       </div>
     </footer>
