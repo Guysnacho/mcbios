@@ -1,10 +1,14 @@
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
 import { createClient } from "@/lib/utils/supabase/component";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { InfoIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
   Box,
   Button,
+  Code,
   FormControl,
   FormLabel,
   Heading,
@@ -109,9 +113,32 @@ export const AuthModal = ({
                   <Heading fontSize={"4xl"} textAlign={"center"}>
                     Join the Community
                   </Heading>
-                  <Text color={"gray.600"}>
-                    Signing up will allow you to register for the conference.
+                  <Text
+                    color={"gray.600"}
+                    className="border-l-gray-600 border-l-2 pl-3"
+                  >
+                    Signing up will allow you to register for the conference and
+                    gain access to other features like conference session
+                    recordings.
                   </Text>
+                  <Alert borderRadius="xl">
+                    <AlertIcon>
+                      <InfoIcon m="auto" />
+                    </AlertIcon>
+                    <AlertDescription>
+                      We are currently addressing account confirmation email
+                      delivery issues for emails ending with <Code>.edu</Code>.
+                      We still encourage you to sign up but{" "}
+                      <Link
+                        href="/events"
+                        textDecoration="underline"
+                        _hover={{ shadow: "lg" }}
+                      >
+                        also provide a method to register for the conference
+                        without an account.
+                      </Link>
+                    </AlertDescription>
+                  </Alert>
                 </>
               ) : (
                 <Heading fontSize={"4xl"} textAlign={"center"}>

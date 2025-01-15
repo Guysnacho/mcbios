@@ -34,12 +34,14 @@ export default async function handler(
             },
           ],
           mode: "payment",
-          return_url: `${req.headers.origin}/dashboard/payment/{CHECKOUT_SESSION_ID}`,
+          return_url: `${req.headers.origin}/payment/{CHECKOUT_SESSION_ID}`,
           customer_email: body.email,
           customer_creation: "always",
           metadata: {
             userId: body.userId,
             email: body.email,
+            fname: body.fname,
+            lname: body.lname,
             tier: price.tier || "student",
             memberOnly: price.memberOnly!,
           },
@@ -64,14 +66,16 @@ export default async function handler(
             `Payment completed for user ${session!.metadata!.userId}!`
           );
           const client = createClient();
-          await handleUpdate(client, session);
-          console.log(
-            `Table update complete | user_role=${
-              session!.metadata!.tier
-            } | user_id=${session!.metadata!.userId} | member_only=${
-              session!.metadata!.memberOnly
-            }`
-          );
+          if (session!.metadata!.userId) {
+            await handleUpdate(client, session);
+            console.log(
+              `Table update complete | user_role=${
+                session!.metadata!.tier
+              } | user_id=${session!.metadata!.userId} | member_only=${
+                session!.metadata!.memberOnly
+              }`
+            );
+          } else handleRawUpdate(client, session);
         }
 
         res.send({
@@ -168,4 +172,21 @@ async function handleUpdate(
       member_only: session!.metadata!.memberOnly === "true",
     })
     .eq("user_id", session!.metadata!.userId);
+}
+
+/**
+ * Take note of unauthed registration
+ * @param client
+ * @param session
+ */
+async function handleRawUpdate(
+  client: SupabaseClient<Database>,
+  session: Stripe.Response<Stripe.Checkout.Session>
+) {
+  await client.from("raw_registration").insert({
+    email: session!.metadata!.email,
+    fname: session!.metadata!.fname,
+    lname: session!.metadata!.lname,
+    role: session!.metadata!.tier as Database["public"]["Enums"]["user_role"],
+  });
 }

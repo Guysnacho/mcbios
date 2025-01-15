@@ -241,7 +241,7 @@ export default function ElectionHero() {
               fontWeight={"normal"}
               px={6}
               mx="auto"
-              disabled
+              disabled={new Date().getMonth() > 10 && new Date().getDay() >= 15}
               colorScheme={"pink"}
               bg={"pink.500"}
               _hover={{ bg: "pink.700" }}

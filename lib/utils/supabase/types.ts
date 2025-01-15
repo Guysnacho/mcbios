@@ -59,6 +59,33 @@ export type Database = {
         };
         Relationships: [];
       };
+      raw_registration: {
+        Row: {
+          created_at: string;
+          email: string;
+          fname: string;
+          id: number;
+          lname: string;
+          role: Database["public"]["Enums"]["user_role"];
+        };
+        Insert: {
+          created_at?: string;
+          email: string;
+          fname: string;
+          id?: number;
+          lname: string;
+          role: Database["public"]["Enums"]["user_role"];
+        };
+        Update: {
+          created_at?: string;
+          email?: string;
+          fname?: string;
+          id?: number;
+          lname?: string;
+          role?: Database["public"]["Enums"]["user_role"];
+        };
+        Relationships: [];
+      };
       registration: {
         Row: {
           member_only: boolean;
