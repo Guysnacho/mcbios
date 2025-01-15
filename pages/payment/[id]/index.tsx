@@ -66,21 +66,32 @@ export default function PaymentConfirmation() {
                 </Text>
               ) : (
                 <Text>
-                  Something went wrong while submitting your payment. Click the{" "}
+                  Something went wrong while submitting your payment. Please
+                  confirm your transaction history and allow time before
+                  attempting another purchase.
+                  {/* Click the{" "}
                   <span className="text-green-900">
                     &quot;My dues are paid&quot;
                   </span>{" "}
                   button on the Member Dashboard and we&apos;ll confirm your
-                  membership ass soon as possible.
+                  membership as soon as possible. */}
                 </Text>
               )}
-              <Button
+              {/* <Button
                 mx="auto"
                 colorScheme="teal"
                 leftIcon={<ChevronLeftIcon />}
                 onClick={() => router.push("/dashboard")}
               >
                 Member Dashboard
+              </Button> */}
+              <Button
+                mx="auto"
+                colorScheme="teal"
+                leftIcon={<ChevronLeftIcon />}
+                onClick={() => router.push("/")}
+              >
+                Home
               </Button>
               <Text>
                 If you have any questions, please email{" "}
