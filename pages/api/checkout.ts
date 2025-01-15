@@ -34,7 +34,7 @@ export default async function handler(
             },
           ],
           mode: "payment",
-          return_url: `${req.headers.origin}/dashboard/payment/{CHECKOUT_SESSION_ID}`,
+          return_url: `${req.headers.origin}/payment/{CHECKOUT_SESSION_ID}`,
           customer_email: body.email,
           customer_creation: "always",
           metadata: {
