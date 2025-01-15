@@ -63,15 +63,17 @@ export default async function handler(
           console.log(
             `Payment completed for user ${session!.metadata!.userId}!`
           );
-          const client = createClient();
-          await handleUpdate(client, session);
-          console.log(
-            `Table update complete | user_role=${
-              session!.metadata!.tier
-            } | user_id=${session!.metadata!.userId} | member_only=${
-              session!.metadata!.memberOnly
-            }`
-          );
+          if (session!.metadata!.userId) {
+            const client = createClient();
+            await handleUpdate(client, session);
+            console.log(
+              `Table update complete | user_role=${
+                session!.metadata!.tier
+              } | user_id=${session!.metadata!.userId} | member_only=${
+                session!.metadata!.memberOnly
+              }`
+            );
+          }
         }
 
         res.send({
