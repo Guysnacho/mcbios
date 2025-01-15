@@ -86,9 +86,9 @@ export default function PaymentConfirmation() {
                 If you have any questions, please email{" "}
                 <a
                   className="underline text-blue-800"
-                  href="mailto:support@mcbios.com"
+                  href="mailto:mcbios.society@gmail.com"
                 >
-                  support@mcbios.com
+                  mcbios.society@gmail.com
                 </a>
                 .
               </Text>
