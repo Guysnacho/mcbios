@@ -79,7 +79,7 @@ export default function Page() {
                     color={"blue.100"}
                     decoration="underline"
                   >
-                    Deadline: January 15th, 2025
+                    Deadline: January 30th, 2025
                   </Text>
                   <Heading
                     color={"white"}
