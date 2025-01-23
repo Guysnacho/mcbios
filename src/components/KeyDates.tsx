@@ -165,7 +165,7 @@ export default function KeyDates() {
           text={
             "This awards program recognizes students and postdoctoral fellows that exhibit scientific excellence in the field of Bioinformatics. The deadline for this award is"
           }
-          deadline="February 17th, 2025"
+          deadline="January 30th, 2025"
           isYSEA
           stack={{ justifyContent: "space-evenly" }}
         />
