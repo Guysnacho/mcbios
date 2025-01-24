@@ -60,8 +60,8 @@ const Date = ({
         {icon}
       </Flex>
       <Text fontWeight={600}>{title}</Text>
-      {text && <Text color={"gray.600"}>{text}</Text>}
-      {deadline && <Text color={"maroon"}>{deadline}</Text>}
+      <Text>{text && <Text as="span" color={"gray.600"}>{text}</Text>}
+      {deadline && <Text as="span" color={"maroon"}> {deadline}</Text>}</Text>
       <Flex justifyItems="center">
         {isProposal && (
           <Button
@@ -113,7 +113,7 @@ export default function KeyDates() {
       <Date
         icon={<Icon as={PiBirdLight} w={[5, null, 10]} h={[5, null, 10]} />}
         title={"Early Bird Registration"}
-        deadline="February 1st, 2025"
+        deadline="February 17th, 2025"
         stack={{
           mt: "5",
           mb: "12",
@@ -155,7 +155,7 @@ export default function KeyDates() {
           text={
             "If you have reasearch and applicable development that you want to showcase, please let the team know! The deadline for submitting abstract is"
           }
-          deadline="February 1st, 2025"
+          deadline="February 17th, 2025"
           isAbstract
           stack={{ justifyContent: "space-evenly" }}
         />
