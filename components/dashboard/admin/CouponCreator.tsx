@@ -1,6 +1,7 @@
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
 import { createClient } from "@/lib/utils/supabase/component";
+import { Database } from "@/lib/utils/supabase/types";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -18,64 +19,99 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Select,
   Stack,
   useColorModeValue,
   useToast,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { Dispatch, SetStateAction, useState } from "react";
-import { PaymentHandlerType } from "./PaymentHandler";
-import { Database } from "@/lib/utils/supabase/types";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 export const CouponCreator = () => {
-  const [codeType, setCodeType] = useState<Database['public']['Enums']['code_type']>();
-  return (<Stack direction={["column", null, "row"]} mx="auto" justify="space-around">
-    <VStack justifyContent="center" textAlign="center">
-      <Heading size="md">Create Coupon</Heading>
-      <Flex justify="center">
-        <Button
-          colorScheme="green"
-        // onClick={() => handleSubmit().catch((err) => console.error(err))}
-        >
-          Submit
-        </Button>
-        <Select
-          variant="outline"
-          placeholder="Select a membership level"
-          onChange={(e) => {
-            setTier(
-              e.currentTarget.value as PaymentHandlerType
-            );
-          }}
-        >
-          <option value="student">
-            Conference and Membership | Student | $200
-          </option>
-          <option value="postdoctorial">
-            Conference and Membership | Postdoctorial | $300
-          </option>
-          <option value="professional">
-            Conference and Membership | Professional | $400
-          </option>
-          {/* <option value="member_only_student">
-                Membership | Student | $10
-              </option>
-              <option value="member_only_postdoctorial">
-                Membership | Postdoctorial | $20
-              </option>
-              <option value="member_only_professional">
-                Membership | Professional | $50
-              </option> */}
-        </Select>
-      </Flex>
-    </VStack>
-    <VStack textAlign="center">
-      <Heading size="md">Coupon List</Heading>
-    </VStack>
-  </Stack>)
-}
+  const [coupons, setCoupons] =
+    useState<Database["public"]["Tables"]["admin_code"]>();
+  const client = createClient();
+  const toast = useToast();
+
+  const fetchCoupons = () =>
+    client
+      .from("admin_code")
+      .select("code,created_at,expires_at")
+      .eq("type", "coupon")
+      .then((res) => {
+        if (res.error) {
+          toast({
+            colorScheme: "error",
+            title: "Issue fetching coupons",
+            description: res.error.message,
+          });
+        } else {
+          setCoupons(res.data);
+        }
+      });
+
+  const persistCoupon = async (coupon: {
+    id: any;
+    max_redemptions: any;
+    redeem_by: string | number | Date;
+    percent_off: any;
+  }) => {
+    const { data, error } = await client.from("admin_code").insert({
+      code: coupon.id,
+      type: "coupon",
+      redemptions: coupon.max_redemptions,
+      expires_at: coupon.redeem_by ? new Date(coupon.redeem_by) : undefined,
+    });
+    if (error) {
+      toast({
+        colorScheme: "warning",
+        title: "Issue saving coupon, but successfully created",
+        description: `Coupon Code - ${coupon.id} Percent Off: ${coupon.percent_off} Max Redemptions: ${coupon.max_redemptions}`,
+      });
+    } else {
+      toast({
+        colorScheme: "success",
+        title: "Coupon created!",
+        description: `Coupon Code - ${coupon.id} Percent Off: ${coupon.percent_off} Max Redemptions: ${coupon.max_redemptions}`,
+      });
+    }
+  };
+
+  const createCoupon = async () => {
+    fetch("/api/admin", { method: "POST" })
+      .then((res) => res.json())
+      .then((res) => {
+        persistCoupon(res);
+      })
+      .catch((err) =>
+        toast({
+          colorScheme: "error",
+          title: "Issue creating coupon",
+          description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
+        })
+      );
+  };
+
+  useEffect(() => {
+    fetchCoupons();
+  }, []);
+
+  return (
+    <Stack direction={["column"]} gap={10} mx="auto" justify="space-around">
+      <VStack justifyContent="center" textAlign="center">
+        <Heading size="md">Create Coupon</Heading>
+        <Flex justify="center">
+          <Button colorScheme="green" onClick={() => createCoupon()}>
+            Submit
+          </Button>
+        </Flex>
+      </VStack>
+      <VStack textAlign="center">
+        <Heading size="md">Coupon List</Heading>
+      </VStack>
+    </Stack>
+  );
+};
 
 const CouponModal = ({
   isOpen,
@@ -149,9 +185,7 @@ const CouponModal = ({
         <ModalHeader className="flex flex-col gap-1 text-xl"></ModalHeader>
         <ModalBody gap={3}>
           <Box rounded={"lg"} bg={useColorModeValue("white", "gray.700")} p={8}>
-            <Stack align={"center"} mb={5}>
-
-            </Stack>
+            <Stack align={"center"} mb={5}></Stack>
 
             {/* Form fields */}
             <Stack spacing={4}>
@@ -214,7 +248,6 @@ const CouponModal = ({
           >
             Submit
           </Button>
-
         </ModalFooter>
       </ModalContent>
     </Modal>
