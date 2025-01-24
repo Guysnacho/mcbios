@@ -109,7 +109,7 @@ export const CouponCreator = () => {
       <VStack textAlign="center">
         <Heading size="md">Coupon List</Heading>
 
-        <TableContainer>
+        <TableContainer maxH={500} overflowY="auto">
           <Table variant="striped">
             <TableCaption>
               {data && data.data
