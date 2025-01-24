@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/utils/supabase/component";
 import { Database } from "@/lib/utils/supabase/types";
-import { Button, Flex, Input, Stack, Text, useToast } from "@chakra-ui/react";
+import { Button, Flex, Heading, Input, Stack, Text, useToast, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 
@@ -143,25 +143,6 @@ export const VideoUploader = () => {
           </Button>
         </Flex>
       </div>
-
-      {/* <Table aria-label="Content Table" title="Saved Videos" className="mt-10 min-w-96">
-        <TableHeader>
-          <TableColumn>TITLE</TableColumn>
-          <TableColumn>DATE</TableColumn>
-          <TableColumn>PATH</TableColumn>
-        </TableHeader>
-        <TableBody emptyContent={"No rows to display."}>
-          {vidList
-            ? vidList.map((vid, idx) => (
-                <TableRow key={idx}>
-                  <TableCell>{vid.title}</TableCell>
-                  <TableCell>{vid.date}</TableCell>
-                  <TableCell>{vid.path}</TableCell>
-                </TableRow>
-              ))
-            : []}
-        </TableBody>
-      </Table> */}
     </div>
   );
 };

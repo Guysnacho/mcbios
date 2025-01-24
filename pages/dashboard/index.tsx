@@ -1,3 +1,4 @@
+import { CouponCreator } from "@/components/dashboard/admin/CouponCreator";
 import { MemberContent } from "@/components/dashboard/admin/MemberContent";
 import {
   PaymentHandler,
@@ -16,6 +17,7 @@ import {
   Button,
   Divider,
   Flex,
+  Heading,
   Select,
   Tab,
   Table,
@@ -30,7 +32,7 @@ import {
   Th,
   Thead,
   Tr,
-  useToast,
+  useToast
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useState } from "react";
@@ -79,9 +81,13 @@ export default function Dashboard() {
                   <VideoUploader />
                 </div>
                 <Divider className="my-5" />
+                <Heading size="md" textAlign="center">User Account Confirmation</Heading>
                 <div className="max-w-[500]px my-5 flex gap-3 mx-auto justify-center">
+                  {/* Add coupon */}
                   <UserConfirm client={client} />
                 </div>
+
+                <CouponCreator />
               </TabPanel>
             ) : undefined}
 
