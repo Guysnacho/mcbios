@@ -26,13 +26,20 @@ export default async function handler(
               process.env.EB_CONF_REGISTRATION_PROFESSIONAL_PRODUCT!,
               process.env.CONF_REGISTRATION_STUDENT_PRODUCT!,
               process.env.CONF_REGISTRATION_POSTDOC_PRODUCT!,
-              process.env.CONF_REGISTRATION_PROFESSIONAL_PRODUCT!]
-          }
-        })
+              process.env.CONF_REGISTRATION_PROFESSIONAL_PRODUCT!,
+            ],
+          },
+        });
 
-        console.log(couponResponse)
+        const promoResponse = await stripe.promotionCodes.create({
+          coupon: couponResponse.id,
+          max_redemptions: 1,
+        });
 
-        res.send(couponResponse);
+        let final = couponResponse;
+        final.id = promoResponse.code;
+
+        res.send(final);
       } catch (err) {
         // @ts-expect-error error fields are unknown
         res.status(err.statusCode || 500).json(err.message);
