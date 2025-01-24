@@ -20,6 +20,14 @@ import {
   ModalHeader,
   ModalOverlay,
   Stack,
+  Table,
+  TableCaption,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
   useColorModeValue,
   useToast,
   VStack,
@@ -27,9 +35,17 @@ import {
 import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
+const columns = [
+  { name: "#" },
+  { name: "CODE" },
+  { name: "TYPE" },
+  { name: "EXPIRES AT" },
+  { name: "CREATED AT" },
+];
+
 export const CouponCreator = () => {
   const [coupons, setCoupons] =
-    useState<Database["public"]["Tables"]["admin_code"]>();
+    useState<Database["public"]["Tables"]["admin_code"]['Row'][]>();
   const client = createClient();
   const toast = useToast();
 
@@ -44,7 +60,7 @@ export const CouponCreator = () => {
             colorScheme: "error",
             title: "Issue fetching coupons",
             description: res.error.message,
-            variant: "subtle"
+            variant: "subtle",
           });
         } else {
           setCoupons(res.data);
@@ -109,6 +125,34 @@ export const CouponCreator = () => {
       </VStack>
       <VStack textAlign="center">
         <Heading size="md">Coupon List</Heading>
+
+        <TableContainer>
+          <Table variant="striped">
+            <TableCaption>
+              {coupons?.length
+                ? coupons.length + " coupons created"
+                : "No coupons available"}
+            </TableCaption>
+            <Thead>
+              <Tr>
+                {columns.map(({ name }) => (
+                  <Th key={name}>{name}</Th>
+                ))}
+              </Tr>
+            </Thead>
+            <Tbody>
+              {coupons && coupons.map((coupon, idx) => (
+                <Tr key={idx}>
+                  <Td>{idx}</Td>
+                  <Td>{coupon.code}</Td>
+                  <Td>{coupon.type}</Td>
+                  <Td>{coupon.expires_at}</Td>
+                  <Td>{coupon.created_at}</Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
       </VStack>
     </Stack>
   );
