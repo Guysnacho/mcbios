@@ -18,3 +18,14 @@ export const authFetcher = async (client: SupabaseClient<Database>) => {
   }
   return { user: undefined, videos: [] };
 };
+
+export const couponFetcher = async (client: SupabaseClient<Database>) => {
+  // Fetch data from external API
+  const data = await client
+    .from("admin_code")
+    .select("*")
+    .eq("type", "coupon")
+    .throwOnError();
+
+  return data;
+};

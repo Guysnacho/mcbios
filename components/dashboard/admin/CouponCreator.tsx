@@ -1,9 +1,10 @@
 import { createClient } from "@/lib/utils/supabase/component";
-import { Database } from "@/lib/utils/supabase/types";
+import { couponFetcher } from "@/lib/utils/swrFetchers";
 import {
   Button,
   Flex,
   Heading,
+  Spinner,
   Stack,
   Table,
   TableCaption,
@@ -14,9 +15,9 @@ import {
   Thead,
   Tr,
   useToast,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 const columns = [
   { name: "#" },
@@ -26,29 +27,23 @@ const columns = [
 ];
 
 export const CouponCreator = () => {
-  const [coupons, setCoupons] =
-    useState<Database["public"]["Tables"]["admin_code"]['Row'][]>();
   const client = createClient();
   const toast = useToast();
 
-  const fetchCoupons = () =>
-    client
-      .from("admin_code")
-      .select("*")
-      .eq("type", "coupon")
-      .then((res) => {
-        if (res.error) {
-          toast({
-            colorScheme: "error",
-            title: "Issue fetching coupons",
-            description: res.error.message,
-            variant: "subtle",
-          });
-        } else {
-          console.log(res.data)
-          setCoupons(res.data);
-        }
-      });
+  const { data, error, isLoading, mutate } = useSWR(
+    "/admin/coupon",
+    () => couponFetcher(client),
+    {
+      onError(err) {
+        toast({
+          colorScheme: "error",
+          title: "Issue fetching coupons",
+          description: err.message,
+          variant: "subtle",
+        });
+      },
+    }
+  );
 
   const persistCoupon = async (coupon: {
     id: any;
@@ -56,23 +51,31 @@ export const CouponCreator = () => {
     redeem_by: string | number | Date;
     percent_off: any;
   }) => {
-    const { data, error } = await client.from("admin_code").insert({
-      code: coupon.id,
-      type: "coupon",
-      redemptions: coupon.max_redemptions,
-      expires_at: coupon.redeem_by ? new Date(coupon.redeem_by).toString() : undefined,
-    });
+    const { data, error } = await client
+      .from("admin_code")
+      .insert({
+        code: coupon.id,
+        type: "coupon",
+        redemptions: coupon.max_redemptions,
+        expires_at: coupon.redeem_by
+          ? new Date(coupon.redeem_by).toString()
+          : undefined,
+      })
+      .single();
     if (error) {
       toast({
         colorScheme: "warning",
         title: "Issue saving coupon, but successfully created",
         description: `Coupon Code - ${coupon.id} Percent Off: ${coupon.percent_off} Max Redemptions: ${coupon.max_redemptions}`,
+        variant: "subtle",
       });
     } else {
+      mutate(data);
       toast({
         colorScheme: "success",
         title: "Coupon created!",
         description: `Coupon Code - ${coupon.id} Percent Off: ${coupon.percent_off} Max Redemptions: ${coupon.max_redemptions}`,
+        variant: "subtle",
       });
     }
   };
@@ -88,13 +91,10 @@ export const CouponCreator = () => {
           colorScheme: "error",
           title: "Issue creating coupon",
           description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
+          variant: "subtle",
         })
       );
   };
-
-  useEffect(() => {
-    fetchCoupons();
-  }, []);
 
   return (
     <Stack direction={["column"]} gap={10} mx="auto" justify="space-around">
@@ -112,8 +112,8 @@ export const CouponCreator = () => {
         <TableContainer>
           <Table variant="striped">
             <TableCaption>
-              {coupons?.length
-                ? coupons.length + " coupons created"
+              {data && data.data
+                ? data.data.length + " coupons created"
                 : "No coupons available"}
             </TableCaption>
             <Thead>
@@ -124,14 +124,18 @@ export const CouponCreator = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {coupons && coupons.map((coupon, idx) => (
-                <Tr key={idx}>
-                  <Td>{idx + 1}</Td>
-                  <Td>{coupon.code}</Td>
-                  <Td>{coupon.expires_at ?? "No Expiration Date"}</Td>
-                  <Td>{coupon.created_at}</Td>
-                </Tr>
-              ))}
+              {isLoading && <Spinner />}
+              {!isLoading &&
+                data &&
+                data.data &&
+                data.data.map((coupon, idx) => (
+                  <Tr key={idx}>
+                    <Td>{idx + 1}</Td>
+                    <Td>{coupon.code}</Td>
+                    <Td>{coupon.expires_at ?? "No Expiration Date"}</Td>
+                    <Td>{coupon.created_at}</Td>
+                  </Tr>
+                ))}
             </Tbody>
           </Table>
         </TableContainer>
