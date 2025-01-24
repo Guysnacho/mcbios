@@ -60,7 +60,7 @@ export const CouponCreator = () => {
       code: coupon.id,
       type: "coupon",
       redemptions: coupon.max_redemptions,
-      expires_at: coupon.redeem_by ? new Date(coupon.redeem_by) : undefined,
+      expires_at: coupon.redeem_by ? new Date(coupon.redeem_by).toString() : undefined,
     });
     if (error) {
       toast({
