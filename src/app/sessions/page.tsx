@@ -118,12 +118,13 @@ export default function Page() {
                   The deadline to submit an abstract is December 20th, 2024.
                 </Text>
                 <Button
-                  as="a"
-                  colorScheme="blue"
+                  // as="a"
+                  colorScheme="teal"
                   mt="5"
-                  href="https://forms.gle/Ao8hxxD3KfBjrnEt7"
-                  target="_blank"
+                  // href="https://forms.gle/Ao8hxxD3KfBjrnEt7"
+                  // target="_blank"
                   rounded={"full"}
+                  disabled
                 >
                   Proposal Form
                 </Button>

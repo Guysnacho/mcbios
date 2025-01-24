@@ -117,7 +117,7 @@ export default function Page() {
                   Abstract submissions are open!
                 </Heading>
                 <Text>
-                  The deadline to submit an abstract is February 1st, 2025.
+                  The deadline to submit an abstract is February 17th, 2025.
                 </Text>
                 <Button
                   as="a"
@@ -170,7 +170,7 @@ export default function Page() {
             author is the presenting author. Authors will also have an
             opportunity to submit and publish a full paper for MCBIOS 2025
             proceedings in Frontiers in Artificial Intelligence. The deadline
-            for full paper submission is February 1st, 2025.
+            for full paper submission is February 17th, 2025.
           </Text>
         </Box>
       </SimpleGrid>
