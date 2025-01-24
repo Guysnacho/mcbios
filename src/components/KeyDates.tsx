@@ -27,6 +27,7 @@ interface ConfDayProps {
   isProposal?: boolean;
   isAbstract?: boolean;
   isYSEA?: boolean;
+  hasPassed?: boolean;
 }
 
 const Date = ({
@@ -37,6 +38,7 @@ const Date = ({
   isProposal,
   isAbstract,
   isYSEA,
+  hasPassed,
   stack,
 }: ConfDayProps & { stack?: StackProps }) => {
   return (
@@ -60,8 +62,13 @@ const Date = ({
         {icon}
       </Flex>
       <Text fontWeight={600}>{title}</Text>
-      <Text>{text && <Text as="span" color={"gray.600"}>{text}</Text>}
-      {deadline && <Text as="span" color={"maroon"}> {deadline}</Text>}</Text>
+      <Text>
+        {text && <Text as="span" color={"gray.600"}>{text}</Text>}
+        {deadline && !hasPassed ?
+          <Text as="span" color={"maroon"}> {deadline}</Text> : deadline && hasPassed ?
+            <>has passed. <Text as="span" color={"maroon"} textDecorationLine="line-through">{deadline}</Text></> : <></>
+        }
+      </Text>
       <Flex justifyItems="center">
         {isProposal && (
           <Button
@@ -143,9 +150,10 @@ export default function KeyDates() {
           }
           title={"Call for Session Proposals"}
           text={
-            "If you'd like to hold a session or conduct a workshop during the conference, the deadline is"
+            "If you'd like to hold a session or conduct a workshop during the conference, the deadline "
           }
           deadline="December 20th, 2024"
+          hasPassed
           isProposal
           stack={{ justifyContent: "space-evenly" }}
         />
