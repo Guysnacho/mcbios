@@ -25,6 +25,7 @@ export default async function handler(
         // Create Checkout Sessions from body params.
         const session = await stripe.checkout.sessions.create({
           ui_mode: "embedded",
+          allow_promotion_codes: true,
           line_items: [
             {
               // Provide the exact Price ID (for example, pr_1234) of
