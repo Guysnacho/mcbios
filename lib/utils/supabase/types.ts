@@ -9,6 +9,30 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      admin_code: {
+        Row: {
+          code: string;
+          created_at: string;
+          expires_at: string | null;
+          redemptions: number | null;
+          type: Database["public"]["Enums"]["code_type"];
+        };
+        Insert: {
+          code: string;
+          created_at?: string;
+          expires_at?: string | null;
+          redemptions?: number | null;
+          type: Database["public"]["Enums"]["code_type"];
+        };
+        Update: {
+          code?: string;
+          created_at?: string;
+          expires_at?: string | null;
+          redemptions?: number | null;
+          type?: Database["public"]["Enums"]["code_type"];
+        };
+        Relationships: [];
+      };
       confirm_request: {
         Row: {
           created_at: string;
@@ -138,6 +162,7 @@ export type Database = {
       [_ in never]: never;
     };
     Enums: {
+      code_type: "coupon";
       user_role: "professional" | "student" | "admin" | "postdoctorial";
     };
     CompositeTypes: {
