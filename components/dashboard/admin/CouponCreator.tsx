@@ -44,6 +44,7 @@ export const CouponCreator = () => {
             colorScheme: "error",
             title: "Issue fetching coupons",
             description: res.error.message,
+            variant: "subtle"
           });
         } else {
           setCoupons(res.data);
