@@ -218,19 +218,19 @@ export default function Home() {
 
 const SponsorCard = ({ url, src }: { src: string; url: string }) => {
   return (
-    <LinkOverlay mx="auto" href={url} target="_blank">
-      <Card
-        mx="auto"
-        variant="elevated"
-        borderColor="blue.400"
-        borderWidth={1}
-        backgroundColor="rgba(255, 255, 255, 0%)"
-        mb={5}
-        shadow="sm"
-        _hover={{ shadow: "lg" }}
-        w={["80%", "xs", "sm", "md", "lg"]}
-      >
-        <CardBody>
+    <Card
+      mx="auto"
+      variant="elevated"
+      borderColor="blue.400"
+      borderWidth={1}
+      backgroundColor="rgba(255, 255, 255, 0%)"
+      mb={5}
+      shadow="sm"
+      _hover={{ shadow: "lg" }}
+      w={["80%", "xs", "sm", "md", "lg"]}
+    >
+      <CardBody>
+        <LinkOverlay m="auto" justifyContent="space-around" href={url} target="_blank">
           <Image
             src={src}
             my="auto"
@@ -239,8 +239,8 @@ const SponsorCard = ({ url, src }: { src: string; url: string }) => {
             objectFit="contain"
             htmlHeight={200}
           />
-        </CardBody>
-      </Card>
-    </LinkOverlay>
+        </LinkOverlay>
+      </CardBody>
+    </Card>
   );
 };
