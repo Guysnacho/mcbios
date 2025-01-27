@@ -2,6 +2,7 @@
 
 import KeyDates from "@/components/KeyDates";
 import KeynoteSpeakers from "@/components/KeynoteSpeakers";
+import ScientificSessions from "@/components/ScientificSessions";
 import TutorialSpeakers from "@/components/TutorialSpeakers";
 import { Link } from "@chakra-ui/next-js";
 import {
@@ -12,7 +13,7 @@ import {
   HStack,
   Stack,
   Text,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
 import localFont from "next/font/local";
 
@@ -166,6 +167,7 @@ export default function Home() {
 
           {/* Invited Speakers */}
           <TutorialSpeakers />
+          <ScientificSessions />
         </VStack>
       </main>
       {/* @ts-expect-error marquee is disabled */}
