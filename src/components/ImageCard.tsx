@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   ButtonGroup,
@@ -18,6 +19,7 @@ type ImageCardProps = {
   title: string;
   blurb?: string;
   url?: string;
+  discount?: string;
 };
 
 export default function ImageCard(props: ImageCardProps & CenterProps) {
@@ -83,6 +85,9 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
               mx="auto"
               display={["none", null, "unset"]}
               className="space-y-3"
+              maxH={150}
+              overflowY="auto"
+              px={[null, 2, 3]}
             >
               {props.blurb.split("||").map((blurb, idx) => (
                 <Text key={idx}>{blurb}</Text>
@@ -104,6 +109,14 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
                 Book Today
               </Button>
             </ButtonGroup>
+          )}
+          {props.discount && (
+            <Box>
+              <Alert status="info" my="3" mx="auto" borderRadius="md">
+                Feel free to use the following discount code during checkout -{" "}
+                {props.discount}
+              </Alert>
+            </Box>
           )}
         </Stack>
       </Box>

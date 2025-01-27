@@ -83,6 +83,7 @@ export default function Page() {
             url="https://www.marriott.com/en-us/hotels/slcup-salt-lake-city-marriott-university-park/overview/"
             title="Salt Lake City Marriott University Park"
             blurb="Salt Lake City Marriott University Park is next to the University of Utah with stunning mountain and city views. Minutes from downtown Salt Lake City, our hotel features an updated look and an exclusive M Club. With modern amenities and an excellent location adjacent to Rice-Eccles Stadium, our hotel provides smart, stylish lodging for business and leisure travelers visiting the Salt Lake City area."
+            discount="U2U"
           />
           <ImageCard
             w={["85%", "75%", "45%", "lg"]}
