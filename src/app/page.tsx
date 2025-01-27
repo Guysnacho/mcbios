@@ -2,6 +2,7 @@
 
 import KeyDates from "@/components/KeyDates";
 import KeynoteSpeakers from "@/components/KeynoteSpeakers";
+import TutorialSpeakers from "@/components/TutorialSpeakers";
 import { Link } from "@chakra-ui/next-js";
 import {
   Box,
@@ -159,9 +160,14 @@ export default function Home() {
             !
           </p>
         </Stack>
-        {/* Keynote Speakers */}
-        <KeynoteSpeakers />
-        {/* Invited Speakers */}
+        <VStack w="full" align="center" gap={0}>
+          {/* Keynote Speakers */}
+          <KeynoteSpeakers />
+
+          {/* Invited Speakers */}
+          <TutorialSpeakers />
+        </VStack>
+
         {/* @ts-expect-error marquee is disabled */}
         <Box as="marquee" justifyItems="space-evenly">
           <Heading
