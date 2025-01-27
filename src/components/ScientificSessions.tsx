@@ -2,6 +2,8 @@
 
 import {
   Box,
+  Card,
+  CardBody,
   Heading,
   Table,
   TableCaption,
@@ -25,6 +27,24 @@ export default function ScientificSessions() {
       <Heading size="xl" mb={38} color="blue.700" textAlign="center">
         Scientific Sessions
       </Heading>
+      <Card
+        mx="auto"
+        variant="outline"
+        borderWidth={2}
+        backgroundColor="rgba(255, 255, 255, 0%)"
+        mb={5}
+        shadow="sm"
+        _hover={{ shadow: "lg" }}
+        w={["xs", "sm", "md", "lg"]}
+      >
+        <CardBody>
+          <Text>
+            During the conference, several scientific sessions will be available
+            over broad topics in Genomics from use of Artificial Intelligence in
+            the field to statistical analyses.
+          </Text>
+        </CardBody>
+      </Card>
       <TableContainer
         maxH={500}
         maxW={[250, "lg", null, "xl"]}
