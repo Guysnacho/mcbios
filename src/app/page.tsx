@@ -218,7 +218,7 @@ export default function Home() {
 
 const SponsorCard = ({ url, src }: { src: string; url: string }) => {
   return (
-    <LinkOverlay href={url} mx="auto">
+    <LinkOverlay mx="auto" href={url} target="_blank">
       <Card
         mx="auto"
         variant="elevated"
