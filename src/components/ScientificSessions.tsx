@@ -29,8 +29,9 @@ export default function ScientificSessions() {
       </Heading>
       <Card
         mx="auto"
-        variant="outline"
-        borderWidth={2}
+        variant="elevated"
+        borderColor="blue.400"
+        borderWidth={1}
         backgroundColor="rgba(255, 255, 255, 0%)"
         mb={5}
         shadow="sm"
