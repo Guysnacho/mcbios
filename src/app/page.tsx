@@ -2,13 +2,15 @@
 
 import KeyDates from "@/components/KeyDates";
 import KeynoteSpeakers from "@/components/KeynoteSpeakers";
+import ScientificSessions from "@/components/ScientificSessions";
+import TutorialSpeakers from "@/components/TutorialSpeakers";
 import { Link } from "@chakra-ui/next-js";
 import {
-  Box,
   Button,
   Divider,
   Flex,
   Heading,
+  HStack,
   Stack,
   Text,
   VStack,
@@ -159,23 +161,25 @@ export default function Home() {
             !
           </p>
         </Stack>
-        {/* Keynote Speakers */}
-        <KeynoteSpeakers />
-        {/* Invited Speakers */}
-        {/* @ts-expect-error marquee is disabled */}
-        <Box as="marquee" justifyItems="space-evenly">
-          <Heading
-            as="h2"
-            m="auto"
-            my="auto"
-            p={5}
-            bgGradient="linear(to-l, #7928CA, #FF0080)"
-            bgClip="text"
-          >
-            More invited speakers will be announced soon
-          </Heading>
-        </Box>
+        <VStack w="full" align="center" gap={0}>
+          {/* Keynote Speakers */}
+          <KeynoteSpeakers />
+
+          {/* Invited Speakers */}
+          <TutorialSpeakers />
+          <ScientificSessions />
+        </VStack>
       </main>
+      {/* @ts-expect-error marquee is disabled */}
+      <HStack as="marquee" justifyItems="space-evenly" my="3">
+        <Heading
+          size="lg"
+          bgGradient="linear(to-l, #7928CA, #FF0080)"
+          bgClip="text"
+        >
+          More invited speakers will be announced soon
+        </Heading>
+      </HStack>
     </div>
   );
 }

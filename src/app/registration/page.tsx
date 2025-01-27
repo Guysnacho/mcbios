@@ -2,6 +2,7 @@
 
 import { Link } from "@chakra-ui/next-js";
 import {
+  Alert,
   Box,
   Button,
   Card,
@@ -128,6 +129,23 @@ export default function Page() {
                         account and select your registration type. Secure
                         payment processing powered by Stripe Checkout.
                       </Text> */}
+                      <Alert borderRadius="md">
+                        <Text align="center">
+                          If you run into issues at any point during
+                          registration, feel free to reach out to our developers
+                          at{" "}
+                          <Text
+                            opacity={0.8}
+                            _hover={{ opacity: 1 }}
+                            as={Link}
+                            target="_blank"
+                            href="mailto:mcbios.society@gmail.com"
+                          >
+                            mcbios.society@gmail.com
+                          </Text>
+                          .
+                        </Text>
+                      </Alert>
                       <Button
                         as={Link}
                         mx="auto"
