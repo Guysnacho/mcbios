@@ -5,14 +5,14 @@ import KeynoteSpeakers from "@/components/KeynoteSpeakers";
 import TutorialSpeakers from "@/components/TutorialSpeakers";
 import { Link } from "@chakra-ui/next-js";
 import {
-  Box,
   Button,
   Divider,
   Flex,
   Heading,
+  HStack,
   Stack,
   Text,
-  VStack,
+  VStack
 } from "@chakra-ui/react";
 import localFont from "next/font/local";
 
@@ -167,21 +167,17 @@ export default function Home() {
           {/* Invited Speakers */}
           <TutorialSpeakers />
         </VStack>
-
-        {/* @ts-expect-error marquee is disabled */}
-        <Box as="marquee" justifyItems="space-evenly">
-          <Heading
-            as="h2"
-            m="auto"
-            my="auto"
-            p={5}
-            bgGradient="linear(to-l, #7928CA, #FF0080)"
-            bgClip="text"
-          >
-            More invited speakers will be announced soon
-          </Heading>
-        </Box>
       </main>
+      {/* @ts-expect-error marquee is disabled */}
+      <HStack as="marquee" justifyItems="space-evenly" my="3">
+        <Heading
+          size="lg"
+          bgGradient="linear(to-l, #7928CA, #FF0080)"
+          bgClip="text"
+        >
+          More invited speakers will be announced soon
+        </Heading>
+      </HStack>
     </div>
   );
 }
