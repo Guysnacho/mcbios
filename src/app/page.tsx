@@ -7,10 +7,14 @@ import TutorialSpeakers from "@/components/TutorialSpeakers";
 import { Link } from "@chakra-ui/next-js";
 import {
   Button,
+  Card,
+  CardBody,
   Divider,
   Flex,
   Heading,
   HStack,
+  Image,
+  LinkOverlay,
   Stack,
   Text,
   VStack,
@@ -22,6 +26,14 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+
+const sponsorList = [
+  {
+    url: "https://healthcare.utah.edu/huntsmancancerinstitute",
+    src: "/sponsor/HCI-UHealth.png",
+  },
+  { url: "https://www.utah.edu", src: "/sponsor/UHLogo.png" },
+];
 
 export default function Home() {
   return (
@@ -168,18 +180,67 @@ export default function Home() {
           {/* Invited Speakers */}
           <TutorialSpeakers />
           <ScientificSessions />
+          {/* @ts-expect-error marquee is disabled */}
+          <HStack as="marquee" justifyItems="space-evenly" my="3">
+            <Heading
+              size="lg"
+              bgGradient="linear(to-l, #7928CA, #FF0080)"
+              bgClip="text"
+            >
+              More invited speakers will be announced soon
+            </Heading>
+          </HStack>
         </VStack>
-      </main>
-      {/* @ts-expect-error marquee is disabled */}
-      <HStack as="marquee" justifyItems="space-evenly" my="3">
         <Heading
-          size="lg"
-          bgGradient="linear(to-l, #7928CA, #FF0080)"
-          bgClip="text"
+          size={["lg", null, "xl", "2xl"]}
+          color="blue.700"
+          textAlign="center"
+          my="4"
+          mx="auto"
         >
-          More invited speakers will be announced soon
+          Sponsors
         </Heading>
-      </HStack>
+        <Stack
+          w="full"
+          my="5"
+          gap={3}
+          direction={["column", null, "row"]}
+          flexWrap="wrap"
+        >
+          {sponsorList.map(({ src, url }, idx) => (
+            <SponsorCard key={idx} src={src} url={url} />
+          ))}
+        </Stack>
+      </main>
     </div>
   );
 }
+
+const SponsorCard = ({ url, src }: { src: string; url: string }) => {
+  return (
+    <LinkOverlay href={url} mx="auto">
+      <Card
+        mx="auto"
+        variant="elevated"
+        borderColor="blue.400"
+        borderWidth={1}
+        backgroundColor="rgba(255, 255, 255, 0%)"
+        mb={5}
+        shadow="sm"
+        _hover={{ shadow: "lg" }}
+        w={["80%", "xs", "sm", "md", "lg"]}
+      >
+        <CardBody>
+          <Image
+            src={src}
+            my="auto"
+            alt="Sponsorship Logo"
+            objectPosition="center"
+            objectFit="contain"
+            htmlHeight={200}
+          />
+        </CardBody>
+      </Card>
+    </LinkOverlay>
+  );
+};
