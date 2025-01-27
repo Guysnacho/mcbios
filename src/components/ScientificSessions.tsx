@@ -35,7 +35,7 @@ export default function ScientificSessions() {
         mb={5}
         shadow="sm"
         _hover={{ shadow: "lg" }}
-        w={["xs", "sm", "md", "lg"]}
+        w={["80%", "xs", "sm", "md", "lg"]}
       >
         <CardBody>
           <Text>
@@ -47,7 +47,7 @@ export default function ScientificSessions() {
       </Card>
       <TableContainer
         maxH={500}
-        maxW={[250, "lg", null, "xl"]}
+        maxW={[250, "lg", "2xl", "3xl", "80%"]}
         overflowX="auto"
         overflowY="auto"
         mx="auto"
