@@ -86,7 +86,11 @@ export default function ScientificSessions() {
   );
 }
 
-const columns = [{ name: "#" }, { name: "Speaker(s)" }, { name: "Topic" }];
+const columns = [
+  { name: "#" },
+  { name: "Session Chair(s)" },
+  { name: "Topic" },
+];
 
 const sessions = [
   {
@@ -101,7 +105,6 @@ const sessions = [
     topic:
       "AI in Computational Sciences: Shaping the Future of Research, Education, and Biomolecular Discovery ",
   },
-
   {
     speaker: [
       "Elizabeth A. Worthey, Ph.D. - University of Alabama at Birmingham",
@@ -183,5 +186,11 @@ const sessions = [
     speaker: ["Chi Wang, Ph.D. - University of Kentucky"],
     topic:
       "Recent advances in statistical and computational methods for omics data ",
+  },
+  {
+    speaker: [
+      "Maggie Cheang, Ph.D. - The Institute of Cancer Research, London.",
+    ],
+    topic: "AI in Clinical Trials",
   },
 ];
