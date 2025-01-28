@@ -125,12 +125,15 @@ export default function Home() {
                   Registration
                 </Button>
                 <Button
+                  as={Link}
+                  href="#ScientificSessions"
                   bg={"whiteAlpha.300"}
                   rounded={"full"}
                   color={"white"}
+                  variant="outline"
                   _hover={{ bg: "whiteAlpha.500" }}
                 >
-                  Program Coming Soon
+                  Scientific Sessions
                 </Button>
               </Stack>
             </Stack>
@@ -230,7 +233,12 @@ const SponsorCard = ({ url, src }: { src: string; url: string }) => {
       w={["80%", "xs", "sm", "md", "lg"]}
     >
       <CardBody>
-        <LinkOverlay m="auto" justifyContent="space-around" href={url} target="_blank">
+        <LinkOverlay
+          m="auto"
+          justifyContent="space-around"
+          href={url}
+          target="_blank"
+        >
           <Image
             src={src}
             my="auto"

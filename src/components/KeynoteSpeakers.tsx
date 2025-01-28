@@ -160,8 +160,6 @@ export default function KeynoteSpeakers() {
           affiliation="National Cancer Institute - Center for Biomedical Informatics & Information Technology"
           url="https://datascience.cancer.gov/about/staff-directory/jill-barnholtz-sloan"
         />
-
-        <Speaker name="Speaker coming soon" photo="/User.png" affiliation="" />
       </Stack>
     </Box>
   );
