@@ -19,6 +19,7 @@ import {
 export default function ScientificSessions() {
   return (
     <Box
+      id="ScientificSessions"
       w="full"
       mx="auto"
       py="20"
