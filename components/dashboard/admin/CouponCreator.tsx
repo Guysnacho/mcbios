@@ -32,7 +32,7 @@ export const CouponCreator = () => {
 
   const { data, error, isLoading, mutate } = useSWR(
     "/admin/coupon",
-    () => couponFetcher(client),
+    () => couponFetcher(),
     {
       onError(err) {
         toast({
@@ -84,7 +84,8 @@ export const CouponCreator = () => {
     fetch("/api/admin", { method: "POST" })
       .then((res) => res.json())
       .then((res) => {
-        persistCoupon(res);
+        // persistCoupon(res);
+        mutate(res);
       })
       .catch((err) =>
         toast({
@@ -112,8 +113,8 @@ export const CouponCreator = () => {
         <TableContainer maxH={500} overflowY="auto">
           <Table variant="striped">
             <TableCaption>
-              {data && data.data
-                ? data.data.length + " coupons created"
+              {data && data.length
+                ? data.length + " coupons created"
                 : "No coupons available"}
             </TableCaption>
             <Thead>
@@ -127,13 +128,19 @@ export const CouponCreator = () => {
               {isLoading && <Spinner />}
               {!isLoading &&
                 data &&
-                data.data &&
-                data.data.map((coupon, idx) => (
+                data.length &&
+                data.map((coupon, idx) => (
                   <Tr key={idx}>
                     <Td>{idx + 1}</Td>
                     <Td>{coupon.code}</Td>
-                    <Td>{coupon.expires_at ?? "No Expiration Date"}</Td>
-                    <Td>{coupon.created_at}</Td>
+                    <Td>
+                      {coupon.expires_at! <= 1743119940
+                        ? "No Expiration Date"
+                        : new Date(
+                            coupon.expires_at! * 1000
+                          ).toLocaleDateString()}
+                    </Td>
+                    <Td>{new Date(coupon.created).toLocaleDateString()}</Td>
                   </Tr>
                 ))}
             </Tbody>

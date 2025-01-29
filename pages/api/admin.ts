@@ -45,7 +45,31 @@ export default async function handler(
         res.status(err.statusCode || 500).json(err.message);
       }
       break;
-    // Fetch session result on confirmation page
+    case "GET":
+      const data = await stripe.promotionCodes.list({
+        limit: 100,
+        active: true,
+      });
+      const promo = data.data.map(
+        ({
+          active,
+          code,
+          created,
+          max_redemptions,
+          times_redeemed,
+          expires_at,
+        }) => ({
+          active,
+          code,
+          created: created * 1000,
+          max_redemptions,
+          times_redeemed,
+          expires_at,
+        })
+      );
+      res.send(promo);
+      break;
+    // Fetch session result on confir mation page
     default:
       res.setHeader("Allow", req.method!);
       res.status(405).end("Method Not Allowed");
