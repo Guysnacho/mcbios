@@ -51,12 +51,20 @@ export default async function handler(
         active: true,
       });
       const promo = data.data.map(
-        ({ active, code, created, max_redemptions, times_redeemed }) => ({
+        ({
           active,
           code,
-          created: new Date(created * 1000),
+          created,
           max_redemptions,
           times_redeemed,
+          expires_at,
+        }) => ({
+          active,
+          code,
+          created: created * 1000,
+          max_redemptions,
+          times_redeemed,
+          expires_at,
         })
       );
       res.send(promo);
