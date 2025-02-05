@@ -30,9 +30,29 @@ const geistMono = localFont({
 const sponsorList = [
   {
     url: "https://healthcare.utah.edu/huntsmancancerinstitute",
-    src: "/sponsor/HCI-UHealth.png",
+    src: "/sponsor/Huntsman.png",
+  },
+  {
+    url: "https://medicine.utah.edu/population-health-sciences/divisions/biostatistics",
+    src: "/sponsor/DivOfBio.png",
+  },
+  {
+    url: "https://uofuhealth.utah.edu/delphi-data-science-initiative",
+    src: "/sponsor/DELPHI.png",
+  },
+  {
+    url: "https://healthcare.utah.edu",
+    src: "/sponsor/UHHealth.png",
   },
   { url: "https://www.utah.edu", src: "/sponsor/UHLogo.png" },
+  {
+    url: "https://www.byu.edu",
+    src: "/sponsor/Brigham.png",
+  },
+  {
+    url: "https://www.frontiersin.org",
+    src: "/sponsor/Frontiers.png",
+  },
 ];
 
 export default function Home() {
@@ -205,7 +225,7 @@ export default function Home() {
         </Heading>
         <Stack
           w="full"
-          my="5"
+          my="auto"
           gap={3}
           direction={["column", null, "row"]}
           flexWrap="wrap"
@@ -222,7 +242,7 @@ export default function Home() {
 const SponsorCard = ({ url, src }: { src: string; url: string }) => {
   return (
     <Card
-      mx="auto"
+      m="auto"
       variant="elevated"
       borderColor="blue.400"
       borderWidth={1}
@@ -233,18 +253,14 @@ const SponsorCard = ({ url, src }: { src: string; url: string }) => {
       w={["80%", "xs", "sm", "md", "lg"]}
     >
       <CardBody>
-        <LinkOverlay
-          m="auto"
-          justifyContent="space-around"
-          href={url}
-          target="_blank"
-        >
+        <LinkOverlay href={url} target="_blank">
           <Image
             src={src}
-            my="auto"
+            m="auto"
             alt="Sponsorship Logo"
             objectPosition="center"
             objectFit="contain"
+            h={["7rem"]}
             htmlHeight={200}
           />
         </LinkOverlay>
