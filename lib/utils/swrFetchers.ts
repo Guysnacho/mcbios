@@ -1,5 +1,6 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { Database } from "./supabase/types";
+import Stripe from "stripe";
 
 export const authFetcher = async (client: SupabaseClient<Database>) => {
   // Fetch data from external API
@@ -25,10 +26,11 @@ export const couponFetcher = async (): Promise<CouponList> => {
 };
 
 type CouponList = {
+  coupon: Stripe.Coupon;
   active: boolean;
-  code: string;
+  promo_code: string;
   created: number;
   max_redemptions: number | null;
   times_redeemed: number;
   expires_at: number | null;
-}[];
+}[]

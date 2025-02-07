@@ -58,9 +58,11 @@ export default async function handler(
           max_redemptions,
           times_redeemed,
           expires_at,
+          coupon,
         }) => ({
+          coupon,
           active,
-          code,
+          promo_code: code,
           created: created * 1000,
           max_redemptions,
           times_redeemed,

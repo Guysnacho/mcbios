@@ -21,7 +21,10 @@ import useSWR from "swr";
 
 const columns = [
   { name: "#" },
-  { name: "CODE" },
+  { name: "COUPON NAME" },
+  { name: "PROMO CODE" },
+  { name: "% OFF" },
+  { name: "TIMES REDEEMED" },
   { name: "EXPIRES AT" },
   { name: "CREATED AT" },
 ];
@@ -132,7 +135,10 @@ export const CouponCreator = () => {
                 data.map((coupon, idx) => (
                   <Tr key={idx}>
                     <Td>{idx + 1}</Td>
-                    <Td>{coupon.code}</Td>
+                    <Td>{coupon.coupon.name || "null"}</Td>
+                    <Td>{coupon.promo_code}</Td>
+                    <Td>{coupon.coupon.percent_off}</Td>
+                    <Td>{coupon.coupon.times_redeemed} / {coupon.coupon.max_redemptions}</Td>
                     <Td>
                       {coupon.expires_at! <= 1743119940
                         ? "No Expiration Date"
