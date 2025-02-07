@@ -33,7 +33,9 @@ const columns = [
 
 export const CouponCreator = () => {
   const client = createClient();
-  const toast = useToast();
+  const toast = useToast({
+    variant:"subtle"
+  });
 
   const { data, error, isLoading, mutate } = useSWR(
     "/admin/coupon",
