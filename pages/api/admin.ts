@@ -59,10 +59,12 @@ export default async function handler(
           times_redeemed,
           expires_at,
           coupon,
+          id
         }) => ({
           coupon,
           active,
           promo_code: code,
+          promo_id: id,
           created: created * 1000,
           max_redemptions,
           times_redeemed,
@@ -72,14 +74,19 @@ export default async function handler(
       res.send(promo);
       break;
     case "DELETE":
-      const code: string | null = req.body.promo || req.body.coupon || null;
+      console.log("starting code delete");
+      const body = JSON.parse(req.body);
+      console.log(body);
+      const code: string | null = body.promo || body.coupon || null;
+
+      console.log("Code recieved - %s", code);
       let reqType: "promo" | "coupon";
       if (!code) {
         res.status(400).end("Invalid body");
         break;
-      } else if (req.body.coupon) {
+      } else if (body.coupon) {
         reqType = "coupon";
-      } else if (req.body.promo) {
+      } else if (body.promo) {
         reqType = "promo";
       } else {
         res.status(400).end("Invalid body");

@@ -16,7 +16,7 @@ import {
   Thead,
   Tr,
   useToast,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
 import useSWR from "swr";
 
@@ -34,7 +34,7 @@ const columns = [
 export const CouponCreator = () => {
   const client = createClient();
   const toast = useToast({
-    variant:"subtle"
+    variant: "subtle",
   });
 
   const { data, error, isLoading, mutate } = useSWR(
@@ -51,41 +51,6 @@ export const CouponCreator = () => {
       },
     }
   );
-
-  const persistCoupon = async (coupon: {
-    id: any;
-    max_redemptions: any;
-    redeem_by: string | number | Date;
-    percent_off: any;
-  }) => {
-    const { data, error } = await client
-      .from("admin_code")
-      .insert({
-        code: coupon.id,
-        type: "coupon",
-        redemptions: coupon.max_redemptions,
-        expires_at: coupon.redeem_by
-          ? new Date(coupon.redeem_by).toString()
-          : undefined,
-      })
-      .single();
-    if (error) {
-      toast({
-        status: "warning",
-        title: "Issue saving coupon, but successfully created",
-        description: `Coupon Code - ${coupon.id} Percent Off: ${coupon.percent_off} Max Redemptions: ${coupon.max_redemptions}`,
-        variant: "subtle",
-      });
-    } else {
-      mutate(data);
-      toast({
-        status: "success",
-        title: "Coupon created!",
-        description: `Coupon Code - ${coupon.id} Percent Off: ${coupon.percent_off} Max Redemptions: ${coupon.max_redemptions}`,
-        variant: "subtle",
-      });
-    }
-  };
 
   const createCoupon = async () => {
     fetch("/api/admin", { method: "POST" })
@@ -190,7 +155,7 @@ export const CouponCreator = () => {
                       <Stack>
                         <Button
                           colorScheme="purple"
-                          onClick={() => deletePromo(coupon.promo_code)}
+                          onClick={() => deletePromo(coupon.promo_id)}
                           aria-label="Delete Promo Code"
                           leftIcon={<DeleteIcon />}
                         >
