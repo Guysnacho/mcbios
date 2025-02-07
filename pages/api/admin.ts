@@ -23,6 +23,7 @@ export default async function handler(
           res.status(400).end();
           break;
         } else if (reqType === "DUPLICATE") {
+          console.log("Creating duplicate promo code for coupon");
           const promoResponse = await stripe.promotionCodes.create({
             coupon: body.coupon,
             max_redemptions: 1,
@@ -31,7 +32,7 @@ export default async function handler(
         } else {
           // Create coupon
           const couponResponse = await stripe.coupons.create({
-            name: body.coupon,
+            name: body.couponName,
             percent_off: body.discount,
             max_redemptions: 1,
             applies_to: {
