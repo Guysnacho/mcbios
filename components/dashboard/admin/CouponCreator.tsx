@@ -16,7 +16,6 @@ import {
   TableContainer,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
@@ -43,6 +42,7 @@ export const CouponCreator = () => {
     variant: "subtle",
   });
   const [coupon, setCoupon] = useState<string | undefined>();
+  const [couponName, setCouponName] = useState<string | undefined>();
   const [discount, setDiscount] = useState<number | undefined>();
 
   const { data, error, isLoading, mutate } = useSWR(
@@ -63,10 +63,16 @@ export const CouponCreator = () => {
   const createCoupon = async () => {
     fetch("/api/admin", {
       method: "POST",
-      body: JSON.stringify({
-        coupon,
-        discount,
-      }),
+      body: JSON.stringify(
+        couponName
+          ? {
+              couponName,
+              discount,
+            }
+          : {
+              coupon,
+            }
+      ),
     })
       .then((res) => res.json())
       .then((res) => {
@@ -120,30 +126,30 @@ export const CouponCreator = () => {
       <VStack justifyContent="center" textAlign="center">
         <Heading size="md">Create Coupon</Heading>
         <Box>
-          <FormControl id="coupon_name" isDisabled={!!coupon}>
+          <FormControl id="coupon_name">
             <FormLabel>New Coupon Name</FormLabel>
             <Input
               type="text"
               inputMode="text"
-              onChange={(e) => setCoupon(e.currentTarget.value)}
-              value={coupon}
+              onChange={(e) => setCouponName(e.currentTarget.value)}
+              value={couponName}
             />
           </FormControl>
-          <FormControl id="coupon_discount" isDisabled={!!coupon}>
+          <FormControl id="coupon_discount">
             <FormLabel>
               New Coupon Discount - Please provide a percentage
             </FormLabel>
             <Input
-              type="text"
-              inputMode="text"
+              type="number"
+              inputMode="numeric"
               placeholder="80"
               onChange={(e) =>
                 setDiscount(Number.parseInt(e.currentTarget.value))
               }
-              value={coupon}
+              value={discount}
             />
           </FormControl>
-          <Text>Or</Text>
+          <Heading my={5}>Or</Heading>
           <Select
             variant="outline"
             icon={<ChevronDownIcon />}
@@ -151,7 +157,7 @@ export const CouponCreator = () => {
               console.log(e.target.value);
               setCoupon(e.target.value || undefined);
             }}
-            value={coupon}
+            value={couponName}
             placeholder="Select a coupon to duplicate"
           >
             {data &&

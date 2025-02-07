@@ -15,31 +15,44 @@ export default async function handler(
   switch (req.method) {
     case "POST":
       try {
-        // Create coupon
-        const couponResponse = await stripe.coupons.create({
-          percent_off: 100,
-          max_redemptions: 1,
-          applies_to: {
-            products: [
-              process.env.EB_CONF_REGISTRATION_STUDENT_PRODUCT!,
-              process.env.EB_CONF_REGISTRATION_POSTDOC_PRODUCT!,
-              process.env.EB_CONF_REGISTRATION_PROFESSIONAL_PRODUCT!,
-              process.env.CONF_REGISTRATION_STUDENT_PRODUCT!,
-              process.env.CONF_REGISTRATION_POSTDOC_PRODUCT!,
-              process.env.CONF_REGISTRATION_PROFESSIONAL_PRODUCT!,
-            ],
-          },
-        });
+        console.log("starting code creation");
+        const body = JSON.parse(req.body);
+        console.log(body);
+        const reqType = validateCouponRequest(body);
+        if (reqType === "INVALID") {
+          res.status(400).end();
+          break;
+        } else if (reqType === "DUPLICATE") {
+          const promoResponse = await stripe.promotionCodes.create({
+            coupon: body.coupon,
+            max_redemptions: 1,
+          });
+          res.send(promoResponse);
+        } else {
+          // Create coupon
+          const couponResponse = await stripe.coupons.create({
+            name: body.coupon,
+            percent_off: body.discount,
+            max_redemptions: 1,
+            applies_to: {
+              products: [
+                process.env.EB_CONF_REGISTRATION_STUDENT_PRODUCT!,
+                process.env.EB_CONF_REGISTRATION_POSTDOC_PRODUCT!,
+                process.env.EB_CONF_REGISTRATION_PROFESSIONAL_PRODUCT!,
+                process.env.CONF_REGISTRATION_STUDENT_PRODUCT!,
+                process.env.CONF_REGISTRATION_POSTDOC_PRODUCT!,
+                process.env.CONF_REGISTRATION_PROFESSIONAL_PRODUCT!,
+              ],
+            },
+          });
 
-        const promoResponse = await stripe.promotionCodes.create({
-          coupon: couponResponse.id,
-          max_redemptions: 1,
-        });
+          const promoResponse = await stripe.promotionCodes.create({
+            coupon: couponResponse.id,
+            max_redemptions: 1,
+          });
 
-        let final = couponResponse;
-        final.id = promoResponse.code;
-
-        res.send(final);
+          res.send(promoResponse);
+        }
       } catch (err) {
         // @ts-expect-error error fields are unknown
         res.status(err.statusCode || 500).json(err.message);
@@ -59,7 +72,7 @@ export default async function handler(
           times_redeemed,
           expires_at,
           coupon,
-          id
+          id,
         }) => ({
           coupon,
           active,
@@ -121,3 +134,17 @@ export default async function handler(
       res.status(405).end("Method Not Allowed");
   }
 }
+
+const validateCouponRequest = (body: any) => {
+  const hasDiscount =
+    body.discount != undefined && Number.isInteger(body.discount);
+  const hasCoupon = body.coupon != undefined;
+  const hasCouponName = body.couponName != undefined;
+  if (hasDiscount && hasCouponName) {
+    return "NEW_COUPON";
+  } else if (hasCoupon && !hasDiscount && !hasCouponName) {
+    return "DUPLICATE";
+  } else {
+    return "INVALID";
+  }
+};
