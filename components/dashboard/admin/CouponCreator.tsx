@@ -1,10 +1,14 @@
 import { createClient } from "@/lib/utils/supabase/component";
 import { couponFetcher } from "@/lib/utils/swrFetchers";
-import { DeleteIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, DeleteIcon } from "@chakra-ui/icons";
 import {
+  Box,
   Button,
-  Flex,
+  FormControl,
+  FormLabel,
   Heading,
+  Input,
+  Select,
   Spinner,
   Stack,
   Table,
@@ -12,12 +16,14 @@ import {
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
   useToast,
   VStack,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import useSWR from "swr";
 
 const columns = [
@@ -36,6 +42,8 @@ export const CouponCreator = () => {
   const toast = useToast({
     variant: "subtle",
   });
+  const [coupon, setCoupon] = useState<string | undefined>();
+  const [discount, setDiscount] = useState<number | undefined>();
 
   const { data, error, isLoading, mutate } = useSWR(
     "/admin/coupon",
@@ -53,7 +61,13 @@ export const CouponCreator = () => {
   );
 
   const createCoupon = async () => {
-    fetch("/api/admin", { method: "POST" })
+    fetch("/api/admin", {
+      method: "POST",
+      body: JSON.stringify({
+        coupon,
+        discount,
+      }),
+    })
       .then((res) => res.json())
       .then((res) => {
         // persistCoupon(res);
@@ -105,11 +119,54 @@ export const CouponCreator = () => {
     <Stack direction={["column"]} gap={10} mx="auto" justify="space-around">
       <VStack justifyContent="center" textAlign="center">
         <Heading size="md">Create Coupon</Heading>
-        <Flex justify="center">
-          <Button colorScheme="green" onClick={() => createCoupon()}>
-            Submit
-          </Button>
-        </Flex>
+        <Box>
+          <FormControl id="coupon_name" isDisabled={!!coupon}>
+            <FormLabel>New Coupon Name</FormLabel>
+            <Input
+              type="text"
+              inputMode="text"
+              onChange={(e) => setCoupon(e.currentTarget.value)}
+              value={coupon}
+            />
+          </FormControl>
+          <FormControl id="coupon_discount" isDisabled={!!coupon}>
+            <FormLabel>
+              New Coupon Discount - Please provide a percentage
+            </FormLabel>
+            <Input
+              type="text"
+              inputMode="text"
+              placeholder="80"
+              onChange={(e) =>
+                setDiscount(Number.parseInt(e.currentTarget.value))
+              }
+              value={coupon}
+            />
+          </FormControl>
+          <Text>Or</Text>
+          <Select
+            variant="outline"
+            icon={<ChevronDownIcon />}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setCoupon(e.target.value || undefined);
+            }}
+            value={coupon}
+            placeholder="Select a coupon to duplicate"
+          >
+            {data &&
+              data.length > 0 &&
+              data.map((promo) => (
+                <option key={promo.promo_id} value={promo.coupon.id}>
+                  Coupon Name - {promo.coupon.name || "null"} | Promo Code -{" "}
+                  {promo.promo_code} | % off - {promo.coupon.percent_off}
+                </option>
+              ))}
+          </Select>
+        </Box>
+        <Button colorScheme="green" onClick={() => createCoupon()}>
+          Submit
+        </Button>
       </VStack>
       <VStack textAlign="center">
         <Heading size="md">Coupon List</Heading>
@@ -138,7 +195,7 @@ export const CouponCreator = () => {
                     <Td>{idx + 1}</Td>
                     <Td>{coupon.coupon.name || "null"}</Td>
                     <Td>{coupon.promo_code}</Td>
-                    <Td>{coupon.coupon.percent_off}</Td>
+                    <Td>{coupon.coupon.percent_off}%</Td>
                     <Td>
                       {coupon.coupon.times_redeemed} /{" "}
                       {coupon.coupon.max_redemptions}
