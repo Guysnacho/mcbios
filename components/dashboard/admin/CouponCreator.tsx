@@ -43,7 +43,7 @@ export const CouponCreator = () => {
     {
       onError(err) {
         toast({
-          colorScheme: "error",
+          status: "error",
           title: "Issue fetching coupons",
           description: err.message,
           variant: "subtle",
@@ -71,7 +71,7 @@ export const CouponCreator = () => {
       .single();
     if (error) {
       toast({
-        colorScheme: "warning",
+        status: "warning",
         title: "Issue saving coupon, but successfully created",
         description: `Coupon Code - ${coupon.id} Percent Off: ${coupon.percent_off} Max Redemptions: ${coupon.max_redemptions}`,
         variant: "subtle",
@@ -79,7 +79,7 @@ export const CouponCreator = () => {
     } else {
       mutate(data);
       toast({
-        colorScheme: "success",
+        status: "success",
         title: "Coupon created!",
         description: `Coupon Code - ${coupon.id} Percent Off: ${coupon.percent_off} Max Redemptions: ${coupon.max_redemptions}`,
         variant: "subtle",
@@ -96,7 +96,7 @@ export const CouponCreator = () => {
       })
       .catch((err) =>
         toast({
-          colorScheme: "error",
+          status: "error",
           title: "Issue creating coupon",
           description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
           variant: "subtle",
@@ -112,7 +112,7 @@ export const CouponCreator = () => {
       })
       .catch((err) =>
         toast({
-          colorScheme: "error",
+          status: "error",
           title: "Issue deleting promo code",
           description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
           variant: "subtle",
@@ -128,7 +128,7 @@ export const CouponCreator = () => {
       })
       .catch((err) =>
         toast({
-          colorScheme: "error",
+          status: "error",
           title: "Issue deleting coupon code",
           description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
           variant: "subtle",
