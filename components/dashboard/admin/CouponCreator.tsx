@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/utils/supabase/component";
 import { couponFetcher } from "@/lib/utils/swrFetchers";
+import { DeleteIcon } from "@chakra-ui/icons";
 import {
   Button,
   Flex,
@@ -15,7 +16,7 @@ import {
   Thead,
   Tr,
   useToast,
-  VStack,
+  VStack
 } from "@chakra-ui/react";
 import useSWR from "swr";
 
@@ -27,6 +28,7 @@ const columns = [
   { name: "TIMES REDEEMED" },
   { name: "EXPIRES AT" },
   { name: "CREATED AT" },
+  { name: "Manage" },
 ];
 
 export const CouponCreator = () => {
@@ -100,6 +102,38 @@ export const CouponCreator = () => {
       );
   };
 
+  const deletePromo = async (promo: string) => {
+    fetch("/api/admin", { method: "DELETE", body: JSON.stringify({ promo }) })
+      .then((res) => res.json())
+      .then((res) => {
+        mutate(res);
+      })
+      .catch((err) =>
+        toast({
+          colorScheme: "error",
+          title: "Issue deleting promo code",
+          description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
+          variant: "subtle",
+        })
+      );
+  };
+
+  const deleteCoupon = async (coupon: string) => {
+    fetch("/api/admin", { method: "DELETE", body: JSON.stringify({ coupon }) })
+      .then((res) => res.json())
+      .then((res) => {
+        mutate(res);
+      })
+      .catch((err) =>
+        toast({
+          colorScheme: "error",
+          title: "Issue deleting coupon code",
+          description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
+          variant: "subtle",
+        })
+      );
+  };
+
   return (
     <Stack direction={["column"]} gap={10} mx="auto" justify="space-around">
       <VStack justifyContent="center" textAlign="center">
@@ -138,7 +172,10 @@ export const CouponCreator = () => {
                     <Td>{coupon.coupon.name || "null"}</Td>
                     <Td>{coupon.promo_code}</Td>
                     <Td>{coupon.coupon.percent_off}</Td>
-                    <Td>{coupon.coupon.times_redeemed} / {coupon.coupon.max_redemptions}</Td>
+                    <Td>
+                      {coupon.coupon.times_redeemed} /{" "}
+                      {coupon.coupon.max_redemptions}
+                    </Td>
                     <Td>
                       {coupon.expires_at! <= 1743119940
                         ? "No Expiration Date"
@@ -147,6 +184,26 @@ export const CouponCreator = () => {
                           ).toLocaleDateString()}
                     </Td>
                     <Td>{new Date(coupon.created).toLocaleDateString()}</Td>
+                    <Td>
+                      <Stack>
+                        <Button
+                          colorScheme="purple"
+                          onClick={() => deletePromo(coupon.promo_code)}
+                          aria-label="Delete Promo Code"
+                          leftIcon={<DeleteIcon />}
+                        >
+                          Delete Promo Code
+                        </Button>
+                        <Button
+                          colorScheme="red"
+                          onClick={() => deleteCoupon(coupon.coupon.id)}
+                          aria-label="Delete Promo Code"
+                          leftIcon={<DeleteIcon />}
+                        >
+                          Delete Coupon
+                        </Button>
+                      </Stack>
+                    </Td>
                   </Tr>
                 ))}
             </Tbody>
