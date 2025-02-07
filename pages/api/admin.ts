@@ -71,6 +71,43 @@ export default async function handler(
       );
       res.send(promo);
       break;
+    case "DELETE":
+      const code: string | null = req.body.promo || req.body.coupon || null;
+      let reqType: "promo" | "coupon";
+      if (!code) {
+        res.status(400).end("Invalid body");
+        break;
+      } else if (req.body.coupon) {
+        reqType = "coupon";
+      } else if (req.body.promo) {
+        reqType = "promo";
+      } else {
+        res.status(400).end("Invalid body");
+        break;
+      }
+
+      if (reqType === "coupon") {
+        console.log("Deleting coupon");
+        const data = await stripe.coupons.del(code);
+        console.log("Coupon response");
+        console.log(data);
+        res.send({ id: data.id, deleted: data.deleted });
+      } else {
+        console.log("Deleting promotion code");
+        const data = await stripe.promotionCodes.update(code, {
+          active: false,
+        });
+        console.log("promotion code delete response");
+        console.log(data);
+        res.send({
+          id: data.id,
+          active: data.active,
+          coupon: data.coupon,
+          code: data.code,
+        });
+      }
+
+      break;
     // Fetch session result on confir mation page
     default:
       res.setHeader("Allow", req.method!);

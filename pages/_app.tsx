@@ -18,7 +18,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return getLayout(
-    <ChakraProvider>
+    <ChakraProvider
+      toastOptions={{ portalProps: { appendToParentPortal: true } }}
+    >
       <RootLayout>
         <Component {...pageProps} />
       </RootLayout>
