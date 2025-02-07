@@ -29,6 +29,7 @@ type CouponList = {
   coupon: Stripe.Coupon;
   active: boolean;
   promo_code: string;
+  promo_id: string;
   created: number;
   max_redemptions: number | null;
   times_redeemed: number;

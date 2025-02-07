@@ -1,9 +1,14 @@
 import { createClient } from "@/lib/utils/supabase/component";
 import { couponFetcher } from "@/lib/utils/swrFetchers";
+import { ChevronDownIcon, DeleteIcon } from "@chakra-ui/icons";
 import {
+  Box,
   Button,
-  Flex,
+  FormControl,
+  FormLabel,
   Heading,
+  Input,
+  Select,
   Spinner,
   Stack,
   Table,
@@ -17,6 +22,7 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import useSWR from "swr";
 
 const columns = [
@@ -27,11 +33,17 @@ const columns = [
   { name: "TIMES REDEEMED" },
   { name: "EXPIRES AT" },
   { name: "CREATED AT" },
+  { name: "Manage" },
 ];
 
 export const CouponCreator = () => {
   const client = createClient();
-  const toast = useToast();
+  const toast = useToast({
+    variant: "subtle",
+  });
+  const [coupon, setCoupon] = useState<string | undefined>();
+  const [couponName, setCouponName] = useState<string | undefined>();
+  const [discount, setDiscount] = useState<number | undefined>();
 
   const { data, error, isLoading, mutate } = useSWR(
     "/admin/coupon",
@@ -39,7 +51,7 @@ export const CouponCreator = () => {
     {
       onError(err) {
         toast({
-          colorScheme: "error",
+          status: "error",
           title: "Issue fetching coupons",
           description: err.message,
           variant: "subtle",
@@ -48,43 +60,20 @@ export const CouponCreator = () => {
     }
   );
 
-  const persistCoupon = async (coupon: {
-    id: any;
-    max_redemptions: any;
-    redeem_by: string | number | Date;
-    percent_off: any;
-  }) => {
-    const { data, error } = await client
-      .from("admin_code")
-      .insert({
-        code: coupon.id,
-        type: "coupon",
-        redemptions: coupon.max_redemptions,
-        expires_at: coupon.redeem_by
-          ? new Date(coupon.redeem_by).toString()
-          : undefined,
-      })
-      .single();
-    if (error) {
-      toast({
-        colorScheme: "warning",
-        title: "Issue saving coupon, but successfully created",
-        description: `Coupon Code - ${coupon.id} Percent Off: ${coupon.percent_off} Max Redemptions: ${coupon.max_redemptions}`,
-        variant: "subtle",
-      });
-    } else {
-      mutate(data);
-      toast({
-        colorScheme: "success",
-        title: "Coupon created!",
-        description: `Coupon Code - ${coupon.id} Percent Off: ${coupon.percent_off} Max Redemptions: ${coupon.max_redemptions}`,
-        variant: "subtle",
-      });
-    }
-  };
-
   const createCoupon = async () => {
-    fetch("/api/admin", { method: "POST" })
+    fetch("/api/admin", {
+      method: "POST",
+      body: JSON.stringify(
+        couponName
+          ? {
+              couponName,
+              discount,
+            }
+          : {
+              coupon,
+            }
+      ),
+    })
       .then((res) => res.json())
       .then((res) => {
         // persistCoupon(res);
@@ -92,8 +81,40 @@ export const CouponCreator = () => {
       })
       .catch((err) =>
         toast({
-          colorScheme: "error",
+          status: "error",
           title: "Issue creating coupon",
+          description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
+          variant: "subtle",
+        })
+      );
+  };
+
+  const deletePromo = async (promo: string) => {
+    fetch("/api/admin", { method: "DELETE", body: JSON.stringify({ promo }) })
+      .then((res) => res.json())
+      .then((res) => {
+        mutate(res);
+      })
+      .catch((err) =>
+        toast({
+          status: "error",
+          title: "Issue deleting promo code",
+          description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
+          variant: "subtle",
+        })
+      );
+  };
+
+  const deleteCoupon = async (coupon: string) => {
+    fetch("/api/admin", { method: "DELETE", body: JSON.stringify({ coupon }) })
+      .then((res) => res.json())
+      .then((res) => {
+        mutate(res);
+      })
+      .catch((err) =>
+        toast({
+          status: "error",
+          title: "Issue deleting coupon code",
           description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
           variant: "subtle",
         })
@@ -104,11 +125,54 @@ export const CouponCreator = () => {
     <Stack direction={["column"]} gap={10} mx="auto" justify="space-around">
       <VStack justifyContent="center" textAlign="center">
         <Heading size="md">Create Coupon</Heading>
-        <Flex justify="center">
-          <Button colorScheme="green" onClick={() => createCoupon()}>
-            Submit
-          </Button>
-        </Flex>
+        <Box>
+          <FormControl id="coupon_name">
+            <FormLabel>New Coupon Name</FormLabel>
+            <Input
+              type="text"
+              inputMode="text"
+              onChange={(e) => setCouponName(e.currentTarget.value)}
+              value={couponName}
+            />
+          </FormControl>
+          <FormControl id="coupon_discount">
+            <FormLabel>
+              New Coupon Discount - Please provide a percentage
+            </FormLabel>
+            <Input
+              type="number"
+              inputMode="numeric"
+              placeholder="80"
+              onChange={(e) =>
+                setDiscount(Number.parseInt(e.currentTarget.value))
+              }
+              value={discount}
+            />
+          </FormControl>
+          <Heading my={5}>Or</Heading>
+          <Select
+            variant="outline"
+            icon={<ChevronDownIcon />}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setCoupon(e.target.value || undefined);
+            }}
+            value={couponName}
+            placeholder="Select a coupon to duplicate"
+          >
+            {data &&
+              data.length > 0 &&
+              data.map((promo) => (
+                <option key={promo.promo_id} value={promo.coupon.id}>
+                  Coupon Name - {promo.coupon.name || "null"} | Promo Code -{" "}
+                  {promo.promo_code} | % off - {promo.coupon.percent_off}
+                </option>
+              ))}
+          </Select>
+        </Box>
+        <Button colorScheme="green" onClick={() => createCoupon()}>
+          Submit
+        </Button>
       </VStack>
       <VStack textAlign="center">
         <Heading size="md">Coupon List</Heading>
@@ -137,8 +201,11 @@ export const CouponCreator = () => {
                     <Td>{idx + 1}</Td>
                     <Td>{coupon.coupon.name || "null"}</Td>
                     <Td>{coupon.promo_code}</Td>
-                    <Td>{coupon.coupon.percent_off}</Td>
-                    <Td>{coupon.coupon.times_redeemed} / {coupon.coupon.max_redemptions}</Td>
+                    <Td>{coupon.coupon.percent_off}%</Td>
+                    <Td>
+                      {coupon.coupon.times_redeemed} /{" "}
+                      {coupon.coupon.max_redemptions}
+                    </Td>
                     <Td>
                       {coupon.expires_at! <= 1743119940
                         ? "No Expiration Date"
@@ -147,6 +214,26 @@ export const CouponCreator = () => {
                           ).toLocaleDateString()}
                     </Td>
                     <Td>{new Date(coupon.created).toLocaleDateString()}</Td>
+                    <Td>
+                      <Stack>
+                        <Button
+                          colorScheme="purple"
+                          onClick={() => deletePromo(coupon.promo_id)}
+                          aria-label="Delete Promo Code"
+                          leftIcon={<DeleteIcon />}
+                        >
+                          Delete Promo Code
+                        </Button>
+                        <Button
+                          colorScheme="red"
+                          onClick={() => deleteCoupon(coupon.coupon.id)}
+                          aria-label="Delete Promo Code"
+                          leftIcon={<DeleteIcon />}
+                        >
+                          Delete Coupon
+                        </Button>
+                      </Stack>
+                    </Td>
                   </Tr>
                 ))}
             </Tbody>
