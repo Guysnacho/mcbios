@@ -86,7 +86,12 @@ export const CouponCreator = () => {
           description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
           variant: "subtle",
         })
-      );
+      )
+      .finally(() => {
+        setCoupon(undefined);
+        setCouponName(undefined);
+        setDiscount(undefined);
+      });
   };
 
   const deletePromo = async (promo: string) => {
@@ -102,7 +107,12 @@ export const CouponCreator = () => {
           description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
           variant: "subtle",
         })
-      );
+      )
+      .finally(() => {
+        setCoupon(undefined);
+        setCouponName(undefined);
+        setDiscount(undefined);
+      });
   };
 
   const deleteCoupon = async (coupon: string) => {
@@ -118,7 +128,12 @@ export const CouponCreator = () => {
           description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
           variant: "subtle",
         })
-      );
+      )
+      .finally(() => {
+        setCoupon(undefined);
+        setCouponName(undefined);
+        setDiscount(undefined);
+      });
   };
 
   return (
