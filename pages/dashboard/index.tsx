@@ -129,7 +129,7 @@ export default function Dashboard() {
                               <Th>
                                 Early Bird
                                 <br />
-                                (Until Feb. 1st, 2025)
+                                (Until Feb. 17th, 2025)
                               </Th>
                               <Th>Standard</Th>
                               {/* <Th>Membership Only</Th> */}
