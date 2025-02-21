@@ -291,7 +291,7 @@ const ConfirmModal = ({
             ))}
           </Select>
           <DatePicker
-            aria-label="Dues Paid On"
+            aria-label="Paid On"
             className="mt-4"
             selected={date}
             maxDate={new Date()}

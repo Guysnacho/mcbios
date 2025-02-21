@@ -37,9 +37,9 @@ export default async function handler(
             max_redemptions: 1,
             applies_to: {
               products: [
-                process.env.EB_CONF_REGISTRATION_STUDENT_PRODUCT!,
-                process.env.EB_CONF_REGISTRATION_POSTDOC_PRODUCT!,
-                process.env.EB_CONF_REGISTRATION_PROFESSIONAL_PRODUCT!,
+                process.env.CONF_REGISTRATION_STUDENT_PRODUCT!,
+                process.env.CONF_REGISTRATION_POSTDOC_PRODUCT!,
+                process.env.CONF_REGISTRATION_PROFESSIONAL_PRODUCT!,
                 process.env.CONF_REGISTRATION_STUDENT_PRODUCT!,
                 process.env.CONF_REGISTRATION_POSTDOC_PRODUCT!,
                 process.env.CONF_REGISTRATION_PROFESSIONAL_PRODUCT!,
