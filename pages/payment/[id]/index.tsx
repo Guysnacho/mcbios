@@ -41,8 +41,8 @@ export default function PaymentConfirmation() {
   return (
     <>
       <Head>
-        <title>MCBIOS | Due Confirmation</title>
-        <meta content="MCBIOS Due Confirmation | MidSouth Computational Biology and Bioinformatics Society" />
+        <title>MCBIOS | Fee Confirmation</title>
+        <meta content="MCBIOS Fee Confirmation | MidSouth Computational Biology and Bioinformatics Society" />
       </Head>
       <Container>
         <Center h="md" mt={5}>
@@ -71,7 +71,7 @@ export default function PaymentConfirmation() {
                   attempting another purchase.
                   {/* Click the{" "}
                   <span className="text-green-900">
-                    &quot;My dues are paid&quot;
+                    &quot;My fees are paid&quot;
                   </span>{" "}
                   button on the Member Dashboard and we&apos;ll confirm your
                   membership as soon as possible. */}

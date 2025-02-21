@@ -32,7 +32,7 @@ import {
   Th,
   Thead,
   Tr,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useState } from "react";
@@ -81,7 +81,9 @@ export default function Dashboard() {
                   <VideoUploader />
                 </div>
                 <Divider className="my-5" />
-                <Heading size="md" textAlign="center">User Account Confirmation</Heading>
+                <Heading size="md" textAlign="center">
+                  User Account Confirmation
+                </Heading>
                 <div className="max-w-[500]px my-5 flex gap-3 mx-auto justify-center">
                   {/* Add coupon */}
                   <UserConfirm client={client} />
@@ -236,7 +238,7 @@ export default function Dashboard() {
                               );
                             }}
                           >
-                            <option value="student">
+                            {/* <option value="student">
                               Conference and Membership | Student | $200
                             </option>
                             <option value="postdoctorial">
@@ -244,6 +246,15 @@ export default function Dashboard() {
                             </option>
                             <option value="professional">
                               Conference and Membership | Professional | $400
+                            </option> */}
+                            <option value="student">
+                              Conference and Membership | Student | $250
+                            </option>
+                            <option value="postdoctorial">
+                              Conference and Membership | Postdoctorial | $350
+                            </option>
+                            <option value="professional">
+                              Conference and Membership | Professional | $450
                             </option>
                             {/* <option value="member_only_student">
                               Membership | Student | $10
