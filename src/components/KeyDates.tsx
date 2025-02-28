@@ -13,9 +13,9 @@ import {
 } from "@chakra-ui/react";
 import { ReactElement } from "react";
 import {
-  PiBirdLight,
   PiBlueprint,
   PiChalkboardTeacher,
+  PiFlagCheckeredFill,
   PiStudent,
 } from "react-icons/pi";
 
@@ -63,11 +63,26 @@ const Date = ({
       </Flex>
       <Text fontWeight={600}>{title}</Text>
       <Text>
-        {text && <Text as="span" color={"gray.600"}>{text}</Text>}
-        {deadline && !hasPassed ?
-          <Text as="span" color={"maroon"}> {deadline}</Text> : deadline && hasPassed ?
-            <>has passed. <Text as="span" color={"maroon"} textDecorationLine="line-through">{deadline}</Text></> : <></>
-        }
+        {text && (
+          <Text as="span" color={"gray.600"}>
+            {text}
+          </Text>
+        )}
+        {deadline && !hasPassed ? (
+          <Text as="span" color={"maroon"}>
+            {" "}
+            {deadline}
+          </Text>
+        ) : deadline && hasPassed ? (
+          <>
+            has passed.{" "}
+            <Text as="span" color={"maroon"} textDecorationLine="line-through">
+              {deadline}
+            </Text>
+          </>
+        ) : (
+          <></>
+        )}
       </Text>
       <Flex justifyItems="center">
         {isProposal && (
@@ -118,9 +133,11 @@ export default function KeyDates() {
   return (
     <Box p={4} mx={{ base: 3, md: 10 }}>
       <Date
-        icon={<Icon as={PiBirdLight} w={[5, null, 10]} h={[5, null, 10]} />}
-        title={"Early Bird Registration"}
-        deadline="February 17th, 2025"
+        icon={
+          <Icon as={PiFlagCheckeredFill} w={[5, null, 10]} h={[5, null, 10]} />
+        }
+        title={"Registration Deadline"}
+        deadline="March 17th, 2025"
         stack={{
           mt: "5",
           mb: "12",
