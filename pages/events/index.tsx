@@ -159,6 +159,7 @@ const ConferenceRegistration = () => {
               access to past conference recordings, upcomming elections, and
               more!
             </Text>
+            <Text>The deadline for registration is March 17th, 2025.</Text>
           </Stack>
           <Stepper index={activeStep}>
             <Step>
