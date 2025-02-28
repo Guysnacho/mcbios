@@ -203,8 +203,7 @@ export default function Home() {
           {/* Invited Speakers */}
           <TutorialSpeakers />
           <ScientificSessions />
-          {/* @ts-expect-error marquee is disabled */}
-          <HStack as="marquee" justifyItems="space-evenly" my="3">
+          {/* <HStack as="marquee" justifyItems="space-evenly" my="3">
             <Heading
               size="lg"
               bgGradient="linear(to-l, #7928CA, #FF0080)"
@@ -212,7 +211,7 @@ export default function Home() {
             >
               More invited speakers will be announced soon
             </Heading>
-          </HStack>
+          </HStack> */}
         </VStack>
         <Heading
           size={["lg", null, "xl", "2xl"]}
@@ -225,7 +224,7 @@ export default function Home() {
         </Heading>
         <Stack
           w="full"
-          my="auto"
+          my={10}
           gap={3}
           direction={["column", null, "row"]}
           flexWrap="wrap"
