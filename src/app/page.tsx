@@ -163,16 +163,18 @@ export default function Home() {
         {/* Important Dates (sticky on mobile) */}
         <KeyDates />
         <Divider />
+        <ImageCard
+          mx="auto"
+          w={["85%", "75%", "45%", "lg"]}
+          src="/MCBIOS2025_POSTER.jpg"
+          title="Conference Poster"
+        />
+        <Divider />
         {/* Accomodation blurb */}
         <Stack
           gap={3}
           className="container mx-auto w-4/5 md:w-3/5 self-center place-content-center my-10 shadow-lg shadow-indigo-500/40 rounded-xl py-6"
         >
-          <ImageCard
-            mx="auto"
-            src="/MCBIOS2025_POSTER.jpg"
-            title="Conference Poster"
-          />
           <Heading size="lg" color="blue.700" textAlign="center">
             Conference Day Logistics
           </Heading>
