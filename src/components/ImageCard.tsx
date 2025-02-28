@@ -16,7 +16,7 @@ import { PiHouse } from "react-icons/pi";
 
 type ImageCardProps = {
   src: string;
-  title: string;
+  title?: string;
   blurb?: string;
   url?: string;
   discount?: string;
@@ -70,14 +70,16 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
           />
         </Box>
         <Stack pt={10} align={"center"}>
-          <Heading
-            textAlign="center"
-            fontSize={"2xl"}
-            fontFamily={"body"}
-            fontWeight={500}
-          >
-            {props.title}
-          </Heading>
+          {props.title && (
+            <Heading
+              textAlign="center"
+              fontSize={"2xl"}
+              fontFamily={"body"}
+              fontWeight={500}
+            >
+              {props.title}
+            </Heading>
+          )}
           {props.blurb && (
             <VStack
               my={4}

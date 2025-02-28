@@ -1,5 +1,6 @@
 "use client";
 
+import ImageCard from "@/components/ImageCard";
 import KeyDates from "@/components/KeyDates";
 import KeynoteSpeakers from "@/components/KeynoteSpeakers";
 import ScientificSessions from "@/components/ScientificSessions";
@@ -12,7 +13,6 @@ import {
   Divider,
   Flex,
   Heading,
-  HStack,
   Image,
   LinkOverlay,
   Stack,
@@ -168,6 +168,12 @@ export default function Home() {
           gap={3}
           className="container mx-auto w-4/5 md:w-3/5 self-center place-content-center my-10 shadow-lg shadow-indigo-500/40 rounded-xl py-6"
         >
+          <ImageCard
+            w={["85%", "75%", "45%", "lg"]}
+            mx="auto"
+            src="/MCBIOS2025_POSTER.jpg"
+            title="Conference Poster"
+          />
           <Heading size="lg" color="blue.700" textAlign="center">
             Conference Day Logistics
           </Heading>
