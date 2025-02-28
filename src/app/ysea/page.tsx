@@ -93,14 +93,15 @@ export default function Page() {
                       as="a"
                       size="lg"
                       w="md"
-                      href="https://forms.gle/RVYFXmoodnGdAupX9"
-                      target="_blank"
+                      // href="https://forms.gle/RVYFXmoodnGdAupX9"
+                      // target="_blank"
                       color={"white"}
                       rounded={"full"}
                       alignItems="center"
                       leftIcon={<ExternalLinkIcon />}
                       bg={"blue.600"}
-                    >
+                      disabled
+                  >
                       YSEA Application
                     </Button>
                   </Center>
