@@ -33,7 +33,9 @@ export default async function handler(
           // Create coupon
           const couponResponse = await stripe.coupons.create({
             name: body.couponName,
-            percent_off: body.discount,
+            percent_off: body.percentage,
+            amount_off: body.discount,
+            currency: "USD",
             max_redemptions: 1,
             applies_to: {
               products: [
@@ -139,9 +141,11 @@ export default async function handler(
 const validateCouponRequest = (body: any) => {
   const hasDiscount =
     body.discount != undefined && Number.isInteger(body.discount);
+  const hasPercentage =
+    body.percentage != undefined && Number.isInteger(body.percentage);
   const hasCoupon = body.coupon != undefined;
   const hasCouponName = body.couponName != undefined;
-  if (hasDiscount && hasCouponName) {
+  if ((hasDiscount !== hasPercentage) && hasCouponName) {
     return "NEW_COUPON";
   } else if (hasCoupon && !hasDiscount && !hasCouponName) {
     return "DUPLICATE";
