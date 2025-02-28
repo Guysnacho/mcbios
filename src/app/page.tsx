@@ -169,7 +169,6 @@ export default function Home() {
           className="container mx-auto w-4/5 md:w-3/5 self-center place-content-center my-10 shadow-lg shadow-indigo-500/40 rounded-xl py-6"
         >
           <ImageCard
-            w={["85%", "75%", "45%", "lg"]}
             mx="auto"
             src="/MCBIOS2025_POSTER.jpg"
             title="Conference Poster"

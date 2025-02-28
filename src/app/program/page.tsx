@@ -51,24 +51,16 @@ export default function Page() {
                 lineHeight={1.2}
                 fontSize={["3xl", null, null, "4xl"]}
               >
-                Accommodations
+                Conference Program
               </Text>
             </Stack>
           </VStack>
         </Flex>
         {/* block quote */}
         <HStack my={5} mx="auto" w={["80%", null, "50%", "40%"]}>
-          <FocusCard
-            title="Quick Notes"
-            blurb="A few recommendations on nearby hotels are provided for you to use
-            for the duration of the conference.||Being near the venue may ease
-            time and traffic concerns so we urge you to consider distance when
-            ultimately selecting your accommodations, whether they are the below
-            or not."
-          />
+          <FocusCard blurb="Below you can find the conference poster and program of events." />
         </HStack>
 
-        {/* Accommodations */}
         <Center gap={5} mx="auto"></Center>
       </Box>
     </VStack>
