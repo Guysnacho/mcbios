@@ -134,11 +134,11 @@ export default function KeynoteSpeakers() {
           photo="/keynote/XihongLin.png"
           title="Professor of Biostatistics"
           program={[
-            "Coordinating Director",
-            "Program in Quantitative Genomics",
+            "Coordinating Director - Program in Quantitative Genomics",
+            "Professor of Statistics",
           ]}
           affiliation="Harvard T.H. Chan School of Public Health"
-          url="https://hsph.harvard.edu/profile/xihong-lin/"
+          url="https://hsph.harvard.edu/profile/xihong-lin"
         />
         <Speaker
           professional
@@ -153,12 +153,30 @@ export default function KeynoteSpeakers() {
           name="Jill S. Barnholtz-Sloan, Ph.D."
           photo="/keynote/JillBarnholtzSloan.png"
           program={[
-            "CBIIT Acting Director",
-            "IDS Associate Director",
-            "TDRP Senior Investigator, DCEG",
+            "Acting Director - Center for Biomedical Informatics & Information Technology",
+            "Associate Director - Informatics and Data Science",
+            "TDRP Senior Investigator - NCI Division of Cancer Epidemiology and Genetics",
           ]}
           affiliation="National Cancer Institute - Center for Biomedical Informatics & Information Technology"
           url="https://datascience.cancer.gov/about/staff-directory/jill-barnholtz-sloan"
+        />
+        <Speaker
+          name="Jingyi Jessica Li, Ph.D."
+          photo="/keynote/JingyiLi.jpg"
+          title="Professor of Biostatistics"
+          affiliation="Fielding School of Public Health - University of California, Los Angeles"
+          url="https://ph.ucla.edu/about/faculty-staff-directory/jingyi-jessica-li"
+        />
+        <Speaker
+          name="Manish Parashar, Ph.D."
+          photo="/keynote/ManishParashar.jpg"
+          title="Presidential Professor"
+          program={[
+            "Chair in Computational Science and Engineering - Scientific Computing & Imaging Institute",
+            "Founding Chair - IEEE Community on High-Performance Computing",
+          ]}
+          affiliation="School of Computing - University of Utah"
+          url="https://www.manishparashar.org"
         />
       </Stack>
     </Box>
