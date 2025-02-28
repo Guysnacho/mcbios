@@ -112,10 +112,10 @@ export default function Page() {
                   textAlign="center"
                   className={geistMono.className}
                 >
-                  Session proposals are open!
+                  Session proposals are closed!
                 </Heading>
                 <Text>
-                  The deadline to submit an abstract is December 20th, 2024.
+                  The deadline to submit an abstract was December 20th, 2024.
                 </Text>
                 <Button
                   // as="a"

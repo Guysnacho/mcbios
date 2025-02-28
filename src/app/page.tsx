@@ -1,5 +1,6 @@
 "use client";
 
+import ImageCard from "@/components/ImageCard";
 import KeyDates from "@/components/KeyDates";
 import KeynoteSpeakers from "@/components/KeynoteSpeakers";
 import ScientificSessions from "@/components/ScientificSessions";
@@ -12,7 +13,6 @@ import {
   Divider,
   Flex,
   Heading,
-  HStack,
   Image,
   LinkOverlay,
   Stack,
@@ -163,6 +163,13 @@ export default function Home() {
         {/* Important Dates (sticky on mobile) */}
         <KeyDates />
         <Divider />
+        <ImageCard
+          mx="auto"
+          w={["85%", "75%", "45%", "lg"]}
+          src="/MCBIOS2025_POSTER.jpg"
+          title="Conference Poster"
+        />
+        <Divider />
         {/* Accomodation blurb */}
         <Stack
           gap={3}
@@ -203,8 +210,7 @@ export default function Home() {
           {/* Invited Speakers */}
           <TutorialSpeakers />
           <ScientificSessions />
-          {/* @ts-expect-error marquee is disabled */}
-          <HStack as="marquee" justifyItems="space-evenly" my="3">
+          {/* <HStack as="marquee" justifyItems="space-evenly" my="3">
             <Heading
               size="lg"
               bgGradient="linear(to-l, #7928CA, #FF0080)"
@@ -212,7 +218,7 @@ export default function Home() {
             >
               More invited speakers will be announced soon
             </Heading>
-          </HStack>
+          </HStack> */}
         </VStack>
         <Heading
           size={["lg", null, "xl", "2xl"]}
@@ -225,7 +231,7 @@ export default function Home() {
         </Heading>
         <Stack
           w="full"
-          my="auto"
+          my={10}
           gap={3}
           direction={["column", null, "row"]}
           flexWrap="wrap"

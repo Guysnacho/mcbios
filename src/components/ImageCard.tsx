@@ -7,22 +7,33 @@ import {
   CenterProps,
   Heading,
   Image,
+  LinkOverlay,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalOverlay,
   Stack,
   Text,
   useColorModeValue,
+  useDisclosure,
   VStack,
 } from "@chakra-ui/react";
+import NextLink from "next/link";
 import { PiHouse } from "react-icons/pi";
 
 type ImageCardProps = {
   src: string;
-  title: string;
+  isFull?: boolean;
+  title?: string;
   blurb?: string;
   url?: string;
   discount?: string;
 };
 
 export default function ImageCard(props: ImageCardProps & CenterProps) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Center {...props} py={12}>
       <Box
@@ -40,7 +51,7 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
           rounded={"lg"}
           mt={-12}
           pos={"relative"}
-          height={"230px"}
+          height={props.isFull ? "full" : "230px"}
           _after={{
             transition: "all .3s ease",
             content: '""',
@@ -59,29 +70,34 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
             },
           }}
         >
-          <Image
-            rounded={"lg"}
-            mx="auto"
-            height={[200, 230]}
-            width={[242, 282]}
-            objectFit={"cover"}
-            src={props.src}
-            alt="#"
-          />
+          <LinkOverlay onClick={onOpen}>
+            <Image
+              rounded={"lg"}
+              mx="auto"
+              height={props.isFull ? "full" : [200, 230]}
+              width={props.isFull ? "full" : [242, 282]}
+              objectFit={"contain"}
+              src={props.src}
+              alt={props.title || "#"}
+            />
+          </LinkOverlay>
         </Box>
         <Stack pt={10} align={"center"}>
-          <Heading
-            textAlign="center"
-            fontSize={"2xl"}
-            fontFamily={"body"}
-            fontWeight={500}
-          >
-            {props.title}
-          </Heading>
+          {props.title && (
+            <Heading
+              textAlign="center"
+              fontFamily={"body"}
+              fontWeight={500}
+              color="blue.700" 
+              size="lg"
+            >
+              {props.title}
+            </Heading>
+          )}
           {props.blurb && (
             <VStack
               my={4}
-              w="80%"
+              w="95%"
               mx="auto"
               display={["none", null, "unset"]}
               className="space-y-3"
@@ -120,6 +136,33 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
           )}
         </Stack>
       </Box>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent mx={[2]}>
+          <ModalBody>
+            <Image
+              rounded={"lg"}
+              m="auto"
+              height="full"
+              width="full"
+              objectFit={"contain"}
+              src={props.src}
+              alt={props.title || "#"}
+            />
+          </ModalBody>
+          <ModalFooter gap={2}>
+            <Button
+              colorScheme="green"
+              variant="outline"
+              as={NextLink}
+              href={props.src}
+            >
+              Download
+            </Button>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Center>
   );
 }

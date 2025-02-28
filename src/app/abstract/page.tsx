@@ -114,7 +114,7 @@ export default function Page() {
                   textAlign="center"
                   className={geistMono.className}
                 >
-                  Abstract submissions are open!
+                  Abstract submissions are closed!
                 </Heading>
                 <Text>
                   The deadline to submit an abstract is February 17th, 2025.
@@ -123,9 +123,10 @@ export default function Page() {
                   as="a"
                   colorScheme="blue"
                   mt="5"
-                  href="https://forms.gle/mkRcchVaWhN4DuRY8"
-                  target="_blank"
+                  // href="https://forms.gle/mkRcchVaWhN4DuRY8"
+                  // target="_blank"
                   rounded={"full"}
+                  disabled
                 >
                   Submission Form
                 </Button>
