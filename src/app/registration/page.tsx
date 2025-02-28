@@ -124,11 +124,9 @@ export default function Page() {
                         available on the main MCBIOS Society site. Secure
                         payment processing powered by Stripe Checkout.
                       </Text>
-                      {/* <Text mx="auto" fontSize="lg">
-                        To register for the 2025 Conference, create your MCBIOS
-                        account and select your registration type. Secure
-                        payment processing powered by Stripe Checkout.
-                      </Text> */}
+                      <Text mx="auto" fontSize="lg">
+                        The deadline for registration is March 17th, 2025.
+                      </Text>
                       <Alert borderRadius="md">
                         <Text align="center">
                           If you run into issues at any point during
