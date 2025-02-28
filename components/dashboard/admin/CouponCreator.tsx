@@ -4,10 +4,14 @@ import { ChevronDownIcon, DeleteIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
+  Flex,
   FormControl,
   FormLabel,
   Heading,
   Input,
+  InputGroup,
+  InputLeftAddon,
+  InputRightAddon,
   Select,
   Spinner,
   Stack,
@@ -44,6 +48,7 @@ export const CouponCreator = () => {
   const [coupon, setCoupon] = useState<string | undefined>();
   const [couponName, setCouponName] = useState<string | undefined>();
   const [discount, setDiscount] = useState<number | undefined>();
+  const [percentage, setPercentage] = useState<number | undefined>();
 
   const { data, error, isLoading, mutate } = useSWR(
     "/admin/coupon",
@@ -64,11 +69,13 @@ export const CouponCreator = () => {
     fetch("/api/admin", {
       method: "POST",
       body: JSON.stringify(
-        couponName
+        discount
           ? {
               couponName,
               discount,
             }
+          : percentage
+          ? { couponName, percentage }
           : {
               coupon,
             }
@@ -91,6 +98,7 @@ export const CouponCreator = () => {
         setCoupon(undefined);
         setCouponName(undefined);
         setDiscount(undefined);
+        setPercentage(undefined);
       });
   };
 
@@ -112,6 +120,7 @@ export const CouponCreator = () => {
         setCoupon(undefined);
         setCouponName(undefined);
         setDiscount(undefined);
+        setPercentage(undefined);
       });
   };
 
@@ -133,6 +142,7 @@ export const CouponCreator = () => {
         setCoupon(undefined);
         setCouponName(undefined);
         setDiscount(undefined);
+        setPercentage(undefined);
       });
   };
 
@@ -150,20 +160,38 @@ export const CouponCreator = () => {
               value={couponName}
             />
           </FormControl>
-          <FormControl id="coupon_discount">
-            <FormLabel>
-              New Coupon Discount - Please provide a percentage
-            </FormLabel>
-            <Input
-              type="number"
-              inputMode="numeric"
-              placeholder="80"
-              onChange={(e) =>
-                setDiscount(Number.parseInt(e.currentTarget.value))
-              }
-              value={discount}
-            />
-          </FormControl>
+          <Flex gap={3}>
+            <FormControl id="percentage_off" isDisabled={!!discount}>
+              <FormLabel>% off - Provide a whole number</FormLabel>
+              <InputGroup>
+                <Input
+                  type="number"
+                  inputMode="numeric"
+                  placeholder="80"
+                  onChange={(e) =>
+                    setPercentage(Number.parseInt(e.currentTarget.value))
+                  }
+                  value={percentage}
+                />
+                <InputRightAddon>%</InputRightAddon>
+              </InputGroup>
+            </FormControl>
+            <FormControl id="raw_discount" isDisabled={!!percentage}>
+              <FormLabel>$ off - Provide a dollar amount</FormLabel>
+              <InputGroup>
+                <InputLeftAddon>$</InputLeftAddon>
+                <Input
+                  type="number"
+                  inputMode="numeric"
+                  placeholder="50"
+                  onChange={(e) =>
+                    setDiscount(Number.parseInt(e.currentTarget.value))
+                  }
+                  value={discount}
+                />
+              </InputGroup>
+            </FormControl>
+          </Flex>
           <Heading my={5}>Or</Heading>
           <Select
             variant="outline"
