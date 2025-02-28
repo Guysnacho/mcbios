@@ -80,7 +80,7 @@ const Date = ({
             rounded={"full"}
             leftIcon={<ExternalLinkIcon />}
           >
-            Session Proposal Form
+            Session Proposals
           </Button>
         )}
         {isAbstract && (
@@ -161,9 +161,10 @@ export default function KeyDates() {
           icon={<Icon as={PiBlueprint} w={[5, null, 10]} h={[5, null, 10]} />}
           title={"Call for Abstract Submissions"}
           text={
-            "If you have reasearch and applicable development that you want to showcase, please let the team know! The deadline for submitting abstract is"
+            "If you have reasearch and applicable development that you want to showcase, please let the team know! The deadline for submitting abstract "
           }
           deadline="February 17th, 2025"
+          hasPassed
           isAbstract
           stack={{ justifyContent: "space-evenly" }}
         />
@@ -171,9 +172,10 @@ export default function KeyDates() {
           icon={<Icon as={PiStudent} w={[5, null, 10]} h={[5, null, 10]} />}
           title={"Young Scientist Excellence Award Application Deadline"}
           text={
-            "This awards program recognizes students and postdoctoral fellows that exhibit scientific excellence in the field of Bioinformatics. The deadline for this award is"
+            "This awards program recognizes students and postdoctoral fellows that exhibit scientific excellence in the field of Bioinformatics. The deadline for this award "
           }
           deadline="January 30th, 2025"
+          hasPassed
           isYSEA
           stack={{ justifyContent: "space-evenly" }}
         />
