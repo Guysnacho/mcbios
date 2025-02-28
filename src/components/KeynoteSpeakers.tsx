@@ -142,11 +142,11 @@ export default function KeynoteSpeakers() {
         />
         <Speaker
           professional
-          name="Imran Haque, Ph.D."
-          photo="/keynote/ImranHaque.jpg"
-          program={["Senior Vice President AI & Digital Sciences"]}
+          name="Berton Earnshaw, Ph.D."
+          photo="/keynote/BertonEarnshaw.jpg"
+          program={["AI Founding Fellow"]}
           affiliation="Recursion Pharmaceuticals"
-          url="https://www.recursion.com/team-members/imran-haque"
+          url="https://www.recursion.com/team-members/berton-earnshaw"
         />
         <Speaker
           professional
