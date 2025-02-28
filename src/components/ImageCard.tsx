@@ -81,7 +81,7 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
           {props.blurb && (
             <VStack
               my={4}
-              w="80%"
+              w="95%"
               mx="auto"
               display={["none", null, "unset"]}
               className="space-y-3"
