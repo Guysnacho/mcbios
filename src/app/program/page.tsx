@@ -3,6 +3,7 @@
 import { FocusCard } from "@/components/FocusCard";
 import {
   Box,
+  Divider,
   Flex,
   Heading,
   HStack,
@@ -15,6 +16,11 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { Page as DocPage, Document, pdfjs } from "react-pdf";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 export default function Page() {
   return (
@@ -71,7 +77,7 @@ export default function Page() {
           className="space-y-5"
           mx="auto"
           my={10}
-          w={["80%", null, "50%", "40%"]}
+          w={["80%", null, "65%", "55%"]}
         >
           <Heading size="lg" color="blue.700" textAlign="center">
             Conference at a Glance
@@ -83,7 +89,7 @@ export default function Page() {
           </p>
 
           <Tabs>
-            <TabList justifyContent="center">
+            <TabList justifyContent="center" tabIndex={2}>
               <Tab>Day One - March 27</Tab>
               <Tab>Day Two - March 28</Tab>
               <Tab>Day Three - March 29</Tab>
@@ -91,13 +97,43 @@ export default function Page() {
 
             <TabPanels>
               <TabPanel>
-                <p>one!</p>
+                <Box overflow="auto">
+                  <Document file="MCBIOS2025_PROGRAM_AT_A_GLANCE_1.pdf">
+                    <DocPage
+                      pageNumber={1}
+                      renderTextLayer={false}
+                      customTextRenderer={undefined}
+                    />
+                  </Document>
+                </Box>
               </TabPanel>
               <TabPanel>
-                <p>two!</p>
+                <Box overflow="auto">
+                  <Document file="MCBIOS2025_PROGRAM_AT_A_GLANCE_2.pdf">
+                    <DocPage
+                      pageNumber={1}
+                      renderTextLayer={false}
+                      customTextRenderer={undefined}
+                    />
+                    <Divider />
+                    <DocPage
+                      pageNumber={2}
+                      renderTextLayer={false}
+                      customTextRenderer={undefined}
+                    />
+                  </Document>
+                </Box>
               </TabPanel>
               <TabPanel>
-                <p>three!</p>
+                <Box overflow="auto">
+                  <Document file="MCBIOS2025_PROGRAM_AT_A_GLANCE_3.pdf">
+                    <DocPage
+                      pageNumber={1}
+                      renderTextLayer={false}
+                      customTextRenderer={undefined}
+                    />
+                  </Document>
+                </Box>
               </TabPanel>
             </TabPanels>
           </Tabs>
