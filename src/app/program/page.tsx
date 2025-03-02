@@ -68,7 +68,7 @@ export default function Page() {
         </HStack>
 
         <Box
-          className="space-y-10"
+          className="space-y-5"
           mx="auto"
           my={10}
           w={["80%", null, "50%", "40%"]}
@@ -76,6 +76,11 @@ export default function Page() {
           <Heading size="lg" color="blue.700" textAlign="center">
             Conference at a Glance
           </Heading>
+
+          <p className="text-center mx-auto w-4/5 md:w-3/5">
+            Below you can a breakdown of conference events throughout the day.
+            Expect a few changes as we confirm timeslots for speakers.
+          </p>
 
           <Tabs>
             <TabList justifyContent="center">
