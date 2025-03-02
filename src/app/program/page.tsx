@@ -3,10 +3,15 @@
 import { FocusCard } from "@/components/FocusCard";
 import {
   Box,
-  Center,
   Flex,
+  Heading,
   HStack,
   Stack,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -20,6 +25,7 @@ export default function Page() {
       <Box
         w="full"
         className="flex flex-col row-start-2 items-center sm:items-start"
+        gap={5}
       >
         {/* Hero Section */}
         <Flex
@@ -58,10 +64,39 @@ export default function Page() {
         </Flex>
         {/* block quote */}
         <HStack my={5} mx="auto" w={["80%", null, "50%", "40%"]}>
-          <FocusCard blurb="Below you can find the conference poster and program of events." />
+          <FocusCard blurb="Below you will be able to find the sessions that will be held during the conference. All of which cover exciting and novel developments in the field." />
         </HStack>
 
-        <Center gap={5} mx="auto"></Center>
+        <Box
+          className="space-y-10"
+          mx="auto"
+          my={10}
+          w={["80%", null, "50%", "40%"]}
+        >
+          <Heading size="lg" color="blue.700" textAlign="center">
+            Conference at a Glance
+          </Heading>
+
+          <Tabs>
+            <TabList justifyContent="center">
+              <Tab>Day One - March 27</Tab>
+              <Tab>Day Two - March 28</Tab>
+              <Tab>Day Three - March 29</Tab>
+            </TabList>
+
+            <TabPanels>
+              <TabPanel>
+                <p>one!</p>
+              </TabPanel>
+              <TabPanel>
+                <p>two!</p>
+              </TabPanel>
+              <TabPanel>
+                <p>three!</p>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </Box>
       </Box>
     </VStack>
   );
