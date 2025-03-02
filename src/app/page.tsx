@@ -5,7 +5,6 @@ import KeyDates from "@/components/KeyDates";
 import KeynoteSpeakers from "@/components/KeynoteSpeakers";
 import ScientificSessions from "@/components/ScientificSessions";
 import TutorialSpeakers from "@/components/TutorialSpeakers";
-import { Link } from "@chakra-ui/next-js";
 import {
   Button,
   Card,
@@ -20,6 +19,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import localFont from "next/font/local";
+import NextLink from "next/link";
 
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
@@ -135,7 +135,7 @@ export default function Home() {
               </Text>
               <Stack direction={["column", "row"]} mx="auto">
                 <Button
-                  as={Link}
+                  as={NextLink}
                   href="/registration"
                   bg={"blue.400"}
                   rounded={"full"}
@@ -145,15 +145,15 @@ export default function Home() {
                   Registration
                 </Button>
                 <Button
-                  as={Link}
-                  href="#ScientificSessions"
-                  bg={"whiteAlpha.300"}
+                  as={NextLink}
+                  href="/program"
+                  borderColor={"blue.300"}
                   rounded={"full"}
-                  color={"white"}
                   variant="outline"
-                  _hover={{ bg: "whiteAlpha.500" }}
+                  color={"white"}
+                  _hover={{ bg: "blue.500" }}
                 >
-                  Scientific Sessions
+                  Conference Program
                 </Button>
               </Stack>
             </Stack>
