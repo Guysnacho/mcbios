@@ -66,25 +66,27 @@ export const Speaker = ({
           >
             {name}
           </Heading>
-          {title && (
-            <HStack gap={3}>
-              <Icon as={PiStudent} boxSize={5} />
-              <Text fontWeight={300}>{title}</Text>
-            </HStack>
-          )}
-          {program &&
-            program.map((item, idx) => (
-              <HStack key={idx} gap={3}>
-                <Icon as={PiReadCvLogo} boxSize={5} />
-                <Text fontWeight={300}>{item}</Text>
+          <Stack maxH={200} overflow="auto">
+            {title && (
+              <HStack gap={3}>
+                <Icon as={PiStudent} boxSize={5} />
+                <Text fontWeight={300}>{title}</Text>
               </HStack>
-            ))}
-          {affiliation && (
-            <HStack gap={3}>
-              <Icon as={professional ? FaBriefcase : FaSchool} boxSize={5} />
-              <Text fontWeight={300}>{affiliation}</Text>
-            </HStack>
-          )}
+            )}
+            {program &&
+              program.map((item, idx) => (
+                <HStack key={idx} gap={3}>
+                  <Icon as={PiReadCvLogo} boxSize={5} />
+                  <Text fontWeight={300}>{item}</Text>
+                </HStack>
+              ))}
+            {affiliation && (
+              <HStack gap={3}>
+                <Icon as={professional ? FaBriefcase : FaSchool} boxSize={5} />
+                <Text fontWeight={300}>{affiliation}</Text>
+              </HStack>
+            )}
+          </Stack>
         </Stack>
       </CardBody>
       {url && (
