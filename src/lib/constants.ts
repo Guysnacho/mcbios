@@ -1,9 +1,10 @@
 export const PathMap = {
   "/": "Home",
   "/registration": "Registration",
+  "/program": "Program",
   "/abstract": "Abstracts",
   "/sessions": "Session Proposals",
-  "/ysea": "Young Scientist Excellence Awards",
+  "/ysea": "YSEA",
   "/accommodations": "Accommodations",
   "/about": "About Us",
 };

@@ -1,9 +1,12 @@
 "use client";
 
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Box,
+  Button,
   Card,
   CardBody,
+  CardFooter,
   Heading,
   Table,
   TableCaption,
@@ -15,6 +18,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import NextLink from "next/link";
 
 export default function ScientificSessions() {
   return (
@@ -46,6 +50,19 @@ export default function ScientificSessions() {
             the field to statistical analyses.
           </Text>
         </CardBody>
+        <CardFooter>
+          <Button
+            as={NextLink}
+            href="/program"
+            color={"white"}
+            rounded={"full"}
+            leftIcon={<ExternalLinkIcon />}
+            bg={"blue.600"}
+            mx="auto"
+          >
+            View Program
+          </Button>
+        </CardFooter>
       </Card>
       <TableContainer
         maxH={500}
