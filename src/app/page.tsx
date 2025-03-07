@@ -215,7 +215,7 @@ export default function Home() {
         {/* Accomodation blurb */}
         <Stack
           gap={3}
-          className="container mx-auto w-4/5 md:w-3/5 self-center place-content-center my-10 shadow-lg shadow-indigo-500/40 rounded-xl py-6"
+          className="container mx-auto w-9/12 md:w-11/12 self-center place-content-center my-10 shadow-lg shadow-indigo-500/40 rounded-xl py-6"
         >
           <Heading size="lg" color="blue.700" textAlign="center">
             Conference Day Logistics
@@ -248,7 +248,7 @@ export default function Home() {
           <Divider />
 
           <HStack w={["97%", "93%"]} mx="auto">
-            <Text textAlign="center">
+            <Text textAlign="center" w={["auto", "auto", "70%"]} mx="auto">
               Scan or click the QR Code to begin pinned navigation to
               <span className="font-bold">
                 {" "}
@@ -265,7 +265,7 @@ export default function Home() {
                   src="/home/alumni_qr.png"
                   alt="Direction QR code"
                   m="auto"
-                  w={180}
+                  w={[400, 180]}
                 />
               </Link>
             </Box>
@@ -279,7 +279,7 @@ export default function Home() {
 
           {/* Routes */}
 
-          <Accordion>
+          <Accordion defaultIndex={3}>
             <AccordionItem>
               <h2>
                 <AccordionButton color="green" gap={1}>
@@ -296,7 +296,7 @@ export default function Home() {
                 <OrderedList>
                   <ListItem>
                     Turn left onto Fort Douglas Blvd. and continue north to turn
-                    left onto S 1900.
+                    left onto S 1900
                   </ListItem>
                   <ListItem>
                     Turn right onto S Wasatch Dr. at the intersection
@@ -394,6 +394,27 @@ export default function Home() {
                     For parking, continue to the visitor parking lot
                   </ListItem>
                 </OrderedList>
+              </AccordionPanel>
+            </AccordionItem>
+
+            <AccordionItem>
+              <h2>
+                <AccordionButton gap={1}>
+                  <span>
+                    <PiFlagBanner />
+                  </span>
+                  <Box as="span" flex="1" textAlign="left">
+                    <span className="underline">Alumni House Parking</span>
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <Text>
+                  Visitor parking is available across the street from the Alumni
+                  House and costs $2.00/hr. Monday - Friday. Parking is free on
+                  Saturday.
+                </Text>
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
