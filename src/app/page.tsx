@@ -64,7 +64,7 @@ export default function Home() {
           id="sunm"
           flexFlow="column"
           w={"full"}
-          backgroundImage={"/Winter Campus View 2018-4.jpg"}
+          backgroundImage={"/campus_bg.jpg"}
           backgroundSize={"cover"}
           backgroundPosition={"top center"}
         >

@@ -20,7 +20,6 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { PiHouse } from "react-icons/pi";
 
 type ImageCardProps = {
   src: string;
@@ -119,10 +118,9 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
                 color={"white"}
                 rounded={"full"}
                 alignItems="center"
-                leftIcon={<PiHouse />}
                 bg={"blue.600"}
               >
-                Book Today
+                Learn More
               </Button>
             </ButtonGroup>
           )}
@@ -157,7 +155,7 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
               as={NextLink}
               href={props.src}
             >
-              Download
+              View
             </Button>
             <Button onClick={onClose}>Close</Button>
           </ModalFooter>
