@@ -236,9 +236,9 @@ export default function Home() {
               className="underline text-secondary-300"
             >
               here
-            </a>
-            . Parking is free on Saturday. We encourage you to take ride share
-            to the conference
+            </a>{" "}
+            and below. Parking is free on Saturday. We encourage you to take ride
+            share to the conference
             {/* <a href="/accommodations" className="underline text-secondary-300">
               {" "}accommodations page
             </a> */}
