@@ -20,7 +20,6 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { PiHouse } from "react-icons/pi";
 
 type ImageCardProps = {
   src: string;
