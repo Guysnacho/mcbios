@@ -9,8 +9,7 @@ import {
   Heading,
   SimpleGrid,
   Stack,
-  Text,
-  VStack,
+  VStack
 } from "@chakra-ui/react";
 
 export default function Page() {
@@ -24,39 +23,17 @@ export default function Page() {
         <Flex
           w={"full"}
           h={"40vh"}
-          backgroundImage={"/Winter Campus View 2018-4.jpg"}
+          backgroundImage={"/ski_bg.png"}
           backgroundSize={"cover"}
-          backgroundPosition={"top center"}
+          backgroundPosition={"center"}
         >
           <VStack
             w={"full"}
             justify={"center"}
             px={[4, null, null, 8]}
             bgGradient={"linear(to-r, blackAlpha.600, transparent)"}
-          >
-            <Stack
-              maxW={"3xl"}
-              align={"flex-start"}
-              spacing={4}
-              textAlign="center"
-              borderRadius={10}
-              p={4}
-              py={6}
-              bgColor={"blackAlpha.500"}
-            >
-              <Text
-                color={"white"}
-                fontWeight={700}
-                lineHeight={1.2}
-                fontSize={["3xl", null, null, "4xl"]}
-              >
-                Local Attractions
-              </Text>
-            </Stack>
-          </VStack>
+          />
         </Flex>
-
-        {/* Attractions */}
 
         <Box bgColor="blue.800" position={"relative"} w="full">
           <Stack
@@ -65,9 +42,10 @@ export default function Page() {
             py={{ base: 4, md: 20, xl: 50 }}
             gap={10}
           >
+            {/* Attractions */}
             <Box w={["90%", "80%", "75%", "70%"]} mx="auto">
               <Heading color={"white"} fontSize={{ base: "3xl", md: "5xl" }}>
-                Salt Lake Ski Resorts
+                Salt Lake Attractions
               </Heading>
 
               <FocusCard
@@ -78,6 +56,7 @@ export default function Page() {
 
             <Divider w={["90%"]} mx="auto" />
 
+            {/* Ski Resorts */}
             <SimpleGrid
               columns={{ base: 1, md: 2, lg: 3 }}
               spacing={10}
@@ -88,9 +67,9 @@ export default function Page() {
                 color={"white"}
                 m="auto"
                 fontSize={{ base: "3xl", md: "5xl" }}
-                textAlign={["center", "start"]}
+                textAlign="center"
               >
-                Salt Lake Ski Resorts
+                Ski Resorts
               </Heading>
               {skiResorts.map(({ img, name, url }) => (
                 <ImageCard
@@ -104,21 +83,61 @@ export default function Page() {
               ))}
             </SimpleGrid>
 
-            <Heading color={"white"} fontSize={{ base: "3xl", md: "5xl" }}>
-              Utah Parks and Recreation
-            </Heading>
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
-              {skiResorts.map((resort) => (
-                <ImageCard key={resort} />
+            <Divider w={["90%"]} mx="auto" />
+
+            {/* Utah Parks and Recreation */}
+            <SimpleGrid
+              columns={{ base: 1, md: 2, lg: 3 }}
+              spacing={10}
+              w="90%"
+              mx="auto"
+            >
+              <Heading
+                color={"white"}
+                m="auto"
+                fontSize={{ base: "3xl", md: "5xl" }}
+                textAlign="center"
+              >
+                Utah Parks and Recreation
+              </Heading>
+              {parks.map(({ img, name, url }) => (
+                <ImageCard
+                  key={name}
+                  src={img}
+                  url={url}
+                  title={name}
+                  w={["95%", "80%"]}
+                  mx="auto"
+                />
               ))}
             </SimpleGrid>
 
-            <Heading color={"white"} fontSize={{ base: "3xl", md: "5xl" }}>
-              Ski/Snowboard/Clothing Gear Rental
-            </Heading>
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
-              {skiResorts.map((resort) => (
-                <ImageCard key={resort} />
+            <Divider w={["90%"]} mx="auto" />
+
+            {/* Ski/Snowboard/Clothing Gear Rental */}
+            <SimpleGrid
+              columns={{ base: 1, md: 2, lg: 3 }}
+              spacing={10}
+              w="90%"
+              mx="auto"
+            >
+              <Heading
+                color={"white"}
+                m="auto"
+                fontSize={{ base: "3xl", md: "5xl" }}
+                textAlign="center"
+              >
+                Ski/Snowboard/Clothing Gear Rental
+              </Heading>
+              {skiShops.map(({ img, name, url }) => (
+                <ImageCard
+                  key={name}
+                  src={img}
+                  url={url}
+                  title={name}
+                  w={["95%", "80%"]}
+                  mx="auto"
+                />
               ))}
             </SimpleGrid>
           </Stack>
@@ -201,7 +220,3 @@ const skiShops = [
     img: "https://static.where-e.com/United_States/Utah/Salt_Lake_County/The-Lifthouse_ac624b5fd696ee37f007842db6f15565.jpg",
   },
 ];
-
-/*
-
-*/
