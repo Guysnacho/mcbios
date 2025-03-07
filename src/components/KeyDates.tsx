@@ -157,7 +157,7 @@ export function KeyDates() {
         }}
       />
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
-        <Date
+        <KeyDate
           icon={
             <Icon
               as={PiChalkboardTeacher}
@@ -174,7 +174,7 @@ export function KeyDates() {
           isProposal
           stack={{ justifyContent: "space-evenly" }}
         />
-        <Date
+        <KeyDate
           icon={<Icon as={PiBlueprint} w={[5, null, 10]} h={[5, null, 10]} />}
           title={"Call for Abstract Submissions"}
           text={
@@ -185,7 +185,7 @@ export function KeyDates() {
           isAbstract
           stack={{ justifyContent: "space-evenly" }}
         />
-        <Date
+        <KeyDate
           icon={<Icon as={PiStudent} w={[5, null, 10]} h={[5, null, 10]} />}
           title={"Young Scientist Excellence Award Application Deadline"}
           text={
