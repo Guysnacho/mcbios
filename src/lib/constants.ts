@@ -6,5 +6,6 @@ export const PathMap = {
   "/sessions": "Session Proposals",
   "/ysea": "YSEA",
   "/accommodations": "Accommodations",
+  "/attractions": "Attractions",
   "/about": "About Us",
 };
