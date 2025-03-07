@@ -42,7 +42,7 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
         w={"full"}
         h={"full"}
         bg={useColorModeValue("white", "gray.800")}
-        boxShadow={"2xl"}
+        boxShadow="xl"
         rounded={"lg"}
         pos={"relative"}
         zIndex={1}
@@ -88,7 +88,7 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
               textAlign="center"
               fontFamily={"body"}
               fontWeight={500}
-              color="blue.700" 
+              color="blue.700"
               size="lg"
             >
               {props.title}
