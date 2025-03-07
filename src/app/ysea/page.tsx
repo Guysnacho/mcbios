@@ -28,7 +28,7 @@ export default function Page() {
         <Flex
           w={"full"}
           h={"40vh"}
-          backgroundImage={"/Winter Campus View 2018-4.jpg"}
+          backgroundImage={"/campus_bg.jpg"}
           backgroundSize={"cover"}
           backgroundPosition={"top center"}
         >
