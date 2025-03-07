@@ -30,7 +30,7 @@ interface ConfDayProps {
   hasPassed?: boolean;
 }
 
-const Date = ({
+export const KeyDate = ({
   title,
   text,
   deadline,
@@ -129,10 +129,10 @@ const Date = ({
   );
 };
 
-export default function KeyDates() {
+export function KeyDates() {
   return (
     <Box p={4} mx={{ base: 3, md: 10 }}>
-      <Date
+      <KeyDate
         icon={
           <Icon as={PiFlagCheckeredFill} w={[5, null, 10]} h={[5, null, 10]} />
         }
@@ -157,7 +157,7 @@ export default function KeyDates() {
         }}
       />
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
-        <Date
+        <KeyDate
           icon={
             <Icon
               as={PiChalkboardTeacher}
@@ -174,7 +174,7 @@ export default function KeyDates() {
           isProposal
           stack={{ justifyContent: "space-evenly" }}
         />
-        <Date
+        <KeyDate
           icon={<Icon as={PiBlueprint} w={[5, null, 10]} h={[5, null, 10]} />}
           title={"Call for Abstract Submissions"}
           text={
@@ -185,7 +185,7 @@ export default function KeyDates() {
           isAbstract
           stack={{ justifyContent: "space-evenly" }}
         />
-        <Date
+        <KeyDate
           icon={<Icon as={PiStudent} w={[5, null, 10]} h={[5, null, 10]} />}
           title={"Young Scientist Excellence Award Application Deadline"}
           text={

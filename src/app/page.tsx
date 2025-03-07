@@ -1,25 +1,37 @@
 "use client";
 
 import ImageCard from "@/components/ImageCard";
-import KeyDates from "@/components/KeyDates";
+import { KeyDate } from "@/components/KeyDates";
 import KeynoteSpeakers from "@/components/KeynoteSpeakers";
 import ScientificSessions from "@/components/ScientificSessions";
 import TutorialSpeakers from "@/components/TutorialSpeakers";
+import { Link } from "@chakra-ui/next-js";
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
   Button,
   Card,
   CardBody,
   Divider,
   Flex,
   Heading,
+  HStack,
+  Icon,
   Image,
   LinkOverlay,
+  ListItem,
+  OrderedList,
   Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import localFont from "next/font/local";
 import NextLink from "next/link";
+import { PiFlagBanner, PiFlagCheckeredFill } from "react-icons/pi";
 
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
@@ -161,19 +173,49 @@ export default function Home() {
         </Flex>
 
         {/* Important Dates (sticky on mobile) */}
-        <KeyDates />
+        {/* <KeyDates /> */}
+        <Box className="mx-auto">
+          <KeyDate
+            icon={
+              <Icon
+                as={PiFlagCheckeredFill}
+                w={[5, null, 10]}
+                h={[5, null, 10]}
+              />
+            }
+            title={"Registration Deadline"}
+            deadline="March 17th, 2025"
+            stack={{
+              mt: "5",
+              mb: "12",
+              mx: "auto",
+              width: [null, "sm", null, "lg"],
+              direction: "row",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+              borderColor: "gold",
+              borderRadius: "xl",
+              shadow: "xl",
+              _hover: {
+                shadow: "2xl",
+                borderColor: "goldenrod",
+                borderWidth: "xl",
+              },
+            }}
+          />
+        </Box>
         <Divider />
         <ImageCard
           mx="auto"
           w={["85%", "75%", "45%", "lg"]}
-          src="/MCBIOS2025_POSTER.jpg"
+          src="/home/MCBIOS2025_POSTER.jpg"
           title="Conference Poster"
         />
         <Divider />
         {/* Accomodation blurb */}
         <Stack
           gap={3}
-          className="container mx-auto w-4/5 md:w-3/5 self-center place-content-center my-10 shadow-lg shadow-indigo-500/40 rounded-xl py-6"
+          className="container mx-auto w-9/12 md:w-11/12 self-center place-content-center my-10 shadow-lg shadow-indigo-500/40 rounded-xl py-6"
         >
           <Heading size="lg" color="blue.700" textAlign="center">
             Conference Day Logistics
@@ -202,6 +244,188 @@ export default function Home() {
             </a> */}
             !
           </p>
+
+          <Divider />
+
+          <HStack w={["97%", "93%"]} mx="auto" my={5}>
+            <Text textAlign="center" w={["auto", "auto", "70%"]} mx="auto">
+              Scan or click the QR Code to begin pinned navigation to
+              <span className="font-bold">
+                {" "}
+                The University of Utah Alumni House{" "}
+              </span>
+              via Google Maps.
+            </Text>
+            <Box>
+              <Link
+                href="https://maps.app.goo.gl/VLZKu9Gkc4VTdXeV6"
+                target="_blank"
+              >
+                <Image
+                  src="/home/alumni_qr.png"
+                  alt="Direction QR code"
+                  m="auto"
+                  w={[400, 180]}
+                />
+              </Link>
+            </Box>
+          </HStack>
+          <Stack direction={["column", null, "row"]} mx="auto" gap={5}>
+            <VStack mx="auto">
+              <Text textAlign="center" mx="auto" decoration="underline">
+                Directions to the University of Utah Alumni House
+              </Text>
+              <ImageCard
+                src="/home/directions.png"
+                about="Direction QR code"
+                isFull
+                w={["85%", "75%", "45%", "lg"]}
+                mx="auto"
+              />
+            </VStack>
+
+            {/* Routes */}
+
+            <Accordion defaultIndex={3} mx="auto">
+              <AccordionItem>
+                <h2>
+                  <AccordionButton color="green" gap={1}>
+                    <span>
+                      <PiFlagBanner />
+                    </span>
+                    <Box as="span" flex="1" textAlign="left">
+                      Guest House Route
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <OrderedList>
+                    <ListItem>
+                      Turn left onto Fort Douglas Blvd. and continue north to
+                      turn left onto S 1900
+                    </ListItem>
+                    <ListItem>
+                      Turn right onto S Wasatch Dr. at the intersection
+                    </ListItem>
+                    <ListItem>
+                      Continue north along S Wasatch Dr., through the 2nd exit
+                      of the traffic circle, to turn left onto Exploration Way
+                    </ListItem>
+                    <ListItem>
+                      Continue west along Exploration Way to turn left onto S
+                      Central Campus Dr.
+                    </ListItem>
+                    <ListItem>
+                      Continue south along S Central Campus Dr. to Alumni House
+                      on the left in .18 miles
+                    </ListItem>
+                    <ListItem>
+                      For parking, continue to the visitor parking lot
+                    </ListItem>
+                  </OrderedList>
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem>
+                <h2>
+                  <AccordionButton color="yellow.500" gap={1}>
+                    <span>
+                      <PiFlagBanner />
+                    </span>
+                    <Box as="span" flex="1" textAlign="left">
+                      Foothill Route
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <OrderedList>
+                    <ListItem>
+                      Travel north on Foothill Dr. to turn right onto Mario
+                      Capecchi Dr.
+                    </ListItem>
+                    <ListItem>
+                      Continue northeast along Mario Capecchi Dr. to turn left
+                      onto S Wasatch Dr.
+                    </ListItem>
+                    <ListItem>
+                      Continue north along S Wasatch Dr., through the 2nd exit
+                      of the traffic circle, to turn left onto Exploration Way
+                    </ListItem>
+                    <ListItem>
+                      Continue west along Exploration Way to turn left onto S
+                      Central Campus Dr.
+                    </ListItem>
+                    <ListItem>
+                      Continue south along S Central Campus Dr. to Alumni House
+                      on the left in .18 miles
+                    </ListItem>
+                    <ListItem>
+                      For parking, continue to the visitor parking lot
+                    </ListItem>
+                  </OrderedList>
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem>
+                <h2>
+                  <AccordionButton color="blue.600" gap={1}>
+                    <span>
+                      <PiFlagBanner />
+                    </span>
+                    <Box as="span" flex="1" textAlign="left">
+                      Guest House Route
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <OrderedList>
+                    <ListItem>
+                      Travel east along 400 S./University Blvd. to turn left
+                      onto 700 E.
+                    </ListItem>
+                    <ListItem>
+                      Continue north along 700 E. to turn right onto 100 S.
+                    </ListItem>
+                    <ListItem>
+                      Continue east along 100 S. (which becomes N Campus Dr.) to
+                      turn right onto S Central Campus Dr.
+                    </ListItem>
+                    <ListItem>
+                      Continue south along S Central Campus Dr. to the Alumni
+                      House on the left in 1.2 miles
+                    </ListItem>
+                    <ListItem>
+                      For parking, continue to the visitor parking lot
+                    </ListItem>
+                  </OrderedList>
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem>
+                <h2>
+                  <AccordionButton gap={1}>
+                    <span>
+                      <PiFlagBanner />
+                    </span>
+                    <Box as="span" flex="1" textAlign="left">
+                      <span className="underline">Alumni House Parking</span>
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <Text>
+                    Visitor parking is available across the street from the
+                    Alumni House and costs $2.00/hr. Monday - Friday. Parking is
+                    free on Saturday.
+                  </Text>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+          </Stack>
         </Stack>
         <VStack w="full" align="center" gap={0}>
           {/* Keynote Speakers */}

@@ -28,6 +28,7 @@ type ImageCardProps = {
   blurb?: string;
   url?: string;
   discount?: string;
+  buttonLabel?: string;
 };
 
 export default function ImageCard(props: ImageCardProps & CenterProps) {
@@ -41,7 +42,7 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
         w={"full"}
         h={"full"}
         bg={useColorModeValue("white", "gray.800")}
-        boxShadow={"2xl"}
+        boxShadow="xl"
         rounded={"lg"}
         pos={"relative"}
         zIndex={1}
@@ -87,7 +88,7 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
               textAlign="center"
               fontFamily={"body"}
               fontWeight={500}
-              color="blue.700" 
+              color="blue.700"
               size="lg"
             >
               {props.title}
@@ -120,7 +121,7 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
                 alignItems="center"
                 bg={"blue.600"}
               >
-                Learn More
+                {props.buttonLabel ? props.buttonLabel : "Learn More"}
               </Button>
             </ButtonGroup>
           )}
