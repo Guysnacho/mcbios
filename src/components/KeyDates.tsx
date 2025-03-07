@@ -30,7 +30,7 @@ interface ConfDayProps {
   hasPassed?: boolean;
 }
 
-const Date = ({
+export const KeyDate = ({
   title,
   text,
   deadline,
@@ -129,10 +129,10 @@ const Date = ({
   );
 };
 
-export default function KeyDates() {
+export function KeyDates() {
   return (
     <Box p={4} mx={{ base: 3, md: 10 }}>
-      <Date
+      <KeyDate
         icon={
           <Icon as={PiFlagCheckeredFill} w={[5, null, 10]} h={[5, null, 10]} />
         }

@@ -1,17 +1,21 @@
 "use client";
 
 import ImageCard from "@/components/ImageCard";
-import KeyDates from "@/components/KeyDates";
+import { KeyDate } from "@/components/KeyDates";
 import KeynoteSpeakers from "@/components/KeynoteSpeakers";
 import ScientificSessions from "@/components/ScientificSessions";
 import TutorialSpeakers from "@/components/TutorialSpeakers";
+import { Link } from "@chakra-ui/next-js";
 import {
+  Box,
   Button,
   Card,
   CardBody,
   Divider,
   Flex,
   Heading,
+  HStack,
+  Icon,
   Image,
   LinkOverlay,
   Stack,
@@ -20,6 +24,7 @@ import {
 } from "@chakra-ui/react";
 import localFont from "next/font/local";
 import NextLink from "next/link";
+import { PiFlagCheckeredFill } from "react-icons/pi";
 
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
@@ -161,12 +166,42 @@ export default function Home() {
         </Flex>
 
         {/* Important Dates (sticky on mobile) */}
-        <KeyDates />
+        {/* <KeyDates /> */}
+        <Box className="mx-auto">
+          <KeyDate
+            icon={
+              <Icon
+                as={PiFlagCheckeredFill}
+                w={[5, null, 10]}
+                h={[5, null, 10]}
+              />
+            }
+            title={"Registration Deadline"}
+            deadline="March 17th, 2025"
+            stack={{
+              mt: "5",
+              mb: "12",
+              mx: "auto",
+              width: [null, "sm", null, "lg"],
+              direction: "row",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+              borderColor: "gold",
+              borderRadius: "xl",
+              shadow: "xl",
+              _hover: {
+                shadow: "2xl",
+                borderColor: "goldenrod",
+                borderWidth: "xl",
+              },
+            }}
+          />
+        </Box>
         <Divider />
         <ImageCard
           mx="auto"
           w={["85%", "75%", "45%", "lg"]}
-          src="/MCBIOS2025_POSTER.jpg"
+          src="/home/MCBIOS2025_POSTER.jpg"
           title="Conference Poster"
         />
         <Divider />
@@ -202,6 +237,32 @@ export default function Home() {
             </a> */}
             !
           </p>
+
+          <Divider />
+
+          <HStack w={["97%", "93%"]} mx="auto">
+            <Text textAlign="center">
+              Scan or click the QR Code to begin pinned navigation to
+              <span className="font-bold">
+                {" "}
+                The University of Utah Alumni House{" "}
+              </span>
+              via Google Maps.
+            </Text>
+            <Box>
+              <Link
+                href="https://maps.app.goo.gl/VLZKu9Gkc4VTdXeV6"
+                target="_blank"
+              >
+                <Image
+                  src="/home/alumni_qr.png"
+                  alt="Direction QR code"
+                  m="auto"
+                  w={180}
+                />
+              </Link>
+            </Box>
+          </HStack>
         </Stack>
         <VStack w="full" align="center" gap={0}>
           {/* Keynote Speakers */}

@@ -28,6 +28,7 @@ type ImageCardProps = {
   blurb?: string;
   url?: string;
   discount?: string;
+  buttonLabel?: string;
 };
 
 export default function ImageCard(props: ImageCardProps & CenterProps) {
@@ -120,7 +121,7 @@ export default function ImageCard(props: ImageCardProps & CenterProps) {
                 alignItems="center"
                 bg={"blue.600"}
               >
-                Learn More
+                {props.buttonLabel ? props.buttonLabel : "Learn More"}
               </Button>
             </ButtonGroup>
           )}

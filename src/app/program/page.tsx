@@ -98,7 +98,7 @@ export default function Page() {
             <TabPanels>
               <TabPanel>
                 <Box overflow="auto">
-                  <Document file="MCBIOS2025_PROGRAM_AT_A_GLANCE_1.pdf">
+                  <Document file="/program/MCBIOS2025_PROGRAM_AT_A_GLANCE_1.pdf">
                     <DocPage
                       pageNumber={1}
                       renderTextLayer={false}
@@ -109,7 +109,7 @@ export default function Page() {
               </TabPanel>
               <TabPanel>
                 <Box overflow="auto">
-                  <Document file="MCBIOS2025_PROGRAM_AT_A_GLANCE_2.pdf">
+                  <Document file="/program/MCBIOS2025_PROGRAM_AT_A_GLANCE_2.pdf">
                     <DocPage
                       pageNumber={1}
                       renderTextLayer={false}
@@ -126,7 +126,7 @@ export default function Page() {
               </TabPanel>
               <TabPanel>
                 <Box overflow="auto">
-                  <Document file="MCBIOS2025_PROGRAM_AT_A_GLANCE_3.pdf">
+                  <Document file="/program/MCBIOS2025_PROGRAM_AT_A_GLANCE_3.pdf">
                     <DocPage
                       pageNumber={1}
                       renderTextLayer={false}
