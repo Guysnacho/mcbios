@@ -25,6 +25,7 @@ const geistMono = localFont({
 
 export default function Page() {
   const [registrationOpen] = useState(true);
+  const [isRegistrationPassed] = useState(true);
   return (
     <VStack className="items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
       <Box
@@ -116,6 +117,11 @@ export default function Page() {
                   {!registrationOpen ? (
                     <Text textAlign="center">
                       Registration opening soon. Construction is underway!
+                    </Text>
+                  ) : isRegistrationPassed ? (
+                    <Text textAlign="center">
+                      Registration is currently closed. We look forward to
+                      seeing you this year!
                     </Text>
                   ) : (
                     <>

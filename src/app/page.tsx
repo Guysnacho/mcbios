@@ -237,8 +237,8 @@ export default function Home() {
             >
               here
             </a>{" "}
-            and below. Parking is free on Saturday. We encourage you to take ride
-            share to the conference
+            and below. Parking is free on Saturday. We encourage you to take
+            ride share to the conference
             {/* <a href="/accommodations" className="underline text-secondary-300">
               {" "}accommodations page
             </a> */}
@@ -270,162 +270,184 @@ export default function Home() {
               </Link>
             </Box>
           </HStack>
-          <Stack direction={["column", null, "row"]} mx="auto" gap={5}>
-            <VStack mx="auto">
-              <Text textAlign="center" mx="auto" decoration="underline">
-                Directions to the University of Utah Alumni House
-              </Text>
-              <ImageCard
-                src="/home/directions.png"
-                about="Direction QR code"
-                isFull
-                w={["85%", "75%", "45%", "lg"]}
-                mx="auto"
-              />
-            </VStack>
+          <Accordion allowToggle w="full">
+            <AccordionItem>
+              <h2>
+                <AccordionButton justifyContent="center" gap={5}>
+                  <span>
+                    <PiFlagBanner />
+                  </span>
+                  <Box as="span" textAlign="center">
+                    <span className="underline">Alumni House Routes</span>
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <Stack direction={["column", null, "row"]} mx="auto" gap={5}>
+                  <VStack mx="auto">
+                    <Text textAlign="center" mx="auto" decoration="underline">
+                      Directions to the University of Utah Alumni House
+                    </Text>
+                    <ImageCard
+                      src="/home/directions.png"
+                      about="Direction QR code"
+                      isFull
+                      w={["85%", "75%", "45%", "lg"]}
+                      mx="auto"
+                    />
+                  </VStack>
 
-            {/* Routes */}
+                  {/* Routes */}
 
-            <Accordion defaultIndex={3} mx="auto">
-              <AccordionItem>
-                <h2>
-                  <AccordionButton color="green" gap={1}>
-                    <span>
-                      <PiFlagBanner />
-                    </span>
-                    <Box as="span" flex="1" textAlign="left">
-                      Guest House Route
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>
-                  <OrderedList>
-                    <ListItem>
-                      Turn left onto Fort Douglas Blvd. and continue north to
-                      turn left onto S 1900
-                    </ListItem>
-                    <ListItem>
-                      Turn right onto S Wasatch Dr. at the intersection
-                    </ListItem>
-                    <ListItem>
-                      Continue north along S Wasatch Dr., through the 2nd exit
-                      of the traffic circle, to turn left onto Exploration Way
-                    </ListItem>
-                    <ListItem>
-                      Continue west along Exploration Way to turn left onto S
-                      Central Campus Dr.
-                    </ListItem>
-                    <ListItem>
-                      Continue south along S Central Campus Dr. to Alumni House
-                      on the left in .18 miles
-                    </ListItem>
-                    <ListItem>
-                      For parking, continue to the visitor parking lot
-                    </ListItem>
-                  </OrderedList>
-                </AccordionPanel>
-              </AccordionItem>
+                  <Accordion defaultIndex={3} mx="auto">
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton color="green" gap={1}>
+                          <span>
+                            <PiFlagBanner />
+                          </span>
+                          <Box as="span" flex="1" textAlign="left">
+                            Guest House Route
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4}>
+                        <OrderedList>
+                          <ListItem>
+                            Turn left onto Fort Douglas Blvd. and continue north
+                            to turn left onto S 1900
+                          </ListItem>
+                          <ListItem>
+                            Turn right onto S Wasatch Dr. at the intersection
+                          </ListItem>
+                          <ListItem>
+                            Continue north along S Wasatch Dr., through the 2nd
+                            exit of the traffic circle, to turn left onto
+                            Exploration Way
+                          </ListItem>
+                          <ListItem>
+                            Continue west along Exploration Way to turn left
+                            onto S Central Campus Dr.
+                          </ListItem>
+                          <ListItem>
+                            Continue south along S Central Campus Dr. to Alumni
+                            House on the left in .18 miles
+                          </ListItem>
+                          <ListItem>
+                            For parking, continue to the visitor parking lot
+                          </ListItem>
+                        </OrderedList>
+                      </AccordionPanel>
+                    </AccordionItem>
 
-              <AccordionItem>
-                <h2>
-                  <AccordionButton color="yellow.500" gap={1}>
-                    <span>
-                      <PiFlagBanner />
-                    </span>
-                    <Box as="span" flex="1" textAlign="left">
-                      Foothill Route
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>
-                  <OrderedList>
-                    <ListItem>
-                      Travel north on Foothill Dr. to turn right onto Mario
-                      Capecchi Dr.
-                    </ListItem>
-                    <ListItem>
-                      Continue northeast along Mario Capecchi Dr. to turn left
-                      onto S Wasatch Dr.
-                    </ListItem>
-                    <ListItem>
-                      Continue north along S Wasatch Dr., through the 2nd exit
-                      of the traffic circle, to turn left onto Exploration Way
-                    </ListItem>
-                    <ListItem>
-                      Continue west along Exploration Way to turn left onto S
-                      Central Campus Dr.
-                    </ListItem>
-                    <ListItem>
-                      Continue south along S Central Campus Dr. to Alumni House
-                      on the left in .18 miles
-                    </ListItem>
-                    <ListItem>
-                      For parking, continue to the visitor parking lot
-                    </ListItem>
-                  </OrderedList>
-                </AccordionPanel>
-              </AccordionItem>
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton color="yellow.500" gap={1}>
+                          <span>
+                            <PiFlagBanner />
+                          </span>
+                          <Box as="span" flex="1" textAlign="left">
+                            Foothill Route
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4}>
+                        <OrderedList>
+                          <ListItem>
+                            Travel north on Foothill Dr. to turn right onto
+                            Mario Capecchi Dr.
+                          </ListItem>
+                          <ListItem>
+                            Continue northeast along Mario Capecchi Dr. to turn
+                            left onto S Wasatch Dr.
+                          </ListItem>
+                          <ListItem>
+                            Continue north along S Wasatch Dr., through the 2nd
+                            exit of the traffic circle, to turn left onto
+                            Exploration Way
+                          </ListItem>
+                          <ListItem>
+                            Continue west along Exploration Way to turn left
+                            onto S Central Campus Dr.
+                          </ListItem>
+                          <ListItem>
+                            Continue south along S Central Campus Dr. to Alumni
+                            House on the left in .18 miles
+                          </ListItem>
+                          <ListItem>
+                            For parking, continue to the visitor parking lot
+                          </ListItem>
+                        </OrderedList>
+                      </AccordionPanel>
+                    </AccordionItem>
 
-              <AccordionItem>
-                <h2>
-                  <AccordionButton color="blue.600" gap={1}>
-                    <span>
-                      <PiFlagBanner />
-                    </span>
-                    <Box as="span" flex="1" textAlign="left">
-                      Guest House Route
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>
-                  <OrderedList>
-                    <ListItem>
-                      Travel east along 400 S./University Blvd. to turn left
-                      onto 700 E.
-                    </ListItem>
-                    <ListItem>
-                      Continue north along 700 E. to turn right onto 100 S.
-                    </ListItem>
-                    <ListItem>
-                      Continue east along 100 S. (which becomes N Campus Dr.) to
-                      turn right onto S Central Campus Dr.
-                    </ListItem>
-                    <ListItem>
-                      Continue south along S Central Campus Dr. to the Alumni
-                      House on the left in 1.2 miles
-                    </ListItem>
-                    <ListItem>
-                      For parking, continue to the visitor parking lot
-                    </ListItem>
-                  </OrderedList>
-                </AccordionPanel>
-              </AccordionItem>
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton color="blue.600" gap={1}>
+                          <span>
+                            <PiFlagBanner />
+                          </span>
+                          <Box as="span" flex="1" textAlign="left">
+                            Guest House Route
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4}>
+                        <OrderedList>
+                          <ListItem>
+                            Travel east along 400 S./University Blvd. to turn
+                            left onto 700 E.
+                          </ListItem>
+                          <ListItem>
+                            Continue north along 700 E. to turn right onto 100
+                            S.
+                          </ListItem>
+                          <ListItem>
+                            Continue east along 100 S. (which becomes N Campus
+                            Dr.) to turn right onto S Central Campus Dr.
+                          </ListItem>
+                          <ListItem>
+                            Continue south along S Central Campus Dr. to the
+                            Alumni House on the left in 1.2 miles
+                          </ListItem>
+                          <ListItem>
+                            For parking, continue to the visitor parking lot
+                          </ListItem>
+                        </OrderedList>
+                      </AccordionPanel>
+                    </AccordionItem>
 
-              <AccordionItem>
-                <h2>
-                  <AccordionButton gap={1}>
-                    <span>
-                      <PiFlagBanner />
-                    </span>
-                    <Box as="span" flex="1" textAlign="left">
-                      <span className="underline">Alumni House Parking</span>
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>
-                  <Text>
-                    Visitor parking is available across the street from the
-                    Alumni House and costs $2.00/hr. Monday - Friday. Parking is
-                    free on Saturday.
-                  </Text>
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>
-          </Stack>
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton gap={1}>
+                          <span>
+                            <PiFlagBanner />
+                          </span>
+                          <Box as="span" flex="1" textAlign="left">
+                            <span className="underline">
+                              Alumni House Parking
+                            </span>
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4}>
+                        <Text>
+                          Visitor parking is available across the street from
+                          the Alumni House and costs $2.00/hr. Monday - Friday.
+                          Parking is free on Saturday.
+                        </Text>
+                      </AccordionPanel>
+                    </AccordionItem>
+                  </Accordion>
+                </Stack>
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
         </Stack>
         <VStack w="full" align="center" gap={0}>
           {/* Keynote Speakers */}
