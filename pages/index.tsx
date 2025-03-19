@@ -72,11 +72,12 @@ export default function Home() {
         borderRadius="xl"
         w={["80%", "fit-content"]}
         mx="auto"
+        status="warning"
       >
         <AlertIcon>
           <InfoIcon m="auto" />
         </AlertIcon>
-        Conference Registration is now open!
+        Conference Registration is now closed!
       </Alert>
       <Divider as="hr" className="my-10 border-gray-500" />
 
