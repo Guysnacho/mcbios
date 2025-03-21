@@ -216,10 +216,9 @@ async function handleRawUpdate(
       fname: session.metadata!.fname,
       lname: session.metadata!.lname,
       institution: session!.metadata!.institution,
-      created_at: new Date(),
+      created_at: new Date().toISOString(),
       role: session!.metadata!.tier as Database["public"]["Enums"]["user_role"],
     })
-    .eq("email", session.metadata!.email);
 }
 
 /**
@@ -232,14 +231,14 @@ async function handleInstitutionUpdate(
   body: PaymentBody
 ) {
   console.log("Recording raw registration");
-  const { data, error, statusText } = await client
+  const { data, error } = await client
     .from("raw_registration")
     .upsert({
       email: body.email!,
       fname: body.fname!,
       lname: body.lname!,
       institution: body.institution,
-      created_at: new Date(),
+      created_at: new Date().toISOString(),
       role: body.tier as Database["public"]["Enums"]["user_role"],
     })
     .select();
@@ -248,7 +247,7 @@ async function handleInstitutionUpdate(
       "Issue updating raw registration - ",
       error?.message || "Upsert failed"
     );
-    throw (
+    throw new Error(
       "Issue updating raw registration - " + error?.message || "Upsert failed"
     );
   } else {
