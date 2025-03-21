@@ -240,7 +240,7 @@ export const AuthModal = ({
         </ModalBody>
 
         <ModalFooter>
-          <Button onClick={handleClose} disabled={loading} className="mr-3">
+          <Button onClick={handleClose} isDisabled={loading} className="mr-3">
             Cancel
           </Button>
           {isSignUp ? (
@@ -253,7 +253,7 @@ export const AuthModal = ({
                   .finally(() => setLoading(false))
               }
               colorScheme="green"
-              disabled={loading}
+              isDisabled={loading}
             >
               Sign Up
             </Button>
@@ -267,7 +267,7 @@ export const AuthModal = ({
                   .finally(() => setLoading(false))
               }
               colorScheme="green"
-              disabled={loading}
+              isDisabled={loading}
             >
               Login
             </Button>
