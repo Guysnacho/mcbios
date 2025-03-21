@@ -24,18 +24,20 @@ export const PaymentHandler = ({
   email,
   fname,
   lname,
+  institution,
 }: {
   tier: PaymentHandlerType;
   userId?: string;
   email: string;
   fname?: string;
   lname?: string;
+  institution?: string;
 }) => {
   const fetchClientSecret = useCallback(async () => {
     // Create a Checkout Session
     const res = await fetch("/api/checkout", {
       method: "POST",
-      body: JSON.stringify({ tier, userId, email, fname, lname }),
+      body: JSON.stringify({ tier, userId, email, fname, lname, institution }),
     });
     const data = await res.json();
     return data.clientSecret;
