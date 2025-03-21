@@ -66,7 +66,7 @@ export const AuthModal = ({
   const handleAuth = async (isSignUp: boolean) => {
     setLoading(true);
     setError("");
-    if (email && password) {
+    if (email !== "" && password !== "") {
       // Perform auth
       const { data, error } = await client.auth[
         isSignUp ? "signUp" : "signInWithPassword"
