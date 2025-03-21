@@ -275,11 +275,11 @@ export const ConferenceRegistration = ({
 
           {tier && activeStep === 2 ? (
             <PaymentHandler
-              tier={tier}
-              email={email}
-              fname={fname}
-              lname={lname}
-              institution={institution}
+              tier={tier!}
+              email={email!}
+              fname={fname!}
+              lname={lname!}
+              institution={institution!}
             />
           ) : undefined}
           {activeStep === 2 && (

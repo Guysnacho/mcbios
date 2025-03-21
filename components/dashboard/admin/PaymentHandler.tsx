@@ -18,6 +18,15 @@ export type PaymentHandlerType =
   | "member_only_postdoctorial"
   | undefined;
 
+export type PaymentBody = {
+  tier: PaymentHandlerType;
+  userId?: string;
+  email: string;
+  fname?: string;
+  lname?: string;
+  institution?: string;
+};
+
 export const PaymentHandler = ({
   tier,
   userId,
@@ -25,19 +34,19 @@ export const PaymentHandler = ({
   fname,
   lname,
   institution,
-}: {
-  tier: PaymentHandlerType;
-  userId?: string;
-  email: string;
-  fname?: string;
-  lname?: string;
-  institution?: string;
-}) => {
+}: PaymentBody) => {
   const fetchClientSecret = useCallback(async () => {
     // Create a Checkout Session
     const res = await fetch("/api/checkout", {
       method: "POST",
-      body: JSON.stringify({ tier, userId, email, fname, lname, institution }),
+      body: JSON.stringify({
+        tier,
+        userId,
+        email,
+        fname,
+        lname,
+        institution,
+      } as PaymentBody),
     });
     const data = await res.json();
     return data.clientSecret;
