@@ -61,10 +61,42 @@ export default async function handler(
     // Fetch session result on confirmation page
     case "GET":
       try {
-        console.log(req.query);
         const session = await stripe.checkout.sessions.retrieve(
           req.query.session_id as string
         );
+
+        if (session.status === "complete") {
+          console.log(
+            `Payment completed for user ${session!.metadata!.userId}!`
+          );
+          const client = createClient();
+          if (session!.metadata!.userId) {
+            console.log("Updated authed user");
+            await handleUpdate(client, session);
+            console.log(
+              `Table update complete | user_role=${
+                session!.metadata!.tier
+              } | user_id=${session!.metadata!.userId} | member_only=${
+                session!.metadata!.memberOnly
+              }`
+            );
+          } else await handleRawUpdate(client, session);
+        }
+
+        res.send({
+          status: session.status,
+          customer_email: session!.customer_details!.email,
+        });
+      } catch (err) {
+        // @ts-expect-error error fields are unknown
+        res.status(err.statusCode || 500).json(err.message);
+      }
+      break;
+    // Retroactively update user with institution
+    case "PUT":
+      try {
+        const body = JSON.parse(req.body) as PaymentBody;
+        const price = derivePriceId(body.tier as PaymentHandlerType);
 
         if (session.status === "complete") {
           console.log(

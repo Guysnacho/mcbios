@@ -1,4 +1,4 @@
-import { ConfYears, PathMap } from "@/lib/utils/constants";
+import { ConfYears, PathMap } from "@/lib/utils";
 import { Link } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";

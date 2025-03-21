@@ -1,5 +1,6 @@
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
+import { isPresent } from "@/lib/utils";
 import { createClient } from "@/lib/utils/supabase/component";
 import { InfoIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
@@ -66,7 +67,7 @@ export const AuthModal = ({
   const handleAuth = async (isSignUp: boolean) => {
     setLoading(true);
     setError("");
-    if (email !== "" && password !== "") {
+    if (isPresent(email) && isPresent(password)) {
       // Perform auth
       const { data, error } = await client.auth[
         isSignUp ? "signUp" : "signInWithPassword"
