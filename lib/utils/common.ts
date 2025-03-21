@@ -1,3 +1,3 @@
 export const isPresent = (str?: string) => {
-  return str && str !== "";
+  return str !== undefined && str !== "";
 };

@@ -2,6 +2,7 @@ import {
   PaymentBody,
   PaymentHandlerType,
 } from "@/components/dashboard/admin/PaymentHandler";
+import { isPresent } from "@/lib/utils";
 import createClient from "@/lib/utils/supabase/service";
 import { Database } from "@/lib/utils/supabase/types";
 import { SupabaseClient } from "@supabase/supabase-js";
@@ -95,31 +96,17 @@ export default async function handler(
     // Retroactively update user with institution
     case "PUT":
       try {
-        const body = JSON.parse(req.body) as PaymentBody;
-        const price = derivePriceId(body.tier as PaymentHandlerType);
-
-        if (session.status === "complete") {
-          console.log(
-            `Payment completed for user ${session!.metadata!.userId}!`
-          );
+        console.log(req.body);
+        const body = req.body as PaymentBody;
+        console.log(body);
+        if (isValidUpdateBody(body)) {
           const client = createClient();
-          if (session!.metadata!.userId) {
-            console.log("Updated authed user");
-            await handleUpdate(client, session);
-            console.log(
-              `Table update complete | user_role=${
-                session!.metadata!.tier
-              } | user_id=${session!.metadata!.userId} | member_only=${
-                session!.metadata!.memberOnly
-              }`
-            );
-          } else await handleRawUpdate(client, session);
+          await handleInstitutionUpdate(client, body)
+            .then(() => res.status(201).end())
+            .catch((err) => res.status(500).end(err.message));
+        } else {
+          res.status(400).end("Bad Request");
         }
-
-        res.send({
-          status: session.status,
-          customer_email: session!.customer_details!.email,
-        });
       } catch (err) {
         // @ts-expect-error error fields are unknown
         res.status(err.statusCode || 500).json(err.message);
@@ -233,4 +220,75 @@ async function handleRawUpdate(
       role: session!.metadata!.tier as Database["public"]["Enums"]["user_role"],
     })
     .eq("email", session.metadata!.email);
+}
+
+/**
+ * Take note of unauthed registration
+ * @param client
+ * @param body
+ */
+async function handleInstitutionUpdate(
+  client: SupabaseClient<Database>,
+  body: PaymentBody
+) {
+  console.log("Recording raw registration");
+  const { data, error, statusText } = await client
+    .from("raw_registration")
+    .upsert({
+      email: body.email!,
+      fname: body.fname!,
+      lname: body.lname!,
+      institution: body.institution,
+      role: body.tier as Database["public"]["Enums"]["user_role"],
+    })
+    .eq("email", body.email)
+    .select();
+  if (error || !data || data.length == 0) {
+    console.error(
+      "Issue updating raw registration - ",
+      error?.message || "Upsert failed"
+    );
+    throw (
+      "Issue updating raw registration - " + error?.message || "Upsert failed"
+    );
+  } else {
+    console.log("Successfully updated registration for user - ", data);
+  }
+}
+
+/**
+ * Is a valid update request
+ * @param body
+ */
+function isValidUpdateBody(body: PaymentBody) {
+  return (
+    isPresent(body.email) &&
+    isPresent(body.fname) &&
+    isPresent(body.lname) &&
+    (body.tier satisfies PaymentBody["tier"]) &&
+    isPresent(body.institution)
+  );
+}
+
+/**
+ * Check if user exists
+ * @param client
+ * @param body
+ */
+async function isUserPresent(
+  client: SupabaseClient<Database>,
+  body: PaymentBody
+) {
+  console.log("Fetching user");
+  const { data, error, status, statusText } = await client
+    .schema("auth")
+    .from("users")
+    .select("email")
+    .eq("email", body.email)
+    .single();
+
+  console.log("Data = %s", data);
+  console.log("Status = %s | %d ", statusText, status);
+  console.error("Error = %s | %s ", error?.message, error?.code);
+  return data != undefined;
 }
