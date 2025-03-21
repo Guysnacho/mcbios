@@ -1,5 +1,3 @@
-import { useUserStore } from "@/lib/store/userStore";
-import useStore from "@/lib/store/useStore";
 import { isPresent } from "@/lib/utils";
 import {
   Box,
@@ -35,7 +33,6 @@ export const NameTagForm = ({
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [fname, setFname] = useState("");
@@ -149,7 +146,12 @@ export const NameTagForm = ({
                 />
               </FormControl>
               <FormControl id="email" isRequired isDisabled={loading}>
-                <FormLabel>Email address</FormLabel>
+                <FormLabel>
+                  Email address
+                  <span className="opacity-75">
+                    <br/>Provide the email you&apos;ve registered with
+                  </span>
+                </FormLabel>
                 <Input
                   type="email"
                   inputMode="email"
