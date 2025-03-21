@@ -43,6 +43,7 @@ export const ConferenceRegistration = ({
   const [email, setEmail] = useState("");
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
+  const [institution, setInstitution] = useState("");
   const { activeStep, goToNext, goToPrevious } = useSteps({
     index: 0,
     count: steps.length,
@@ -53,9 +54,8 @@ export const ConferenceRegistration = ({
     !(email.includes("@") && email.includes(".")) ||
     fname === "" ||
     lname === "" ||
-    !email ||
-    !fname ||
-    !lname;
+    email === "" ||
+    institution === "";
   const toast = useToast();
 
   return (
@@ -197,6 +197,15 @@ export const ConferenceRegistration = ({
                     value={email}
                   />
                 </FormControl>
+                <FormControl id="email" isRequired>
+                  <FormLabel>Institution</FormLabel>
+                  <Input
+                    type="text"
+                    inputMode="text"
+                    onChange={(e) => setInstitution(e.currentTarget.value)}
+                    value={institution}
+                  />
+                </FormControl>
                 <Button
                   type="submit"
                   onClick={goToNext}
@@ -270,6 +279,7 @@ export const ConferenceRegistration = ({
               email={email}
               fname={fname}
               lname={lname}
+              institution={institution}
             />
           ) : undefined}
           {activeStep === 2 && (
