@@ -48,6 +48,7 @@ export const AuthModal = ({
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [password, setPassword] = useState("");
+  const [institution, setInstitution] = useState("");
   const [error, setError] = useState("");
   const client = createClient();
   const store = useStore(useUserStore, (store) => store);
@@ -65,7 +66,7 @@ export const AuthModal = ({
   const handleAuth = async (isSignUp: boolean) => {
     setLoading(true);
     setError("");
-    if (email && password) {
+    if (email !== "" && password !== "") {
       // Perform auth
       const { data, error } = await client.auth[
         isSignUp ? "signUp" : "signInWithPassword"
@@ -73,7 +74,7 @@ export const AuthModal = ({
         email,
         password,
         options: isSignUp
-          ? { data: { fname, lname, role: "student" } }
+          ? { data: { fname, lname, role: "student", institution } }
           : undefined,
       });
       // Handle response
@@ -177,6 +178,21 @@ export const AuthModal = ({
                         autoComplete="family-name"
                         onChange={(e) => setLname(e.currentTarget.value)}
                         value={lname}
+                      />
+                    </FormControl>
+                  </Box>
+                  <Box>
+                    <FormControl
+                      id="institution"
+                      isRequired
+                      isDisabled={loading}
+                    >
+                      <FormLabel>Institution</FormLabel>
+                      <Input
+                        type="text"
+                        inputMode="text"
+                        onChange={(e) => setInstitution(e.currentTarget.value)}
+                        value={institution}
                       />
                     </FormControl>
                   </Box>

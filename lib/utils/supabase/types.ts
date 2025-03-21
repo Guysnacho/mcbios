@@ -63,6 +63,7 @@ export type Database = {
         Row: {
           fees_paid_at: string | null;
           fname: string | null;
+          institution: string;
           lname: string | null;
           role: Database["public"]["Enums"]["user_role"];
           user_id: string;
@@ -70,6 +71,7 @@ export type Database = {
         Insert: {
           fees_paid_at?: string | null;
           fname?: string | null;
+          institution?: string;
           lname?: string | null;
           role?: Database["public"]["Enums"]["user_role"];
           user_id: string;
@@ -77,6 +79,7 @@ export type Database = {
         Update: {
           fees_paid_at?: string | null;
           fname?: string | null;
+          institution?: string;
           lname?: string | null;
           role?: Database["public"]["Enums"]["user_role"];
           user_id?: string;
@@ -89,6 +92,7 @@ export type Database = {
           email: string;
           fname: string;
           id: number;
+          institution: string;
           lname: string;
           role: Database["public"]["Enums"]["user_role"];
         };
@@ -97,6 +101,7 @@ export type Database = {
           email: string;
           fname: string;
           id?: number;
+          institution?: string;
           lname: string;
           role: Database["public"]["Enums"]["user_role"];
         };
@@ -105,6 +110,7 @@ export type Database = {
           email?: string;
           fname?: string;
           id?: number;
+          institution?: string;
           lname?: string;
           role?: Database["public"]["Enums"]["user_role"];
         };

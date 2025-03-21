@@ -1,4 +1,7 @@
-import { PaymentHandlerType } from "@/components/dashboard/admin/PaymentHandler";
+import {
+  PaymentBody,
+  PaymentHandlerType,
+} from "@/components/dashboard/admin/PaymentHandler";
 import createClient from "@/lib/utils/supabase/service";
 import { Database } from "@/lib/utils/supabase/types";
 import { SupabaseClient } from "@supabase/supabase-js";
@@ -20,7 +23,7 @@ export default async function handler(
     // Request embedded form using params
     case "POST":
       try {
-        const body = JSON.parse(req.body);
+        const body = JSON.parse(req.body) as PaymentBody;
         const price = derivePriceId(body.tier as PaymentHandlerType);
         // Create Checkout Sessions from body params.
         const session = await stripe.checkout.sessions.create({
@@ -39,10 +42,11 @@ export default async function handler(
           customer_email: body.email,
           customer_creation: "always",
           metadata: {
-            userId: body.userId,
-            email: body.email,
-            fname: body.fname,
-            lname: body.lname,
+            userId: body.userId!,
+            email: body.email!,
+            fname: body.fname!,
+            lname: body.lname!,
+            institution: body.institution!,
             tier: price.tier || "student",
             memberOnly: price.memberOnly!,
           },
@@ -68,6 +72,7 @@ export default async function handler(
           );
           const client = createClient();
           if (session!.metadata!.userId) {
+            console.log("Updated authed user");
             await handleUpdate(client, session);
             console.log(
               `Table update complete | user_role=${
@@ -76,7 +81,7 @@ export default async function handler(
                 session!.metadata!.memberOnly
               }`
             );
-          } else handleRawUpdate(client, session);
+          } else await handleRawUpdate(client, session);
         }
 
         res.send({
@@ -164,6 +169,7 @@ async function handleUpdate(
     .update({
       fees_paid_at: new Date().toISOString(),
       role: session!.metadata!.tier as Database["public"]["Enums"]["user_role"],
+      institution: session!.metadata!.institution,
     })
     .eq("user_id", session!.metadata!.userId);
   await client
@@ -184,10 +190,15 @@ async function handleRawUpdate(
   client: SupabaseClient<Database>,
   session: Stripe.Response<Stripe.Checkout.Session>
 ) {
-  await client.from("raw_registration").insert({
-    email: session!.metadata!.email,
-    fname: session!.metadata!.fname,
-    lname: session!.metadata!.lname,
-    role: session!.metadata!.tier as Database["public"]["Enums"]["user_role"],
-  });
+  console.log("Recording raw registration");
+  await client
+    .from("raw_registration")
+    .upsert({
+      email: session.metadata!.email,
+      fname: session.metadata!.fname,
+      lname: session.metadata!.lname,
+      institution: session!.metadata!.institution,
+      role: session!.metadata!.tier as Database["public"]["Enums"]["user_role"],
+    })
+    .eq("email", session.metadata!.email);
 }
