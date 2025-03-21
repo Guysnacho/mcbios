@@ -402,6 +402,10 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "/events",
   },
   {
+    label: "Forms",
+    href: "/forms",
+  },
+  {
     label: "Publications",
     href: "/publications",
   },
