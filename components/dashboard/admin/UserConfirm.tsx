@@ -308,7 +308,7 @@ const ConfirmModal = ({
               role === undefined || date === undefined ? "ghost" : "solid"
             }
             // @ts-expect-error Ignore sumn
-            disabled={role === undefined || role === "" || date === undefined}
+            isDisabled={role === undefined || role === "" || date === undefined}
             onClick={() =>
               handleUpdate(id, date, role!)
                 .then(() => {

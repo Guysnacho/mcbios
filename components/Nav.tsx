@@ -1,6 +1,6 @@
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
-import { ConfYears } from "@/lib/utils/constants";
+import { ConfYears } from "@/lib/utils";
 import { createClient } from "@/lib/utils/supabase/component";
 import {
   ChevronDownIcon,
@@ -31,10 +31,10 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { AuthModal } from "./AuthModal";
-import { usePathname } from "next/navigation";
 
 export default function Nav() {
   const { isOpen, onToggle } = useDisclosure();
@@ -400,6 +400,10 @@ const NAV_ITEMS: Array<NavItem> = [
   {
     label: "Events",
     href: "/events",
+  },
+  {
+    label: "Forms",
+    href: "/forms",
   },
   {
     label: "Publications",

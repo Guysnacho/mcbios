@@ -112,7 +112,7 @@ export const VideoUploader = () => {
             id="title"
             onChange={(e) => setTitle(e.currentTarget.value)}
             placeholder="Speaker Series II"
-            disabled={loading}
+            isDisabled={loading}
           />
           <Text>{titleError}</Text>
         </div>
@@ -127,7 +127,7 @@ export const VideoUploader = () => {
               setVideo(e.target.value);
             }}
             placeholder="drive.google.com/file/d/asdf1234/preview"
-            disabled={loading}
+            isDisabled={loading}
           />
           <Text>{videoError}</Text>
         </div>

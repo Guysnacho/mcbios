@@ -2,6 +2,7 @@ import {
   PaymentBody,
   PaymentHandlerType,
 } from "@/components/dashboard/admin/PaymentHandler";
+import { isPresent } from "@/lib/utils";
 import createClient from "@/lib/utils/supabase/service";
 import { Database } from "@/lib/utils/supabase/types";
 import { SupabaseClient } from "@supabase/supabase-js";
@@ -61,7 +62,6 @@ export default async function handler(
     // Fetch session result on confirmation page
     case "GET":
       try {
-        console.log(req.query);
         const session = await stripe.checkout.sessions.retrieve(
           req.query.session_id as string
         );
@@ -88,6 +88,24 @@ export default async function handler(
           status: session.status,
           customer_email: session!.customer_details!.email,
         });
+      } catch (err) {
+        // @ts-expect-error error fields are unknown
+        res.status(err.statusCode || 500).json(err.message);
+      }
+      break;
+    // Retroactively update user with institution
+    case "PUT":
+      try {
+        const body = JSON.parse(req.body) as PaymentBody;
+        console.log(body);
+        if (isValidUpdateBody(body)) {
+          const client = createClient();
+          await handleInstitutionUpdate(client, body)
+            .then(() => res.status(201).end())
+            .catch((err) => res.status(500).end(err.message));
+        } else {
+          res.status(400).end("Bad Request");
+        }
       } catch (err) {
         // @ts-expect-error error fields are unknown
         res.status(err.statusCode || 500).json(err.message);
@@ -198,7 +216,55 @@ async function handleRawUpdate(
       fname: session.metadata!.fname,
       lname: session.metadata!.lname,
       institution: session!.metadata!.institution,
+      created_at: new Date().toISOString(),
       role: session!.metadata!.tier as Database["public"]["Enums"]["user_role"],
     })
-    .eq("email", session.metadata!.email);
+}
+
+/**
+ * Take note of unauthed registration
+ * @param client
+ * @param body
+ */
+async function handleInstitutionUpdate(
+  client: SupabaseClient<Database>,
+  body: PaymentBody
+) {
+  console.log("Recording raw registration");
+  const { data, error } = await client
+    .from("raw_registration")
+    .upsert({
+      email: body.email!,
+      fname: body.fname!,
+      lname: body.lname!,
+      institution: body.institution,
+      created_at: new Date().toISOString(),
+      role: body.tier as Database["public"]["Enums"]["user_role"],
+    })
+    .select();
+  if (error || !data || data.length == 0) {
+    console.error(
+      "Issue updating raw registration - ",
+      error?.message || "Upsert failed"
+    );
+    throw new Error(
+      "Issue updating raw registration - " + error?.message || "Upsert failed"
+    );
+  } else {
+    console.log("Successfully updated registration for user - ", data);
+  }
+}
+
+/**
+ * Is a valid update request
+ * @param body
+ */
+function isValidUpdateBody(body: PaymentBody) {
+  return (
+    isPresent(body.email) &&
+    isPresent(body.fname) &&
+    isPresent(body.lname) &&
+    (body.tier satisfies PaymentBody["tier"]) &&
+    isPresent(body.institution)
+  );
 }

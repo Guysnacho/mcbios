@@ -9,9 +9,8 @@ import VideoUploader from "@/components/dashboard/admin/VideoUploader";
 import { User } from "@/components/User";
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
-import { DUPLICATE_ROW } from "@/lib/utils/constants";
+import { authFetcher, DUPLICATE_ROW } from "@/lib/utils";
 import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
-import { authFetcher } from "@/lib/utils/swrFetchers";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import {
   Button,

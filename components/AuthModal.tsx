@@ -1,5 +1,6 @@
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
+import { isPresent } from "@/lib/utils";
 import { createClient } from "@/lib/utils/supabase/component";
 import { InfoIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
@@ -66,7 +67,7 @@ export const AuthModal = ({
   const handleAuth = async (isSignUp: boolean) => {
     setLoading(true);
     setError("");
-    if (email !== "" && password !== "") {
+    if (isPresent(email) && isPresent(password)) {
       // Perform auth
       const { data, error } = await client.auth[
         isSignUp ? "signUp" : "signInWithPassword"
@@ -181,23 +182,17 @@ export const AuthModal = ({
                       />
                     </FormControl>
                   </Box>
-                  <Box>
-                    <FormControl
-                      id="institution"
-                      isRequired
-                      isDisabled={loading}
-                    >
-                      <FormLabel>Institution</FormLabel>
-                      <Input
-                        type="text"
-                        inputMode="text"
-                        onChange={(e) => setInstitution(e.currentTarget.value)}
-                        value={institution}
-                      />
-                    </FormControl>
-                  </Box>
                 </HStack>
               )}
+              <FormControl id="institution" isRequired isDisabled={loading}>
+                <FormLabel>Institution</FormLabel>
+                <Input
+                  type="text"
+                  inputMode="text"
+                  onChange={(e) => setInstitution(e.currentTarget.value)}
+                  value={institution}
+                />
+              </FormControl>
               <FormControl id="email" isRequired isDisabled={loading}>
                 <FormLabel>Email address</FormLabel>
                 <Input
@@ -245,7 +240,7 @@ export const AuthModal = ({
         </ModalBody>
 
         <ModalFooter>
-          <Button onClick={handleClose} disabled={loading} className="mr-3">
+          <Button onClick={handleClose} isDisabled={loading} className="mr-3">
             Cancel
           </Button>
           {isSignUp ? (
@@ -258,7 +253,7 @@ export const AuthModal = ({
                   .finally(() => setLoading(false))
               }
               colorScheme="green"
-              disabled={loading}
+              isDisabled={loading}
             >
               Sign Up
             </Button>
@@ -272,7 +267,7 @@ export const AuthModal = ({
                   .finally(() => setLoading(false))
               }
               colorScheme="green"
-              disabled={loading}
+              isDisabled={loading}
             >
               Login
             </Button>

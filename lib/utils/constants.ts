@@ -16,6 +16,7 @@ export const PathMap = {
     path: "/conferences",
   },
   "/events": { name: "EVENTS", path: "/events" },
+  "/forms": { name: "FORMS", path: "/forms" },
   "/publications": { name: "PUBLICATIONS", path: "/publications" },
   "/about": { name: "ABOUT", path: "/about" },
 };

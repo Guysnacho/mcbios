@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/utils/supabase/component";
-import { couponFetcher } from "@/lib/utils/swrFetchers";
+import { couponFetcher } from "@/lib/utils";
 import { ChevronDownIcon, DeleteIcon } from "@chakra-ui/icons";
 import {
   Box,
