@@ -182,23 +182,17 @@ export const AuthModal = ({
                       />
                     </FormControl>
                   </Box>
-                  <Box>
-                    <FormControl
-                      id="institution"
-                      isRequired
-                      isDisabled={loading}
-                    >
-                      <FormLabel>Institution</FormLabel>
-                      <Input
-                        type="text"
-                        inputMode="text"
-                        onChange={(e) => setInstitution(e.currentTarget.value)}
-                        value={institution}
-                      />
-                    </FormControl>
-                  </Box>
                 </HStack>
               )}
+              <FormControl id="institution" isRequired isDisabled={loading}>
+                <FormLabel>Institution</FormLabel>
+                <Input
+                  type="text"
+                  inputMode="text"
+                  onChange={(e) => setInstitution(e.currentTarget.value)}
+                  value={institution}
+                />
+              </FormControl>
               <FormControl id="email" isRequired isDisabled={loading}>
                 <FormLabel>Email address</FormLabel>
                 <Input

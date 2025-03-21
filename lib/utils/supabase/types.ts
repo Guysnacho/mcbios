@@ -91,7 +91,6 @@ export type Database = {
           created_at: string;
           email: string;
           fname: string;
-          id: number;
           institution: string;
           lname: string;
           role: Database["public"]["Enums"]["user_role"];
@@ -100,7 +99,6 @@ export type Database = {
           created_at?: string;
           email: string;
           fname: string;
-          id?: number;
           institution?: string;
           lname: string;
           role: Database["public"]["Enums"]["user_role"];
@@ -109,7 +107,6 @@ export type Database = {
           created_at?: string;
           email?: string;
           fname?: string;
-          id?: number;
           institution?: string;
           lname?: string;
           role?: Database["public"]["Enums"]["user_role"];

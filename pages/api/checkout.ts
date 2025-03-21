@@ -96,8 +96,7 @@ export default async function handler(
     // Retroactively update user with institution
     case "PUT":
       try {
-        console.log(req.body);
-        const body = req.body as PaymentBody;
+        const body = JSON.parse(req.body) as PaymentBody;
         console.log(body);
         if (isValidUpdateBody(body)) {
           const client = createClient();
@@ -217,6 +216,7 @@ async function handleRawUpdate(
       fname: session.metadata!.fname,
       lname: session.metadata!.lname,
       institution: session!.metadata!.institution,
+      created_at: new Date(),
       role: session!.metadata!.tier as Database["public"]["Enums"]["user_role"],
     })
     .eq("email", session.metadata!.email);
@@ -239,9 +239,9 @@ async function handleInstitutionUpdate(
       fname: body.fname!,
       lname: body.lname!,
       institution: body.institution,
+      created_at: new Date(),
       role: body.tier as Database["public"]["Enums"]["user_role"],
     })
-    .eq("email", body.email)
     .select();
   if (error || !data || data.length == 0) {
     console.error(
@@ -268,27 +268,4 @@ function isValidUpdateBody(body: PaymentBody) {
     (body.tier satisfies PaymentBody["tier"]) &&
     isPresent(body.institution)
   );
-}
-
-/**
- * Check if user exists
- * @param client
- * @param body
- */
-async function isUserPresent(
-  client: SupabaseClient<Database>,
-  body: PaymentBody
-) {
-  console.log("Fetching user");
-  const { data, error, status, statusText } = await client
-    .schema("auth")
-    .from("users")
-    .select("email")
-    .eq("email", body.email)
-    .single();
-
-  console.log("Data = %s", data);
-  console.log("Status = %s | %d ", statusText, status);
-  console.error("Error = %s | %s ", error?.message, error?.code);
-  return data != undefined;
 }
