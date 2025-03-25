@@ -3,7 +3,6 @@
 import ImageCard from "@/components/ImageCard";
 import { KeyDate } from "@/components/KeyDates";
 import KeynoteSpeakers from "@/components/KeynoteSpeakers";
-import ProgramCard from "@/components/ProgramCard";
 import ScientificSessions from "@/components/ScientificSessions";
 import TutorialSpeakers from "@/components/TutorialSpeakers";
 import { Link } from "@chakra-ui/next-js";
