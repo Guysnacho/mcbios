@@ -3,24 +3,20 @@
 import { FocusCard } from "@/components/FocusCard";
 import {
   Box,
-  Divider,
   Flex,
   Heading,
   HStack,
   Stack,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { Page as DocPage, Document, pdfjs } from "react-pdf";
-import "react-pdf/dist/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
+import { Worker, Viewer } from "@react-pdf-viewer/core";
+import {
+  defaultLayoutPlugin,
+} from "@react-pdf-viewer/default-layout";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 
 export default function Page() {
   return (
@@ -80,65 +76,37 @@ export default function Page() {
           w={["80%", null, "65%", "55%"]}
         >
           <Heading size="lg" color="blue.700" textAlign="center">
-            Conference at a Glance
+            2025 Conference Program
           </Heading>
+          
+          <Text textAlign="center">
+            Data-Driven Discovery: Harnessing the power of AI to transform
+            health
+          </Text>
 
           <p className="text-center mx-auto w-4/5 md:w-3/5">
             Below you can a breakdown of conference events throughout the day.
-            Expect a few changes as we confirm timeslots for speakers.
           </p>
-
-          <Tabs>
-            <TabList justifyContent="center" tabIndex={2}>
-              <Tab>Day One - March 27</Tab>
-              <Tab>Day Two - March 28</Tab>
-              <Tab>Day Three - March 29</Tab>
-            </TabList>
-
-            <TabPanels>
-              <TabPanel>
-                <Box overflow="auto">
-                  <Document file="/program/MCBIOS2025_PROGRAM_AT_A_GLANCE_1.pdf">
-                    <DocPage
-                      pageNumber={1}
-                      renderTextLayer={false}
-                      customTextRenderer={undefined}
-                    />
-                  </Document>
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <Box overflow="auto">
-                  <Document file="/program/MCBIOS2025_PROGRAM_AT_A_GLANCE_2.pdf">
-                    <DocPage
-                      pageNumber={1}
-                      renderTextLayer={false}
-                      customTextRenderer={undefined}
-                    />
-                    <Divider />
-                    <DocPage
-                      pageNumber={2}
-                      renderTextLayer={false}
-                      customTextRenderer={undefined}
-                    />
-                  </Document>
-                </Box>
-              </TabPanel>
-              <TabPanel>
-                <Box overflow="auto">
-                  <Document file="/program/MCBIOS2025_PROGRAM_AT_A_GLANCE_3.pdf">
-                    <DocPage
-                      pageNumber={1}
-                      renderTextLayer={false}
-                      customTextRenderer={undefined}
-                    />
-                  </Document>
-                </Box>
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
+          <Booklet />
         </Box>
       </Box>
     </VStack>
   );
 }
+
+const Booklet = () => (
+  <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+    <Box
+      style={{
+        border: "1px solid rgba(0, 0, 0, 0.3)",
+        height: "750px",
+      }}
+    >
+      <Viewer
+        plugins={[defaultLayoutPlugin()]}
+        fileUrl="/program/MCBIOS2025_Program.pdf"
+      />
+      ;
+    </Box>
+  </Worker>
+);
