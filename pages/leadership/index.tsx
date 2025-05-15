@@ -2,14 +2,15 @@ import BoardMemberCard from "@/components/BoardMemberCard";
 import AikChoonTan from "@/public/images/leadership/Aik-Choon-Tan.jpg";
 import BernieDaigle from "@/public/images/leadership/Bernie-Daigle.jpg";
 import ChangSu from "@/public/images/leadership/Chang-Su.jpg";
+import JinchengShen from "@/public/images/leadership/Jincheng-Shen.png";
 import JonathanSheridan from "@/public/images/leadership/Jonathan-Sheridan.jpg";
-import KristinaFeye from "@/public/images/leadership/Kristina-Feye.jpg";
-import MazenIstanbouli from "@/public/images/leadership/Mazen-Istanbouli.jpg";
 import NishaPillai from "@/public/images/leadership/Nisha-Pillai.jpg";
 import PelumiAbimbola from "@/public/images/leadership/Pelumi-Abimbola.jpg";
 import QianqianSong from "@/public/images/leadership/Qianqian-Song.jpg";
 import QinSteve from "@/public/images/leadership/Qin-Steve.jpg";
 import VinayRaj from "@/public/images/leadership/Vinay-Raj.jpg";
+import XuefengWang from "@/public/images/leadership/Xuefeng-Wang.png";
+import ZongliangYue from "@/public/images/leadership/Zongliang-Yue.png";
 import {
   Divider,
   Tab,
@@ -35,19 +36,6 @@ const boardMembers = [
     affiliation: "University of Memphis",
   },
   {
-    name: "Kristina Feye, Ph.D.",
-    image: KristinaFeye.src,
-    title: "Research Microbiologist",
-    affiliation: "",
-  },
-  {
-    name: "Mazen Istanbouli, M.S.",
-    image: MazenIstanbouli.src,
-    title: "PhD Candidate",
-    department: "Department of Biological Sciences",
-    affiliation: "University of Memphis",
-  },
-  {
     name: "Nisha Pillai, Ph.D.",
     image: NishaPillai.src,
     title: "Research Scientist",
@@ -60,6 +48,25 @@ const boardMembers = [
     title: "Assistant professor",
     department: "Department of Biology",
     affiliation: "University of Arkansas at Pine Bluff",
+  },
+  {
+    name: "Jincheng Shen, Ph.D",
+    image: JinchengShen.src,
+    title: "Assistant Professor",
+    department: "Division of Biostatistics",
+    affiliation: "University of Utah",
+  },
+  {
+    name: "Jonathan Sheridan",
+    image: JonathanSheridan.src,
+    affiliation: "University of Mississippi",
+  },
+  {
+    name: "Chang Su, Ph.D.",
+    image: ChangSu.src,
+    title: "Assistant Professor",
+    department: "Department of Biostatistics and Bioinformatics",
+    affiliation: "Emory University",
   },
   {
     name: "Qianqian Song, Ph.D.",
@@ -76,18 +83,21 @@ const boardMembers = [
     affiliation: "University of Utah School of Medicine",
   },
   {
-    name: "Jonathan Sheridan",
-    image: JonathanSheridan.src,
-    affiliation: "University of Mississippi",
+    name: "Xuefeng Wang, Ph.D.",
+    image: XuefengWang.src,
+    title: "Chair & Professor",
+    department: "Department of Biostatistics and Bioinformatics",
+    affiliation: "Moffitt Cancer Center",
   },
   {
-    name: "Chang Su, Ph.D.",
-    image: ChangSu.src,
-    title: "Assistant Professor",
-    department: "Department of Biostatistics and Bioinformatics",
-    affiliation: "Emory University",
+    name: "Zongliang Yue, Ph.D.",
+    image: ZongliangYue.src,
+    title: "Assistant Research Professor",
+    department: "Health Outcomes Research and Policy",
+    affiliation: "Auburn University",
   },
 ];
+
 const pastPrez = [
   {
     name: "Zhaohui “Steve” Qin, Ph.D.",
@@ -246,7 +256,7 @@ const leadership = () => {
         </TabList>
         <TabPanels>
           <TabPanel key="board" title="Current Board">
-            <section>
+            <section className="space-y-10">
               <Divider className="w-1/2 mx-auto mb-10" />
               <h4 className="text-center">Board Members</h4>
               <div className="md:flex w-11/12 mx-auto flex-wrap gap-5 items-center space-y-6 md:space-y-0">

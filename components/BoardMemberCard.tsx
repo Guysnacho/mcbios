@@ -31,6 +31,7 @@ const BoardMemberCard = (props: BoardMemberCardProps) => {
           {props.image ? (
             <Image
               src={props.image}
+              borderRadius={10}
               fallbackSrc={props.image}
               alt={props.name + " " + props.affiliation}
               className="object-cover aspect-square object-top mx-auto w-52"
