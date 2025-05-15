@@ -1,4 +1,4 @@
-import { PathMap } from "@/lib/utils";
+import { ConfYears, PathMap } from "@/lib/utils";
 
 // export const Footer = () => {
 //   const keys = Object.keys(PathMap);
@@ -101,21 +101,39 @@ const social = [
 export const Footer = () => {
   const keys = Object.values(PathMap);
   return (
-    <footer className="bg-gray-900">
+    <footer className="bg-gray-900 mt-20">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
         <nav
           aria-label="Footer"
           className="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6"
         >
-          {keys.map((item) => (
-            <a
-              key={item.name}
-              href={item.path}
-              className="text-gray-400 hover:text-white"
-            >
-              {item.name}
-            </a>
-          ))}
+          {keys.map((item) =>
+            item.path === "/conferences" ? (
+              <div key={item.name} className="pb-6 flex flex-col">
+                <p className="text-gray-400 hover:text-white mb-3">
+                  CONFERENCES
+                </p>
+                {ConfYears.map((conference) => (
+                  <a
+                    key={conference.year}
+                    href={conference.url}
+                    target="_blank"
+                    className="text-white hover:text-gray-300"
+                  >
+                    MCBIOS {conference.year}
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <a
+                key={item.name}
+                href={item.path}
+                className="text-gray-400 hover:text-white"
+              >
+                {item.name}
+              </a>
+            )
+          )}
         </nav>
         <div className="mt-16 flex justify-center gap-x-10">
           {social.map((item) => (
