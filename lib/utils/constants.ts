@@ -23,6 +23,10 @@ export const PathMap = {
 
 export const ConfYears = [
   {
+    year: 2018,
+    url: "https://mcbios.org",
+  },
+  {
     year: 2019,
     url: "https://2019.mcbios.com",
   },

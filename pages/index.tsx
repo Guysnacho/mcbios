@@ -77,7 +77,8 @@ export default function Home() {
         <AlertIcon>
           <InfoIcon m="auto" />
         </AlertIcon>
-        Conference Registration is now closed!
+        Thank you to everyone that participated, contributed to, and attended
+        MCBIOS 2025!
       </Alert>
       <Divider as="hr" className="my-10 border-gray-500" />
 
