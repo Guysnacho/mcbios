@@ -1,4 +1,4 @@
-# MCBIOS Main Conference Site - created with [next.js](https://github.com/vercel/next.js)
+# MCBIOS 2026 Conference Site - created with [next.js](https://github.com/vercel/next.js)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e4477398-f378-49cb-99ec-b2b506e0c1dd/deploy-status)](https://app.netlify.com/sites/mcbios/deploys)
 
@@ -30,4 +30,4 @@ To learn more about Next.js, take a look at the following resources:
 
 ## Deploy on ~~Vercel~~ Netlify
 
-~~The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.~~ This project will be deployed with Netlify, after tying the repo to a Netlify project deployments will be handled by merge to the main or other configured branches.
+This project will be deployed with Netlify, after tying the repo to a Netlify project deployments will be handled by merge to the main or other configured branches.
