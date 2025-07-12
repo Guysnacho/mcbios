@@ -1,12 +1,7 @@
-"use client";
 import { NAV_ITEMS } from "@/lib/constants";
-import { Box, Heading, HStack, Link } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 
-type NavbarProps = {
-  underConstruction?: boolean;
-};
-
-export default function Footer({ underConstruction }: NavbarProps) {
+export default function Footer() {
   return (
     <Box
       position="absolute"
@@ -28,22 +23,17 @@ export default function Footer({ underConstruction }: NavbarProps) {
       >
         Footer
       </Heading>
-      <Heading
-        size={["xl", null, "2xl", "4xl"]}
-        textAlign="center"
-        userSelect="none"
-        color="text"
-      >
-        Footer
-      </Heading>
-      <Heading
-        size={["xl", null, "2xl", "4xl"]}
-        textAlign="center"
-        userSelect="none"
-        color="text"
-      >
-        Footer
-      </Heading>
+      {NAV_ITEMS.map((item) => (
+        <Heading
+          key={item.name}
+          size={["xl", null, "2xl", "4xl"]}
+          textAlign="center"
+          userSelect="none"
+          color="text"
+        >
+          {item.path}
+        </Heading>
+      ))}
     </Box>
   );
 }
