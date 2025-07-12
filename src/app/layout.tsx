@@ -33,7 +33,7 @@ export default function RootLayout({
         <Provider>
           <Navbar underConstruction />
           {children}
-          <Footer underConstruction />
+          <Footer />
         </Provider>
       </body>
     </html>
