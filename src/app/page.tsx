@@ -28,7 +28,8 @@ export default function Home() {
       </Image>
 
       <Box
-        h={[500, null, 600, 700]}
+        height={700}
+        // h={[500, null, 600, 700]}
         w="full"
         alignContent="center"
         zIndex="modal"

@@ -11,7 +11,7 @@ export default function Footer({ underConstruction }: NavbarProps) {
     <Box
       position="absolute"
       zIndex="skipNav"
-      mt={12}
+      mt={10}
       w="full"
       py={8}
       bg="background.100"
@@ -26,34 +26,24 @@ export default function Footer({ underConstruction }: NavbarProps) {
         userSelect="none"
         color="text"
       >
-        MCBIOS 2026
+        Footer
       </Heading>
-      <HStack
-        hidden={underConstruction}
-        display="none"
-        lg={{
-          display: "flex",
-        }}
-        justifyContent="center"
-        alignItems="center"
-        gap="10"
+      <Heading
+        size={["xl", null, "2xl", "4xl"]}
+        textAlign="center"
+        userSelect="none"
+        color="text"
       >
-        {NAV_ITEMS.map((item, idx) => (
-          <Heading
-            key={idx}
-            colorPalette="blue"
-            size={"md"}
-            _hover={{
-              textDecoration: "none",
-              shadow: "lg",
-            }}
-          >
-            <Link variant="underline" href={item.path}>
-              {item.name}
-            </Link>
-          </Heading>
-        ))}
-      </HStack>
+        Footer
+      </Heading>
+      <Heading
+        size={["xl", null, "2xl", "4xl"]}
+        textAlign="center"
+        userSelect="none"
+        color="text"
+      >
+        Footer
+      </Heading>
     </Box>
   );
 }
