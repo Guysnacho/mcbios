@@ -1,4 +1,5 @@
 import { ConfYears, NAV_ITEMS } from "@/lib/constants";
+import { Box, Text } from "@chakra-ui/react";
 
 const social = [
   {
@@ -31,20 +32,30 @@ const social = [
   },
 ];
 
-export default function Footer() {
+type FooterProps = {
+  underConstruction?: boolean;
+};
+
+export default function Footer({ underConstruction }: FooterProps) {
   return (
-    <footer className="bg-gray-900 mt-20">
+    <Box as="footer" className="bg-gray-900 mt-20" mt={20}>
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
         <nav
           aria-label="Footer"
           className="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6"
         >
-          {NAV_ITEMS.map((item) =>
+          {(underConstruction
+            ? NAV_ITEMS.filter(
+                ({ path }) =>
+                  path.endsWith("/") || path.endsWith("/conferences")
+              )
+            : NAV_ITEMS
+          ).map((item) =>
             item.path === "/conferences" ? (
               <div key={item.name} className="pb-6 flex flex-col">
-                <p className="text-gray-400 hover:text-white mb-3">
-                  CONFERENCES
-                </p>
+                <Text className="text-gray-400 hover:text-white mb-3">
+                  Conferences
+                </Text>
                 {ConfYears.map((conference) => (
                   <a
                     key={conference.year}
@@ -52,7 +63,7 @@ export default function Footer() {
                     target="_blank"
                     className="text-white hover:text-gray-300"
                   >
-                    MCBIOS {conference.year}
+                    <Text className="text-gray-400 hover:text-gray-300">MCBIOS {conference.year}</Text>
                   </a>
                 ))}
               </div>
@@ -62,7 +73,9 @@ export default function Footer() {
                 href={item.path}
                 className="text-gray-400 hover:text-white"
               >
-                {item.name}
+                <Text className="text-gray-400 hover:text-white">
+                  {item.name}
+                </Text>
               </a>
             )
           )}
@@ -75,7 +88,7 @@ export default function Footer() {
               className="text-gray-400 hover:text-gray-300 my-auto"
             >
               <span className="sr-only">{item.name}</span>
-              <item.icon aria-hidden="true" className="size-6" />
+              <item.icon aria-hidden="true" className="size-6 text-white" />
             </a>
           ))}
         </div>
@@ -84,6 +97,6 @@ export default function Footer() {
           All rights reserved.
         </p>
       </div>
-    </footer>
+    </Box>
   );
 }
