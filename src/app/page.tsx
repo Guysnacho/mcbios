@@ -8,9 +8,13 @@ export default function Home() {
         position="absolute"
         zIndex="revert-layer"
         asChild
-        width="full"
+        width={3600}
+        top={0}
+        left={0}
         my={16}
-        h={[500, null, 600, 700]}
+        // h={[500, null, 600, 700]}
+        height={700}
+        overflow="hidden"
         opacity={0.5}
         mx="auto"
         alt="Moffit national cancer hospital."
