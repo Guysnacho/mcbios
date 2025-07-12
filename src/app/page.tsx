@@ -1,11 +1,20 @@
-import { Heading, Image, Stack } from "@chakra-ui/react";
+import { Box, Card, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import NextImage from "next/image";
 
 export default function Home() {
   return (
     <Stack>
-      <Heading >Home page thiiiiiiiings</Heading>
-      <Image asChild width={500} mx="auto">
+      <Image
+        position="absolute"
+        zIndex="revert-layer"
+        asChild
+        width="full"
+        my={16}
+        h={[500, null, 600, 700]}
+        opacity={0.5}
+        mx="auto"
+        alt="Moffit national cancer hospital."
+      >
         <NextImage
           src="/img/Moffitt.jpg"
           alt="Moffit national cancer hospital."
@@ -13,6 +22,24 @@ export default function Home() {
           height={800}
         />
       </Image>
+
+      <Box
+        h={[500, null, 600, 700]}
+        w="full"
+        alignContent="center"
+        zIndex="modal"
+      >
+        <Card.Root w={["11/12", null, "2/3", "1/3"]} mx="auto">
+          <Card.Body color="accent.100">
+            <Heading>Under Construction</Heading>
+            <Text>
+              Check in soon for informational updates on this year&apos;s
+              iteration of MCBIOS.
+            </Text>
+          </Card.Body>
+        </Card.Root>
+        {/* <Box bg="gray" borderRadius="lg" m="auto" h="fit-content" w="1/2"></Box> */}
+      </Box>
     </Stack>
   );
 }

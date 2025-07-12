@@ -8,8 +8,23 @@ type NavbarProps = {
 
 export default function Navbar({ underConstruction }: NavbarProps) {
   return (
-    <Box w="full" py={8} bg="#7a84df" color="green" spaceY={5}>
-      <Heading size={["xl", null, "2xl", "4xl"]} textAlign="center">
+    <Box
+      position="absolute"
+      zIndex="max"
+      w="full"
+      py={8}
+      bg="background.100"
+      shadow="xs"
+      borderBottomRadius="4xl"
+      color="text"
+      spaceY={5}
+    >
+      <Heading
+        size={["xl", null, "2xl", "4xl"]}
+        textAlign="center"
+        userSelect="none"
+        color="text"
+      >
         MCBIOS 2026
       </Heading>
       <HStack
