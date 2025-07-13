@@ -64,12 +64,13 @@ export default function Footer({ underConstruction }: FooterProps) {
       gradientFrom="secondary.200"
       gradientTo="primary.200"
     >
-      <Center minH="28">
+      <Center minH="28" width="full">
         <Stack
           direction={["column", null, null, "row"]}
           mx={[3, null, 10, 16, 20]}
           alignSelf="center"
           gap={[null, null, null, 10]}
+          justifyContent="space-between"
         >
           {/* Heading Box Start */}
           <Stack gap={4} align="center" justify="space-evenly">
@@ -108,43 +109,55 @@ export default function Footer({ underConstruction }: FooterProps) {
           </Stack>
           {/* Heading Box End */}
 
-          {NAV_ITEMS.map((item) =>
-            item.path === "/conferences" ? (
-              <Box key={item.name} pb={6}>
-                <Text mb={3}>CONFERENCES</Text>
-                <Stack>
-                  {ConfYears.map((conference) => (
-                    <Link
-                      asChild
-                      key={conference.year}
-                      color="gray.900"
-                      _hover={{
-                        color: "gray.500",
-                      }}
-                    >
-                      <NextLink href={conference.url} target="_blank">
-                        MCBIOS {conference.year}
-                      </NextLink>
-                    </Link>
-                  ))}
-                </Stack>
-              </Box>
-            ) : (
-              <Box key={item.name}>
-                <Link
-                  asChild
-                  color="gray.900"
-                  _hover={{
-                    color: "gray.500",
-                  }}
-                >
-                  <NextLink href={item.path}>
-                    <Text>{item.name}</Text>
-                  </NextLink>
-                </Link>
-              </Box>
-            )
-          )}
+          <Stack
+            direction={["column", null, null, "row"]}
+            gap={[null, null, null, 10]}
+          >
+            {(underConstruction
+              ? NAV_ITEMS.filter(
+                  (item) =>
+                    item.name.toLowerCase().includes("home") ||
+                    item.name.toLowerCase().includes("conference")
+                )
+              : NAV_ITEMS
+            ).map((item) =>
+              item.path === "/conferences" ? (
+                <Box key={item.name} pb={6}>
+                  <Text mb={3}>CONFERENCES</Text>
+                  <Stack>
+                    {ConfYears.map((conference) => (
+                      <Link
+                        asChild
+                        key={conference.year}
+                        color="gray.900"
+                        _hover={{
+                          color: "gray.500",
+                        }}
+                      >
+                        <NextLink href={conference.url} target="_blank">
+                          MCBIOS {conference.year}
+                        </NextLink>
+                      </Link>
+                    ))}
+                  </Stack>
+                </Box>
+              ) : (
+                <Box key={item.name}>
+                  <Link
+                    asChild
+                    color="gray.900"
+                    _hover={{
+                      color: "gray.500",
+                    }}
+                  >
+                    <NextLink href={item.path}>
+                      <Text>{item.name}</Text>
+                    </NextLink>
+                  </Link>
+                </Box>
+              )
+            )}
+          </Stack>
 
           {/* Copywrite on bottom */}
         </Stack>
