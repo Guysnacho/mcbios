@@ -57,7 +57,13 @@ type FooterProps = {
 
 export default function Footer({ underConstruction }: FooterProps) {
   return (
-    <Box mt={16} py={10}>
+    <Box
+      mt={16}
+      py={10}
+      bgGradient="to-br"
+      gradientFrom="secondary.200"
+      gradientTo="primary.200"
+    >
       <Center minH="28">
         <Stack
           direction={["column", null, null, "row"]}
@@ -66,13 +72,17 @@ export default function Footer({ underConstruction }: FooterProps) {
           gap={[null, null, null, 10]}
         >
           {/* Heading Box Start */}
-          <Stack gap={4} align="center">
+          <Stack gap={4} align="center" justify="space-evenly">
             <Image
               asChild
               width={300}
               overflow="hidden"
               mx="auto"
               alt="MCBIOS Logo"
+              style={{
+                maskImage:
+                  "linear-gradient(to left, transparent 0%, black 5%, black 95%, transparent 100%)",
+              }}
             >
               <NextImage
                 src="/img/Logo.jpg"
@@ -107,9 +117,9 @@ export default function Footer({ underConstruction }: FooterProps) {
                     <Link
                       asChild
                       key={conference.year}
-                      color="gray.500"
+                      color="gray.900"
                       _hover={{
-                        color: "gray.900",
+                        color: "gray.500",
                       }}
                     >
                       <NextLink href={conference.url} target="_blank">
@@ -123,9 +133,9 @@ export default function Footer({ underConstruction }: FooterProps) {
               <Box key={item.name}>
                 <Link
                   asChild
-                  color="gray.500"
+                  color="gray.900"
                   _hover={{
-                    color: "gray.900",
+                    color: "gray.500",
                   }}
                 >
                   <NextLink href={item.path}>
@@ -139,7 +149,7 @@ export default function Footer({ underConstruction }: FooterProps) {
           {/* Copywrite on bottom */}
         </Stack>
       </Center>
-      <Text color="gray.700" textAlign="center">
+      <Text color="gray.800" textAlign="center">
         &copy; 2025 MidSouth Computational Biology and Bioinformatics Society.
         All rights reserved.
       </Text>
