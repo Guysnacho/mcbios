@@ -7,9 +7,9 @@ import {
   createIcon,
   HStack,
   Image,
+  Link,
   Stack,
   Text,
-  Link,
 } from "@chakra-ui/react";
 import NextImage from "next/image";
 import NextLink from "next/link";
@@ -34,7 +34,6 @@ const social = [
   {
     name: "GitHub",
     href: "https://github.com/Guysnacho/mcbios",
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     icon: createIcon({
       viewBox: "0 0 24 24",
       displayName: "GitHub - @Guysnacho/mcbios",
