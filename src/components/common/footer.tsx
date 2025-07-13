@@ -53,13 +53,18 @@ type FooterProps = {
 
 export default function Footer({ underConstruction }: FooterProps) {
   return (
-    <Stack mt={16} minH="28" direction={["column", null, null, "row"]}>
+    <Stack
+      mt={16}
+      mb={20}
+      minH="28"
+      direction={["column", null, null, "row"]}
+      mx={[3, null, 10, 16, 20]}
+    >
       {/* Heading Box Start */}
-      <Stack gap={4}>
+      <Stack gap={4} align="center">
         <Image
           asChild
-          width={450}
-          height={250}
+          width={300}
           overflow="hidden"
           mx="auto"
           alt="MCBIOS Logo"
@@ -72,12 +77,14 @@ export default function Footer({ underConstruction }: FooterProps) {
           />
         </Image>
 
-        <HStack>
+        <HStack justify="space-evenly" width="full">
           {social.map((item) => (
-            <LinkOverlay key={item.name} href={item.href}>
-              <span className="sr-only">{item.name}</span>
-              <item.icon aria-hidden="true" className="size-6 text-white" />
-            </LinkOverlay>
+            <a key={item.name} href={item.href} target="_blank">
+              <Box>
+                <span className="sr-only">{item.name}</span>
+                <item.icon aria-hidden="true" className="size-6 text-white" />
+              </Box>
+            </a>
           ))}
         </HStack>
       </Stack>
