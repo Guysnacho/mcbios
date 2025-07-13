@@ -23,7 +23,7 @@ export default function Home() {
           src="/img/Moffitt.jpg"
           alt="Moffit national cancer hospital."
           width={1200}
-          height={800}
+          height={700}
         />
       </Image>
 
