@@ -31,3 +31,5 @@ To learn more about Next.js, take a look at the following resources:
 ## Deploy on ~~Vercel~~ Netlify
 
 This project will be deployed with Netlify, after tying the repo to a Netlify project deployments will be handled by merge to the main or other configured branches.
+
+Commits also trigger builds :>
