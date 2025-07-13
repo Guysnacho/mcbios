@@ -5,146 +5,148 @@ const config = defineConfig({
     tokens: {
       colors: {
         text: {
-          value: "#021524",
+          DEFAULT: {
+            value: "#04050d",
+          },
         },
         background: {
-          main: {
-            value: "#ecf6fe",
+          DEFAULT: {
+            value: "#f4f5fc",
           },
           50: {
-            value: "#e7f3fe",
+            value: "#ebedfa",
           },
           100: {
-            value: "#cfe8fc",
+            value: "#d7daf4",
           },
           200: {
-            value: "#9ed1fa",
+            value: "#afb6e9",
           },
           300: {
-            value: "#6eb9f7",
+            value: "#8791de",
           },
           400: {
-            value: "#3da2f5",
+            value: "#5f6cd3",
           },
           500: {
-            value: "#0d8bf2",
+            value: "#3748c8",
           },
           600: {
-            value: "#0a6fc2",
+            value: "#2c39a0",
           },
           700: {
-            value: "#085391",
+            value: "#212b78",
           },
           800: {
-            value: "#053861",
+            value: "#161d50",
           },
           900: {
-            value: "#031c30",
+            value: "#0b0e28",
           },
         },
         primary: {
-          main: {
-            value: "#0f9cf2",
+          DEFAULT: {
+            value: "#0e2dcf",
           },
           50: {
-            value: "#e7f5fe",
+            value: "#e7ebfd",
           },
           100: {
-            value: "#cfebfc",
+            value: "#cfd7fc",
           },
           200: {
-            value: "#9ed7fa",
+            value: "#a0aef8",
           },
           300: {
-            value: "#6ec3f7",
+            value: "#7086f5",
           },
           400: {
-            value: "#3daef5",
+            value: "#405ef2",
           },
           500: {
-            value: "#0d9af2",
+            value: "#1136ee",
           },
           600: {
-            value: "#0a7bc2",
+            value: "#0d2bbf",
           },
           700: {
-            value: "#085d91",
+            value: "#0a208f",
           },
           800: {
-            value: "#053e61",
+            value: "#07155f",
           },
           900: {
-            value: "#031f30",
+            value: "#030b30",
           },
         },
         secondary: {
-          main: {
-            value: "#a36ef7",
+          DEFAULT: {
+            value: "#e197a9",
           },
           50: {
-            value: "#f0e7fe",
+            value: "#f9ebef",
           },
           100: {
-            value: "#e0cffc",
+            value: "#f4d7de",
           },
           200: {
-            value: "#c19efa",
+            value: "#e8b0be",
           },
           300: {
-            value: "#a26ef7",
+            value: "#dd889d",
           },
           400: {
-            value: "#843df5",
+            value: "#d1617d",
           },
           500: {
-            value: "#650df2",
+            value: "#c6395c",
           },
           600: {
-            value: "#510ac2",
+            value: "#9e2e4a",
           },
           700: {
-            value: "#3c0891",
+            value: "#772237",
           },
           800: {
-            value: "#280561",
+            value: "#4f1725",
           },
           900: {
-            value: "#140330",
+            value: "#280b12",
           },
         },
         accent: {
-          main: {
-            value: "#b74df5",
+          DEFAULT: {
+            value: "#d19962",
           },
           50: {
-            value: "#f5e7fe",
+            value: "#f9f2eb",
           },
           100: {
-            value: "#eccffc",
+            value: "#f4e6d7",
           },
           200: {
-            value: "#d89ff9",
+            value: "#e8ccb0",
           },
           300: {
-            value: "#c56ef7",
+            value: "#ddb388",
           },
           400: {
-            value: "#b13ef4",
+            value: "#d19961",
           },
           500: {
-            value: "#9e0ef1",
+            value: "#c68039",
           },
           600: {
-            value: "#7e0bc1",
+            value: "#9e662e",
           },
           700: {
-            value: "#5f0891",
+            value: "#774d22",
           },
           800: {
-            value: "#3f0660",
+            value: "#4f3317",
           },
           900: {
-            value: "#200330",
+            value: "#281a0b",
           },
         },
       },
@@ -152,4 +154,4 @@ const config = defineConfig({
   },
 });
 
-export const  system = createSystem(defaultConfig, config);
+export const system = createSystem(defaultConfig, config);
