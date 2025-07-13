@@ -1,14 +1,17 @@
 "use client";
 
+import { ConfYears, NAV_ITEMS } from "@/lib/constants";
 import {
   Box,
+  Center,
   createIcon,
   HStack,
   Image,
-  LinkOverlay,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import NextImage from "next/image";
+import Link from "next/link";
 
 const social = [
   {
@@ -53,51 +56,68 @@ type FooterProps = {
 
 export default function Footer({ underConstruction }: FooterProps) {
   return (
-    <Stack
-      mt={16}
-      mb={20}
-      minH="28"
-      direction={["column", null, null, "row"]}
-      mx={[3, null, 10, 16, 20]}
-    >
-      {/* Heading Box Start */}
-      <Stack gap={4} align="center">
-        <Image
-          asChild
-          width={300}
-          overflow="hidden"
-          mx="auto"
-          alt="MCBIOS Logo"
-        >
-          <NextImage
-            src="/img/Logo.jpg"
+    <Center mt={16} mb={20} py={10} minH="28">
+      <Stack
+        direction={["column", null, null, "row"]}
+        mx={[3, null, 10, 16, 20]}
+        alignSelf="center"
+        gap={[null, null, null, 10]}
+      >
+        {/* Heading Box Start */}
+        <Stack gap={4} align="center">
+          <Image
+            asChild
+            width={300}
+            overflow="hidden"
+            mx="auto"
             alt="MCBIOS Logo"
-            width={450}
-            height={250}
-          />
-        </Image>
+          >
+            <NextImage
+              src="/img/Logo.jpg"
+              alt="MCBIOS Logo"
+              width={450}
+              height={250}
+            />
+          </Image>
 
-        <HStack justify="space-evenly" width="full">
-          {social.map((item) => (
-            <a key={item.name} href={item.href} target="_blank">
-              <Box>
-                <span className="sr-only">{item.name}</span>
-                <item.icon aria-hidden="true" className="size-6 text-white" />
-              </Box>
-            </a>
-          ))}
-        </HStack>
+          <HStack justify="space-evenly" width="full">
+            {social.map((item) => (
+              <a key={item.name} href={item.href} target="_blank">
+                <Box>
+                  <span className="sr-only">{item.name}</span>
+                  <item.icon aria-hidden="true" className="size-6 text-white" />
+                </Box>
+              </a>
+            ))}
+          </HStack>
+        </Stack>
+        {/* Heading Box End */}
+
+        {NAV_ITEMS.map((item) =>
+          item.path === "/conferences" ? (
+            <Box key={item.name} pb={6}>
+              <Text mb={3}>CONFERENCES</Text>
+              <Stack>
+                {ConfYears.map((conference) => (
+                  <Link
+                    key={conference.year}
+                    href={conference.url}
+                    target="_blank"
+                  >
+                    MCBIOS {conference.year}
+                  </Link>
+                ))}
+              </Stack>
+            </Box>
+          ) : (
+            <Link key={item.name} href={item.path}>
+              {item.name}
+            </Link>
+          )
+        )}
+
+        {/* Copywrite on bottom */}
       </Stack>
-
-      {/* Logo */}
-      {/* Socials */}
-      {/* Heading Box End */}
-
-      {/* Home */}
-      {/* Pages */}
-      {/* COnference Years */}
-
-      {/* Copywrite on bottom */}
-    </Stack>
+    </Center>
   );
 }
