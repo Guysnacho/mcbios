@@ -18,6 +18,9 @@ export default function Navbar({ underConstruction }: NavbarProps) {
       borderBottomRadius="4xl"
       color="text"
       spaceY={5}
+      bgGradient="to-tl"
+      gradientFrom="secondary.100"
+      gradientTo="primary.200"
     >
       <Heading
         size={["xl", null, "2xl", "4xl"]}
