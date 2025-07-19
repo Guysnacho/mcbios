@@ -22,8 +22,7 @@ export default function Navbar({ underConstruction }: NavbarProps) {
       gradientTo="primary.200"
     >
       <Heading
-        // <p class="bg-linear-to-r from-pink-500 to-violet-500 bg-clip-text text-5xl font-extrabold text-transparent ...">
-        size={["xl", null, "2xl", "7xl"]}
+        size={["xl", null, "2xl", "5xl"]}
         textAlign="center"
         userSelect="none"
         backgroundClip="text"
