@@ -85,7 +85,7 @@ export default function Footer({ underConstruction }: FooterProps) {
               }}
             >
               <NextImage
-                src="/img/Logo.jpg"
+                src="/img/logo.jpg"
                 alt="MCBIOS Logo"
                 width={450}
                 height={250}
