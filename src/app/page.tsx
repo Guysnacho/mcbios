@@ -34,12 +34,16 @@ export default function Home() {
         alignContent="center"
         zIndex="modal"
       >
-        <Card.Root w={["11/12", null, "2/3", "1/3"]} mx="auto">
+        <Card.Root
+          w={["11/12", null, "2/3", "1/3"]}
+          mx="auto"
+          variant="elevated"
+          bg="blackAlpha.900"
+        >
           <Card.Body color="accent.100">
             <Heading>Under Construction</Heading>
             <Text>
-              Check in soon for informational updates on this year&apos;s
-              iteration of MCBIOS.
+              Check in soon for updates on this year&apos;s iteration of MCBIOS!
             </Text>
           </Card.Body>
         </Card.Root>

@@ -1,4 +1,3 @@
-"use client";
 import { NAV_ITEMS } from "@/lib/constants";
 import { Box, Heading, HStack, Link } from "@chakra-ui/react";
 
@@ -23,10 +22,18 @@ export default function Navbar({ underConstruction }: NavbarProps) {
       gradientTo="primary.200"
     >
       <Heading
-        size={["xl", null, "2xl", "4xl"]}
+        size={["xl", null, "2xl", "5xl"]}
         textAlign="center"
         userSelect="none"
-        color="text"
+        backgroundClip="text"
+        color="transparent"
+        bgGradient="to-tl"
+        gradientFrom="primary.600"
+        gradientTo="secondary.500"
+        _hover={{
+          gradientFrom: "accent.800",
+          gradientTo: "secondary.700",
+        }}
       >
         MCBIOS 2026
       </Heading>

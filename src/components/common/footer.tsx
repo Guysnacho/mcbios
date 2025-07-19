@@ -85,7 +85,7 @@ export default function Footer({ underConstruction }: FooterProps) {
               }}
             >
               <NextImage
-                src="/img/Logo.jpg"
+                src="/img/logo.jpg"
                 alt="MCBIOS Logo"
                 width={450}
                 height={250}
@@ -122,7 +122,7 @@ export default function Footer({ underConstruction }: FooterProps) {
             ).map((item) =>
               item.path === "/conferences" ? (
                 <Box key={item.name} pb={6}>
-                  <Text mb={3}>CONFERENCES</Text>
+                  <Text mb={3}>Conferences</Text>
                   <Stack>
                     {ConfYears.map((conference) => (
                       <Link
