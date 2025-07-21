@@ -1,5 +1,6 @@
 import { NAV_ITEMS } from "@/lib/constants";
-import { Box, Heading, HStack, Link } from "@chakra-ui/react";
+import { Box, Heading, HStack, Link as ChakraLink } from "@chakra-ui/react";
+import NextLink from "next/link";
 
 type NavbarProps = {
   underConstruction?: boolean;
@@ -48,18 +49,22 @@ export default function Navbar({ underConstruction }: NavbarProps) {
         gap="10"
       >
         {NAV_ITEMS.map((item, idx) => (
-          <Heading
-            key={idx}
-            colorPalette="blue"
-            size={"md"}
-            _hover={{
-              textDecoration: "none",
-              shadow: "lg",
-            }}
-          >
-            <Link variant="underline" href={item.path}>
-              {item.name}
-            </Link>
+          <Heading key={idx} size={"md"}>
+            <ChakraLink
+              asChild
+              backgroundClip="text"
+              color="transparent"
+              bgGradient="to-tl"
+              gradientTo="primary.600"
+              gradientFrom="secondary.500"
+              _hover={{
+                textDecoration: "underline",
+                textDecorationStyle: "solid",
+                textDecorationColor: "primary.600"
+              }}
+            >
+              <NextLink href={item.path}>{item.name}</NextLink>
+            </ChakraLink>
           </Heading>
         ))}
       </HStack>

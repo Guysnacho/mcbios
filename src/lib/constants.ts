@@ -16,7 +16,7 @@ export const NAV_ITEMS = [
     path: "/about",
   },
   {
-    name: "CONFERENCES",
+    name: "Conferences",
     path: "/conferences",
   },
 ];
