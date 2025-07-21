@@ -1,4 +1,4 @@
-import { Box, Card, Heading, Image, Stack, Text } from "@chakra-ui/react";
+import { Box, Card, Heading, Image, Separator, Stack, Text } from "@chakra-ui/react";
 import NextImage from "next/image";
 
 export default function Home() {
@@ -6,12 +6,10 @@ export default function Home() {
     <Stack>
       <Image
         position="absolute"
-        zIndex="revert-layer"
+        zIndex="auto"
         asChild
         width={3600}
-        top={0}
         left={0}
-        my={16}
         // h={[500, null, 600, 700]}
         height={700}
         overflow="hidden"
@@ -30,24 +28,28 @@ export default function Home() {
       <Box
         height={700}
         // h={[500, null, 600, 700]}
-        w="full"
+        background="url(/svg/cloud.svg)"
+        backgroundPosition="center"
+        backgroundRepeat="no-repeat"
         alignContent="center"
         zIndex="modal"
       >
         <Card.Root
-          w={["11/12", null, "2/3", "1/3"]}
+          w={["11/12", "5/6", null, "2/3"]}
           mx="auto"
-          variant="elevated"
-          bg="blackAlpha.900"
+          bg="blackAlpha.700"
+          variant="subtle"
         >
-          <Card.Body color="accent.100">
-            <Heading>Under Construction</Heading>
-            <Text>
-              Check in soon for updates on this year&apos;s iteration of MCBIOS!
+          <Card.Body textAlign="center">
+            <Heading size={["xl", null, "2xl", "3xl"]}>MCBIOS 2026</Heading>
+            <Heading>Theme Announcements Coming Soon!</Heading>
+            <Separator />
+            <Text fontStyle="oblique" mt={3} color="gray.50">
+              The 22nd Annual Meeting of the MidSouth Computational Biology and
+              Bioinformatics Society
             </Text>
           </Card.Body>
         </Card.Root>
-        {/* <Box bg="gray" borderRadius="lg" m="auto" h="fit-content" w="1/2"></Box> */}
       </Box>
     </Stack>
   );

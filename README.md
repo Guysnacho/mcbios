@@ -32,4 +32,6 @@ To learn more about Next.js, take a look at the following resources:
 
 This project will be deployed with Netlify, after tying the repo to a Netlify project deployments will be handled by merge to the main or other configured branches.
 
-Commits also trigger builds :>
+## Work Cited
+
+Thank you to [Jason Davies](https://www.jasondavies.com/wordcloud/) for the word cloud generator, chef's kiss.

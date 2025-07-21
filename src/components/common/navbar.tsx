@@ -9,13 +9,11 @@ type NavbarProps = {
 export default function Navbar({ underConstruction }: NavbarProps) {
   return (
     <Box
-      position="absolute"
       zIndex="max"
       w="full"
       py={8}
       bg="background.100"
       shadow="xs"
-      borderBottomRadius="4xl"
       color="text"
       spaceY={5}
       bgGradient="to-tl"
@@ -60,7 +58,7 @@ export default function Navbar({ underConstruction }: NavbarProps) {
               _hover={{
                 textDecoration: "underline",
                 textDecorationStyle: "solid",
-                textDecorationColor: "primary.600"
+                textDecorationColor: "primary.600",
               }}
             >
               <NextLink href={item.path}>{item.name}</NextLink>

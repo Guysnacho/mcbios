@@ -33,8 +33,10 @@ export default function RootLayout({
       >
         <Provider>
           <Navbar />
-          {children}
-          <Footer underConstruction />
+          <div className="bg-linear-to-r from-[#f4d7de] to-[#a0aef8]">
+            {children}
+          </div>
+          <Footer />
         </Provider>
       </body>
     </html>

@@ -58,8 +58,6 @@ export default function Footer({ underConstruction }: FooterProps) {
   return (
     <Box
       shadow="2xl"
-      borderTopRadius="2xl"
-      mt={16}
       py={10}
       bgGradient="to-br"
       gradientFrom="secondary.200"
