@@ -57,6 +57,8 @@ type FooterProps = {
 export default function Footer({ underConstruction }: FooterProps) {
   return (
     <Box
+      shadow="2xl"
+      borderTopRadius="2xl"
       mt={16}
       py={10}
       bgGradient="to-br"
@@ -72,7 +74,7 @@ export default function Footer({ underConstruction }: FooterProps) {
           justifyContent="space-between"
         >
           {/* Heading Box Start */}
-          <Stack gap={4} align="center" justify="space-evenly">
+          <Stack align="center" justify="space-evenly" justifyContent="start" gap={10}>
             <Image
               asChild
               width={300}
