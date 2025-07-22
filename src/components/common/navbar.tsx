@@ -29,18 +29,18 @@ export default function Navbar({ underConstruction }: NavbarProps) {
         backgroundClip="text"
         color="transparent"
         bgGradient="to-tl"
-        gradientTo="secondary.500"
-        gradientFrom="primary.200"
-        _hover={
-          {
-            // gradientFrom: "accent.800",
-            // gradientTo: "secondary.700",
-          }
-        }
+        gradientTo="secondary.300"
+        gradientFrom="primary.50"
+        animation="ease"
+        _hover={{
+          gradientTo: "secondary.600",
+          gradientFrom: "primary.50",
+        }}
+        transition="colors 0.2s ease-in-out"
       >
         MCBIOS 2026
       </Heading>
-      <Separator colorPalette="white" ml={-3} />
+      <Separator color="white" size="xs" borderColor="whiteAlpha.300" />
       <HStack
         hidden={underConstruction}
         display="none"
