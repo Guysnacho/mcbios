@@ -1,12 +1,18 @@
 import { NAV_ITEMS } from "@/lib/constants";
 import {
   Box,
+  Link as ChakraLink,
+  Grid,
+  GridItem,
   Heading,
   HStack,
-  Link as ChakraLink,
+  IconButton,
   Separator,
+  Text,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { PiHamburger, PiList } from "react-icons/pi";
+import { DrawerContent, DrawerRoot, DrawerTrigger } from "../ui/drawer";
 
 type NavbarProps = {
   underConstruction?: boolean;
@@ -23,26 +29,29 @@ export default function Navbar({ underConstruction }: NavbarProps) {
       spaceY={3}
     >
       <Heading
+        display={["none", null, null, "block"]}
         size={["xl", null, "2xl", "3xl"]}
         textAlign={["center", null, null, "start"]}
-        userSelect="none"
         backgroundClip="text"
         color="transparent"
         bgGradient="to-tl"
         gradientTo="secondary.300"
         gradientFrom="primary.50"
-        animation="ease"
         _hover={{
           gradientTo: "secondary.600",
           gradientFrom: "primary.50",
         }}
-        transition="colors 0.2s ease-in-out"
       >
         <NextLink href="/" target="_self">
           MCBIOS 2026
         </NextLink>
       </Heading>
-      <Separator color="white" size="xs" borderColor="whiteAlpha.300" />
+      <Separator
+        display={["none", null, null, "flex"]}
+        color="white"
+        size="xs"
+        borderColor="whiteAlpha.300"
+      />
       <HStack
         hidden={underConstruction}
         display="none"
@@ -57,21 +66,13 @@ export default function Navbar({ underConstruction }: NavbarProps) {
           <Heading key={idx} size={"md"}>
             <ChakraLink
               asChild
-              // backgroundClip="text"
-              // color="transparent"
-              // bgGradient="to-tl"
-              // gradientTo="primary.600"
-              // gradientFrom="secondary.500"
               _hover={{
                 textDecoration: "underline",
-                // color: "secondary.300",
                 backgroundClip: "text",
                 color: "transparent",
                 bgGradient: "to-tl",
-                gradientTo: "primary.600",
-                gradientFrom: "secondary.500",
-                // textDecorationStyle: "solid",
-                // textDecorationColor: "primary.600",
+                gradientTo: "primary.200",
+                gradientFrom: "secondary.400",
               }}
             >
               <NextLink href={item.path}>{item.name}</NextLink>
@@ -79,6 +80,54 @@ export default function Navbar({ underConstruction }: NavbarProps) {
           </Heading>
         ))}
       </HStack>
+
+      <HStack
+        // display={["block", null, null, "none"]}
+        justifyContent="space-evenly"
+        gap={10}
+      >
+        <Text opacity={0}>_</Text>
+        <Heading
+          display={["unset", null, null, "none"]}
+          size={["xl", null, "2xl"]}
+          textAlign={["center", null, null, "start"]}
+          backgroundClip="text"
+          color="transparent"
+          bgGradient="to-tl"
+          gradientTo="secondary.300"
+          gradientFrom="primary.50"
+          _hover={{
+            gradientTo: "secondary.600",
+            gradientFrom: "primary.50",
+          }}
+        >
+          <NextLink href="/" target="_self">
+            MCBIOS 2026
+          </NextLink>
+        </Heading>
+        <MobileDrawer />
+      </HStack>
     </Box>
   );
 }
+
+const MobileDrawer = () => {
+  return (
+    <DrawerRoot>
+      <DrawerTrigger asChild display={["block", null, null, "none"]}>
+        <IconButton
+          aria-label="mobile-menu"
+          size="md"
+          colorPalette="pink"
+          variant="subtle"
+          shadow="xs"
+          borderRadius="lg"
+        >
+          <PiList style={{ margin: "auto" }} />
+        </IconButton>
+      </DrawerTrigger>
+
+      <DrawerContent></DrawerContent>
+    </DrawerRoot>
+  );
+};
