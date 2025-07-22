@@ -38,7 +38,9 @@ export default function Navbar({ underConstruction }: NavbarProps) {
         }}
         transition="colors 0.2s ease-in-out"
       >
-        MCBIOS 2026
+        <NextLink href="/" target="_self">
+          MCBIOS 2026
+        </NextLink>
       </Heading>
       <Separator color="white" size="xs" borderColor="whiteAlpha.300" />
       <HStack
