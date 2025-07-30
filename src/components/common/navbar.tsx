@@ -1,16 +1,26 @@
-import { NAV_ITEMS } from "@/lib/constants";
+import { ConfYears, NAV_ITEMS } from "@/lib/constants";
 import {
   Box,
   Link as ChakraLink,
   Heading,
   HStack,
   IconButton,
+  Link,
   Separator,
+  Stack,
   Text,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { PiList } from "react-icons/pi";
-import { DrawerContent, DrawerRoot, DrawerTrigger } from "../ui/drawer";
+import {
+  DrawerBody,
+  DrawerCloseTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerRoot,
+  DrawerTitle,
+  DrawerTrigger,
+} from "../ui/drawer";
 
 type NavbarProps = {
   underConstruction?: boolean;
@@ -106,13 +116,13 @@ export default function Navbar({ underConstruction }: NavbarProps) {
             MCBIOS 2026
           </NextLink>
         </Heading>
-        <MobileDrawer />
+        <MobileDrawer underConstruction={underConstruction} />
       </HStack>
     </Box>
   );
 }
 
-const MobileDrawer = () => {
+const MobileDrawer = ({ underConstruction }: NavbarProps) => {
   return (
     <DrawerRoot>
       <DrawerTrigger asChild display={["block", null, null, "none"]}>
@@ -128,7 +138,79 @@ const MobileDrawer = () => {
         </IconButton>
       </DrawerTrigger>
 
-      <DrawerContent></DrawerContent>
+      <DrawerContent background="blackAlpha.950">
+        <DrawerCloseTrigger />
+
+        <DrawerHeader>
+          <DrawerTitle color="white">
+            MidSouth Computational Biology and Bioinformatics Society
+          </DrawerTitle>
+        </DrawerHeader>
+
+        <DrawerBody spaceY={3}>
+          {(underConstruction
+            ? NAV_ITEMS.filter(
+                (item) =>
+                  item.name.toLowerCase().includes("home") ||
+                  item.name.toLowerCase().includes("conference")
+              )
+            : NAV_ITEMS
+          ).map((item) =>
+            item.path === "/conferences" ? (
+              <Box key={item.name} pb={6}>
+                <Heading mb={3} color="white">
+                  Conferences
+                </Heading>
+                <Stack
+                  as="ul"
+                  listStyleType="circle"
+                  listStylePosition="inside"
+                >
+                  {ConfYears.map((conference) => (
+                    <Link
+                      asChild
+                      color="white"
+                      key={conference.year}
+                      _marker={{ color: "white" }}
+                      _hover={{
+                        textDecoration: "underline",
+                        backgroundClip: "text",
+                        color: "transparent",
+                        bgGradient: "to-tl",
+                        gradientTo: "primary.200",
+                        gradientFrom: "secondary.400",
+                      }}
+                    >
+                      <NextLink href={conference.url} target="_blank">
+                        <li>MCBIOS {conference.year}</li>
+                      </NextLink>
+                    </Link>
+                  ))}
+                </Stack>
+              </Box>
+            ) : (
+              <Box key={item.name}>
+                <Link
+                  asChild
+                  color="white"
+                  _hover={{
+                    textDecoration: "underline",
+                    backgroundClip: "text",
+                    color: "transparent",
+                    bgGradient: "to-tl",
+                    gradientTo: "primary.200",
+                    gradientFrom: "secondary.400",
+                  }}
+                >
+                  <NextLink href={item.path}>
+                    <Heading textAlign="center">{item.name}</Heading>
+                  </NextLink>
+                </Link>
+              </Box>
+            )
+          )}
+        </DrawerBody>
+      </DrawerContent>
     </DrawerRoot>
   );
 };

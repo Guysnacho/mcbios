@@ -32,11 +32,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Provider>
-          <Navbar />
+          <Navbar underConstruction />
           <div className="bg-linear-to-r from-[#f4d7de] to-[#a0aef8]">
             {children}
           </div>
-          <Footer />
+          <Footer underConstruction />
         </Provider>
       </body>
     </html>
