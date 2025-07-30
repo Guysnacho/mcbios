@@ -1,9 +1,9 @@
-import { Box, Card, Heading, Image, Separator, Stack, Text } from "@chakra-ui/react";
+import { Box, Card, Heading, Image, Separator, Text } from "@chakra-ui/react";
 import NextImage from "next/image";
 
 export default function Home() {
   return (
-    <Stack>
+    <Box>
       <Image
         position="absolute"
         zIndex="auto"
@@ -51,6 +51,6 @@ export default function Home() {
           </Card.Body>
         </Card.Root>
       </Box>
-    </Stack>
+    </Box>
   );
 }
