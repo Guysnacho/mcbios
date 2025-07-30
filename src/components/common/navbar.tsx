@@ -2,16 +2,14 @@ import { NAV_ITEMS } from "@/lib/constants";
 import {
   Box,
   Link as ChakraLink,
-  Grid,
-  GridItem,
   Heading,
   HStack,
   IconButton,
   Separator,
-  Text,
+  Text
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { PiHamburger, PiList } from "react-icons/pi";
+import { PiList } from "react-icons/pi";
 import { DrawerContent, DrawerRoot, DrawerTrigger } from "../ui/drawer";
 
 type NavbarProps = {
@@ -22,7 +20,7 @@ export default function Navbar({ underConstruction }: NavbarProps) {
   return (
     <Box
       w="full"
-      py={4}
+      pt={4}
       px={[0, null, null, 5]}
       bgImage="linear-gradient(120deg, {colors.secondary.800}, {colors.secondary.600}, {colors.secondary.600}, {colors.accent.50})"
       color="text"
