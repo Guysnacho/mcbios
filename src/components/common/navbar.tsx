@@ -147,7 +147,7 @@ const MobileDrawer = ({ underConstruction }: NavbarProps) => {
           </DrawerTitle>
         </DrawerHeader>
 
-        <DrawerBody>
+        <DrawerBody spaceY={3}>
           {(underConstruction
             ? NAV_ITEMS.filter(
                 (item) =>
@@ -158,15 +158,20 @@ const MobileDrawer = ({ underConstruction }: NavbarProps) => {
           ).map((item) =>
             item.path === "/conferences" ? (
               <Box key={item.name} pb={6}>
-                <Text mb={3} color="white">
+                <Heading mb={3} color="white">
                   Conferences
-                </Text>
-                <Stack>
+                </Heading>
+                <Stack
+                  as="ul"
+                  listStyleType="circle"
+                  listStylePosition="inside"
+                >
                   {ConfYears.map((conference) => (
                     <Link
                       asChild
-                      key={conference.year}
                       color="white"
+                      key={conference.year}
+                      _marker={{ color: "white" }}
                       _hover={{
                         textDecoration: "underline",
                         backgroundClip: "text",
@@ -177,7 +182,7 @@ const MobileDrawer = ({ underConstruction }: NavbarProps) => {
                       }}
                     >
                       <NextLink href={conference.url} target="_blank">
-                        MCBIOS {conference.year}
+                        <li>MCBIOS {conference.year}</li>
                       </NextLink>
                     </Link>
                   ))}
@@ -198,7 +203,7 @@ const MobileDrawer = ({ underConstruction }: NavbarProps) => {
                   }}
                 >
                   <NextLink href={item.path}>
-                    <Text textAlign="center">{item.name}</Text>
+                    <Heading textAlign="center">{item.name}</Heading>
                   </NextLink>
                 </Link>
               </Box>
