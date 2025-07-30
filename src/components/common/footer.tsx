@@ -59,9 +59,7 @@ export default function Footer({ underConstruction }: FooterProps) {
     <Box
       shadow="2xl"
       py={10}
-      bgGradient="to-br"
-      gradientFrom="secondary.200"
-      gradientTo="primary.200"
+      bgImage="linear-gradient(300deg, {colors.secondary.800}, {colors.secondary.300}, {colors.accent.100}, {colors.accent.50})"
     >
       <Center minH="28" width="full">
         <Stack
@@ -72,7 +70,12 @@ export default function Footer({ underConstruction }: FooterProps) {
           justifyContent="space-between"
         >
           {/* Heading Box Start */}
-          <Stack align="center" justify="space-evenly" justifyContent="start" gap={10}>
+          <Stack
+            align="center"
+            justify="space-evenly"
+            justifyContent="start"
+            gap={10}
+          >
             <Image
               asChild
               width={300}
@@ -100,6 +103,7 @@ export default function Footer({ underConstruction }: FooterProps) {
                     <item.icon
                       aria-hidden="true"
                       className="size-6 text-white"
+                      color="blue.400"
                     />
                   </Box>
                 </a>
@@ -128,9 +132,14 @@ export default function Footer({ underConstruction }: FooterProps) {
                       <Link
                         asChild
                         key={conference.year}
-                        color="gray.900"
+                        color="black"
                         _hover={{
-                          color: "gray.500",
+                          textDecoration: "underline",
+                          backgroundClip: "text",
+                          color: "transparent",
+                          bgGradient: "to-tl",
+                          gradientTo: "primary.500",
+                          gradientFrom: "secondary.600",
                         }}
                       >
                         <NextLink href={conference.url} target="_blank">
@@ -144,9 +153,14 @@ export default function Footer({ underConstruction }: FooterProps) {
                 <Box key={item.name}>
                   <Link
                     asChild
-                    color="gray.900"
+                    color="black"
                     _hover={{
-                      color: "gray.500",
+                      textDecoration: "underline",
+                      backgroundClip: "text",
+                      color: "transparent",
+                      bgGradient: "to-tl",
+                      gradientTo: "primary.500",
+                      gradientFrom: "secondary.800",
                     }}
                   >
                     <NextLink href={item.path}>
@@ -161,7 +175,7 @@ export default function Footer({ underConstruction }: FooterProps) {
           {/* Copywrite on bottom */}
         </Stack>
       </Center>
-      <Text color="gray.800" textAlign="center">
+      <Text color="black" textAlign="center">
         &copy; 2025 MidSouth Computational Biology and Bioinformatics Society.
         All rights reserved.
       </Text>

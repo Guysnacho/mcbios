@@ -6,7 +6,7 @@ import {
   HStack,
   IconButton,
   Separator,
-  Text
+  Text,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { PiList } from "react-icons/pi";
