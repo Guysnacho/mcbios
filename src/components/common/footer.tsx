@@ -95,7 +95,11 @@ export default function Footer({ underConstruction }: FooterProps) {
               />
             </Image>
 
-            <HStack justify="space-evenly" width="full">
+            <HStack
+              justify="space-evenly"
+              width="full"
+              pb={[10, null, null, 0]}
+            >
               {social.map((item) => (
                 <a key={item.name} href={item.href} target="_blank">
                   <Box>
@@ -114,7 +118,8 @@ export default function Footer({ underConstruction }: FooterProps) {
 
           <Stack
             direction={["column", null, null, "row"]}
-            gap={[null, null, null, 10]}
+            gap={[5, null, null, 10]}
+            mx="auto"
           >
             {(underConstruction
               ? NAV_ITEMS.filter(
@@ -164,7 +169,7 @@ export default function Footer({ underConstruction }: FooterProps) {
                     }}
                   >
                     <NextLink href={item.path}>
-                      <Text>{item.name}</Text>
+                      <Text textAlign="center">{item.name}</Text>
                     </NextLink>
                   </Link>
                 </Box>
