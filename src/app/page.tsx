@@ -41,8 +41,8 @@ export default function Home() {
           variant="subtle"
         >
           <Card.Body textAlign="center">
-            <Heading size={["xl", null, "2xl", "3xl"]}>MCBIOS 2026</Heading>
-            <Heading>Theme Announcements Coming Soon!</Heading>
+            <Heading size={["xl", null, "2xl", "3xl"]} color="white">MCBIOS 2026</Heading>
+            <Heading color="white">Theme Announcements Coming Soon!</Heading>
             <Separator />
             <Text fontStyle="oblique" mt={3} color="gray.50">
               The 22nd Annual Meeting of the MidSouth Computational Biology and

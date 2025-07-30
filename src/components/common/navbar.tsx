@@ -65,6 +65,7 @@ export default function Navbar({ underConstruction }: NavbarProps) {
           <Heading key={idx} size={"md"}>
             <ChakraLink
               asChild
+              color="white"
               _hover={{
                 textDecoration: "underline",
                 backgroundClip: "text",
