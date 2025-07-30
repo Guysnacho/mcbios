@@ -138,7 +138,7 @@ const MobileDrawer = ({ underConstruction }: NavbarProps) => {
         </IconButton>
       </DrawerTrigger>
 
-      <DrawerContent>
+      <DrawerContent background="blackAlpha.950">
         <DrawerCloseTrigger />
 
         <DrawerHeader>
