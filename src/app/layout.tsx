@@ -17,7 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "MCBIOS 2026",
-  description: "The 22nd Annual Meeting of the MidSouth Computational Biology and Bioinformatics Society",
+  description:
+    "The 22nd Annual Meeting of the MidSouth Computational Biology and Bioinformatics Society",
 };
 
 export default function RootLayout({
@@ -31,9 +32,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Provider>
-          <Navbar underConstruction />
-          {children}
-          <Footer underConstruction />
+          <Navbar />
+          <div className="bg-linear-to-r from-[#f4d7de] to-[#a0aef8]">
+            {children}
+          </div>
+          <Footer />
         </Provider>
       </body>
     </html>

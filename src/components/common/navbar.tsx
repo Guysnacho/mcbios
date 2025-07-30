@@ -1,5 +1,16 @@
 import { NAV_ITEMS } from "@/lib/constants";
-import { Box, Heading, HStack, Link } from "@chakra-ui/react";
+import {
+  Box,
+  Link as ChakraLink,
+  Heading,
+  HStack,
+  IconButton,
+  Separator,
+  Text,
+} from "@chakra-ui/react";
+import NextLink from "next/link";
+import { PiList } from "react-icons/pi";
+import { DrawerContent, DrawerRoot, DrawerTrigger } from "../ui/drawer";
 
 type NavbarProps = {
   underConstruction?: boolean;
@@ -8,61 +19,116 @@ type NavbarProps = {
 export default function Navbar({ underConstruction }: NavbarProps) {
   return (
     <Box
-      position="absolute"
-      zIndex="max"
       w="full"
-      py={8}
-      bg="background.100"
-      shadow="xs"
-      borderBottomRadius="4xl"
+      pt={[0, null, null, 4]}
+      px={[0, null, null, 5]}
+      py={5}
+      bgImage="linear-gradient(120deg, {colors.secondary.800}, {colors.secondary.600}, {colors.secondary.600}, {colors.accent.50})"
       color="text"
-      spaceY={5}
-      bgGradient="to-tl"
-      gradientFrom="secondary.100"
-      gradientTo="primary.200"
+      spaceY={[null, null, null, 3]}
     >
       <Heading
-        size={["xl", null, "2xl", "5xl"]}
-        textAlign="center"
-        userSelect="none"
+        display={["none", null, null, "block"]}
+        size={["xl", null, "2xl", "3xl"]}
+        textAlign={["center", null, null, "start"]}
         backgroundClip="text"
         color="transparent"
         bgGradient="to-tl"
-        gradientFrom="primary.600"
-        gradientTo="secondary.500"
+        gradientTo="secondary.300"
+        gradientFrom="primary.50"
         _hover={{
-          gradientFrom: "accent.800",
-          gradientTo: "secondary.700",
+          gradientTo: "secondary.600",
+          gradientFrom: "primary.50",
         }}
       >
-        MCBIOS 2026
+        <NextLink href="/" target="_self">
+          MCBIOS 2026
+        </NextLink>
       </Heading>
+      <Separator
+        display={["none", null, null, "flex"]}
+        color="white"
+        size="xs"
+        borderColor="whiteAlpha.300"
+      />
       <HStack
         hidden={underConstruction}
         display="none"
         lg={{
           display: "flex",
         }}
-        justifyContent="center"
-        alignItems="center"
-        gap="10"
+        justifyContent="start"
+        alignItems="start"
+        gap={5}
       >
         {NAV_ITEMS.map((item, idx) => (
-          <Heading
-            key={idx}
-            colorPalette="blue"
-            size={"md"}
-            _hover={{
-              textDecoration: "none",
-              shadow: "lg",
-            }}
-          >
-            <Link variant="underline" href={item.path}>
-              {item.name}
-            </Link>
+          <Heading key={idx} size={"md"}>
+            <ChakraLink
+              asChild
+              color="white"
+              _hover={{
+                textDecoration: "underline",
+                backgroundClip: "text",
+                color: "transparent",
+                bgGradient: "to-tl",
+                gradientTo: "primary.200",
+                gradientFrom: "secondary.400",
+              }}
+            >
+              <NextLink href={item.path}>{item.name}</NextLink>
+            </ChakraLink>
           </Heading>
         ))}
+      </HStack>
+
+      <HStack
+        display={["flex", null, null, "none"]}
+        justifyContent="space-evenly"
+        gap={10}
+        m="auto"
+      >
+        <Text opacity={0}>_</Text>
+        <Heading
+          display={["unset", null, null, "none"]}
+          size={["xl", null, "2xl"]}
+          textAlign={["center", null, null, "start"]}
+          backgroundClip="text"
+          color="transparent"
+          bgGradient="to-tl"
+          gradientTo="secondary.300"
+          gradientFrom="primary.50"
+          _hover={{
+            gradientTo: "secondary.600",
+            gradientFrom: "primary.50",
+          }}
+        >
+          <NextLink href="/" target="_self">
+            MCBIOS 2026
+          </NextLink>
+        </Heading>
+        <MobileDrawer />
       </HStack>
     </Box>
   );
 }
+
+const MobileDrawer = () => {
+  return (
+    <DrawerRoot>
+      <DrawerTrigger asChild display={["block", null, null, "none"]}>
+        <IconButton
+          aria-label="mobile-menu"
+          size="md"
+          colorPalette="pink"
+          variant="subtle"
+          shadow="xs"
+          borderRadius="lg"
+        >
+          <PiList style={{ margin: "auto" }} />
+        </IconButton>
+      </DrawerTrigger>
+
+      <DrawerContent></DrawerContent>
+    </DrawerRoot>
+  );
+};

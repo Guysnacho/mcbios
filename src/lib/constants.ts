@@ -16,7 +16,7 @@ export const NAV_ITEMS = [
     path: "/about",
   },
   {
-    name: "CONFERENCES",
+    name: "Conferences",
     path: "/conferences",
   },
 ];
@@ -72,5 +72,9 @@ export const ConfYears = [
   {
     year: 2025,
     url: "https://2025.mcbios.com",
+  },
+  {
+    year: 2026,
+    url: "https://2026.mcbios.com",
   },
 ];
