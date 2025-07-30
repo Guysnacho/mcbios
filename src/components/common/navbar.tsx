@@ -20,11 +20,12 @@ export default function Navbar({ underConstruction }: NavbarProps) {
   return (
     <Box
       w="full"
-      pt={4}
+      pt={[0, null, null, 4]}
       px={[0, null, null, 5]}
+      py={5}
       bgImage="linear-gradient(120deg, {colors.secondary.800}, {colors.secondary.600}, {colors.secondary.600}, {colors.accent.50})"
       color="text"
-      spaceY={3}
+      spaceY={[null, null, null, 3]}
     >
       <Heading
         display={["none", null, null, "block"]}
@@ -80,9 +81,10 @@ export default function Navbar({ underConstruction }: NavbarProps) {
       </HStack>
 
       <HStack
-        // display={["block", null, null, "none"]}
+        display={["flex", null, null, "none"]}
         justifyContent="space-evenly"
         gap={10}
+        m="auto"
       >
         <Text opacity={0}>_</Text>
         <Heading
