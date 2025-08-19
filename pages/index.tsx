@@ -1,3 +1,4 @@
+import { wait } from "@/lib/utils";
 import { InfoIcon } from "@chakra-ui/icons";
 import {
   Accordion,
@@ -23,10 +24,12 @@ import {
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
   const toast = useToast();
+  const [currentTag, setTag] = useState<number>(0);
 
   useTimeout(() => {
     if (router.query.error_description) {
@@ -38,6 +41,20 @@ export default function Home() {
       });
     }
   }, 500);
+
+  // async function handleUpdate() {
+  //   setTimeout(() => {
+  //     if (currentTag >= Taglines.length) {
+  //       setTag(0);
+  //     } else {
+  //       setTag(currentTag + 1);
+  //     }
+  //   }, 8000);
+  // }
+
+  // useEffect(() => {
+  //   handleUpdate();
+  // }, []);
 
   return (
     <div className="my-5 md:my-10 gap-10">
@@ -63,6 +80,9 @@ export default function Home() {
           <Heading size={["xl", "2xl"]}>MCBIOS</Heading>
           <Heading size={["sm", null, "md"]}>
             Midsouth Computational Biology & Informatics Society
+          </Heading>
+          <Heading size="sm" color="gray.600">
+            {Taglines[currentTag || 0]}
           </Heading>
           <Button
             type="button"
@@ -299,3 +319,11 @@ export default function Home() {
     </div>
   );
 }
+
+const Taglines = [
+  "Connecting minds in computational biology.",
+  "Advancing bioinformatics through collaboration and discovery.",
+  "Fostering research, growth, and community in computational biology.",
+  "Where science, data, and collaboration meet.",
+  "Empowering scientists, advancing health.",
+];
