@@ -1,4 +1,4 @@
-import { Footer } from "@/components/Footer";
+import Footer from "@/components/Footer";
 import Nav from "./Nav";
 
 // const poppins = Poppins({

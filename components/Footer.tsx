@@ -1,72 +1,15 @@
 import { ConfYears, PathMap } from "@/lib/utils";
+import {
+  Box,
+  Center,
+  HStack,
+  Image,
+  Link,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
+import NextLink from "next/link";
 
-// export const Footer = () => {
-//   const keys = Object.keys(PathMap);
-
-//   return (
-//     <footer className="bg-gray-900 border-double border-t-4 border-indigo-600 mt-20">
-//       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-10 sm:py-12 lg:px-4">
-//         <nav
-//           aria-label="Footer"
-//           className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12"
-//         >
-//           {keys.map((route) =>
-//             route == "/conferences" ? (
-//               <div key={route} className="pb-6 flex flex-col">
-//                 <p className="text-md underline underline-offset-2 leading-6 text-white hover:text-gray-300 mb-3">
-//                   CONFERENCES
-//                 </p>
-//                 {ConfYears.map((conference) => (
-//                   <a
-//                     key={conference.year}
-//                     href={conference.url}
-//                     target="_blank"
-//                     className="text-sm leading-6 text-white hover:text-gray-300"
-//                   >
-//                     MCBIOS {conference.year}
-//                   </a>
-//                 ))}
-//               </div>
-//             ) : route == "/membership" ? (
-//               <div key={route} className="pb-6 flex flex-col">
-//                 <p className="text-md underline underline-offset-2 leading-6 text-white hover:text-gray-300 mb-3">
-//                   MEMBERSHIP
-//                 </p>
-//                 <Link
-//                   as={NextLink}
-//                   href="/membership"
-//                   target="_self"
-//                   className="text-sm leading-6 text-white hover:text-gray-300"
-//                 >
-//                   Registration
-//                 </Link>
-//               </div>
-//             ) : (
-//               <div key={route} className="pb-6 flex flex-col">
-//                 <Link
-//                   as={NextLink}
-//                   key={route}
-//                   //@ts-ignore
-//                   href={PathMap[route].path}
-//                   color={path == route ? "primary" : "foreground"}
-//                   aria-current="page"
-//                   target="_self"
-//                   className="text-md underline underline-offset-2 leading-6 text-white hover:text-gray-300"
-//                 >
-//                   {/*@ts-ignore*/}
-//                   {PathMap[route].name}
-//                 </Link>
-//               </div>
-//             )
-//           )}
-//         </nav>
-//         <p className="mt-10 text-center text-xs leading-5 text-gray-100">
-//           &copy; 2025 MCBIOS, All rights reserved.
-//         </p>
-//       </div>
-//     </footer>
-//   );
-// };
 const social = [
   {
     name: "LinkedIn",
@@ -96,60 +39,131 @@ const social = [
   },
 ];
 
-export const Footer = () => {
-  const keys = Object.values(PathMap);
+export default function Footer() {
   return (
-    <footer className="bg-gray-900 mt-20">
-      <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
-        <nav
-          aria-label="Footer"
-          className="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6"
+    <Box
+      // py={10}
+      bgImage="linear-gradient(300deg, {colors.secondary.800}, {colors.secondary.300}, {colors.accent.100}, {colors.accent.50})"
+    >
+      <Center minH="28" width="full">
+        <Stack
+          direction={["column", null, null, "row"]}
+          mx={[3, null, 10, 16, 20]}
+          alignSelf="center"
+          gap={[null, null, null, 10]}
+          justifyContent="space-between"
         >
-          {keys.map((item) =>
-            item.path === "/conferences" ? (
-              <div key={item.name} className="pb-6 flex flex-col">
-                <p className="text-gray-400 hover:text-white mb-3">
-                  CONFERENCES
-                </p>
-                {ConfYears.map((conference) => (
-                  <a
-                    key={conference.year}
-                    href={conference.url}
-                    target="_blank"
-                    className="text-white hover:text-gray-300"
-                  >
-                    MCBIOS {conference.year}
-                  </a>
-                ))}
-              </div>
-            ) : (
-              <a
-                key={item.name}
-                href={item.path}
-                className="text-gray-400 hover:text-white"
-              >
-                {item.name}
-              </a>
-            )
-          )}
-        </nav>
-        <div className="mt-16 flex justify-center gap-x-10">
-          {social.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-gray-400 hover:text-gray-300 my-auto"
+          {/* Heading Box Start */}
+          <Stack
+            align="center"
+            justify="space-evenly"
+            justifyContent="start"
+            gap={10}
+          >
+            <Image
+              width={450}
+              height={250}
+              // width={300}
+              overflow="hidden"
+              mx="auto"
+              src="/images/logo.jpg"
+              alt="MCBIOS Logo"
+              style={{
+                maskImage:
+                  "linear-gradient(to left, transparent 0%, black 5%, black 95%, transparent 100%)",
+              }}
+            />
+            <HStack
+              justify="space-evenly"
+              width="full"
+              pb={[10, null, null, 0]}
             >
-              <span className="sr-only">{item.name}</span>
-              <item.icon aria-hidden="true" className="size-6" />
-            </a>
-          ))}
-        </div>
-        <p className="mt-10 text-center text-sm/6 text-gray-400">
-          &copy; 2025 MidSouth Computational Biology and Bioinformatics Society.
-          All rights reserved.
-        </p>
-      </div>
-    </footer>
+              {/* {social.map((item) => (
+                <a key={item.name} href={item.href} target="_blank">
+                  <Box>
+                    <span className="sr-only">{item.name}</span>
+                    <item.icon
+                      aria-hidden="true"
+                      className="size-6 text-white"
+                      color="blue.400"
+                    />
+                  </Box>
+                </a>
+              ))} */}
+              {social.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-black-800 hover:text-grey-600 my-auto"
+                >
+                  <span className="sr-only">{item.name}</span>
+                  <item.icon aria-hidden="true" className="size-6" />
+                </a>
+              ))}
+            </HStack>
+          </Stack>
+          {/* Heading Box End */}
+
+          <Stack
+            direction={["column", null, null, "row"]}
+            gap={[5, null, null, 10]}
+            mx="auto"
+          >
+            {Object.values(PathMap).map((item) =>
+              item.path === "/conferences" ? (
+                <Box key={item.name} pb={6}>
+                  <Text mb={3}>Conferences</Text>
+                  <Stack>
+                    {ConfYears.map((conference) => (
+                      <Link
+                        as={NextLink}
+                        href={conference.url}
+                        key={conference.year}
+                        target="_blank"
+                        color="black"
+                        _hover={{
+                          textDecoration: "underline",
+                          backgroundClip: "text",
+                          color: "transparent",
+                          bgGradient: "to-tl",
+                          gradientTo: "primary.500",
+                          gradientFrom: "secondary.600",
+                        }}
+                      >
+                        MCBIOS {conference.year}
+                      </Link>
+                    ))}
+                  </Stack>
+                </Box>
+              ) : (
+                <Box key={item.name}>
+                  <Link
+                    as={NextLink}
+                    href={item.path}
+                    color="black"
+                    _hover={{
+                      textDecoration: "underline",
+                      backgroundClip: "text",
+                      color: "transparent",
+                      bgGradient: "to-tl",
+                      gradientTo: "primary.500",
+                      gradientFrom: "secondary.800",
+                    }}
+                  >
+                    <Text textAlign="center">{item.name}</Text>
+                  </Link>
+                </Box>
+              )
+            )}
+          </Stack>
+
+          {/* Copywrite on bottom */}
+        </Stack>
+      </Center>
+      <Text color="black" textAlign="center">
+        &copy; 2025 MidSouth Computational Biology and Bioinformatics Society.
+        All rights reserved.
+      </Text>
+    </Box>
   );
-};
+}
