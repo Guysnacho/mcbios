@@ -13,6 +13,8 @@ import {
   CardFooter,
   CardHeader,
   Divider,
+  Heading,
+  HStack,
   Image,
   Stack,
   Text,
@@ -43,26 +45,35 @@ export default function Home() {
         <title>MCBIOS</title>
         <meta content="MCBIOS | MidSouth Computational Biology and Bioinformatics Society" />
       </Head>
-      <section className="flex flex-col w-5/6 lg:w-1/2 space-y-8 px-10 items-center mx-auto">
-        <Image
-          className="mx-auto object-cover"
-          src="/images/logo.jpg"
-          fallbackSrc="/images/logo.jpg"
-          alt="MCBIOS Logo"
-          style={{
-            maskImage:
-              "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 100%)",
-          }}
-        />
-        <Button
-          type="button"
-          size="md"
-          onClick={() => router.push("/membership")}
-          colorScheme="pink"
-        >
-          Become a Member
-        </Button>
-      </section>
+      <HStack justify="center" maxW="100vw" mx="auto">
+        {/* DNS Strands */}
+        <Box w={["xs"]}>
+          <Image
+            className="mx-auto object-cover"
+            src="/images/logo_clippy_clean.png"
+            alt="MCBIOS Logo"
+            style={{
+              maskImage:
+                "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 100%)",
+            }}
+          />
+        </Box>
+        {/* MCBIOS + Join */}
+        <Box className="space-y-4">
+          <Heading size={["xl", "2xl"]}>MCBIOS</Heading>
+          <Heading size={["sm", null, "md"]}>
+            Midsouth Computational Biology & Informatics Society
+          </Heading>
+          <Button
+            type="button"
+            size="md"
+            onClick={() => router.push("/membership")}
+            colorScheme="pink"
+          >
+            Become a Member
+          </Button>
+        </Box>
+      </HStack>
 
       <Divider as="hr" className="my-10 border-gray-500" />
       <Alert
