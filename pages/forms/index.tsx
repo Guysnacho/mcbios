@@ -39,8 +39,9 @@ const Forms = () => {
                   type="button"
                   colorScheme="purple"
                   onClick={() => setIsOpen(true)}
+                  disabled
                 >
-                  Begin
+                  Closed
                 </Button>
               </section>
             </VStack>
