@@ -1,4 +1,3 @@
-import { wait } from "@/lib/utils";
 import { InfoIcon } from "@chakra-ui/icons";
 import {
   Accordion,
@@ -24,7 +23,7 @@ import {
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Home() {
   const router = useRouter();
@@ -62,9 +61,9 @@ export default function Home() {
         <title>MCBIOS</title>
         <meta content="MCBIOS | MidSouth Computational Biology and Bioinformatics Society" />
       </Head>
-      <HStack justify="center" maxW="100vw" mx="auto">
+      <HStack justify="center" maxW="100vw" mx="auto" px={9}>
         {/* DNS Strands */}
-        <Box w={["xs"]}>
+        <Box w={["xs"]} display={["none", null, null, "unset"]}>
           <Image
             className="mx-auto object-cover"
             src="/images/logo_clippy_clean.png"
@@ -77,7 +76,21 @@ export default function Home() {
         </Box>
         {/* MCBIOS + Join */}
         <Box className="space-y-4">
-          <Heading size={["xl", "2xl"]}>MCBIOS</Heading>
+          <Heading size={["xl", "2xl"]} className="flex" alignItems="end">
+            <span className="md:hidden">
+              <Image
+                className="mx-auto object-cover"
+                src="/images/logo_clippy_clean.png"
+                alt="MCBIOS Logo"
+                h={50}
+                style={{
+                  maskImage:
+                    "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 100%)",
+                }}
+              />
+            </span>{" "}
+            MCBIOS
+          </Heading>
           <Heading size={["sm", null, "md"]}>
             Midsouth Computational Biology & Informatics Society
           </Heading>
