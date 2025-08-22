@@ -22,6 +22,7 @@ const Late = () => {
               type="password"
               w={["85%", "75%", "45%", "lg"]}
               value={password}
+              disabled
               onChange={(e) => setPassword(e.currentTarget.value)}
             />
           </>
