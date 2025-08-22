@@ -110,8 +110,8 @@ export default function Home() {
 
       <Divider as="hr" className="my-10 border-gray-500" />
       <Alert
-        as="a"
-        href="/events"
+        // as="a"
+        // href="/events"
         _hover={{ shadow: "lg" }}
         borderRadius="xl"
         w={["80%", "fit-content"]}
@@ -126,7 +126,7 @@ export default function Home() {
       </Alert>
       <Divider as="hr" className="my-10 border-gray-500" />
 
-      <section className="space-y-5 px-10 mx-auto md:w-5/6">
+      {/* <section className="space-y-5 px-10 mx-auto md:w-5/6">
         <h3 className="underline underline-offset-4 text-center">
           Greeting from the MCBIOS President:
         </h3>
@@ -254,9 +254,9 @@ export default function Home() {
             </AccordionItem>
           </Accordion>
         </div>
-      </section>
+      </section> */}
 
-      <Divider as="hr" className="my-10 border-gray-500" />
+      {/* <Divider as="hr" className="my-10 border-gray-500" /> */}
 
       {/* <ElectionHero />
 

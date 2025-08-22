@@ -26,6 +26,7 @@ const Events = () => {
           <Tab title="Working Groups">Working Groups</Tab>
         </TabList>
         <TabPanels>
+          {/* Registration Panel */}
           <TabPanel>
             <ConferenceRegistration registrationPassed />
           </TabPanel>
