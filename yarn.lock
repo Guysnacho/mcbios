@@ -3836,6 +3836,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lucide-react@npm:^0.540.0":
+  version: 0.540.0
+  resolution: "lucide-react@npm:0.540.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/f4dc8a540b1b079958fdf7a1804dfb3f9093a9393f0c0a4b32a7e839869df5e29946c4fe226f06edd3056f6eccfa77b53e44be89f42379e7fe31c4e59caee3fa
+  languageName: node
+  linkType: hard
+
 "make-fetch-happen@npm:^13.0.0":
   version: 13.0.1
   resolution: "make-fetch-happen@npm:13.0.1"
@@ -3883,6 +3892,7 @@ __metadata:
     eslint: "npm:^8"
     eslint-config-next: "npm:15.4.7"
     framer-motion: "npm:^12.23.12"
+    lucide-react: "npm:^0.540.0"
     next: "npm:15.4.7"
     postcss: "npm:^8.4.32"
     react: "npm:19.1.0"

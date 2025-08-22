@@ -1,4 +1,4 @@
-import { InfoIcon } from "@chakra-ui/icons";
+import { PartyPopper } from "lucide-react";
 import {
   Accordion,
   AccordionButton,
@@ -116,13 +116,13 @@ export default function Home() {
         borderRadius="xl"
         w={["80%", "fit-content"]}
         mx="auto"
-        status="warning"
+        status="info"
       >
         <AlertIcon>
-          <InfoIcon m="auto" />
+          <PartyPopper />
         </AlertIcon>
         Thank you to everyone that participated, contributed to, and attended
-        MCBIOS 2025!
+        MCBIOS 2025!<br />Preparation for MCBIOS 2026 is now underway!
       </Alert>
       <Divider as="hr" className="my-10 border-gray-500" />
 
