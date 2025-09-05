@@ -10,20 +10,21 @@
     "generate": "npx supabase gen types --lang=typescript --project-id kwuzgazdedqjxlvymyke --schema public > ./lib/utils/supabase/types.ts"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^2.1.1",
-    "@chakra-ui/next-js": "^2.2.0",
-    "@chakra-ui/react": "^2.8.2",
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
-    "@stripe/react-stripe-js": "^3.0.0",
+    "@chakra-ui/icons": "2.2.4",
+    "@chakra-ui/next-js": "2.4.2",
+    "@chakra-ui/react": "2",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@stripe/react-stripe-js": "^3.9.1",
     "@stripe/stripe-js": "^5.2.0",
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.46.2",
-    "framer-motion": "^11.3.29",
-    "next": "^15.0.3",
-    "react": "^18.3.1",
-    "react-datepicker": "^7.3.0",
-    "react-dom": "^18.3.1",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.540.0",
+    "next": "15.4.7",
+    "react": "19.1.0",
+    "react-datepicker": "^8.5.0",
+    "react-dom": "19.1.0",
     "sharp": "^0.33.0",
     "stripe": "^17.4.0",
     "swr": "^2.2.5",
@@ -32,14 +33,18 @@
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "19.1.10",
+    "@types/react-dom": "19.1.7",
     "autoprefixer": "^10.4.16",
     "eslint": "^8",
-    "eslint-config-next": "^15.0.3",
+    "eslint-config-next": "15.4.7",
     "postcss": "^8.4.32",
     "tailwindcss": "3.4.0",
     "typescript": "^5"
   },
-  "packageManager": "yarn@4.9.1"
+  "packageManager": "yarn@4.9.2",
+  "resolutions": {
+    "@types/react": "19.1.10",
+    "@types/react-dom": "19.1.7"
+  }
 }

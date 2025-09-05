@@ -1,4 +1,4 @@
-import { InfoIcon } from "@chakra-ui/icons";
+import { PartyPopper } from "lucide-react";
 import {
   Accordion,
   AccordionButton,
@@ -13,6 +13,8 @@ import {
   CardFooter,
   CardHeader,
   Divider,
+  Heading,
+  HStack,
   Image,
   Stack,
   Text,
@@ -21,10 +23,12 @@ import {
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function Home() {
   const router = useRouter();
   const toast = useToast();
+  const [currentTag, setTag] = useState<number>(0);
 
   useTimeout(() => {
     if (router.query.error_description) {
@@ -37,52 +41,92 @@ export default function Home() {
     }
   }, 500);
 
+  // async function handleUpdate() {
+  //   setTimeout(() => {
+  //     if (currentTag >= Taglines.length) {
+  //       setTag(0);
+  //     } else {
+  //       setTag(currentTag + 1);
+  //     }
+  //   }, 8000);
+  // }
+
+  // useEffect(() => {
+  //   handleUpdate();
+  // }, []);
+
   return (
     <div className="my-5 md:my-10 gap-10">
       <Head>
         <title>MCBIOS</title>
         <meta content="MCBIOS | MidSouth Computational Biology and Bioinformatics Society" />
       </Head>
-      <section className="flex flex-col w-5/6 lg:w-1/2 space-y-8 px-10 items-center mx-auto">
-        <Image
-          className="mx-auto object-cover"
-          src="/images/logo.jpg"
-          fallbackSrc="/images/logo.jpg"
-          alt="MCBIOS Logo"
-          style={{
-            maskImage:
-              "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 100%)",
-          }}
-        />
-        <Button
-          type="button"
-          size="md"
-          onClick={() => router.push("/membership")}
-          colorScheme="pink"
-        >
-          Become a Member
-        </Button>
-      </section>
+      <HStack justify="center" maxW="100vw" mx="auto" px={9}>
+        {/* DNS Strands */}
+        <Box w={["xs"]} display={["none", null, null, "unset"]}>
+          <Image
+            className="mx-auto object-cover"
+            src="/images/logo_clippy_clean.png"
+            alt="MCBIOS Logo"
+            style={{
+              maskImage:
+                "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 100%)",
+            }}
+          />
+        </Box>
+        {/* MCBIOS + Join */}
+        <Box className="space-y-4">
+          <Heading size={["xl", "2xl"]} className="flex" alignItems="end">
+            <span className="md:hidden">
+              <Image
+                className="mx-auto object-cover"
+                src="/images/logo_clippy_clean.png"
+                alt="MCBIOS Logo"
+                h={50}
+                style={{
+                  maskImage:
+                    "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 100%)",
+                }}
+              />
+            </span>{" "}
+            MCBIOS
+          </Heading>
+          <Heading size={["sm", null, "md"]}>
+            Midsouth Computational Biology & Informatics Society
+          </Heading>
+          <Heading size="sm" color="gray.600">
+            {Taglines[currentTag || 0]}
+          </Heading>
+          <Button
+            type="button"
+            size="md"
+            onClick={() => router.push("/membership")}
+            colorScheme="pink"
+          >
+            Become a Member
+          </Button>
+        </Box>
+      </HStack>
 
       <Divider as="hr" className="my-10 border-gray-500" />
       <Alert
-        as="a"
-        href="/events"
+        // as="a"
+        // href="/events"
         _hover={{ shadow: "lg" }}
         borderRadius="xl"
         w={["80%", "fit-content"]}
         mx="auto"
-        status="warning"
+        status="info"
       >
         <AlertIcon>
-          <InfoIcon m="auto" />
+          <PartyPopper />
         </AlertIcon>
         Thank you to everyone that participated, contributed to, and attended
-        MCBIOS 2025!
+        MCBIOS 2025!<br />Preparation for MCBIOS 2026 is now underway!
       </Alert>
       <Divider as="hr" className="my-10 border-gray-500" />
 
-      <section className="space-y-5 px-10 mx-auto md:w-5/6">
+      {/* <section className="space-y-5 px-10 mx-auto md:w-5/6">
         <h3 className="underline underline-offset-4 text-center">
           Greeting from the MCBIOS President:
         </h3>
@@ -210,9 +254,9 @@ export default function Home() {
             </AccordionItem>
           </Accordion>
         </div>
-      </section>
+      </section> */}
 
-      <Divider as="hr" className="my-10 border-gray-500" />
+      {/* <Divider as="hr" className="my-10 border-gray-500" /> */}
 
       {/* <ElectionHero />
 
@@ -288,3 +332,11 @@ export default function Home() {
     </div>
   );
 }
+
+const Taglines = [
+  "Connecting minds in computational biology.",
+  "Advancing bioinformatics through collaboration and discovery.",
+  "Fostering research, growth, and community in computational biology.",
+  "Where science, data, and collaboration meet.",
+  "Empowering scientists, advancing health.",
+];
