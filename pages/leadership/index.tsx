@@ -69,25 +69,11 @@ const boardMembers = [
     affiliation: "Emory University",
   },
   {
-    name: "Qianqian Song, Ph.D.",
-    image: QianqianSong.src,
-    title: "Assistant professor",
-    department: "College of Medicine",
-    affiliation: "University of Florida",
-  },
-  {
     name: "Aik Choon Tan, Ph.D.",
     image: AikChoonTan.src,
     title: "Professor | Senior Director of Data Science",
     department: "Department of Oncological Sciences",
     affiliation: "University of Utah School of Medicine",
-  },
-  {
-    name: "Xuefeng Wang, Ph.D.",
-    image: XuefengWang.src,
-    title: "Chair & Professor",
-    department: "Department of Biostatistics and Bioinformatics",
-    affiliation: "Moffitt Cancer Center",
   },
   {
     name: "Zongliang Yue, Ph.D.",
@@ -99,6 +85,13 @@ const boardMembers = [
 ];
 
 const pastPrez = [
+  {
+    name: "Aik Choon Tan, Ph.D.",
+    image: AikChoonTan.src,
+    title: "Professor | Senior Director of Data Science",
+    department: "Department of Oncological Sciences",
+    affiliation: "University of Utah School of Medicine",
+  },
   {
     name: "Zhaohui “Steve” Qin, Ph.D.",
     title: "Professor",
@@ -225,23 +218,23 @@ const leadership = () => {
       <h2 className="text-center my-10">Board of Directors</h2>
       <section>
         <Divider className="w-1/2 mx-auto mb-10" />
-        <h4 className="text-center">Presidential Office (2024-2025)</h4>
+        <h4 className="text-center">Presidential Office (2025-2026)</h4>
         <div className="columns-1 md:columns-2 w-11/12 mx-auto my-10 space-y-5 md:space-y-0">
           <BoardMemberCard
-            name="Aik Choon Tan, Ph.D."
-            image={AikChoonTan.src}
-            orgPosition="President"
-            title="Professor | Senior Director of Data Science"
-            department="Departments of Oncological Sciences and Biomedical Informatics"
-            affiliation="University of Utah"
+            name="Xuefeng Wang, Ph.D."
+            image={XuefengWang.src}
+            orgPosition="Society Co-Chair"
+            title="Chair & Professor"
+            department="Department of Biostatistics and Bioinformatics"
+            affiliation="Moffitt Cancer Center"
           />
           <BoardMemberCard
-            name="Zhaohui “Steve” Qin, Ph.D."
-            image={QinSteve.src}
-            orgPosition="Past-President"
-            title="Professor"
-            department="Department of Biostatistics, Bioinformatics"
-            affiliation="Emory University"
+            name="Qianqian Song, Ph.D."
+            image={QianqianSong.src}
+            orgPosition="Society Co-Chair"
+            title="Assistant professor | Director of Translational Bioinformatics"
+            department="Health Outcomes & Biomedical Informatics"
+            affiliation="University of Florida"
           />
         </div>
       </section>
