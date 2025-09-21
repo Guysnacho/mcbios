@@ -23,6 +23,35 @@ import Head from "next/head";
 
 const boardMembers = [
   {
+    name: "Aik Choon Tan, Ph.D.",
+    image: AikChoonTan.src,
+    title: "Professor | Senior Director of Data Science",
+    department: "Department of Oncological Sciences",
+    affiliation: "University of Utah School of Medicine",
+  },
+  {
+    name: "Jincheng Shen, Ph.D",
+    image: JinchengShen.src,
+    title: "Assistant Professor",
+    department: "Division of Biostatistics",
+    affiliation: "University of Utah",
+  },
+  {
+    name: "Qianqian Song, Ph.D.",
+    image: QianqianSong.src,
+    orgPosition: "Society Co-Chair",
+    title: "Assistant professor | Director of Translational Bioinformatics",
+    department: "Health Outcomes & Biomedical Informatics",
+    affiliation: "University of Florida",
+  },
+  {
+    name: "Xuefeng Wang, Ph.D.",
+    image: XuefengWang.src,
+    title: "Chair & Professor",
+    department: "Department of Biostatistics and Bioinformatics",
+    affiliation: "Moffitt Cancer Center",
+  },
+  {
     name: "Pelumi Abimbola",
     image: PelumiAbimbola.src,
     title: "Student",
@@ -50,13 +79,6 @@ const boardMembers = [
     affiliation: "University of Arkansas at Pine Bluff",
   },
   {
-    name: "Jincheng Shen, Ph.D",
-    image: JinchengShen.src,
-    title: "Assistant Professor",
-    department: "Division of Biostatistics",
-    affiliation: "University of Utah",
-  },
-  {
     name: "Jonathan Sheridan",
     image: JonathanSheridan.src,
     affiliation: "University of Mississippi",
@@ -69,13 +91,6 @@ const boardMembers = [
     affiliation: "Emory University",
   },
   {
-    name: "Aik Choon Tan, Ph.D.",
-    image: AikChoonTan.src,
-    title: "Professor | Senior Director of Data Science",
-    department: "Department of Oncological Sciences",
-    affiliation: "University of Utah School of Medicine",
-  },
-  {
     name: "Zongliang Yue, Ph.D.",
     image: ZongliangYue.src,
     title: "Assistant Research Professor",
@@ -85,13 +100,6 @@ const boardMembers = [
 ];
 
 const pastPrez = [
-  {
-    name: "Aik Choon Tan, Ph.D.",
-    image: AikChoonTan.src,
-    title: "Professor | Senior Director of Data Science",
-    department: "Department of Oncological Sciences",
-    affiliation: "University of Utah School of Medicine",
-  },
   {
     name: "Zhaohui “Steve” Qin, Ph.D.",
     title: "Professor",
@@ -218,23 +226,23 @@ const leadership = () => {
       <h2 className="text-center my-10">Board of Directors</h2>
       <section>
         <Divider className="w-1/2 mx-auto mb-10" />
-        <h4 className="text-center">Presidential Office (2025-2026)</h4>
+        <h4 className="text-center">Presidential Office (2024-2025)</h4>
         <div className="columns-1 md:columns-2 w-11/12 mx-auto my-10 space-y-5 md:space-y-0">
           <BoardMemberCard
-            name="Xuefeng Wang, Ph.D."
-            image={XuefengWang.src}
-            orgPosition="Society Co-Chair"
-            title="Chair & Professor"
-            department="Department of Biostatistics and Bioinformatics"
-            affiliation="Moffitt Cancer Center"
+            name="Aik Choon Tan, Ph.D."
+            image={AikChoonTan.src}
+            orgPosition="President"
+            title="Professor | Senior Director of Data Science"
+            department="Departments of Oncological Sciences and Biomedical Informatics"
+            affiliation="University of Utah"
           />
           <BoardMemberCard
-            name="Qianqian Song, Ph.D."
-            image={QianqianSong.src}
-            orgPosition="Society Co-Chair"
-            title="Assistant professor | Director of Translational Bioinformatics"
-            department="Health Outcomes & Biomedical Informatics"
-            affiliation="University of Florida"
+            name="Zhaohui “Steve” Qin, Ph.D."
+            image={QinSteve.src}
+            orgPosition="Past-President"
+            title="Professor"
+            department="Department of Biostatistics, Bioinformatics"
+            affiliation="Emory University"
           />
         </div>
       </section>
