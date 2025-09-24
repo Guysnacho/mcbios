@@ -26,7 +26,7 @@ export function Hero() {
               </div>
               
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                <span className="text-[var(--off-white)]">MCBios</span>
+                <span className="text-[var(--off-white)]">MCBIOS</span>
                 <br />
                 <span className="text-[var(--gold)] relative">
                   2026

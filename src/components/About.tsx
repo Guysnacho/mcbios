@@ -121,7 +121,7 @@ export function About() {
             </p>
           </div>
           <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-            <Image
+            <img
               src="/img/Moffitt.jpg"
               alt="Moffitt Cancer Center - MCBIOS 2026 Venue"
               className="w-full h-64 md:h-80 object-cover"

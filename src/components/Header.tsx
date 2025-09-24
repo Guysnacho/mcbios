@@ -24,7 +24,7 @@ export function Header() {
             <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center p-2">
               <Image
                 src="/img/logo_clippy_clean.png"
-                alt="MCBios Logo"
+                alt="MCBIOS Logo"
                 className="w-full h-full object-contain"
                 width={30}
                 height={30}
@@ -32,7 +32,7 @@ export function Header() {
             </div>
             <div>
               <h1 className="text-[var(--off-white)] font-bold text-xl">
-                MCBios 2026
+                MCBIOS 2026
               </h1>
               <p className="text-[var(--off-white)]/80 text-sm">
                 Florida Conference

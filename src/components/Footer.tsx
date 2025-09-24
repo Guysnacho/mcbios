@@ -62,7 +62,7 @@ export function Footer() {
                   <span className="text-[var(--maroon)] font-bold text-xl">M</span>
                 </div>
                 <div>
-                  <h3 className="font-bold text-xl">MCBios 2026</h3>
+                  <h3 className="font-bold text-xl">MCBIOS 2026</h3>
                   <p className="text-[var(--off-white)]/80 text-sm">Florida Conference</p>
                 </div>
               </div>
@@ -165,7 +165,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h4 className="font-bold text-[var(--gold)] mb-2">Stay Updated</h4>
-              <p className="text-[var(--off-white)]/80">Get the latest news and updates about MCBios 2026</p>
+              <p className="text-[var(--off-white)]/80">Get the latest news and updates about MCBIOS 2026</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
               <input
@@ -186,7 +186,7 @@ export function Footer() {
         <div className="py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-[var(--off-white)]/60 text-sm">
             <div className="flex flex-wrap items-center gap-4">
-              <span>© 2026 MCBios Conference. All rights reserved.</span>
+              <span>© 2026 MCBIOS Conference. All rights reserved.</span>
               <Badge variant="outline" className="border-[var(--gold)]/50 text-[var(--gold)]">
                 Art Deco Design
               </Badge>
