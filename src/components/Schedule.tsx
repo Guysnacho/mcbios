@@ -289,7 +289,7 @@ export function Schedule() {
           </div>
           
           <h2 className="text-4xl lg:text-5xl font-bold text-[var(--maroon)] mb-6">
-            Three Days of
+            Four Days of
             <span className="text-[var(--pink)]"> Discovery</span>
           </h2>
           

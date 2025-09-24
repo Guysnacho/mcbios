@@ -99,7 +99,7 @@ export function Registration() {
 
           <div className="flex items-center justify-center space-x-2 text-[var(--maroon)]">
             <Calendar className="w-5 h-5 text-[var(--pink)]" />
-            <span className="font-medium">Early Bird Ends: January 15, 2026</span>
+            <span className="font-medium">Early Bird Ends: January 1, 2026</span>
           </div>
         </div>
 
