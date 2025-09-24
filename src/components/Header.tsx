@@ -1,20 +1,9 @@
-"use client"
+"use client";
 
 import { useState } from "react";
-import { 
-  Box, 
-  Flex, 
-  Button, 
-  Text, 
-  Heading,
-  Container,
-  HStack,
-  VStack,
-  IconButton,
-  Collapse,
-  Link
-} from '@chakra-ui/react';
+import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,141 +16,85 @@ export function Header() {
   ];
 
   return (
-    <Box
-      as="header"
-      position="fixed"
-      top={0}
-      w="full"
-      zIndex={50}
-      bg="rgba(79, 23, 37, 0.95)"
-      backdropFilter="blur(12px)"
-      borderBottom="1px solid"
-      borderColor="rgba(212, 175, 55, 0.3)"
-    >
-      <Container maxW="container.xl" py={4}>
-        <Flex align="center" justify="space-between">
+    <header className="fixed top-0 w-full z-50 bg-[var(--maroon)]/95 backdrop-blur-sm border-b border-[var(--gold)]/30">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
           {/* Logo */}
-          <Flex align="center" gap={3}>
-            <Box
-              w={12}
-              h={12}
-              bgGradient="linear(to-br, gold.500, bronze.500)"
-              borderRadius="lg"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text color="maroon.900" fontWeight="bold" fontSize="xl">
-                M
-              </Text>
-            </Box>
-            <Box>
-              <Heading as="h1" color="offWhite.50" fontSize="xl">
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center p-2">
+              <Image
+                src="/img/logo_clippy_clean.png"
+                alt="MCBios Logo"
+                className="w-full h-full object-contain"
+                width={30}
+                height={30}
+              />
+            </div>
+            <div>
+              <h1 className="text-[var(--off-white)] font-bold text-xl">
                 MCBios 2026
-              </Heading>
-              <Text color="rgba(249, 242, 235, 0.8)" fontSize="sm">
+              </h1>
+              <p className="text-[var(--off-white)]/80 text-sm">
                 Florida Conference
-              </Text>
-            </Box>
-          </Flex>
+              </p>
+            </div>
+          </div>
 
           {/* Desktop Navigation */}
-          <HStack gap={8} display={{ base: "none", md: "flex" }}>
+          <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.href}
                 href={item.href}
-                color="offWhite.50"
-                _hover={{ 
-                  color: "gold.500",
-                  textDecoration: "none" 
-                }}
-                transition="all 0.3s"
-                position="relative"
-                _after={{
-                  content: '""',
-                  position: "absolute",
-                  bottom: "-2px",
-                  left: 0,
-                  width: 0,
-                  height: "2px",
-                  bg: "gold.500",
-                  transition: "width 0.3s",
-                }}
-                _groupHover={{
-                  width: "100%",
-                }}
+                className="text-[var(--off-white)] hover:text-[var(--gold)] transition-colors duration-300 relative group"
               >
                 {item.label}
-              </Link>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--gold)] transition-all duration-300 group-hover:w-full"></span>
+              </a>
             ))}
-            <Button 
+            <Button
               variant="outline"
-              borderColor="gold.500"
-              color="gold.500"
-              _hover={{
-                bg: "gold.500",
-                color: "maroon.900",
-              }}
+              className="border-[var(--off-white)] text-[var(--off-white)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] font-medium"
             >
               Register Now
             </Button>
-          </HStack>
+          </nav>
 
           {/* Mobile Menu Button */}
-          <IconButton
-            aria-label="Toggle menu"
-            icon={isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          <Button
             variant="ghost"
-            color="offWhite.50"
-            display={{ base: "flex", md: "none" }}
+            size="icon"
+            className="md:hidden text-[var(--off-white)]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-          />
-        </Flex>
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </Button>
+        </div>
 
         {/* Mobile Navigation */}
-        {/* <Collapse in={isMenuOpen}>
-          <Box 
-            mt={4} 
-            pb={4} 
-            borderTop="1px solid" 
-            borderColor="rgba(212, 175, 55, 0.3)" 
-            pt={4}
-            display={{ base: "block", md: "none" }}
-          >
-            <VStack gap={3} align="stretch">
+        {isMenuOpen && (
+          <nav className="md:hidden mt-4 pb-4 border-t border-[var(--gold)]/30 pt-4">
+            <div className="flex flex-col space-y-3">
               {navItems.map((item) => (
-                <Link
+                <a
                   key={item.href}
                   href={item.href}
-                  color="offWhite.50"
-                  _hover={{ 
-                    color: "gold.500",
-                    textDecoration: "none" 
-                  }}
-                  transition="all 0.3s"
-                  py={2}
+                  className="text-[var(--off-white)] hover:text-[var(--gold)] transition-colors duration-300 py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
-                </Link>
+                </a>
               ))}
-              <Button 
+              <Button
                 variant="outline"
-                borderColor="gold.500"
-                color="gold.500"
-                _hover={{
-                  bg: "gold.500",
-                  color: "maroon.900",
-                }}
-                mt={4}
+                className="border-[var(--off-white)] text-[var(--off-white)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] font-medium mt-4"
               >
                 Register Now
               </Button>
-            </VStack>
-          </Box>
-        </Collapse> */}
-      </Container>
-    </Box>
+            </div>
+          </nav>
+        )}
+      </div>
+    </header>
   );
 }

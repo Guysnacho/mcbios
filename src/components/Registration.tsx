@@ -1,20 +1,7 @@
-import { 
-  Box, 
-  Button, 
-  Container, 
-  Grid, 
-  Heading, 
-  Text, 
-  VStack, 
-  HStack,
-  CardRoot,
-  CardBody,
-  Badge,
-  Icon,
-  Flex,
-} from '@chakra-ui/react';
+import { Card } from "./ui/card";
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
 import { Check, Star, Users, Calendar } from "lucide-react";
-import { Separator } from './figma/separator';
 
 export function Registration() {
   const pricingTiers = [
@@ -32,7 +19,7 @@ export function Registration() {
         "Poster session participation"
       ],
       badge: "Popular",
-      badgeColor: { bg: "pink.800", color: "offWhite.50" },
+      badgeColor: "bg-[var(--pink)] text-[var(--off-white)]",
       popular: false
     },
     {
@@ -51,7 +38,7 @@ export function Registration() {
         "Priority seating"
       ],
       badge: "Best Value",
-      badgeColor: { bg: "gold.500", color: "maroon.900" },
+      badgeColor: "bg-[var(--gold)] text-[var(--maroon)]",
       popular: true
     },
     {
@@ -72,7 +59,7 @@ export function Registration() {
         "Priority support"
       ],
       badge: "Premium",
-      badgeColor: { bg: "maroon.900", color: "offWhite.50" },
+      badgeColor: "bg-[var(--maroon)] text-[var(--off-white)]",
       popular: false
     }
   ];
@@ -85,279 +72,138 @@ export function Registration() {
   ];
 
   return (
-    <Box 
-      as="section" 
-      id="registration" 
-      py={20} 
-      px={4} 
-      bgGradient="linear(to-b, rgba(158, 46, 74, 0.1), rgba(79, 23, 37, 0.05))" 
-      position="relative"
-    >
+    <section id="registration" className="py-20 px-4 bg-gradient-to-b from-[var(--pink)]/10 to-[var(--maroon)]/5 relative">
       {/* Art Deco Geometric Elements */}
-      <Box
-        position="absolute"
-        top="20"
-        left="25%"
-        w="24"
-        h="24"
-        border="2px solid"
-        borderColor="rgba(212, 175, 55, 0.2)"
-        transform="rotate(45deg)"
-      />
-      <Box
-        position="absolute"
-        bottom="20"
-        right="25%"
-        w="32"
-        h="32"
-        border="2px solid"
-        borderColor="rgba(79, 23, 37, 0.2)"
-        transform="rotate(12deg)"
-      />
+      <div className="absolute top-20 left-1/4 w-24 h-24 border-2 border-[var(--gold)]/20 rotate-45"></div>
+      <div className="absolute bottom-20 right-1/4 w-32 h-32 border-2 border-[var(--maroon)]/20 rotate-12"></div>
 
-      <Container maxW="container.xl" position="relative" zIndex={10}>
-        <VStack gap={16}>
-          {/* Header Section */}
-          <VStack gap={6} textAlign="center">
-            <HStack gap={2} align="center">
-              <Box w={12} h="2px" bg="maroon.900" />
-              <Badge 
-                colorScheme="maroon" 
-                bg="maroon.900" 
-                color="offWhite.50" 
-                fontWeight="medium" 
-                fontSize="base" 
-                px={4} 
-                py={1}
-                borderRadius="md"
-              >
-                Registration
-              </Badge>
-              <Box w={12} h="2px" bg="maroon.900" />
-            </HStack>
-            
-            <Heading 
-              as="h2" 
-              fontSize={{ base: "4xl", lg: "5xl" }} 
-              fontWeight="medium" 
-              color="maroon.900"
-            >
-              Secure Your
-              <Text as="span" color="pink.800"> Spot</Text>
-            </Heading>
-            
-            <Text 
-              fontSize="lg" 
-              color="rgba(79, 23, 37, 0.8)" 
-              maxW="3xl" 
-              lineHeight="relaxed"
-              mb={8}
-            >
-              Join the most prestigious gathering of healthcare AI and data science experts. 
-              Early bird pricing available for a limited time.
-            </Text>
+      <div className="container mx-auto relative z-10">
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center space-x-2 mb-4">
+            <div className="w-12 h-0.5 bg-[var(--maroon)]"></div>
+            <Badge variant="secondary" className="bg-[var(--maroon)] text-[var(--off-white)] px-4 py-1">
+              Registration
+            </Badge>
+            <div className="w-12 h-0.5 bg-[var(--maroon)]"></div>
+          </div>
+          
+          <h2 className="text-4xl lg:text-5xl font-bold text-[var(--maroon)] mb-6">
+            Secure Your
+            <span className="text-[var(--pink)]"> Spot</span>
+          </h2>
+          
+          <p className="text-lg text-[var(--maroon)]/80 max-w-3xl mx-auto leading-relaxed mb-8">
+            Join the most prestigious gathering of healthcare AI and data science experts. 
+            Early bird pricing available for a limited time.
+          </p>
 
-            <HStack gap={2} color="maroon.900">
-              <Icon as={Calendar} boxSize={5} color="pink.800" />
-              <Text fontWeight="medium">Early Bird Ends: January 15, 2026</Text>
-            </HStack>
-          </VStack>
+          <div className="flex items-center justify-center space-x-2 text-[var(--maroon)]">
+            <Calendar className="w-5 h-5 text-[var(--pink)]" />
+            <span className="font-medium">Early Bird Ends: January 15, 2026</span>
+          </div>
+        </div>
 
-          {/* Pricing Cards */}
-          <Grid 
-            templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }} 
-            gap={8}
-          >
-            {pricingTiers.map((tier, index) => (
-              <CardRoot 
-                key={index}
-                position="relative"
-                bg="rgba(255, 255, 255, 0.95)"
-                backdropFilter="blur(12px)"
-                border="2px solid"
-                borderColor={tier.popular ? "gold.500" : "rgba(79, 23, 37, 0.2)"}
-                transform={tier.popular ? "scale(1.05)" : "scale(1)"}
-                _hover={{
-                  shadow: "2xl",
-                  transform: tier.popular ? "scale(1.1)" : "scale(1.05)",
-                  borderColor: tier.popular ? "gold.500" : "rgba(158, 46, 74, 0.5)",
-                }}
-                transition="all 0.3s"
-              >
-                {tier.popular && (
-                  <Badge 
-                    position="absolute"
-                    top="-16px"
-                    left="50%"
-                    transform="translateX(-50%)"
-                    bg={tier.badgeColor.bg}
-                    color={tier.badgeColor.color}
-                    fontWeight="medium"
-                    display="flex"
-                    alignItems="center"
-                    gap={1}
-                  >
-                    <Icon as={Star} boxSize={3} />
+        {/* Pricing Cards */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {pricingTiers.map((tier, index) => (
+            <Card key={index} className={`relative p-8 bg-white/95 backdrop-blur-sm border-2 transition-all duration-300 hover:shadow-2xl ${
+              tier.popular 
+                ? 'border-[var(--gold)] scale-105 hover:scale-110' 
+                : 'border-[var(--maroon)]/20 hover:border-[var(--pink)]/50'
+            }`}>
+              {tier.popular && (
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <Badge className={tier.badgeColor}>
+                    <Star className="w-3 h-3 mr-1" />
                     {tier.badge}
                   </Badge>
-                )}
+                </div>
+              )}
+              
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-[var(--maroon)] mb-2">{tier.name}</h3>
+                <p className="text-[var(--maroon)]/70 text-sm mb-4">{tier.description}</p>
                 
-                <CardBody p={8}>
-                  <VStack gap={6}>
-                    {/* Header */}
-                    <VStack gap={4} textAlign="center">
-                      <Heading as="h3" size="lg" color="maroon.900">
-                        {tier.name}
-                      </Heading>
-                      <Text color="rgba(79, 23, 37, 0.7)" fontSize="sm">
-                        {tier.description}
-                      </Text>
-                      
-                      <VStack gap={1}>
-                        <HStack gap={2} justify="center">
-                          <Text fontSize="4xl" fontWeight="medium" color="maroon.900">
-                            {tier.price}
-                          </Text>
-                          <Text 
-                            fontSize="lg" 
-                            color="rgba(79, 23, 37, 0.6)" 
-                            textDecoration="line-through"
-                          >
-                            {tier.originalPrice}
-                          </Text>
-                        </HStack>
-                        <Text color="pink.800" fontWeight="medium" fontSize="sm">
-                          Early Bird Price
-                        </Text>
-                      </VStack>
-                    </VStack>
+                <div className="space-y-1">
+                  <div className="flex items-center justify-center space-x-2">
+                    <span className="text-4xl font-bold text-[var(--maroon)]">{tier.price}</span>
+                    <span className="text-lg text-[var(--maroon)]/60 line-through">{tier.originalPrice}</span>
+                  </div>
+                  <p className="text-[var(--pink)] text-sm font-medium">Early Bird Price</p>
+                </div>
+              </div>
 
-                    {/* Features */}
-                    <VStack gap={3} align="stretch">
-                      {tier.features.map((feature, featureIndex) => (
-                        <HStack key={featureIndex} gap={3} align="flex-start">
-                          <Icon as={Check} boxSize={5} color="pink.800" mt="2px" flexShrink={0} />
-                          <Text color="rgba(79, 23, 37, 0.8)" fontSize="sm">
-                            {feature}
-                          </Text>
-                        </HStack>
-                      ))}
-                    </VStack>
+              <div className="space-y-3 mb-8">
+                {tier.features.map((feature, featureIndex) => (
+                  <div key={featureIndex} className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-[var(--pink)] mt-0.5 flex-shrink-0" />
+                    <span className="text-[var(--maroon)]/80 text-sm">{feature}</span>
+                  </div>
+                ))}
+              </div>
 
-                    {/* CTA Button */}
-                    <Button 
-                      w="full"
-                      size="lg"
-                      bg={tier.popular ? "gold.500" : "maroon.900"}
-                      color={tier.popular ? "maroon.900" : "offWhite.50"}
-                      _hover={{
-                        bg: tier.popular ? "bronze.500" : "pink.800",
-                      }}
-                      fontWeight="medium"
-                    >
-                      Register Now
-                    </Button>
-                  </VStack>
-                </CardBody>
-              </CardRoot>
-            ))}
-          </Grid>
+              <Button 
+                className={`w-full ${
+                  tier.popular 
+                    ? 'bg-[var(--gold)] text-[var(--maroon)] hover:bg-[var(--bronze)]' 
+                    : 'bg-[var(--maroon)] text-[var(--off-white)] hover:bg-[var(--pink)]'
+                }`}
+                size="lg"
+              >
+                Register Now
+              </Button>
+            </Card>
+          ))}
+        </div>
 
-          {/* Important Dates and Group Discounts */}
-          <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap={8} w="full">
-            {/* Important Dates */}
-            <CardRoot bg="rgba(255, 255, 255, 0.9)" backdropFilter="blur(12px)" borderColor="rgba(79, 23, 37, 0.2)">
-              <CardBody p={8}>
-                <VStack gap={6} align="stretch">
-                  <HStack gap={2}>
-                    <Icon as={Calendar} boxSize={5} color="pink.800" />
-                    <Heading as="h3" size="md" color="maroon.900">
-                      Important Dates
-                    </Heading>
-                  </HStack>
-                  
-                  <VStack gap={4} align="stretch">
-                    {importantDates.map((item, index) => (
-                      <Box key={index}>
-                        <Flex justify="space-between" align="center" py={2}>
-                          <Text color="rgba(79, 23, 37, 0.8)">
-                            {item.event}
-                          </Text>
-                          <Badge 
-                            variant={item.urgent ? "solid" : "outline"}
-                            bg={item.urgent ? "pink.800" : undefined}
-                            color={item.urgent ? "offWhite.50" : "maroon.900"}
-                            borderColor={!item.urgent ? "maroon.900" : undefined}
-                            fontWeight="medium"
-                          >
-                            {item.date}
-                          </Badge>
-                        </Flex>
-                        {index < importantDates.length - 1 && (
-                          <Separator borderColor="rgba(79, 23, 37, 0.1)" />
-                        )}
-                      </Box>
-                    ))}
-                  </VStack>
-                </VStack>
-              </CardBody>
-            </CardRoot>
+        {/* Important Dates */}
+        <div className="grid md:grid-cols-2 gap-8">
+          <Card className="p-8 bg-white/90 backdrop-blur-sm border-[var(--maroon)]/20">
+            <h3 className="text-xl font-bold text-[var(--maroon)] mb-6 flex items-center">
+              <Calendar className="w-5 h-5 mr-2 text-[var(--pink)]" />
+              Important Dates
+            </h3>
+            <div className="space-y-4">
+              {importantDates.map((item, index) => (
+                <div key={index} className="flex justify-between items-center py-2 border-b border-[var(--maroon)]/10 last:border-0">
+                  <span className="text-[var(--maroon)]/80">{item.event}</span>
+                  <Badge variant={item.urgent ? "default" : "outline"} className={
+                    item.urgent 
+                      ? "bg-[var(--pink)] text-[var(--off-white)]" 
+                      : "border-[var(--maroon)] text-[var(--maroon)]"
+                  }>
+                    {item.date}
+                  </Badge>
+                </div>
+              ))}
+            </div>
+          </Card>
 
-            {/* Group Discounts */}
-            <CardRoot bg="rgba(255, 255, 255, 0.9)" backdropFilter="blur(12px)" borderColor="rgba(79, 23, 37, 0.2)">
-              <CardBody p={8}>
-                <VStack gap={6} align="stretch">
-                  <HStack gap={2}>
-                    <Icon as={Users} boxSize={5} color="pink.800" />
-                    <Heading as="h3" size="md" color="maroon.900">
-                      Group Discounts
-                    </Heading>
-                  </HStack>
-                  
-                  <VStack gap={4} align="stretch">
-                    <Box p={4} bg="offWhite.50" borderRadius="lg" border="1px solid" borderColor="rgba(79, 23, 37, 0.1)">
-                      <Heading as="h4" size="sm" color="maroon.900" mb={2}>
-                        5+ Attendees
-                      </Heading>
-                      <Text color="rgba(79, 23, 37, 0.7)" fontSize="sm" mb={2}>
-                        10% discount on all registration types
-                      </Text>
-                      <Badge variant="outline" borderColor="pink.800" color="pink.800" fontWeight="medium">
-                        Contact Us
-                      </Badge>
-                    </Box>
-                    
-                    <Box p={4} bg="offWhite.50" borderRadius="lg" border="1px solid" borderColor="rgba(79, 23, 37, 0.1)">
-                      <Heading as="h4" size="sm" color="maroon.900" mb={2}>
-                        10+ Attendees
-                      </Heading>
-                      <Text color="rgba(79, 23, 37, 0.7)" fontSize="sm" mb={2}>
-                        15% discount + complimentary workshop
-                      </Text>
-                      <Badge variant="outline" borderColor="pink.800" color="pink.800" fontWeight="medium">
-                        Contact Us
-                      </Badge>
-                    </Box>
-                    
-                    <Button 
-                      variant="outline"
-                      borderColor="maroon.900"
-                      color="maroon.900"
-                      _hover={{
-                        bg: "maroon.900",
-                        color: "offWhite.50",
-                      }}
-                      fontWeight="medium"
-                    >
-                      Get Group Pricing
-                    </Button>
-                  </VStack>
-                </VStack>
-              </CardBody>
-            </CardRoot>
-          </Grid>
-        </VStack>
-      </Container>
-    </Box>
+          <Card className="p-8 bg-white/90 backdrop-blur-sm border-[var(--maroon)]/20">
+            <h3 className="text-xl font-bold text-[var(--maroon)] mb-6 flex items-center">
+              <Users className="w-5 h-5 mr-2 text-[var(--pink)]" />
+              Group Discounts
+            </h3>
+            <div className="space-y-4">
+              <div className="p-4 bg-[var(--off-white)] rounded-lg border border-[var(--maroon)]/10">
+                <h4 className="font-medium text-[var(--maroon)] mb-2">5+ Attendees</h4>
+                <p className="text-[var(--maroon)]/70 text-sm mb-2">10% discount on all registration types</p>
+                <Badge variant="outline" className="border-[var(--pink)] text-[var(--pink)]">Contact Us</Badge>
+              </div>
+              <div className="p-4 bg-[var(--off-white)] rounded-lg border border-[var(--maroon)]/10">
+                <h4 className="font-medium text-[var(--maroon)] mb-2">10+ Attendees</h4>
+                <p className="text-[var(--maroon)]/70 text-sm mb-2">15% discount + complimentary workshop</p>
+                <Badge variant="outline" className="border-[var(--pink)] text-[var(--pink)]">Contact Us</Badge>
+              </div>
+              <div className="pt-4">
+                <Button variant="outline" className="w-full border-[var(--maroon)] text-[var(--maroon)] hover:bg-[var(--maroon)] hover:text-[var(--off-white)]">
+                  Get Group Pricing
+                </Button>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </div>
+    </section>
   );
 }

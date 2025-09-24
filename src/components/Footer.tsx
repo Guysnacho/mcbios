@@ -1,342 +1,204 @@
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Heading,
-  Text,
-  VStack,
-  HStack,
-  Badge,
-  Input,
-  Link,
-  Separator,
-  Icon,
-  IconButton,
-  Flex,
-} from "@chakra-ui/react";
-import {
-  Mail,
-  Phone,
-  MapPin,
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
+import { Separator } from "./ui/separator";
+import { 
+  Mail, 
+  Phone, 
+  MapPin, 
+  Twitter, 
+  Linkedin, 
+  Facebook,
   ExternalLink,
   Calendar,
-  Users,
+  Users
 } from "lucide-react";
-import { BsFacebook, BsLinkedin, BsTwitter } from "react-icons/bs";
 
 export function Footer() {
   const quickLinks = [
     { name: "About", href: "#about" },
     { name: "Speakers", href: "#speakers" },
     { name: "Schedule", href: "#schedule" },
-    { name: "Registration", href: "#registration" },
+    { name: "Registration", href: "#registration" }
   ];
 
   const resources = [
     { name: "Call for Papers", href: "#" },
     { name: "Travel Information", href: "#" },
     { name: "Accommodation", href: "#" },
-    { name: "Sponsorship", href: "#" },
+    { name: "Sponsorship", href: "#" }
   ];
 
   const socialLinks = [
-    { icon: BsTwitter, href: "#", name: "Twitter" },
-    { icon: BsLinkedin, href: "#", name: "LinkedIn" },
-    { icon: BsFacebook, href: "#", name: "Facebook" },
+    { icon: <Twitter className="w-5 h-5" />, href: "#", name: "Twitter" },
+    { icon: <Linkedin className="w-5 h-5" />, href: "#", name: "LinkedIn" },
+    { icon: <Facebook className="w-5 h-5" />, href: "#", name: "Facebook" }
   ];
 
   return (
-    <Box
-      as="footer"
-      bg="maroon.900"
-      color="offWhite.50"
-      position="relative"
-      overflow="hidden"
-    >
+    <footer className="bg-[var(--maroon)] text-[var(--off-white)] relative overflow-hidden">
       {/* Art Deco Background Pattern */}
-      <Box position="absolute" inset={0} opacity={0.1}>
-        <Box
-          h="full"
-          w="full"
-          style={{
-            backgroundImage: `
-              linear-gradient(45deg, #d4af37 25%, transparent 25%),
-              linear-gradient(-45deg, #d4af37 25%, transparent 25%),
-              linear-gradient(45deg, transparent 75%, #d4af37 75%),
-              linear-gradient(-45deg, transparent 75%, #d4af37 75%)
-            `,
-            backgroundSize: "60px 60px",
-            backgroundPosition: "0 0, 0 30px, 30px -30px, -30px 0px",
-          }}
-        />
-      </Box>
+      <div className="absolute inset-0 opacity-10">
+        <div className="h-full w-full" style={{
+          backgroundImage: `
+            linear-gradient(45deg, var(--gold) 25%, transparent 25%),
+            linear-gradient(-45deg, var(--gold) 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, var(--gold) 75%),
+            linear-gradient(-45deg, transparent 75%, var(--gold) 75%)
+          `,
+          backgroundSize: '60px 60px',
+          backgroundPosition: '0 0, 0 30px, 30px -30px, -30px 0px'
+        }}>
+        </div>
+      </div>
 
-      <Container maxW="container.xl" position="relative" zIndex={10}>
+      <div className="container mx-auto px-4 relative z-10">
         {/* Main Footer Content */}
-        <Box py={16}>
-          <Grid
-            templateColumns={{
-              base: "1fr",
-              md: "repeat(2, 1fr)",
-              lg: "repeat(4, 1fr)",
-            }}
-            gap={8}
-          >
+        <div className="py-16">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
             {/* Conference Info */}
-            <VStack gap={6} align="stretch">
-              <HStack gap={3}>
-                <Box
-                  w={12}
-                  h={12}
-                  bgGradient="linear(to-br, gold.500, bronze.500)"
-                  borderRadius="lg"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <Text color="maroon.900" fontWeight="medium" fontSize="xl">
-                    M
-                  </Text>
-                </Box>
-                <Box>
-                  <Heading as="h3" size="md" color="offWhite.50">
-                    MCBios 2026
-                  </Heading>
-                  <Text color="rgba(249, 242, 235, 0.8)" fontSize="sm">
-                    Florida Conference
-                  </Text>
-                </Box>
-              </HStack>
+            <div className="space-y-6">
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-[var(--gold)] to-[var(--bronze)] rounded-lg flex items-center justify-center">
+                  <span className="text-[var(--maroon)] font-bold text-xl">M</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-xl">MCBios 2026</h3>
+                  <p className="text-[var(--off-white)]/80 text-sm">Florida Conference</p>
+                </div>
+              </div>
+              
+              <p className="text-[var(--off-white)]/80 leading-relaxed">
+                The premier gathering bridging data, AI, and innovation to transform health, 
+                fostering collaboration between researchers, clinicians, and technologists.
+              </p>
 
-              <Text color="rgba(249, 242, 235, 0.8)" lineHeight="relaxed">
-                The premier gathering bridging data, AI, and innovation to
-                transform health, fostering collaboration between researchers,
-                clinicians, and technologists.
-              </Text>
-
-              <VStack gap={3} align="stretch">
-                <HStack gap={2} color="rgba(249, 242, 235, 0.8)">
-                  <Icon as={Calendar} boxSize={4} color="gold.500" />
-                  <Text>March 15-17, 2026</Text>
-                </HStack>
-                <HStack gap={2} color="rgba(249, 242, 235, 0.8)">
-                  <Icon as={MapPin} boxSize={4} color="gold.500" />
-                  <Text>Miami, Florida</Text>
-                </HStack>
-                <HStack gap={2} color="rgba(249, 242, 235, 0.8)">
-                  <Icon as={Users} boxSize={4} color="gold.500" />
-                  <Text>500+ Expected Attendees</Text>
-                </HStack>
-              </VStack>
-            </VStack>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2 text-[var(--off-white)]/80">
+                  <Calendar className="w-4 h-4 text-[var(--gold)]" />
+                  <span>March 15-17, 2026</span>
+                </div>
+                <div className="flex items-center space-x-2 text-[var(--off-white)]/80">
+                  <MapPin className="w-4 h-4 text-[var(--gold)]" />
+                  <span>Miami, Florida</span>
+                </div>
+                <div className="flex items-center space-x-2 text-[var(--off-white)]/80">
+                  <Users className="w-4 h-4 text-[var(--gold)]" />
+                  <span>500+ Expected Attendees</span>
+                </div>
+              </div>
+            </div>
 
             {/* Quick Links */}
-            <VStack gap={6} align="stretch">
-              <Heading as="h4" size="md" color="gold.500">
-                Quick Links
-              </Heading>
-              <VStack gap={3} align="stretch">
+            <div>
+              <h4 className="font-bold mb-6 text-[var(--gold)]">Quick Links</h4>
+              <nav className="space-y-3">
                 {quickLinks.map((link, index) => (
-                  <Link
+                  <a
                     key={index}
                     href={link.href}
-                    color="rgba(249, 242, 235, 0.8)"
-                    _hover={{
-                      color: "gold.500",
-                      transform: "translateX(4px)",
-                    }}
-                    transition="all 0.3s"
+                    className="block text-[var(--off-white)]/80 hover:text-[var(--gold)] transition-colors duration-300 hover:translate-x-1 transform"
                   >
                     {link.name}
-                  </Link>
+                  </a>
                 ))}
-              </VStack>
-            </VStack>
+              </nav>
+            </div>
 
             {/* Resources */}
-            <VStack gap={6} align="stretch">
-              <Heading as="h4" size="md" color="gold.500">
-                Resources
-              </Heading>
-              <VStack gap={3} align="stretch">
+            <div>
+              <h4 className="font-bold mb-6 text-[var(--gold)]">Resources</h4>
+              <nav className="space-y-3">
                 {resources.map((link, index) => (
-                  <Link
+                  <a
                     key={index}
                     href={link.href}
-                    color="rgba(249, 242, 235, 0.8)"
-                    _hover={{
-                      color: "gold.500",
-                      transform: "translateX(4px)",
-                    }}
-                    transition="all 0.3s"
-                    display="flex"
-                    alignItems="center"
-                    gap={2}
+                    className="flex items-center space-x-2 text-[var(--off-white)]/80 hover:text-[var(--gold)] transition-colors duration-300 hover:translate-x-1 transform"
                   >
-                    <Text>{link.name}</Text>
-                    <Icon as={ExternalLink} boxSize={3} />
-                  </Link>
+                    <span>{link.name}</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
                 ))}
-              </VStack>
-            </VStack>
+              </nav>
+            </div>
 
             {/* Contact & Social */}
-            <VStack gap={6} align="stretch">
-              <Heading as="h4" size="md" color="gold.500">
-                Contact
-              </Heading>
-
-              <VStack gap={4} align="stretch">
-                <HStack gap={3} color="rgba(249, 242, 235, 0.8)">
-                  <Icon as={Mail} boxSize={4} color="gold.500" />
-                  <Link
-                    href="mailto:info@mcbios2026.org"
-                    _hover={{ color: "gold.500" }}
-                    transition="colors 0.3s"
-                  >
+            <div>
+              <h4 className="font-bold mb-6 text-[var(--gold)]">Contact</h4>
+              <div className="space-y-4 mb-6">
+                <div className="flex items-center space-x-3 text-[var(--off-white)]/80">
+                  <Mail className="w-4 h-4 text-[var(--gold)]" />
+                  <a href="mailto:info@mcbios2026.org" className="hover:text-[var(--gold)] transition-colors">
                     info@mcbios2026.org
-                  </Link>
-                </HStack>
-                <HStack gap={3} color="rgba(249, 242, 235, 0.8)">
-                  <Icon as={Phone} boxSize={4} color="gold.500" />
-                  <Link
-                    href="tel:+1-555-MCBIOS"
-                    _hover={{ color: "gold.500" }}
-                    transition="colors 0.3s"
-                  >
+                  </a>
+                </div>
+                <div className="flex items-center space-x-3 text-[var(--off-white)]/80">
+                  <Phone className="w-4 h-4 text-[var(--gold)]" />
+                  <a href="tel:+1-555-MCBIOS" className="hover:text-[var(--gold)] transition-colors">
                     +1 (555) MCBIOS
-                  </Link>
-                </HStack>
-              </VStack>
+                  </a>
+                </div>
+              </div>
 
-              <VStack gap={4} align="stretch">
-                <Heading as="h5" size="sm" color="gold.500">
-                  Follow Us
-                </Heading>
-                <HStack gap={3}>
+              <div className="space-y-4">
+                <h5 className="font-medium text-[var(--gold)]">Follow Us</h5>
+                <div className="flex space-x-3">
                   {socialLinks.map((social, index) => (
-                    <IconButton
+                    <a
                       key={index}
-                      asChild
+                      href={social.href}
+                      className="p-2 bg-[var(--off-white)]/10 rounded-lg hover:bg-[var(--gold)]/20 hover:text-[var(--gold)] transition-all duration-300 hover:scale-110"
                       aria-label={social.name}
-                      icon={<Icon as={social.icon} boxSize={5} />}
-                      bg="rgba(249, 242, 235, 0.1)"
-                      color="offWhite.50"
-                      _hover={{
-                        bg: "rgba(212, 175, 55, 0.2)",
-                        color: "gold.500",
-                        transform: "scale(1.1)",
-                      }}
-                      transition="all 0.3s"
-                      borderRadius="lg"
-                      size="md"
                     >
-                      <a href={social.href}>{}</a>
-                    </IconButton>
+                      {social.icon}
+                    </a>
                   ))}
-                </HStack>
-              </VStack>
-            </VStack>
-          </Grid>
-        </Box>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <Separator borderColor="rgba(249, 242, 235, 0.2)" />
+        <Separator className="bg-[var(--off-white)]/20" />
 
         {/* Newsletter Signup */}
-        <Box py={8}>
-          <Flex
-            direction={{ base: "column", md: "row" }}
-            align="center"
-            justify="space-between"
-            gap={6}
-          >
-            <Box>
-              <Heading as="h4" size="md" color="gold.500" mb={2}>
-                Stay Updated
-              </Heading>
-              <Text color="rgba(249, 242, 235, 0.8)">
-                Get the latest news and updates about MCBios 2026
-              </Text>
-            </Box>
-            <Flex
-              direction={{ base: "column", sm: "row" }}
-              gap={3}
-              w={{ base: "full", md: "auto" }}
-            >
-              <Input
+        <div className="py-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h4 className="font-bold text-[var(--gold)] mb-2">Stay Updated</h4>
+              <p className="text-[var(--off-white)]/80">Get the latest news and updates about MCBios 2026</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+              <input
                 type="email"
                 placeholder="Enter your email"
-                bg="rgba(249, 242, 235, 0.1)"
-                border="1px solid"
-                borderColor="rgba(249, 242, 235, 0.2)"
-                color="offWhite.50"
-                _placeholder={{ color: "rgba(249, 242, 235, 0.6)" }}
-                _focus={{ borderColor: "gold.500" }}
-                minW={{ base: "full", sm: "256px" }}
+                className="px-4 py-2 bg-[var(--off-white)]/10 border border-[var(--off-white)]/20 rounded-lg text-[var(--off-white)] placeholder-[var(--off-white)]/60 focus:outline-none focus:border-[var(--gold)] min-w-64"
               />
-              <Button
-                bg="gold.500"
-                color="maroon.900"
-                _hover={{ bg: "bronze.500" }}
-                fontWeight="medium"
-                px={6}
-              >
+              <Button className="bg-[var(--gold)] text-[var(--maroon)] hover:bg-[var(--bronze)] px-6">
                 Subscribe
               </Button>
-            </Flex>
-          </Flex>
-        </Box>
+            </div>
+          </div>
+        </div>
 
-        <Separator borderColor="rgba(249, 242, 235, 0.2)" />
+        <Separator className="bg-[var(--off-white)]/20" />
 
         {/* Bottom Footer */}
-        <Box py={6}>
-          <Flex
-            direction={{ base: "column", md: "row" }}
-            align="center"
-            justify="space-between"
-            gap={4}
-            color="rgba(249, 242, 235, 0.6)"
-            fontSize="sm"
-          >
-            <HStack gap={4} flexWrap="wrap">
-              <Text>© 2026 MCBios Conference. All rights reserved.</Text>
-              <Badge
-                variant="outline"
-                borderColor="rgba(212, 175, 55, 0.5)"
-                color="gold.500"
-                fontWeight="medium"
-              >
+        <div className="py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-[var(--off-white)]/60 text-sm">
+            <div className="flex flex-wrap items-center gap-4">
+              <span>© 2026 MCBios Conference. All rights reserved.</span>
+              <Badge variant="outline" className="border-[var(--gold)]/50 text-[var(--gold)]">
                 Art Deco Design
               </Badge>
-            </HStack>
-            <HStack gap={6}>
-              <Link
-                href="#"
-                _hover={{ color: "gold.500" }}
-                transition="colors 0.3s"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="#"
-                _hover={{ color: "gold.500" }}
-                transition="colors 0.3s"
-              >
-                Terms of Service
-              </Link>
-              <Link
-                href="#"
-                _hover={{ color: "gold.500" }}
-                transition="colors 0.3s"
-              >
-                Code of Conduct
-              </Link>
-            </HStack>
-          </Flex>
-        </Box>
-      </Container>
-    </Box>
+            </div>
+            <div className="flex items-center space-x-6">
+              <a href="#" className="hover:text-[var(--gold)] transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-[var(--gold)] transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-[var(--gold)] transition-colors">Code of Conduct</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }

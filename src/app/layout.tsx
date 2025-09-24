@@ -1,10 +1,8 @@
-import { Provider } from "@/components/ui/provider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Navbar from "@/components/common/navbar";
-import Footer from "@/components/common/footer";
+import { Theme } from "@radix-ui/themes";
 
-import "@radix-ui/themes/styles.css";
+// @ts-expect-error blah
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,9 +16,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MCBIOS 2026",
+  title: "MCBIOS 2026 - Bridging Data, AI, and Innovation to Transform Health",
   description:
-    "The 22nd Annual Meeting of the MidSouth Computational Biology and Bioinformatics Society",
+    "Join us at MCBIOS 2026 in Florida for cutting-edge discussions on computational biology, AI in healthcare, and innovative data solutions.",
+  keywords:
+    "computational biology, AI, healthcare, data science, bioinformatics, machine learning",
 };
 
 export default function RootLayout({
@@ -33,13 +33,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Provider>
-          <Navbar underConstruction />
+        <Theme>
           <div className="bg-linear-to-r from-[#f4d7de] to-[#a0aef8]">
             {children}
           </div>
-          <Footer underConstruction />
-        </Provider>
+        </Theme>
       </body>
     </html>
   );

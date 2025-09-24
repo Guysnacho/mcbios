@@ -1,23 +1,11 @@
-import {
-  Box,
-  Container,
-  Heading,
-  Text,
-  VStack,
-  HStack,
-  Card,
-  CardBody,
-  Badge,
-  Icon,
-  Flex,
-  Tabs,
-  CardRoot,
-} from "@chakra-ui/react";
+import { Card } from "./ui/card";
+import { Badge } from "./ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Clock, MapPin, Users } from "lucide-react";
 
 export function Schedule() {
   const scheduleData = {
-    "Day 1": {
+    "day1": {
       date: "March 15, 2026",
       title: "Opening & Keynotes",
       events: [
@@ -26,7 +14,7 @@ export function Schedule() {
           title: "Registration & Coffee",
           type: "networking",
           location: "Main Lobby",
-          duration: "60 min",
+          duration: "60 min"
         },
         {
           time: "9:00 AM",
@@ -34,7 +22,7 @@ export function Schedule() {
           speaker: "Conference Committee",
           type: "ceremony",
           location: "Grand Ballroom",
-          duration: "30 min",
+          duration: "30 min"
         },
         {
           time: "9:30 AM",
@@ -42,14 +30,14 @@ export function Schedule() {
           speaker: "Dr. Maria Rodriguez",
           type: "keynote",
           location: "Grand Ballroom",
-          duration: "60 min",
+          duration: "60 min"
         },
         {
           time: "10:30 AM",
           title: "Coffee Break",
           type: "break",
           location: "Exhibition Hall",
-          duration: "30 min",
+          duration: "30 min"
         },
         {
           time: "11:00 AM",
@@ -57,14 +45,14 @@ export function Schedule() {
           speaker: "Multiple Speakers",
           type: "session",
           location: "Conference Room A",
-          duration: "90 min",
+          duration: "90 min"
         },
         {
           time: "12:30 PM",
           title: "Lunch & Networking",
           type: "networking",
           location: "Restaurant Terrace",
-          duration: "90 min",
+          duration: "90 min"
         },
         {
           time: "2:00 PM",
@@ -72,18 +60,18 @@ export function Schedule() {
           speaker: "Dr. Ahmed Hassan",
           type: "workshop",
           location: "Lab Suite 1",
-          duration: "2 hours",
+          duration: "2 hours"
         },
         {
           time: "4:00 PM",
           title: "Poster Session",
           type: "poster",
           location: "Exhibition Hall",
-          duration: "2 hours",
-        },
-      ],
+          duration: "2 hours"
+        }
+      ]
     },
-    "Day 2": {
+    "day2": {
       date: "March 16, 2026",
       title: "Research & Innovation",
       events: [
@@ -93,14 +81,14 @@ export function Schedule() {
           speaker: "Dr. Sarah Johnson",
           type: "keynote",
           location: "Grand Ballroom",
-          duration: "60 min",
+          duration: "60 min"
         },
         {
           time: "10:00 AM",
           title: "Coffee Break",
           type: "break",
           location: "Exhibition Hall",
-          duration: "30 min",
+          duration: "30 min"
         },
         {
           time: "10:30 AM",
@@ -108,14 +96,14 @@ export function Schedule() {
           speaker: "Multiple Speakers",
           type: "session",
           location: "Conference Room A",
-          duration: "90 min",
+          duration: "90 min"
         },
         {
           time: "12:00 PM",
           title: "Lunch & Vendor Demos",
           type: "networking",
           location: "Exhibition Hall",
-          duration: "90 min",
+          duration: "90 min"
         },
         {
           time: "1:30 PM",
@@ -123,7 +111,7 @@ export function Schedule() {
           speaker: "Expert Panel",
           type: "panel",
           location: "Grand Ballroom",
-          duration: "75 min",
+          duration: "75 min"
         },
         {
           time: "3:00 PM",
@@ -131,18 +119,18 @@ export function Schedule() {
           speaker: "Dr. Lisa Park",
           type: "workshop",
           location: "Lab Suite 2",
-          duration: "2 hours",
+          duration: "2 hours"
         },
         {
           time: "6:00 PM",
           title: "Gala Dinner",
           type: "social",
           location: "Oceanview Terrace",
-          duration: "3 hours",
-        },
-      ],
+          duration: "3 hours"
+        }
+      ]
     },
-    "Day 3": {
+    "day3": {
       date: "March 17, 2026",
       title: "Future Directions",
       events: [
@@ -152,14 +140,14 @@ export function Schedule() {
           speaker: "Prof. Roberto Silva",
           type: "session",
           location: "Conference Room A",
-          duration: "90 min",
+          duration: "90 min"
         },
         {
           time: "10:30 AM",
           title: "Coffee Break",
           type: "break",
           location: "Exhibition Hall",
-          duration: "30 min",
+          duration: "30 min"
         },
         {
           time: "11:00 AM",
@@ -167,14 +155,14 @@ export function Schedule() {
           speaker: "Young Researchers",
           type: "talks",
           location: "Conference Room B",
-          duration: "60 min",
+          duration: "60 min"
         },
         {
           time: "12:00 PM",
           title: "Lunch & Career Fair",
           type: "networking",
           location: "Exhibition Hall",
-          duration: "90 min",
+          duration: "90 min"
         },
         {
           time: "1:30 PM",
@@ -182,7 +170,7 @@ export function Schedule() {
           speaker: "Multiple Speakers",
           type: "session",
           location: "Grand Ballroom",
-          duration: "90 min",
+          duration: "90 min"
         },
         {
           time: "3:00 PM",
@@ -190,238 +178,137 @@ export function Schedule() {
           speaker: "Conference Committee",
           type: "ceremony",
           location: "Grand Ballroom",
-          duration: "60 min",
+          duration: "60 min"
         },
         {
           time: "4:00 PM",
           title: "Farewell Reception",
           type: "networking",
           location: "Main Lobby",
-          duration: "60 min",
-        },
-      ],
-    },
+          duration: "60 min"
+        }
+      ]
+    }
   };
 
-  const getTypeColor = (
-    type: string
-  ): { bg: string; color: string; border?: string } => {
+  const getTypeColor = (type: string) => {
     const colors = {
-      keynote: { bg: "gold.500", color: "maroon.900" },
-      session: { bg: "maroon.900", color: "offWhite.50" },
-      workshop: { bg: "pink.800", color: "offWhite.50" },
-      networking: {
-        bg: "offWhite.50",
-        color: "maroon.900",
-        border: "maroon.900",
-      },
-      break: { bg: "gray.100", color: "gray.600" },
-      ceremony: { bg: "gold.500", color: "maroon.900" },
-      poster: { bg: "rgba(158, 46, 74, 0.8)", color: "offWhite.50" },
-      panel: { bg: "rgba(79, 23, 37, 0.8)", color: "offWhite.50" },
-      social: { bg: "pink.800", color: "offWhite.50" },
-      talks: { bg: "rgba(158, 46, 74, 0.6)", color: "offWhite.50" },
+      keynote: "bg-[var(--gold)] text-[var(--maroon)]",
+      session: "bg-[var(--maroon)] text-[var(--off-white)]",
+      workshop: "bg-[var(--pink)] text-[var(--off-white)]",
+      networking: "bg-[var(--off-white)] text-[var(--maroon)] border border-[var(--maroon)]",
+      break: "bg-gray-100 text-gray-600",
+      ceremony: "bg-[var(--gold)] text-[var(--maroon)]",
+      poster: "bg-[var(--pink)]/80 text-[var(--off-white)]",
+      panel: "bg-[var(--maroon)]/80 text-[var(--off-white)]",
+      social: "bg-gradient-to-r from-[var(--maroon)] to-[var(--pink)] text-[var(--off-white)]",
+      talks: "bg-[var(--pink)]/60 text-[var(--off-white)]"
     };
-    return (
-      colors[type as keyof typeof colors] || {
-        bg: "gray.200",
-        color: "gray.800",
-      }
-    );
+    return colors[type as keyof typeof colors] || "bg-gray-200 text-gray-800";
   };
 
   return (
-    <Box
-      as="section"
-      id="schedule"
-      py={20}
-      px={4}
-      bg="offWhite.50"
-      position="relative"
-    >
+    <section id="schedule" className="py-20 px-4 bg-[var(--off-white)] relative">
       {/* Art Deco Background Pattern */}
-      <Box position="absolute" inset={0} opacity={0.05}>
-        <Box
-          h="full"
-          w="full"
-          style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, #4f1725 2px, transparent 2px),
-                             radial-gradient(circle at 75% 75%, #9e2e4a 1px, transparent 1px)`,
-            backgroundSize: "50px 50px",
-          }}
-        />
-      </Box>
+      <div className="absolute inset-0 opacity-5">
+        <div className="h-full w-full" style={{
+          backgroundImage: `radial-gradient(circle at 25% 25%, var(--maroon) 2px, transparent 2px),
+                           radial-gradient(circle at 75% 75%, var(--pink) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}>
+        </div>
+      </div>
 
-      <Container maxW="container.xl" position="relative" zIndex={10}>
-        <VStack gap={16}>
-          {/* Header Section */}
-          <VStack gap={6} textAlign="center">
-            <HStack gap={2} align="center">
-              <Box w={12} h="2px" bg="maroon.900" />
-              <Badge
-                colorScheme="maroon"
-                bg="maroon.900"
-                color="offWhite.50"
-                fontWeight="medium"
-                fontSize="base"
-                px={4}
-                py={1}
-                borderRadius="md"
-              >
-                Conference Schedule
-              </Badge>
-              <Box w={12} h="2px" bg="maroon.900" />
-            </HStack>
+      <div className="container mx-auto relative z-10">
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center space-x-2 mb-4">
+            <div className="w-12 h-0.5 bg-[var(--maroon)]"></div>
+            <Badge variant="secondary" className="bg-[var(--maroon)] text-[var(--off-white)] px-4 py-1">
+              Conference Schedule
+            </Badge>
+            <div className="w-12 h-0.5 bg-[var(--maroon)]"></div>
+          </div>
+          
+          <h2 className="text-4xl lg:text-5xl font-bold text-[var(--maroon)] mb-6">
+            Three Days of
+            <span className="text-[var(--pink)]"> Discovery</span>
+          </h2>
+          
+          <p className="text-lg text-[var(--maroon)]/80 max-w-3xl mx-auto leading-relaxed">
+            Immerse yourself in transformative healthcare AI research, hands-on workshops, and 
+            meaningful connections over three intensive days bridging data, AI, and innovation.
+          </p>
+        </div>
 
-            <Heading
-              as="h2"
-              fontSize={{ base: "4xl", lg: "5xl" }}
-              fontWeight="medium"
-              color="maroon.900"
+        <Tabs defaultValue="day1" className="w-full">
+          <TabsList className="grid w-full grid-cols-3 mb-8 bg-[var(--maroon)]/10">
+            <TabsTrigger 
+              value="day1" 
+              className="data-[state=active]:bg-[var(--maroon)] data-[state=active]:text-[var(--off-white)]"
             >
-              Three Days of
-              <Text as="span" color="pink.800">
-                {" "}
-                Discovery
-              </Text>
-            </Heading>
-
-            <Text
-              fontSize="lg"
-              color="rgba(79, 23, 37, 0.8)"
-              maxW="3xl"
-              lineHeight="relaxed"
+              Day 1
+            </TabsTrigger>
+            <TabsTrigger 
+              value="day2"
+              className="data-[state=active]:bg-[var(--maroon)] data-[state=active]:text-[var(--off-white)]"
             >
-              Immerse yourself in transformative healthcare AI research,
-              hands-on workshops, and meaningful connections over three
-              intensive days bridging data, AI, and innovation.
-            </Text>
-          </VStack>
+              Day 2
+            </TabsTrigger>
+            <TabsTrigger 
+              value="day3"
+              className="data-[state=active]:bg-[var(--maroon)] data-[state=active]:text-[var(--off-white)]"
+            >
+              Day 3
+            </TabsTrigger>
+          </TabsList>
 
-          {/* Schedule Tabs */}
-          <Box w="full">
-            <Tabs.Root variant="enclosed" colorScheme="maroon">
-              <Tabs.List bg="rgba(79, 23, 37, 0.1)" borderRadius="lg" mb={8}>
-                {Object.keys(scheduleData).map((day) => (
-                  <Tabs.Trigger
-                    key={day}
-                    value={day}
-                    flex={1}
-                    _selected={{
-                      bg: "maroon.900",
-                      color: "offWhite.50",
-                    }}
-                    fontWeight="medium"
-                  >
-                    {day}
-                  </Tabs.Trigger>
+          {Object.entries(scheduleData).map(([day, data]) => (
+            <TabsContent key={day} value={day} className="space-y-6">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-[var(--maroon)] mb-2">{data.title}</h3>
+                <p className="text-[var(--maroon)]/70">{data.date}</p>
+              </div>
+
+              <div className="space-y-4">
+                {data.events.map((event, index) => (
+                  <Card key={index} className="p-6 bg-white/90 backdrop-blur-sm border-[var(--maroon)]/20 hover:shadow-lg transition-all duration-300">
+                    <div className="flex flex-col md:flex-row md:items-center gap-4">
+                      <div className="flex items-center space-x-4 md:w-1/4">
+                        <div className="text-2xl font-bold text-[var(--maroon)]">{event.time}</div>
+                        <div className="flex items-center space-x-1 text-[var(--maroon)]/60 text-sm">
+                          <Clock className="w-4 h-4" />
+                          <span>{event.duration}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex-1 space-y-2">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h4 className="font-bold text-[var(--maroon)] text-lg">{event.title}</h4>
+                          <Badge className={getTypeColor(event.type)}>
+                            {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
+                          </Badge>
+                        </div>
+                        
+                        {event.speaker && (
+                          <div className="flex items-center space-x-1 text-[var(--pink)]">
+                            <Users className="w-4 h-4" />
+                            <span>{event.speaker}</span>
+                          </div>
+                        )}
+                        
+                        <div className="flex items-center space-x-1 text-[var(--maroon)]/60">
+                          <MapPin className="w-4 h-4" />
+                          <span>{event.location}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
                 ))}
-              </Tabs.List>
-
-              {Object.entries(scheduleData).map(([day, data]) => (
-                <Tabs.Content key={day} value={day} px={0}>
-                  <VStack gap={6}>
-                    {/* Day Header */}
-                    <VStack gap={2} textAlign="center">
-                      <Heading as="h3" size="lg" color="maroon.900">
-                        {data.title}
-                      </Heading>
-                      <Text color="rgba(79, 23, 37, 0.7)">{data.date}</Text>
-                    </VStack>
-
-                    {/* Events List */}
-                    <VStack gap={4} w="full">
-                      {data.events.map((event, index) => (
-                        <CardRoot
-                          key={index}
-                          w="full"
-                          bg="rgba(255, 255, 255, 0.9)"
-                          backdropFilter="blur(12px)"
-                          borderColor="rgba(79, 23, 37, 0.2)"
-                          _hover={{ shadow: "lg" }}
-                          transition="all 0.3s"
-                        >
-                          <CardBody p={6}>
-                            <Flex
-                              direction={{ base: "column", md: "row" }}
-                              align={{ md: "center" }}
-                              gap={4}
-                            >
-                              {/* Time and Duration */}
-                              <Box w={{ md: "25%" }}>
-                                <Flex align="center" gap={4}>
-                                  <Text
-                                    fontSize="2xl"
-                                    fontWeight="medium"
-                                    color="maroon.900"
-                                  >
-                                    {event.time}
-                                  </Text>
-                                  <HStack
-                                    gap={1}
-                                    color="rgba(79, 23, 37, 0.6)"
-                                    fontSize="sm"
-                                  >
-                                    <Icon as={Clock} boxSize={4} />
-                                    <Text>{event.duration}</Text>
-                                  </HStack>
-                                </Flex>
-                              </Box>
-
-                              {/* Event Details */}
-                              <Box flex={1}>
-                                <VStack align="flex-start" gap={2}>
-                                  <Flex wrap="wrap" align="center" gap={2}>
-                                    <Heading
-                                      as="h4"
-                                      size="md"
-                                      color="maroon.900"
-                                    >
-                                      {event.title}
-                                    </Heading>
-                                    <Badge
-                                      bg={getTypeColor(event.type).bg}
-                                      color={getTypeColor(event.type).color}
-                                      borderColor={
-                                        getTypeColor(event.type).border
-                                      }
-                                      variant={
-                                        getTypeColor(event.type).border
-                                          ? "outline"
-                                          : "solid"
-                                      }
-                                      fontWeight="medium"
-                                    >
-                                      {event.type.charAt(0).toUpperCase() +
-                                        event.type.slice(1)}
-                                    </Badge>
-                                  </Flex>
-
-                                  {event.speaker && (
-                                    <HStack gap={1} color="pink.800">
-                                      <Icon as={Users} boxSize={4} />
-                                      <Text>{event.speaker}</Text>
-                                    </HStack>
-                                  )}
-
-                                  <HStack gap={1} color="rgba(79, 23, 37, 0.6)">
-                                    <Icon as={MapPin} boxSize={4} />
-                                    <Text>{event.location}</Text>
-                                  </HStack>
-                                </VStack>
-                              </Box>
-                            </Flex>
-                          </CardBody>
-                        </CardRoot>
-                      ))}
-                    </VStack>
-                  </VStack>
-                </Tabs.Content>
-              ))}
-            </Tabs.Root>
-          </Box>
-        </VStack>
-      </Container>
-    </Box>
+              </div>
+            </TabsContent>
+          ))}
+        </Tabs>
+      </div>
+    </section>
   );
 }
