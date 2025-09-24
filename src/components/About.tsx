@@ -1,5 +1,4 @@
 import { Brain, Database, Microscope, Network } from "lucide-react";
-import Image from "next/image";
 import { Badge } from "./ui/badge";
 import { Card } from "./ui/card";
 
