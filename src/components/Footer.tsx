@@ -1,54 +1,44 @@
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
+import { Calendar, ExternalLink, Globe, MapPin, Users } from "lucide-react";
 import { Separator } from "./ui/separator";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Twitter, 
-  Linkedin, 
-  Facebook,
-  ExternalLink,
-  Calendar,
-  Users
-} from "lucide-react";
 
 export function Footer() {
   const quickLinks = [
     { name: "About", href: "#about" },
     { name: "Speakers", href: "#speakers" },
     { name: "Schedule", href: "#schedule" },
-    { name: "Registration", href: "#registration" }
+    { name: "Registration", href: "#registration" },
   ];
 
   const resources = [
     { name: "Call for Papers", href: "#" },
     { name: "Travel Information", href: "#" },
     { name: "Accommodation", href: "#" },
-    { name: "Sponsorship", href: "#" }
+    { name: "Sponsorship", href: "#" },
   ];
 
-  const socialLinks = [
-    { icon: <Twitter className="w-5 h-5" />, href: "#", name: "Twitter" },
-    { icon: <Linkedin className="w-5 h-5" />, href: "#", name: "LinkedIn" },
-    { icon: <Facebook className="w-5 h-5" />, href: "#", name: "Facebook" }
-  ];
+  // const socialLinks = [
+  //   { icon: <Twitter className="w-5 h-5" />, href: "#", name: "Twitter" },
+  //   { icon: <Facebook className="w-5 h-5" />, href: "#", name: "Facebook" },
+  //   { icon: <Linkedin className="w-5 h-5" />, href: "#", name: "LinkedIn" },
+  // ];
 
   return (
     <footer className="bg-[var(--maroon)] text-[var(--off-white)] relative overflow-hidden">
       {/* Art Deco Background Pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="h-full w-full" style={{
-          backgroundImage: `
+        <div
+          className="h-full w-full"
+          style={{
+            backgroundImage: `
             linear-gradient(45deg, var(--gold) 25%, transparent 25%),
             linear-gradient(-45deg, var(--gold) 25%, transparent 25%),
             linear-gradient(45deg, transparent 75%, var(--gold) 75%),
             linear-gradient(-45deg, transparent 75%, var(--gold) 75%)
           `,
-          backgroundSize: '60px 60px',
-          backgroundPosition: '0 0, 0 30px, 30px -30px, -30px 0px'
-        }}>
-        </div>
+            backgroundSize: "60px 60px",
+            backgroundPosition: "0 0, 0 30px, 30px -30px, -30px 0px",
+          }}
+        ></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -59,17 +49,22 @@ export function Footer() {
             <div className="space-y-6">
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-[var(--gold)] to-[var(--bronze)] rounded-lg flex items-center justify-center">
-                  <span className="text-[var(--maroon)] font-bold text-xl">M</span>
+                  <span className="text-[var(--maroon)] font-bold text-xl">
+                    M
+                  </span>
                 </div>
                 <div>
                   <h3 className="font-bold text-xl">MCBIOS 2026</h3>
-                  <p className="text-[var(--off-white)]/80 text-sm">Florida Conference</p>
+                  <p className="text-[var(--off-white)]/80 text-sm">
+                    Moffit Cancer Center
+                  </p>
                 </div>
               </div>
-              
+
               <p className="text-[var(--off-white)]/80 leading-relaxed">
-                The premier gathering bridging data, AI, and innovation to transform health, 
-                fostering collaboration between researchers, clinicians, and technologists.
+                The premier gathering bridging data, AI, and innovation to
+                transform health, fostering collaboration between researchers,
+                clinicians, and technologists.
               </p>
 
               <div className="space-y-3">
@@ -123,8 +118,9 @@ export function Footer() {
 
             {/* Contact & Social */}
             <div>
-              <h4 className="font-bold mb-6 text-[var(--gold)]">Contact</h4>
-              <div className="space-y-4 mb-6">
+              <h4 className="font-bold mb-6 text-[var(--gold)]">Learn More!</h4>
+              {/* <h4 className="font-bold mb-6 text-[var(--gold)]">Contact</h4> */}
+              {/* <div className="space-y-4 mb-6">
                 <div className="flex items-center space-x-3 text-[var(--off-white)]/80">
                   <Mail className="w-4 h-4 text-[var(--gold)]" />
                   <a href="mailto:info@mcbios2026.org" className="hover:text-[var(--gold)] transition-colors">
@@ -137,12 +133,20 @@ export function Footer() {
                     +1 (555) MCBIOS
                   </a>
                 </div>
-              </div>
+              </div> */}
 
               <div className="space-y-4">
-                <h5 className="font-medium text-[var(--gold)]">Follow Us</h5>
+                {/* <h5 className="font-medium text-[var(--gold)]">Learn More</h5> */}
                 <div className="flex space-x-3">
-                  {socialLinks.map((social, index) => (
+                  <a
+                    href="https://mcbios.com"
+                    target="_blank"
+                    className="p-2 bg-[var(--off-white)]/10 rounded-lg hover:bg-[var(--gold)]/20 hover:text-[var(--gold)] transition-all duration-300 hover:scale-110"
+                    aria-label="MCBIOS Homepage"
+                  >
+                    <Globe />
+                  </a>
+                  {/* {socialLinks.map((social, index) => (
                     <a
                       key={index}
                       href={social.href}
@@ -151,7 +155,7 @@ export function Footer() {
                     >
                       {social.icon}
                     </a>
-                  ))}
+                  ))} */}
                 </div>
               </div>
             </div>
@@ -161,7 +165,7 @@ export function Footer() {
         <Separator className="bg-[var(--off-white)]/20" />
 
         {/* Newsletter Signup */}
-        <div className="py-8">
+        {/* <div className="py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h4 className="font-bold text-[var(--gold)] mb-2">Stay Updated</h4>
@@ -178,7 +182,7 @@ export function Footer() {
               </Button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <Separator className="bg-[var(--off-white)]/20" />
 
@@ -186,15 +190,24 @@ export function Footer() {
         <div className="py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-[var(--off-white)]/60 text-sm">
             <div className="flex flex-wrap items-center gap-4">
-              <span>© 2026 MCBIOS Conference. All rights reserved.</span>
-              <Badge variant="outline" className="border-[var(--gold)]/50 text-[var(--gold)]">
+              <span>
+                © 2026 MidSouth Computational Biology and Bioinformatics
+                Society. All rights reserved.
+              </span>
+              {/* <Badge variant="outline" className="border-[var(--gold)]/50 text-[var(--gold)]">
                 Art Deco Design
-              </Badge>
+              </Badge> */}
             </div>
             <div className="flex items-center space-x-6">
-              <a href="#" className="hover:text-[var(--gold)] transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-[var(--gold)] transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-[var(--gold)] transition-colors">Code of Conduct</a>
+              {/* <a href="#" className="hover:text-[var(--gold)] transition-colors">Privacy Policy</a> */}
+              {/* <a href="#" className="hover:text-[var(--gold)] transition-colors">Terms of Service</a> */}
+              <a
+                href="https://mcbios.com/about"
+                target="_blank"
+                className="hover:text-[var(--gold)] transition-colors"
+              >
+                Bylaws
+              </a>
             </div>
           </div>
         </div>
