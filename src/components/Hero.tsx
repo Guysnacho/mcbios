@@ -22,9 +22,11 @@ export function Hero() {
             <div className="space-y-4">
               <div className="flex items-center space-x-2 text-[var(--off-white)]/80">
                 <div className="w-2 h-2 bg-[var(--gold)] rounded-full"></div>
-                <span className="text-sm tracking-wider uppercase">Annual Conference</span>
+                <span className="text-sm tracking-wider uppercase">
+                  Annual Conference
+                </span>
               </div>
-              
+
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
                 <span className="text-[var(--off-white)]">MCBIOS</span>
                 <br />
@@ -33,10 +35,11 @@ export function Hero() {
                   <div className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-[var(--gold)] to-transparent"></div>
                 </span>
               </h1>
-              
+
               <p className="text-xl text-[var(--off-white)]/90 max-w-xl leading-relaxed">
-                Bridging Data, AI, and Innovation to Transform Health. Join leading researchers 
-                and industry pioneers shaping the future of healthcare through computational biology.
+                Bridging Data, AI, and Innovation to Transform Health. Join
+                leading researchers and industry pioneers shaping the future of
+                healthcare through computational biology.
               </p>
             </div>
 
@@ -52,22 +55,22 @@ export function Hero() {
               </div>
               <div className="flex items-center space-x-2">
                 <Users className="w-5 h-5 text-[var(--gold)]" />
-                <span>500+ Attendees</span>
+                <span>100+ Attendees</span>
               </div>
             </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4">
-              <Button 
+              <Button
                 size="lg"
                 className="bg-[var(--off-white)] text-[var(--maroon)] hover:bg-[var(--gold)] hover:text-[var(--maroon)] px-8 py-3 font-semibold border-2 border-[var(--off-white)]"
               >
                 Register Now
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="lg"
-                className="border-2 border-[var(--off-white)] text-[var(--off-white)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] px-8 py-3 font-semibold"
+                className="border-2 border-[var(--off-white)] text-[var(--maroon)] bg-[var(--gold)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] px-8 py-3 font-semibold"
               >
                 View Schedule
               </Button>

@@ -12,7 +12,7 @@ export function Header() {
     { href: "#about", label: "About" },
     { href: "#speakers", label: "Speakers" },
     { href: "#schedule", label: "Schedule" },
-    { href: "#registration", label: "Register" },
+    // { href: "#registration", label: "Register" },
   ];
 
   return (
@@ -53,10 +53,11 @@ export function Header() {
               </a>
             ))}
             <Button
+              asChild
               variant="outline"
-              className="border-[var(--off-white)] text-[var(--off-white)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] font-medium"
+              className="border-[var(--off-white)] text-[var(--maroon)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] bg-[var(--gold)] font-medium"
             >
-              Register Now
+              <a href="#registration">Register Now</a>
             </Button>
           </nav>
 
@@ -87,9 +88,17 @@ export function Header() {
               ))}
               <Button
                 variant="outline"
-                className="border-[var(--off-white)] text-[var(--off-white)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] font-medium mt-4"
+                className="border-[var(--off-white)] text-[var(--maroon)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] bg-[var(--gold)] font-medium mt-4"
+                asChild
               >
-                Register Now
+                <a
+                  href="#registration"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Register Now
+                </a>
               </Button>
             </div>
           </nav>

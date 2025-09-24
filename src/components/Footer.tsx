@@ -83,7 +83,7 @@ export function Footer() {
                 </div>
                 <div className="flex items-center space-x-2 text-[var(--off-white)]/80">
                   <Users className="w-4 h-4 text-[var(--gold)]" />
-                  <span>500+ Expected Attendees</span>
+                  <span>100+ Expected Attendees</span>
                 </div>
               </div>
             </div>
