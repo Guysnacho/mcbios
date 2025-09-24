@@ -1,6 +1,8 @@
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+import { Theme } from "@radix-ui/themes";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Theme } from "@radix-ui/themes";
 
 import "./globals.css";
 
@@ -34,7 +36,11 @@ export default function RootLayout({
       >
         <Theme>
           <div className="bg-linear-to-r from-[#f4d7de] to-[#a0aef8]">
-            {children}
+            <div className="min-h-screen bg-gradient-to-b from-[var(--maroon)] via-[var(--pink)] to-[var(--off-white)]">
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </div>
           </div>
         </Theme>
       </body>
