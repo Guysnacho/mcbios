@@ -65,9 +65,9 @@ export function Registration() {
   ];
 
   const importantDates = [
-    { date: "January 15, 2026", event: "Early Bird Registration Ends", urgent: true },
+    { date: "January 1, 2026", event: "Early Bird Registration Ends", urgent: true },
     { date: "February 1, 2026", event: "Abstract Submission Deadline", urgent: false },
-    { date: "February 15, 2026", event: "Regular Registration Ends", urgent: false },
+    { date: "February 28, 2026", event: "Regular Registration Ends", urgent: false },
     { date: "March 1, 2026", event: "Late Registration Begins", urgent: false }
   ];
 

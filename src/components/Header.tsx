@@ -34,9 +34,9 @@ export function Header() {
               <h1 className="text-[var(--off-white)] font-bold text-xl">
                 MCBIOS 2026
               </h1>
-              <p className="text-[var(--off-white)]/80 text-sm">
-                Florida Conference
-              </p>
+              {/* <p className="text-[var(--off-white)]/80 text-sm">
+                Tagline
+              </p> */}
             </div>
           </div>
 

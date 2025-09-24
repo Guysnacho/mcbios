@@ -1,5 +1,5 @@
-import { Button } from "./ui/button";
 import { Calendar, MapPin, Users } from "lucide-react";
+import { Button } from "./ui/button";
 import { WordCloud } from "./WordCloud";
 
 export function Hero() {
@@ -37,9 +37,11 @@ export function Hero() {
               </h1>
 
               <p className="text-xl text-[var(--off-white)]/90 max-w-xl leading-relaxed">
-                Bridging Data, AI, and Innovation to Transform Health. Join
-                leading researchers and industry pioneers shaping the future of
-                healthcare through computational biology.
+                Bridging Data, AI, and Innovation to Transform Health <br />
+                <span className="text-sm">
+                  Join leading researchers and industry pioneers shaping the
+                  future of healthcare through computational biology.
+                </span>
               </p>
             </div>
 
@@ -47,11 +49,11 @@ export function Hero() {
             <div className="flex flex-wrap gap-6 text-[var(--off-white)]">
               <div className="flex items-center space-x-2">
                 <Calendar className="w-5 h-5 text-[var(--gold)]" />
-                <span>March 15-17, 2026</span>
+                <span>March 26-29, 2026</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="w-5 h-5 text-[var(--gold)]" />
-                <span>Miami, Florida</span>
+                <span>12902 Magnolia Drive | Tampa, FL 33612</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Users className="w-5 h-5 text-[var(--gold)]" />

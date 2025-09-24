@@ -1,12 +1,12 @@
-import { Card } from "./ui/card";
-import { Badge } from "./ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Clock, MapPin, Users } from "lucide-react";
+import { Badge } from "./ui/badge";
+import { Card } from "./ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 export function Schedule() {
   const scheduleData = {
-    "day1": {
-      date: "March 15, 2026",
+    "Day 1": {
+      date: "March 26, 2026",
       title: "Opening & Keynotes",
       events: [
         {
@@ -71,8 +71,8 @@ export function Schedule() {
         }
       ]
     },
-    "day2": {
-      date: "March 16, 2026",
+    "Day 2": {
+      date: "March 27, 2026",
       title: "Research & Innovation",
       events: [
         {
@@ -130,8 +130,67 @@ export function Schedule() {
         }
       ]
     },
-    "day3": {
-      date: "March 17, 2026",
+    "Day 3": {
+      date: "March 28, 2026",
+      title: "Future Directions",
+      events: [
+        {
+          time: "9:00 AM",
+          title: "Session: Population Health Analytics",
+          speaker: "Prof. Roberto Silva",
+          type: "session",
+          location: "Conference Room A",
+          duration: "90 min"
+        },
+        {
+          time: "10:30 AM",
+          title: "Coffee Break",
+          type: "break",
+          location: "Exhibition Hall",
+          duration: "30 min"
+        },
+        {
+          time: "11:00 AM",
+          title: "Lightning Talks",
+          speaker: "Young Researchers",
+          type: "talks",
+          location: "Conference Room B",
+          duration: "60 min"
+        },
+        {
+          time: "12:00 PM",
+          title: "Lunch & Career Fair",
+          type: "networking",
+          location: "Exhibition Hall",
+          duration: "90 min"
+        },
+        {
+          time: "1:30 PM",
+          title: "Session: Future of Health Technology",
+          speaker: "Multiple Speakers",
+          type: "session",
+          location: "Grand Ballroom",
+          duration: "90 min"
+        },
+        {
+          time: "3:00 PM",
+          title: "Closing Ceremony & Awards",
+          speaker: "Conference Committee",
+          type: "ceremony",
+          location: "Grand Ballroom",
+          duration: "60 min"
+        },
+        {
+          time: "4:00 PM",
+          title: "Farewell Reception",
+          type: "networking",
+          location: "Main Lobby",
+          duration: "60 min"
+        }
+      ]
+    },
+    "Day 4": {
+      date: "March 28, 2026",
       title: "Future Directions",
       events: [
         {
@@ -240,26 +299,14 @@ export function Schedule() {
           </p>
         </div>
 
-        <Tabs defaultValue="day1" className="w-full">
+        <Tabs defaultValue="Day 1" className="w-full">
           <TabsList className="grid w-full grid-cols-3 mb-8 bg-[var(--maroon)]/10">
-            <TabsTrigger 
-              value="day1" 
+            {Object.keys(scheduleData).map((date) => <TabsTrigger key={date}
+              value={date} 
               className="data-[state=active]:bg-[var(--maroon)] data-[state=active]:text-[var(--off-white)]"
             >
-              Day 1
-            </TabsTrigger>
-            <TabsTrigger 
-              value="day2"
-              className="data-[state=active]:bg-[var(--maroon)] data-[state=active]:text-[var(--off-white)]"
-            >
-              Day 2
-            </TabsTrigger>
-            <TabsTrigger 
-              value="day3"
-              className="data-[state=active]:bg-[var(--maroon)] data-[state=active]:text-[var(--off-white)]"
-            >
-              Day 3
-            </TabsTrigger>
+              {date}
+            </TabsTrigger>)}
           </TabsList>
 
           {Object.entries(scheduleData).map(([day, data]) => (

@@ -75,11 +75,11 @@ export function Footer() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-2 text-[var(--off-white)]/80">
                   <Calendar className="w-4 h-4 text-[var(--gold)]" />
-                  <span>March 15-17, 2026</span>
+                  <span>March 26-29, 2026</span>
                 </div>
                 <div className="flex items-center space-x-2 text-[var(--off-white)]/80">
                   <MapPin className="w-4 h-4 text-[var(--gold)]" />
-                  <span>Miami, Florida</span>
+                  <span>12902 Magnolia Drive Tampa, FL 33612</span>
                 </div>
                 <div className="flex items-center space-x-2 text-[var(--off-white)]/80">
                   <Users className="w-4 h-4 text-[var(--gold)]" />
