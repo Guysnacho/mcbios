@@ -2087,7 +2087,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tailwindcss/postcss@npm:^4":
+"@tailwindcss/postcss@npm:^4.1.13":
   version: 4.1.13
   resolution: "@tailwindcss/postcss@npm:4.1.13"
   dependencies:
@@ -4575,7 +4575,7 @@ __metadata:
     "@radix-ui/react-toggle-group": "npm:^1.1.2"
     "@radix-ui/react-tooltip": "npm:^1.1.8"
     "@radix-ui/themes": "npm:^3.2.1"
-    "@tailwindcss/postcss": "npm:^4"
+    "@tailwindcss/postcss": "npm:^4.1.13"
     "@types/node": "npm:^20"
     "@types/react": "npm:19.1.13"
     "@types/react-dom": "npm:19.1.9"
@@ -4597,7 +4597,7 @@ __metadata:
     recharts: "npm:^2.15.2"
     sonner: "npm:^2.0.3"
     tailwind-merge: "npm:*"
-    tailwindcss: "npm:^4"
+    tailwindcss: "npm:^4.1.13"
     typescript: "npm:^5"
     vaul: "npm:^1.1.2"
   languageName: unknown
@@ -5761,7 +5761,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:4.1.13, tailwindcss@npm:^4":
+"tailwindcss@npm:4.1.13, tailwindcss@npm:^4.1.13":
   version: 4.1.13
   resolution: "tailwindcss@npm:4.1.13"
   checksum: 10c0/2b80b4b11463818fd16063b7cc13fd0f6e18d7e3c3e54bbdc98742981be807884addb1dd657bc6816cb4085197b7d583f5064f619e1039a54221ffa36b7ed4c0

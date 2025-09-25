@@ -57,7 +57,7 @@ export function AbstractSubmissions() {
 
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center space-x-2 mb-4">
+          <div className="flex items-center justify-center space-x-2 mb-4 mt-10">
             <div className="w-12 h-0.5 bg-[var(--maroon)]"></div>
             <Badge variant="secondary" className="bg-[var(--maroon)] text-[var(--off-white)] px-4 py-1">
               Call for Abstracts

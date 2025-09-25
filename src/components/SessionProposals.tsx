@@ -46,7 +46,7 @@ export function SessionProposals() {
       <div className="absolute bottom-10 left-10 w-24 h-24 border-2 border-[var(--maroon)]/20 rotate-12"></div>
       <div className="absolute top-1/2 left-1/4 w-16 h-16 border border-[var(--pink)]/20 rounded-full"></div>
 
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto relative z-10 mt-10">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <div className="w-12 h-0.5 bg-[var(--maroon)]"></div>

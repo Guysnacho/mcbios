@@ -71,7 +71,7 @@ export function YSEAward() {
         </div>
       </div>
 
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto relative z-10 mt-10">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <div className="w-12 h-0.5 bg-[var(--gold)]"></div>
@@ -83,7 +83,7 @@ export function YSEAward() {
           
           <h2 className="text-4xl lg:text-5xl font-bold text-[var(--maroon)] mb-6">
             MCBIOS <span className="text-[var(--gold)]">YSEA</span>
-            <span className="text-[var(--pink)]"> 2026</span>
+            <span className="text-[var(--maroon)]"> 2026</span>
           </h2>
           
           <p className="text-lg text-[var(--maroon)]/80 max-w-3xl mx-auto leading-relaxed mb-8">
