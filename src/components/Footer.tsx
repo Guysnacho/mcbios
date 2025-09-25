@@ -4,16 +4,20 @@ import { Separator } from "./ui/separator";
 export function Footer() {
   const quickLinks = [
     { name: "About", href: "#about" },
-    { name: "Speakers", href: "#speakers" },
-    { name: "Schedule", href: "#schedule" },
-    { name: "Registration", href: "#registration" },
+    { name: "Venue", href: "#venue" },
+    // { name: "Speakers", href: "#speakers" },
+    // { name: "Schedule", href: "#schedule" },
+    // { name: "Registration", href: "#registration" },
   ];
 
   const resources = [
-    { name: "Call for Papers", href: "#" },
-    { name: "Travel Information", href: "#" },
-    { name: "Accommodation", href: "#" },
-    { name: "Sponsorship", href: "#" },
+    { name: "Abstracts", href: "/abstracts" },
+    { name: "Session Proposals", href: "/sessions" },
+    { name: "YSEA", href: "/ysea" },
+    // { name: "Call for Papers", href: "#" },
+    // { name: "Travel Information", href: "#" },
+    // { name: "Accommodation", href: "#" },
+    // { name: "Sponsorship", href: "#" },
   ];
 
   // const socialLinks = [

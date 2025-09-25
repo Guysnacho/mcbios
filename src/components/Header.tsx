@@ -4,14 +4,18 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
     { href: "#about", label: "About" },
-    { href: "#speakers", label: "Speakers" },
-    { href: "#schedule", label: "Schedule" },
+    { href: "/abstracts", label: "Abstracts" },
+    { href: "/sessions", label: "Session Proposals" },
+    { href: "/ysea", label: "YSEA" },
+    // { href: "#speakers", label: "Speakers" },
+    // { href: "#schedule", label: "Schedule" },
     // { href: "#registration", label: "Register" },
   ];
 
@@ -31,9 +35,11 @@ export function Header() {
               />
             </div>
             <div>
-              <h1 className="text-[var(--off-white)] font-bold text-xl">
-                MCBIOS 2026
-              </h1>
+              <Link href="/">
+                <h1 className="text-[var(--off-white)] font-bold text-xl">
+                  MCBIOS 2026
+                </h1>
+              </Link>
               {/* <p className="text-[var(--off-white)]/80 text-sm">
                 Tagline
               </p> */}
@@ -54,10 +60,12 @@ export function Header() {
             ))}
             <Button
               asChild
+              disabled
               variant="outline"
               className="border-[var(--off-white)] text-[var(--maroon)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] bg-[var(--gold)] font-medium"
             >
-              <a href="#registration">Register Now</a>
+              <a href="#">Registration Opens Soon</a>
+              {/* <a href="#registration">Register Now</a> */}
             </Button>
           </nav>
 
@@ -90,14 +98,22 @@ export function Header() {
                 variant="outline"
                 className="border-[var(--off-white)] text-[var(--maroon)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] bg-[var(--gold)] font-medium mt-4"
                 asChild
+                disabled
               >
-                <a
+                {/* <a
                   href="#registration"
                   onClick={() => {
                     setIsMenuOpen(false);
                   }}
                 >
                   Register Now
+                </a> */}
+                <a
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Registration Opens Soon
                 </a>
               </Button>
             </div>

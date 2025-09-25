@@ -1,5 +1,4 @@
 import { Calendar, MapPin, Users } from "lucide-react";
-import { Button } from "./ui/button";
 import { WordCloud } from "./WordCloud";
 
 export function Hero() {
@@ -62,7 +61,7 @@ export function Hero() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4">
+            {/* <div className="flex flex-wrap gap-4">
               <Button
                 size="lg"
                 className="bg-[var(--off-white)] text-[var(--maroon)] hover:bg-[var(--gold)] hover:text-[var(--maroon)] px-8 py-3 font-semibold border-2 border-[var(--off-white)]"
@@ -76,7 +75,7 @@ export function Hero() {
               >
                 View Schedule
               </Button>
-            </div>
+            </div> */}
           </div>
 
           {/* Word Cloud */}

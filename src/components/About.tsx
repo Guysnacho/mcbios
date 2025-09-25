@@ -110,7 +110,10 @@ export function About() {
         {/* Venue Showcase */}
         <div className="mb-16">
           <div className="text-center mb-8">
-            <h3 className="text-3xl font-bold text-[var(--maroon)] mb-4">
+            <h3
+              id="venue"
+              className="text-3xl font-bold text-[var(--maroon)] mb-4"
+            >
               Our Venue
             </h3>
             <p className="text-[var(--maroon)]/80 max-w-2xl mx-auto">
@@ -136,23 +139,23 @@ export function About() {
         </div>
 
         {/* Conference Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
           <div className="space-y-2">
-            <div className="text-3xl font-bold text-[var(--pink)]">500+</div>
+            <div className="text-3xl font-bold text-[var(--pink)]">100+</div>
             <div className="text-[var(--maroon)]/70">Attendees</div>
           </div>
           <div className="space-y-2">
-            <div className="text-3xl font-bold text-[var(--pink)]">50+</div>
+            <div className="text-3xl font-bold text-[var(--pink)]">Several</div>
             <div className="text-[var(--maroon)]/70">Speakers</div>
           </div>
           <div className="space-y-2">
-            <div className="text-3xl font-bold text-[var(--pink)]">3</div>
+            <div className="text-3xl font-bold text-[var(--pink)]">4</div>
             <div className="text-[var(--maroon)]/70">Days</div>
           </div>
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <div className="text-3xl font-bold text-[var(--pink)]">25+</div>
             <div className="text-[var(--maroon)]/70">Sessions</div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
