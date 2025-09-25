@@ -97,7 +97,7 @@ export function SessionProposals({ deadlinePassed }: FormProps) {
             <div className="flex items-center justify-center space-x-2 mb-8">
               <Clock className="w-5 h-5 text-[var(--pink)]" />
               <span className="font-medium text-[var(--maroon)]">
-                Deadline: December 20, 2025
+                Application Deadline: December 20, 2025
               </span>
             </div>
           )}
