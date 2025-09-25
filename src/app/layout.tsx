@@ -36,11 +36,9 @@ export default function RootLayout({
       >
         <Theme>
           <div className="bg-linear-to-r from-[#f4d7de] to-[#a0aef8]">
-            <div className="min-h-screen bg-gradient-to-b from-[var(--maroon)] via-[var(--pink)] to-[var(--off-white)]">
-              <Header />
-              <main>{children}</main>
-              <Footer />
-            </div>
+            <Header />
+            <main>{children}</main>
+            <Footer />
           </div>
         </Theme>
       </body>
