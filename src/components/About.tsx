@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Brain, Database, Microscope, Network } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Card } from "./ui/card";

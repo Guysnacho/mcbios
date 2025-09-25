@@ -43,23 +43,23 @@ export function AbstractSubmissions({ deadlinePassed }: FormProps) {
     },
   ];
 
-  const keyDates = [
-    {
-      date: "February 17, 2026",
-      event: "Abstract Submission Deadline",
-      urgent: true,
-    },
-    {
-      date: "February 17, 2026",
-      event: "Full Paper Submission Deadline",
-      urgent: true,
-    },
-    {
-      date: "March 1, 2026",
-      event: "Notification of Acceptance",
-      urgent: false,
-    },
-  ];
+  // const keyDates = [
+  //   {
+  //     date: "February 17, 2026",
+  //     event: "Abstract Submission Deadline",
+  //     urgent: true,
+  //   },
+  //   {
+  //     date: "February 17, 2026",
+  //     event: "Full Paper Submission Deadline",
+  //     urgent: true,
+  //   },
+  //   {
+  //     date: "March 1, 2026",
+  //     event: "Notification of Acceptance",
+  //     urgent: false,
+  //   },
+  // ];
 
   return (
     <section
