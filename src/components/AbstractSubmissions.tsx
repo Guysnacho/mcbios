@@ -183,8 +183,8 @@ export function AbstractSubmissions({ deadlinePassed }: FormProps) {
         </div>
 
         {/* Key Information Cards */}
-        <div className="grid md:grid-cols-2 gap-8">
-          <Card className="p-8 bg-white/95 backdrop-blur-sm border-[var(--maroon)]/20">
+        <div className="grid md:grid-cols-1 gap-8">
+          {/* <Card className="p-8 bg-white/95 backdrop-blur-sm border-[var(--maroon)]/20">
             <h3 className="text-xl font-bold text-[var(--maroon)] mb-6 flex items-center">
               <Clock className="w-5 h-5 mr-2 text-[var(--pink)]" />
               Important Dates
@@ -209,12 +209,12 @@ export function AbstractSubmissions({ deadlinePassed }: FormProps) {
                 </div>
               ))}
             </div>
-          </Card>
+          </Card> */}
 
           <Card className="p-8 bg-white/95 backdrop-blur-sm border-[var(--maroon)]/20">
             <h3 className="text-xl font-bold text-[var(--maroon)] mb-6 flex items-center">
               <FileText className="w-5 h-5 mr-2 text-[var(--pink)]" />
-              Abstract Structure
+              Potential Abstract Structure
             </h3>
             <div className="space-y-4">
               <div className="p-4 bg-[var(--off-white)] rounded-lg border border-[var(--maroon)]/10">
