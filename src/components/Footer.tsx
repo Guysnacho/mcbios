@@ -11,8 +11,8 @@ export function Footer() {
   ];
 
   const resources = [
-    { name: "Abstracts", href: "/abstracts" },
     { name: "Session Proposals", href: "/sessions" },
+    { name: "Abstracts", href: "/abstracts" },
     { name: "YSEA", href: "/ysea" },
     // { name: "Call for Papers", href: "#" },
     // { name: "Travel Information", href: "#" },
