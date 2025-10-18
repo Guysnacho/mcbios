@@ -1,9 +1,10 @@
 import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
-import "@/styles/globals.css";
 import RootLayout from "@/components/layout";
 import { ChakraProvider } from "@chakra-ui/react";
+
+import "@/styles/globals.css";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement<any>) => ReactNode;
