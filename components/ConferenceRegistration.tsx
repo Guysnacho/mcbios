@@ -27,7 +27,7 @@ import { useState } from "react";
 import {
   PaymentHandler,
   PaymentHandlerType,
-} from "./dashboard/admin/PaymentHandler";
+} from "./dashboard/PaymentHandler";
 
 const steps = [
   { title: "First", description: "Contact Info" },

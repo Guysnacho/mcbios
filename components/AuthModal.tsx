@@ -1,7 +1,7 @@
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
-import { isPresent } from "@/lib/utils";
-import { createClient } from "@/lib/utils/supabase/component";
+import { isPresent } from "@/lib";
+import { createClient } from "@/lib/supabase/component";
 import { InfoIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
   Alert,

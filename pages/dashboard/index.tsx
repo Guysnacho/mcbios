@@ -3,12 +3,12 @@ import { MemberContent } from "@/components/dashboard/admin/MemberContent";
 import {
   PaymentHandler,
   PaymentHandlerType,
-} from "@/components/dashboard/admin/PaymentHandler";
+} from "@/components/dashboard/PaymentHandler";
 import { User } from "@/components/User";
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
-import { authFetcher, DUPLICATE_ROW } from "@/lib/utils";
-import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
+import { authFetcher, DUPLICATE_ROW } from "@/lib";
+import { createClient as createCompoentClient } from "@/lib/supabase/component";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import {
   Button,

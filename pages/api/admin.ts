@@ -87,6 +87,7 @@ export default async function handler(
           expires_at,
         })
       );
+      console.log(promo);
       res.send(promo);
       break;
     case "DELETE":

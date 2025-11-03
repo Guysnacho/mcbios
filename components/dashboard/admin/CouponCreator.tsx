@@ -1,5 +1,4 @@
-import { createClient } from "@/lib/utils/supabase/component";
-import { couponFetcher } from "@/lib/utils";
+import { couponFetcher } from "@/lib";
 import { ChevronDownIcon, DeleteIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -220,13 +219,15 @@ export const CouponCreator = () => {
       <VStack textAlign="center">
         <Heading size="md">Coupon List</Heading>
 
-        {isLoading ? (
+        {error ? (
+          <></>
+        ) : isLoading ? (
           <Spinner />
-        ) : (
+        ) : data ? (
           <TableContainer maxH={500} overflowY="auto">
             <Table variant="striped">
               <TableCaption>
-                {data && data.length
+                {data.length
                   ? data.length + " coupons created"
                   : "No coupons available"}
               </TableCaption>
@@ -238,9 +239,7 @@ export const CouponCreator = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {!isLoading &&
-                  data &&
-                  data.length &&
+                {data.length &&
                   data.map((coupon, idx) => (
                     <Tr key={idx}>
                       <Td>{idx + 1}</Td>
@@ -293,6 +292,8 @@ export const CouponCreator = () => {
               </Tbody>
             </Table>
           </TableContainer>
+        ) : (
+          <></>
         )}
       </VStack>
     </Stack>

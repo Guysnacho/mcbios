@@ -1,5 +1,5 @@
 import { User } from "@/components/User";
-import { Database } from "@/lib/utils/supabase/types";
+import { Database } from "@/lib/supabase/types";
 import { CheckIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Button,

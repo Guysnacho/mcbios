@@ -1,5 +1,5 @@
-import { createClient } from "@/lib/utils/supabase/component";
-import { Database } from "@/lib/utils/supabase/types";
+import { createClient } from "@/lib/supabase/component";
+import { Database } from "@/lib/supabase/types";
 import { Button, Flex, Heading, Input, Stack, Text, useToast, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";

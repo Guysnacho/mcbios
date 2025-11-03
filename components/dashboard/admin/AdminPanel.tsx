@@ -1,4 +1,4 @@
-import { Database } from "@/lib/utils/supabase/types";
+import { Database } from "@/lib/supabase/types";
 import {
   TabPanel,
   Divider,

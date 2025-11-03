@@ -1,7 +1,7 @@
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
-import { ConfYears } from "@/lib/utils";
-import { createClient } from "@/lib/utils/supabase/component";
+import { ConfYears } from "@/lib";
+import { createClient } from "@/lib/supabase/component";
 import {
   ChevronDownIcon,
   ChevronRightIcon,
