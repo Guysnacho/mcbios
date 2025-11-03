@@ -184,15 +184,17 @@ export const AuthModal = ({
                   </Box>
                 </HStack>
               )}
-              <FormControl id="institution" isRequired isDisabled={loading}>
-                <FormLabel>Institution</FormLabel>
-                <Input
-                  type="text"
-                  inputMode="text"
-                  onChange={(e) => setInstitution(e.currentTarget.value)}
-                  value={institution}
-                />
-              </FormControl>
+              {isSignUp && (
+                <FormControl id="institution" isRequired isDisabled={loading}>
+                  <FormLabel>Institution</FormLabel>
+                  <Input
+                    type="text"
+                    inputMode="text"
+                    onChange={(e) => setInstitution(e.currentTarget.value)}
+                    value={institution}
+                  />
+                </FormControl>
+              )}
               <FormControl id="email" isRequired isDisabled={loading}>
                 <FormLabel>Email address</FormLabel>
                 <Input
@@ -249,7 +251,10 @@ export const AuthModal = ({
               onClick={() =>
                 handleAuth(true)
                   .then(() => handleClose())
-                  .catch((error) => setError(error.message))
+                  .catch((error) => {
+                    console.error(error);
+                    setError(error.message);
+                  })
                   .finally(() => setLoading(false))
               }
               colorScheme="green"
