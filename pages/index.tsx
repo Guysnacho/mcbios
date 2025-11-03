@@ -97,14 +97,14 @@ export default function Home() {
           <Heading size="sm" color="gray.600">
             {Taglines[currentTag || 0]}
           </Heading>
-          <Button
+          {/* <Button
             type="button"
             size="md"
             onClick={() => router.push("/membership")}
             colorScheme="pink"
           >
             Become a Member
-          </Button>
+          </Button> */}
         </Box>
       </HStack>
 
@@ -302,7 +302,7 @@ export default function Home() {
             membership and are eligible for student awards. MCBIOS encourages
             involvement at both the regional and state level.
           </p>
-          <div className="w-full flex justify-center">
+          {/* <div className="w-full flex justify-center">
             <Button
               size="md"
               onClick={() => router.push("/membership")}
@@ -310,7 +310,7 @@ export default function Home() {
             >
               Registration
             </Button>
-          </div>
+          </div> */}
         </div>
         <div className="w-full mb-11">
           <h4 className="text-center">Local Chapters</h4>

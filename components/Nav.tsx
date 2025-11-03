@@ -134,7 +134,7 @@ export default function Nav() {
           </Flex>
         </Flex>
 
-        {store && store.id ? (
+        {/* {store && store.id ? (
           <Stack
             flex={{ base: 1, md: "auto" }}
             justify={"flex-end"}
@@ -200,7 +200,7 @@ export default function Nav() {
               Sign Up
             </Button>
           </Stack>
-        )}
+        )} */}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -383,11 +383,11 @@ const NAV_ITEMS: Array<NavItem> = [
     label: "Leadership",
     href: "/leadership",
   },
-  {
-    label: "Membership",
-    subLabel: "Gain access to past recordings, board votes and more!",
-    href: "/membership",
-  },
+  // {
+  //   label: "Membership",
+  //   subLabel: "Gain access to past recordings, board votes and more!",
+  //   href: "/membership",
+  // },
   {
     label: "Conferences",
     children: ConfYears.reverse().map((conference) => {

@@ -7,10 +7,10 @@ export const PathMap = {
     name: "LEADERSHIP",
     path: "/leadership",
   },
-  "/membership": {
-    name: "MEMBERSHIP",
-    path: "/membership",
-  },
+  // "/membership": {
+  //   name: "MEMBERSHIP",
+  //   path: "/membership",
+  // },
   "/conferences": {
     name: "CONFERENCES",
     path: "/conferences",
