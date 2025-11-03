@@ -101,7 +101,7 @@ export default function Dashboard() {
             <TabPanel>
               <div className="my-5 flex gap-3 mx-auto justify-center">
                 <div>
-                  <h5 className="text-center">Your Member Info</h5>
+                  <h5 className="text-center">Membership Info</h5>
                   <User
                     fname={data?.user?.fname}
                     lname={data?.user?.lname}

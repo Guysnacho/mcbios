@@ -1,14 +1,9 @@
 import { NameTagForm } from "@/components/forms/NameTagForm";
-import { useUserStore } from "@/lib/store";
-import useStore from "@/lib/store/useStore";
 import { Button, Heading, Image, VStack } from "@chakra-ui/react";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
 const Forms = () => {
-  const store = useStore(useUserStore, (store) => store);
-  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
