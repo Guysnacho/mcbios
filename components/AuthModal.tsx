@@ -75,7 +75,15 @@ export const AuthModal = ({
         email,
         password,
         options: isSignUp
-          ? { data: { fname, lname, role: "student", institution } }
+          ? {
+              data: {
+                fname,
+                lname,
+                role: "student",
+                institution,
+                org_id: process.env.NEXT_PUBLIC_ORG_ID,
+              },
+            }
           : undefined,
       });
       // Handle response
