@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate": "npx supabase gen types --lang=typescript --project-id kwuzgazdedqjxlvymyke --schema public > ./lib/utils/supabase/types.ts"
+    "generate": "npx supabase gen types --lang=typescript --project-id tlyfzmmbdfkdxsavevdz --schema public > ./lib/utils/supabase/types.ts"
   },
   "dependencies": {
     "@chakra-ui/icons": "2.2.4",
