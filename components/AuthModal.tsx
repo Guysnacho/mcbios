@@ -251,10 +251,7 @@ export const AuthModal = ({
               onClick={() =>
                 handleAuth(true)
                   .then(() => handleClose())
-                  .catch((error) => {
-                    console.error(error);
-                    setError(error.message);
-                  })
+                  .catch((error) => setError(error.message))
                   .finally(() => setLoading(false))
               }
               colorScheme="green"

@@ -89,7 +89,6 @@ export const VideoUploader = () => {
 
   return (
     <div className="w-[300px] sm:w-1/3">
-      <h5 className="text-center">Upload Content</h5>
       <div className="space-y-5">
         <Stack gap={2}>
           <Text mt={3} mb={-5}>
