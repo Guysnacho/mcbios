@@ -63,7 +63,7 @@ export default function Dashboard() {
         <Tabs
           aria-label="Dashboard Tabs"
           size="lg"
-          // isFitted
+          isFitted
           variant="enclosed"
         >
           <TabList>

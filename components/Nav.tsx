@@ -383,11 +383,11 @@ const NAV_ITEMS: Array<NavItem> = [
     label: "Leadership",
     href: "/leadership",
   },
-  // {
-  //   label: "Membership",
-  //   subLabel: "Gain access to past recordings, board votes and more!",
-  //   href: "/membership",
-  // },
+  {
+    label: "Membership",
+    subLabel: "Gain access to past recordings, board votes and more!",
+    href: "/membership",
+  },
   {
     label: "Conferences",
     children: ConfYears.reverse().map((conference) => {
@@ -401,10 +401,10 @@ const NAV_ITEMS: Array<NavItem> = [
     label: "Events",
     href: "/events",
   },
-  {
-    label: "Forms",
-    href: "/forms",
-  },
+  // {
+  //   label: "Forms",
+  //   href: "/forms",
+  // },
   {
     label: "Publications",
     href: "/publications",
