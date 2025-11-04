@@ -87,6 +87,7 @@ export default async function handler(
           expires_at,
         })
       );
+      console.log(promo);
       res.send(promo);
       break;
     case "DELETE":
@@ -145,7 +146,7 @@ const validateCouponRequest = (body: any) => {
     body.percentage != undefined && Number.isInteger(body.percentage);
   const hasCoupon = body.coupon != undefined;
   const hasCouponName = body.couponName != undefined;
-  if ((hasDiscount !== hasPercentage) && hasCouponName) {
+  if (hasDiscount !== hasPercentage && hasCouponName) {
     return "NEW_COUPON";
   } else if (hasCoupon && !hasDiscount && !hasCouponName) {
     return "DUPLICATE";

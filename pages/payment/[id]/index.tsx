@@ -34,10 +34,6 @@ export default function PaymentConfirmation() {
       .finally(() => setLoading(false));
   }, 500);
 
-  // if (status === "open") {
-  //   return redirect("/dashboard");
-  // }
-
   return (
     <>
       <Head>

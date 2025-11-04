@@ -1,4 +1,4 @@
-import { Database } from "@/lib/utils/supabase/types";
+import { Database } from "@/lib/supabase/types";
 import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
 
 type RoleProp =

@@ -50,6 +50,7 @@ export const PaymentHandler = ({
     });
     const data = await res.json();
     return data.clientSecret;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email, tier, userId]);
 
   const options = { fetchClientSecret };

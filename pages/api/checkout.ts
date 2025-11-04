@@ -1,10 +1,10 @@
 import {
   PaymentBody,
   PaymentHandlerType,
-} from "@/components/dashboard/admin/PaymentHandler";
-import { isPresent } from "@/lib/utils";
-import createClient from "@/lib/utils/supabase/service";
-import { Database } from "@/lib/utils/supabase/types";
+} from "@/components/dashboard/PaymentHandler";
+import { isPresent } from "@/lib";
+import createClient from "@/lib/supabase/service";
+import { Database } from "@/lib/supabase/types";
 import { SupabaseClient } from "@supabase/supabase-js";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Stripe } from "stripe";

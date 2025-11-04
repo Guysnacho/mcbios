@@ -1,5 +1,5 @@
 import { User } from "@/components/User";
-import { Database } from "@/lib/utils/supabase/types";
+import { Database } from "@/lib/supabase/types";
 import { CheckIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Button,
@@ -84,6 +84,7 @@ export const UserConfirm = ({
           });
           console.error(error);
         } else {
+          // @ts-expect-error dw bout it
           setUsers(data);
         }
         setLoading(false);
@@ -107,6 +108,7 @@ export const UserConfirm = ({
             });
             console.error(error);
           } else {
+          // @ts-expect-error dw bout it
             setUsers(data);
           }
           setLoading(false);

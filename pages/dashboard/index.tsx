@@ -1,22 +1,19 @@
-import { CouponCreator } from "@/components/dashboard/admin/CouponCreator";
+import { AdminPanel } from "@/components/dashboard/admin/AdminPanel";
 import { MemberContent } from "@/components/dashboard/admin/MemberContent";
 import {
   PaymentHandler,
   PaymentHandlerType,
-} from "@/components/dashboard/admin/PaymentHandler";
-import UserConfirm from "@/components/dashboard/admin/UserConfirm";
-import VideoUploader from "@/components/dashboard/admin/VideoUploader";
+} from "@/components/dashboard/PaymentHandler";
 import { User } from "@/components/User";
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
-import { authFetcher, DUPLICATE_ROW } from "@/lib/utils";
-import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
+import { authFetcher, DUPLICATE_ROW } from "@/lib";
+import { createClient as createCompoentClient } from "@/lib/supabase/component";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import {
   Button,
   Divider,
   Flex,
-  Heading,
   Select,
   Tab,
   Table,
@@ -60,12 +57,7 @@ export default function Dashboard() {
               : "Welcome"}
           </h3>
         </div>
-        <Tabs
-          aria-label="Dashboard Tabs"
-          size="lg"
-          // isFitted
-          variant="enclosed"
-        >
+        <Tabs aria-label="Dashboard Tabs" size="lg" isFitted variant="line" colorScheme="blue">
           <TabList>
             {data?.user && data.user.role === "admin" ? (
               <Tab title="Admin">Admin</Tab>
@@ -75,21 +67,7 @@ export default function Dashboard() {
           </TabList>
           <TabPanels>
             {data?.user && data?.user.role === "admin" ? (
-              <TabPanel>
-                <div className="my-5 flex gap-3 mx-auto justify-center">
-                  <VideoUploader />
-                </div>
-                <Divider className="my-5" />
-                <Heading size="md" textAlign="center">
-                  User Account Confirmation
-                </Heading>
-                <div className="max-w-[500]px my-5 flex gap-3 mx-auto justify-center">
-                  {/* Add coupon */}
-                  <UserConfirm client={client} />
-                </div>
-
-                <CouponCreator />
-              </TabPanel>
+              <AdminPanel client={client} />
             ) : undefined}
 
             <TabPanel>
@@ -101,7 +79,7 @@ export default function Dashboard() {
             <TabPanel>
               <div className="my-5 flex gap-3 mx-auto justify-center">
                 <div>
-                  <h5 className="text-center">Your Member Info</h5>
+                  <h5 className="text-center">Membership Info</h5>
                   <User
                     fname={data?.user?.fname}
                     lname={data?.user?.lname}

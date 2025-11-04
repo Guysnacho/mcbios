@@ -1,4 +1,4 @@
-import { ConfYears, PathMap } from "@/lib/utils";
+import { ConfYears, PathMap } from "@/lib";
 
 // export const Footer = () => {
 //   const keys = Object.keys(PathMap);
