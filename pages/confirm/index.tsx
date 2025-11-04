@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 const Confirm = () => {
@@ -85,6 +86,8 @@ const Confirm = () => {
             type="button"
             leftIcon={<ChevronLeft />}
             colorScheme="purple"
+            as={Link}
+            href="/"
           >
             Home
           </Button>
