@@ -83,7 +83,7 @@ export default function Page() {
   ];
 
   return (
-    <div className="min-h-screen py-20">
+    <div className="min-h-screen pt-20">
       <section
         id="accommodations"
         className="pt-10 px-4 bg-gradient-to-b from-[var(--off-white)] to-[var(--pink)]/10 relative overflow-hidden"
@@ -213,7 +213,7 @@ export default function Page() {
           </div>
 
           {/* Additional Information */}
-          <Card className="p-6 md:p-8 bg-gradient-to-r from-[var(--maroon)] to-[var(--pink)] text-[var(--off-white)] border-0">
+          <Card className="p-6 mb-16 md:p-8 bg-gradient-to-r from-[var(--maroon)] to-[var(--pink)] text-[var(--off-white)] border-0">
             <div className="grid md:grid-cols-2 gap-6 md:gap-8">
               <div>
                 <h3 className="font-bold mb-3 flex items-center text-base md:text-lg">

@@ -125,14 +125,14 @@ export function Speakers() {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        {/* <div className="text-center mt-12">
           <Button
             size="lg"
             className="bg-[var(--maroon)] text-[var(--off-white)] hover:bg-[var(--pink)] px-8 py-3"
           >
             View All Speakers
           </Button>
-        </div>
+        </div> */}
       </div>
     </section>
   );
