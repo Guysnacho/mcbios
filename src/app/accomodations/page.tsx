@@ -1,7 +1,24 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Car, Coffee, MapPin, Phone, Star, Utensils, Wifi } from "lucide-react";
+import {
+  Baby,
+  BanIcon,
+  Briefcase,
+  Coffee,
+  DoorOpen,
+  Dumbbell,
+  MapPin,
+  PawPrint,
+  Phone,
+  Smartphone,
+  Star,
+  UserCheck,
+  Utensils,
+  Waves,
+  Wifi,
+  Wine,
+} from "lucide-react";
 
 export default function Page() {
   const hotels = [
@@ -12,12 +29,12 @@ export default function Page() {
       description:
         "Keep the kids happy at Adventure Island - a mile away, with Lowry Park Zoo nearby. Eat out at local restaurants or take advantage of a fully equipped in-room kitchen, complete with free WiFi and workspace. Enjoy some free breakfast before teeing off at a local golf course.",
       features: [
-        "Free hot breakfast",
-        "Free WiFi",
-        "Non-smoking rooms",
-        "Outdoor pool",
-        "Fitness center",
-        "Pet-friendly rooms",
+        { label: "Free hot breakfast", icon: Coffee },
+        { label: "Free WiFi", icon: Wifi },
+        { label: "Non-smoking rooms", icon: BanIcon },
+        { label: "Outdoor pool", icon: Waves },
+        { label: "Fitness center", icon: Dumbbell },
+        { label: "Pet-friendly rooms", icon: PawPrint },
       ],
       phone: "(813) 750-8844",
       bookingUrl:
@@ -31,13 +48,13 @@ export default function Page() {
       description:
         "Moffitt Cancer Center, The VA Hospital, Advent Health Hospital and Shriner's Hospital are just minutes from our hotel. Discover the genuine smiles and hospitality that our Holiday Inn Tampa North has to offer. Take time to unwind in our beautiful outdoor pool or work out according to your schedule in the 24-hour Fitness Center.",
       features: [
-        "1 pool",
-        "Fitness center",
-        "In hotel restaurants",
-        "Pet friendly",
-        "Kids eat free",
-        "Business center",
-        "Wireless internet",
+        { label: "1 pool", icon: Waves },
+        { label: "Fitness center", icon: Dumbbell },
+        { label: "In hotel restaurants", icon: Utensils },
+        { label: "Pet friendly", icon: PawPrint },
+        { label: "Kids eat free", icon: Baby },
+        { label: "Business center", icon: Briefcase },
+        { label: "Wireless internet", icon: Wifi },
       ],
       phone: "(813) 402-2982",
       bookingUrl:
@@ -49,14 +66,14 @@ export default function Page() {
       address: "3705 Spectrum Blvd, Tampa, FL 33612",
       distance: "0.7 miles • 5 min drive • 14 min walk",
       description:
-        "Find us on the University of South Florida campus, in the USF Research Park. We’re a Busch Gardens Preferred Partner and offer a free shuttle to the amusement park, five minutes away. We have an outdoor pool and a fitness center featuring a Peloton® Bike with toe cages. Enjoy free made-to-order breakfast and our complimentary Evening Reception.",
+        "Find us on the University of South Florida campus, in the USF Research Park. We're a Busch Gardens Preferred Partner and offer a free shuttle to the amusement park, five minutes away. We have an outdoor pool and a fitness center featuring a Peloton® Bike with toe cages. Enjoy free made-to-order breakfast and our complimentary Evening Reception.",
       features: [
-        "Connecting rooms",
-        "Free made-to-order breakfast",
-        "Complimentary evening reception",
-        "Non-smoking rooms",
-        "Digital key",
-        "Concierge",
+        { label: "Connecting rooms", icon: DoorOpen },
+        { label: "Free made-to-order breakfast", icon: Coffee },
+        { label: "Complimentary evening reception", icon: Wine },
+        { label: "Non-smoking rooms", icon: BanIcon },
+        { label: "Digital key", icon: Smartphone },
+        { label: "Concierge", icon: UserCheck },
       ],
       phone: "(813) 977-7066",
       bookingUrl:
@@ -157,26 +174,11 @@ export default function Page() {
                       key={featureIndex}
                       className="flex items-center space-x-2"
                     >
-                      {featureIndex === 0 && (
-                        <Wifi className="w-4 h-4 text-[var(--pink)] flex-shrink-0" />
-                      )}
-                      {featureIndex === 1 && (
-                        <Coffee className="w-4 h-4 text-[var(--pink)] flex-shrink-0" />
-                      )}
-                      {featureIndex === 2 && (
-                        <Utensils className="w-4 h-4 text-[var(--pink)] flex-shrink-0" />
-                      )}
-                      {featureIndex === 3 && (
-                        <Utensils className="w-4 h-4 text-[var(--pink)] flex-shrink-0" />
-                      )}
-                      {featureIndex === 4 && (
-                        <Car className="w-4 h-4 text-[var(--pink)] flex-shrink-0" />
-                      )}
-                      {featureIndex === 5 && (
-                        <Car className="w-4 h-4 text-[var(--pink)] flex-shrink-0" />
+                      {feature.icon && (
+                        <feature.icon className="w-4 h-4 text-[var(--pink)] flex-shrink-0" />
                       )}
                       <span className="text-xs text-[var(--maroon)]/70">
-                        {feature}
+                        {feature.label}
                       </span>
                     </div>
                   ))}
