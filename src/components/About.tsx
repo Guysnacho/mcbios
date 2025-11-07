@@ -127,7 +127,7 @@ export function About() {
             <img
               src="/img/Moffitt.jpg"
               alt="Moffitt Cancer Center - MCBIOS 2026 Venue"
-              className="w-full h-64 md:h-80 object-cover"
+              className="w-full h-96 md:h-120 object-cover"
               width={30}
               height={30}
             />
