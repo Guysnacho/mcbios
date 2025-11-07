@@ -4,10 +4,8 @@ import { WordCloud } from "./WordCloud";
 export function Hero() {
   return (
     <section className="pt-24 pb-16 px-4 min-h-screen flex items-center relative overflow-hidden">
-      {/* Art Deco Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-full h-full">
-          {/* Geometric patterns */}
           <div className="absolute top-20 left-10 w-32 h-32 border-2 border-[var(--gold)] rotate-45 opacity-30"></div>
           <div className="absolute bottom-20 right-10 w-24 h-24 border-2 border-[var(--gold)] rotate-12 opacity-30"></div>
           <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[var(--gold)] clip-path-triangle opacity-20"></div>

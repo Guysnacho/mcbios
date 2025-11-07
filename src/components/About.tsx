@@ -37,7 +37,6 @@ export function About() {
 
   return (
     <section id="about" className="py-20 px-4 bg-[var(--off-white)] relative">
-      {/* Art Deco Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
           className="h-full w-full"

@@ -29,7 +29,6 @@ export function Footer() {
 
   return (
     <footer className="bg-[var(--maroon)] text-[var(--off-white)] relative overflow-hidden">
-      {/* Art Deco Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div
           className="h-full w-full"

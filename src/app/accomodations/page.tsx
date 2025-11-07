@@ -88,7 +88,6 @@ export default function Page() {
         id="accommodations"
         className="pt-10 px-4 bg-gradient-to-b from-[var(--off-white)] to-[var(--pink)]/10 relative overflow-hidden"
       >
-        {/* Art Deco Geometric Background Elements */}
         <div className="absolute top-10 right-10 w-40 h-40 border-2 border-[var(--gold)]/30 rotate-45"></div>
         <div className="absolute bottom-10 left-10 w-32 h-32 border-2 border-[var(--maroon)]/20 rotate-12"></div>
         <div className="absolute top-1/2 left-1/4 w-20 h-20 bg-[var(--pink)]/5 rotate-45"></div>

@@ -64,7 +64,6 @@ export function Speakers() {
 
   return (
     <section id="speakers" className="py-20 px-4 bg-gradient-to-b from-[var(--off-white)] to-[var(--pink)]/10 relative">
-      {/* Art Deco Decorative Elements */}
       <div className="absolute top-10 left-10 w-20 h-20 border-4 border-[var(--gold)]/20 rotate-45"></div>
       <div className="absolute bottom-10 right-10 w-16 h-16 bg-[var(--maroon)]/10 rotate-12"></div>
 
