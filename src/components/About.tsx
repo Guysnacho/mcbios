@@ -37,7 +37,6 @@ export function About() {
 
   return (
     <section id="about" className="py-20 px-4 bg-[var(--off-white)] relative">
-      {/* Art Deco Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
           className="h-full w-full"
@@ -125,9 +124,9 @@ export function About() {
           </div>
           <div className="relative overflow-hidden rounded-2xl shadow-2xl">
             <img
-              src="/img/Moffitt.jpg"
+              src="/img/moffitt.jpg"
               alt="Moffitt Cancer Center - MCBIOS 2026 Venue"
-              className="w-full h-64 md:h-80 object-cover"
+              className="w-full h-96 md:h-120 object-cover"
               width={30}
               height={30}
             />

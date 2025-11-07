@@ -268,7 +268,6 @@ export function Schedule() {
 
   return (
     <section id="schedule" className="py-20 px-4 bg-[var(--off-white)] relative">
-      {/* Art Deco Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="h-full w-full" style={{
           backgroundImage: `radial-gradient(circle at 25% 25%, var(--maroon) 2px, transparent 2px),

@@ -4,7 +4,8 @@ import { Separator } from "./ui/separator";
 export function Footer() {
   const quickLinks = [
     { name: "About", href: "/#about" },
-    { name: "Venue", href: "#venue" },
+    { name: "Venue", href: "/#venue" },
+    { name: "Accomodations", href: "/accomodations" },
     // { name: "Speakers", href: "#speakers" },
     // { name: "Schedule", href: "#schedule" },
     // { name: "Registration", href: "#registration" },
@@ -28,7 +29,6 @@ export function Footer() {
 
   return (
     <footer className="bg-[var(--maroon)] text-[var(--off-white)] relative overflow-hidden">
-      {/* Art Deco Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div
           className="h-full w-full"

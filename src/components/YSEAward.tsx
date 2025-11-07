@@ -80,7 +80,6 @@ export function YSEAward({ deadlinePassed }: FormProps) {
       id="ysea"
       className="py-20 px-4 bg-gradient-to-b from-[var(--maroon)]/5 to-[var(--off-white)] relative"
     >
-      {/* Art Deco Elements */}
       <div className="absolute inset-0 opacity-5">
         <div
           className="h-full w-full"

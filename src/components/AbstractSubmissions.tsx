@@ -66,7 +66,6 @@ export function AbstractSubmissions({ deadlinePassed }: FormProps) {
       id="abstracts"
       className="py-20 px-4 bg-gradient-to-b from-[var(--off-white)] to-[var(--pink)]/5 relative"
     >
-      {/* Art Deco Pattern */}
       <div className="absolute inset-0 opacity-3">
         <div
           className="h-full w-full"

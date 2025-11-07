@@ -56,7 +56,6 @@ export function SessionProposals({ deadlinePassed }: FormProps) {
       id="sessions"
       className="py-20 px-4 bg-gradient-to-b from-[var(--pink)]/5 to-[var(--maroon)]/10 relative"
     >
-      {/* Art Deco Geometric Elements */}
       <div className="absolute top-10 right-10 w-20 h-20 border-2 border-[var(--gold)]/30 rotate-45"></div>
       <div className="absolute bottom-10 left-10 w-24 h-24 border-2 border-[var(--maroon)]/20 rotate-12"></div>
       <div className="absolute top-1/2 left-1/4 w-16 h-16 border border-[var(--pink)]/20 rounded-full"></div>

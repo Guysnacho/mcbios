@@ -73,7 +73,6 @@ export function Registration() {
 
   return (
     <section id="registration" className="py-20 px-4 bg-gradient-to-b from-[var(--pink)]/10 to-[var(--maroon)]/5 relative">
-      {/* Art Deco Geometric Elements */}
       <div className="absolute top-20 left-1/4 w-24 h-24 border-2 border-[var(--gold)]/20 rotate-45"></div>
       <div className="absolute bottom-20 right-1/4 w-32 h-32 border-2 border-[var(--maroon)]/20 rotate-12"></div>
 
