@@ -89,7 +89,7 @@ export const CouponCreator = () => {
         toast({
           status: "error",
           title: "Issue creating coupon",
-          description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
+          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message} and try again later.`,
           variant: "subtle",
         })
       )
@@ -111,7 +111,7 @@ export const CouponCreator = () => {
         toast({
           status: "error",
           title: "Issue deleting promo code",
-          description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
+          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message} and try again later.`,
           variant: "subtle",
         })
       )
@@ -133,7 +133,7 @@ export const CouponCreator = () => {
         toast({
           status: "error",
           title: "Issue deleting coupon code",
-          description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
+          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message} and try again later.`,
           variant: "subtle",
         })
       )

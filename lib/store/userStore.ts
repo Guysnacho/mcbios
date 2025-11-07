@@ -3,12 +3,12 @@ import { persist } from "zustand/middleware";
 
 export interface UserState {
   id: string | undefined;
-  role: "student" | "postdoctorial" | "professional" | undefined;
+  role: "admin" | "student" | "postdoctorial" | "professional" | undefined;
 }
 
 export interface UserActions {
   setId: (id?: string) => void;
-  setRole: (role: "student" | "postdoctorial" | "professional") => void;
+  setRole: (role: UserState["role"]) => void;
 }
 
 export type UserStore = UserState & UserActions;
@@ -23,8 +23,7 @@ export const useUserStore = create<UserStore>()(
     (set) => ({
       ...defaultInitState,
       setId: (id?: string) => set(() => ({ id })),
-      setRole: (role: "student" | "postdoctorial" | "professional") =>
-        set(() => ({ role: role })),
+      setRole: (role: UserState["role"]) => set(() => ({ role })),
     }),
     {
       name: "user",

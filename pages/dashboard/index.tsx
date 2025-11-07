@@ -5,9 +5,9 @@ import {
   PaymentHandlerType,
 } from "@/components/dashboard/PaymentHandler";
 import { User } from "@/components/User";
+import { authFetcher, DUPLICATE_ROW } from "@/lib";
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
-import { authFetcher, DUPLICATE_ROW } from "@/lib";
 import { createClient as createCompoentClient } from "@/lib/supabase/component";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import {
@@ -40,7 +40,12 @@ export default function Dashboard() {
   const toast = useToast();
   const [tier, setTier] = useState<PaymentHandlerType>();
 
-  const { data, error } = useSWR("/auth/user", () => authFetcher(client));
+  const { data, error } = useSWR("/auth/user", () => authFetcher(client), {
+    onSuccess(data) {
+      store?.setId(data.user!.user_id);
+      store?.setRole(data.user!.role);
+    },
+  });
 
   return (
     <>
@@ -57,12 +62,31 @@ export default function Dashboard() {
               : "Welcome"}
           </h3>
         </div>
+        {error && (
+          <div className="my-5 flex gap-3 mx-auto justify-center">
+            <div>
+              <h5 className="text-center">We ran into an issue</h5>
+              <p>
+                There was an error fetching your account information. If an
+                issue persists, please reach out to{" "}
+                <a
+                  className="underline text-blue-800"
+                  href="mailto:team@tunjiproductions.com"
+                >
+                  team@tunjiproductions.com
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+        )}
         <Tabs
           aria-label="Dashboard Tabs"
           size="lg"
           isFitted
           variant="line"
           colorScheme="blue"
+          display={error ? "none" : undefined}
         >
           <TabList>
             {data?.user && data.user.role === "admin" ? (
