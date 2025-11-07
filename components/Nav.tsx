@@ -77,7 +77,7 @@ export default function Nav() {
       };
       fetchUser();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthOpen, path]);
 
   return (

@@ -83,6 +83,11 @@ export const AuthModal = ({
       if (error) {
         throw error;
       } else {
+        toast({
+          status: "success",
+          title: "Welcome Back!",
+          isClosable: true,
+        });
         store?.setId(data.user?.id);
         setIsOpen(false);
         router.push("/dashboard");

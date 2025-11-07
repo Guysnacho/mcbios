@@ -57,12 +57,20 @@ export default function Dashboard() {
               : "Welcome"}
           </h3>
         </div>
-        <Tabs aria-label="Dashboard Tabs" size="lg" isFitted variant="line" colorScheme="blue">
+        <Tabs
+          aria-label="Dashboard Tabs"
+          size="lg"
+          isFitted
+          variant="line"
+          colorScheme="blue"
+        >
           <TabList>
             {data?.user && data.user.role === "admin" ? (
               <Tab title="Admin">Admin</Tab>
             ) : undefined}
-            <Tab title="Conference Content">Conference Content</Tab>
+            {data?.user && data?.user.fees_paid_at && (
+              <Tab title="Conference Content">Conference Content</Tab>
+            )}
             <Tab title="Profile">Profile</Tab>
           </TabList>
           <TabPanels>
@@ -70,11 +78,11 @@ export default function Dashboard() {
               <AdminPanel client={client} />
             ) : undefined}
 
-            <TabPanel>
-              {data?.user && data?.user.fees_paid_at ? (
+            {data?.user && data?.user.fees_paid_at && (
+              <TabPanel>
                 <MemberContent videos={data?.videos} />
-              ) : undefined}
-            </TabPanel>
+              </TabPanel>
+            )}
 
             <TabPanel>
               <div className="my-5 flex gap-3 mx-auto justify-center">
