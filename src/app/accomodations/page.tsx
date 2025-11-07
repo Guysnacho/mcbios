@@ -124,7 +124,7 @@ export default function Page() {
               </div>
               <div className="flex items-center space-x-2">
                 <Star className="w-4 h-4 text-[var(--gold)]" />
-                <span>Exclusive conference rates</span>
+                <span>Competitive rates</span>
               </div>
             </div>
           </div>
