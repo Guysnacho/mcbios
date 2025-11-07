@@ -1,65 +1,66 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { MapPin, Phone, Wifi, Car, Coffee, Utensils, Star } from "lucide-react";
+import { Car, Coffee, MapPin, Phone, Star, Utensils, Wifi } from "lucide-react";
 
 export default function Page() {
   const hotels = [
     {
-      name: "The Grand Floridian Resort",
-      category: "Conference Hotel",
-      distance: "On-site",
-      rate: "$189/night",
+      name: "Home2 Suites by Hilton Tampa USF Near Busch Gardens",
+      address: "11606 McKinley Dr, Tampa, FL 33612",
+      distance: "0.5 miles • 3 min drive • 9 min walk",
       description:
-        "Official conference hotel with special MCBios rates. Art deco inspired elegance meets modern comfort.",
+        "Keep the kids happy at Adventure Island - a mile away, with Lowry Park Zoo nearby. Eat out at local restaurants or take advantage of a fully equipped in-room kitchen, complete with free WiFi and workspace. Enjoy some free breakfast before teeing off at a local golf course.",
       features: [
-        "Direct conference access",
-        "Complimentary WiFi",
-        "Breakfast included",
-        "Pool & fitness center",
-        "Business center",
-        "Valet parking",
+        "Free hot breakfast",
+        "Free WiFi",
+        "Non-smoking rooms",
+        "Outdoor pool",
+        "Fitness center",
+        "Pet-friendly rooms",
       ],
-      phone: "(407) 555-0123",
-      rating: 4.8,
+      phone: "(813) 750-8844",
+      bookingUrl:
+        "https://www.hilton.com/en/book/reservation/rooms/?ctyhocn=TPASFHT&arrivalDate=2026-03-26&departureDate=2026-03-29",
       popular: true,
     },
     {
-      name: "Coastal Deco Suites",
-      category: "Premium Partner",
-      distance: "0.3 miles",
-      rate: "$159/night",
+      name: "Holiday Inn Tampa North",
+      address: "3751 E. Fowler Ave, Tampa, FL 33612",
+      distance: "0.7 miles • 3 min drive • 11 min walk",
       description:
-        "Boutique hotel featuring authentic 1920s art deco architecture with modern amenities.",
+        "Moffitt Cancer Center, The VA Hospital, Advent Health Hospital and Shriner's Hospital are just minutes from our hotel. Discover the genuine smiles and hospitality that our Holiday Inn Tampa North has to offer. Take time to unwind in our beautiful outdoor pool or work out according to your schedule in the 24-hour Fitness Center.",
       features: [
-        "Free shuttle to venue",
-        "Complimentary WiFi",
-        "Continental breakfast",
-        "Rooftop terrace",
-        "Self parking",
+        "1 pool",
+        "Fitness center",
+        "In hotel restaurants",
         "Pet friendly",
+        "Kids eat free",
+        "Business center",
+        "Wireless internet",
       ],
-      phone: "(407) 555-0124",
-      rating: 4.6,
+      phone: "(813) 402-2982",
+      bookingUrl:
+        "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?qDest=3751%20E.%20Fowler%20Ave,%20Tampa,%20FL,%20US&qPt=CASH",
       popular: false,
     },
     {
-      name: "Palm Beach Executive Inn",
-      category: "Partner Hotel",
-      distance: "0.8 miles",
-      rate: "$129/night",
+      name: "Embassy Suites by Hilton Tampa USF Near Busch Gardens",
+      address: "3705 Spectrum Blvd, Tampa, FL 33612",
+      distance: "0.7 miles • 5 min drive • 14 min walk",
       description:
-        "Comfortable accommodations with excellent value for extended stays and groups.",
+        "Find us on the University of South Florida campus, in the USF Research Park. We’re a Busch Gardens Preferred Partner and offer a free shuttle to the amusement park, five minutes away. We have an outdoor pool and a fitness center featuring a Peloton® Bike with toe cages. Enjoy free made-to-order breakfast and our complimentary Evening Reception.",
       features: [
-        "Complimentary WiFi",
-        "Hot breakfast buffet",
-        "Pool access",
-        "Free parking",
-        "Kitchenette available",
-        "24/7 front desk",
+        "Connecting rooms",
+        "Free made-to-order breakfast",
+        "Complimentary evening reception",
+        "Non-smoking rooms",
+        "Digital key",
+        "Concierge",
       ],
-      phone: "(407) 555-0125",
-      rating: 4.3,
+      phone: "(813) 977-7066",
+      bookingUrl:
+        "https://www.hilton.com/en/hotels/tpafres-embassy-suites-tampa-usf-near-busch-gardens/",
       popular: false,
     },
   ];
@@ -112,65 +113,42 @@ export default function Page() {
           </div>
 
           {/* Hotel Cards */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
             {hotels.map((hotel, index) => (
               <Card
                 key={index}
-                className={`relative p-6 bg-white/95 backdrop-blur-sm border-2 transition-all duration-300 hover:shadow-2xl ${
+                className={`relative p-5 md:p-6 bg-white/95 backdrop-blur-sm border-2 transition-all duration-300 hover:shadow-2xl ${
                   hotel.popular
-                    ? "border-[var(--gold)] hover:scale-105"
+                    ? "border-[var(--gold)] sm:hover:scale-105"
                     : "border-[var(--maroon)]/20 hover:border-[var(--pink)]/50"
                 }`}
               >
                 {hotel.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-[var(--gold)] text-[var(--maroon)]">
+                    <Badge className="bg-[var(--gold)] text-[var(--maroon)] text-xs md:text-sm">
                       <Star className="w-3 h-3 mr-1" />
-                      Conference Hotel
+                      Recommended
                     </Badge>
                   </div>
                 )}
 
                 <div className="mb-4">
-                  <div className="flex items-start justify-between mb-2">
-                    <div>
-                      <h3 className="font-bold text-[var(--maroon)] mb-1">
-                        {hotel.name}
-                      </h3>
-                      <Badge
-                        variant="outline"
-                        className="border-[var(--pink)] text-[var(--pink)] text-xs mb-2"
-                      >
-                        {hotel.category}
-                      </Badge>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Star className="w-4 h-4 fill-[var(--gold)] text-[var(--gold)]" />
-                      <span className="text-sm text-[var(--maroon)]">
-                        {hotel.rating}
-                      </span>
-                    </div>
+                  <h3 className="font-bold text-[var(--maroon)] mb-3 text-base md:text-lg leading-tight">
+                    {hotel.name}
+                  </h3>
+
+                  <div className="flex items-start space-x-2 text-[var(--maroon)]/70 text-sm mb-2">
+                    <MapPin className="w-4 h-4 text-[var(--pink)] flex-shrink-0 mt-0.5" />
+                    <span>{hotel.address}</span>
                   </div>
 
-                  <div className="flex items-center space-x-2 text-[var(--maroon)]/70 text-sm mb-3">
-                    <MapPin className="w-4 h-4 text-[var(--pink)]" />
-                    <span>{hotel.distance}</span>
+                  <div className="bg-[var(--off-white)] px-3 py-2 rounded text-xs text-[var(--maroon)]/70 mb-3">
+                    {hotel.distance}
                   </div>
 
                   <p className="text-[var(--maroon)]/80 text-sm leading-relaxed mb-4">
                     {hotel.description}
                   </p>
-
-                  <div className="bg-[var(--off-white)] p-3 rounded-lg mb-4">
-                    <div className="flex items-baseline space-x-2">
-                      <span className="text-2xl font-bold text-[var(--maroon)]">
-                        {hotel.rate}
-                      </span>
-                      <span className="text-xs text-[var(--maroon)]/60">
-                        Conference rate
-                      </span>
-                    </div>
-                  </div>
                 </div>
 
                 <div className="space-y-2 mb-6">
@@ -180,22 +158,22 @@ export default function Page() {
                       className="flex items-center space-x-2"
                     >
                       {featureIndex === 0 && (
-                        <Wifi className="w-4 h-4 text-[var(--pink)]" />
+                        <Wifi className="w-4 h-4 text-[var(--pink)] flex-shrink-0" />
                       )}
                       {featureIndex === 1 && (
-                        <Wifi className="w-4 h-4 text-[var(--pink)]" />
+                        <Coffee className="w-4 h-4 text-[var(--pink)] flex-shrink-0" />
                       )}
                       {featureIndex === 2 && (
-                        <Coffee className="w-4 h-4 text-[var(--pink)]" />
+                        <Utensils className="w-4 h-4 text-[var(--pink)] flex-shrink-0" />
                       )}
                       {featureIndex === 3 && (
-                        <Utensils className="w-4 h-4 text-[var(--pink)]" />
+                        <Utensils className="w-4 h-4 text-[var(--pink)] flex-shrink-0" />
                       )}
                       {featureIndex === 4 && (
-                        <Car className="w-4 h-4 text-[var(--pink)]" />
+                        <Car className="w-4 h-4 text-[var(--pink)] flex-shrink-0" />
                       )}
                       {featureIndex === 5 && (
-                        <Car className="w-4 h-4 text-[var(--pink)]" />
+                        <Car className="w-4 h-4 text-[var(--pink)] flex-shrink-0" />
                       )}
                       <span className="text-xs text-[var(--maroon)]/70">
                         {feature}
@@ -206,13 +184,20 @@ export default function Page() {
 
                 <div className="space-y-2">
                   <Button
-                    className={`w-full ${
+                    asChild
+                    className={`w-full text-sm md:text-base ${
                       hotel.popular
                         ? "bg-[var(--gold)] text-[var(--maroon)] hover:bg-[var(--bronze)]"
                         : "bg-[var(--maroon)] text-[var(--off-white)] hover:bg-[var(--pink)]"
                     }`}
                   >
-                    Book Now
+                    <a
+                      href={hotel.bookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Book Now
+                    </a>
                   </Button>
                   <a
                     href={`tel:${hotel.phone}`}
@@ -227,30 +212,32 @@ export default function Page() {
           </div>
 
           {/* Additional Information */}
-          <Card className="p-8 bg-gradient-to-r from-[var(--maroon)] to-[var(--pink)] text-[var(--off-white)] border-0">
-            <div className="grid md:grid-cols-2 gap-8">
+          <Card className="p-6 md:p-8 bg-gradient-to-r from-[var(--maroon)] to-[var(--pink)] text-[var(--off-white)] border-0">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
               <div>
-                <h3 className="font-bold mb-3 flex items-center">
-                  <MapPin className="w-5 h-5 mr-2" />
+                <h3 className="font-bold mb-3 flex items-center text-base md:text-lg">
+                  <MapPin className="w-5 h-5 mr-2 flex-shrink-0" />
                   Getting There
                 </h3>
                 <ul className="space-y-2 text-sm opacity-90">
-                  <li>• Orlando International Airport (MCO): 45 minutes</li>
-                  <li>• Tampa International Airport (TPA): 90 minutes</li>
-                  <li>• Complimentary shuttle from MCO available</li>
+                  <li>• Tampa International Airport (TPA): 24 minutes</li>
+                  <li>
+                    • Orlando International Airport (MCO, Not recommended): 82
+                    minutes
+                  </li>
                   <li>• Rental cars available at all airports</li>
+                  <li>• Rideshare services readily available</li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-bold mb-3 flex items-center">
-                  <Star className="w-5 h-5 mr-2" />
-                  Booking Information
+                <h3 className="font-bold mb-3 flex items-center text-base md:text-lg">
+                  <Phone className="w-5 h-5 mr-2 flex-shrink-0" />
+                  Booking Tips
                 </h3>
                 <ul className="space-y-2 text-sm opacity-90">
-                  <li>• Mention code "MCBIOS2026" for special rates</li>
-                  <li>• Book by February 15, 2026 for best availability</li>
-                  <li>• Group rates available for 5+ rooms</li>
-                  <li>• Contact us for extended stay arrangements</li>
+                  <li>• Book early for best availability</li>
+                  <li>• Contact hotels directly for current rates</li>
+                  {/* <li>• Group rates may be available upon request</li> */}
                 </ul>
               </div>
             </div>
