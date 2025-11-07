@@ -38,6 +38,15 @@ export default function Home() {
         duration: 8000,
         isClosable: true,
       });
+    } else if (router.query.token || router.query.code) {
+      toast({
+        title: "Thank you for your verification",
+        description:
+          "You are free to continue with your conference registration or any other activities!",
+        status: "success",
+        duration: 8000,
+        isClosable: true,
+      });
     }
   }, 500);
 
@@ -122,14 +131,14 @@ export default function Home() {
           <PartyPopper />
         </AlertIcon>
         Thank you to everyone that participated, contributed to, and attended
-        MCBIOS 2025!<br />Preparation for MCBIOS 2026 is now underway!
+        MCBIOS 2025!
+        <br />
+        Preparation for MCBIOS 2026 is now underway!
       </Alert>
       <Divider as="hr" className="my-10 border-gray-500" />
 
       <section className="space-y-5 px-10 mx-auto md:w-5/6">
-        <h3 className="text-center">
-          Greetings from the MCBIOS President
-        </h3>
+        <h3 className="text-center">Greetings from the MCBIOS President</h3>
         <div className="md:flex my-5 gap-5 space-y-10 mx-auto">
           <Card shadow="md" w={{ base: "fit-content", md: "sm", xl: "lg" }}>
             <CardHeader>
