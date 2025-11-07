@@ -33,7 +33,7 @@ const Confirm = () => {
       <div className="container space-y-10 mx-auto">
         <div className="h-1/2 w-1/2 mx-auto">
           <Image
-            src="/images/ConferenceRoom.avif"
+            src="/images/conferenceroom.avif"
             alt="Wood Conference Room, Photo by Aditya Sethia on Unsplash"
             className="mx-auto object-contain"
             width={800}
