@@ -76,7 +76,7 @@ export type Database = {
           user_id: string;
         };
         Insert: {
-          attended: number[];
+          attended?: number[];
           fees_paid_at?: string | null;
           fname: string;
           institution?: string;
@@ -202,7 +202,25 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
-      [_ in never]: never;
+      append_current_year_to_attended: {
+        Args: { target_user: string };
+        Returns: {
+          attended: number[];
+          fees_paid_at: string | null;
+          fname: string;
+          institution: string;
+          lname: string;
+          org_id: string;
+          role: Database["public"]["Enums"]["user_role"];
+          user_id: string;
+        };
+        SetofOptions: {
+          from: "*";
+          to: "member";
+          isOneToOne: true;
+          isSetofReturn: false;
+        };
+      };
     };
     Enums: {
       code_type: "coupon";

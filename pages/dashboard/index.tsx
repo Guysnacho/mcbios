@@ -247,16 +247,19 @@ export default function Dashboard() {
                               );
                             }}
                           >
-                            {/* <option value="student">
-                              Conference and Membership | Student | $200
+                            <option value="student">
+                              Conference and Membership | Early Bird Student |
+                              $200
                             </option>
                             <option value="postdoctorial">
-                              Conference and Membership | Postdoctorial | $300
+                              Conference and Membership | Early Bird
+                              Postdoctorial | $300
                             </option>
                             <option value="professional">
-                              Conference and Membership | Professional | $400
-                            </option> */}
-                            <option value="student">
+                              Conference and Membership | Early Bird
+                              Professional | $400
+                            </option>
+                            {/* <option value="student">
                               Conference and Membership | Student | $250
                             </option>
                             <option value="postdoctorial">
@@ -265,7 +268,7 @@ export default function Dashboard() {
                             <option value="professional">
                               Conference and Membership | Professional | $450
                             </option>
-                            {/* <option value="member_only_student">
+                            <option value="member_only_student">
                               Membership | Student | $10
                             </option>
                             <option value="member_only_postdoctorial">

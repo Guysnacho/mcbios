@@ -28,7 +28,7 @@ const Events = () => {
         <TabPanels>
           {/* Registration Panel */}
           <TabPanel>
-            <ConferenceRegistration registrationPassed />
+            <ConferenceRegistration />
           </TabPanel>
           <TabPanel>
             <Image
