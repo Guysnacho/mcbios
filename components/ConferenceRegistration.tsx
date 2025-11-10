@@ -235,23 +235,23 @@ export const ConferenceRegistration = ({
                     Conference and Membership | Early Bird Professional | $400
                   </option>
                   {/* <option value="student">
-                  Conference and Membership | Student | $250
-                </option>
-                <option value="postdoctorial">
-                  Conference and Membership | Postdoctorial | $350
-                </option>
-                <option value="professional">
-                  Conference and Membership | Professional | $450
-                </option> */}
-                  {/* <option value="member_only_student">
-                                Membership | Student | $10
-                              </option>
-                              <option value="member_only_postdoctorial">
-                                Membership | Postdoctorial | $20
-                              </option>
-                              <option value="member_only_professional">
-                                Membership | Professional | $50
-                              </option> */}
+                    Conference and Membership | Student | $250
+                  </option>
+                  <option value="postdoctorial">
+                    Conference and Membership | Postdoctorial | $350
+                  </option>
+                  <option value="professional">
+                    Conference and Membership | Professional | $450
+                  </option>
+                  <option value="member_only_student">
+                    Membership | Student | $10
+                  </option>
+                  <option value="member_only_postdoctorial">
+                    Membership | Postdoctorial | $20
+                  </option>
+                  <option value="member_only_professional">
+                    Membership | Professional | $50
+                  </option> */}
                 </Select>
               </Flex>
               <Flex justify="center">

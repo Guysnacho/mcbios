@@ -40,7 +40,7 @@ export default async function handler(
           mode: "payment",
           return_url: `${req.headers.origin}/payment/{CHECKOUT_SESSION_ID}`,
           customer_email: body.email,
-          customer_creation: "always",
+          customer_creation: "if_required",
           metadata: {
             userId: body.userId!,
             email: body.email!,
@@ -70,7 +70,7 @@ export default async function handler(
             `Payment completed for user ${session!.metadata!.userId}!`
           );
           const client = createClient();
-          if (session!.metadata!.userId) {
+          if (session!.metadata!.userId ?? false) {
             console.log("Updated authed user");
             await handleUpdate(client, session);
             console.log(
@@ -184,21 +184,36 @@ async function handleUpdate(
   client: SupabaseClient<Database>,
   session: Stripe.Response<Stripe.Checkout.Session>
 ) {
-  await client
+  const { data, error } = await client
     .from("member")
     .update({
       fees_paid_at: new Date().toISOString(),
       role: session!.metadata!.tier as Database["public"]["Enums"]["user_role"],
       institution: session!.metadata!.institution,
     })
-    .eq("user_id", session!.metadata!.userId);
-  await client
-    .from("registration")
-    .upsert({
-      user_id: session!.metadata!.userId,
-      member_only: session!.metadata!.memberOnly === "true",
-    })
-    .eq("user_id", session!.metadata!.userId);
+    .eq("user_id", session!.metadata!.userId)
+    .eq("org_id", process.env.NEXT_PUBLIC_ORG_ID)
+    .select("user_id")
+    .maybeSingle();
+
+  if (error) {
+    console.error(error.message);
+    return;
+  }
+
+  const { error: appendError } = await client.rpc(
+    "append_current_year_to_attended",
+    {
+      target_user: data!.user_id,
+    }
+  );
+
+  if (appendError) {
+    console.error(appendError.message);
+    return;
+  }
+
+  console.log(`Successfully updated attendee year for user=${data?.user_id}`);
 }
 
 /**
@@ -211,16 +226,20 @@ async function handleRawUpdate(
   session: Stripe.Response<Stripe.Checkout.Session>
 ) {
   console.log("Recording raw registration");
-  await client
-    .from("raw_registration")
-    .upsert({
+  await client.from("raw_registration").upsert(
+    {
       email: session.metadata!.email,
       fname: session.metadata!.fname,
       lname: session.metadata!.lname,
       institution: session!.metadata!.institution,
       created_at: new Date().toISOString(),
       role: session!.metadata!.tier as Database["public"]["Enums"]["user_role"],
-    })
+    },
+    {
+      ignoreDuplicates: false,
+      onConflict: "email",
+    }
+  );
 }
 
 /**
