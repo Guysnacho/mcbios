@@ -24,10 +24,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import {
-  PaymentHandler,
-  PaymentHandlerType,
-} from "./dashboard/PaymentHandler";
+import { PaymentHandler, PaymentHandlerType } from "./dashboard/PaymentHandler";
 
 const steps = [
   { title: "First", description: "Contact Info" },
@@ -64,9 +61,9 @@ export const ConferenceRegistration = ({
         <div className="w-3/4 xl:w-1/2 mx-auto space-y-5">
           <Stack align={"center"} my={5} gap={3}>
             <Heading fontSize={"4xl"} textAlign={"center"}>
-              MCBIOS 2025
+              MCBIOS 2026
             </Heading>
-            <Text>March 27-29, 2025</Text>
+            <Text>March 26-29, 2026</Text>
             <Divider />
             <Text color={"gray.600"}>
               We want to thank everyone whose contributed to the conference via
@@ -83,7 +80,7 @@ export const ConferenceRegistration = ({
         <div className="w-3/4 xl:w-1/2 mx-auto space-y-5">
           <Stack align={"center"} my={5} gap={3}>
             <Heading fontSize={"4xl"} textAlign={"center"}>
-              MCBIOS 2025 Registration
+              MCBIOS 2026 Registration
             </Heading>
             <Divider />
             <Text color={"gray.600"}>
@@ -219,24 +216,25 @@ export const ConferenceRegistration = ({
           )}
 
           {activeStep === 1 && (
-            <Flex mx="auto" w={[null, "sm", "lg"]}>
-              <Select
-                variant="outline"
-                placeholder="Select a membership level"
-                onChange={(e) => {
-                  setTier(e.currentTarget.value as PaymentHandlerType);
-                }}
-              >
-                {/* <option value="student">
-                    Conference and Membership | Student | $200
+            <>
+              <Flex mx="auto" w={[null, "sm", "lg"]}>
+                <Select
+                  variant="outline"
+                  placeholder="Select a membership level"
+                  onChange={(e) => {
+                    setTier(e.currentTarget.value as PaymentHandlerType);
+                  }}
+                >
+                  <option value="student">
+                    Conference and Membership | Early Bird Student | $200
                   </option>
                   <option value="postdoctorial">
-                    Conference and Membership | Postdoctorial | $300
+                    Conference and Membership | Early Bird Postdoctorial | $300
                   </option>
                   <option value="professional">
-                    Conference and Membership | Professional | $400
-                  </option> */}
-                <option value="student">
+                    Conference and Membership | Early Bird Professional | $400
+                  </option>
+                  {/* <option value="student">
                   Conference and Membership | Student | $250
                 </option>
                 <option value="postdoctorial">
@@ -244,8 +242,8 @@ export const ConferenceRegistration = ({
                 </option>
                 <option value="professional">
                   Conference and Membership | Professional | $450
-                </option>
-                {/* <option value="member_only_student">
+                </option> */}
+                  {/* <option value="member_only_student">
                                 Membership | Student | $10
                               </option>
                               <option value="member_only_postdoctorial">
@@ -254,40 +252,46 @@ export const ConferenceRegistration = ({
                               <option value="member_only_professional">
                                 Membership | Professional | $50
                               </option> */}
-              </Select>
-            </Flex>
-          )}
-          {activeStep === 1 && (
-            <Flex justify="center">
-              <Button onClick={goToPrevious} className="mr-3">
-                Back
-              </Button>
-              <Button
-                type="submit"
-                onClick={goToNext}
-                colorScheme="green"
-                isDisabled={tier === undefined}
-              >
-                Next
-              </Button>
-            </Flex>
+                </Select>
+              </Flex>
+              <Flex justify="center">
+                <Button onClick={goToPrevious} className="mr-3">
+                  Back
+                </Button>
+                <Button
+                  type="submit"
+                  onClick={goToNext}
+                  colorScheme="green"
+                  isDisabled={tier === undefined}
+                >
+                  Next
+                </Button>
+              </Flex>
+            </>
           )}
 
-          {tier && activeStep === 2 ? (
-            <PaymentHandler
-              tier={tier!}
-              email={email!}
-              fname={fname!}
-              lname={lname!}
-              institution={institution!}
-            />
-          ) : undefined}
-          {activeStep === 2 && (
-            <Flex>
-              <Button onClick={goToPrevious} className="mx-auto" w="70%">
-                Back
-              </Button>
-            </Flex>
+          {tier && activeStep === 2 && (
+            <>
+              <PaymentHandler
+                tier={tier!}
+                email={email!}
+                fname={fname!}
+                lname={lname!}
+                institution={institution!}
+              />
+              <Flex>
+                <Button
+                  onClick={() => {
+                    goToPrevious();
+                    setTier(undefined);
+                  }}
+                  className="mx-auto"
+                  w="70%"
+                >
+                  Back
+                </Button>
+              </Flex>
+            </>
           )}
         </div>
       )}
