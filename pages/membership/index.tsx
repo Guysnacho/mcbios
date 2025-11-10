@@ -30,8 +30,13 @@ const Membership = () => {
         setAuthOpen(true);
       }
     }
-    if (router.query.registration) setAuthOpen(true);
   }, [isAuthOpen, router, store?.id]);
+
+  useEffect(() => {
+    if (router.query.registration) {
+      setAuthOpen(true);
+    }
+  }, [router]);
 
   return (
     <>
