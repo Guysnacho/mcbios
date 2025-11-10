@@ -32,8 +32,7 @@ export default async function handler(
           allow_promotion_codes: true,
           line_items: [
             {
-              // Provide the exact Price ID (for example, pr_1234) of
-              // the product you want to sell
+              // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
               price: price.id,
               quantity: 1,
             },
@@ -130,21 +129,24 @@ function derivePriceId(tier: PaymentHandlerType): {
   switch (tier) {
     case "student":
       return {
-        id: process.env.CONF_REGISTRATION_STUDENT!,
+        // id: process.env.CONF_REGISTRATION_STUDENT!,
+        id: process.env.EB_CONF_REGISTRATION_STUDENT!,
         tier: "student",
         memberOnly: "false",
       };
       break;
     case "postdoctorial":
       return {
-        id: process.env.CONF_REGISTRATION_POSTDOC!,
+        // id: process.env.CONF_REGISTRATION_POSTDOC!,
+        id: process.env.EB_CONF_REGISTRATION_POSTDOC!,
         tier: "postdoctorial",
         memberOnly: "false",
       };
       break;
     case "professional":
       return {
-        id: process.env.CONF_REGISTRATION_PROFESSIONAL!,
+        // id: process.env.CONF_REGISTRATION_PROFESSIONAL!,
+        id: process.env.EB_CONF_REGISTRATION_PROFESSIONAL!,
         tier: "professional",
         memberOnly: "false",
       };
