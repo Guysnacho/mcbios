@@ -65,8 +65,13 @@ export function Header() {
               variant="outline"
               className="border-[var(--off-white)] text-[var(--maroon)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] bg-[var(--gold)] font-medium"
             >
-              <a href="#">Registration Opens Soon</a>
-              {/* <a href="#registration">Register Now</a> */}
+              {/* <a href="#">Registration Opens Soon</a> */}
+              <a
+                href="https://mcbios.com/membership?registration=true"
+                target="_blank"
+              >
+                Register Now
+              </a>
             </Button>
           </nav>
 
@@ -101,21 +106,22 @@ export function Header() {
                 asChild
                 disabled
               >
-                {/* <a
-                  href="#registration"
+                <a
+                  href="https://mcbios.com/membership?registration=true"
+                  target="_blank"
                   onClick={() => {
                     setIsMenuOpen(false);
                   }}
                 >
                   Register Now
-                </a> */}
-                <a
+                </a>
+                {/* <a
                   onClick={() => {
                     setIsMenuOpen(false);
                   }}
                 >
                   Registration Opens Soon
-                </a>
+                </a> */}
               </Button>
             </div>
           </nav>
