@@ -62,6 +62,7 @@ export default function Home() {
 
   useEffect(() => {
     handleUpdate();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTag]);
 
   return (
@@ -75,7 +76,8 @@ export default function Home() {
         <Box w={["xs"]} display={["none", null, null, "unset"]}>
           <Image
             className="mx-auto object-cover"
-            src="/images/logo_clippy_clean.png"
+            src="/images/logo.jpg"
+            // src="/images/logo_clippy_clean.png"
             alt="MCBIOS Logo"
             style={{
               maskImage:
@@ -85,24 +87,26 @@ export default function Home() {
         </Box>
         {/* MCBIOS + Join */}
         <Box className="space-y-4">
-          <Heading size={["xl", "2xl"]} className="flex" alignItems="end">
-            <span className="md:hidden">
-              <Image
-                className="mx-auto object-cover"
-                src="/images/logo_clippy_clean.png"
-                alt="MCBIOS Logo"
-                h={50}
-                style={{
-                  maskImage:
-                    "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 100%)",
-                }}
-              />
-            </span>{" "}
-            MCBIOS
+          <span className="md:hidden">
+            <Image
+              className="mx-auto object-cover"
+              // src="/images/logo_clippy_clean.png"
+              src="/images/logo.jpg"
+              alt="MCBIOS Logo"
+              h={200}
+              style={{
+                maskImage:
+                  "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 100%)",
+              }}
+            />
+          </span>{" "}
+          <Heading size={["xl", "2xl"]} alignItems="end">
+            {" "}
+            {/* MCBIOS */}
           </Heading>
-          <Heading size={["sm", null, "md"]}>
+          {/* <Heading size={["sm", null, "md"]}>
             Midsouth Computational Biology & Informatics Society
-          </Heading>
+          </Heading> */}
           <Heading size="sm" color="gray.600">
             {Taglines[currentTag || 0]}
           </Heading>
