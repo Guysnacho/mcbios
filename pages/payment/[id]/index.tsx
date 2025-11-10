@@ -34,10 +34,6 @@ export default function PaymentConfirmation() {
       .finally(() => setLoading(false));
   }, 500);
 
-  // if (status === "open") {
-  //   return redirect("/dashboard");
-  // }
-
   return (
     <>
       <Head>
@@ -97,9 +93,9 @@ export default function PaymentConfirmation() {
                 If you have any questions, please email{" "}
                 <a
                   className="underline text-blue-800"
-                  href="mailto:mcbios.society@gmail.com"
+                  href="mailto:team@tunjiproductions.com"
                 >
-                  mcbios.society@gmail.com
+                  team@tunjiproductions.com
                 </a>
                 .
               </Text>

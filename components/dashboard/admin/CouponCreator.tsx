@@ -1,5 +1,4 @@
-import { createClient } from "@/lib/utils/supabase/component";
-import { couponFetcher } from "@/lib/utils";
+import { couponFetcher } from "@/lib";
 import { ChevronDownIcon, DeleteIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -42,7 +41,6 @@ const columns = [
 ];
 
 export const CouponCreator = () => {
-  const client = createClient();
   const toast = useToast({
     variant: "subtle",
   });
@@ -91,7 +89,7 @@ export const CouponCreator = () => {
         toast({
           status: "error",
           title: "Issue creating coupon",
-          description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
+          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message} and try again later.`,
           variant: "subtle",
         })
       )
@@ -113,7 +111,7 @@ export const CouponCreator = () => {
         toast({
           status: "error",
           title: "Issue deleting promo code",
-          description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
+          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message} and try again later.`,
           variant: "subtle",
         })
       )
@@ -135,7 +133,7 @@ export const CouponCreator = () => {
         toast({
           status: "error",
           title: "Issue deleting coupon code",
-          description: `Please notify the webmaster at mcbios.society@gmail.com - ${err.message} and try again later.`,
+          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message} and try again later.`,
           variant: "subtle",
         })
       )
@@ -221,77 +219,82 @@ export const CouponCreator = () => {
       <VStack textAlign="center">
         <Heading size="md">Coupon List</Heading>
 
-        <TableContainer maxH={500} overflowY="auto">
-          <Table variant="striped">
-            <TableCaption>
-              {data && data.length
-                ? data.length + " coupons created"
-                : "No coupons available"}
-            </TableCaption>
-            <Thead>
-              <Tr>
-                {columns.map(({ name }) => (
-                  <Th key={name}>{name}</Th>
-                ))}
-              </Tr>
-            </Thead>
-            <Tbody>
-              {isLoading && <Spinner />}
-              {!isLoading &&
-                data &&
-                data.length &&
-                data.map((coupon, idx) => (
-                  <Tr key={idx}>
-                    <Td>{idx + 1}</Td>
-                    <Td>{coupon.coupon.name || "null"}</Td>
-                    <Td>{coupon.promo_code}</Td>
-                    <Td>
-                      {coupon.coupon.percent_off
-                        ? `${coupon.coupon.percent_off}%`
-                        : "-"}
-                    </Td>
-                    <Td>
-                      {coupon.coupon.amount_off
-                        ? `$${coupon.coupon.amount_off}`
-                        : "-"}
-                    </Td>
-                    <Td>
-                      {coupon.coupon.times_redeemed} /{" "}
-                      {coupon.coupon.max_redemptions}
-                    </Td>
-                    <Td>
-                      {coupon.expires_at! <= 1743119940
-                        ? "No Expiration Date"
-                        : new Date(
-                            coupon.expires_at! * 1000
-                          ).toLocaleDateString()}
-                    </Td>
-                    <Td>{new Date(coupon.created).toLocaleDateString()}</Td>
-                    <Td>
-                      <Stack>
-                        <Button
-                          colorScheme="purple"
-                          onClick={() => deletePromo(coupon.promo_id)}
-                          aria-label="Delete Promo Code"
-                          leftIcon={<DeleteIcon />}
-                        >
-                          Delete Promo Code
-                        </Button>
-                        <Button
-                          colorScheme="red"
-                          onClick={() => deleteCoupon(coupon.coupon.id)}
-                          aria-label="Delete Promo Code"
-                          leftIcon={<DeleteIcon />}
-                        >
-                          Delete Coupon
-                        </Button>
-                      </Stack>
-                    </Td>
-                  </Tr>
-                ))}
-            </Tbody>
-          </Table>
-        </TableContainer>
+        {error ? (
+          <></>
+        ) : isLoading ? (
+          <Spinner />
+        ) : data ? (
+          <TableContainer maxH={500} overflowY="auto">
+            <Table variant="striped">
+              <TableCaption>
+                {data.length
+                  ? data.length + " coupons created"
+                  : "No coupons available"}
+              </TableCaption>
+              <Thead>
+                <Tr>
+                  {columns.map(({ name }) => (
+                    <Th key={name}>{name}</Th>
+                  ))}
+                </Tr>
+              </Thead>
+              <Tbody>
+                {data.length &&
+                  data.map((coupon, idx) => (
+                    <Tr key={idx}>
+                      <Td>{idx + 1}</Td>
+                      <Td>{coupon.coupon.name || "null"}</Td>
+                      <Td>{coupon.promo_code}</Td>
+                      <Td>
+                        {coupon.coupon.percent_off
+                          ? `${coupon.coupon.percent_off}%`
+                          : "-"}
+                      </Td>
+                      <Td>
+                        {coupon.coupon.amount_off
+                          ? `$${coupon.coupon.amount_off}`
+                          : "-"}
+                      </Td>
+                      <Td>
+                        {coupon.coupon.times_redeemed} /{" "}
+                        {coupon.coupon.max_redemptions}
+                      </Td>
+                      <Td>
+                        {coupon.expires_at! <= 1743119940
+                          ? "No Expiration Date"
+                          : new Date(
+                              coupon.expires_at! * 1000
+                            ).toLocaleDateString()}
+                      </Td>
+                      <Td>{new Date(coupon.created).toLocaleDateString()}</Td>
+                      <Td>
+                        <Stack>
+                          <Button
+                            colorScheme="purple"
+                            onClick={() => deletePromo(coupon.promo_id)}
+                            aria-label="Delete Promo Code"
+                            leftIcon={<DeleteIcon />}
+                          >
+                            Delete Promo Code
+                          </Button>
+                          <Button
+                            colorScheme="red"
+                            onClick={() => deleteCoupon(coupon.coupon.id)}
+                            aria-label="Delete Promo Code"
+                            leftIcon={<DeleteIcon />}
+                          >
+                            Delete Coupon
+                          </Button>
+                        </Stack>
+                      </Td>
+                    </Tr>
+                  ))}
+              </Tbody>
+            </Table>
+          </TableContainer>
+        ) : (
+          <></>
+        )}
       </VStack>
     </Stack>
   );

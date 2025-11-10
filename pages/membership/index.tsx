@@ -30,6 +30,7 @@ const Membership = () => {
         setAuthOpen(true);
       }
     }
+    if (router.query.registration) setAuthOpen(true);
   }, [isAuthOpen, router, store?.id]);
 
   return (

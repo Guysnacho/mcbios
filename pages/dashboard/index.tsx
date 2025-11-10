@@ -1,22 +1,19 @@
-import { CouponCreator } from "@/components/dashboard/admin/CouponCreator";
+import { AdminPanel } from "@/components/dashboard/admin/AdminPanel";
 import { MemberContent } from "@/components/dashboard/admin/MemberContent";
 import {
   PaymentHandler,
   PaymentHandlerType,
-} from "@/components/dashboard/admin/PaymentHandler";
-import UserConfirm from "@/components/dashboard/admin/UserConfirm";
-import VideoUploader from "@/components/dashboard/admin/VideoUploader";
+} from "@/components/dashboard/PaymentHandler";
 import { User } from "@/components/User";
+import { authFetcher, DUPLICATE_ROW } from "@/lib";
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
-import { authFetcher, DUPLICATE_ROW } from "@/lib/utils";
-import { createClient as createCompoentClient } from "@/lib/utils/supabase/component";
+import { createClient as createCompoentClient } from "@/lib/supabase/component";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import {
   Button,
   Divider,
   Flex,
-  Heading,
   Select,
   Tab,
   Table,
@@ -43,7 +40,12 @@ export default function Dashboard() {
   const toast = useToast();
   const [tier, setTier] = useState<PaymentHandlerType>();
 
-  const { data, error } = useSWR("/auth/user", () => authFetcher(client));
+  const { data, error } = useSWR("/auth/user", () => authFetcher(client), {
+    onSuccess(data) {
+      store?.setId(data.user!.user_id);
+      store?.setRole(data.user!.role);
+    },
+  });
 
   return (
     <>
@@ -60,48 +62,56 @@ export default function Dashboard() {
               : "Welcome"}
           </h3>
         </div>
+        {error && (
+          <div className="my-5 flex gap-3 mx-auto justify-center">
+            <div>
+              <h5 className="text-center">We ran into an issue</h5>
+              <p>
+                There was an error fetching your account information. If an
+                issue persists, please reach out to{" "}
+                <a
+                  className="underline text-blue-800"
+                  href="mailto:team@tunjiproductions.com"
+                >
+                  team@tunjiproductions.com
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+        )}
         <Tabs
           aria-label="Dashboard Tabs"
           size="lg"
-          // isFitted
-          variant="enclosed"
+          isFitted
+          variant="line"
+          colorScheme="blue"
+          display={error ? "none" : undefined}
         >
           <TabList>
             {data?.user && data.user.role === "admin" ? (
               <Tab title="Admin">Admin</Tab>
             ) : undefined}
-            <Tab title="Conference Content">Conference Content</Tab>
+            {data?.user && data?.user.fees_paid_at && (
+              <Tab title="Conference Content">Conference Content</Tab>
+            )}
             <Tab title="Profile">Profile</Tab>
           </TabList>
           <TabPanels>
             {data?.user && data?.user.role === "admin" ? (
-              <TabPanel>
-                <div className="my-5 flex gap-3 mx-auto justify-center">
-                  <VideoUploader />
-                </div>
-                <Divider className="my-5" />
-                <Heading size="md" textAlign="center">
-                  User Account Confirmation
-                </Heading>
-                <div className="max-w-[500]px my-5 flex gap-3 mx-auto justify-center">
-                  {/* Add coupon */}
-                  <UserConfirm client={client} />
-                </div>
-
-                <CouponCreator />
-              </TabPanel>
+              <AdminPanel client={client} />
             ) : undefined}
 
-            <TabPanel>
-              {data?.user && data?.user.fees_paid_at ? (
+            {data?.user && data?.user.fees_paid_at && (
+              <TabPanel>
                 <MemberContent videos={data?.videos} />
-              ) : undefined}
-            </TabPanel>
+              </TabPanel>
+            )}
 
             <TabPanel>
               <div className="my-5 flex gap-3 mx-auto justify-center">
                 <div>
-                  <h5 className="text-center">Your Member Info</h5>
+                  <h5 className="text-center">Membership Info</h5>
                   <User
                     fname={data?.user?.fname}
                     lname={data?.user?.lname}
@@ -237,16 +247,19 @@ export default function Dashboard() {
                               );
                             }}
                           >
-                            {/* <option value="student">
-                              Conference and Membership | Student | $200
+                            <option value="student">
+                              Conference and Membership | Early Bird Student |
+                              $200
                             </option>
                             <option value="postdoctorial">
-                              Conference and Membership | Postdoctorial | $300
+                              Conference and Membership | Early Bird
+                              Postdoctorial | $300
                             </option>
                             <option value="professional">
-                              Conference and Membership | Professional | $400
-                            </option> */}
-                            <option value="student">
+                              Conference and Membership | Early Bird
+                              Professional | $400
+                            </option>
+                            {/* <option value="student">
                               Conference and Membership | Student | $250
                             </option>
                             <option value="postdoctorial">
@@ -255,7 +268,7 @@ export default function Dashboard() {
                             <option value="professional">
                               Conference and Membership | Professional | $450
                             </option>
-                            {/* <option value="member_only_student">
+                            <option value="member_only_student">
                               Membership | Student | $10
                             </option>
                             <option value="member_only_postdoctorial">

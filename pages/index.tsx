@@ -1,4 +1,3 @@
-import { PartyPopper } from "lucide-react";
 import {
   Accordion,
   AccordionButton,
@@ -21,14 +20,15 @@ import {
   useTimeout,
   useToast,
 } from "@chakra-ui/react";
+import { PartyPopper } from "lucide-react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
   const toast = useToast();
-  const [currentTag, setTag] = useState<number>(0);
+  const [currentTag, setTag] = useState(0);
 
   useTimeout(() => {
     if (router.query.error_description) {
@@ -38,22 +38,31 @@ export default function Home() {
         duration: 8000,
         isClosable: true,
       });
+    } else if (router.query.token || router.query.code) {
+      toast({
+        title: "Thank you for your verification",
+        description:
+          "You are free to continue with your conference registration or any other activities!",
+        status: "success",
+        duration: 8000,
+        isClosable: true,
+      });
     }
   }, 500);
 
-  // async function handleUpdate() {
-  //   setTimeout(() => {
-  //     if (currentTag >= Taglines.length) {
-  //       setTag(0);
-  //     } else {
-  //       setTag(currentTag + 1);
-  //     }
-  //   }, 8000);
-  // }
+  async function handleUpdate() {
+    setTimeout(() => {
+      if (currentTag >= Taglines.length) {
+        setTag(0);
+      } else {
+        setTag(currentTag + 1);
+      }
+    }, 4000);
+  }
 
-  // useEffect(() => {
-  //   handleUpdate();
-  // }, []);
+  useEffect(() => {
+    handleUpdate();
+  }, [currentTag]);
 
   return (
     <div className="my-5 md:my-10 gap-10">
@@ -97,39 +106,36 @@ export default function Home() {
           <Heading size="sm" color="gray.600">
             {Taglines[currentTag || 0]}
           </Heading>
-          {/* <Button
+          <Button
             type="button"
             size="md"
             onClick={() => router.push("/membership")}
             colorScheme="pink"
           >
             Become a Member
-          </Button> */}
+          </Button>
         </Box>
       </HStack>
 
       <Divider as="hr" className="my-10 border-gray-500" />
       <Alert
-        // as="a"
-        // href="/events"
+        as="a"
+        href="/events"
         _hover={{ shadow: "lg" }}
         borderRadius="xl"
         w={["80%", "fit-content"]}
         mx="auto"
-        status="info"
+        status="success"
       >
         <AlertIcon>
           <PartyPopper />
         </AlertIcon>
-        Thank you to everyone that participated, contributed to, and attended
-        MCBIOS 2025!<br />Preparation for MCBIOS 2026 is now underway!
+        Conference registration is now open!
       </Alert>
       <Divider as="hr" className="my-10 border-gray-500" />
 
       <section className="space-y-5 px-10 mx-auto md:w-5/6">
-        <h3 className="text-center">
-          Greetings from the MCBIOS President
-        </h3>
+        <h3 className="text-center">Greetings from the MCBIOS President</h3>
         <div className="md:flex my-5 gap-5 space-y-10 mx-auto">
           <Card shadow="md" w={{ base: "fit-content", md: "sm", xl: "lg" }}>
             <CardHeader>

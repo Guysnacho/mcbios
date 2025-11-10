@@ -1,4 +1,4 @@
-import { isPresent } from "@/lib/utils";
+import { isPresent } from "@/lib";
 import {
   Box,
   Button,
@@ -24,7 +24,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import {
   PaymentBody,
   PaymentHandlerType,
-} from "../dashboard/admin/PaymentHandler";
+} from "../dashboard/PaymentHandler";
 
 export const NameTagForm = ({
   isOpen,
