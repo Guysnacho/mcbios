@@ -23,6 +23,25 @@ import {
 export default function Page() {
   const hotels = [
     {
+      name: "Embassy Suites by Hilton Tampa USF Near Busch Gardens",
+      address: "3705 Spectrum Blvd, Tampa, FL 33612",
+      distance: "0.7 miles • 5 min drive • 14 min walk",
+      description:
+        "Find us on the University of South Florida campus, in the USF Research Park. We're a Busch Gardens Preferred Partner and offer a free shuttle to the amusement park, five minutes away. We have an outdoor pool and a fitness center featuring a Peloton® Bike with toe cages. Enjoy free made-to-order breakfast and our complimentary Evening Reception.",
+      features: [
+        { label: "Connecting rooms", icon: DoorOpen },
+        { label: "Free made-to-order breakfast", icon: Coffee },
+        { label: "Complimentary evening reception", icon: Wine },
+        { label: "Non-smoking rooms", icon: BanIcon },
+        { label: "Digital key", icon: Smartphone },
+        { label: "Concierge", icon: UserCheck },
+      ],
+      phone: "(813) 977-7066",
+      bookingUrl:
+        "https://www.hilton.com/en/hotels/tpafres-embassy-suites-tampa-usf-near-busch-gardens/",
+      popular: true,
+    },
+    {
       name: "Home2 Suites by Hilton Tampa USF Near Busch Gardens",
       address: "11606 McKinley Dr, Tampa, FL 33612",
       distance: "0.5 miles • 3 min drive • 9 min walk",
@@ -39,7 +58,7 @@ export default function Page() {
       phone: "(813) 750-8844",
       bookingUrl:
         "https://www.hilton.com/en/book/reservation/rooms/?ctyhocn=TPASFHT&arrivalDate=2026-03-26&departureDate=2026-03-29",
-      popular: true,
+      popular: false,
     },
     {
       name: "Holiday Inn Tampa North",
@@ -59,25 +78,6 @@ export default function Page() {
       phone: "(813) 402-2982",
       bookingUrl:
         "https://www.ihg.com/hotels/us/en/find-hotels/select-roomrate?qDest=3751%20E.%20Fowler%20Ave,%20Tampa,%20FL,%20US&qPt=CASH",
-      popular: false,
-    },
-    {
-      name: "Embassy Suites by Hilton Tampa USF Near Busch Gardens",
-      address: "3705 Spectrum Blvd, Tampa, FL 33612",
-      distance: "0.7 miles • 5 min drive • 14 min walk",
-      description:
-        "Find us on the University of South Florida campus, in the USF Research Park. We're a Busch Gardens Preferred Partner and offer a free shuttle to the amusement park, five minutes away. We have an outdoor pool and a fitness center featuring a Peloton® Bike with toe cages. Enjoy free made-to-order breakfast and our complimentary Evening Reception.",
-      features: [
-        { label: "Connecting rooms", icon: DoorOpen },
-        { label: "Free made-to-order breakfast", icon: Coffee },
-        { label: "Complimentary evening reception", icon: Wine },
-        { label: "Non-smoking rooms", icon: BanIcon },
-        { label: "Digital key", icon: Smartphone },
-        { label: "Concierge", icon: UserCheck },
-      ],
-      phone: "(813) 977-7066",
-      bookingUrl:
-        "https://www.hilton.com/en/hotels/tpafres-embassy-suites-tampa-usf-near-busch-gardens/",
       popular: false,
     },
   ];
