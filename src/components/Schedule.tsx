@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 export function Schedule() {
   const scheduleData = {
     "Day 1": {
-      date: "March 26, 2026",
+      date: "March 27, 2026",
       title: "Opening & Keynotes",
       events: [
         {
@@ -72,7 +72,7 @@ export function Schedule() {
       ]
     },
     "Day 2": {
-      date: "March 27, 2026",
+      date: "March 28, 2026",
       title: "Research & Innovation",
       events: [
         {
@@ -131,7 +131,7 @@ export function Schedule() {
       ]
     },
     "Day 3": {
-      date: "March 28, 2026",
+      date: "March 29, 2026",
       title: "Future Directions",
       events: [
         {
@@ -190,8 +190,8 @@ export function Schedule() {
       ]
     },
     "Day 4": {
-      date: "March 28, 2026",
-      title: "Future Directions",
+      date: "March 29, 2026",
+      title: "Future Directions - Delete This",
       events: [
         {
           time: "9:00 AM",

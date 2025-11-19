@@ -46,7 +46,7 @@ export function Hero() {
             <div className="flex flex-wrap gap-6 text-[var(--off-white)]">
               <div className="flex items-center space-x-2">
                 <Calendar className="w-5 h-5 text-[var(--gold)]" />
-                <span>March 26-29, 2026</span>
+                <span>March 27-29, 2026</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="w-5 h-5 text-[var(--gold)]" />
