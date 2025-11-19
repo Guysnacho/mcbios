@@ -8,7 +8,7 @@ export function Speakers() {
   const speakers = [
     {
       name: "Dr. Rafael A. Irizarry",
-      title: "Chair of the Department of Data Sciences",
+      title: "Chair and Professor of Department of Data Science",
       institution: "Dana-Farber Cancer Institute",
       expertise: "Microarray & Genomic Data Analytics",
       image: "/img/speaker/irizarry.jpeg",
@@ -18,7 +18,7 @@ export function Speakers() {
     {
       name: "Dr. Ting Wang",
       title:
-        "Inaugural Sanford C. and Karen P. Loewentheil Distinguished Professor",
+        "Chair and Professor of Department of Genetics",
       institution: "Washington University School of Medicine",
       expertise: "Epigenetic Regulation in Development & Cancer",
       image: "/img/speaker/ting.webp",
@@ -27,7 +27,7 @@ export function Speakers() {
     },
     {
       name: "Dr. Issam El Naqa",
-      title: "Research Department Chair, Machine Learning",
+      title: "Chair and Senior Member of Department of Machine Learning",
       institution: "Moffitt Cancer Center",
       expertise: "AI-Driven Radiogenomics & Treatment Modeling",
       image: "/img/speaker/naqa.webp",

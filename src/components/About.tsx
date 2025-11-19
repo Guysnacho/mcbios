@@ -149,7 +149,7 @@ export function About() {
             <div className="text-[var(--maroon)]/70">Speakers</div>
           </div>
           <div className="space-y-2">
-            <div className="text-3xl font-bold text-[var(--pink)]">4</div>
+            <div className="text-3xl font-bold text-[var(--pink)]">3</div>
             <div className="text-[var(--maroon)]/70">Days</div>
           </div>
           {/* <div className="space-y-2">
