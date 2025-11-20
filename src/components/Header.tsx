@@ -59,20 +59,18 @@ export function Header() {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--gold)] transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
-            <Button
-              asChild
-              disabled
-              variant="outline"
-              className="border-[var(--off-white)] text-[var(--maroon)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] bg-[var(--gold)] font-medium"
+            <Link
+              // href="https://mcbios.com/membership?registration=true"
+              href="/register"
             >
-              {/* <a href="#">Registration Opens Soon</a> */}
-              <a
-                href="https://mcbios.com/membership?registration=true"
-                target="_blank"
+              <Button
+                variant="outline"
+                className="border-[var(--off-white)] text-[var(--maroon)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] bg-[var(--gold)] font-medium"
               >
+                {/* <a href="#">Registration Opens Soon</a> */}
                 Register Now
-              </a>
-            </Button>
+              </Button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -107,7 +105,7 @@ export function Header() {
                 disabled
               >
                 <a
-                  href="https://mcbios.com/membership?registration=true"
+                  href="/register"
                   target="_blank"
                   onClick={() => {
                     setIsMenuOpen(false);
