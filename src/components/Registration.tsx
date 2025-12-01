@@ -26,7 +26,7 @@ export function Registration() {
       popular: true,
     },
     {
-      name: "Post-Doctorial",
+      name: "Post-Doctoral",
       price: "$300",
       originalPrice: "$350",
       description: "Ideal for faculty and healthcare AI researchers",
