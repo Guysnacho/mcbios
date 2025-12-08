@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/component";
 import { Database } from "@/lib/supabase/types";
 import { ViewOffIcon } from "@chakra-ui/icons";
 import {
+  Box,
   Button,
   Flex,
   FormControl,
@@ -33,9 +34,7 @@ const Membership = () => {
   async function verifyResetSession(client: SupabaseClient<Database>) {
     const { error } = await client.auth.verifyOtp({
       type: "recovery",
-      email: router.query.email as string,
       token_hash: router.query.tokenHash as string,
-      token: router.query.token as string,
     });
 
     if (error) {
@@ -102,7 +101,7 @@ const Membership = () => {
             height="auto"
           />
         </div>
-        <section>
+        <Box>
           <h3 className="text-center my-10">
             Recover Access to the MCBIOS Community
           </h3>
@@ -114,8 +113,18 @@ const Membership = () => {
               handleUpdate(client).finally(() => setLoading(false));
             }}
           >
-            <Stack spacing={4}>
-              <FormControl id="password" isRequired isDisabled={loading}>
+            <Stack
+              spacing={4}
+              mb={5}
+              width={["85%", null, "70%", "60%", "50%"]}
+              mx="auto"
+            >
+              <FormControl
+                id="password"
+                isRequired
+                isDisabled={loading}
+                mx="auto"
+              >
                 <FormLabel>New Password</FormLabel>
                 <InputGroup>
                   <Input
@@ -136,7 +145,12 @@ const Membership = () => {
                   </InputRightElement>
                 </InputGroup>
               </FormControl>
-              <FormControl id="confirm" isRequired isDisabled={loading}>
+              <FormControl
+                id="confirm"
+                isRequired
+                isDisabled={loading}
+                mx="auto"
+              >
                 <FormLabel>Confirm your Password</FormLabel>
                 <InputGroup>
                   <Input
@@ -150,12 +164,12 @@ const Membership = () => {
             </Stack>
             <section className="text-center space-y-3">
               <Button
-                aria-describedby="member sign up"
+                aria-description="Submit new password"
                 type="submit"
                 colorScheme="green"
-                isDisabled={loading && password !== confirm}
+                isDisabled={loading || password !== confirm}
               >
-                Sign Up
+                Submit
               </Button>
             </section>
           </form>
@@ -164,7 +178,7 @@ const Membership = () => {
               <Spinner m="auto" />
             </Flex>
           )}
-        </section>
+        </Box>
       </div>
     </>
   );
