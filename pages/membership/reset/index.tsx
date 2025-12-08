@@ -68,6 +68,7 @@ const Membership = () => {
         colorScheme: "green",
         title: "Your request has been recieved",
         description: "Feel free to login using your new credentials!",
+        onCloseComplete: () => router.replace("/membership?reset=true"),
       });
     }
   }

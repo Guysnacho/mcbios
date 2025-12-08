@@ -35,6 +35,9 @@ const Membership = () => {
   useEffect(() => {
     if (router.query.registration) {
       setAuthOpen(true);
+    } else if (router.query.reset) {
+      setIsSignUp(false);
+      setAuthOpen(true);
     }
   }, [router]);
 

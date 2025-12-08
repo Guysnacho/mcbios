@@ -165,6 +165,11 @@ export const AuthModal = ({
       const { error } = await client.auth.resetPasswordForEmail(email);
       // Handle response
       if (error) {
+        if (error.message.toLocaleLowerCase().includes("rate limit")) {
+          throw new Error(
+            "Too many signup requests recieved for the provided email. Try again later.",
+          );
+        }
         throw error;
       } else {
         setIsOpen(false);
