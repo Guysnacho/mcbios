@@ -162,9 +162,7 @@ export const AuthModal = ({
     });
     if (success) {
       // Perform auth
-      const { error } = await client.auth.resetPasswordForEmail(email, {
-        redirectTo: "http://localhost:3000/membership",
-      });
+      const { error } = await client.auth.resetPasswordForEmail(email);
       // Handle response
       if (error) {
         throw error;
