@@ -63,6 +63,7 @@ const Membership = () => {
           "If an issue persists, please reach out to team@tunjiproductions.com - " +
           error.message,
       });
+      setLoading(false);
     } else {
       toast({
         colorScheme: "green",
@@ -111,7 +112,7 @@ const Membership = () => {
             onSubmit={(e) => {
               e.preventDefault();
 
-              handleUpdate(client).finally(() => setLoading(false));
+              handleUpdate(client);
             }}
           >
             <Stack
