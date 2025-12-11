@@ -256,8 +256,8 @@ export const AuthModal = ({
                       className="border-l-gray-600 border-l-2 pl-3"
                     >
                       If you&apos;re having trouble logging into your account or
-                      have just plain forgotten your password, please the email
-                      you&apos;ve signed up with.
+                      have just plain forgotten your password, please enter the
+                      email you&apos;ve signed up with.
                     </Text>
                   </>
                 ) : isSignUp ? (
