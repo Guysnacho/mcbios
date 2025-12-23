@@ -5,37 +5,6 @@ import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 
 export function Speakers() {
-  const speakers = [
-    {
-      name: "Dr. Rafael A. Irizarry",
-      title: "Chair and Professor of Department of Data Science",
-      institution: "Dana-Farber Cancer Institute",
-      expertise: "Microarray & Genomic Data Analytics",
-      image: "/img/speaker/irizarry.jpeg",
-      keynote: true,
-      link: "https://hsph.harvard.edu/profile/rafael-a-irizarry/",
-    },
-    {
-      name: "Dr. Ting Wang",
-      title:
-        "Chair and Professor of Department of Genetics",
-      institution: "Washington University School of Medicine",
-      expertise: "Epigenetic Regulation in Development & Cancer",
-      image: "/img/speaker/ting.webp",
-      keynote: true,
-      link: "https://genetics.wustl.edu/people/ting-wang-phdthe-sanford-and-karen-loewentheil-distinguished-professor-of-medicine-and-head-department-of-genetics/",
-    },
-    {
-      name: "Dr. Issam El Naqa",
-      title: "Chair and Senior Member of Department of Machine Learning",
-      institution: "Moffitt Cancer Center",
-      expertise: "AI-Driven Radiogenomics & Treatment Modeling",
-      image: "/img/speaker/naqa.webp",
-      keynote: true,
-      link: "https://www.moffitt.org/research-science/researchers/issam-el-naqa/",
-    },
-  ];
-
   return (
     <section
       id="speakers"
@@ -69,7 +38,7 @@ export function Speakers() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 align-middle justify-center">
           {speakers.map((speaker, index) => (
             <Card
               key={index}
@@ -137,3 +106,42 @@ export function Speakers() {
     </section>
   );
 }
+
+const speakers = [
+  {
+    name: "Dr. Rafael A. Irizarry",
+    title: "Chair and Professor of Department of Data Science",
+    institution: "Dana-Farber Cancer Institute",
+    expertise: "Microarray & Genomic Data Analytics",
+    image: "/img/speaker/irizarry.jpeg",
+    keynote: true,
+    link: "https://hsph.harvard.edu/profile/rafael-a-irizarry/",
+  },
+  {
+    name: "Dr. Ting Wang",
+    title: "Chair and Professor of Department of Genetics",
+    institution: "Washington University School of Medicine",
+    expertise: "Epigenetic Regulation in Development & Cancer",
+    image: "/img/speaker/ting.webp",
+    keynote: true,
+    link: "https://genetics.wustl.edu/people/ting-wang-phdthe-sanford-and-karen-loewentheil-distinguished-professor-of-medicine-and-head-department-of-genetics/",
+  },
+  {
+    name: "Dr. Issam El Naqa",
+    title: "Chair and Senior Member of Department of Machine Learning",
+    institution: "Moffitt Cancer Center",
+    expertise: "AI-Driven Radiogenomics & Treatment Modeling",
+    image: "/img/speaker/naqa.webp",
+    keynote: true,
+    link: "https://www.moffitt.org/research-science/researchers/issam-el-naqa/",
+  },
+  {
+    name: "Dr. Jinghui Zhang",
+    title: "Chair of Bioinformatics",
+    institution: "St Jude Children's Research Hospital",
+    expertise: "Computational Pediatric Cancer Genomics & Target Discovery",
+    image: "/img/speaker/zhang.webp",
+    keynote: true,
+    link: "https://www.stjude.org/directory/z/jinghui-zhang.html",
+  },
+];
