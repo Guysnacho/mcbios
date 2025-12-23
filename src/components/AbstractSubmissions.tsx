@@ -141,7 +141,7 @@ export function AbstractSubmissions({ deadlinePassed }: FormProps) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Submit Proposal
+                Submit Abstract
               </a>
             </Button>
           )}
