@@ -14,7 +14,7 @@ export function Header() {
     { href: "/abstracts", label: "Abstracts" },
     { href: "/ysea", label: "YSEA" },
     { href: "/accomodations", label: "Accomodations" },
-    { href: "/#about", label: "About" },
+    { href: "/about", label: "About" },
     // { href: "#speakers", label: "Speakers" },
     // { href: "#schedule", label: "Schedule" },
     // { href: "#registration", label: "Register" },

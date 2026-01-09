@@ -1,9 +1,14 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
 import { Brain, Database, Microscope, Network } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Card } from "./ui/card";
+import { usePathname } from "next/navigation";
 
 export function About() {
+  const path = usePathname();
+  const onAboutPage = path.includes("/about");
   const features = [
     {
       icon: <Microscope className="w-8 h-8" />,
@@ -108,7 +113,10 @@ export function About() {
         </div>
 
         {/* Venue Showcase */}
-        <div className="mb-16">
+        <div
+          className="mb-16"
+          style={{ display: onAboutPage ? "none" : undefined }}
+        >
           <div className="text-center mb-8">
             <h3
               id="venue"
@@ -139,7 +147,10 @@ export function About() {
         </div>
 
         {/* Conference Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+        <div
+          className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center"
+          style={{ display: onAboutPage ? "none" : undefined }}
+        >
           <div className="space-y-2">
             <div className="text-3xl font-bold text-[var(--pink)]">100+</div>
             <div className="text-[var(--maroon)]/70">Attendees</div>
