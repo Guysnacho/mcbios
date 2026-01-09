@@ -1,10 +1,118 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { Brain, Database, Microscope, Network } from "lucide-react";
-import { Badge } from "./ui/badge";
-import { Card } from "./ui/card";
+import {
+  Award,
+  Brain,
+  Building2,
+  Database,
+  Link,
+  Microscope,
+  Network,
+} from "lucide-react";
+import NextLink from "next/link";
 import { usePathname } from "next/navigation";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./ui/accordion";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Badge } from "./ui/badge";
+import { Card, CardContent } from "./ui/card";
+
+// Committee member type
+type CommitteeMember = {
+  name: string;
+  title: string;
+  role: string;
+  institution: string;
+  image?: string;
+  initials: string;
+  url: string;
+};
+
+const committeeMembers: CommitteeMember[] = [
+  {
+    name: "Mingxiang Teng",
+    title: "Ph.D.",
+    role: "Conference Chair",
+    institution: "Moffitt Cancer Center",
+    initials: "MT",
+    image: "/img/committee/teng_headshot.jpg",
+    url: "https://www.moffitt.org/research-science/researchers/mingxiang-teng",
+  },
+  {
+    name: "Xuefeng Wang",
+    title: "Ph.D.",
+    role: "Conference Co-Chair",
+    institution: "Moffitt Cancer Center",
+    initials: "XW",
+    image: "/img/committee/wang_headshot.jpg",
+    url: "https://www.moffitt.org/research-science/researchers/xuefeng-wang",
+  },
+  {
+    name: "Qianqian Song",
+    title: "Ph.D.",
+    role: "Conference Co-Chair",
+    institution: "University of Florida",
+    initials: "QS",
+    image: "/img/committee/song_headshot.jpg",
+    url: "https://hobi.med.ufl.edu/profile/song-qianqian",
+  },
+];
+
+// Committee Member Card Component
+function CommitteeMemberCard({ member }: { member: CommitteeMember }) {
+  return (
+    <Card className="group overflow-hidden bg-white border-2 border-[var(--maroon)]/10 hover:border-[var(--pink)]/50 hover:shadow-xl transition-all duration-300 max-w-xs">
+      {/* Image Section */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-[var(--maroon)]/5 to-[var(--pink)]/5">
+        <div className="aspect-square flex items-center justify-center p-6">
+          <Avatar className="w-40 h-40 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-300">
+            {member.image ? (
+              <AvatarImage src={member.image} alt={member.name} />
+            ) : null}
+            <AvatarFallback className="bg-gradient-to-br from-[var(--maroon)] to-[var(--pink)] text-white text-3xl font-bold">
+              {member.initials}
+            </AvatarFallback>
+          </Avatar>
+        </div>
+        {/* Decorative accent */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--maroon)] to-[var(--pink)]" />
+      </div>
+
+      {/* Content Section */}
+      <CardContent className="text-center pt-4 pb-6">
+        <h3 className="text-lg font-bold text-[var(--maroon)] group-hover:text-[var(--pink)] transition-colors">
+          {member.name}, {member.title}
+        </h3>
+
+        <div className="mt-3 space-y-2">
+          <div className="flex items-center justify-center gap-2 text-sm text-[var(--maroon)]/70">
+            <Award className="w-4 h-4 text-[var(--pink)]" />
+            <span>{member.role}</span>
+          </div>
+          <div className="flex items-center justify-center gap-2 text-sm text-[var(--maroon)]/70">
+            <Building2 className="w-4 h-4 text-[var(--pink)]" />
+            <span>{member.institution}</span>
+          </div>
+          <NextLink
+            href={member.url}
+            target="_blank"
+            referrerPolicy="no-referrer"
+          >
+            <div className="flex items-center justify-center gap-2 text-sm text-[var(--maroon)]/70">
+              <Link className="w-4 h-4 text-[var(--pink)]" />
+              <span>Researcher Profile</span>
+            </div>
+          </NextLink>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
 
 export function About() {
   const path = usePathname();
@@ -112,6 +220,110 @@ export function About() {
           ))}
         </div>
 
+        {/* About MCBIOS Accordion - Only shown on About page */}
+        {onAboutPage && (
+          <div className="mb-16">
+            <div className="max-w-3xl mx-auto">
+              <Card className="bg-white/90 backdrop-blur-sm border-[var(--maroon)]/20 p-6">
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem
+                    value="origins"
+                    className="border-[var(--maroon)]/10"
+                  >
+                    <AccordionTrigger className="text-[var(--maroon)] font-semibold hover:text-[var(--pink)] hover:no-underline">
+                      Our Origins and Growth
+                    </AccordionTrigger>
+                    <AccordionContent className="text-[var(--maroon)]/80 leading-relaxed">
+                      MCBIOS is a non-profit organization founded in 2003. What
+                      began as a grassroots effort led by a small group of
+                      researchers at the FDA NCTR (located in Little Rock,
+                      Arkansas) has since grown significantly. We are now one of
+                      only two regional societies in North America (alongside
+                      GLBIO) affiliated with ISCB, the world&apos;s largest
+                      bioinformatics society.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem
+                    value="mission"
+                    className="border-[var(--maroon)]/10"
+                  >
+                    <AccordionTrigger className="text-[var(--maroon)] font-semibold hover:text-[var(--pink)] hover:no-underline">
+                      Our Mission
+                    </AccordionTrigger>
+                    <AccordionContent className="text-[var(--maroon)]/80 leading-relaxed">
+                      The mission of MCBIOS is to foster networking,
+                      collaboration, and professional development among members
+                      at all levels of skill and education. Our annual
+                      conference is the flagship event, bringing together
+                      talented scientists from across the nation to share
+                      scientific insights and discoveries, advancing our
+                      understanding of nature and health. Guided by these goals,
+                      the annual conference has enjoyed a rich and enduring
+                      history.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem
+                    value="looking-ahead"
+                    className="border-[var(--maroon)]/10"
+                  >
+                    <AccordionTrigger className="text-[var(--maroon)] font-semibold hover:text-[var(--pink)] hover:no-underline">
+                      Looking Ahead to MCBIOS 2026
+                    </AccordionTrigger>
+                    <AccordionContent className="text-[var(--maroon)]/80 leading-relaxed">
+                      The 2026 iteration will mark the 22nd in a series of
+                      exceptional conferences. For MCBIOS 2026, we are excited
+                      to host plenary speakers and a myriad of world-class
+                      researchers presenting in technical sessions, workshops,
+                      and tutorials. Additionally, the Young Scientist
+                      Excellence Award (YSEA) will be awarded, alongside poster
+                      sessions and other engaging activities.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem
+                    value="opportunities"
+                    className="border-[var(--maroon)]/10"
+                  >
+                    <AccordionTrigger className="text-[var(--maroon)] font-semibold hover:text-[var(--pink)] hover:no-underline">
+                      Opportunities for Attendees
+                    </AccordionTrigger>
+                    <AccordionContent className="text-[var(--maroon)]/80 leading-relaxed">
+                      All registered attendees are invited to submit their
+                      research papers for consideration in the MCBIOS 2026
+                      proceedings, which will be published as special issues in
+                      high-quality bioinformatics journals. We look forward to
+                      hosting an impactful bioinformatics conference and hope
+                      you&apos;ll join us on this exciting journey!
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </Card>
+            </div>
+          </div>
+        )}
+
+        {/* Organizing Committee Section - Only shown on About page */}
+        {onAboutPage && (
+          <div className="mb-16">
+            <div className="text-center mb-10">
+              <h3 className="text-3xl font-bold text-[var(--maroon)] mb-4">
+                Organizing Committee
+              </h3>
+              <p className="text-[var(--maroon)]/80 max-w-2xl mx-auto">
+                Meet the dedicated team organizing MCBIOS 2026
+              </p>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-8">
+              {committeeMembers.map((member, index) => (
+                <CommitteeMemberCard key={index} member={member} />
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Venue Showcase */}
         <div
           className="mb-16"
@@ -163,10 +375,6 @@ export function About() {
             <div className="text-3xl font-bold text-[var(--pink)]">3</div>
             <div className="text-[var(--maroon)]/70">Days</div>
           </div>
-          {/* <div className="space-y-2">
-            <div className="text-3xl font-bold text-[var(--pink)]">25+</div>
-            <div className="text-[var(--maroon)]/70">Sessions</div>
-          </div> */}
         </div>
       </div>
     </section>
