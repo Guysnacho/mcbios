@@ -69,9 +69,9 @@ export function Registration() {
 
   const importantDates = [
     {
-      date: "December 20, 2025",
+      date: "January 23, 2025",
       event: "Session Proposal Submission Deadline",
-      urgent: false,
+      urgent: true,
     },
     {
       date: "January 30, 2026",
@@ -84,7 +84,7 @@ export function Registration() {
       urgent: false,
     },
     {
-      date: "February 21, 2026",
+      date: "january 15, 2026",
       event: "Early Bird Registration Deadline",
       urgent: true,
     },
@@ -125,7 +125,9 @@ export function Registration() {
           <div className="flex items-center justify-center space-x-2 text-[var(--maroon)]">
             <Calendar className="w-5 h-5 text-[var(--pink)]" />
             <span className="font-medium">
-              Early Bird Ends: January 1, 2026
+              Early Bird Ends:{" "}
+              <span className="line-through">January 1, 2026</span> January 15,
+              2026
             </span>
           </div>
 
