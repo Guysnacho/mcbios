@@ -38,7 +38,7 @@ export function Speakers() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 align-middle justify-center">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 align-middle justify-center">
           {speakers.map((speaker, index) => (
             <Card
               key={index}
@@ -74,7 +74,7 @@ export function Speakers() {
 
                 <Badge
                   variant="outline"
-                  className="border-[var(--pink)] text-[var(--pink)]"
+                  className="border-[var(--pink)] text-[var(--pink)] max-w-xs wrap-normal"
                 >
                   {speaker.expertise}
                 </Badge>
@@ -139,7 +139,7 @@ const speakers = [
     name: "Dr. Jinghui Zhang",
     title: "Chair of Bioinformatics",
     institution: "St Jude Children's Research Hospital",
-    expertise: "Computational Pediatric Cancer Genomics & Target Discovery",
+    expertise: "Computational Pediatric Cancer Genomics",
     image: "/img/speaker/zhang.webp",
     keynote: true,
     link: "https://www.stjude.org/directory/z/jinghui-zhang.html",
