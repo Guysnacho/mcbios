@@ -1,6 +1,5 @@
 import { About } from "@/components/About";
 import { Hero } from "@/components/Hero";
-import { Registration } from "@/components/Registration";
 import { Speakers } from "@/components/Speakers";
 
 export default function Page() {
@@ -9,7 +8,7 @@ export default function Page() {
       <Hero />
       <Speakers />
       <About />
-      <Registration />
+      {/* <Registration /> */}
       {/* <Schedule /> */}
     </div>
   );
