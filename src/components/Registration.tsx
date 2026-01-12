@@ -130,6 +130,12 @@ export function Registration() {
               2026
             </span>
           </div>
+          <div className="flex items-center justify-center space-x-2 text-[var(--maroon)] mt-5">
+            <Calendar className="w-5 h-5 text-[var(--pink)]" />
+            <span className="font-medium">
+              Registration Ends: March 17, 2026
+            </span>
+          </div>
 
           <div className="flex items-center justify-center space-x-2 text-[var(--maroon)]">
             <Button
