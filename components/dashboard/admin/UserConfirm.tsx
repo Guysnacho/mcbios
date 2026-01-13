@@ -155,6 +155,7 @@ export const UserConfirm = ({
 
   return (
     <div>
+      <RetroactiveRegistration />
       <ConfirmModal
         client={client}
         id={id}
@@ -162,7 +163,6 @@ export const UserConfirm = ({
         setId={setId}
         setOpen={setOpen}
       />
-      <RetroactiveRegistration />
       <div className="flex flex-col gap-5 mx-auto mt-8">
         <TableContainer>
           <Table variant="striped">
