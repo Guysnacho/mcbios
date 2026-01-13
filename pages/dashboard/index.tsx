@@ -89,18 +89,18 @@ export default function Dashboard() {
           display={error ? "none" : undefined}
         >
           <TabList>
-            {data?.user && data.user.role === "admin" ? (
+            {data?.user && data.user.role === "admin" && (
               <Tab title="Admin">Admin</Tab>
-            ) : undefined}
+            )}
             {data?.user && data?.user.fees_paid_at && (
               <Tab title="Conference Content">Conference Content</Tab>
             )}
             <Tab title="Profile">Profile</Tab>
           </TabList>
           <TabPanels>
-            {data?.user && data?.user.role === "admin" ? (
+            {data?.user && data?.user.role === "admin" && (
               <AdminPanel client={client} />
-            ) : undefined}
+            )}
 
             {data?.user && data?.user.fees_paid_at && (
               <TabPanel>
