@@ -152,6 +152,7 @@ export const CouponCreator = () => {
             <Input
               type="text"
               inputMode="text"
+              maxLength={40}
               onChange={(e) => setCouponName(e.currentTarget.value)}
               value={couponName}
             />
