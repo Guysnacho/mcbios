@@ -87,7 +87,6 @@ export default async function handler(
           expires_at,
         }),
       );
-      console.log(promo);
       res.send(promo);
       break;
     case "DELETE":
@@ -99,22 +98,20 @@ export default async function handler(
       console.log("Code recieved - %s", code);
       let reqType: "promo" | "coupon";
       if (!code) {
-        res.status(400).end("Invalid body");
+        res.status(400).json({ message: "Invalid request" });
         break;
       } else if (body.coupon) {
         reqType = "coupon";
       } else if (body.promo) {
         reqType = "promo";
       } else {
-        res.status(400).end("Invalid body");
+        res.status(400).json({ message: "Invalid request" });
         break;
       }
 
       if (reqType === "coupon") {
         console.log("Deleting coupon");
         const data = await stripe.coupons.del(code);
-        console.log("Coupon response");
-        console.log(data);
         res.send({ id: data.id, deleted: data.deleted });
       } else {
         console.log("Deleting promotion code");
@@ -122,7 +119,6 @@ export default async function handler(
           active: false,
         });
         console.log("promotion code delete response");
-        console.log(data);
         res.send({
           id: data.id,
           active: data.active,
@@ -135,7 +131,7 @@ export default async function handler(
     // Fetch session result on confir mation page
     default:
       res.setHeader("Allow", req.method!);
-      res.status(405).end("Method Not Allowed");
+      res.status(405).json({ message: "Method Not Allowed" });
   }
 }
 

@@ -80,11 +80,9 @@ export const CouponCreator = () => {
               },
       ),
     });
-    if (res.ok) {
-      const data = await res.json();
-      mutate(data);
-    } else {
-      const err = await res.json()
+    if (res.ok) mutate();
+    else {
+      const err = await res.json();
       toast({
         status: "error",
         title: "Issue creating coupon",
@@ -99,47 +97,55 @@ export const CouponCreator = () => {
   };
 
   const deletePromo = async (promo: string) => {
-    fetch("/api/admin", { method: "DELETE", body: JSON.stringify({ promo }) })
-      .then((res) => res.json())
-      .then((res) => {
-        mutate(res);
-      })
-      .catch((err) =>
+    try {
+      const res = await fetch("/api/admin", {
+        method: "DELETE",
+        body: JSON.stringify({ promo }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        mutate(data);
+      } else {
+        const err = await res.json();
         toast({
           status: "error",
           title: "Issue deleting promo code",
-          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message} and try again later.`,
+          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message}`,
           variant: "subtle",
-        }),
-      )
-      .finally(() => {
-        setCoupon(undefined);
-        setCouponName(undefined);
-        setDiscount(undefined);
-        setPercentage(undefined);
-      });
+        });
+      }
+    } finally {
+      setCoupon(undefined);
+      setCouponName(undefined);
+      setDiscount(undefined);
+      setPercentage(undefined);
+    }
   };
 
   const deleteCoupon = async (coupon: string) => {
-    fetch("/api/admin", { method: "DELETE", body: JSON.stringify({ coupon }) })
-      .then((res) => res.json())
-      .then((res) => {
-        mutate(res);
-      })
-      .catch((err) =>
+    try {
+      const res = await fetch("/api/admin", {
+        method: "DELETE",
+        body: JSON.stringify({ coupon }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        mutate(data);
+      } else {
+        const err = await res.json();
         toast({
           status: "error",
           title: "Issue deleting coupon code",
-          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message} and try again later.`,
+          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message}`,
           variant: "subtle",
-        }),
-      )
-      .finally(() => {
-        setCoupon(undefined);
-        setCouponName(undefined);
-        setDiscount(undefined);
-        setPercentage(undefined);
-      });
+        });
+      }
+    } finally {
+      setCoupon(undefined);
+      setCouponName(undefined);
+      setDiscount(undefined);
+      setPercentage(undefined);
+    }
   };
 
   return (
