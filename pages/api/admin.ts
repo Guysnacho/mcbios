@@ -8,7 +8,7 @@ import { Stripe } from "stripe";
  */
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -58,7 +58,7 @@ export default async function handler(
         }
       } catch (err) {
         // @ts-expect-error error fields are unknown
-        res.status(err.statusCode || 500).json(err.message);
+        res.status(err.statusCode || 500).json({ message: err.message });
       }
       break;
     case "GET":
@@ -85,7 +85,7 @@ export default async function handler(
           max_redemptions,
           times_redeemed,
           expires_at,
-        })
+        }),
       );
       console.log(promo);
       res.send(promo);
