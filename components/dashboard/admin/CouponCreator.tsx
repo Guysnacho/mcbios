@@ -243,55 +243,56 @@ export const CouponCreator = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {data.map((coupon, idx) => (
-                  <Tr key={idx} display={!coupon ? "none" : undefined}>
-                    <Td>{idx + 1}</Td>
-                    <Td>{coupon.coupon.name || "null"}</Td>
-                    <Td>{coupon.promo_code}</Td>
-                    <Td>
-                      {coupon.coupon.percent_off
-                        ? `${coupon.coupon.percent_off}%`
-                        : "-"}
-                    </Td>
-                    <Td>
-                      {coupon.coupon.amount_off
-                        ? `$${coupon.coupon.amount_off}`
-                        : "-"}
-                    </Td>
-                    <Td>
-                      {coupon.coupon.times_redeemed} /{" "}
-                      {coupon.coupon.max_redemptions}
-                    </Td>
-                    <Td>
-                      {coupon.expires_at! <= 1743119940
-                        ? "No Expiration Date"
-                        : new Date(
-                            coupon.expires_at! * 1000,
-                          ).toLocaleDateString()}
-                    </Td>
-                    <Td>{new Date(coupon.created).toLocaleDateString()}</Td>
-                    <Td>
-                      <Stack>
-                        <Button
-                          colorScheme="purple"
-                          onClick={() => deletePromo(coupon.promo_id)}
-                          aria-label="Delete Promo Code"
-                          leftIcon={<DeleteIcon />}
-                        >
-                          Delete Promo Code
-                        </Button>
-                        <Button
-                          colorScheme="red"
-                          onClick={() => deleteCoupon(coupon.coupon.id)}
-                          aria-label="Delete Promo Code"
-                          leftIcon={<DeleteIcon />}
-                        >
-                          Delete Coupon
-                        </Button>
-                      </Stack>
-                    </Td>
-                  </Tr>
-                ))}
+                {data &&
+                  data.map((coupon, idx) => (
+                    <Tr key={idx} display={!coupon ? "none" : undefined}>
+                      <Td>{idx + 1}</Td>
+                      <Td>{coupon.coupon.name || "null"}</Td>
+                      <Td>{coupon.promo_code}</Td>
+                      <Td>
+                        {coupon.coupon.percent_off
+                          ? `${coupon.coupon.percent_off}%`
+                          : "-"}
+                      </Td>
+                      <Td>
+                        {coupon.coupon.amount_off
+                          ? `$${coupon.coupon.amount_off}`
+                          : "-"}
+                      </Td>
+                      <Td>
+                        {coupon.coupon.times_redeemed} /{" "}
+                        {coupon.coupon.max_redemptions}
+                      </Td>
+                      <Td>
+                        {coupon.expires_at! <= 1743119940
+                          ? "No Expiration Date"
+                          : new Date(
+                              coupon.expires_at! * 1000,
+                            ).toLocaleDateString()}
+                      </Td>
+                      <Td>{new Date(coupon.created).toLocaleDateString()}</Td>
+                      <Td>
+                        <Stack>
+                          <Button
+                            colorScheme="purple"
+                            onClick={() => deletePromo(coupon.promo_id)}
+                            aria-label="Delete Promo Code"
+                            leftIcon={<DeleteIcon />}
+                          >
+                            Delete Promo Code
+                          </Button>
+                          <Button
+                            colorScheme="red"
+                            onClick={() => deleteCoupon(coupon.coupon.id)}
+                            aria-label="Delete Promo Code"
+                            leftIcon={<DeleteIcon />}
+                          >
+                            Delete Coupon
+                          </Button>
+                        </Stack>
+                      </Td>
+                    </Tr>
+                  ))}
               </Tbody>
             </Table>
           </TableContainer>
