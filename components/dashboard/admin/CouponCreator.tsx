@@ -102,10 +102,8 @@ export const CouponCreator = () => {
         method: "DELETE",
         body: JSON.stringify({ promo }),
       });
-      if (res.ok) {
-        const data = await res.json();
-        mutate(data);
-      } else {
+      if (res.ok) mutate();
+      else {
         const err = await res.json();
         toast({
           status: "error",
@@ -128,10 +126,8 @@ export const CouponCreator = () => {
         method: "DELETE",
         body: JSON.stringify({ coupon }),
       });
-      if (res.ok) {
-        const data = await res.json();
-        mutate(data);
-      } else {
+      if (res.ok) mutate();
+      else {
         const err = await res.json();
         toast({
           status: "error",
