@@ -225,7 +225,7 @@ export const ConferenceRegistration = ({
                     setTier(e.currentTarget.value as PaymentHandlerType);
                   }}
                 >
-                  <option value="student">
+                  {/* <option value="student">
                     Conference and Membership | Early Bird Student | $200
                   </option>
                   <option value="postdoctorial">
@@ -233,8 +233,8 @@ export const ConferenceRegistration = ({
                   </option>
                   <option value="professional">
                     Conference and Membership | Early Bird Professional | $400
-                  </option>
-                  {/* <option value="student">
+                  </option> */}
+                  <option value="student">
                     Conference and Membership | Student | $250
                   </option>
                   <option value="postdoctorial">
@@ -243,7 +243,7 @@ export const ConferenceRegistration = ({
                   <option value="professional">
                     Conference and Membership | Professional | $450
                   </option>
-                  <option value="member_only_student">
+                  {/* <option value="member_only_student">
                     Membership | Student | $10
                   </option>
                   <option value="member_only_postdoctorial">
