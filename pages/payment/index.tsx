@@ -1,19 +1,16 @@
 // get serverside props here with videos and whatnot. Profile info updates and video content
 
-import { ChevronLeftIcon } from "@chakra-ui/icons";
 import {
   Button,
   Center,
   Container,
   Image,
-  Spinner,
   Stack,
   Text,
-  useTimeout,
 } from "@chakra-ui/react";
+import { ChevronLeft } from "lucide-react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
 // import Image from "next/image";
 export default function PaymentConfirmation() {
@@ -54,10 +51,10 @@ export default function PaymentConfirmation() {
 
             <Button
               mx="auto"
-              colorScheme="teal"
-              leftIcon={<ChevronLeftIcon />}
+              colorPalette="teal"
               onClick={() => router.push("/")}
             >
+              <ChevronLeft />
               Home
             </Button>
           </Stack>

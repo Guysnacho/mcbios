@@ -3,23 +3,22 @@ import {
   Box,
   Button,
   Flex,
-  FormControl,
-  FormLabel,
   Heading,
   HStack,
   Input,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Select,
+  NativeSelect,
   Stack,
-  useColorModeValue,
-  useToast,
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import {
+  DialogRoot,
+  DialogContent,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  DialogCloseTrigger,
+} from "@/components/ui/dialog";
+import { Field } from "@/components/ui/field";
+import { toaster } from "@/components/ui/toaster";
 import { Dispatch, SetStateAction, useState } from "react";
 import {
   PaymentBody,
@@ -46,7 +45,6 @@ export const NameTagForm = ({
     isPresent(lname) &&
     isPresent(institution) &&
     isPresent(tier);
-  const toast = useToast();
 
   const handleClose = () => {
     setEmail("");
@@ -76,10 +74,8 @@ export const NameTagForm = ({
         throw new Error(await res.json());
       } else {
         setIsOpen(false);
-        toaster.create({
-          status: "success",
+        toaster.success({
           duration: 6000,
-          isClosable: true,
           description: "Thank you for your submission",
         });
       }
@@ -91,20 +87,20 @@ export const NameTagForm = ({
   };
 
   return (
-    <Modal size="lg" isOpen={isOpen} onClose={handleClose}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader className="flex flex-col gap-1 text-xl"></ModalHeader>
-        <ModalBody gap={3}>
-          <Box rounded={"lg"} bg={useColorModeValue("white", "gray.700")} p={8}>
-            <Stack align={"center"} mb={5}>
-              <Heading fontSize={"2xl"} textAlign={"center"}>
+    <DialogRoot size="lg" open={isOpen} onOpenChange={(e) => !e.open && handleClose()}>
+      <DialogContent>
+        <DialogHeader className="flex flex-col gap-1 text-xl" />
+        <DialogCloseTrigger />
+        <DialogBody gap={3}>
+          <Box rounded="lg" bg="white" p={8}>
+            <Stack align="center" mb={5}>
+              <Heading fontSize="2xl" textAlign="center">
                 Name Tag Details
               </Heading>
             </Stack>
 
             {/* Form fields */}
-            <Stack spacing={4}>
+            <Stack gap={4}>
               {error ? (
                 <blockquote className="blockquote text-orange-800">
                   {error}
@@ -112,8 +108,7 @@ export const NameTagForm = ({
               ) : undefined}
               <HStack>
                 <Box>
-                  <FormControl id="firstName" isRequired isDisabled={loading}>
-                    <FormLabel>First Name</FormLabel>
+                  <Field label="First Name" required disabled={loading}>
                     <Input
                       type="text"
                       inputMode="text"
@@ -121,11 +116,10 @@ export const NameTagForm = ({
                       onChange={(e) => setFname(e.currentTarget.value)}
                       value={fname}
                     />
-                  </FormControl>
+                  </Field>
                 </Box>
                 <Box>
-                  <FormControl id="lastName" isDisabled={loading}>
-                    <FormLabel>Last Name</FormLabel>
+                  <Field label="Last Name" disabled={loading}>
                     <Input
                       type="text"
                       inputMode="text"
@@ -133,25 +127,29 @@ export const NameTagForm = ({
                       onChange={(e) => setLname(e.currentTarget.value)}
                       value={lname}
                     />
-                  </FormControl>
+                  </Field>
                 </Box>
               </HStack>
-              <FormControl id="institution" isRequired isDisabled={loading}>
-                <FormLabel>Institution</FormLabel>
+              <Field label="Institution" required disabled={loading}>
                 <Input
                   type="text"
                   inputMode="text"
                   onChange={(e) => setInstitution(e.currentTarget.value)}
                   value={institution}
                 />
-              </FormControl>
-              <FormControl id="email" isRequired isDisabled={loading}>
-                <FormLabel>
-                  Email address
-                  <span className="opacity-75">
-                    <br/>Provide the email you&apos;ve registered with
-                  </span>
-                </FormLabel>
+              </Field>
+              <Field
+                label={
+                  <>
+                    Email address
+                    <span className="opacity-75">
+                      <br />Provide the email you&apos;ve registered with
+                    </span>
+                  </>
+                }
+                required
+                disabled={loading}
+              >
                 <Input
                   type="email"
                   inputMode="email"
@@ -159,46 +157,30 @@ export const NameTagForm = ({
                   onChange={(e) => setEmail(e.currentTarget.value)}
                   value={email}
                 />
-              </FormControl>
+              </Field>
               <Flex mx="auto">
-                <FormControl id="tier" isRequired isDisabled={loading}>
-                  <Select
-                    variant="outline"
-                    placeholder="Select your registration level"
-                    onChange={(e) => {
-                      setTier(e.currentTarget.value as PaymentHandlerType);
-                    }}
-                  >
-                    {/* <option value="student">
-                    Conference and Membership | Student | $200
-                  </option>
-                  <option value="postdoctorial">
-                    Conference and Membership | Postdoctorial | $300
-                  </option>
-                  <option value="professional">
-                    Conference and Membership | Professional | $400
-                  </option> */}
-                    <option value="student">Student</option>
-                    <option value="postdoctorial">Postdoctorial</option>
-                    <option value="professional">Professional</option>
-                    {/* <option value="member_only_student">
-                                Membership | Student | $10
-                              </option>
-                              <option value="member_only_postdoctorial">
-                                Membership | Postdoctorial | $20
-                              </option>
-                              <option value="member_only_professional">
-                                Membership | Professional | $50
-                              </option> */}
-                  </Select>
-                </FormControl>
+                <Field label="Registration Level" required disabled={loading}>
+                  <NativeSelect.Root>
+                    <NativeSelect.Field
+                      placeholder="Select your registration level"
+                      onChange={(e) => {
+                        setTier(e.currentTarget.value as PaymentHandlerType);
+                      }}
+                    >
+                      <option value="student">Student</option>
+                      <option value="postdoctorial">Postdoctorial</option>
+                      <option value="professional">Professional</option>
+                    </NativeSelect.Field>
+                    <NativeSelect.Indicator />
+                  </NativeSelect.Root>
+                </Field>
               </Flex>
             </Stack>
           </Box>
-        </ModalBody>
+        </DialogBody>
 
-        <ModalFooter>
-          <Button onClick={handleClose} isDisabled={loading} className="mr-3">
+        <DialogFooter>
+          <Button onClick={handleClose} disabled={loading} className="mr-3">
             Cancel
           </Button>
           <Button
@@ -208,13 +190,13 @@ export const NameTagForm = ({
                 .catch((error) => setError(error.message))
                 .finally(() => setLoading(false))
             }
-            colorScheme="green"
-            isDisabled={loading || !isValid}
+            colorPalette="green"
+            disabled={loading || !isValid}
           >
             Submit
           </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </DialogFooter>
+      </DialogContent>
+    </DialogRoot>
   );
 };

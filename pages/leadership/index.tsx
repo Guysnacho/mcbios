@@ -13,10 +13,6 @@ import XuefengWang from "@/public/images/leadership/Xuefeng-Wang.png";
 import ZongliangYue from "@/public/images/leadership/Zongliang-Yue.png";
 import {
   Separator,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
   Tabs,
 } from "@chakra-ui/react";
 import Head from "next/head";
@@ -246,58 +242,52 @@ const leadership = () => {
           />
         </div>
       </section>
-      <Tabs align="center" variant="enclosed" size="lg">
-        <TabList>
-          <Tab key="board" title="Current Board">
-            Current Board
-          </Tab>
-          <Tab key="presidents" title="Past Presidents">
-            Past Presidents
-          </Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel key="board" title="Current Board">
-            <section className="space-y-10">
-              <Separator className="w-1/2 mx-auto mb-10" />
-              <h4 className="text-center">Board Members</h4>
-              <div className="md:flex w-11/12 mx-auto flex-wrap gap-5 items-center space-y-6 md:space-y-0">
-                {boardMembers.map((member) => {
-                  return (
-                    <BoardMemberCard
-                      key={member.name}
-                      name={member.name}
-                      image={member.image}
-                      title={member.title}
-                      department={member.department}
-                      affiliation={member.affiliation}
-                    />
-                  );
-                })}
-              </div>
-            </section>
-          </TabPanel>
-          <TabPanel key="presidents" title="Past Presidents">
-            <section>
-              <Separator className="w-1/2 mx-auto mb-10" />
-              <h4 className="text-center">Past Presidents</h4>
-              <div className="md:flex w-11/12 mx-auto flex-wrap gap-8 items-center space-y-6 md:space-y-5">
-                {pastPrez.map((member, index) => {
-                  return (
-                    <BoardMemberCard
-                      key={member.name}
-                      index={pastPrez.length - 1 - index}
-                      name={member.name}
-                      title={member.title}
-                      department={member.department}
-                      affiliation={member.affiliation}
-                    />
-                  );
-                })}
-              </div>
-            </section>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+      <Tabs.Root justify="center" variant="enclosed" size="lg" defaultValue="board">
+        <Tabs.List>
+          <Tabs.Trigger value="board">Current Board</Tabs.Trigger>
+          <Tabs.Trigger value="presidents">Past Presidents</Tabs.Trigger>
+        </Tabs.List>
+        <Tabs.Content value="board">
+          <section className="space-y-10">
+            <Separator className="w-1/2 mx-auto mb-10" />
+            <h4 className="text-center">Board Members</h4>
+            <div className="md:flex w-11/12 mx-auto flex-wrap gap-5 items-center space-y-6 md:space-y-0">
+              {boardMembers.map((member) => {
+                return (
+                  <BoardMemberCard
+                    key={member.name}
+                    name={member.name}
+                    image={member.image}
+                    title={member.title}
+                    department={member.department}
+                    affiliation={member.affiliation}
+                  />
+                );
+              })}
+            </div>
+          </section>
+        </Tabs.Content>
+        <Tabs.Content value="presidents">
+          <section>
+            <Separator className="w-1/2 mx-auto mb-10" />
+            <h4 className="text-center">Past Presidents</h4>
+            <div className="md:flex w-11/12 mx-auto flex-wrap gap-8 items-center space-y-6 md:space-y-5">
+              {pastPrez.map((member, index) => {
+                return (
+                  <BoardMemberCard
+                    key={member.name}
+                    index={pastPrez.length - 1 - index}
+                    name={member.name}
+                    title={member.title}
+                    department={member.department}
+                    affiliation={member.affiliation}
+                  />
+                );
+              })}
+            </div>
+          </section>
+        </Tabs.Content>
+      </Tabs.Root>
     </div>
   );
 };

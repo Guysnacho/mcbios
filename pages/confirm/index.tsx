@@ -1,9 +1,8 @@
 import {
   Button,
   Heading,
-  ListItem,
+  List,
   Text,
-  UnorderedList,
   VStack,
 } from "@chakra-ui/react";
 import {
@@ -49,17 +48,17 @@ const Confirm = () => {
                   We appreciate your contribution and time!
                 </Heading>
                 <Text>We aim to return that value to you in the form of -</Text>
-                <UnorderedList spacing={3}>
+                <List.Root gap={3}>
                   {perks.map((item, idx) => (
-                    <ListItem key={idx} display="flex">
+                    <List.Item key={idx} display="flex">
                       <item.icon size={25} strokeWidth={1} />
                       <div>
                         <Heading size="md">{item.heading}</Heading>
                         <Text>{item.blurb}</Text>
                       </div>
-                    </ListItem>
+                    </List.Item>
                   ))}
-                </UnorderedList>
+                </List.Root>
               </VStack>
             </div>
           </section>
@@ -84,12 +83,13 @@ const Confirm = () => {
           <Button
             aria-label="return-home"
             type="button"
-            leftIcon={<ChevronLeft />}
-            colorScheme="purple"
-            as={Link}
-            href="/"
+            colorPalette="purple"
+            asChild
           >
-            Home
+            <Link href="/">
+              <ChevronLeft />
+              Home
+            </Link>
           </Button>
         </section>
       </div>

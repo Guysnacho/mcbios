@@ -1,5 +1,5 @@
 import { Database } from "@/lib/supabase/types";
-import { Card, CardBody } from "@chakra-ui/react";
+import { Card } from "@chakra-ui/react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { useCallback, useState } from "react";
 
@@ -70,8 +70,8 @@ export const MemberContent = ({ videos }: { videos?: Video[] }) => {
       </div>
 
       {/* Main Video Player */}
-      <Card className="mb-6 overflow-hidden shadow-lg">
-        <CardBody className="p-0">
+      <Card.Root className="mb-6 overflow-hidden shadow-lg">
+        <Card.Body className="p-0">
           <div className="relative aspect-video bg-gray-900">
             {!isCurrentLoaded ? (
               // Placeholder State - prevents iframe preloading
@@ -115,8 +115,8 @@ export const MemberContent = ({ videos }: { videos?: Video[] }) => {
               </span>
             </div>
           </div>
-        </CardBody>
-      </Card>
+        </Card.Body>
+      </Card.Root>
 
       {/* Navigation Controls */}
       <div className="flex items-center justify-center gap-4 mb-8">

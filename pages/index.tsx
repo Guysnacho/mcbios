@@ -111,7 +111,7 @@ export default function Home() {
             type="button"
             size="md"
             onClick={() => router.push("/membership")}
-            colorScheme="pink"
+            colorPalette="pink"
           >
             Become a Member
           </Button>
@@ -119,18 +119,18 @@ export default function Home() {
       </HStack>
 
       <Separator as="hr" className="my-10 border-gray-500" />
-      <Alert
-        as="a"
+      <a
         href="/events"
-        _hover={{ shadow: "lg" }}
-        borderRadius="xl"
-        w={["80%", "fit-content"]}
-        mx="auto"
-        status="success"
-        icon={<PartyPopper />}
+        className="block w-4/5 sm:w-fit mx-auto hover:shadow-lg"
       >
-        Conference registration is now open!
-      </Alert>
+        <Alert
+          borderRadius="xl"
+          status="success"
+          icon={<PartyPopper />}
+        >
+          Conference registration is now open!
+        </Alert>
+      </a>
       <Separator as="hr" className="my-10 border-gray-500" />
 
       <section className="space-y-5 px-10 mx-auto md:w-5/6">
@@ -143,7 +143,6 @@ export default function Home() {
             <Card.Header>
               <Image
                 src="/images/leadership/Aik-Choon-Tan.jpg"
-                fallbackSrc="/images/leadership/Aik-Choon-Tan.jpg"
                 alt="Aik Choon Tan, MCBIOS President"
                 className="mx-auto"
               />
@@ -313,7 +312,7 @@ export default function Home() {
             <Button
               size="md"
               onClick={() => router.push("/membership")}
-              colorScheme="purple"
+              colorPalette="purple"
             >
               Registration
             </Button>

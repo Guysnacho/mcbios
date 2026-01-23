@@ -6,8 +6,7 @@ import {
   Heading,
   Image,
   Text,
-  ListItem,
-  UnorderedList,
+  List,
   VStack,
 } from "@chakra-ui/react";
 import Head from "next/head";
@@ -69,60 +68,60 @@ const Membership = () => {
           <div className="w-3/4 xl:w-1/2 mx-auto space-y-5">
             <VStack gap={3}>
               <Heading size="md">Unlock Benefits as a Society Member</Heading>
-              <UnorderedList>
-                <ListItem>
+              <List.Root>
+                <List.Item>
                   <Text fontWeight={600}>Leadership Opportunities</Text>
                   <Text>
                     Take your career to the next level by competing for
                     prestigious leadership roles, including board member or
                     Presidential Officer positions.
                   </Text>
-                </ListItem>
-                <ListItem>
+                </List.Item>
+                <List.Item>
                   <Text fontWeight={600}>Host High-Impact Events</Text>
                   <Text>
                     Lead the way in knowledge sharing by organizing auxiliary
                     events like virtual webinars and hands-on workshops.
                   </Text>
-                </ListItem>
-                <ListItem>
+                </List.Item>
+                <List.Item>
                   <Text fontWeight={600}>Run a Local Chapter</Text>
                   <Text>
                     Champion the society&apos;s mission in your community by
                     establishing and managing a local chapter.
                   </Text>
-                </ListItem>
-                <ListItem>
+                </List.Item>
+                <List.Item>
                   <Text fontWeight={600}>Conference Discounts</Text>
                   <Text>
                     Save big with exclusive discounted registration fees for our
                     annual conference, the premier event for networking and
                     sharing breakthroughs.
                   </Text>
-                </ListItem>
-                <ListItem>
+                </List.Item>
+                <List.Item>
                   <Text fontWeight={600}>Reduced Publication Fees</Text>
                   <Text>
                     Publish your work more affordably with discounted fees for
                     the conference proceedings—a unique benefit for members.
                   </Text>
-                </ListItem>
-              </UnorderedList>
+                </List.Item>
+              </List.Root>
             </VStack>
 
             <VStack gap={3}>
               <Heading size="md">
                 Simple and Affordable Membership Options
               </Heading>
-              <UnorderedList>
-                <ListItem>
+              <List.Root>
+                <List.Item>
                   <Text>
                     <span className="font-bold">Conference Attendees: </span>
                     Your annual conference registration fee automatically
                     includes a one-year society membership.
                   </Text>
-                </ListItem>
-                <ListItem>
+                </List.Item>
+                <List.Item>
                   <Text>
                     <span className="font-bold">Direct Membership: </span>
                     Prefer to join or renew without attending? For 2025, enjoy
@@ -131,8 +130,8 @@ const Membership = () => {
                       $100 for Professionals and $30 for Students.
                     </span>
                   </Text>
-                </ListItem>
-              </UnorderedList>
+                </List.Item>
+              </List.Root>
             </VStack>
           </div>
         </section>
@@ -141,7 +140,7 @@ const Membership = () => {
           <Button
             aria-describedby="member sign up"
             type="button"
-            colorScheme="purple"
+            colorPalette="purple"
             onClick={() => setAuthOpen(true)}
           >
             Sign Up
