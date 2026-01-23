@@ -3,6 +3,9 @@ import { Database } from "@/lib/supabase/types";
 import { CheckIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Button,
+  FormControl,
+  FormLabel,
+  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -108,7 +111,7 @@ export const UserConfirm = ({
             });
             console.error(error);
           } else {
-          // @ts-expect-error dw bout it
+            // @ts-expect-error dw bout it
             setUsers(data);
           }
           setLoading(false);
@@ -152,6 +155,7 @@ export const UserConfirm = ({
 
   return (
     <div>
+      <RetroactiveRegistration />
       <ConfirmModal
         client={client}
         id={id}
@@ -159,7 +163,7 @@ export const UserConfirm = ({
         setId={setId}
         setOpen={setOpen}
       />
-      <div className="flex flex-col gap-5 mx-auto">
+      <div className="flex flex-col gap-5 mx-auto mt-8">
         <TableContainer>
           <Table variant="striped">
             <TableCaption>
@@ -191,6 +195,100 @@ export const UserConfirm = ({
   );
 };
 
+function saveRegistration(sessionId: string) {
+  return fetch(`/api/checkout?session_id=${sessionId}`, {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.error(err.message);
+      throw err;
+    });
+}
+
+const RetroactiveRegistration = () => {
+  const [sessionId, setSessionId] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const toast = useToast();
+
+  const handleSubmit = async () => {
+    if (!sessionId.trim()) {
+      toast({
+        title: "Session ID required",
+        description: "Please enter a Stripe session ID",
+        status: "warning",
+        duration: 4000,
+        isClosable: true,
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const result = await saveRegistration(sessionId.trim());
+      if (result.error) {
+        toast({
+          title: "Registration failed",
+          description: result.error,
+          status: "error",
+          duration: 6000,
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: "Registration confirmed",
+          description: "User registration has been processed successfully",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+        setSessionId("");
+      }
+    } catch (err) {
+      toast({
+        title: "Something went wrong",
+        description:
+          err instanceof Error ? err.message : "Failed to process registration",
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="mb-8 p-4 max-w-md border rounded-lg bg-gray-50">
+      <h3 className="text-lg font-semibold mb-4">Retroactive Registration</h3>
+      <p className="text-sm text-gray-600 mb-4">
+        Use this to confirm user registrations retroactively if there was a
+        service or database outage. Pressing submit will fetch the transaction
+        and re-save the user's form fields.
+      </p>
+      <FormControl>
+        <FormLabel>Stripe Session ID</FormLabel>
+        <div className="flex gap-2">
+          <Input
+            placeholder="cs_live_..."
+            value={sessionId}
+            onChange={(e) => setSessionId(e.target.value)}
+            disabled={isSubmitting}
+          />
+          <Button
+            colorScheme="blue"
+            onClick={handleSubmit}
+            isLoading={isSubmitting}
+            loadingText="Processing"
+          >
+            Submit
+          </Button>
+        </div>
+      </FormControl>
+    </div>
+  );
+};
+
 const ConfirmModal = ({
   client,
   id,
@@ -214,7 +312,7 @@ const ConfirmModal = ({
   const handleUpdate = async (
     uid: string,
     date: Date | null,
-    role: "student" | "postdoctorial" | "professional" | "admin"
+    role: "student" | "postdoctorial" | "professional" | "admin",
   ) => {
     setUpdateLoading(true);
     if (!role) {

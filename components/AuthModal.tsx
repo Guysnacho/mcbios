@@ -45,6 +45,7 @@ export const AuthModal = ({
 }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [isReset, setIsReset] = useState(false);
   const [email, setEmail] = useState("");
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
@@ -62,6 +63,7 @@ export const AuthModal = ({
     setFname("");
     setLname("");
     setInstitution("");
+    setIsReset(false);
     setIsOpen(false);
   };
 
@@ -97,7 +99,7 @@ export const AuthModal = ({
       throw new Error(
         Object.entries(z.treeifyError(error).properties!)
           .map((err) => err[1].errors.join(", "))
-          .join(", ")
+          .join(", "),
       );
     }
     setLoading(false);
@@ -145,7 +147,45 @@ export const AuthModal = ({
       throw new Error(
         Object.entries(z.treeifyError(error).properties!)
           .map((err) => err[1].errors.join(" | "))
-          .join(" | ")
+          .join(" | "),
+      );
+    }
+    setLoading(false);
+  };
+
+  const handleReset = async () => {
+    setLoading(true);
+    setError("");
+
+    const { success, error } = ResetSchema.safeParse({
+      email,
+    });
+    if (success) {
+      // Perform auth
+      const { error } = await client.auth.resetPasswordForEmail(email);
+      // Handle response
+      if (error) {
+        if (error.message.toLocaleLowerCase().includes("rate limit")) {
+          throw new Error(
+            "Too many signup requests recieved for the provided email. Try again later.",
+          );
+        }
+        throw error;
+      } else {
+        setIsOpen(false);
+        toast({
+          status: "success",
+          duration: 6000,
+          isClosable: true,
+          description:
+            "If an account is found in our system, you will recieve an email.",
+        });
+      }
+    } else {
+      throw new Error(
+        Object.entries(z.treeifyError(error).properties!)
+          .map((err) => err[1].errors.join(" | "))
+          .join(" | "),
       );
     }
     setLoading(false);
@@ -159,7 +199,19 @@ export const AuthModal = ({
           onSubmit={(e) => {
             e.preventDefault();
 
-            if (isSignUp) {
+            if (isReset) {
+              handleReset()
+                .then(() => handleClose())
+                .catch((error) => {
+                  toast({
+                    colorScheme: "red",
+                    title: "Ran into an issue resetting your password",
+                    description: error.message,
+                  });
+                  console.error(error);
+                })
+                .finally(() => setLoading(false));
+            } else if (isSignUp) {
               handleSignUp()
                 .then(() => handleClose())
                 .catch((error) => {
@@ -194,7 +246,21 @@ export const AuthModal = ({
               p={8}
             >
               <Stack align={"center"} mb={5}>
-                {isSignUp ? (
+                {isReset ? (
+                  <>
+                    <Heading fontSize={"4xl"} textAlign={"center"}>
+                      Reset your Password
+                    </Heading>
+                    <Text
+                      color={"gray.600"}
+                      className="border-l-gray-600 border-l-2 pl-3"
+                    >
+                      If you&apos;re having trouble logging into your account or
+                      have just plain forgotten your password, please enter the
+                      email you&apos;ve signed up with.
+                    </Text>
+                  </>
+                ) : isSignUp ? (
                   <>
                     <Heading fontSize={"4xl"} textAlign={"center"}>
                       Join the Community
@@ -240,7 +306,7 @@ export const AuthModal = ({
                     {error}
                   </blockquote>
                 ) : undefined}
-                {isSignUp && (
+                {!isReset && isSignUp && (
                   <HStack>
                     <Box>
                       <FormControl
@@ -276,7 +342,7 @@ export const AuthModal = ({
                     </Box>
                   </HStack>
                 )}
-                {isSignUp && (
+                {!isReset && isSignUp && (
                   <FormControl id="institution" isRequired isDisabled={loading}>
                     <FormLabel>Institution</FormLabel>
                     <Input
@@ -289,7 +355,7 @@ export const AuthModal = ({
                   </FormControl>
                 )}
                 <FormControl id="email" isRequired isDisabled={loading}>
-                  <FormLabel>Email address</FormLabel>
+                  <FormLabel>Email Address</FormLabel>
                   <Input
                     type="email"
                     inputMode="email"
@@ -298,49 +364,74 @@ export const AuthModal = ({
                     value={email}
                   />
                 </FormControl>
-                <FormControl id="password" isRequired isDisabled={loading}>
-                  <FormLabel>Password</FormLabel>
-                  <InputGroup>
-                    <Input
-                      type={showPassword ? "text" : "password"}
-                      autoComplete="new-password"
-                      onChange={(e) => setPassword(e.currentTarget.value)}
-                      value={password}
-                    />
-                    <InputRightElement h={"full"}>
-                      <Button
-                        variant={"ghost"}
-                        onClick={() =>
-                          setShowPassword((showPassword) => !showPassword)
-                        }
+                {!isReset && (
+                  <FormControl id="password" isRequired isDisabled={loading}>
+                    <FormLabel>Password</FormLabel>
+                    <InputGroup>
+                      <Input
+                        type={showPassword ? "text" : "password"}
+                        autoComplete="new-password"
+                        onChange={(e) => setPassword(e.currentTarget.value)}
+                        value={password}
+                      />
+                      <InputRightElement h={"full"}>
+                        <Button
+                          variant={"ghost"}
+                          onClick={() =>
+                            setShowPassword((showPassword) => !showPassword)
+                          }
+                        >
+                          {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                        </Button>
+                      </InputRightElement>
+                    </InputGroup>
+                  </FormControl>
+                )}
+                {!isReset && (
+                  <Stack pt={6}>
+                    <Text align={"center"}>
+                      {isSignUp
+                        ? "Already a member? "
+                        : "Haven't signed up yet? "}
+                      <Link
+                        color={"blue.400"}
+                        onClick={() => !loading && setIsSignUp(!isSignUp)}
                       >
-                        {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                      </Button>
-                    </InputRightElement>
-                  </InputGroup>
-                </FormControl>
-                <Stack pt={6}>
-                  <Text align={"center"}>
-                    {isSignUp
-                      ? "Already a member? "
-                      : "Haven't signed up yet? "}
-                    <Link
-                      color={"blue.400"}
-                      onClick={() => !loading && setIsSignUp(!isSignUp)}
-                    >
-                      {isSignUp ? "Login" : "Sign Up"}
-                    </Link>
-                  </Text>
-                </Stack>
+                        {isSignUp ? "Login" : "Sign Up"}
+                      </Link>
+                    </Text>
+                    <Text align={"center"}>
+                      Forgot your password?{" "}
+                      <Link
+                        color={"blue.400"}
+                        onClick={() => !loading && setIsReset(true)}
+                      >
+                        Password Reset
+                      </Link>
+                    </Text>
+                  </Stack>
+                )}
               </Stack>
             </Box>
           </ModalBody>
 
           <ModalFooter>
-            <Button onClick={handleClose} isDisabled={loading} className="mr-3">
+            <Button
+              onClick={() => {
+                if (isReset) {
+                  setIsReset(false);
+                } else handleClose();
+              }}
+              isDisabled={loading}
+              className="mr-3"
+            >
               Cancel
             </Button>
-            {isSignUp ? (
+            {isReset ? (
+              <Button type="submit" colorScheme="green" isDisabled={loading}>
+                Submit
+              </Button>
+            ) : isSignUp ? (
               <Button type="submit" colorScheme="green" isDisabled={loading}>
                 Sign Up
               </Button>
@@ -398,4 +489,12 @@ const SignInSchema = z.object({
       error: "Password too short, minimum of 3 characters",
     })
     .describe("User's password"),
+});
+
+const ResetSchema = z.object({
+  email: z
+    .email({
+      error: "Invalid email",
+    })
+    .describe("User's email name"),
 });

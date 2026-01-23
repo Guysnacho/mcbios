@@ -61,11 +61,11 @@ export const CouponCreator = () => {
           variant: "subtle",
         });
       },
-    }
+    },
   );
 
   const createCoupon = async () => {
-    fetch("/api/admin", {
+    const res = await fetch("/api/admin", {
       method: "POST",
       body: JSON.stringify(
         discount
@@ -74,75 +74,74 @@ export const CouponCreator = () => {
               discount,
             }
           : percentage
-          ? { couponName, percentage }
-          : {
-              coupon,
-            }
+            ? { couponName, percentage }
+            : {
+                coupon,
+              },
       ),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        // persistCoupon(res);
-        mutate(res);
-      })
-      .catch((err) =>
-        toast({
-          status: "error",
-          title: "Issue creating coupon",
-          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message} and try again later.`,
-          variant: "subtle",
-        })
-      )
-      .finally(() => {
-        setCoupon(undefined);
-        setCouponName(undefined);
-        setDiscount(undefined);
-        setPercentage(undefined);
+    });
+    if (res.ok) mutate();
+    else {
+      const err = await res.json();
+      toast({
+        status: "error",
+        title: "Issue creating coupon",
+        description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message}`,
+        variant: "subtle",
       });
+    }
+    setCoupon(undefined);
+    setCouponName(undefined);
+    setDiscount(undefined);
+    setPercentage(undefined);
   };
 
   const deletePromo = async (promo: string) => {
-    fetch("/api/admin", { method: "DELETE", body: JSON.stringify({ promo }) })
-      .then((res) => res.json())
-      .then((res) => {
-        mutate(res);
-      })
-      .catch((err) =>
+    try {
+      const res = await fetch("/api/admin", {
+        method: "DELETE",
+        body: JSON.stringify({ promo }),
+      });
+      if (res.ok) mutate();
+      else {
+        const err = await res.json();
         toast({
           status: "error",
           title: "Issue deleting promo code",
-          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message} and try again later.`,
+          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message}`,
           variant: "subtle",
-        })
-      )
-      .finally(() => {
-        setCoupon(undefined);
-        setCouponName(undefined);
-        setDiscount(undefined);
-        setPercentage(undefined);
-      });
+        });
+      }
+    } finally {
+      setCoupon(undefined);
+      setCouponName(undefined);
+      setDiscount(undefined);
+      setPercentage(undefined);
+    }
   };
 
   const deleteCoupon = async (coupon: string) => {
-    fetch("/api/admin", { method: "DELETE", body: JSON.stringify({ coupon }) })
-      .then((res) => res.json())
-      .then((res) => {
-        mutate(res);
-      })
-      .catch((err) =>
+    try {
+      const res = await fetch("/api/admin", {
+        method: "DELETE",
+        body: JSON.stringify({ coupon }),
+      });
+      if (res.ok) mutate();
+      else {
+        const err = await res.json();
         toast({
           status: "error",
           title: "Issue deleting coupon code",
-          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message} and try again later.`,
+          description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message}`,
           variant: "subtle",
-        })
-      )
-      .finally(() => {
-        setCoupon(undefined);
-        setCouponName(undefined);
-        setDiscount(undefined);
-        setPercentage(undefined);
-      });
+        });
+      }
+    } finally {
+      setCoupon(undefined);
+      setCouponName(undefined);
+      setDiscount(undefined);
+      setPercentage(undefined);
+    }
   };
 
   return (
@@ -155,6 +154,7 @@ export const CouponCreator = () => {
             <Input
               type="text"
               inputMode="text"
+              maxLength={40}
               onChange={(e) => setCouponName(e.currentTarget.value)}
               value={couponName}
             />
@@ -239,9 +239,9 @@ export const CouponCreator = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {data.length &&
+                {data &&
                   data.map((coupon, idx) => (
-                    <Tr key={idx}>
+                    <Tr key={idx} display={!coupon ? "none" : undefined}>
                       <Td>{idx + 1}</Td>
                       <Td>{coupon.coupon.name || "null"}</Td>
                       <Td>{coupon.promo_code}</Td>
@@ -263,7 +263,7 @@ export const CouponCreator = () => {
                         {coupon.expires_at! <= 1743119940
                           ? "No Expiration Date"
                           : new Date(
-                              coupon.expires_at! * 1000
+                              coupon.expires_at! * 1000,
                             ).toLocaleDateString()}
                       </Td>
                       <Td>{new Date(coupon.created).toLocaleDateString()}</Td>

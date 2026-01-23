@@ -27,30 +27,29 @@ export function AdminPanel({ client }: AdminPanelProps) {
         colorScheme="purple"
       >
         <TabList>
-          <Tab title="Video Upload">Video Upload</Tab>
-          <Tab title="Member Confirmation">Member Confirmation</Tab>
-          <Tab title="Coupon Creator">Coupon Creator</Tab>
+          <Tab>Member Confirmation</Tab>
+          <Tab>Content Update</Tab>
+          <Tab>Coupon Creator</Tab>
         </TabList>
         <TabPanels>
-          <TabPanel>
-            <div className="my-5 gap-3 mx-auto justify-center">
-              <Heading size="md" textAlign="center">
-                User Account Confirmation
-              </Heading>
-
-              <div className="flex justify-center">
-                <VideoUploader />
-              </div>
-            </div>
-          </TabPanel>
-
           <TabPanel>
             <Heading size="md" textAlign="center">
               User Account Confirmation
             </Heading>
             <div className="max-w-[500]px my-5 flex gap-3 mx-auto justify-center">
-              {/* Add coupon */}
               <UserConfirm client={client} />
+            </div>
+          </TabPanel>
+
+          <TabPanel>
+            <div className="my-5 gap-3 mx-auto justify-center">
+              <Heading size="md" textAlign="center">
+                Add Conference Content
+              </Heading>
+
+              <div className="flex justify-center">
+                <VideoUploader />
+              </div>
             </div>
           </TabPanel>
 
