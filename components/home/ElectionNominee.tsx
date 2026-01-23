@@ -8,7 +8,7 @@ import {
   Card,
   CardBody,
   CardFooter,
-  Divider,
+  Separator,
   Heading,
   Image,
   Stack,
@@ -103,7 +103,7 @@ export default function ElectionNominee({
           ) : undefined}
         </Stack>
       </CardBody>
-      <Divider />
+      <Separator />
       {recording && !electionOver ? (
         <CardFooter display="flex" flexDirection="column" alignItems="center">
           <Text align="center" color="blue.600" fontSize="lg">

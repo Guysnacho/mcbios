@@ -1,12 +1,7 @@
 import { Database } from "@/lib/supabase/types";
 import {
-  TabPanel,
-  Divider,
   Heading,
   Tabs,
-  TabList,
-  Tab,
-  TabPanels,
 } from "@chakra-ui/react";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { CouponCreator } from "./CouponCreator";
@@ -19,45 +14,45 @@ type AdminPanelProps = {
 
 export function AdminPanel({ client }: AdminPanelProps) {
   return (
-    <TabPanel>
-      <Tabs
+    <Tabs.Content value="admin">
+      <Tabs.Root
         aria-label="Admin Tabs"
-        isFitted
+        fitted
         variant="line"
-        colorScheme="purple"
+        colorPalette="purple"
+        defaultValue="confirm"
       >
-        <TabList>
-          <Tab>Member Confirmation</Tab>
-          <Tab>Content Update</Tab>
-          <Tab>Coupon Creator</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
+        <Tabs.List>
+          <Tabs.Trigger value="confirm">Member Confirmation</Tabs.Trigger>
+          <Tabs.Trigger value="content">Content Update</Tabs.Trigger>
+          <Tabs.Trigger value="coupon">Coupon Creator</Tabs.Trigger>
+        </Tabs.List>
+
+        <Tabs.Content value="confirm">
+          <Heading size="md" textAlign="center">
+            User Account Confirmation
+          </Heading>
+          <div className="max-w-[500]px my-5 flex gap-3 mx-auto justify-center">
+            <UserConfirm client={client} />
+          </div>
+        </Tabs.Content>
+
+        <Tabs.Content value="content">
+          <div className="my-5 gap-3 mx-auto justify-center">
             <Heading size="md" textAlign="center">
-              User Account Confirmation
+              Add Conference Content
             </Heading>
-            <div className="max-w-[500]px my-5 flex gap-3 mx-auto justify-center">
-              <UserConfirm client={client} />
+
+            <div className="flex justify-center">
+              <VideoUploader />
             </div>
-          </TabPanel>
+          </div>
+        </Tabs.Content>
 
-          <TabPanel>
-            <div className="my-5 gap-3 mx-auto justify-center">
-              <Heading size="md" textAlign="center">
-                Add Conference Content
-              </Heading>
-
-              <div className="flex justify-center">
-                <VideoUploader />
-              </div>
-            </div>
-          </TabPanel>
-
-          <TabPanel>
-            <CouponCreator />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
-    </TabPanel>
+        <Tabs.Content value="coupon">
+          <CouponCreator />
+        </Tabs.Content>
+      </Tabs.Root>
+    </Tabs.Content>
   );
 }

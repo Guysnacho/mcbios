@@ -1,35 +1,34 @@
+"use client";
+
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
 import { ConfYears } from "@/lib";
-import { createClient } from "@/lib/supabase/component";
+import { createClient } from "@/lib/supabase/client";
 import {
-  ChevronDownIcon,
-  ChevronRightIcon,
-  CloseIcon,
-  HamburgerIcon,
-} from "@chakra-ui/icons";
+  ChevronDown,
+  ChevronRight,
+  X,
+  Menu as MenuIcon,
+} from "lucide-react";
 import {
   Avatar,
   Box,
   Button,
-  Collapse,
+  Collapsible,
   Flex,
   Icon,
   IconButton,
   Link,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Popover,
-  PopoverContent,
-  PopoverTrigger,
   Stack,
   Text,
-  useBreakpointValue,
-  useColorModeValue,
-  useDisclosure,
 } from "@chakra-ui/react";
+import {
+  MenuContent,
+  MenuItem,
+  MenuRoot,
+  MenuTrigger,
+} from "@/components/ui/menu";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
@@ -37,7 +36,7 @@ import { useEffect, useState } from "react";
 import { AuthModal } from "./AuthModal";
 
 export default function Nav() {
-  const { isOpen, onToggle } = useDisclosure();
+  const [isOpen, setIsOpen] = useState(false);
   const supabase = createClient();
   const router = useRouter();
   const path = usePathname();
@@ -89,15 +88,15 @@ export default function Nav() {
         setIsSignUp={setIsSignUp}
       />
       <Flex
-        bg={useColorModeValue("white", "gray.800")}
-        color={useColorModeValue("gray.600", "white")}
-        minH={"60px"}
+        bg="white"
+        color="gray.600"
+        minH="60px"
         py={{ base: 2 }}
         px={{ base: 4 }}
-        borderBottom={1}
-        borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
-        align={"center"}
+        borderBottom="1px"
+        borderStyle="solid"
+        borderColor="gray.200"
+        align="center"
       >
         <Flex
           flex={{ base: 1, md: "auto" }}
@@ -105,13 +104,12 @@ export default function Nav() {
           display={{ base: "flex", md: "none" }}
         >
           <IconButton
-            onClick={onToggle}
-            icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-            }
-            variant={"ghost"}
-            aria-label={"Toggle Navigation"}
-          />
+            onClick={() => setIsOpen(!isOpen)}
+            variant="ghost"
+            aria-label="Toggle Navigation"
+          >
+            {isOpen ? <X size={12} /> : <MenuIcon size={20} />}
+          </IconButton>
         </Flex>
         <Flex
           flex={{ base: 1 }}
@@ -119,15 +117,14 @@ export default function Nav() {
           align="center"
         >
           <Link
-            as={NextLink}
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
+            asChild
+            textAlign={{ base: "center", md: "left" }}
+            fontFamily="heading"
             fontWeight={600}
             fontSize="x-large"
-            href="/"
-            color={useColorModeValue("gray.800", "white")}
+            color="gray.800"
           >
-            MCBIOS
+            <NextLink href="/">MCBIOS</NextLink>
           </Link>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -138,30 +135,32 @@ export default function Nav() {
         {store && store.id ? (
           <Stack
             flex={{ base: 1, md: "auto" }}
-            justify={"flex-end"}
-            direction={"row"}
-            spacing={6}
+            justify="flex-end"
+            direction="row"
+            gap={6}
           >
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-              >
-                <Avatar
-                  size={"sm"}
-                  src={
-                    "https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75"
-                  }
-                />
-              </MenuButton>
-              <MenuList>
-                <MenuItem as={Link} href="/dashboard">
-                  Dashboard
+            <MenuRoot>
+              <MenuTrigger asChild>
+                <Button
+                  rounded="full"
+                  variant="ghost"
+                  cursor="pointer"
+                  minW={0}
+                >
+                  <Avatar.Root size="sm">
+                    <Avatar.Image
+                      src="https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75"
+                    />
+                    <Avatar.Fallback>U</Avatar.Fallback>
+                  </Avatar.Root>
+                </Button>
+              </MenuTrigger>
+              <MenuContent>
+                <MenuItem value="dashboard" asChild>
+                  <NextLink href="/dashboard">Dashboard</NextLink>
                 </MenuItem>
                 <MenuItem
+                  value="logout"
                   onClick={handleLogout}
                   _hover={{
                     textDecoration: "underline",
@@ -169,30 +168,30 @@ export default function Nav() {
                 >
                   Log Out
                 </MenuItem>
-              </MenuList>
-            </Menu>
+              </MenuContent>
+            </MenuRoot>
           </Stack>
         ) : (
           <Stack
             flex={{ base: 1, md: "auto" }}
-            justify={"flex-end"}
-            direction={"row"}
-            spacing={6}
+            justify="flex-end"
+            direction="row"
+            gap={6}
           >
             <Button
-              fontSize={"sm"}
+              fontSize="sm"
               fontWeight={400}
-              variant={"link"}
+              variant="ghost"
               onClick={() => handleOpen(false)}
             >
               Sign In
             </Button>
             <Button
               display="inline-flex"
-              fontSize={"sm"}
+              fontSize="sm"
               fontWeight={600}
-              color={"white"}
-              bg={"pink.400"}
+              color="white"
+              bg="pink.400"
               onClick={() => handleOpen(true)}
               _hover={{
                 bg: "pink.300",
@@ -204,58 +203,58 @@ export default function Nav() {
         )}
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
-      </Collapse>
+      <Collapsible.Root open={isOpen}>
+        <Collapsible.Content>
+          <MobileNav />
+        </Collapsible.Content>
+      </Collapsible.Root>
     </Box>
   );
 }
 
 const DesktopNav = () => {
-  const linkColor = useColorModeValue("gray.600", "gray.200");
-  const linkHoverColor = useColorModeValue("gray.800", "white");
-  const popoverContentBgColor = useColorModeValue("white", "gray.800");
-
   return (
-    <Stack direction={"row"} justifyItems="stretch">
-      <Stack direction={"row"} spacing={4}>
+    <Stack direction="row" justifyItems="stretch">
+      <Stack direction="row" gap={4}>
         {NAV_ITEMS.map((navItem) => (
           <Box key={navItem.label}>
-            <Popover trigger={"hover"} placement={"bottom-start"}>
-              <PopoverTrigger>
+            <Popover.Root positioning={{ placement: "bottom-start" }}>
+              <Popover.Trigger asChild>
                 <Box
                   p={2}
-                  fontSize={"sm"}
+                  fontSize="sm"
                   fontWeight={500}
-                  color={linkColor}
+                  color="gray.600"
                   _hover={{
                     textDecoration: "none",
-                    color: linkHoverColor,
+                    color: "gray.800",
                   }}
                 >
-                  <Link as={NextLink} href={navItem.href ?? "#"}>
-                    {navItem.label}
+                  <Link asChild>
+                    <NextLink href={navItem.href ?? "#"}>{navItem.label}</NextLink>
                   </Link>
                 </Box>
-              </PopoverTrigger>
+              </Popover.Trigger>
 
               {navItem.children && (
-                <PopoverContent
-                  border={0}
-                  boxShadow={"xl"}
-                  bg={popoverContentBgColor}
-                  p={4}
-                  rounded={"xl"}
-                  minW={"sm"}
-                >
-                  <Stack>
-                    {navItem.children.map((child) => (
-                      <DesktopSubNav key={child.label} {...child} />
-                    ))}
-                  </Stack>
-                </PopoverContent>
+                <Popover.Positioner>
+                  <Popover.Content
+                    border={0}
+                    boxShadow="xl"
+                    bg="white"
+                    p={4}
+                    rounded="xl"
+                    minW="sm"
+                  >
+                    <Stack>
+                      {navItem.children.map((child) => (
+                        <DesktopSubNav key={child.label} {...child} />
+                      ))}
+                    </Stack>
+                  </Popover.Content>
+                </Popover.Positioner>
               )}
-            </Popover>
+            </Popover.Root>
           </Box>
         ))}
       </Stack>
@@ -265,53 +264,51 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
-    <Box
-      as={Link}
-      href={href}
-      target="_blank"
-      role={"group"}
-      display={"block"}
+    <Link
+      asChild
+      role="group"
+      display="block"
       p={2}
-      rounded={"md"}
+      rounded="md"
       _hover={{
-        bg: useColorModeValue("pink.50", "gray.900"),
+        bg: "pink.50",
         textDecoration: "none",
       }}
     >
-      <Stack direction={"row"} align={"center"}>
-        <Box>
-          <Text
-            transition={"all .3s ease"}
-            _groupHover={{ color: "pink.400" }}
-            fontWeight={500}
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        <Stack direction="row" align="center">
+          <Box>
+            <Text
+              transition="all .3s ease"
+              _groupHover={{ color: "pink.400" }}
+              fontWeight={500}
+            >
+              {label}
+            </Text>
+            <Text fontSize="sm">{subLabel}</Text>
+          </Box>
+          <Flex
+            transition="all .3s ease"
+            transform="translateX(-10px)"
+            opacity={0}
+            _groupHover={{ opacity: 1, transform: "translateX(0)" }}
+            justify="flex-end"
+            align="center"
+            flex={1}
           >
-            {label}
-          </Text>
-          <Text fontSize={"sm"}>{subLabel}</Text>
-        </Box>
-        <Flex
-          transition={"all .3s ease"}
-          transform={"translateX(-10px)"}
-          opacity={0}
-          _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
-          justify={"flex-end"}
-          align={"center"}
-          flex={1}
-        >
-          <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
-        </Flex>
-      </Stack>
-    </Box>
+            <Icon color="pink.400" boxSize={5}>
+              <ChevronRight />
+            </Icon>
+          </Flex>
+        </Stack>
+      </a>
+    </Link>
   );
 };
 
 const MobileNav = () => {
   return (
-    <Stack
-      bg={useColorModeValue("white", "gray.800")}
-      p={4}
-      display={{ md: "none" }}
-    >
+    <Stack bg="white" p={4} display={{ md: "none" }}>
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
@@ -320,54 +317,58 @@ const MobileNav = () => {
 };
 
 const MobileNavItem = ({ label, children, href }: NavItem) => {
-  const { isOpen, onToggle } = useDisclosure();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Stack spacing={4} onClick={children && onToggle}>
-      <Flex
+    <Stack gap={4} onClick={children ? () => setIsOpen(!isOpen) : undefined}>
+      <Link
+        asChild
         py={2}
-        as={Link}
-        href={href ?? "#"}
-        target={label.includes("MCBIOS ") ? "_blank" : "_self"}
         justifyContent="start"
         _hover={{
           textDecoration: "none",
         }}
       >
-        <Text
-          fontWeight={600}
-          color={useColorModeValue("gray.600", "gray.200")}
+        <a
+          href={href ?? "#"}
+          target={label.includes("MCBIOS ") ? "_blank" : "_self"}
         >
-          {label}
-        </Text>
-        {children && (
-          <Icon
-            as={ChevronDownIcon}
-            transition={"all .25s ease-in-out"}
-            transform={isOpen ? "rotate(180deg)" : ""}
-            w={6}
-            h={6}
-          />
-        )}
-      </Flex>
+          <Flex>
+            <Text fontWeight={600} color="gray.600">
+              {label}
+            </Text>
+            {children && (
+              <Icon
+                transition="all .25s ease-in-out"
+                transform={isOpen ? "rotate(180deg)" : ""}
+                boxSize={6}
+              >
+                <ChevronDown />
+              </Icon>
+            )}
+          </Flex>
+        </a>
+      </Link>
 
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
-        <Stack
-          mt={2}
-          pl={4}
-          borderLeft={1}
-          borderStyle={"solid"}
-          borderColor={useColorModeValue("gray.200", "gray.700")}
-          align={"start"}
-        >
-          {children &&
-            children.map((child) => (
-              <Box as="a" key={child.label} py={2} href={child.href}>
-                {child.label}
-              </Box>
-            ))}
-        </Stack>
-      </Collapse>
+      <Collapsible.Root open={isOpen}>
+        <Collapsible.Content>
+          <Stack
+            mt={2}
+            pl={4}
+            borderLeft="1px"
+            borderStyle="solid"
+            borderColor="gray.200"
+            align="start"
+          >
+            {children &&
+              children.map((child) => (
+                <Link asChild key={child.label} py={2}>
+                  <a href={child.href}>{child.label}</a>
+                </Link>
+              ))}
+          </Stack>
+        </Collapsible.Content>
+      </Collapsible.Root>
     </Stack>
   );
 };
@@ -402,10 +403,6 @@ const NAV_ITEMS: Array<NavItem> = [
     label: "Events",
     href: "/events",
   },
-  // {
-  //   label: "Forms",
-  //   href: "/forms",
-  // },
   {
     label: "Publications",
     href: "/publications",

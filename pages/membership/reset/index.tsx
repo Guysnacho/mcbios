@@ -1,22 +1,21 @@
-import { createClient } from "@/lib/supabase/component";
+"use client";
+
+import { createClient } from "@/lib/supabase/client";
 import { Database } from "@/lib/supabase/types";
-import { ViewOffIcon } from "@chakra-ui/icons";
+import { Eye, EyeOff } from "lucide-react";
 import {
   Box,
   Button,
   Flex,
-  FormControl,
-  FormLabel,
   Image,
   Input,
-  InputGroup,
-  InputRightElement,
   Spinner,
   Stack,
-  useToast,
 } from "@chakra-ui/react";
+import { Field } from "@/components/ui/field";
+import { InputGroup } from "@/components/ui/input-group";
+import { toaster } from "@/components/ui/toaster";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { ViewIcon } from "lucide-react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -24,7 +23,6 @@ import { useEffect, useState } from "react";
 const Membership = () => {
   const router = useRouter();
   const client = createClient();
-  const toast = useToast();
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [valid, setValid] = useState(false);
@@ -38,8 +36,7 @@ const Membership = () => {
     });
 
     if (error) {
-      toast({
-        colorScheme: "red",
+      toaster.error({
         title: "Ran into an issue verifying your email session",
         description: error.message,
       });
@@ -56,8 +53,7 @@ const Membership = () => {
     });
 
     if (error) {
-      toast({
-        colorScheme: "red",
+      toaster.error({
         title: "Ran into an issue updating your password",
         description:
           "If an issue persists, please reach out to team@tunjiproductions.com - " +
@@ -65,12 +61,11 @@ const Membership = () => {
       });
       setLoading(false);
     } else {
-      toast({
-        colorScheme: "green",
+      toaster.success({
         title: "Your request has been recieved",
         description: "Feel free to login using your new credentials!",
-        onCloseComplete: () => router.replace("/membership?reset=true"),
       });
+      router.replace("/membership?reset=true");
     }
   }
 
@@ -116,60 +111,48 @@ const Membership = () => {
             }}
           >
             <Stack
-              spacing={4}
+              gap={4}
               mb={5}
               width={["85%", null, "70%", "60%", "50%"]}
               mx="auto"
             >
-              <FormControl
-                id="password"
-                isRequired
-                isDisabled={loading}
-                mx="auto"
-              >
-                <FormLabel>New Password</FormLabel>
-                <InputGroup>
+              <Field label="New Password" required disabled={loading}>
+                <InputGroup
+                  endElement={
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() =>
+                        setShowPassword((showPassword) => !showPassword)
+                      }
+                    >
+                      {showPassword ? <Eye /> : <EyeOff />}
+                    </Button>
+                  }
+                >
                   <Input
                     type={showPassword ? "text" : "password"}
                     autoComplete="new-password"
                     onChange={(e) => setPassword(e.currentTarget.value)}
                     value={password}
                   />
-                  <InputRightElement h={"full"}>
-                    <Button
-                      variant={"ghost"}
-                      onClick={() =>
-                        setShowPassword((showPassword) => !showPassword)
-                      }
-                    >
-                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                    </Button>
-                  </InputRightElement>
                 </InputGroup>
-              </FormControl>
-              <FormControl
-                id="confirm"
-                isRequired
-                isDisabled={loading}
-                mx="auto"
-              >
-                <FormLabel>Confirm your Password</FormLabel>
-                <InputGroup>
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    autoComplete="new-password"
-                    onChange={(e) => setConfirm(e.currentTarget.value)}
-                    value={confirm}
-                  />
-                </InputGroup>
-              </FormControl>
+              </Field>
+              <Field label="Confirm your Password" required disabled={loading}>
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="new-password"
+                  onChange={(e) => setConfirm(e.currentTarget.value)}
+                  value={confirm}
+                />
+              </Field>
             </Stack>
             <section className="text-center space-y-3">
               <Button
                 aria-description="Submit new password"
                 type="submit"
-                colorScheme="green"
-                isDisabled={loading || password !== confirm}
+                colorPalette="green"
+                disabled={loading || password !== confirm}
               >
                 Submit
               </Button>

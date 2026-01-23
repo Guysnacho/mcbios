@@ -12,7 +12,7 @@ import VinayRaj from "@/public/images/leadership/Vinay-Raj.jpg";
 import XuefengWang from "@/public/images/leadership/Xuefeng-Wang.png";
 import ZongliangYue from "@/public/images/leadership/Zongliang-Yue.png";
 import {
-  Divider,
+  Separator,
   Tab,
   TabList,
   TabPanel,
@@ -225,7 +225,7 @@ const leadership = () => {
       </Head>
       <h2 className="text-center my-10">Board of Directors</h2>
       <section>
-        <Divider className="w-1/2 mx-auto mb-10" />
+        <Separator className="w-1/2 mx-auto mb-10" />
         <h4 className="text-center">Presidential Office (2024-2025)</h4>
         <div className="columns-1 md:columns-2 w-11/12 mx-auto my-10 space-y-5 md:space-y-0">
           <BoardMemberCard
@@ -258,7 +258,7 @@ const leadership = () => {
         <TabPanels>
           <TabPanel key="board" title="Current Board">
             <section className="space-y-10">
-              <Divider className="w-1/2 mx-auto mb-10" />
+              <Separator className="w-1/2 mx-auto mb-10" />
               <h4 className="text-center">Board Members</h4>
               <div className="md:flex w-11/12 mx-auto flex-wrap gap-5 items-center space-y-6 md:space-y-0">
                 {boardMembers.map((member) => {
@@ -278,7 +278,7 @@ const leadership = () => {
           </TabPanel>
           <TabPanel key="presidents" title="Past Presidents">
             <section>
-              <Divider className="w-1/2 mx-auto mb-10" />
+              <Separator className="w-1/2 mx-auto mb-10" />
               <h4 className="text-center">Past Presidents</h4>
               <div className="md:flex w-11/12 mx-auto flex-wrap gap-8 items-center space-y-6 md:space-y-5">
                 {pastPrez.map((member, index) => {

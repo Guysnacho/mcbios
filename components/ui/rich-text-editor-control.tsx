@@ -590,7 +590,7 @@ const TEXT_STYLE_OPTIONS = [
   { value: "heading2", label: "Heading 2" },
   { value: "heading3", label: "Heading 3" },
   { value: "blockquote", label: "Quote" },
-  { value: "horizontalRule", label: "Divider", icon: <LuMinus /> },
+  { value: "horizontalRule", label: "Separator", icon: <LuMinus /> },
 ]
 
 export const TextStyle = createSelectControl({

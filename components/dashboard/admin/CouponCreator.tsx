@@ -54,7 +54,7 @@ export const CouponCreator = () => {
     () => couponFetcher(),
     {
       onError(err) {
-        toast({
+        toaster.create({
           status: "error",
           title: "Issue fetching coupons",
           description: err.message,
@@ -83,7 +83,7 @@ export const CouponCreator = () => {
     if (res.ok) mutate();
     else {
       const err = await res.json();
-      toast({
+      toaster.create({
         status: "error",
         title: "Issue creating coupon",
         description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message}`,
@@ -105,7 +105,7 @@ export const CouponCreator = () => {
       if (res.ok) mutate();
       else {
         const err = await res.json();
-        toast({
+        toaster.create({
           status: "error",
           title: "Issue deleting promo code",
           description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message}`,
@@ -129,7 +129,7 @@ export const CouponCreator = () => {
       if (res.ok) mutate();
       else {
         const err = await res.json();
-        toast({
+        toaster.create({
           status: "error",
           title: "Issue deleting coupon code",
           description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message}`,

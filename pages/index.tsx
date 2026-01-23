@@ -1,24 +1,22 @@
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
   AccordionItem,
-  AccordionPanel,
-  Alert,
-  AlertIcon,
+  AccordionItemContent,
+  AccordionItemTrigger,
+  AccordionRoot,
+} from "@/components/ui/accordion";
+import { Alert } from "@/components/ui/alert";
+import { toaster } from "@/components/ui/toaster";
+import {
   Box,
   Button,
   Card,
-  CardFooter,
-  CardHeader,
-  Divider,
   Heading,
   HStack,
   Image,
+  Separator,
+  Span,
   Stack,
   Text,
-  useTimeout,
-  useToast,
 } from "@chakra-ui/react";
 import { PartyPopper } from "lucide-react";
 import Head from "next/head";
@@ -27,25 +25,24 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
-  const toast = useToast();
   const [currentTag, setTag] = useState(0);
 
-  useTimeout(() => {
+  setTimeout(() => {
     if (router.query.error_description) {
-      toast({
+      toaster.create({
         description: router.query.error_description,
-        status: "warning",
+        type: "warning",
         duration: 8000,
-        isClosable: true,
+        closable: true,
       });
     } else if (router.query.token || router.query.code) {
-      toast({
+      toaster.create({
         title: "Thank you for your verification",
         description:
           "You are free to continue with your conference registration or any other activities!",
-        status: "success",
+        type: "success",
         duration: 8000,
-        isClosable: true,
+        closable: true,
       });
     }
   }, 500);
@@ -62,7 +59,7 @@ export default function Home() {
 
   useEffect(() => {
     handleUpdate();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTag]);
 
   return (
@@ -121,7 +118,7 @@ export default function Home() {
         </Box>
       </HStack>
 
-      <Divider as="hr" className="my-10 border-gray-500" />
+      <Separator as="hr" className="my-10 border-gray-500" />
       <Alert
         as="a"
         href="/events"
@@ -130,29 +127,30 @@ export default function Home() {
         w={["80%", "fit-content"]}
         mx="auto"
         status="success"
+        icon={<PartyPopper />}
       >
-        <AlertIcon>
-          <PartyPopper />
-        </AlertIcon>
         Conference registration is now open!
       </Alert>
-      <Divider as="hr" className="my-10 border-gray-500" />
+      <Separator as="hr" className="my-10 border-gray-500" />
 
       <section className="space-y-5 px-10 mx-auto md:w-5/6">
         <h3 className="text-center">Greetings from the MCBIOS President</h3>
         <div className="md:flex my-5 gap-5 space-y-10 mx-auto">
-          <Card shadow="md" w={{ base: "fit-content", md: "sm", xl: "lg" }}>
-            <CardHeader>
+          <Card.Root
+            shadow="md"
+            w={{ base: "fit-content", md: "sm", xl: "lg" }}
+          >
+            <Card.Header>
               <Image
                 src="/images/leadership/Aik-Choon-Tan.jpg"
                 fallbackSrc="/images/leadership/Aik-Choon-Tan.jpg"
                 alt="Aik Choon Tan, MCBIOS President"
                 className="mx-auto"
               />
-            </CardHeader>
-            <Divider w="80%" mx="auto" />
-            <CardFooter>
-              <Stack divider={<Divider />}>
+            </Card.Header>
+            <Separator w="80%" mx="auto" />
+            <Card.Footer>
+              <Stack separator={<Separator />}>
                 <Text className="text-md" fontWeight={600}>
                   Aik Choon Tan, Ph.D.
                 </Text>
@@ -166,19 +164,19 @@ export default function Home() {
                 </Text>
                 <Text>University of Utah</Text>
               </Stack>
-            </CardFooter>
-          </Card>
-          <Accordion defaultIndex={[0]} allowMultiple w="70vw" mx="auto">
-            <AccordionItem aria-label="Introduction and Gratitude">
-              <h2>
-                <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left">
-                    Introduction and Gratitude
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
+            </Card.Footer>
+          </Card.Root>
+          <AccordionRoot defaultValue={["intro"]} multiple w="70vw" mx="auto">
+            <AccordionItem
+              aria-label="Introduction and Gratitude"
+              value="intro"
+            >
+              <AccordionItemTrigger>
+                <h5>
+                  <Span flex="1">Introduction and Gratitude</Span>
+                </h5>
+              </AccordionItemTrigger>
+              <AccordionItemContent pb={4}>
                 I am deeply honored and profoundly grateful to serve as the 20th
                 President of the MidSouth Computational Biology and
                 Bioinformatics Society (MCBIOS). This opportunity to lead our
@@ -187,36 +185,37 @@ export default function Home() {
                 directors and past presidents for their unwavering support and
                 guidance. This moment is not just a personal milestone but a
                 reflection of our shared vision for the future of MCBIOS.
-              </AccordionPanel>
+              </AccordionItemContent>
             </AccordionItem>
-            <AccordionItem aria-label="Embracing Growth and Diversity">
-              <h2>
-                <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left">
-                    Embracing Growth and Diversity
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
+            <AccordionItem
+              value="growth"
+              aria-label="Embracing Growth and Diversity"
+            >
+              <AccordionItemTrigger>
+                <h5>
+                  <Span flex="1">Embracing Growth and Diversity</Span>
+                </h5>
+              </AccordionItemTrigger>
+              <AccordionItemContent pb={4}>
                 Our society is on an exhilarating journey of growth, with an
                 expanding membership that brings a wealth of diverse
                 perspectives and expertise. I am committed to nurturing this
                 growth, reaching beyond the Mid-South to embrace members from
                 all regions. Together, we are paving the way for greater
                 collaboration and groundbreaking innovation in our field.
-              </AccordionPanel>
+              </AccordionItemContent>
             </AccordionItem>
-            <AccordionItem aria-label="Supporting Education and Mentorship">
-              <h2>
-                <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left">
-                    Supporting Education and Mentorship
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
+            <AccordionItem
+              value="support"
+              aria-label="Supporting Education and Mentorship"
+            >
+              <AccordionItemTrigger>
+                <h5>
+                  <Span flex="1">Supporting Education and Mentorship</Span>
+                </h5>
+              </AccordionItemTrigger>
+
+              <AccordionItemContent pb={4}>
                 At the core of our mission is the education and training of the
                 next generation of bioinformaticians. I am passionate about
                 enhancing our educational and mentoring initiatives, ensuring
@@ -224,18 +223,19 @@ export default function Home() {
                 they need to excel. I urge our experienced members to step
                 forward as mentors, guiding our trainees and serving as the role
                 models they need to achieve their full potential.
-              </AccordionPanel>
+              </AccordionItemContent>
             </AccordionItem>
-            <AccordionItem aria-label="Announcing the 21st Annual Conference">
-              <h2>
-                <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left">
-                    Announcing the 21st Annual Conference
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
+            <AccordionItem
+              value="announcements"
+              aria-label="Announcing the 21st Annual Conference"
+            >
+              <AccordionItemTrigger>
+                <h5>
+                  <Span flex="1">Announcing the 21st Annual Conference</Span>
+                </h5>
+              </AccordionItemTrigger>
+
+              <AccordionItemContent pb={4}>
                 I am also thrilled to announce our upcoming 21st Annual
                 Conference of MCBIOS, to be held from March 27-29, 2025, at the
                 University of Utah in Salt Lake City. This conference marks a
@@ -244,33 +244,30 @@ export default function Home() {
                 knowledge exchange and networking, and I encourage each of you
                 to participate actively. Your contributions are the lifeblood of
                 our society, making it vibrant and impactful.
-              </AccordionPanel>
+              </AccordionItemContent>
             </AccordionItem>
-            <AccordionItem aria-label="A Vision for the Future">
-              <h2>
-                <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left">
-                    A Vision for the Future
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
+            <AccordionItem value="vision" aria-label="A Vision for the Future">
+              <AccordionItemTrigger>
+                <h5>
+                  <Span flex="1">A Vision for the Future</Span>
+                </h5>
+              </AccordionItemTrigger>
+              <AccordionItemContent pb={4}>
                 In closing, I want to express my deepest gratitude for your
                 trust and support. Together, we will advance the frontiers of
                 bioinformatics and make this journey remarkable. Let us unite in
                 our shared mission and make a lasting impact on our field.
-              </AccordionPanel>
+              </AccordionItemContent>
             </AccordionItem>
-          </Accordion>
+          </AccordionRoot>
         </div>
       </section>
 
-      <Divider as="hr" className="my-10 border-gray-500" />
+      <Separator as="hr" className="my-10 border-gray-500" />
 
       {/* <ElectionHero />
 
-      <Divider as="hr" className="my-10 border-gray-500" /> */}
+      <Separator as="hr" className="my-10 border-gray-500" /> */}
 
       <div className="w-4/5 md:w-2/3 mx-auto">
         <h3 className="text-center">Objectives</h3>
@@ -300,7 +297,7 @@ export default function Home() {
         </ul>
       </div>
 
-      <Divider as="hr" className="my-10 border-gray-500" />
+      <Separator as="hr" className="my-10 border-gray-500" />
 
       <div className="columns-1 lg:columns-2 w-5/6 mx-auto">
         <div className="w-full items-center">

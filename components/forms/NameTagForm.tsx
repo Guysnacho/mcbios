@@ -76,7 +76,7 @@ export const NameTagForm = ({
         throw new Error(await res.json());
       } else {
         setIsOpen(false);
-        toast({
+        toaster.create({
           status: "success",
           duration: 6000,
           isClosable: true,

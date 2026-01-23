@@ -1,30 +1,7 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  FormControl,
-  FormLabel,
-  Heading,
-  HStack,
-  Input,
-  Select,
-  Stack,
-  Step,
-  StepIcon,
-  StepIndicator,
-  StepNumber,
-  Stepper,
-  StepSeparator,
-  StepStatus,
-  StepTitle,
-  Text,
-  useColorModeValue,
-  useSteps,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, HStack, Input, Select, Stack, useSteps, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { PaymentHandler, PaymentHandlerType } from "./dashboard/PaymentHandler";
+import { useColorModeValue } from "./ui/color-mode";
 
 const steps = [
   { title: "First", description: "Contact Info" },
@@ -53,7 +30,6 @@ export const ConferenceRegistration = ({
     lname === "" ||
     email === "" ||
     institution === "";
-  const toast = useToast();
 
   return (
     <section>
@@ -64,7 +40,7 @@ export const ConferenceRegistration = ({
               MCBIOS 2026
             </Heading>
             <Text>March 26-29, 2026</Text>
-            <Divider />
+            <Separator />
             <Text color={"gray.600"}>
               We want to thank everyone whose contributed to the conference via
               registrations, poster submissions, volunteering, sponsorships, and
@@ -82,7 +58,7 @@ export const ConferenceRegistration = ({
             <Heading fontSize={"4xl"} textAlign={"center"}>
               MCBIOS 2026 Registration
             </Heading>
-            <Divider />
+            <Separator />
             <Text color={"gray.600"}>
               If you haven&apos;t already and plan on attending this year&apos;s
               conference please pay your registration fees. Registration fees

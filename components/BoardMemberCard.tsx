@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader, Divider, Image } from "@chakra-ui/react";
+import { Card, CardBody, CardHeader, Separator, Image } from "@chakra-ui/react";
 
 type BoardMemberCardProps = {
   name: string;
@@ -25,7 +25,7 @@ const BoardMemberCard = (props: BoardMemberCardProps) => {
       <CardHeader>
         <strong className="mx-auto text-lg">{props.name}</strong>
       </CardHeader>
-      <Divider />
+      <Separator />
       <CardBody>
         <div className="sm:flex gap-5">
           {props.image ? (
@@ -45,7 +45,7 @@ const BoardMemberCard = (props: BoardMemberCardProps) => {
               </p>
             ) : undefined}
             <p>{props.title}</p>
-            {props.title ? <Divider className="my-2" /> : undefined}
+            {props.title ? <Separator className="my-2" /> : undefined}
             <p>{props.department}</p>
             <p>{props.affiliation}</p>
           </div>

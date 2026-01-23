@@ -1,7 +1,7 @@
 import { ConferenceRegistration } from "@/components/ConferenceRegistration";
 import CareerDev from "@/public/images/banners/career-development.jpg";
 import {
-  Divider,
+  Separator,
   Image,
   Tab,
   TabList,
@@ -36,10 +36,10 @@ const Events = () => {
               alt="Career Development Series"
               className="mx-auto px-5 md:px-10 lg:px-20"
             />
-            <Divider className="w-1/2 mx-auto mb-10" />
+            <Separator className="w-1/2 mx-auto mb-10" />
             <section>
               <div className="w-11/12 mx-auto gap-8 items-center space-y-6 md:space-y-5">
-                <Divider className="w-1/2 mx-auto mb-10" />
+                <Separator className="w-1/2 mx-auto mb-10" />
                 <p className="justify-center">
                   Career Development Seminars are workshops and presentations
                   free and open to all MCBIOS members, especially for trainees
@@ -50,7 +50,7 @@ const Events = () => {
                   monthly as virtual seminar and an in-person session during the
                   MCBIOS Annual Conference.
                 </p>
-                <Divider className="w-1/2 mx-auto mb-10" />
+                <Separator className="w-1/2 mx-auto mb-10" />
                 <h5 className="text-center text-primary">
                   Check in with us later for updates
                 </h5>
@@ -58,7 +58,7 @@ const Events = () => {
             </section>
           </TabPanel>
           <TabPanel>
-            <Divider className="w-1/2 mx-auto mb-10" />
+            <Separator className="w-1/2 mx-auto mb-10" />
             <section>
               <div className="w-11/12 mx-auto gap-8 items-center space-y-6 md:space-y-5">
                 <p className="text-lg">
@@ -81,7 +81,7 @@ const Events = () => {
                   information above, along with a copy of your bylaws, if
                   applicable.
                 </p>
-                <Divider className="w-1/2 mx-auto mb-10" />
+                <Separator className="w-1/2 mx-auto mb-10" />
                 <h5 className="text-center text-primary">
                   Check in with us later for updates
                 </h5>

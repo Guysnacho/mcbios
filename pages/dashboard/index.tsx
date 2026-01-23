@@ -1,3 +1,5 @@
+"use client";
+
 import { AdminPanel } from "@/components/dashboard/admin/AdminPanel";
 import { MemberContent } from "@/components/dashboard/admin/MemberContent";
 import {
@@ -8,36 +10,24 @@ import { User } from "@/components/User";
 import { authFetcher, DUPLICATE_ROW } from "@/lib";
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
-import { createClient as createCompoentClient } from "@/lib/supabase/component";
-import { ChevronLeftIcon } from "@chakra-ui/icons";
+import { createClient } from "@/lib/supabase/client";
+import { ChevronLeft } from "lucide-react";
 import {
   Button,
-  Divider,
   Flex,
-  Select,
-  Tab,
+  NativeSelect,
+  Separator,
   Table,
-  TableCaption,
-  TableContainer,
-  TabList,
-  TabPanel,
-  TabPanels,
   Tabs,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  useToast,
 } from "@chakra-ui/react";
+import { toaster } from "@/components/ui/toaster";
 import Head from "next/head";
 import { useState } from "react";
 import useSWR from "swr";
 
 export default function Dashboard() {
-  const client = createCompoentClient();
+  const client = createClient();
   const store = useStore(useUserStore, (store) => store);
-  const toast = useToast();
   const [tier, setTier] = useState<PaymentHandlerType>();
 
   const { data, error } = useSWR("/auth/user", () => authFetcher(client), {
@@ -80,168 +70,161 @@ export default function Dashboard() {
             </div>
           </div>
         )}
-        <Tabs
+        <Tabs.Root
           aria-label="Dashboard Tabs"
           size="lg"
-          isFitted
+          fitted
           variant="line"
-          colorScheme="blue"
+          colorPalette="blue"
           display={error ? "none" : undefined}
+          defaultValue={data?.user && data.user.role === "admin" ? "admin" : "profile"}
         >
-          <TabList>
+          <Tabs.List>
             {data?.user && data.user.role === "admin" && (
-              <Tab title="Admin">Admin</Tab>
+              <Tabs.Trigger value="admin">Admin</Tabs.Trigger>
             )}
             {data?.user && data?.user.fees_paid_at && (
-              <Tab title="Conference Content">Conference Content</Tab>
+              <Tabs.Trigger value="content">Conference Content</Tabs.Trigger>
             )}
-            <Tab title="Profile">Profile</Tab>
-          </TabList>
-          <TabPanels>
-            {data?.user && data?.user.role === "admin" && (
+            <Tabs.Trigger value="profile">Profile</Tabs.Trigger>
+          </Tabs.List>
+
+          {data?.user && data?.user.role === "admin" && (
+            <Tabs.Content value="admin">
               <AdminPanel client={client} />
-            )}
+            </Tabs.Content>
+          )}
 
-            {data?.user && data?.user.fees_paid_at && (
-              <TabPanel>
-                <MemberContent videos={data?.videos} />
-              </TabPanel>
-            )}
+          {data?.user && data?.user.fees_paid_at && (
+            <Tabs.Content value="content">
+              <MemberContent videos={data?.videos} />
+            </Tabs.Content>
+          )}
 
-            <TabPanel>
-              <div className="my-5 flex gap-3 mx-auto justify-center">
-                <div>
-                  <h5 className="text-center">Membership Info</h5>
-                  <User
-                    fname={data?.user?.fname}
-                    lname={data?.user?.lname}
-                    role={data?.user?.role}
-                  />
-                </div>
+          <Tabs.Content value="profile">
+            <div className="my-5 flex gap-3 mx-auto justify-center">
+              <div>
+                <h5 className="text-center">Membership Info</h5>
+                <User
+                  fname={data?.user?.fname}
+                  lname={data?.user?.lname}
+                  role={data?.user?.role}
+                />
               </div>
-              <Divider />
-              <div className="container text-center space-y-4">
-                {!data?.user ||
-                  (!data?.user?.fees_paid_at && (
-                    <>
-                      <h4>Welcome to MCBIOS Registration!</h4>
+            </div>
+            <Separator />
+            <div className="container text-center space-y-4">
+              {!data?.user ||
+                (!data?.user?.fees_paid_at && (
+                  <>
+                    <h4>Welcome to MCBIOS Registration!</h4>
 
-                      {/* Registration Tiers */}
-                      <TableContainer
-                        overflowX="auto"
-                        w={["90%", "sm", "lg", "2xl"]}
-                        mx="auto"
-                      >
-                        <Table variant="striped" colorScheme="green">
-                          <TableCaption>Registration Pricing</TableCaption>
-                          <Thead>
-                            <Tr>
-                              <Th>Membership Level</Th>
-                              <Th>
-                                Early Bird
-                                <br />
-                                (Until Jan. 15th, 2026)
-                              </Th>
-                              <Th>Standard</Th>
-                              {/* <Th>Membership Only</Th> */}
-                            </Tr>
-                          </Thead>
-                          <Tbody>
-                            <Tr>
-                              <Td>Student</Td>
-                              <Td>$200</Td>
-                              <Td>$250</Td>
-                              {/* <Td>$10</Td> */}
-                            </Tr>
-                            <Tr>
-                              <Td>Postdoctorial</Td>
-                              <Td>$300</Td>
-                              <Td>$350</Td>
-                              {/* <Td>$20</Td> */}
-                            </Tr>
-                            <Tr>
-                              <Td>Professional</Td>
-                              <Td>$400</Td>
-                              <Td>$450</Td>
-                              {/* <Td>$50</Td> */}
-                            </Tr>
-                          </Tbody>
-                        </Table>
-                      </TableContainer>
+                    {/* Registration Tiers */}
+                    <Table.ScrollArea
+                      overflowX="auto"
+                      w={["90%", "sm", "lg", "2xl"]}
+                      mx="auto"
+                    >
+                      <Table.Root striped colorPalette="green">
+                        <Table.Caption>Registration Pricing</Table.Caption>
+                        <Table.Header>
+                          <Table.Row>
+                            <Table.ColumnHeader>Membership Level</Table.ColumnHeader>
+                            <Table.ColumnHeader>
+                              Early Bird
+                              <br />
+                              (Until Jan. 15th, 2026)
+                            </Table.ColumnHeader>
+                            <Table.ColumnHeader>Standard</Table.ColumnHeader>
+                          </Table.Row>
+                        </Table.Header>
+                        <Table.Body>
+                          <Table.Row>
+                            <Table.Cell>Student</Table.Cell>
+                            <Table.Cell>$200</Table.Cell>
+                            <Table.Cell>$250</Table.Cell>
+                          </Table.Row>
+                          <Table.Row>
+                            <Table.Cell>Postdoctorial</Table.Cell>
+                            <Table.Cell>$300</Table.Cell>
+                            <Table.Cell>$350</Table.Cell>
+                          </Table.Row>
+                          <Table.Row>
+                            <Table.Cell>Professional</Table.Cell>
+                            <Table.Cell>$400</Table.Cell>
+                            <Table.Cell>$450</Table.Cell>
+                          </Table.Row>
+                        </Table.Body>
+                      </Table.Root>
+                    </Table.ScrollArea>
 
+                    <p>
+                      If you haven&apos;t already, please pay your
+                      registration fees to finish MCBIOS onboarding.
+                      Registration fees include access to all scientific
+                      sessions, meals, receptions, banquet, and 1 year of
+                      MCBIOS membership. Membership gives you access to past
+                      conference recordings, upcomming elections, and more!
+                    </p>
+                    <div className="container">
                       <p>
-                        If you haven&apos;t already, please pay your
-                        registration fees to finish MCBIOS onboarding.
-                        Registration fees include access to all scientific
-                        sessions, meals, receptions, banquet, and 1 year of
-                        MCBIOS membership. Membership gives you access to past
-                        conference recordings, upcomming elections, and more!
+                        <span className="underline">
+                          If you have paid the required fees
+                        </span>
+                        , notify us here so we can confirm and grant access to
+                        everything MCBIOS!
                       </p>
-                      <div className="container">
-                        <p>
-                          <span className="underline">
-                            If you have paid the required fees
-                          </span>
-                          , notify us here so we can confirm and grant access to
-                          everything MCBIOS!
-                        </p>
-                        <Button
-                          colorScheme="green"
-                          className="my-5"
-                          onClick={() => {
-                            client
-                              .from("confirm_request")
-                              .insert({ user_id: store?.id })
-                              .then(({ error }) => {
-                                if (error) {
-                                  if (error?.code === DUPLICATE_ROW) {
-                                    toast({
-                                      status: "error",
-                                      duration: 6000,
-                                      isClosable: true,
-                                      description:
-                                        "Gotcha, we'll update your access as soon as we confirm.",
-                                    });
-                                  } else {
-                                    toast({
-                                      status: "error",
-                                      duration: 6000,
-                                      isClosable: true,
-                                      description:
-                                        "Something went wrong while we submitting your membership request - " +
-                                        error.message,
-                                    });
-                                    console.error(error);
-                                  }
-                                } else {
-                                  toast({
-                                    status: "success",
-                                    duration: 6000,
-                                    isClosable: true,
+                      <Button
+                        colorPalette="green"
+                        className="my-5"
+                        onClick={() => {
+                          client
+                            .from("confirm_request")
+                            .insert({ user_id: store?.id })
+                            .then(({ error }) => {
+                              if (error) {
+                                if (error?.code === DUPLICATE_ROW) {
+                                  toaster.error({
                                     description:
-                                      "Thank you for letting us know, we'll confirm your membership status ASAP!",
+                                      "Gotcha, we'll update your access as soon as we confirm.",
+                                    duration: 6000,
                                   });
+                                } else {
+                                  toaster.error({
+                                    description:
+                                      "Something went wrong while we submitting your membership request - " +
+                                      error.message,
+                                    duration: 6000,
+                                  });
+                                  console.error(error);
                                 }
-                              });
-                          }}
+                              } else {
+                                toaster.success({
+                                  description:
+                                    "Thank you for letting us know, we'll confirm your membership status ASAP!",
+                                  duration: 6000,
+                                });
+                              }
+                            });
+                        }}
+                      >
+                        My fees are paid
+                      </Button>
+                    </div>
+                    <Flex mx="auto" w={[null, "sm", "lg"]}>
+                      {tier ? (
+                        <Button
+                          mx="auto"
+                          onClick={() => setTier(undefined)}
                         >
-                          My fees are paid
+                          <ChevronLeft />
+                          Select a different tier
                         </Button>
-                      </div>
-                      <Flex mx="auto" w={[null, "sm", "lg"]}>
-                        {tier ? (
-                          <Button
-                            mx="auto"
-                            leftIcon={<ChevronLeftIcon />}
-                            onClick={() => setTier(undefined)}
-                          >
-                            Select a different tier
-                          </Button>
-                        ) : (
-                          <Select
-                            variant="outline"
+                      ) : (
+                        <NativeSelect.Root>
+                          <NativeSelect.Field
                             placeholder="Select a membership level"
-                            onChange={(e) => {
+                            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                               setTier(
                                 e.currentTarget.value as PaymentHandlerType
                               );
@@ -259,40 +242,23 @@ export default function Dashboard() {
                               Conference and Membership | Early Bird
                               Professional | $400
                             </option>
-                            {/* <option value="student">
-                              Conference and Membership | Student | $250
-                            </option>
-                            <option value="postdoctorial">
-                              Conference and Membership | Postdoctorial | $350
-                            </option>
-                            <option value="professional">
-                              Conference and Membership | Professional | $450
-                            </option>
-                            <option value="member_only_student">
-                              Membership | Student | $10
-                            </option>
-                            <option value="member_only_postdoctorial">
-                              Membership | Postdoctorial | $20
-                            </option>
-                            <option value="member_only_professional">
-                              Membership | Professional | $50
-                            </option> */}
-                          </Select>
-                        )}
-                      </Flex>
-                      {tier ? (
-                        <PaymentHandler
-                          tier={tier}
-                          userId={data.user.user_id}
-                          email={data.user.email!}
-                        />
-                      ) : undefined}
-                    </>
-                  ))}
-              </div>
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+                          </NativeSelect.Field>
+                          <NativeSelect.Indicator />
+                        </NativeSelect.Root>
+                      )}
+                    </Flex>
+                    {tier ? (
+                      <PaymentHandler
+                        tier={tier}
+                        userId={data.user.user_id}
+                        email={data.user.email!}
+                      />
+                    ) : undefined}
+                  </>
+                ))}
+            </div>
+          </Tabs.Content>
+        </Tabs.Root>
       </div>
     </>
   );
