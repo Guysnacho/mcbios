@@ -1,6 +1,15 @@
 import { createClient } from "@/lib/supabase/component";
 import { Database } from "@/lib/supabase/types";
-import { Button, Flex, Heading, Input, Stack, Text, useToast, VStack } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Heading,
+  Input,
+  Stack,
+  Text,
+  useToast,
+  VStack,
+} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 
@@ -62,6 +71,7 @@ export const VideoUploader = () => {
         title,
         date: date!.toISOString(),
         path: video,
+        org_id: process.env.NEXT_PUBLIC_ORG_ID,
       })
       .select()
       .single();

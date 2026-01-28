@@ -4,7 +4,12 @@ import { Database } from "./supabase/types";
 
 export const authFetcher = async (client: SupabaseClient<Database>) => {
   // Fetch data from external API
-  const { data } = await client.from("member").select("*").single();
+  const { data: token } = await client.auth.getClaims();
+  const { data } = await client
+    .from("member")
+    .select("*")
+    .eq("user_id", token!.claims.sub)
+    .single();
   const { data: videos } = await client
     .from("videos")
     .select("*")

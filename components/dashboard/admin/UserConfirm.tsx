@@ -326,6 +326,7 @@ const ConfirmModal = ({
       .update({
         role,
         fees_paid_at: date?.toISOString(),
+        org_id: process.env.NEXT_PUBLIC_ORG_ID,
       })
       .eq("user_id", uid)
       .select()
