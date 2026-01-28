@@ -4,12 +4,7 @@ import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
 import { ConfYears } from "@/lib";
 import { createClient } from "@/lib/supabase/client";
-import {
-  ChevronDown,
-  ChevronRight,
-  X,
-  Menu as MenuIcon,
-} from "lucide-react";
+import { ChevronDown, ChevronRight, X, Menu as MenuIcon } from "lucide-react";
 import {
   Avatar,
   Box,
@@ -148,9 +143,7 @@ export default function Nav() {
                   minW={0}
                 >
                   <Avatar.Root size="sm">
-                    <Avatar.Image
-                      src="https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75"
-                    />
+                    <Avatar.Image src="https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75" />
                     <Avatar.Fallback>U</Avatar.Fallback>
                   </Avatar.Root>
                 </Button>
@@ -232,10 +225,12 @@ const DesktopNav = () => {
                       color: { base: "gray.800", _dark: "white" },
                     }}
                   >
-                    {navItem.label}
-                    <Icon boxSize={4} ml={1}>
-                      <ChevronDown />
-                    </Icon>
+                    <span className="flex">
+                      {navItem.label}
+                      <Icon boxSize={4} ml={1}>
+                        <ChevronDown />
+                      </Icon>
+                    </span>
                   </Box>
                 </Popover.Trigger>
                 <Popover.Positioner>
@@ -267,7 +262,9 @@ const DesktopNav = () => {
                 }}
               >
                 <Link asChild>
-                  <NextLink href={navItem.href ?? "#"}>{navItem.label}</NextLink>
+                  <NextLink href={navItem.href ?? "#"}>
+                    {navItem.label}
+                  </NextLink>
                 </Link>
               </Box>
             )}
@@ -324,7 +321,11 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 
 const MobileNav = () => {
   return (
-    <Stack bg={{ base: "white", _dark: "gray.900" }} p={4} display={{ md: "none" }}>
+    <Stack
+      bg={{ base: "white", _dark: "gray.900" }}
+      p={4}
+      display={{ md: "none" }}
+    >
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
@@ -350,7 +351,10 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
           target={label.includes("MCBIOS ") ? "_blank" : "_self"}
         >
           <Flex>
-            <Text fontWeight={600} color={{ base: "gray.600", _dark: "gray.200" }}>
+            <Text
+              fontWeight={600}
+              color={{ base: "gray.600", _dark: "gray.200" }}
+            >
               {label}
             </Text>
             {children && (
