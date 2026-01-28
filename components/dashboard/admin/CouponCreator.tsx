@@ -1,30 +1,20 @@
 import { couponFetcher } from "@/lib";
-import { ChevronDownIcon, DeleteIcon } from "@chakra-ui/icons";
+import { Trash2 } from "lucide-react";
 import {
   Box,
   Button,
   Flex,
-  FormControl,
-  FormLabel,
   Heading,
   Input,
-  InputGroup,
-  InputLeftAddon,
-  InputRightAddon,
-  Select,
+  NativeSelect,
   Spinner,
   Stack,
   Table,
-  TableCaption,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  useToast,
   VStack,
 } from "@chakra-ui/react";
+import { Field } from "@/components/ui/field";
+import { InputGroup } from "@/components/ui/input-group";
+import { toaster } from "@/components/ui/toaster";
 import { useState } from "react";
 import useSWR from "swr";
 
@@ -41,9 +31,6 @@ const columns = [
 ];
 
 export const CouponCreator = () => {
-  const toast = useToast({
-    variant: "subtle",
-  });
   const [coupon, setCoupon] = useState<string | undefined>();
   const [couponName, setCouponName] = useState<string | undefined>();
   const [discount, setDiscount] = useState<number | undefined>();
@@ -54,11 +41,9 @@ export const CouponCreator = () => {
     () => couponFetcher(),
     {
       onError(err) {
-        toast({
-          status: "error",
+        toaster.error({
           title: "Issue fetching coupons",
           description: err.message,
-          variant: "subtle",
         });
       },
     },
@@ -83,11 +68,9 @@ export const CouponCreator = () => {
     if (res.ok) mutate();
     else {
       const err = await res.json();
-      toast({
-        status: "error",
+      toaster.error({
         title: "Issue creating coupon",
         description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message}`,
-        variant: "subtle",
       });
     }
     setCoupon(undefined);
@@ -105,11 +88,9 @@ export const CouponCreator = () => {
       if (res.ok) mutate();
       else {
         const err = await res.json();
-        toast({
-          status: "error",
+        toaster.error({
           title: "Issue deleting promo code",
           description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message}`,
-          variant: "subtle",
         });
       }
     } finally {
@@ -120,20 +101,18 @@ export const CouponCreator = () => {
     }
   };
 
-  const deleteCoupon = async (coupon: string) => {
+  const deleteCoupon = async (couponId: string) => {
     try {
       const res = await fetch("/api/admin", {
         method: "DELETE",
-        body: JSON.stringify({ coupon }),
+        body: JSON.stringify({ coupon: couponId }),
       });
       if (res.ok) mutate();
       else {
         const err = await res.json();
-        toast({
-          status: "error",
+        toaster.error({
           title: "Issue deleting coupon code",
           description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message}`,
-          variant: "subtle",
         });
       }
     } finally {
@@ -149,8 +128,7 @@ export const CouponCreator = () => {
       <VStack justifyContent="center" textAlign="center">
         <Heading size="md">Create Coupon</Heading>
         <Box>
-          <FormControl id="coupon_name">
-            <FormLabel>New Coupon Name</FormLabel>
+          <Field label="New Coupon Name">
             <Input
               type="text"
               inputMode="text"
@@ -158,11 +136,10 @@ export const CouponCreator = () => {
               onChange={(e) => setCouponName(e.currentTarget.value)}
               value={couponName}
             />
-          </FormControl>
+          </Field>
           <Flex gap={3}>
-            <FormControl id="percentage_off" isDisabled={!!discount}>
-              <FormLabel>% off - Provide a whole number</FormLabel>
-              <InputGroup>
+            <Field label="% off - Provide a whole number" disabled={!!discount}>
+              <InputGroup endElement={<span>%</span>}>
                 <Input
                   type="number"
                   inputMode="numeric"
@@ -172,13 +149,10 @@ export const CouponCreator = () => {
                   }
                   value={percentage}
                 />
-                <InputRightAddon>%</InputRightAddon>
               </InputGroup>
-            </FormControl>
-            <FormControl id="raw_discount" isDisabled={!!percentage}>
-              <FormLabel>$ off - Provide a dollar amount</FormLabel>
-              <InputGroup>
-                <InputLeftAddon>$</InputLeftAddon>
+            </Field>
+            <Field label="$ off - Provide a dollar amount" disabled={!!percentage}>
+              <InputGroup startElement={<span>$</span>}>
                 <Input
                   type="number"
                   inputMode="numeric"
@@ -189,30 +163,30 @@ export const CouponCreator = () => {
                   value={discount}
                 />
               </InputGroup>
-            </FormControl>
+            </Field>
           </Flex>
           <Heading my={5}>Or</Heading>
-          <Select
-            variant="outline"
-            icon={<ChevronDownIcon />}
-            onChange={(e) => {
-              console.log(e.target.value);
-              setCoupon(e.target.value || undefined);
-            }}
-            value={couponName}
-            placeholder="Select a coupon to duplicate"
-          >
-            {data &&
-              data.length > 0 &&
-              data.map((promo) => (
-                <option key={promo.promo_id} value={promo.coupon.id}>
-                  Coupon Name - {promo.coupon.name || "null"} | Promo Code -{" "}
-                  {promo.promo_code} | % off - {promo.coupon.percent_off}
-                </option>
-              ))}
-          </Select>
+          <NativeSelect.Root>
+            <NativeSelect.Field
+              onChange={(e) => {
+                setCoupon(e.target.value || undefined);
+              }}
+              value={couponName}
+              placeholder="Select a coupon to duplicate"
+            >
+              {data &&
+                data.length > 0 &&
+                data.map((promo) => (
+                  <option key={promo.promo_id} value={promo.coupon.id}>
+                    Coupon Name - {promo.coupon.name || "null"} | Promo Code -{" "}
+                    {promo.promo_code} | % off - {promo.coupon.percent_off}
+                  </option>
+                ))}
+            </NativeSelect.Field>
+            <NativeSelect.Indicator />
+          </NativeSelect.Root>
         </Box>
-        <Button colorScheme="green" onClick={() => createCoupon()}>
+        <Button colorPalette="green" onClick={() => createCoupon()}>
           Submit
         </Button>
       </VStack>
@@ -224,74 +198,74 @@ export const CouponCreator = () => {
         ) : isLoading ? (
           <Spinner />
         ) : data ? (
-          <TableContainer maxH={500} overflowY="auto">
-            <Table variant="striped">
-              <TableCaption>
+          <Table.ScrollArea maxH={500} overflowY="auto">
+            <Table.Root variant="outline" striped>
+              <Table.Caption>
                 {data.length
                   ? data.length + " coupons created"
                   : "No coupons available"}
-              </TableCaption>
-              <Thead>
-                <Tr>
+              </Table.Caption>
+              <Table.Header>
+                <Table.Row>
                   {columns.map(({ name }) => (
-                    <Th key={name}>{name}</Th>
+                    <Table.ColumnHeader key={name}>{name}</Table.ColumnHeader>
                   ))}
-                </Tr>
-              </Thead>
-              <Tbody>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
                 {data &&
-                  data.map((coupon, idx) => (
-                    <Tr key={idx} display={!coupon ? "none" : undefined}>
-                      <Td>{idx + 1}</Td>
-                      <Td>{coupon.coupon.name || "null"}</Td>
-                      <Td>{coupon.promo_code}</Td>
-                      <Td>
-                        {coupon.coupon.percent_off
-                          ? `${coupon.coupon.percent_off}%`
+                  data.map((couponItem, idx) => (
+                    <Table.Row key={idx} display={!couponItem ? "none" : undefined}>
+                      <Table.Cell>{idx + 1}</Table.Cell>
+                      <Table.Cell>{couponItem.coupon.name || "null"}</Table.Cell>
+                      <Table.Cell>{couponItem.promo_code}</Table.Cell>
+                      <Table.Cell>
+                        {couponItem.coupon.percent_off
+                          ? `${couponItem.coupon.percent_off}%`
                           : "-"}
-                      </Td>
-                      <Td>
-                        {coupon.coupon.amount_off
-                          ? `$${coupon.coupon.amount_off}`
+                      </Table.Cell>
+                      <Table.Cell>
+                        {couponItem.coupon.amount_off
+                          ? `$${couponItem.coupon.amount_off}`
                           : "-"}
-                      </Td>
-                      <Td>
-                        {coupon.coupon.times_redeemed} /{" "}
-                        {coupon.coupon.max_redemptions}
-                      </Td>
-                      <Td>
-                        {coupon.expires_at! <= 1743119940
+                      </Table.Cell>
+                      <Table.Cell>
+                        {couponItem.coupon.times_redeemed} /{" "}
+                        {couponItem.coupon.max_redemptions}
+                      </Table.Cell>
+                      <Table.Cell>
+                        {couponItem.expires_at! <= 1743119940
                           ? "No Expiration Date"
                           : new Date(
-                              coupon.expires_at! * 1000,
+                              couponItem.expires_at! * 1000,
                             ).toLocaleDateString()}
-                      </Td>
-                      <Td>{new Date(coupon.created).toLocaleDateString()}</Td>
-                      <Td>
+                      </Table.Cell>
+                      <Table.Cell>{new Date(couponItem.created).toLocaleDateString()}</Table.Cell>
+                      <Table.Cell>
                         <Stack>
                           <Button
-                            colorScheme="purple"
-                            onClick={() => deletePromo(coupon.promo_id)}
+                            colorPalette="purple"
+                            onClick={() => deletePromo(couponItem.promo_id)}
                             aria-label="Delete Promo Code"
-                            leftIcon={<DeleteIcon />}
                           >
+                            <Trash2 />
                             Delete Promo Code
                           </Button>
                           <Button
-                            colorScheme="red"
-                            onClick={() => deleteCoupon(coupon.coupon.id)}
-                            aria-label="Delete Promo Code"
-                            leftIcon={<DeleteIcon />}
+                            colorPalette="red"
+                            onClick={() => deleteCoupon(couponItem.coupon.id)}
+                            aria-label="Delete Coupon"
                           >
+                            <Trash2 />
                             Delete Coupon
                           </Button>
                         </Stack>
-                      </Td>
-                    </Tr>
+                      </Table.Cell>
+                    </Table.Row>
                   ))}
-              </Tbody>
-            </Table>
-          </TableContainer>
+              </Table.Body>
+            </Table.Root>
+          </Table.ScrollArea>
         ) : (
           <></>
         )}

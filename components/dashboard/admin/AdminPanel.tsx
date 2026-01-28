@@ -1,15 +1,11 @@
 import { Database } from "@/lib/supabase/types";
 import {
-  TabPanel,
-  Divider,
   Heading,
   Tabs,
-  TabList,
-  Tab,
-  TabPanels,
 } from "@chakra-ui/react";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { CouponCreator } from "./CouponCreator";
+import Registrations from "./Registrations";
 import UserConfirm from "./UserConfirm";
 import VideoUploader from "./VideoUploader";
 
@@ -19,45 +15,62 @@ type AdminPanelProps = {
 
 export function AdminPanel({ client }: AdminPanelProps) {
   return (
-    <TabPanel>
-      <Tabs
-        aria-label="Admin Tabs"
-        isFitted
-        variant="line"
-        colorScheme="purple"
-      >
-        <TabList>
-          <Tab>Member Confirmation</Tab>
-          <Tab>Content Update</Tab>
-          <Tab>Coupon Creator</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
+    <Tabs.Root
+      aria-label="Admin Tabs"
+      fitted
+      variant="line"
+      colorPalette="purple"
+      defaultValue="registrations"
+    >
+      <Tabs.List>
+        <Tabs.Trigger value="registrations">Registration Info</Tabs.Trigger>
+        <Tabs.Trigger value="confirm">Member Confirmation</Tabs.Trigger>
+        <Tabs.Trigger value="content">Content Update</Tabs.Trigger>
+        <Tabs.Trigger value="coupon">Coupon Creator</Tabs.Trigger>
+      </Tabs.List>
+
+      <Tabs.Content value="registrations">
+        <div className="max-w-[500]px my-5 space-y-5 mx-auto justify-center">
+          <div>
             <Heading size="md" textAlign="center">
-              User Account Confirmation
+              Authenticated Registrations
             </Heading>
-            <div className="max-w-[500]px my-5 flex gap-3 mx-auto justify-center">
-              <UserConfirm client={client} />
-            </div>
-          </TabPanel>
+            <Registrations currentMembers />
+          </div>
 
-          <TabPanel>
-            <div className="my-5 gap-3 mx-auto justify-center">
-              <Heading size="md" textAlign="center">
-                Add Conference Content
-              </Heading>
+          <div>
+            <Heading size="md" textAlign="center">
+              Un-Authenticated Registrations
+            </Heading>
+            <Registrations />
+          </div>
+        </div>
+      </Tabs.Content>
 
-              <div className="flex justify-center">
-                <VideoUploader />
-              </div>
-            </div>
-          </TabPanel>
+      <Tabs.Content value="confirm">
+        <Heading size="md" textAlign="center">
+          User Account Confirmation
+        </Heading>
+        <div className="max-w-[500]px my-5 flex gap-3 mx-auto justify-center">
+          <UserConfirm client={client} />
+        </div>
+      </Tabs.Content>
 
-          <TabPanel>
-            <CouponCreator />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
-    </TabPanel>
+      <Tabs.Content value="content">
+        <div className="my-5 gap-3 mx-auto justify-center">
+          <Heading size="md" textAlign="center">
+            Add Conference Content
+          </Heading>
+
+          <div className="flex justify-center">
+            <VideoUploader />
+          </div>
+        </div>
+      </Tabs.Content>
+
+      <Tabs.Content value="coupon">
+        <CouponCreator />
+      </Tabs.Content>
+    </Tabs.Root>
   );
 }

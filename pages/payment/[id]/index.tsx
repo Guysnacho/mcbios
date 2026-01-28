@@ -1,6 +1,5 @@
 // get serverside props here with videos and whatnot. Profile info updates and video content
 
-import { ChevronLeftIcon } from "@chakra-ui/icons";
 import {
   Button,
   Center,
@@ -9,11 +8,11 @@ import {
   Spinner,
   Stack,
   Text,
-  useTimeout,
 } from "@chakra-ui/react";
+import { ChevronLeft } from "lucide-react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // import Image from "next/image";
 export default function PaymentConfirmation() {
@@ -22,17 +21,21 @@ export default function PaymentConfirmation() {
   const [customerEmail, setCustomerEmail] = useState("");
   const [loading, setLoading] = useState(true);
 
-  useTimeout(() => {
-    fetch(`/api/checkout?session_id=${router.query.id}`, {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setStatus(data.status);
-        setCustomerEmail(data.customer_email);
+  useEffect(() => {
+    if (!router.query.id) return;
+    const timer = setTimeout(() => {
+      fetch(`/api/checkout?session_id=${router.query.id}`, {
+        method: "GET",
       })
-      .finally(() => setLoading(false));
-  }, 500);
+        .then((res) => res.json())
+        .then((data) => {
+          setStatus(data.status);
+          setCustomerEmail(data.customer_email);
+        })
+        .finally(() => setLoading(false));
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [router.query.id]);
 
   return (
     <>
@@ -75,18 +78,18 @@ export default function PaymentConfirmation() {
               )}
               {/* <Button
                 mx="auto"
-                colorScheme="teal"
-                leftIcon={<ChevronLeftIcon />}
+                colorPalette="teal"
                 onClick={() => router.push("/dashboard")}
               >
+                <ChevronLeft />
                 Member Dashboard
               </Button> */}
               <Button
                 mx="auto"
-                colorScheme="teal"
-                leftIcon={<ChevronLeftIcon />}
+                colorPalette="teal"
                 onClick={() => router.push("/")}
               >
+                <ChevronLeft />
                 Home
               </Button>
               <Text>

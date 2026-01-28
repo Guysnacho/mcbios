@@ -1,36 +1,22 @@
+"use client";
+
 import {
   Box,
   Button,
-  Divider,
   Flex,
-  FormControl,
-  FormLabel,
   Heading,
   HStack,
   Input,
-  Select,
+  NativeSelect,
+  Separator,
   Stack,
-  Step,
-  StepIcon,
-  StepIndicator,
-  StepNumber,
-  Stepper,
-  StepSeparator,
-  StepStatus,
-  StepTitle,
+  Steps,
   Text,
-  useColorModeValue,
-  useSteps,
-  useToast,
 } from "@chakra-ui/react";
+import { Field } from "@/components/ui/field";
 import { useState } from "react";
 import { PaymentHandler, PaymentHandlerType } from "./dashboard/PaymentHandler";
 
-const steps = [
-  { title: "First", description: "Contact Info" },
-  { title: "Second", description: "Date & Time" },
-  { title: "Third", description: "Select Rooms" },
-];
 export const ConferenceRegistration = ({
   registrationPassed,
 }: {
@@ -41,31 +27,30 @@ export const ConferenceRegistration = ({
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [institution, setInstitution] = useState("");
-  const { activeStep, goToNext, goToPrevious } = useSteps({
-    index: 0,
-    count: steps.length,
-  });
+  const [activeStep, setActiveStep] = useState(0);
+
+  const goToNext = () => setActiveStep((prev) => prev + 1);
+  const goToPrevious = () => setActiveStep((prev) => prev - 1);
+
   // email check
   const isInvalid =
     email === "" ||
     !(email.includes("@") && email.includes(".")) ||
     fname === "" ||
     lname === "" ||
-    email === "" ||
     institution === "";
-  const toast = useToast();
 
   return (
     <section>
       {registrationPassed ? (
         <div className="w-3/4 xl:w-1/2 mx-auto space-y-5">
-          <Stack align={"center"} my={5} gap={3}>
-            <Heading fontSize={"4xl"} textAlign={"center"}>
+          <Stack align="center" my={5} gap={3}>
+            <Heading fontSize="4xl" textAlign="center">
               MCBIOS 2026
             </Heading>
             <Text>March 26-29, 2026</Text>
-            <Divider />
-            <Text color={"gray.600"}>
+            <Separator />
+            <Text color={{ base: "gray.600", _dark: "gray.300" }}>
               We want to thank everyone whose contributed to the conference via
               registrations, poster submissions, volunteering, sponsorships, and
               everything in between. As a reminder, registration fees include
@@ -78,12 +63,12 @@ export const ConferenceRegistration = ({
         </div>
       ) : (
         <div className="w-3/4 xl:w-1/2 mx-auto space-y-5">
-          <Stack align={"center"} my={5} gap={3}>
-            <Heading fontSize={"4xl"} textAlign={"center"}>
+          <Stack align="center" my={5} gap={3}>
+            <Heading fontSize="4xl" textAlign="center">
               MCBIOS 2026 Registration
             </Heading>
-            <Divider />
-            <Text color={"gray.600"}>
+            <Separator />
+            <Text color={{ base: "gray.600", _dark: "gray.300" }}>
               If you haven&apos;t already and plan on attending this year&apos;s
               conference please pay your registration fees. Registration fees
               include access to all scientific sessions, meals, receptions,
@@ -91,77 +76,23 @@ export const ConferenceRegistration = ({
               access to past conference recordings, upcomming elections, and
               more!
             </Text>
-            {/* <Text>The deadline for registration is March 17th, 2025.</Text> */}
           </Stack>
-          <Stepper index={activeStep}>
-            <Step>
-              <StepIndicator>
-                <StepStatus
-                  complete={<StepIcon />}
-                  incomplete={<StepNumber />}
-                  active={<StepNumber />}
-                />
-              </StepIndicator>
 
-              <Box flexShrink="0">
-                <StepTitle>Contact Info</StepTitle>
-                {/* <StepDescription>{step.description}</StepDescription> */}
-              </Box>
+          <Steps.Root step={activeStep} count={3}>
+            <Steps.List>
+              <Steps.Item index={0} title="Contact Info" />
+              <Steps.Item index={1} title="Registration Tier" />
+              <Steps.Item index={2} title="Payment" />
+            </Steps.List>
+          </Steps.Root>
 
-              <StepSeparator />
-            </Step>
-
-            {/* Tier Selection Step */}
-
-            <Step>
-              <StepIndicator>
-                <StepStatus
-                  complete={<StepIcon />}
-                  incomplete={<StepNumber />}
-                  active={<StepNumber />}
-                />
-              </StepIndicator>
-
-              <Box flexShrink="0">
-                <StepTitle>Registration Tier</StepTitle>
-                {/* <StepDescription>{step.description}</StepDescription> */}
-              </Box>
-
-              <StepSeparator />
-            </Step>
-
-            {/* Payment Step */}
-
-            <Step>
-              <StepIndicator>
-                <StepStatus
-                  complete={<StepIcon />}
-                  incomplete={<StepNumber />}
-                  active={<StepNumber />}
-                />
-              </StepIndicator>
-
-              <Box flexShrink="0">
-                <StepTitle>Payment</StepTitle>
-                {/* <StepDescription>{step.description}</StepDescription> */}
-              </Box>
-
-              <StepSeparator />
-            </Step>
-          </Stepper>
           {activeStep === 0 && (
-            <Box
-              rounded={"lg"}
-              // eslint-disable-next-line react-hooks/rules-of-hooks
-              bg={useColorModeValue("white", "gray.700")}
-              p={8}
-            >
+            <Box rounded="lg" bg={{ base: "white", _dark: "gray.800" }} p={8}>
               {/* Form fields */}
-              <Stack spacing={4}>
+              <Stack gap={4}>
                 <HStack justify="space-evenly">
                   <Box>
-                    <FormControl id="firstName" isRequired>
-                      <FormLabel>First Name</FormLabel>
+                    <Field label="First Name" required>
                       <Input
                         type="text"
                         inputMode="text"
@@ -169,11 +100,10 @@ export const ConferenceRegistration = ({
                         onChange={(e) => setFname(e.currentTarget.value)}
                         value={fname}
                       />
-                    </FormControl>
+                    </Field>
                   </Box>
                   <Box>
-                    <FormControl id="lastName">
-                      <FormLabel>Last Name</FormLabel>
+                    <Field label="Last Name">
                       <Input
                         type="text"
                         inputMode="text"
@@ -181,11 +111,10 @@ export const ConferenceRegistration = ({
                         onChange={(e) => setLname(e.currentTarget.value)}
                         value={lname}
                       />
-                    </FormControl>
+                    </Field>
                   </Box>
                 </HStack>
-                <FormControl id="email" isRequired>
-                  <FormLabel>Email address</FormLabel>
+                <Field label="Email address" required>
                   <Input
                     type="email"
                     inputMode="email"
@@ -193,21 +122,20 @@ export const ConferenceRegistration = ({
                     onChange={(e) => setEmail(e.currentTarget.value)}
                     value={email}
                   />
-                </FormControl>
-                <FormControl id="email" isRequired>
-                  <FormLabel>Institution</FormLabel>
+                </Field>
+                <Field label="Institution" required>
                   <Input
                     type="text"
                     inputMode="text"
                     onChange={(e) => setInstitution(e.currentTarget.value)}
                     value={institution}
                   />
-                </FormControl>
+                </Field>
                 <Button
                   type="submit"
                   onClick={goToNext}
-                  colorScheme="green"
-                  isDisabled={isInvalid}
+                  colorPalette="green"
+                  disabled={isInvalid}
                 >
                   Next
                 </Button>
@@ -218,41 +146,25 @@ export const ConferenceRegistration = ({
           {activeStep === 1 && (
             <>
               <Flex mx="auto" w={[null, "sm", "lg"]}>
-                <Select
-                  variant="outline"
-                  placeholder="Select a membership level"
-                  onChange={(e) => {
-                    setTier(e.currentTarget.value as PaymentHandlerType);
-                  }}
-                >
-                  <option value="student">
-                    Conference and Membership | Early Bird Student | $200
-                  </option>
-                  <option value="postdoctorial">
-                    Conference and Membership | Early Bird Postdoctorial | $300
-                  </option>
-                  <option value="professional">
-                    Conference and Membership | Early Bird Professional | $400
-                  </option>
-                  {/* <option value="student">
-                    Conference and Membership | Student | $250
-                  </option>
-                  <option value="postdoctorial">
-                    Conference and Membership | Postdoctorial | $350
-                  </option>
-                  <option value="professional">
-                    Conference and Membership | Professional | $450
-                  </option>
-                  <option value="member_only_student">
-                    Membership | Student | $10
-                  </option>
-                  <option value="member_only_postdoctorial">
-                    Membership | Postdoctorial | $20
-                  </option>
-                  <option value="member_only_professional">
-                    Membership | Professional | $50
-                  </option> */}
-                </Select>
+                <NativeSelect.Root>
+                  <NativeSelect.Field
+                    placeholder="Select a membership level"
+                    onChange={(e) => {
+                      setTier(e.currentTarget.value as PaymentHandlerType);
+                    }}
+                  >
+                    <option value="student">
+                      Conference and Membership | Student | $250
+                    </option>
+                    <option value="postdoctorial">
+                      Conference and Membership | Postdoctorial | $350
+                    </option>
+                    <option value="professional">
+                      Conference and Membership | Professional | $450
+                    </option>
+                  </NativeSelect.Field>
+                  <NativeSelect.Indicator />
+                </NativeSelect.Root>
               </Flex>
               <Flex justify="center">
                 <Button onClick={goToPrevious} className="mr-3">
@@ -261,8 +173,8 @@ export const ConferenceRegistration = ({
                 <Button
                   type="submit"
                   onClick={goToNext}
-                  colorScheme="green"
-                  isDisabled={tier === undefined}
+                  colorPalette="green"
+                  disabled={tier === undefined}
                 >
                   Next
                 </Button>

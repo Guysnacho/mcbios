@@ -32,7 +32,7 @@ const Forms = () => {
                 <Button
                   aria-describedby="name tag submission"
                   type="button"
-                  colorScheme="purple"
+                  colorPalette="purple"
                   onClick={() => setIsOpen(true)}
                   disabled
                 >

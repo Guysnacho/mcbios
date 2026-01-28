@@ -1,33 +1,33 @@
+"use client";
+
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
-import { createClient } from "@/lib/supabase/component";
-import { InfoIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { createClient } from "@/lib/supabase/client";
+import { Info, Eye, EyeOff } from "lucide-react";
 import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
   Box,
   Button,
   Code,
-  FormControl,
-  FormLabel,
   Heading,
   HStack,
   Input,
-  InputGroup,
-  InputRightElement,
   Link,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
   Stack,
   Text,
-  useColorModeValue,
-  useToast,
 } from "@chakra-ui/react";
+import {
+  DialogRoot,
+  DialogContent,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  DialogTitle,
+  DialogCloseTrigger,
+} from "@/components/ui/dialog";
+import { Field } from "@/components/ui/field";
+import { InputGroup } from "@/components/ui/input-group";
+import { Alert } from "@/components/ui/alert";
+import { toaster } from "@/components/ui/toaster";
 import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, useState } from "react";
 import { z } from "zod";
@@ -55,7 +55,6 @@ export const AuthModal = ({
   const client = createClient();
   const store = useStore(useUserStore, (store) => store);
   const [showPassword, setShowPassword] = useState(false);
-  const toast = useToast();
 
   const handleClose = () => {
     setEmail("");
@@ -85,10 +84,8 @@ export const AuthModal = ({
       if (error) {
         throw error;
       } else {
-        toast({
-          status: "success",
+        toaster.success({
           title: "Welcome Back!",
-          isClosable: true,
         });
         store?.setId(data.user?.id);
         setIsOpen(false);
@@ -136,11 +133,10 @@ export const AuthModal = ({
         throw error;
       } else {
         setIsOpen(false);
-        toast({
-          status: "success",
-          duration: 6000,
-          isClosable: true,
+        toaster.success({
+          title: "Success",
           description: "Please check your email for a confirmation.",
+          duration: 6000,
         });
       }
     } else {
@@ -173,12 +169,11 @@ export const AuthModal = ({
         throw error;
       } else {
         setIsOpen(false);
-        toast({
-          status: "success",
-          duration: 6000,
-          isClosable: true,
+        toaster.success({
+          title: "Success",
           description:
             "If an account is found in our system, you will recieve an email.",
+          duration: 6000,
         });
       }
     } else {
@@ -192,9 +187,12 @@ export const AuthModal = ({
   };
 
   return (
-    <Modal size="lg" isOpen={isOpen} onClose={handleClose}>
-      <ModalOverlay />
-      <ModalContent>
+    <DialogRoot
+      size="lg"
+      open={isOpen}
+      onOpenChange={(e) => !e.open && handleClose()}
+    >
+      <DialogContent>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -203,8 +201,7 @@ export const AuthModal = ({
               handleReset()
                 .then(() => handleClose())
                 .catch((error) => {
-                  toast({
-                    colorScheme: "red",
+                  toaster.error({
                     title: "Ran into an issue resetting your password",
                     description: error.message,
                   });
@@ -215,8 +212,7 @@ export const AuthModal = ({
               handleSignUp()
                 .then(() => handleClose())
                 .catch((error) => {
-                  toast({
-                    colorScheme: "red",
+                  toaster.error({
                     title: "Ran into an issue signing up",
                     description: error.message,
                   });
@@ -227,8 +223,7 @@ export const AuthModal = ({
               handleLogin()
                 .then(() => handleClose())
                 .catch((error) => {
-                  toast({
-                    colorScheme: "red",
+                  toaster.error({
                     title: "Ran into an issue logging in",
                     description: error.message,
                   });
@@ -238,21 +233,26 @@ export const AuthModal = ({
             }
           }}
         >
-          <ModalHeader className="flex flex-col gap-1 text-xl"></ModalHeader>
-          <ModalBody gap={3}>
-            <Box
-              rounded={"lg"}
-              bg={useColorModeValue("white", "gray.700")}
-              p={8}
-            >
-              <Stack align={"center"} mb={5}>
+          <DialogHeader className="flex flex-col gap-1 text-xl">
+            <DialogTitle>
+              {isReset
+                ? "Reset your Password"
+                : isSignUp
+                  ? "Join the Community"
+                  : "Log In"}
+            </DialogTitle>
+          </DialogHeader>
+          <DialogCloseTrigger />
+          <DialogBody gap={3}>
+            <Box rounded="lg" bg={{ base: "white", _dark: "gray.800" }} p={8}>
+              <Stack align="center" mb={5}>
                 {isReset ? (
                   <>
-                    <Heading fontSize={"4xl"} textAlign={"center"}>
+                    <Heading fontSize="4xl" textAlign="center">
                       Reset your Password
                     </Heading>
                     <Text
-                      color={"gray.600"}
+                      color={{ base: "gray.600", _dark: "gray.300" }}
                       className="border-l-gray-600 border-l-2 pl-3"
                     >
                       If you&apos;re having trouble logging into your account or
@@ -262,45 +262,37 @@ export const AuthModal = ({
                   </>
                 ) : isSignUp ? (
                   <>
-                    <Heading fontSize={"4xl"} textAlign={"center"}>
-                      Join the Community
-                    </Heading>
                     <Text
-                      color={"gray.600"}
+                      color={{ base: "gray.600", _dark: "gray.300" }}
                       className="border-l-gray-600 border-l-2 pl-3"
                     >
                       Signing up will allow you to register for the conference
                       and gain access to other features like conference session
                       recordings.
                     </Text>
-                    <Alert borderRadius="xl">
-                      <AlertIcon>
-                        <InfoIcon m="auto" />
-                      </AlertIcon>
-                      <AlertDescription>
-                        We are currently addressing account confirmation email
-                        delivery issues for emails ending with <Code>.edu</Code>
-                        . We still encourage you to sign up but{" "}
-                        <Link
-                          href="/events"
-                          textDecoration="underline"
-                          _hover={{ shadow: "lg" }}
-                        >
-                          also provide a method to register for the conference
-                          without an account.
-                        </Link>
-                      </AlertDescription>
+                    <Alert
+                      borderRadius="xl"
+                      icon={<Info />}
+                      title="Email Delivery Notice"
+                    >
+                      We are currently addressing account confirmation email
+                      delivery issues for emails ending with <Code>.edu</Code>.
+                      We still encourage you to sign up but{" "}
+                      <Link
+                        href="/events"
+                        textDecoration="underline"
+                        _hover={{ shadow: "lg" }}
+                      >
+                        also provide a method to register for the conference
+                        without an account.
+                      </Link>
                     </Alert>
                   </>
-                ) : (
-                  <Heading fontSize={"4xl"} textAlign={"center"}>
-                    Log In
-                  </Heading>
-                )}
+                ) : undefined}
               </Stack>
 
               {/* Form fields */}
-              <Stack spacing={4}>
+              <Stack gap={4}>
                 {error ? (
                   <blockquote className="blockquote text-orange-800">
                     {error}
@@ -309,12 +301,7 @@ export const AuthModal = ({
                 {!isReset && isSignUp && (
                   <HStack>
                     <Box>
-                      <FormControl
-                        id="firstName"
-                        isRequired
-                        isDisabled={loading}
-                      >
-                        <FormLabel>First Name</FormLabel>
+                      <Field label="First Name" required disabled={loading}>
                         <Input
                           type="text"
                           inputMode="text"
@@ -322,15 +309,10 @@ export const AuthModal = ({
                           onChange={(e) => setFname(e.currentTarget.value)}
                           value={fname}
                         />
-                      </FormControl>
+                      </Field>
                     </Box>
                     <Box>
-                      <FormControl
-                        id="lastName"
-                        isRequired
-                        isDisabled={loading}
-                      >
-                        <FormLabel>Last Name</FormLabel>
+                      <Field label="Last Name" required disabled={loading}>
                         <Input
                           type="text"
                           inputMode="text"
@@ -338,24 +320,22 @@ export const AuthModal = ({
                           onChange={(e) => setLname(e.currentTarget.value)}
                           value={lname}
                         />
-                      </FormControl>
+                      </Field>
                     </Box>
                   </HStack>
                 )}
                 {!isReset && isSignUp && (
-                  <FormControl id="institution" isRequired isDisabled={loading}>
-                    <FormLabel>Institution</FormLabel>
+                  <Field label="Institution" required disabled={loading}>
                     <Input
                       type="text"
                       inputMode="text"
                       onChange={(e) => setInstitution(e.currentTarget.value)}
                       value={institution}
-                      isRequired
+                      required
                     />
-                  </FormControl>
+                  </Field>
                 )}
-                <FormControl id="email" isRequired isDisabled={loading}>
-                  <FormLabel>Email Address</FormLabel>
+                <Field label="Email Address" required disabled={loading}>
                   <Input
                     type="email"
                     inputMode="email"
@@ -363,48 +343,51 @@ export const AuthModal = ({
                     onChange={(e) => setEmail(e.currentTarget.value)}
                     value={email}
                   />
-                </FormControl>
+                </Field>
                 {!isReset && (
-                  <FormControl id="password" isRequired isDisabled={loading}>
-                    <FormLabel>Password</FormLabel>
-                    <InputGroup>
+                  <Field label="Password" required disabled={loading}>
+                    <InputGroup
+                      endElement={
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() =>
+                            setShowPassword((showPassword) => !showPassword)
+                          }
+                        >
+                          {showPassword ? <Eye /> : <EyeOff />}
+                        </Button>
+                      }
+                    >
                       <Input
                         type={showPassword ? "text" : "password"}
                         autoComplete="new-password"
                         onChange={(e) => setPassword(e.currentTarget.value)}
                         value={password}
                       />
-                      <InputRightElement h={"full"}>
-                        <Button
-                          variant={"ghost"}
-                          onClick={() =>
-                            setShowPassword((showPassword) => !showPassword)
-                          }
-                        >
-                          {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                        </Button>
-                      </InputRightElement>
                     </InputGroup>
-                  </FormControl>
+                  </Field>
                 )}
                 {!isReset && (
                   <Stack pt={6}>
-                    <Text align={"center"}>
+                    <Text textAlign="center">
                       {isSignUp
                         ? "Already a member? "
                         : "Haven't signed up yet? "}
                       <Link
-                        color={"blue.400"}
+                        color="blue.400"
                         onClick={() => !loading && setIsSignUp(!isSignUp)}
+                        cursor="pointer"
                       >
                         {isSignUp ? "Login" : "Sign Up"}
                       </Link>
                     </Text>
-                    <Text align={"center"}>
+                    <Text textAlign="center">
                       Forgot your password?{" "}
                       <Link
-                        color={"blue.400"}
+                        color="blue.400"
                         onClick={() => !loading && setIsReset(true)}
+                        cursor="pointer"
                       >
                         Password Reset
                       </Link>
@@ -413,37 +396,37 @@ export const AuthModal = ({
                 )}
               </Stack>
             </Box>
-          </ModalBody>
+          </DialogBody>
 
-          <ModalFooter>
+          <DialogFooter>
             <Button
               onClick={() => {
                 if (isReset) {
                   setIsReset(false);
                 } else handleClose();
               }}
-              isDisabled={loading}
+              disabled={loading}
               className="mr-3"
             >
               Cancel
             </Button>
             {isReset ? (
-              <Button type="submit" colorScheme="green" isDisabled={loading}>
+              <Button type="submit" colorPalette="green" disabled={loading}>
                 Submit
               </Button>
             ) : isSignUp ? (
-              <Button type="submit" colorScheme="green" isDisabled={loading}>
+              <Button type="submit" colorPalette="green" disabled={loading}>
                 Sign Up
               </Button>
             ) : (
-              <Button type="submit" colorScheme="green" isDisabled={loading}>
+              <Button type="submit" colorPalette="green" disabled={loading}>
                 Login
               </Button>
             )}
-          </ModalFooter>
+          </DialogFooter>
         </form>
-      </ModalContent>
-    </Modal>
+      </DialogContent>
+    </DialogRoot>
   );
 };
 

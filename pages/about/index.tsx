@@ -1,4 +1,4 @@
-import { Divider } from "@chakra-ui/react";
+import { Separator } from "@chakra-ui/react";
 import Head from "next/head";
 
 const about = () => {
@@ -72,7 +72,7 @@ const about = () => {
         (MCBIOS)
       </h4>
 
-      <Divider className="w-1/2 mx-auto mb-10" />
+      <Separator className="w-1/2 mx-auto mb-10" />
 
       <section className="w-3/4 xl:w-1/2 mx-auto space-y-1">
         <h6 className="font-bold text-center">Table of Contents</h6>
@@ -86,7 +86,7 @@ const about = () => {
         ))}
       </section>
 
-      <Divider className="w-1/2 mx-auto mb-10" />
+      <Separator className="w-1/2 mx-auto mb-10" />
 
       <section className="w-3/4 xl:w-1/2 mx-auto space-y-1">
         <h6 className="font-bold text-center">
