@@ -104,7 +104,7 @@ export default function Home() {
           {/* <Heading size={["sm", null, "md"]}>
             Midsouth Computational Biology & Informatics Society
           </Heading> */}
-          <Heading size="sm" color="gray.600">
+          <Heading size="sm" color={{ base: "gray.600", _dark: "gray.300" }}>
             {Taglines[currentTag || 0]}
           </Heading>
           <Button

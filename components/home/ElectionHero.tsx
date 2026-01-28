@@ -109,7 +109,7 @@ export default function ElectionHero() {
               <br />
             </Heading>
             <Stack gap={3} w="80%">
-              <Text color="gray.500">
+              <Text color={{ base: "gray.500", _dark: "gray.400" }}>
                 Thank you to everyone who participated in the 2024 MCBIOS Board
                 Member Elections! According to the MCBIOS Bylaws, every member
                 is entitled to one vote and as usual its been a great chance for
@@ -209,13 +209,13 @@ export default function ElectionHero() {
               </Text>
             </Heading>
             <Stack gap={3} w="80%">
-              <Text color="gray.500">
+              <Text color={{ base: "gray.500", _dark: "gray.400" }}>
                 The MCBIOS board member elections will take place in September
                 2024. According to the MCBIOS Bylaws, every member is entitled
                 to one vote. This is a great chance for you to help shape the
                 future of our organization.
               </Text>
-              <Text color="gray.500">
+              <Text color={{ base: "gray.500", _dark: "gray.400" }}>
                 This year, we have one candidate for the position of President
                 Elect and one candidate for the Student Board Member position.
                 Detailed information about each candidate is provided below. The

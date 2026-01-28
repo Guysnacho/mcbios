@@ -244,7 +244,7 @@ export const AuthModal = ({
           </DialogHeader>
           <DialogCloseTrigger />
           <DialogBody gap={3}>
-            <Box rounded="lg" bg="white" p={8}>
+            <Box rounded="lg" bg={{ base: "white", _dark: "gray.800" }} p={8}>
               <Stack align="center" mb={5}>
                 {isReset ? (
                   <>
@@ -252,7 +252,7 @@ export const AuthModal = ({
                       Reset your Password
                     </Heading>
                     <Text
-                      color="gray.600"
+                      color={{ base: "gray.600", _dark: "gray.300" }}
                       className="border-l-gray-600 border-l-2 pl-3"
                     >
                       If you&apos;re having trouble logging into your account or
@@ -262,11 +262,8 @@ export const AuthModal = ({
                   </>
                 ) : isSignUp ? (
                   <>
-                    <Heading fontSize="4xl" textAlign="center">
-                      Join the Community
-                    </Heading>
                     <Text
-                      color="gray.600"
+                      color={{ base: "gray.600", _dark: "gray.300" }}
                       className="border-l-gray-600 border-l-2 pl-3"
                     >
                       Signing up will allow you to register for the conference

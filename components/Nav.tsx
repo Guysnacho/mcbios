@@ -88,14 +88,14 @@ export default function Nav() {
         setIsSignUp={setIsSignUp}
       />
       <Flex
-        bg="white"
-        color="gray.600"
+        bg={{ base: "white", _dark: "gray.900" }}
+        color={{ base: "gray.600", _dark: "gray.200" }}
         minH="60px"
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom="1px"
         borderStyle="solid"
-        borderColor="gray.200"
+        borderColor={{ base: "gray.200", _dark: "gray.700" }}
         align="center"
       >
         <Flex
@@ -122,7 +122,7 @@ export default function Nav() {
             fontFamily="heading"
             fontWeight={600}
             fontSize="x-large"
-            color="gray.800"
+            color={{ base: "gray.800", _dark: "white" }}
           >
             <NextLink href="/">MCBIOS</NextLink>
           </Link>
@@ -218,30 +218,31 @@ const DesktopNav = () => {
       <Stack direction="row" gap={4}>
         {NAV_ITEMS.map((navItem) => (
           <Box key={navItem.label}>
-            <Popover.Root positioning={{ placement: "bottom-start" }}>
-              <Popover.Trigger asChild>
-                <Box
-                  p={2}
-                  fontSize="sm"
-                  fontWeight={500}
-                  color="gray.600"
-                  _hover={{
-                    textDecoration: "none",
-                    color: "gray.800",
-                  }}
-                >
-                  <Link asChild>
-                    <NextLink href={navItem.href ?? "#"}>{navItem.label}</NextLink>
-                  </Link>
-                </Box>
-              </Popover.Trigger>
-
-              {navItem.children && (
+            {navItem.children ? (
+              <Popover.Root positioning={{ placement: "bottom-start" }}>
+                <Popover.Trigger asChild>
+                  <Box
+                    p={2}
+                    fontSize="sm"
+                    fontWeight={500}
+                    cursor="pointer"
+                    color={{ base: "gray.600", _dark: "gray.200" }}
+                    _hover={{
+                      textDecoration: "none",
+                      color: { base: "gray.800", _dark: "white" },
+                    }}
+                  >
+                    {navItem.label}
+                    <Icon boxSize={4} ml={1}>
+                      <ChevronDown />
+                    </Icon>
+                  </Box>
+                </Popover.Trigger>
                 <Popover.Positioner>
                   <Popover.Content
                     border={0}
                     boxShadow="xl"
-                    bg="white"
+                    bg={{ base: "white", _dark: "gray.800" }}
                     p={4}
                     rounded="xl"
                     minW="sm"
@@ -253,8 +254,23 @@ const DesktopNav = () => {
                     </Stack>
                   </Popover.Content>
                 </Popover.Positioner>
-              )}
-            </Popover.Root>
+              </Popover.Root>
+            ) : (
+              <Box
+                p={2}
+                fontSize="sm"
+                fontWeight={500}
+                color={{ base: "gray.600", _dark: "gray.200" }}
+                _hover={{
+                  textDecoration: "none",
+                  color: { base: "gray.800", _dark: "white" },
+                }}
+              >
+                <Link asChild>
+                  <NextLink href={navItem.href ?? "#"}>{navItem.label}</NextLink>
+                </Link>
+              </Box>
+            )}
           </Box>
         ))}
       </Stack>
@@ -271,7 +287,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
       p={2}
       rounded="md"
       _hover={{
-        bg: "pink.50",
+        bg: { base: "pink.50", _dark: "pink.900" },
         textDecoration: "none",
       }}
     >
@@ -308,7 +324,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 
 const MobileNav = () => {
   return (
-    <Stack bg="white" p={4} display={{ md: "none" }}>
+    <Stack bg={{ base: "white", _dark: "gray.900" }} p={4} display={{ md: "none" }}>
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
@@ -334,7 +350,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
           target={label.includes("MCBIOS ") ? "_blank" : "_self"}
         >
           <Flex>
-            <Text fontWeight={600} color="gray.600">
+            <Text fontWeight={600} color={{ base: "gray.600", _dark: "gray.200" }}>
               {label}
             </Text>
             {children && (
@@ -357,7 +373,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
             pl={4}
             borderLeft="1px"
             borderStyle="solid"
-            borderColor="gray.200"
+            borderColor={{ base: "gray.200", _dark: "gray.700" }}
             align="start"
           >
             {children &&

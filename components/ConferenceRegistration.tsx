@@ -50,7 +50,7 @@ export const ConferenceRegistration = ({
             </Heading>
             <Text>March 26-29, 2026</Text>
             <Separator />
-            <Text color="gray.600">
+            <Text color={{ base: "gray.600", _dark: "gray.300" }}>
               We want to thank everyone whose contributed to the conference via
               registrations, poster submissions, volunteering, sponsorships, and
               everything in between. As a reminder, registration fees include
@@ -68,7 +68,7 @@ export const ConferenceRegistration = ({
               MCBIOS 2026 Registration
             </Heading>
             <Separator />
-            <Text color="gray.600">
+            <Text color={{ base: "gray.600", _dark: "gray.300" }}>
               If you haven&apos;t already and plan on attending this year&apos;s
               conference please pay your registration fees. Registration fees
               include access to all scientific sessions, meals, receptions,
@@ -87,7 +87,7 @@ export const ConferenceRegistration = ({
           </Steps.Root>
 
           {activeStep === 0 && (
-            <Box rounded="lg" bg="white" p={8}>
+            <Box rounded="lg" bg={{ base: "white", _dark: "gray.800" }} p={8}>
               {/* Form fields */}
               <Stack gap={4}>
                 <HStack justify="space-evenly">

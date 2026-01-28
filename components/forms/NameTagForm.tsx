@@ -92,7 +92,7 @@ export const NameTagForm = ({
         <DialogHeader className="flex flex-col gap-1 text-xl" />
         <DialogCloseTrigger />
         <DialogBody gap={3}>
-          <Box rounded="lg" bg="white" p={8}>
+          <Box rounded="lg" bg={{ base: "white", _dark: "gray.800" }} p={8}>
             <Stack align="center" mb={5}>
               <Heading fontSize="2xl" textAlign="center">
                 Name Tag Details
