@@ -196,7 +196,6 @@ export const CouponCreator = () => {
             variant="outline"
             icon={<ChevronDownIcon />}
             onChange={(e) => {
-              console.log(e.target.value);
               setCoupon(e.target.value || undefined);
             }}
             value={couponName}

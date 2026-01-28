@@ -75,7 +75,6 @@ export const VideoUploader = () => {
       })
       .select()
       .single();
-    console.log(data);
 
     if (data) {
       setVidList(vidList?.concat(data));
