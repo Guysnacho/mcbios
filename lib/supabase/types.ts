@@ -18,16 +18,19 @@ export type Database = {
         Row: {
           created_at: string;
           id: number;
+          org_id: string;
           user_id: string | null;
         };
         Insert: {
           created_at?: string;
           id?: number;
+          org_id?: string;
           user_id?: string | null;
         };
         Update: {
           created_at?: string;
           id?: number;
+          org_id?: string;
           user_id?: string | null;
         };
         Relationships: [
@@ -132,45 +135,25 @@ export type Database = {
         };
         Relationships: [];
       };
-      registration: {
-        Row: {
-          member_only: boolean;
-          user_id: string;
-        };
-        Insert: {
-          member_only: boolean;
-          user_id: string;
-        };
-        Update: {
-          member_only?: boolean;
-          user_id?: string;
-        };
-        Relationships: [
-          {
-            foreignKeyName: "registration_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: true;
-            referencedRelation: "member";
-            referencedColumns: ["user_id"];
-          },
-        ];
-      };
       videos: {
         Row: {
           date: string;
           id: number;
+          org_id: string;
           path: string;
           title: string;
         };
         Insert: {
           date: string;
           id?: number;
+          org_id?: string;
           path: string;
           title: string;
         };
         Update: {
           date?: string;
           id?: number;
+          org_id?: string;
           path?: string;
           title?: string;
         };
@@ -200,9 +183,12 @@ export type Database = {
           isSetofReturn: false;
         };
       };
+      custom_access_token_hook: { Args: { event: Json }; Returns: Json };
+      get_user_id: { Args: never; Returns: string };
+      get_user_org_id: { Args: never; Returns: string };
+      is_admin: { Args: never; Returns: boolean };
     };
     Enums: {
-      code_type: "coupon";
       user_role: "professional" | "student" | "admin" | "postdoctorial";
     };
     CompositeTypes: {
@@ -334,7 +320,6 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      code_type: ["coupon"],
       user_role: ["professional", "student", "admin", "postdoctorial"],
     },
   },

@@ -70,11 +70,11 @@ export const Registrations = ({
   return (
     <div>
       <div className="flex flex-col gap-5 mx-auto mt-8">
-        <TableContainer>
+        <TableContainer maxH="lg" overflowY="auto">
           {isLoading ? (
             <Spinner />
           ) : (
-            <Table variant="striped">
+            <Table variant="striped" size="md">
               <TableCaption>
                 A view into all{" "}
                 {currentMembers ? "authenticated" : "unauthenticated"}{" "}
@@ -82,7 +82,7 @@ export const Registrations = ({
               </TableCaption>
               <Thead>
                 <Tr>
-                  {columns.map((header) => (
+                  {(currentMembers ? memberColumns : columns).map((header) => (
                     <Th key={header}>{header}</Th>
                   ))}
                 </Tr>
@@ -96,7 +96,7 @@ export const Registrations = ({
                       <Td>{idx + 1}</Td>
                       <Td>{user.email}</Td>
                       <Td>
-                        `${user.fname} ${user.lname}`
+                        {user.fname} {user.lname}
                       </Td>
                       <Td>{user.role}</Td>
                       <Td>{user.institution}</Td>
@@ -108,9 +108,8 @@ export const Registrations = ({
                   memberData.map((user, idx) => (
                     <Tr key={user.lname + " " + user.institution}>
                       <Td>{idx + 1}</Td>
-                      <Td></Td>
                       <Td>
-                        `${user.fname} ${user.lname}`
+                        {user.fname} {user.lname}
                       </Td>
                       <Td>{user.role}</Td>
                       <Td>{user.institution}</Td>
@@ -126,6 +125,7 @@ export const Registrations = ({
   );
 };
 
+const memberColumns = ["#", "Name", "Type", "Institution"];
 const columns = ["#", "Email", "Name", "Type", "Institution"];
 
 export default Registrations;

@@ -1,6 +1,6 @@
 import { User } from "@/components/User";
 import { Database } from "@/lib/supabase/types";
-import { CheckIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { CheckIcon, ChevronDownIcon, DeleteIcon } from "@chakra-ui/icons";
 import {
   Button,
   FormControl,
@@ -22,7 +22,6 @@ import {
   Td,
   Th,
   Thead,
-  Tooltip,
   Tr,
   useToast,
 } from "@chakra-ui/react";
@@ -68,6 +67,7 @@ export const UserConfirm = ({
 }) => {
   const [id, setId] = useState("");
   const [open, setOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState<UserRequest[]>([]);
   const toast = useToast();
@@ -130,17 +130,24 @@ export const UserConfirm = ({
       case "actions":
         return (
           <div className="relative flex items-center justify-center gap-2">
-            <Tooltip color="success" content="Confirm">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <CheckIcon
-                  color="green"
-                  onClick={() => {
-                    setId(user.user_id);
-                    setOpen(true);
-                  }}
-                />
-              </span>
-            </Tooltip>
+            <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+              <CheckIcon
+                color="green"
+                onClick={() => {
+                  setId(user.user_id);
+                  setOpen(true);
+                }}
+              />
+            </span>
+            <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+              <DeleteIcon
+                color="red"
+                onClick={() => {
+                  setId(user.user_id);
+                  setDeleteOpen(true);
+                }}
+              />
+            </span>
             {/* <Tooltip color="danger" content="Reject user">
               <span className="text-lg text-danger cursor-pointer active:opacity-50">
                 <DeleteIcon />
@@ -163,9 +170,16 @@ export const UserConfirm = ({
         setId={setId}
         setOpen={setOpen}
       />
+      <DeleteModal
+        client={client}
+        id={id}
+        open={deleteOpen}
+        setId={setId}
+        setOpen={setDeleteOpen}
+      />
       <div className="flex flex-col gap-5 mx-auto mt-8">
-        <TableContainer>
-          <Table variant="striped">
+        <TableContainer maxH="lg" overflowY="auto">
+          <Table variant="striped" size="md">
             <TableCaption>
               {users.length
                 ? users.length + " members pending admin confirmation"
@@ -326,6 +340,7 @@ const ConfirmModal = ({
       .update({
         role,
         fees_paid_at: date?.toISOString(),
+        org_id: process.env.NEXT_PUBLIC_ORG_ID,
       })
       .eq("user_id", uid)
       .select()
@@ -419,6 +434,101 @@ const ConfirmModal = ({
             }
           >
             {updateLoading ? <Spinner /> : "Submit"}
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+};
+
+const DeleteModal = ({
+  client,
+  id,
+  open,
+  setOpen,
+  setId,
+}: {
+  client: SupabaseClient<Database>;
+  id: string;
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setId: Dispatch<SetStateAction<string>>;
+}) => {
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const toast = useToast();
+
+  const handleDelete = async (uid: string) => {
+    setDeleteLoading(true);
+
+    const { error } = await client
+      .from("confirm_request")
+      .delete()
+      .eq("user_id", uid);
+
+    if (error) {
+      toast({
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+        description:
+          "Something went wrong while deleting the confirmation request - " +
+          error.message,
+      });
+      console.error(error);
+    } else {
+      toast({
+        status: "success",
+        duration: 6000,
+        isClosable: true,
+        title: "Request Deleted",
+        description: "Successfully deleted the confirmation request",
+      });
+    }
+  };
+
+  return (
+    <Modal
+      isOpen={open}
+      onClose={() => {
+        setId("");
+        setOpen(false);
+      }}
+      closeOnOverlayClick
+      blockScrollOnMount
+      autoFocus
+      onOverlayClick={() => {
+        setId("");
+        setOpen(false);
+      }}
+    >
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader className="flex flex-col gap-1">
+          Delete Confirmation Request
+        </ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <p>
+            Are you sure you want to delete this confirmation request? This
+            action cannot be undone.
+          </p>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="danger" variant="light" onClick={() => setOpen(false)}>
+            Cancel
+          </Button>
+          <Button
+            colorScheme="red"
+            onClick={() =>
+              handleDelete(id)
+                .then(() => {
+                  setId("");
+                  setOpen(false);
+                })
+                .finally(() => setDeleteLoading(false))
+            }
+          >
+            {deleteLoading ? <Spinner /> : "Delete"}
           </Button>
         </ModalFooter>
       </ModalContent>

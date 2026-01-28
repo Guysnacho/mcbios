@@ -191,7 +191,10 @@ export default function Dashboard() {
                           onClick={() => {
                             client
                               .from("confirm_request")
-                              .insert({ user_id: store?.id })
+                              .insert({
+                                user_id: store?.id,
+                                org_id: process.env.NEXT_PUBLIC_ORG_ID,
+                              })
                               .then(({ error }) => {
                                 if (error) {
                                   if (error?.code === DUPLICATE_ROW) {
@@ -243,7 +246,7 @@ export default function Dashboard() {
                             placeholder="Select a membership level"
                             onChange={(e) => {
                               setTier(
-                                e.currentTarget.value as PaymentHandlerType
+                                e.currentTarget.value as PaymentHandlerType,
                               );
                             }}
                           >
