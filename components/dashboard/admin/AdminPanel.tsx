@@ -9,9 +9,9 @@ import {
 } from "@chakra-ui/react";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { CouponCreator } from "./CouponCreator";
+import Registrations from "./Registrations";
 import UserConfirm from "./UserConfirm";
 import VideoUploader from "./VideoUploader";
-import RawRegistrations from "./RawRegistrations";
 
 type AdminPanelProps = {
   client: SupabaseClient<Database>;
@@ -34,11 +34,20 @@ export function AdminPanel({ client }: AdminPanelProps) {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Heading size="md" textAlign="center">
-              Un-Authenticated Registrations
-            </Heading>
-            <div className="max-w-[500]px my-5 flex gap-3 mx-auto justify-center">
-              <RawRegistrations client={client} />
+            <div className="max-w-[500]px my-5 space-y-5 mx-auto justify-center">
+              <div>
+                <Heading size="md" textAlign="center">
+                  Authenticated Registrations
+                </Heading>
+                <Registrations currentMembers />
+              </div>
+
+              <div>
+                <Heading size="md" textAlign="center">
+                  Un-Authenticated Registrations
+                </Heading>
+                <Registrations />
+              </div>
             </div>
 
             <Heading size="md" textAlign="center">

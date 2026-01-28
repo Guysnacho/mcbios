@@ -25,35 +25,28 @@ export const couponFetcher = async (): Promise<CouponList> => {
   return await data.json();
 };
 
-export const memberFetcher = async (client: SupabaseClient<Database>) => {
-  const rawRegistrationPromise = client
+export const registrationFetcher = async (client: SupabaseClient<Database>) => {
+  const { data } = await client
     .from("raw_registration")
     .select(`fname, lname, role, email, institution`)
     .eq("org_id", process.env.NEXT_PUBLIC_ORG_ID)
-    .throwOnError()
-    .then((res) => {
-      res.data;
-    });
+    .throwOnError();
 
-  const memberPromise = client
+  return data;
+};
+
+export const memberRegistrationFetcher = async (
+  client: SupabaseClient<Database>,
+) => {
+  const now = new Date();
+  const { data } = await client
     .from("member")
     .select(`*`)
     .eq("org_id", process.env.NEXT_PUBLIC_ORG_ID)
-    .throwOnError()
-    .then((res) => {
-      res.data;
-    });
+    .contains("attended", [now.getFullYear().toString()])
+    .throwOnError();
 
-  const [registrations, memberRes] = await Promise.all([
-    rawRegistrationPromise,
-    memberPromise,
-  ]);
-  return {
-    // @ts-expect-error whoopsie
-    registrations: registrations as Registration[],
-    // @ts-expect-error whoopsie
-    members: memberRes as Database["public"]["Tables"]["member"]["Row"][],
-  };
+  return data;
 };
 
 type CouponList = {
@@ -67,12 +60,10 @@ type CouponList = {
   expires_at: number | null;
 }[];
 
-export type Registration =
-  | {
-      fname: string;
-      lname: string;
-      role: "professional" | "student" | "admin" | "postdoctorial";
-      email: string;
-      institution: string;
-    }
-  | Database["public"]["Tables"]["member"]["Row"];
+export type Registration = {
+  fname: string;
+  lname: string;
+  role: "professional" | "student" | "admin" | "postdoctorial";
+  email: string;
+  institution: string;
+};
