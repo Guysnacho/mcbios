@@ -16,7 +16,7 @@ import { Stripe } from "stripe";
  */
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -62,12 +62,12 @@ export default async function handler(
     case "GET":
       try {
         const session = await stripe.checkout.sessions.retrieve(
-          req.query.session_id as string
+          req.query.session_id as string,
         );
 
         if (session.status === "complete") {
           console.log(
-            `Payment completed for user ${session!.metadata!.userId}!`
+            `Payment completed for user ${session!.metadata!.userId}!`,
           );
           const client = createClient();
           if (session!.metadata!.userId ?? false) {
@@ -78,7 +78,7 @@ export default async function handler(
                 session!.metadata!.tier
               } | user_id=${session!.metadata!.userId} | member_only=${
                 session!.metadata!.memberOnly
-              }`
+              }`,
             );
           } else await handleRawUpdate(client, session);
         }
@@ -129,24 +129,24 @@ function derivePriceId(tier: PaymentHandlerType): {
   switch (tier) {
     case "student":
       return {
-        // id: process.env.CONF_REGISTRATION_STUDENT!,
-        id: process.env.EB_CONF_REGISTRATION_STUDENT!,
+        id: process.env.CONF_REGISTRATION_STUDENT!,
+        // id: process.env.EB_CONF_REGISTRATION_STUDENT!,
         tier: "student",
         memberOnly: "false",
       };
       break;
     case "postdoctorial":
       return {
-        // id: process.env.CONF_REGISTRATION_POSTDOC!,
-        id: process.env.EB_CONF_REGISTRATION_POSTDOC!,
+        id: process.env.CONF_REGISTRATION_POSTDOC!,
+        // id: process.env.EB_CONF_REGISTRATION_POSTDOC!,
         tier: "postdoctorial",
         memberOnly: "false",
       };
       break;
     case "professional":
       return {
-        // id: process.env.CONF_REGISTRATION_PROFESSIONAL!,
-        id: process.env.EB_CONF_REGISTRATION_PROFESSIONAL!,
+        id: process.env.CONF_REGISTRATION_PROFESSIONAL!,
+        // id: process.env.EB_CONF_REGISTRATION_PROFESSIONAL!,
         tier: "professional",
         memberOnly: "false",
       };
@@ -182,7 +182,7 @@ function derivePriceId(tier: PaymentHandlerType): {
  */
 async function handleUpdate(
   client: SupabaseClient<Database>,
-  session: Stripe.Response<Stripe.Checkout.Session>
+  session: Stripe.Response<Stripe.Checkout.Session>,
 ) {
   const { data, error } = await client
     .from("member")
@@ -205,7 +205,7 @@ async function handleUpdate(
     "append_current_year_to_attended",
     {
       target_user: data!.user_id,
-    }
+    },
   );
 
   if (appendError) {
@@ -223,11 +223,12 @@ async function handleUpdate(
  */
 async function handleRawUpdate(
   client: SupabaseClient<Database>,
-  session: Stripe.Response<Stripe.Checkout.Session>
+  session: Stripe.Response<Stripe.Checkout.Session>,
 ) {
   console.log("Recording raw registration");
   await client.from("raw_registration").upsert(
     {
+      org_id: process.env.NEXT_PUBLIC_ORG_ID,
       email: session.metadata!.email,
       fname: session.metadata!.fname,
       lname: session.metadata!.lname,
@@ -238,7 +239,7 @@ async function handleRawUpdate(
     {
       ignoreDuplicates: false,
       onConflict: "email",
-    }
+    },
   );
 }
 
@@ -249,12 +250,13 @@ async function handleRawUpdate(
  */
 async function handleInstitutionUpdate(
   client: SupabaseClient<Database>,
-  body: PaymentBody
+  body: PaymentBody,
 ) {
   console.log("Recording raw registration");
   const { data, error } = await client
     .from("raw_registration")
     .upsert({
+      org_id: process.env.NEXT_PUBLIC_ORG_ID,
       email: body.email!,
       fname: body.fname!,
       lname: body.lname!,
@@ -266,10 +268,10 @@ async function handleInstitutionUpdate(
   if (error || !data || data.length == 0) {
     console.error(
       "Issue updating raw registration - ",
-      error?.message || "Upsert failed"
+      error?.message || "Upsert failed",
     );
     throw new Error(
-      "Issue updating raw registration - " + error?.message || "Upsert failed"
+      "Issue updating raw registration - " + error?.message || "Upsert failed",
     );
   } else {
     console.log("Successfully updated registration for user - ", data);

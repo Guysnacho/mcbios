@@ -63,10 +63,10 @@ export const VideoUploader = () => {
         title,
         date: date!.toISOString(),
         path: video,
+        org_id: process.env.NEXT_PUBLIC_ORG_ID,
       })
       .select()
       .single();
-    console.log(data);
 
     if (data) {
       setVidList(vidList?.concat(data));

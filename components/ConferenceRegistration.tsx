@@ -154,13 +154,13 @@ export const ConferenceRegistration = ({
                     }}
                   >
                     <option value="student">
-                      Conference and Membership | Early Bird Student | $200
+                      Conference and Membership | Student | $250
                     </option>
                     <option value="postdoctorial">
-                      Conference and Membership | Early Bird Postdoctorial | $300
+                      Conference and Membership | Postdoctorial | $350
                     </option>
                     <option value="professional">
-                      Conference and Membership | Early Bird Professional | $400
+                      Conference and Membership | Professional | $450
                     </option>
                   </NativeSelect.Field>
                   <NativeSelect.Indicator />

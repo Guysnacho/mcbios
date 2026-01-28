@@ -180,19 +180,22 @@ export default function Dashboard() {
                         onClick={() => {
                           client
                             .from("confirm_request")
-                            .insert({ user_id: store?.id })
+                            .insert({
+                              user_id: store?.id,
+                              org_id: process.env.NEXT_PUBLIC_ORG_ID,
+                            })
                             .then(({ error }) => {
                               if (error) {
                                 if (error?.code === DUPLICATE_ROW) {
                                   toaster.error({
                                     description:
-                                      "Gotcha, we'll update your access as soon as we confirm.",
+                                      "You've already submitted a confirmation request. We'll update your access as soon as we confirm.",
                                     duration: 6000,
                                   });
                                 } else {
                                   toaster.error({
                                     description:
-                                      "Something went wrong while we submitting your membership request - " +
+                                      "Something went wrong while submitting your membership request - " +
                                       error.message,
                                     duration: 6000,
                                   });
@@ -226,11 +229,11 @@ export default function Dashboard() {
                             placeholder="Select a membership level"
                             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                               setTier(
-                                e.currentTarget.value as PaymentHandlerType
+                                e.currentTarget.value as PaymentHandlerType,
                               );
                             }}
                           >
-                            <option value="student">
+                            {/* <option value="student">
                               Conference and Membership | Early Bird Student |
                               $200
                             </option>
@@ -241,7 +244,25 @@ export default function Dashboard() {
                             <option value="professional">
                               Conference and Membership | Early Bird
                               Professional | $400
+                            </option> */}
+                            <option value="student">
+                              Conference and Membership | Student | $250
                             </option>
+                            <option value="postdoctorial">
+                              Conference and Membership | Postdoctorial | $350
+                            </option>
+                            <option value="professional">
+                              Conference and Membership | Professional | $450
+                            </option>
+                            {/* <option value="member_only_student">
+                              Membership | Student | $10
+                            </option>
+                            <option value="member_only_postdoctorial">
+                              Membership | Postdoctorial | $20
+                            </option>
+                            <option value="member_only_professional">
+                              Membership | Professional | $50
+                            </option> */}
                           </NativeSelect.Field>
                           <NativeSelect.Indicator />
                         </NativeSelect.Root>

@@ -1,6 +1,6 @@
 import { User } from "@/components/User";
 import { Database } from "@/lib/supabase/types";
-import { Check } from "lucide-react";
+import { Check, Trash2 } from "lucide-react";
 import {
   Button,
   Input,
@@ -62,6 +62,7 @@ export const UserConfirm = ({
 }) => {
   const [id, setId] = useState("");
   const [open, setOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState<UserRequest[]>([]);
 
@@ -132,6 +133,17 @@ export const UserConfirm = ({
                 />
               </span>
             </Tooltip>
+            <Tooltip content="Delete">
+              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                <Trash2
+                  color="red"
+                  onClick={() => {
+                    setId(user.user_id);
+                    setDeleteOpen(true);
+                  }}
+                />
+              </span>
+            </Tooltip>
           </div>
         );
       default:
@@ -149,8 +161,15 @@ export const UserConfirm = ({
         setId={setId}
         setOpen={setOpen}
       />
+      <DeleteModal
+        client={client}
+        id={id}
+        open={deleteOpen}
+        setId={setId}
+        setOpen={setDeleteOpen}
+      />
       <div className="flex flex-col gap-5 mx-auto mt-8">
-        <Table.ScrollArea>
+        <Table.ScrollArea maxH="lg" overflowY="auto">
           <Table.Root variant="outline" striped>
             <Table.Caption>
               {users.length
@@ -307,19 +326,27 @@ const ConfirmModal = ({
       .update({
         role,
         fees_paid_at: date?.toISOString(),
+        org_id: process.env.NEXT_PUBLIC_ORG_ID,
       })
       .eq("user_id", uid)
       .select()
       .single();
 
-    if (error) {
+    const { error: appendError } = await client.rpc(
+      "append_current_year_to_attended",
+      {
+        target_user: uid,
+      },
+    );
+
+    if (error || appendError) {
       toaster.error({
         duration: 6000,
         description:
           "Something went wrong while we were updating this user's membership - " +
-          error.message,
+          (error || appendError)!.message,
       });
-      console.error(error);
+      console.error(error?.message ?? appendError?.message);
     } else {
       toaster.success({
         duration: 6000,
@@ -386,6 +413,90 @@ const ConfirmModal = ({
             }
           >
             {updateLoading ? <Spinner /> : "Submit"}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </DialogRoot>
+  );
+};
+
+const DeleteModal = ({
+  client,
+  id,
+  open,
+  setOpen,
+  setId,
+}: {
+  client: SupabaseClient<Database>;
+  id: string;
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setId: Dispatch<SetStateAction<string>>;
+}) => {
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
+  const handleClose = () => {
+    setId("");
+    setOpen(false);
+  };
+
+  const handleDelete = async (uid: string) => {
+    setDeleteLoading(true);
+
+    const { error } = await client
+      .from("confirm_request")
+      .delete()
+      .eq("user_id", uid);
+
+    if (error) {
+      toaster.error({
+        duration: 6000,
+        description:
+          "Something went wrong while deleting the confirmation request - " +
+          error.message,
+      });
+      console.error(error);
+    } else {
+      toaster.success({
+        duration: 6000,
+        title: "Request Deleted",
+        description: "Successfully deleted the confirmation request",
+      });
+    }
+  };
+
+  return (
+    <DialogRoot
+      open={open}
+      onOpenChange={(e) => !e.open && handleClose()}
+    >
+      <DialogContent>
+        <DialogHeader className="flex flex-col gap-1">
+          <DialogTitle>Delete Confirmation Request</DialogTitle>
+        </DialogHeader>
+        <DialogCloseTrigger />
+        <DialogBody>
+          <p>
+            Are you sure you want to delete this confirmation request? This
+            action cannot be undone.
+          </p>
+        </DialogBody>
+        <DialogFooter>
+          <Button variant="ghost" onClick={() => setOpen(false)}>
+            Cancel
+          </Button>
+          <Button
+            colorPalette="red"
+            onClick={() =>
+              handleDelete(id)
+                .then(() => {
+                  setId("");
+                  setOpen(false);
+                })
+                .finally(() => setDeleteLoading(false))
+            }
+          >
+            {deleteLoading ? <Spinner /> : "Delete"}
           </Button>
         </DialogFooter>
       </DialogContent>

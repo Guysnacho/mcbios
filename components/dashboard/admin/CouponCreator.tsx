@@ -169,7 +169,6 @@ export const CouponCreator = () => {
           <NativeSelect.Root>
             <NativeSelect.Field
               onChange={(e) => {
-                console.log(e.target.value);
                 setCoupon(e.target.value || undefined);
               }}
               value={couponName}
