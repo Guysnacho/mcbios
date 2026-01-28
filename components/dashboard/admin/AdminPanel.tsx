@@ -49,13 +49,6 @@ export function AdminPanel({ client }: AdminPanelProps) {
                 <Registrations />
               </div>
             </div>
-
-            <Heading size="md" textAlign="center">
-              Membership
-            </Heading>
-            <div className="max-w-[500]px my-5 flex gap-3 mx-auto justify-center">
-              <UserConfirm client={client} />
-            </div>
           </TabPanel>
 
           <TabPanel>

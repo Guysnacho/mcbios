@@ -164,8 +164,8 @@ export const UserConfirm = ({
         setOpen={setOpen}
       />
       <div className="flex flex-col gap-5 mx-auto mt-8">
-        <TableContainer>
-          <Table variant="striped">
+        <TableContainer maxH="lg" overflowY="auto">
+          <Table variant="striped" size="md">
             <TableCaption>
               {users.length
                 ? users.length + " members pending admin confirmation"
