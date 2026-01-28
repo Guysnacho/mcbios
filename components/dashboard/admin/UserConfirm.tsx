@@ -346,16 +346,23 @@ const ConfirmModal = ({
       .select()
       .single();
 
-    if (error) {
+    const { error: appendError } = await client.rpc(
+      "append_current_year_to_attended",
+      {
+        target_user: uid,
+      },
+    );
+
+    if (error || appendError) {
       toast({
         status: "error",
         duration: 6000,
         isClosable: true,
         description:
           "Something went wrong while we were updating this user's membership - " +
-          error.message,
+          (error! || appendError!).message,
       });
-      console.error(error);
+      console.error(error?.message ?? appendError?.message);
     } else {
       toast({
         status: "success",
