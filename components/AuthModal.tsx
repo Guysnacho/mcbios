@@ -96,7 +96,7 @@ export const AuthModal = ({
       throw new Error(
         Object.entries(z.treeifyError(error).properties!)
           .map((err) => err[1].errors.join(", "))
-          .join(", ")
+          .join(", "),
       );
     }
     setLoading(false);
@@ -143,7 +143,7 @@ export const AuthModal = ({
       throw new Error(
         Object.entries(z.treeifyError(error).properties!)
           .map((err) => err[1].errors.join(" | "))
-          .join(" | ")
+          .join(" | "),
       );
     }
     setLoading(false);
@@ -163,7 +163,7 @@ export const AuthModal = ({
       if (error) {
         if (error.message.toLocaleLowerCase().includes("rate limit")) {
           throw new Error(
-            "Too many signup requests recieved for the provided email. Try again later."
+            "Too many signup requests recieved for the provided email. Try again later.",
           );
         }
         throw error;
@@ -180,7 +180,7 @@ export const AuthModal = ({
       throw new Error(
         Object.entries(z.treeifyError(error).properties!)
           .map((err) => err[1].errors.join(" | "))
-          .join(" | ")
+          .join(" | "),
       );
     }
     setLoading(false);
@@ -238,8 +238,8 @@ export const AuthModal = ({
               {isReset
                 ? "Reset your Password"
                 : isSignUp
-                ? "Join the Community"
-                : "Log In"}
+                  ? "Join the Community"
+                  : "Log In"}
             </DialogTitle>
           </DialogHeader>
           <DialogCloseTrigger />
@@ -288,11 +288,7 @@ export const AuthModal = ({
                       </Link>
                     </Alert>
                   </>
-                ) : (
-                  <Heading fontSize="4xl" textAlign="center">
-                    Log In
-                  </Heading>
-                )}
+                ) : undefined}
               </Stack>
 
               {/* Form fields */}
