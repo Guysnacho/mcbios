@@ -37,60 +37,6 @@ import NextLink from "next/link";
 import { useRouter } from "next/navigation";
 import { use } from "react";
 
-const stats = [
-  { value: "500+", label: "Active Members" },
-  { value: "20+", label: "Years of Impact" },
-  { value: "150+", label: "Research Labs" },
-];
-
-const objectives = [
-  {
-    icon: Lightbulb,
-    title: "Advance Understanding",
-    description:
-      "Deepening the collective knowledge of bioinformatics and computational biology through shared research.",
-  },
-  {
-    icon: Users,
-    title: "Unite Scientists",
-    description:
-      "Bringing together researchers from diverse backgrounds and disciplines to solve complex biological problems.",
-  },
-  {
-    icon: Target,
-    title: "Foster Collaboration",
-    description:
-      "Creating bridges between biological, health, and medical sectors for interdisciplinary breakthroughs.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Promote Education",
-    description:
-      "Nurturing the next generation of computational biologists through mentorship and workshops.",
-  },
-  {
-    icon: MessageSquare,
-    title: "Inform Public",
-    description:
-      "Communicating the results and societal implications of current computational biology research.",
-  },
-  {
-    icon: MapPin,
-    title: "Regional Growth",
-    description:
-      "Developing computational biology capacity and excellence across our regional chapters.",
-  },
-];
-
-const membershipBenefits = [
-  "Conference registration discounts",
-  "Leadership opportunity eligibility",
-  "Access to member-only events",
-  "Reduced publication fees",
-  "Student awards and grants",
-  "Local chapter participation",
-];
-
 export default function Page({
   searchParams,
 }: {
@@ -953,7 +899,7 @@ export default function Page({
       </Box>
 
       {/* Sticky Bottom Nav (Mobile) */}
-      <Box
+      {/* <Box
         display={{ base: "block", lg: "none" }}
         position="fixed"
         bottom={0}
@@ -1010,10 +956,64 @@ export default function Page({
             Register Now
           </Button>
         </Flex>
-      </Box>
+      </Box> */}
 
       {/* Spacer for fixed bottom nav on mobile */}
-      <Box display={{ base: "block", lg: "none" }} h="60px" />
+      {/* <Box display={{ base: "block", lg: "none" }} h="60px" /> */}
     </Box>
   );
 }
+
+const stats = [
+  { value: "500+", label: "Active Members" },
+  { value: "20+", label: "Years of Impact" },
+  { value: "150+", label: "Research Labs" },
+];
+
+const objectives = [
+  {
+    icon: Lightbulb,
+    title: "Advance Understanding",
+    description:
+      "Deepening the collective knowledge of bioinformatics and computational biology through shared research.",
+  },
+  {
+    icon: Users,
+    title: "Unite Scientists",
+    description:
+      "Bringing together researchers from diverse backgrounds and disciplines to solve complex biological problems.",
+  },
+  {
+    icon: Target,
+    title: "Foster Collaboration",
+    description:
+      "Creating bridges between biological, health, and medical sectors for interdisciplinary breakthroughs.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Promote Education",
+    description:
+      "Nurturing the next generation of computational biologists through mentorship and workshops.",
+  },
+  {
+    icon: MessageSquare,
+    title: "Inform Public",
+    description:
+      "Communicating the results and societal implications of current computational biology research.",
+  },
+  {
+    icon: MapPin,
+    title: "Regional Growth",
+    description:
+      "Developing computational biology capacity and excellence across our regional chapters.",
+  },
+];
+
+const membershipBenefits = [
+  "Conference registration discounts",
+  "Leadership opportunity eligibility",
+  "Access to member-only events",
+  "Reduced publication fees",
+  "Student awards and grants",
+  "Local chapter participation",
+];

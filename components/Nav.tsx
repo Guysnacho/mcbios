@@ -67,7 +67,7 @@ interface NavItem {
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  const supabase = createClient();
+  const client = createClient();
   const router = useRouter();
   const path = usePathname();
   const store = useStore(useUserStore, (store) => store);
@@ -76,7 +76,7 @@ export default function Nav() {
   const [isSignUp, setIsSignUp] = useState(false);
 
   const handleLogout = () => {
-    supabase.auth.signOut({ scope: "local" }).finally(() => {
+    client.auth.signOut({ scope: "global" }).finally(() => {
       store?.setId();
       router.push("/");
     });
@@ -230,19 +230,6 @@ export default function Nav() {
               </Box>
             ))}
 
-            {/* Register Button */}
-            <Button
-              ml={4}
-              size="sm"
-              bg="red.700"
-              color="white"
-              fontWeight={600}
-              _hover={{ bg: "red.800" }}
-              onClick={() => router.push("/events")}
-            >
-              Register Now
-            </Button>
-
             {/* User Menu */}
             {store && store.id ? (
               <MenuRoot>
@@ -273,7 +260,32 @@ export default function Nav() {
                   </MenuItem>
                 </MenuContent>
               </MenuRoot>
-            ) : null}
+            ) : (
+              <Flex>
+                <Button
+                  ml={4}
+                  size="sm"
+                  bg="red.700"
+                  color="white"
+                  fontWeight={600}
+                  _hover={{ bg: "red.800" }}
+                  onClick={() => handleOpen(false)}
+                >
+                  Sign In
+                </Button>
+                <Button
+                  ml={4}
+                  size="sm"
+                  bg="red.700"
+                  color="white"
+                  fontWeight={600}
+                  _hover={{ bg: "red.800" }}
+                  onClick={() => handleOpen(true)}
+                >
+                  Sign Up
+                </Button>
+              </Flex>
+            )}
           </Flex>
 
           {/* Mobile Menu Button */}

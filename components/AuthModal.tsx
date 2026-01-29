@@ -188,7 +188,7 @@ export const AuthModal = ({
 
   return (
     <DialogRoot
-      size="lg"
+      size="sm"
       open={isOpen}
       onOpenChange={(e) => !e.open && handleClose()}
     >
@@ -244,87 +244,84 @@ export const AuthModal = ({
           </DialogHeader>
           <DialogCloseTrigger />
           <DialogBody gap={3}>
-            <Box rounded="lg" bg={{ base: "white", _dark: "gray.800" }} p={8}>
-              <Stack align="center" mb={5}>
-                {isReset ? (
-                  <>
-                    <Heading fontSize="4xl" textAlign="center">
-                      Reset your Password
-                    </Heading>
-                    <Text
-                      color={{ base: "gray.600", _dark: "gray.300" }}
-                      className="border-l-gray-600 border-l-2 pl-3"
+            <Stack align="center" mb={5}>
+              {isReset ? (
+                <>
+                  <Heading fontSize="4xl" textAlign="center">
+                    Reset your Password
+                  </Heading>
+                  <Text
+                    color={{ base: "gray.600", _dark: "gray.300" }}
+                    className="border-l-gray-600 border-l-2 pl-3"
+                  >
+                    If you&apos;re having trouble logging into your account or
+                    have just plain forgotten your password, please enter the
+                    email you&apos;ve signed up with.
+                  </Text>
+                </>
+              ) : isSignUp ? (
+                <>
+                  <Text
+                    color={{ base: "gray.600", _dark: "gray.300" }}
+                    className="border-l-gray-600 border-l-2 pl-3"
+                  >
+                    Signing up will allow you to register for the conference and
+                    gain access to other features like conference session
+                    recordings. An MCBIOS account is not, however, a requirement
+                    for attending the conference.
+                  </Text>
+                  <Alert
+                    borderRadius="xl"
+                    icon={<Info />}
+                    title="Email Delivery Notice"
+                  >
+                    We are currently addressing account confirmation email
+                    delivery issues for emails ending with <Code>.edu</Code>. We
+                    still encourage you to sign up but{" "}
+                    <Link
+                      href="/events"
+                      textDecoration="underline"
+                      _hover={{ shadow: "lg" }}
                     >
-                      If you&apos;re having trouble logging into your account or
-                      have just plain forgotten your password, please enter the
-                      email you&apos;ve signed up with.
-                    </Text>
-                  </>
-                ) : isSignUp ? (
-                  <>
-                    <Text
-                      color={{ base: "gray.600", _dark: "gray.300" }}
-                      className="border-l-gray-600 border-l-2 pl-3"
-                    >
-                      Signing up will allow you to register for the conference
-                      and gain access to other features like conference session
-                      recordings.
-                    </Text>
-                    <Alert
-                      borderRadius="xl"
-                      icon={<Info />}
-                      title="Email Delivery Notice"
-                    >
-                      We are currently addressing account confirmation email
-                      delivery issues for emails ending with <Code>.edu</Code>.
-                      We still encourage you to sign up but{" "}
-                      <Link
-                        href="/events"
-                        textDecoration="underline"
-                        _hover={{ shadow: "lg" }}
-                      >
-                        also provide a method to register for the conference
-                        without an account.
-                      </Link>
-                    </Alert>
-                  </>
-                ) : undefined}
-              </Stack>
+                      also provide a method to register for the conference
+                      without an account.
+                    </Link>
+                  </Alert>
+                </>
+              ) : undefined}
+            </Stack>
 
-              {/* Form fields */}
-              <Stack gap={4}>
-                {error ? (
-                  <blockquote className="blockquote text-orange-800">
-                    {error}
-                  </blockquote>
-                ) : undefined}
-                {!isReset && isSignUp && (
-                  <HStack>
-                    <Box>
-                      <Field label="First Name" required disabled={loading}>
-                        <Input
-                          type="text"
-                          inputMode="text"
-                          autoComplete="given-name"
-                          onChange={(e) => setFname(e.currentTarget.value)}
-                          value={fname}
-                        />
-                      </Field>
-                    </Box>
-                    <Box>
-                      <Field label="Last Name" required disabled={loading}>
-                        <Input
-                          type="text"
-                          inputMode="text"
-                          autoComplete="family-name"
-                          onChange={(e) => setLname(e.currentTarget.value)}
-                          value={lname}
-                        />
-                      </Field>
-                    </Box>
-                  </HStack>
-                )}
-                {!isReset && isSignUp && (
+            {/* Form fields */}
+            <Stack gap={4}>
+              {error ? (
+                <blockquote className="blockquote text-orange-800">
+                  {error}
+                </blockquote>
+              ) : undefined}
+              {!isReset && isSignUp && (
+                <Stack direction={["column", null, "row"]} justify="center">
+                  <Field label="First Name" required disabled={loading}>
+                    <Input
+                      type="text"
+                      inputMode="text"
+                      autoComplete="given-name"
+                      onChange={(e) => setFname(e.currentTarget.value)}
+                      value={fname}
+                    />
+                  </Field>
+                  <Field label="Last Name" required disabled={loading}>
+                    <Input
+                      type="text"
+                      inputMode="text"
+                      autoComplete="family-name"
+                      onChange={(e) => setLname(e.currentTarget.value)}
+                      value={lname}
+                    />
+                  </Field>
+                </Stack>
+              )}
+              {!isReset && isSignUp && (
+                <Box>
                   <Field label="Institution" required disabled={loading}>
                     <Input
                       type="text"
@@ -334,68 +331,69 @@ export const AuthModal = ({
                       required
                     />
                   </Field>
-                )}
-                <Field label="Email Address" required disabled={loading}>
-                  <Input
-                    type="email"
-                    inputMode="email"
-                    autoComplete="email"
-                    onChange={(e) => setEmail(e.currentTarget.value)}
-                    value={email}
-                  />
+                </Box>
+              )}
+              <Field label="Email Address" required disabled={loading}>
+                <Input
+                  type="email"
+                  inputMode="email"
+                  autoComplete="email"
+                  onChange={(e) => setEmail(e.currentTarget.value)}
+                  value={email}
+                />
+              </Field>
+              {!isReset && (
+                <Field label="Password" required disabled={loading}>
+                  <InputGroup
+                    w="100%"
+                    endElement={
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() =>
+                          setShowPassword((showPassword) => !showPassword)
+                        }
+                      >
+                        {showPassword ? <Eye /> : <EyeOff />}
+                      </Button>
+                    }
+                  >
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      autoComplete="new-password"
+                      onChange={(e) => setPassword(e.currentTarget.value)}
+                      value={password}
+                    />
+                  </InputGroup>
                 </Field>
-                {!isReset && (
-                  <Field label="Password" required disabled={loading}>
-                    <InputGroup
-                      endElement={
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() =>
-                            setShowPassword((showPassword) => !showPassword)
-                          }
-                        >
-                          {showPassword ? <Eye /> : <EyeOff />}
-                        </Button>
-                      }
+              )}
+              {!isReset && (
+                <Stack pt={6}>
+                  <Text textAlign="center">
+                    {isSignUp
+                      ? "Already a member? "
+                      : "Haven't signed up yet? "}
+                    <Link
+                      color="blue.400"
+                      onClick={() => !loading && setIsSignUp(!isSignUp)}
+                      cursor="pointer"
                     >
-                      <Input
-                        type={showPassword ? "text" : "password"}
-                        autoComplete="new-password"
-                        onChange={(e) => setPassword(e.currentTarget.value)}
-                        value={password}
-                      />
-                    </InputGroup>
-                  </Field>
-                )}
-                {!isReset && (
-                  <Stack pt={6}>
-                    <Text textAlign="center">
-                      {isSignUp
-                        ? "Already a member? "
-                        : "Haven't signed up yet? "}
-                      <Link
-                        color="blue.400"
-                        onClick={() => !loading && setIsSignUp(!isSignUp)}
-                        cursor="pointer"
-                      >
-                        {isSignUp ? "Login" : "Sign Up"}
-                      </Link>
-                    </Text>
-                    <Text textAlign="center">
-                      Forgot your password?{" "}
-                      <Link
-                        color="blue.400"
-                        onClick={() => !loading && setIsReset(true)}
-                        cursor="pointer"
-                      >
-                        Password Reset
-                      </Link>
-                    </Text>
-                  </Stack>
-                )}
-              </Stack>
-            </Box>
+                      {isSignUp ? "Login" : "Sign Up"}
+                    </Link>
+                  </Text>
+                  <Text textAlign="center">
+                    Forgot your password?{" "}
+                    <Link
+                      color="blue.400"
+                      onClick={() => !loading && setIsReset(true)}
+                      cursor="pointer"
+                    >
+                      Password Reset
+                    </Link>
+                  </Text>
+                </Stack>
+              )}
+            </Stack>
           </DialogBody>
 
           <DialogFooter>
