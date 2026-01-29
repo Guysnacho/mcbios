@@ -28,7 +28,7 @@ import { Field } from "@/components/ui/field";
 import { InputGroup } from "@/components/ui/input-group";
 import { Alert } from "@/components/ui/alert";
 import { toaster } from "@/components/ui/toaster";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
 import { z } from "zod";
 

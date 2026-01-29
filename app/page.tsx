@@ -1,3 +1,5 @@
+"use client"
+
 import {
   AccordionItem,
   AccordionItemContent,
@@ -20,22 +22,27 @@ import {
 } from "@chakra-ui/react";
 import { PartyPopper } from "lucide-react";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { use, useEffect, useState } from "react";
 
-export default function Home() {
+export default function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const params = use(searchParams);
   const router = useRouter();
   const [currentTag, setTag] = useState(0);
 
   setTimeout(() => {
-    if (router.query.error_description) {
+    if (params.error_description) {
       toaster.create({
-        description: router.query.error_description,
+        description: params.error_description,
         type: "warning",
         duration: 8000,
         closable: true,
       });
-    } else if (router.query.token || router.query.code) {
+    } else if (params.token || params.code) {
       toaster.create({
         title: "Thank you for your verification",
         description:
