@@ -87,10 +87,13 @@ export const ConferenceRegistration = ({
           </Steps.Root>
 
           {activeStep === 0 && (
-            <Box rounded="lg" bg={{ base: "white", _dark: "gray.800" }} p={8}>
+            <Box rounded="lg" bg={{ base: "white", _dark: "black" }} p={8}>
               {/* Form fields */}
               <Stack gap={4}>
-                <HStack justify="space-evenly">
+                <Stack
+                  direction={["column", null, "row"]}
+                  justify="space-evenly"
+                >
                   <Box>
                     <Field label="First Name" required>
                       <Input
@@ -103,7 +106,7 @@ export const ConferenceRegistration = ({
                     </Field>
                   </Box>
                   <Box>
-                    <Field label="Last Name">
+                    <Field label="Last Name" required>
                       <Input
                         type="text"
                         inputMode="text"
@@ -113,7 +116,7 @@ export const ConferenceRegistration = ({
                       />
                     </Field>
                   </Box>
-                </HStack>
+                </Stack>
                 <Field label="Email address" required>
                   <Input
                     type="email"
@@ -131,14 +134,18 @@ export const ConferenceRegistration = ({
                     value={institution}
                   />
                 </Field>
-                <Button
-                  type="submit"
-                  onClick={goToNext}
-                  colorPalette="green"
-                  disabled={isInvalid}
-                >
-                  Next
-                </Button>
+                <Flex justify="space-around" my={5}>
+                  <Button
+                    type="submit"
+                    onClick={goToNext}
+                    colorPalette="green"
+                    disabled={isInvalid}
+                    className="mx-auto"
+                    w="50%"
+                  >
+                    Next
+                  </Button>
+                </Flex>
               </Stack>
             </Box>
           )}
@@ -166,10 +173,8 @@ export const ConferenceRegistration = ({
                   <NativeSelect.Indicator />
                 </NativeSelect.Root>
               </Flex>
-              <Flex justify="center">
-                <Button onClick={goToPrevious} className="mr-3">
-                  Back
-                </Button>
+              <Flex justify="center" gap={2} my={5}>
+                <Button onClick={goToPrevious}>Back</Button>
                 <Button
                   type="submit"
                   onClick={goToNext}
@@ -191,14 +196,14 @@ export const ConferenceRegistration = ({
                 lname={lname!}
                 institution={institution!}
               />
-              <Flex>
+              <Flex justify="space-around" my={5}>
                 <Button
                   onClick={() => {
                     goToPrevious();
                     setTier(undefined);
                   }}
                   className="mx-auto"
-                  w="70%"
+                  w="50%"
                 >
                   Back
                 </Button>
