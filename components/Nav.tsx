@@ -1,14 +1,20 @@
 "use client";
 
+import {
+  MenuContent,
+  MenuItem,
+  MenuRoot,
+  MenuTrigger,
+} from "@/components/ui/menu";
+import { ConfYears } from "@/lib";
 import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
-import { ConfYears } from "@/lib";
 import { createClient } from "@/lib/supabase/client";
-import { ChevronDown, X, Menu as MenuIcon, ArrowRight } from "lucide-react";
 import {
   Avatar,
   Box,
   Button,
+  Container,
   Drawer,
   Flex,
   Icon,
@@ -18,18 +24,12 @@ import {
   Popover,
   Stack,
   Text,
-  Container,
 } from "@chakra-ui/react";
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "@/components/ui/menu";
+import { ChevronDown, Menu as MenuIcon, X } from "lucide-react";
 import NextLink from "next/link";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import AuthListener from "./AuthListener";
 import { AuthModal } from "./AuthModal";
 
 const NAV_ITEMS: Array<NavItem> = [
@@ -110,6 +110,7 @@ export default function Nav() {
       bg="white"
       _dark={{ bg: "gray.900" }}
     >
+      <AuthListener />
       <AuthModal
         isSignUp={isSignUp}
         isOpen={isAuthOpen}
