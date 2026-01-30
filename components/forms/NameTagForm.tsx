@@ -1,3 +1,13 @@
+import {
+  DialogBody,
+  DialogCloseTrigger,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
+} from "@/components/ui/dialog";
+import { Field } from "@/components/ui/field";
+import { toaster } from "@/components/ui/toaster";
 import { isPresent } from "@/lib";
 import {
   Box,
@@ -9,21 +19,8 @@ import {
   NativeSelect,
   Stack,
 } from "@chakra-ui/react";
-import {
-  DialogRoot,
-  DialogContent,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
-  DialogCloseTrigger,
-} from "@/components/ui/dialog";
-import { Field } from "@/components/ui/field";
-import { toaster } from "@/components/ui/toaster";
 import { Dispatch, SetStateAction, useState } from "react";
-import {
-  PaymentBody,
-  PaymentHandlerType,
-} from "../dashboard/PaymentHandler";
+import { PaymentBody, PaymentHandlerType } from "../dashboard/PaymentHandler";
 
 export const NameTagForm = ({
   isOpen,
@@ -58,7 +55,7 @@ export const NameTagForm = ({
     setLoading(true);
     setError("");
     if (isPresent(email) && isPresent(institution)) {
-      const res = await fetch("/api/checkout", {
+      const res = await fetch("/checkout", {
         method: "PUT",
         body: JSON.stringify({
           email,
@@ -87,7 +84,11 @@ export const NameTagForm = ({
   };
 
   return (
-    <DialogRoot size="lg" open={isOpen} onOpenChange={(e) => !e.open && handleClose()}>
+    <DialogRoot
+      size="lg"
+      open={isOpen}
+      onOpenChange={(e) => !e.open && handleClose()}
+    >
       <DialogContent>
         <DialogHeader className="flex flex-col gap-1 text-xl" />
         <DialogCloseTrigger />
@@ -143,7 +144,8 @@ export const NameTagForm = ({
                   <>
                     Email address
                     <span className="opacity-75">
-                      <br />Provide the email you&apos;ve registered with
+                      <br />
+                      Provide the email you&apos;ve registered with
                     </span>
                   </>
                 }

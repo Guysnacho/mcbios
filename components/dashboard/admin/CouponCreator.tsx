@@ -50,7 +50,7 @@ export const CouponCreator = () => {
   );
 
   const createCoupon = async () => {
-    const res = await fetch("/api/admin", {
+    const res = await fetch("/admin", {
       method: "POST",
       body: JSON.stringify(
         discount
@@ -81,7 +81,7 @@ export const CouponCreator = () => {
 
   const deletePromo = async (promo: string) => {
     try {
-      const res = await fetch("/api/admin", {
+      const res = await fetch("/admin", {
         method: "DELETE",
         body: JSON.stringify({ promo }),
       });
@@ -103,7 +103,7 @@ export const CouponCreator = () => {
 
   const deleteCoupon = async (couponId: string) => {
     try {
-      const res = await fetch("/api/admin", {
+      const res = await fetch("/admin", {
         method: "DELETE",
         body: JSON.stringify({ coupon: couponId }),
       });
