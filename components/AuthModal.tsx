@@ -281,7 +281,7 @@ export const AuthModal = ({
                     <Link
                       href="/events"
                       textDecoration="underline"
-                      _hover={{ shadow: "lg" }}
+                      _hover={{ fontWeight: "bold" }}
                     >
                       also provide a method to register for the conference
                       without an account.
