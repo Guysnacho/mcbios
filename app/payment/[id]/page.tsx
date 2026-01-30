@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/react";
 import { ChevronLeft } from "lucide-react";
 import { Metadata } from "next";
-import { headers } from "next/headers";
 import Stripe from "stripe";
 
 export const metadata: Metadata = {
@@ -28,12 +27,9 @@ export default async function Page({
 }) {
   const { id } = await params;
 
-  const host = (await headers()).get("host");
-  const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
-
   // Fetch customer session
   const { customer_email, status } = await fetch(
-    `${protocol}://${host}/checkout`,
+    `${process.env.NEXT_PUBLIC_APP_URL}/checkout`,
     {
       method: "GET",
       headers: {

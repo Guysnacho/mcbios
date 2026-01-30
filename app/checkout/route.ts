@@ -49,9 +49,9 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    Response.json({ clientSecret: session.client_secret });
+    return Response.json({ clientSecret: session.client_secret });
   } catch (err) {
-    Response.json(
+    return Response.json(
       // @ts-expect-error should be an error message somewhere
       { message: err.message },
       {
@@ -122,10 +122,10 @@ export async function PUT(req: NextRequest) {
           Response.json({ message: err.message }, { status: 500 }),
         );
     } else {
-      Response.json({}, { status: 400 });
+      return Response.json({}, { status: 400 });
     }
   } catch (err) {
-    Response.json(
+    return Response.json(
       // @ts-expect-error should be an error message somewhere
       { message: err.message },
       {

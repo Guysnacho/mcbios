@@ -1,13 +1,7 @@
 import { User } from "@/components/User";
 import { Database } from "@/lib/supabase/types";
 import { Check, Trash2 } from "lucide-react";
-import {
-  Button,
-  Input,
-  NativeSelect,
-  Spinner,
-  Table,
-} from "@chakra-ui/react";
+import { Button, Input, NativeSelect, Spinner, Table } from "@chakra-ui/react";
 import {
   DialogRoot,
   DialogContent,
@@ -200,10 +194,14 @@ export const UserConfirm = ({
   );
 };
 
-function saveRegistration(sessionId: string) {
-  return fetch(`/api/checkout?session_id=${sessionId}`, {
-    method: "GET",
-  })
+function saveRegistration(session_id: string) {
+  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/checkout`,
+    {
+      method: "GET",
+      headers: {
+        session_id,
+      },
+    })
     .then((res) => res.json())
     .catch((err) => {
       console.error(err.message);
@@ -359,10 +357,7 @@ const ConfirmModal = ({
   };
 
   return (
-    <DialogRoot
-      open={open}
-      onOpenChange={(e) => !e.open && handleClose()}
-    >
+    <DialogRoot open={open} onOpenChange={(e) => !e.open && handleClose()}>
       <DialogContent>
         <DialogHeader className="flex flex-col gap-1">
           <DialogTitle>Confirm User Properties</DialogTitle>
@@ -466,10 +461,7 @@ const DeleteModal = ({
   };
 
   return (
-    <DialogRoot
-      open={open}
-      onOpenChange={(e) => !e.open && handleClose()}
-    >
+    <DialogRoot open={open} onOpenChange={(e) => !e.open && handleClose()}>
       <DialogContent>
         <DialogHeader className="flex flex-col gap-1">
           <DialogTitle>Delete Confirmation Request</DialogTitle>
