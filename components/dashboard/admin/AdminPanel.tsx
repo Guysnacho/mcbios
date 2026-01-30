@@ -1,8 +1,5 @@
 import { Database } from "@/lib/supabase/types";
-import {
-  Heading,
-  Tabs,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Stack, Tabs } from "@chakra-ui/react";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { CouponCreator } from "./CouponCreator";
 import Registrations from "./Registrations";
@@ -30,46 +27,68 @@ export function AdminPanel({ client }: AdminPanelProps) {
       </Tabs.List>
 
       <Tabs.Content value="registrations">
-        <div className="max-w-[500]px my-5 space-y-5 mx-auto justify-center">
-          <div>
-            <Heading size="md" textAlign="center">
+        <Stack gap="8" py="6" maxW="6xl" mx="auto">
+          <Box>
+            <Heading
+              size="md"
+              textAlign="center"
+              color={{ base: "slate.900", _dark: "white" }}
+              mb="4"
+            >
               Authenticated Registrations
             </Heading>
             <Registrations currentMembers />
-          </div>
+          </Box>
 
-          <div>
-            <Heading size="md" textAlign="center">
+          <Box>
+            <Heading
+              size="md"
+              textAlign="center"
+              color={{ base: "slate.900", _dark: "white" }}
+              mb="4"
+            >
               Un-Authenticated Registrations
             </Heading>
             <Registrations />
-          </div>
-        </div>
+          </Box>
+        </Stack>
       </Tabs.Content>
 
       <Tabs.Content value="confirm">
-        <Heading size="md" textAlign="center">
-          User Account Confirmation
-        </Heading>
-        <div className="max-w-[500]px my-5 flex gap-3 mx-auto justify-center">
-          <UserConfirm client={client} />
-        </div>
+        <Stack gap="6" py="6" maxW="4xl" mx="auto">
+          <Heading
+            size="md"
+            textAlign="center"
+            color={{ base: "slate.900", _dark: "white" }}
+          >
+            User Account Confirmation
+          </Heading>
+          <Flex justify="center">
+            <UserConfirm client={client} />
+          </Flex>
+        </Stack>
       </Tabs.Content>
 
       <Tabs.Content value="content">
-        <div className="my-5 gap-3 mx-auto justify-center">
-          <Heading size="md" textAlign="center">
+        <Stack gap="6" py="6" maxW="4xl" mx="auto">
+          <Heading
+            size="md"
+            textAlign="center"
+            color={{ base: "slate.900", _dark: "white" }}
+          >
             Add Conference Content
           </Heading>
 
-          <div className="flex justify-center">
+          <Flex justify="center">
             <VideoUploader />
-          </div>
-        </div>
+          </Flex>
+        </Stack>
       </Tabs.Content>
 
       <Tabs.Content value="coupon">
-        <CouponCreator />
+        <Box py="6">
+          <CouponCreator />
+        </Box>
       </Tabs.Content>
     </Tabs.Root>
   );

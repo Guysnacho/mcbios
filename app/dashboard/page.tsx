@@ -13,12 +13,18 @@ import { useUserStore } from "@/lib/store/userStore";
 import useStore from "@/lib/store/useStore";
 import { createClient } from "@/lib/supabase/client";
 import {
+  Box,
   Button,
+  Container,
   Flex,
+  Heading,
+  Link,
   NativeSelect,
   Separator,
+  Stack,
   Table,
   Tabs,
+  Text,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { ChevronLeft } from "lucide-react";
@@ -44,31 +50,28 @@ export default function Page() {
         <meta content="Dashboard | MidSouth Computational Biology and Bioinformatics Society" />
       </Head>
 
-    <div className="container mx-auto justify-center">
-      <div className="h-20 flex justify-center align-middle">
-        <h3 className="text-center my-auto">
-          {data?.user && data?.user.fname
-            ? `Hey ${data?.user.fname}`
-            : "Welcome"}
-        </h3>
-      </div>
+    <Container maxW="7xl" py="8">
       {error && (
-        <div className="my-5 flex gap-3 mx-auto justify-center">
-          <div>
-            <h5 className="text-center">We ran into an issue</h5>
-            <p>
+        <Flex justify="center" py="8">
+          <Box textAlign="center" maxW="md">
+            <Heading as="h5" fontSize="lg" fontWeight="semibold" color={{ base: "slate.900", _dark: "white" }} mb="4">
+              We ran into an issue
+            </Heading>
+            <Text color={{ base: "slate.600", _dark: "gray.300" }}>
               There was an error fetching your account information. If an issue
               persists, please reach out to{" "}
-              <a
-                className="underline text-blue-800"
+              <Link
                 href="mailto:team@tunjiproductions.com"
+                color="blue.600"
+                _dark={{ color: "blue.400" }}
+                textDecoration="underline"
               >
                 team@tunjiproductions.com
-              </a>
+              </Link>
               .
-            </p>
-          </div>
-        </div>
+            </Text>
+          </Box>
+        </Flex>
       )}
       <Tabs.Root
         aria-label="Dashboard Tabs"
@@ -104,22 +107,27 @@ export default function Page() {
         )}
 
         <Tabs.Content value="profile">
-          <div className="my-5 flex gap-3 mx-auto justify-center">
-            <div>
-              <h5 className="text-center">Membership Info</h5>
-              <User
-                fname={data?.user?.fname}
-                lname={data?.user?.lname}
-                role={data?.user?.role}
-              />
-            </div>
-          </div>
-          <Separator />
-          <div className="container text-center space-y-4">
-            {!data?.user ||
-              (!data?.user?.fees_paid_at && (
-                <>
-                  <h4>Welcome to MCBIOS Registration!</h4>
+          <Stack gap="6" py="8">
+            <Flex justify="center">
+              <Box textAlign="center">
+                <Heading as="h5" fontSize="lg" fontWeight="semibold" color={{ base: "slate.900", _dark: "white" }} mb="4">
+                  Membership Info
+                </Heading>
+                <User
+                  fname={data?.user?.fname}
+                  lname={data?.user?.lname}
+                  role={data?.user?.role}
+                />
+              </Box>
+            </Flex>
+            <Separator />
+            <Stack gap="6" textAlign="center" maxW="4xl" mx="auto">
+              {!data?.user ||
+                (!data?.user?.fees_paid_at && (
+                  <>
+                    <Heading as="h4" fontSize="xl" fontWeight="bold" color={{ base: "slate.900", _dark: "white" }}>
+                      Welcome to MCBIOS Registration!
+                    </Heading>
 
                   {/* Registration Tiers */}
                   <Table.ScrollArea
@@ -162,25 +170,25 @@ export default function Page() {
                     </Table.Root>
                   </Table.ScrollArea>
 
-                  <p>
+                  <Text color={{ base: "slate.600", _dark: "gray.300" }} lineHeight="relaxed">
                     If you haven&apos;t already, please pay your registration
                     fees to finish MCBIOS onboarding. Registration fees include
                     access to all scientific sessions, meals, receptions,
                     banquet, and 1 year of MCBIOS membership. Membership gives
                     you access to past conference recordings, upcomming
                     elections, and more!
-                  </p>
-                  <div className="container">
-                    <p>
-                      <span className="underline">
+                  </Text>
+                  <Box>
+                    <Text color={{ base: "slate.600", _dark: "gray.300" }} mb="4">
+                      <Text as="span" textDecoration="underline" fontWeight="semibold">
                         If you have paid the required fees
-                      </span>
+                      </Text>
                       , notify us here so we can confirm and grant access to
                       everything MCBIOS!
-                    </p>
+                    </Text>
                     <Button
                       colorPalette="green"
-                      className="my-5"
+                      my="5"
                       onClick={() => {
                         client
                           .from("confirm_request")
@@ -217,7 +225,7 @@ export default function Page() {
                     >
                       My fees are paid
                     </Button>
-                  </div>
+                  </Box>
                   <Flex mx="auto" w={[null, "sm", "lg"]}>
                     {tier ? (
                       <Button mx="auto" onClick={() => setTier(undefined)}>
@@ -280,10 +288,11 @@ export default function Page() {
                   ) : undefined}
                 </>
               ))}
-          </div>
+            </Stack>
+          </Stack>
         </Tabs.Content>
       </Tabs.Root>
-    </div>
+    </Container>
     </>
   );
 }

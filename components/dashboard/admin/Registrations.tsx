@@ -2,6 +2,8 @@ import { memberRegistrationFetcher, registrationFetcher } from "@/lib";
 import { createClient } from "@/lib/supabase/client";
 import { toaster } from "@/components/ui/toaster";
 import {
+  Box,
+  Flex,
   Spinner,
   Table,
 } from "@chakra-ui/react";
@@ -41,58 +43,67 @@ export const Registrations = ({
   );
 
   return (
-    <div>
-      <div className="flex flex-col gap-5 mx-auto mt-8">
-        <Table.ScrollArea maxH="lg" overflowY="auto">
-          {(currentMembers ? membersLoading : isLoading) ? (
-            <Spinner />
-          ) : (
-            <Table.Root variant="outline" striped>
-              <Table.Caption>
-                A view into all{" "}
-                {currentMembers ? "authenticated" : "unauthenticated"}{" "}
-                conference registrations.
-              </Table.Caption>
-              <Table.Header>
-                <Table.Row>
-                  {(currentMembers ? memberColumns : columns).map((header) => (
-                    <Table.ColumnHeader key={header}>{header}</Table.ColumnHeader>
-                  ))}
-                </Table.Row>
-              </Table.Header>
+    <Box>
+      <Table.ScrollArea maxH="500px" overflowY="auto" borderWidth="1px" borderColor={{ base: "gray.200", _dark: "gray.700" }} rounded="lg">
+        {(currentMembers ? membersLoading : isLoading) ? (
+          <Flex justify="center" align="center" minH="200px">
+            <Spinner size="lg" color="purple.500" />
+          </Flex>
+        ) : (
+          <Table.Root variant="outline" striped size="sm">
+            <Table.Caption color={{ base: "slate.600", _dark: "gray.400" }}>
+              A view into all{" "}
+              {currentMembers ? "authenticated" : "unauthenticated"}{" "}
+              conference registrations.
+            </Table.Caption>
+            <Table.Header>
+              <Table.Row bg={{ base: "gray.50", _dark: "gray.800" }}>
+                {(currentMembers ? memberColumns : columns).map((header) => (
+                  <Table.ColumnHeader
+                    key={header}
+                    color={{ base: "slate.900", _dark: "white" }}
+                    fontWeight="bold"
+                    fontSize="xs"
+                    textTransform="uppercase"
+                    py="3"
+                  >
+                    {header}
+                  </Table.ColumnHeader>
+                ))}
+              </Table.Row>
+            </Table.Header>
 
-              <Table.Body>
-                {!currentMembers &&
-                  data &&
-                  data.map((user, idx) => (
-                    <Table.Row key={user.lname + " " + user.institution}>
-                      <Table.Cell>{idx + 1}</Table.Cell>
-                      <Table.Cell>{user.email}</Table.Cell>
-                      <Table.Cell>
-                        {user.fname} {user.lname}
-                      </Table.Cell>
-                      <Table.Cell>{user.role}</Table.Cell>
-                      <Table.Cell>{user.institution}</Table.Cell>
-                    </Table.Row>
-                  ))}
-                {currentMembers &&
-                  memberData &&
-                  memberData.map((user, idx) => (
-                    <Table.Row key={user.lname + " " + user.institution}>
-                      <Table.Cell>{idx + 1}</Table.Cell>
-                      <Table.Cell>
-                        {user.fname} {user.lname}
-                      </Table.Cell>
-                      <Table.Cell>{user.role}</Table.Cell>
-                      <Table.Cell>{user.institution}</Table.Cell>
-                    </Table.Row>
-                  ))}
-              </Table.Body>
-            </Table.Root>
-          )}
-        </Table.ScrollArea>
-      </div>
-    </div>
+            <Table.Body>
+              {!currentMembers &&
+                data &&
+                data.map((user, idx) => (
+                  <Table.Row key={user.lname + " " + user.institution + idx}>
+                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>{idx + 1}</Table.Cell>
+                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>{user.email}</Table.Cell>
+                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>
+                      {user.fname} {user.lname}
+                    </Table.Cell>
+                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>{user.role}</Table.Cell>
+                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>{user.institution}</Table.Cell>
+                  </Table.Row>
+                ))}
+              {currentMembers &&
+                memberData &&
+                memberData.map((user, idx) => (
+                  <Table.Row key={user.lname + " " + user.institution + idx}>
+                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>{idx + 1}</Table.Cell>
+                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>
+                      {user.fname} {user.lname}
+                    </Table.Cell>
+                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>{user.role}</Table.Cell>
+                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>{user.institution}</Table.Cell>
+                  </Table.Row>
+                ))}
+            </Table.Body>
+          </Table.Root>
+        )}
+      </Table.ScrollArea>
+    </Box>
   );
 };
 
