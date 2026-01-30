@@ -1,5 +1,6 @@
 "use client";
 
+import { MembershipPlans } from "@/components/MembershipPlans";
 import { DnaHelix } from "@/components/svg/DnaHelix";
 import { toaster } from "@/components/ui/toaster";
 import {
@@ -25,8 +26,6 @@ import {
   Lightbulb,
   MapPin,
   MessageSquare,
-  Sparkles,
-  Star,
   Target,
   TriangleAlert,
   Users,
@@ -34,6 +33,7 @@ import {
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { use } from "react";
+import { membershipBenefits } from "./membership/page";
 
 export default function Page({
   searchParams,
@@ -500,326 +500,14 @@ export default function Page({
                 >
                   Join for 2026
                 </Button>
-                {/* <Flex align="center" gap={2}>
-                  <Flex>
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <Box
-                        key={i}
-                        w={8}
-                        h={8}
-                        borderRadius="full"
-                        bg="gray.600"
-                        border="2px solid"
-                        borderColor="gray.800"
-                        ml={i > 1 ? -2 : 0}
-                      />
-                    ))}
-                  </Flex>
-                  <Text color="gray.400" fontSize="sm">
-                    500+ Active
-                  </Text>
-                </Flex> */}
               </Flex>
             </Stack>
 
             {/* Right - Pricing Cards */}
-            <Card.Root
-              bg="white"
-              _dark={{ bg: "gray.800" }}
-              borderRadius="2xl"
-              overflow="hidden"
-              boxShadow="xl"
-            >
-              <Box p={{ base: 6, md: 8 }}>
-                <Text
-                  fontSize="sm"
-                  fontWeight={600}
-                  textTransform="uppercase"
-                  letterSpacing="wider"
-                  color="gray.500"
-                  _dark={{ color: "gray.400" }}
-                  mb={6}
-                >
-                  Conference Registration
-                </Text>
-
-                <Stack gap={4}>
-                  {/* Professional Plan */}
-                  <Box
-                    p={5}
-                    borderRadius="xl"
-                    borderWidth="1px"
-                    borderColor="gray.200"
-                    _dark={{ borderColor: "gray.700" }}
-                    transition="all 0.2s"
-                    cursor="pointer"
-                    _hover={{
-                      borderColor: "red.300",
-                      bg: "red.50",
-                      boxShadow: "0 0 20px rgba(185, 28, 28, 0.15)",
-                      transform: "translateY(-2px)",
-                      _dark: { borderColor: "red.600", bg: "red.900" },
-                    }}
-                  >
-                    <Flex justify="space-between" align="flex-start" mb={3}>
-                      <Box>
-                        <Text
-                          fontWeight={700}
-                          color="gray.900"
-                          _dark={{ color: "white" }}
-                          fontSize="lg"
-                        >
-                          Professional
-                        </Text>
-                        <Text
-                          fontSize="xs"
-                          color="gray.500"
-                          textTransform="uppercase"
-                          letterSpacing="wide"
-                        >
-                          For Researchers & Faculty
-                        </Text>
-                      </Box>
-                      <Box textAlign="right">
-                        <Flex align="baseline" gap={1}>
-                          <Text
-                            fontSize="3xl"
-                            fontWeight={700}
-                            color="red.700"
-                            _dark={{ color: "red.400" }}
-                          >
-                            $450
-                          </Text>
-                        </Flex>
-                        <Badge
-                          colorPalette="green"
-                          variant="subtle"
-                          fontSize="xs"
-                        >
-                          $400 Early Bird
-                        </Badge>
-                      </Box>
-                    </Flex>
-                    <Stack gap={2}>
-                      <Flex align="center" gap={2}>
-                        <Star size={14} color="#B91C1C" />
-                        <Text
-                          fontSize="sm"
-                          color="gray.600"
-                          _dark={{ color: "gray.400" }}
-                        >
-                          Full voting rights in society
-                        </Text>
-                      </Flex>
-                      <Flex align="center" gap={2}>
-                        <Star size={14} color="#B91C1C" />
-                        <Text
-                          fontSize="sm"
-                          color="gray.600"
-                          _dark={{ color: "gray.400" }}
-                        >
-                          Leadership board eligibility
-                        </Text>
-                      </Flex>
-                    </Stack>
-                  </Box>
-
-                  {/* Postdoc Plan */}
-                  <Box
-                    p={5}
-                    borderRadius="xl"
-                    borderWidth="1px"
-                    borderColor="gray.200"
-                    _dark={{ borderColor: "gray.700" }}
-                    transition="all 0.2s"
-                    cursor="pointer"
-                    _hover={{
-                      borderColor: "red.300",
-                      bg: "red.50",
-                      boxShadow: "0 0 20px rgba(185, 28, 28, 0.15)",
-                      transform: "translateY(-2px)",
-                      _dark: { borderColor: "red.600", bg: "red.900" },
-                    }}
-                  >
-                    <Flex justify="space-between" align="flex-start" mb={3}>
-                      <Box>
-                        <Text
-                          fontWeight={700}
-                          color="gray.900"
-                          _dark={{ color: "white" }}
-                          fontSize="lg"
-                        >
-                          Postdoc
-                        </Text>
-                        <Text
-                          fontSize="xs"
-                          color="gray.500"
-                          textTransform="uppercase"
-                          letterSpacing="wide"
-                        >
-                          For Postdoctoral Researchers
-                        </Text>
-                      </Box>
-                      <Box textAlign="right">
-                        <Flex align="baseline" gap={1}>
-                          <Text
-                            fontSize="3xl"
-                            fontWeight={700}
-                            color="red.700"
-                            _dark={{ color: "red.400" }}
-                          >
-                            $350
-                          </Text>
-                        </Flex>
-                        <Badge
-                          colorPalette="green"
-                          variant="subtle"
-                          fontSize="xs"
-                        >
-                          $300 Early Bird
-                        </Badge>
-                      </Box>
-                    </Flex>
-                    <Stack gap={2}>
-                      <Flex align="center" gap={2}>
-                        <Star size={14} color="#B91C1C" />
-                        <Text
-                          fontSize="sm"
-                          color="gray.600"
-                          _dark={{ color: "gray.400" }}
-                        >
-                          Career development resources
-                        </Text>
-                      </Flex>
-                      <Flex align="center" gap={2}>
-                        <Star size={14} color="#B91C1C" />
-                        <Text
-                          fontSize="sm"
-                          color="gray.600"
-                          _dark={{ color: "gray.400" }}
-                        >
-                          Mentorship opportunities
-                        </Text>
-                      </Flex>
-                    </Stack>
-                  </Box>
-
-                  {/* Student Plan */}
-                  <Box
-                    p={5}
-                    borderRadius="xl"
-                    borderWidth="1px"
-                    borderColor="gray.200"
-                    _dark={{ borderColor: "gray.700" }}
-                    transition="all 0.2s"
-                    cursor="pointer"
-                    _hover={{
-                      borderColor: "red.300",
-                      bg: "red.50",
-                      boxShadow: "0 0 20px rgba(185, 28, 28, 0.15)",
-                      transform: "translateY(-2px)",
-                      _dark: { borderColor: "red.600", bg: "red.900" },
-                    }}
-                  >
-                    <Flex justify="space-between" align="flex-start" mb={3}>
-                      <Box>
-                        <Text
-                          fontWeight={700}
-                          color="gray.900"
-                          _dark={{ color: "white" }}
-                          fontSize="lg"
-                        >
-                          Student
-                        </Text>
-                        <Text
-                          fontSize="xs"
-                          color="gray.500"
-                          textTransform="uppercase"
-                          letterSpacing="wide"
-                        >
-                          For Undergraduates & PhDs
-                        </Text>
-                      </Box>
-                      <Box textAlign="right">
-                        <Flex align="baseline" gap={1}>
-                          <Text
-                            fontSize="3xl"
-                            fontWeight={700}
-                            color="red.700"
-                            _dark={{ color: "red.400" }}
-                          >
-                            $250
-                          </Text>
-                        </Flex>
-                        <Badge
-                          colorPalette="green"
-                          variant="subtle"
-                          fontSize="xs"
-                        >
-                          $200 Early Bird
-                        </Badge>
-                      </Box>
-                    </Flex>
-                    <Stack gap={2}>
-                      <Flex align="center" gap={2}>
-                        <Star size={14} color="#B91C1C" />
-                        <Text
-                          fontSize="sm"
-                          color="gray.600"
-                          _dark={{ color: "gray.400" }}
-                        >
-                          Scholarship & award eligibility
-                        </Text>
-                      </Flex>
-                      <Flex align="center" gap={2}>
-                        <Star size={14} color="#B91C1C" />
-                        <Text
-                          fontSize="sm"
-                          color="gray.600"
-                          _dark={{ color: "gray.400" }}
-                        >
-                          Career networking access
-                        </Text>
-                      </Flex>
-                    </Stack>
-                  </Box>
-                </Stack>
-
-                {/* Note */}
-                <Flex
-                  bg="red.50"
-                  _dark={{ bg: "red.900" }}
-                  borderRadius="lg"
-                  p={4}
-                  gap={3}
-                  align="flex-start"
-                  mt={6}
-                >
-                  <Flex
-                    w={6}
-                    h={6}
-                    bg="red.100"
-                    _dark={{ bg: "red.800" }}
-                    borderRadius="full"
-                    align="center"
-                    justify="center"
-                    flexShrink={0}
-                    mt={0.5}
-                  >
-                    <Sparkles size={12} color="#B91C1C" />
-                  </Flex>
-                  <Text
-                    fontSize="xs"
-                    color="red.700"
-                    my="auto"
-                    _dark={{ color: "red.200" }}
-                  >
-                    Registration fee includes complimentary one-year MCBIOS
-                    membership.
-                  </Text>
-                </Flex>
-              </Box>
-            </Card.Root>
+            <MembershipPlans
+              variant="card"
+              onPlanSelect={() => router.push("/membership")}
+            />
           </Grid>
         </Container>
       </Box>
@@ -1007,13 +695,4 @@ const objectives = [
     description:
       "Developing computational biology capacity and excellence across our regional chapters.",
   },
-];
-
-const membershipBenefits = [
-  "Conference registration discounts",
-  "Leadership opportunity eligibility",
-  "Access to member-only events",
-  "Reduced publication fees",
-  "Student awards and grants",
-  "Local chapter participation",
 ];
