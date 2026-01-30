@@ -12,14 +12,14 @@ import {
   Text,
 } from "@chakra-ui/react";
 import {
+  AlertTriangle,
+  ChevronLeft,
   Globe,
   Handshake,
   Library,
   Medal,
   MicVocal,
   Sparkles,
-  ChevronLeft,
-  AlertTriangle,
 } from "lucide-react";
 import Head from "next/head";
 import Image from "next/image";
@@ -39,7 +39,14 @@ export default function Page() {
       </Head>
 
       {/* Hero Section */}
-      <Box as="section" pt="40" pb="16" bg="slate.50" position="relative" overflow="hidden">
+      <Box
+        as="section"
+        pt="40"
+        pb="16"
+        bg="slate.50"
+        position="relative"
+        overflow="hidden"
+      >
         <Box
           position="absolute"
           right="-80px"
@@ -51,7 +58,12 @@ export default function Page() {
           <DnaHelix className="w-48 h-100" color="#800000" opacity="1" />
         </Box>
 
-        <Container maxW="6xl" px={{ base: 4, sm: 6, lg: 8 }} position="relative" zIndex="10">
+        <Container
+          maxW="6xl"
+          px={{ base: 4, sm: 6, lg: 8 }}
+          position="relative"
+          zIndex="10"
+        >
           <Flex
             direction={{ base: "column", lg: "row" }}
             align="center"
@@ -77,7 +89,13 @@ export default function Page() {
               {isValid ? (
                 <>
                   <Flex align="center" gap="3" mb="4">
-                    <Flex p="3" bg="emerald.100" rounded="xl" align="center" justify="center">
+                    <Flex
+                      p="3"
+                      bg="emerald.100"
+                      rounded="xl"
+                      align="center"
+                      justify="center"
+                    >
                       <Icon color="emerald.700" boxSize="6">
                         <LuPartyPopper />
                       </Icon>
@@ -103,14 +121,21 @@ export default function Page() {
                     Thank You for Joining MCBIOS
                   </Heading>
                   <Text fontSize="lg" color="slate.600" lineHeight="relaxed">
-                    We appreciate your contribution and time! Your membership helps
-                    advance computational biology and bioinformatics in the MidSouth region.
+                    We appreciate your contribution and time! Your membership
+                    helps advance computational biology and bioinformatics in
+                    the MidSouth region.
                   </Text>
                 </>
               ) : (
                 <>
                   <Flex align="center" gap="3" mb="4">
-                    <Flex p="3" bg="orange.100" rounded="xl" align="center" justify="center">
+                    <Flex
+                      p="3"
+                      bg="orange.100"
+                      rounded="xl"
+                      align="center"
+                      justify="center"
+                    >
                       <Icon color="orange.700" boxSize="6">
                         <AlertTriangle />
                       </Icon>
@@ -136,8 +161,9 @@ export default function Page() {
                     Something Went Wrong
                   </Heading>
                   <Text fontSize="lg" color="slate.600" lineHeight="relaxed">
-                    If you were in the middle of a registration, please try again later
-                    or reach out to us. If you got here by accident, no worries!
+                    If you were in the middle of a registration, please try
+                    again later or reach out to us. If you got here by accident,
+                    no worries!
                   </Text>
                 </>
               )}
@@ -163,7 +189,13 @@ export default function Page() {
 
       {/* Benefits Section - Only show if valid */}
       {isValid && (
-        <Box as="section" py="20" bg="white" position="relative" overflow="hidden">
+        <Box
+          as="section"
+          py="20"
+          bg="white"
+          position="relative"
+          overflow="hidden"
+        >
           <Box
             position="absolute"
             left="-60px"
@@ -175,7 +207,12 @@ export default function Page() {
             <DnaHelix className="w-48 h-100" color="#800000" opacity="1" />
           </Box>
 
-          <Container maxW="6xl" px={{ base: 4, sm: 6, lg: 8 }} position="relative" zIndex="10">
+          <Container
+            maxW="6xl"
+            px={{ base: 4, sm: 6, lg: 8 }}
+            position="relative"
+            zIndex="10"
+          >
             <Flex align="center" gap="3" mb="3" justify="center">
               <Icon color="red.700" boxSize="5">
                 <Sparkles />
@@ -226,7 +263,13 @@ export default function Page() {
                       <perk.icon />
                     </Icon>
                   </Flex>
-                  <Heading as="h3" fontSize="md" fontWeight="bold" color="slate.900" mb="2">
+                  <Heading
+                    as="h3"
+                    fontSize="md"
+                    fontWeight="bold"
+                    color="slate.900"
+                    mb="2"
+                  >
                     {perk.heading}
                   </Heading>
                   <Text fontSize="sm" color="slate.600" lineHeight="relaxed">

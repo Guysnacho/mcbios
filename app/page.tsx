@@ -30,7 +30,6 @@ import {
   TriangleAlert,
   Users,
 } from "lucide-react";
-import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { use } from "react";
 import { membershipBenefits } from "./membership/page";
@@ -65,16 +64,6 @@ export default function Page({
 
   return (
     <Box>
-      <Head>
-        <title>
-          MCBIOS | MidSouth Computational Biology and Bioinformatics Society
-        </title>
-        <meta
-          name="description"
-          content="MCBIOS - Advancing the MidSouth research community through innovation, interdisciplinary collaboration, and excellence in bioinformatics education since 2004."
-        />
-      </Head>
-
       {/* Hero Section */}
       <Box
         position="relative"
