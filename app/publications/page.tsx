@@ -12,12 +12,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Metadata } from "next";
-import {
-  LuBookOpen,
-  LuExternalLink,
-  LuFileText,
-  LuTrendingUp,
-} from "react-icons/lu";
+import { LuBookOpen, LuFileText, LuTrendingUp } from "react-icons/lu";
 
 export const metadata: Metadata = {
   title:
@@ -95,13 +90,7 @@ export default function Page() {
       </Box>
 
       {/* Main Content */}
-      <Box
-        as="section"
-        pb="8"
-        bg="white"
-        position="relative"
-        overflow="hidden"
-      >
+      <Box as="section" pb="8" bg="white" position="relative" overflow="hidden">
         <Box
           position="absolute"
           left="-60px"
