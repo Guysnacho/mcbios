@@ -14,7 +14,6 @@ import {
   Heading,
   Icon,
   Image,
-  Link,
   SimpleGrid,
   Stack,
   Text,
@@ -33,7 +32,6 @@ import {
   Users,
 } from "lucide-react";
 import Head from "next/head";
-import NextLink from "next/link";
 import { useRouter } from "next/navigation";
 import { use } from "react";
 
@@ -135,6 +133,7 @@ export default function Page({
                 </Badge>
 
                 {/* Headline */}
+                <Image src="/images/logo.jpg" w={[250, null, null, 300]} />
                 <Heading
                   as="h1"
                   fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
