@@ -46,6 +46,10 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "/membership",
   },
   {
+    label: "Events",
+    href: "/events",
+  },
+  {
     label: "Conferences",
     children: [...ConfYears].reverse().map((conference) => ({
       label: "MCBIOS " + conference.year,
@@ -353,7 +357,7 @@ export default function Nav() {
               </Stack>
 
               <Stack p={4} gap={3} mt={4}>
-                <Button
+                {/* <Button
                   w="full"
                   size="lg"
                   bg="red.700"
@@ -366,9 +370,9 @@ export default function Nav() {
                   }}
                 >
                   Register Now
-                </Button>
+                </Button> */}
 
-                <Button
+                {/* <Button
                   w="full"
                   size="lg"
                   bg="red.800"
@@ -382,7 +386,7 @@ export default function Nav() {
                 >
                   Register for 2026
                   <ArrowRight size={18} />
-                </Button>
+                </Button> */}
 
                 <Button
                   w="full"

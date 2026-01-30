@@ -812,6 +812,7 @@ export default function Page({
                   <Text
                     fontSize="xs"
                     color="red.700"
+                    my="auto"
                     _dark={{ color: "red.200" }}
                   >
                     Registration fee includes complimentary one-year MCBIOS
