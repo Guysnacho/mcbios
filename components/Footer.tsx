@@ -21,7 +21,7 @@ const footerLinks = {
       { label: "Leadership", href: "/leadership" },
       { label: "Membership", href: "/membership" },
       { label: "Publications", href: "/publications" },
-      { label: "About Us", href: "/about" },
+      { label: "Bylaws", href: "/bylaws" },
     ],
   },
   conferences: {
