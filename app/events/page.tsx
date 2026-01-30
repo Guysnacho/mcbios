@@ -45,7 +45,7 @@ export default function Page() {
 
           {/* Career Development */}
           <Tabs.Content value="career">
-            <Stack spacing={8}>
+            <Stack gap={8}>
               <Box>
                 <Image
                   src={CareerDev.src}

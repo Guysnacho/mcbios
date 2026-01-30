@@ -3,6 +3,7 @@
 import { MembershipPlans } from "@/components/MembershipPlans";
 import { DnaHelix } from "@/components/svg/DnaHelix";
 import { toaster } from "@/components/ui/toaster";
+import { membershipBenefits } from "@/lib/constants";
 import {
   Badge,
   Box,
@@ -32,7 +33,6 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { use } from "react";
-import { membershipBenefits } from "./membership/page";
 
 export default function Page({
   searchParams,

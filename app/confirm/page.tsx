@@ -24,12 +24,16 @@ import {
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { use } from "react";
 import { LuCircleCheck, LuPartyPopper } from "react-icons/lu";
 
-export default function Page() {
-  const params = useSearchParams();
-  const isValid = params?.has("token");
+export default function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const params = use(searchParams);
+  const isValid = params.token;
 
   return (
     <>

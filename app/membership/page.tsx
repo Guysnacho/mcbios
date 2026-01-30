@@ -1,8 +1,9 @@
 "use client";
 
 import { AuthModal } from "@/components/AuthModal";
-import { MembershipPlans, MembershipPlan } from "@/components/MembershipPlans";
+import { MembershipPlan, MembershipPlans } from "@/components/MembershipPlans";
 import { DnaHelix } from "@/components/svg/DnaHelix";
+import { membershipBenefits } from "@/lib/constants";
 import { useUserStore } from "@/lib/store";
 import useStore from "@/lib/store/useStore";
 import {
@@ -17,14 +18,18 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { use, useEffect, useState } from "react";
 import { LuCircleCheck, LuShieldCheck } from "react-icons/lu";
 
-export default function Page() {
+export default function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
   const store = useStore(useUserStore, (store) => store);
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const params = use(searchParams);
   const [isAuthOpen, setAuthOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(true);
 
@@ -37,13 +42,13 @@ export default function Page() {
   }, [isAuthOpen, router, store?.id]);
 
   useEffect(() => {
-    if (searchParams?.get("registration")) {
+    if (params.registration) {
       setAuthOpen(true);
-    } else if (searchParams?.get("reset")) {
+    } else if (params.reset) {
       setIsSignUp(false);
       setAuthOpen(true);
     }
-  }, [searchParams]);
+  }, [params]);
 
   const handlePlanSelect = (_plan: MembershipPlan) => {
     setIsSignUp(true);
@@ -319,12 +324,3 @@ export default function Page() {
     </>
   );
 }
-
-export const membershipBenefits = [
-  "Conference Registration Discounts",
-  "Leadership Opportunity Eligibility",
-  "Access to Member-Only Events",
-  "Reduced Publication Fees",
-  "Student Awards and Grants",
-  "Local Chapter Participation",
-];
