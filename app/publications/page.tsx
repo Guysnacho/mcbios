@@ -29,7 +29,7 @@ export default function Page() {
         as="section"
         pt="40"
         pb="16"
-        bg="slate.50"
+        bg={{ base: "slate.50", _dark: "gray.900" }}
         position="relative"
         overflow="hidden"
       >
@@ -76,13 +76,13 @@ export default function Page() {
             as="h1"
             fontSize={{ base: "4xl", md: "5xl" }}
             fontWeight="black"
-            color="slate.900"
+            color={{ base: "slate.900", _dark: "white" }}
             mb="4"
             lineHeight="tight"
           >
             Publications
           </Heading>
-          <Text fontSize="lg" color="slate.600" lineHeight="relaxed">
+          <Text fontSize="lg" color={{ base: "slate.600", _dark: "gray.300" }} lineHeight="relaxed">
             Explore peer-reviewed research from the MCBIOS community, published
             in collaboration with BMC Bioinformatics.
           </Text>
@@ -90,7 +90,7 @@ export default function Page() {
       </Box>
 
       {/* Main Content */}
-      <Box as="section" pb="8" bg="white" position="relative" overflow="hidden">
+      <Box as="section" pb="8" bg={{ base: "white", _dark: "gray.950" }} position="relative" overflow="hidden">
         <Box
           position="absolute"
           left="-60px"
@@ -112,10 +112,10 @@ export default function Page() {
             {/* About Publications */}
             <Box
               p={{ base: 6, md: 8 }}
-              bg="slate.50"
+              bg={{ base: "slate.50", _dark: "gray.800" }}
               rounded="2xl"
               borderWidth="1px"
-              borderColor="slate.200"
+              borderColor={{ base: "slate.200", _dark: "gray.700" }}
             >
               <Flex align="center" gap="3" mb="4">
                 <Icon color="red.700" boxSize="5">
@@ -125,12 +125,12 @@ export default function Page() {
                   as="h2"
                   fontSize="lg"
                   fontWeight="bold"
-                  color="slate.900"
+                  color={{ base: "slate.900", _dark: "white" }}
                 >
                   Conference Proceedings
                 </Heading>
               </Flex>
-              <Text color="slate.700" lineHeight="relaxed">
+              <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="relaxed">
                 Individuals whose poster or platform abstracts are accepted for
                 presentation at the MCBIOS conference are eligible to submit a
                 full paper to be considered for formal, peer-reviewed
@@ -153,10 +153,10 @@ export default function Page() {
             {/* Google Scholar */}
             <Box
               p={{ base: 6, md: 8 }}
-              bg="slate.50"
+              bg={{ base: "slate.50", _dark: "gray.800" }}
               rounded="2xl"
               borderWidth="1px"
-              borderColor="slate.200"
+              borderColor={{ base: "slate.200", _dark: "gray.700" }}
             >
               <Flex align="center" gap="3" mb="4">
                 <Icon color="red.700" boxSize="5">
@@ -166,12 +166,12 @@ export default function Page() {
                   as="h2"
                   fontSize="lg"
                   fontWeight="bold"
-                  color="slate.900"
+                  color={{ base: "slate.900", _dark: "white" }}
                 >
                   MCBIOS on Google Scholar
                 </Heading>
               </Flex>
-              <Text color="slate.700" lineHeight="relaxed">
+              <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="relaxed">
                 Proceedings papers for all previous MCBIOS meetings are now
                 available on Google Scholar. For a listing of the papers and
                 citation metrics,{" "}
@@ -200,12 +200,12 @@ export default function Page() {
                   as="h2"
                   fontSize="lg"
                   fontWeight="bold"
-                  color="slate.900"
+                  color={{ base: "slate.900", _dark: "white" }}
                 >
                   Archive
                 </Heading>
               </Flex>
-              <Text color="slate.600" mb="6">
+              <Text color={{ base: "slate.600", _dark: "gray.300" }} mb="6">
                 Browse through the MCBIOS conference proceedings at the{" "}
                 <Text as="span" fontStyle="italic">
                   BMC Bioinformatics
@@ -228,17 +228,17 @@ export default function Page() {
                       rel="noopener noreferrer"
                       display="block"
                       p="4"
-                      bg="slate.50"
+                      bg={{ base: "slate.50", _dark: "gray.800" }}
                       rounded="xl"
                       borderWidth="1px"
-                      borderColor="slate.200"
+                      borderColor={{ base: "slate.200", _dark: "gray.700" }}
                       textAlign="center"
                       fontWeight="bold"
-                      color="red.700"
+                      color={{ base: "red.700", _dark: "red.400" }}
                       transition="all 0.2s"
                       _hover={{
-                        bg: "red.50",
-                        borderColor: "red.200",
+                        bg: { base: "red.50", _dark: "red.950" },
+                        borderColor: { base: "red.200", _dark: "red.800" },
                         transform: "translateY(-2px)",
                         shadow: "sm",
                       }}
@@ -253,10 +253,10 @@ export default function Page() {
             {/* Impact Factors */}
             <Box
               p={{ base: 6, md: 8 }}
-              bg="slate.50"
+              bg={{ base: "slate.50", _dark: "gray.800" }}
               rounded="2xl"
               borderWidth="1px"
-              borderColor="slate.200"
+              borderColor={{ base: "slate.200", _dark: "gray.700" }}
             >
               <Flex align="center" gap="3" mb="4">
                 <Icon color="red.700" boxSize="5">
@@ -266,12 +266,12 @@ export default function Page() {
                   as="h2"
                   fontSize="lg"
                   fontWeight="bold"
-                  color="slate.900"
+                  color={{ base: "slate.900", _dark: "white" }}
                 >
                   Impact Factors
                 </Heading>
               </Flex>
-              <Text color="slate.600" mb="4">
+              <Text color={{ base: "slate.600", _dark: "gray.300" }} mb="4">
                 BMC Bioinformatics special issue journal impact factors:
               </Text>
               <Grid
@@ -285,17 +285,17 @@ export default function Page() {
                   <Flex
                     key={item.year}
                     p="4"
-                    bg="white"
+                    bg={{ base: "white", _dark: "gray.900" }}
                     rounded="xl"
                     borderWidth="1px"
-                    borderColor="slate.200"
+                    borderColor={{ base: "slate.200", _dark: "gray.700" }}
                     justify="space-between"
                     align="center"
                   >
-                    <Text color="slate.600" fontWeight="medium">
+                    <Text color={{ base: "slate.600", _dark: "gray.300" }} fontWeight="medium">
                       {item.year}
                     </Text>
-                    <Text color="red.700" fontWeight="bold" fontSize="lg">
+                    <Text color={{ base: "red.700", _dark: "red.400" }} fontWeight="bold" fontSize="lg">
                       {item.factor}
                     </Text>
                   </Flex>

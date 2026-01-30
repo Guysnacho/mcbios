@@ -29,7 +29,7 @@ export default function Page() {
       <NameTagForm isOpen={isOpen} setIsOpen={setIsOpen} />
 
       {/* Hero Section */}
-      <Box as="section" pt="40" pb="16" bg="slate.50" position="relative" overflow="hidden">
+      <Box as="section" pt="40" pb="16" bg={{ base: "slate.50", _dark: "gray.900" }} position="relative" overflow="hidden">
         <Box
           position="absolute"
           right="-80px"
@@ -83,13 +83,13 @@ export default function Page() {
                 as="h1"
                 fontSize={{ base: "4xl", md: "5xl" }}
                 fontWeight="black"
-                color="slate.900"
+                color={{ base: "slate.900", _dark: "white" }}
                 mb="4"
                 lineHeight="tight"
               >
                 MCBIOS Forms
               </Heading>
-              <Text fontSize="lg" color="slate.600" lineHeight="relaxed">
+              <Text fontSize="lg" color={{ base: "slate.600", _dark: "gray.300" }} lineHeight="relaxed">
                 Access official forms for conference registration, name tags, and other
                 society-related submissions.
               </Text>
@@ -99,7 +99,7 @@ export default function Page() {
       </Box>
 
       {/* Forms Section */}
-      <Box as="section" py="20" bg="white" position="relative" overflow="hidden">
+      <Box as="section" py="20" bg={{ base: "white", _dark: "gray.950" }} position="relative" overflow="hidden">
         <Box
           position="absolute"
           left="-60px"
@@ -116,10 +116,10 @@ export default function Page() {
             {/* Name Tag Form Card */}
             <Box
               p={{ base: 6, md: 8 }}
-              bg="slate.50"
+              bg={{ base: "slate.50", _dark: "gray.800" }}
               rounded="2xl"
               borderWidth="1px"
-              borderColor="slate.200"
+              borderColor={{ base: "slate.200", _dark: "gray.700" }}
             >
               <Flex
                 direction={{ base: "column", sm: "row" }}
@@ -142,10 +142,10 @@ export default function Page() {
                     </Icon>
                   </Flex>
                   <Box>
-                    <Heading as="h3" fontSize="lg" fontWeight="bold" color="slate.900" mb="1">
+                    <Heading as="h3" fontSize="lg" fontWeight="bold" color={{ base: "slate.900", _dark: "white" }} mb="1">
                       2025 Conference - Name Tag Confirmation
                     </Heading>
-                    <Text fontSize="sm" color="slate.500">
+                    <Text fontSize="sm" color={{ base: "slate.500", _dark: "gray.400" }}>
                       Confirm your name tag details for the upcoming conference
                     </Text>
                   </Box>
@@ -165,16 +165,16 @@ export default function Page() {
             {/* Placeholder for future forms */}
             <Flex
               p="6"
-              bg="slate.100"
+              bg={{ base: "slate.100", _dark: "gray.800" }}
               rounded="2xl"
               borderWidth="1px"
-              borderColor="slate.200"
+              borderColor={{ base: "slate.200", _dark: "gray.700" }}
               borderStyle="dashed"
               align="center"
               justify="center"
               minH="120px"
             >
-              <Text color="slate.500" fontSize="sm" fontWeight="medium">
+              <Text color={{ base: "slate.500", _dark: "gray.400" }} fontSize="sm" fontWeight="medium">
                 More forms will be available here as needed
               </Text>
             </Flex>

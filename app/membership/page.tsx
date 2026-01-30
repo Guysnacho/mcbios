@@ -74,22 +74,22 @@ export default function Page({
         as="section"
         pt="40"
         pb="20"
-        bg="slate.50"
+        bg={{ base: "slate.50", _dark: "gray.900" }}
         borderBottomWidth="1px"
-        borderColor="slate.200"
+        borderColor={{ base: "slate.200", _dark: "gray.700" }}
       >
         <Container maxW="7xl" px={{ base: 4, sm: 6, lg: 8 }}>
           <Box maxW="3xl">
             <Heading
               as="h1"
-              fontSize="6xl"
+              fontSize={["4xl", null, "6xl"]}
               fontWeight="black"
-              color="slate.900"
+              color={{ base: "slate.900", _dark: "white" }}
               mb="6"
             >
               Membership
             </Heading>
-            <Text fontSize="xl" color="slate.600" lineHeight="relaxed">
+            <Text fontSize="xl" color={{ base: "slate.600", _dark: "gray.300" }} lineHeight="relaxed">
               Join the premier bioinformatics network of the MidSouth and unlock
               exclusive benefits for your career and research.
             </Text>
@@ -101,7 +101,7 @@ export default function Page({
       <Box
         as="section"
         py="24"
-        bg="white"
+        bg={{ base: "white", _dark: "gray.950" }}
         position="relative"
         overflow="hidden"
       >
@@ -205,10 +205,10 @@ export default function Page({
 
               {/* Right Panel - Pricing */}
               <GridItem
-                bg="white"
+                bg={{ base: "white", _dark: "gray.950" }}
                 p={{ base: 10, lg: 24 }}
                 borderLeftWidth={{ lg: "1px" }}
-                borderColor="slate.100"
+                borderColor={{ base: "slate.100", _dark: "gray.800" }}
                 position="relative"
               >
                 <Box
@@ -225,7 +225,7 @@ export default function Page({
                   as="h3"
                   fontSize="2xl"
                   fontWeight="black"
-                  color="slate.900"
+                  color={{ base: "slate.900", _dark: "white" }}
                   mb="10"
                   textTransform="uppercase"
                   letterSpacing="widest"
@@ -245,21 +245,21 @@ export default function Page({
       </Box>
 
       {/* Additional Info Section */}
-      <Box as="section" py="16" bg="slate.50">
+      <Box as="section" py="16" bg={{ base: "slate.50", _dark: "gray.900" }}>
         <Container maxW="4xl" px={{ base: 4, sm: 6, lg: 8 }}>
           <Stack gap="8" textAlign="center">
-            <Heading as="h3" fontSize="2xl" fontWeight="bold" color="slate.900">
+            <Heading as="h3" fontSize="2xl" fontWeight="bold" color={{ base: "slate.900", _dark: "white" }}>
               Simple and Affordable Membership Options
             </Heading>
             <Stack gap="4">
               <Box
-                bg="white"
+                bg={{ base: "white", _dark: "gray.800" }}
                 p="6"
                 rounded="2xl"
                 borderWidth="1px"
-                borderColor="slate.200"
+                borderColor={{ base: "slate.200", _dark: "gray.700" }}
               >
-                <Text color="slate.700">
+                <Text color={{ base: "slate.700", _dark: "gray.300" }}>
                   <Text as="span" fontWeight="bold">
                     Conference Attendees:{" "}
                   </Text>
@@ -268,13 +268,13 @@ export default function Page({
                 </Text>
               </Box>
               <Box
-                bg="white"
+                bg={{ base: "white", _dark: "gray.800" }}
                 p="6"
                 rounded="2xl"
                 borderWidth="1px"
-                borderColor="slate.200"
+                borderColor={{ base: "slate.200", _dark: "gray.700" }}
               >
-                <Text color="slate.700">
+                <Text color={{ base: "slate.700", _dark: "gray.300" }}>
                   <Text as="span" fontWeight="bold">
                     Direct Membership:{" "}
                   </Text>
@@ -290,19 +290,19 @@ export default function Page({
             </Stack>
 
             <Flex
-              bg="emerald.50"
+              bg={{ base: "emerald.50", _dark: "emerald.950" }}
               p="6"
               rounded="2xl"
               borderWidth="1px"
-              borderColor="emerald.200"
+              borderColor={{ base: "emerald.200", _dark: "emerald.800" }}
               align="center"
               justify="center"
               gap="4"
             >
-              <Icon color="emerald.600" boxSize="6">
+              <Icon color={{ base: "emerald.600", _dark: "emerald.400" }} boxSize="6">
                 <LuShieldCheck />
               </Icon>
-              <Text color="emerald.800" fontWeight="medium">
+              <Text color={{ base: "emerald.800", _dark: "emerald.200" }} fontWeight="medium">
                 MCBIOS site and conference registration now available
               </Text>
             </Flex>

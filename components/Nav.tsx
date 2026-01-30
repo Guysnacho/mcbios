@@ -31,6 +31,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import AuthListener from "./AuthListener";
 import { AuthModal } from "./AuthModal";
+import { ColorModeButton } from "@/components/ui/color-mode";
 
 const NAV_ITEMS: Array<NavItem> = [
   {
@@ -235,6 +236,9 @@ export default function Nav() {
               </Box>
             ))}
 
+            {/* Color Mode Toggle */}
+            <ColorModeButton ml={2} />
+
             {/* User Menu */}
             {store && store.id ? (
               <MenuRoot>
@@ -388,6 +392,11 @@ export default function Nav() {
                   Register for 2026
                   <ArrowRight size={18} />
                 </Button> */}
+
+                {/* Color Mode Toggle */}
+                <Flex justify="center">
+                  <ColorModeButton />
+                </Flex>
 
                 <Button
                   w="full"

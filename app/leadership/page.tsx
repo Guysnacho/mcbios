@@ -13,27 +13,20 @@ import XuefengWang from "@/public/images/leadership/Xuefeng-Wang.png";
 import ZongliangYue from "@/public/images/leadership/Zongliang-Yue.png";
 import {
   Box,
-  Container,
-  Heading,
-  Text,
-  SimpleGrid,
-  Flex,
-  Icon,
   Button,
-  Image,
+  Container,
+  Flex,
   Grid,
   GridItem,
+  Heading,
+  Icon,
+  Image,
+  SimpleGrid,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import {
-  LuUsers,
-  LuHistory,
-  LuTrophy,
-  LuQuote,
-  LuLinkedin,
-  LuMail,
-} from "react-icons/lu";
+import { LuHistory, LuQuote, LuTrophy, LuUsers } from "react-icons/lu";
 
 // President greeting sections
 const greetingSections = [
@@ -64,15 +57,15 @@ export default function Page() {
   const [boardView, setBoardView] = useState<"current" | "past">("current");
 
   return (
-    <Box bg="white">
+    <Box bg={{ base: "white", _dark: "gray.950" }}>
       {/* Leadership Hero */}
       <Box
         as="section"
         pt="40"
         pb="20"
-        bg="slate.50"
+        bg={{ base: "slate.50", _dark: "gray.900" }}
         borderBottomWidth="1px"
-        borderColor="slate.200"
+        borderColor={{ base: "slate.200", _dark: "gray.700" }}
       >
         <Container maxW="7xl" px={{ base: 4, sm: 6, lg: 8 }}>
           <Box maxW="3xl">
@@ -80,12 +73,16 @@ export default function Page() {
               as="h1"
               fontSize="6xl"
               fontWeight="black"
-              color="slate.900"
+              color={{ base: "slate.900", _dark: "white" }}
               mb="6"
             >
               Our Leadership
             </Heading>
-            <Text fontSize="xl" color="slate.600" lineHeight="relaxed">
+            <Text
+              fontSize="xl"
+              color={{ base: "slate.600", _dark: "gray.300" }}
+              lineHeight="relaxed"
+            >
               Guided by the vision of leading computational biologists and
               bioinformaticians from across the MidSouth region and beyond.
             </Text>
@@ -94,11 +91,11 @@ export default function Page() {
           <SimpleGrid columns={{ base: 1, md: 3 }} gap="8" mt="16">
             {/* Current Board Card */}
             <Flex
-              bg="white"
+              bg={{ base: "white", _dark: "gray.800" }}
               p="8"
               rounded="3xl"
               borderWidth="1px"
-              borderColor="slate.200"
+              borderColor={{ base: "slate.200", _dark: "gray.700" }}
               align="flex-start"
               gap="4"
             >
@@ -108,10 +105,16 @@ export default function Page() {
                 </Icon>
               </Flex>
               <Box>
-                <Text fontWeight="bold" color="slate.900">
+                <Text
+                  fontWeight="bold"
+                  color={{ base: "slate.900", _dark: "white" }}
+                >
                   Current Board
                 </Text>
-                <Text fontSize="sm" color="slate.500">
+                <Text
+                  fontSize="sm"
+                  color={{ base: "slate.500", _dark: "gray.400" }}
+                >
                   {boardMembers.length} Distinguished members
                 </Text>
               </Box>
@@ -119,11 +122,11 @@ export default function Page() {
 
             {/* Past Leadership Card */}
             <Flex
-              bg="white"
+              bg={{ base: "white", _dark: "gray.800" }}
               p="8"
               rounded="3xl"
               borderWidth="1px"
-              borderColor="slate.200"
+              borderColor={{ base: "slate.200", _dark: "gray.700" }}
               align="flex-start"
               gap="4"
             >
@@ -133,10 +136,16 @@ export default function Page() {
                 </Icon>
               </Flex>
               <Box>
-                <Text fontWeight="bold" color="slate.900">
+                <Text
+                  fontWeight="bold"
+                  color={{ base: "slate.900", _dark: "white" }}
+                >
                   Past Leadership
                 </Text>
-                <Text fontSize="sm" color="slate.500">
+                <Text
+                  fontSize="sm"
+                  color={{ base: "slate.500", _dark: "gray.400" }}
+                >
                   {pastPrez.length} Years of guidance
                 </Text>
               </Box>
@@ -144,11 +153,11 @@ export default function Page() {
 
             {/* Society Awards Card */}
             <Flex
-              bg="white"
+              bg={{ base: "white", _dark: "gray.800" }}
               p="8"
               rounded="3xl"
               borderWidth="1px"
-              borderColor="slate.200"
+              borderColor={{ base: "slate.200", _dark: "gray.700" }}
               align="flex-start"
               gap="4"
             >
@@ -158,10 +167,16 @@ export default function Page() {
                 </Icon>
               </Flex>
               <Box>
-                <Text fontWeight="bold" color="slate.900">
+                <Text
+                  fontWeight="bold"
+                  color={{ base: "slate.900", _dark: "white" }}
+                >
                   Society Awards
                 </Text>
-                <Text fontSize="sm" color="slate.500">
+                <Text
+                  fontSize="sm"
+                  color={{ base: "slate.500", _dark: "gray.400" }}
+                >
                   Honoring excellence
                 </Text>
               </Box>
@@ -201,8 +216,17 @@ export default function Page() {
           />
         </Box>
 
-        <Container maxW="7xl" px={{ base: 4, sm: 6, lg: 8 }} position="relative" zIndex="10">
-          <Grid templateColumns={{ base: "1fr", lg: "2fr 3fr" }} gap="20" alignItems="center">
+        <Container
+          maxW="7xl"
+          px={{ base: 4, sm: 6, lg: 8 }}
+          position="relative"
+          zIndex="10"
+        >
+          <Grid
+            templateColumns={{ base: "1fr", lg: "2fr 3fr" }}
+            gap="20"
+            alignItems="center"
+          >
             {/* Left column - President photo and info */}
             <GridItem>
               <Box position="relative" display="inline-block">
@@ -237,7 +261,12 @@ export default function Page() {
                 </Flex>
               </Box>
               <Box mt="12">
-                <Heading as="h3" fontSize="3xl" fontWeight="black" letterSpacing="tight">
+                <Heading
+                  as="h3"
+                  fontSize="3xl"
+                  fontWeight="black"
+                  letterSpacing="tight"
+                >
                   Aik Choon Tan, Ph.D.
                 </Heading>
                 <Text
@@ -250,7 +279,13 @@ export default function Page() {
                 >
                   MCBIOS President (2024-2025)
                 </Text>
-                <Stack mt="6" gap="1" color="slate.400" fontSize="sm" fontWeight="medium">
+                <Stack
+                  mt="6"
+                  gap="1"
+                  color="slate.400"
+                  fontSize="sm"
+                  fontWeight="medium"
+                >
                   <Text>Professor | Senior Director of Data Science</Text>
                   <Text>Huntsman Cancer Institute</Text>
                   <Text>University of Utah</Text>
@@ -260,7 +295,14 @@ export default function Page() {
 
             {/* Right column - Greeting content */}
             <GridItem>
-              <Heading as="h2" fontSize="5xl" fontWeight="black" mb="10" letterSpacing="tight" lineHeight="tight">
+              <Heading
+                as="h2"
+                fontSize="5xl"
+                fontWeight="black"
+                mb="10"
+                letterSpacing="tight"
+                lineHeight="tight"
+              >
                 Greetings from the{" "}
                 <Text as="span" color="#800000">
                   President
@@ -293,7 +335,12 @@ export default function Page() {
                       {section.title}
                     </Heading>
                     {activeTab === idx && (
-                      <Text color="slate.300" lineHeight="relaxed" fontWeight="medium" fontSize="lg">
+                      <Text
+                        color="slate.300"
+                        lineHeight="relaxed"
+                        fontWeight="medium"
+                        fontSize="lg"
+                      >
                         {section.content}
                       </Text>
                     )}
@@ -306,7 +353,7 @@ export default function Page() {
       </Box>
 
       {/* Board Members */}
-      <Box as="section" py="24" bg="slate.50">
+      <Box as="section" py="24" bg={{ base: "slate.50", _dark: "gray.900" }}>
         <Container maxW="7xl" px={{ base: 4, sm: 6, lg: 8 }}>
           <Flex
             direction={{ base: "column", md: "row" }}
@@ -326,16 +373,33 @@ export default function Page() {
               >
                 Leadership
               </Text>
-              <Heading as="h3" fontSize="4xl" fontWeight="bold" color="slate.900" mb="6">
+              <Heading
+                as="h3"
+                fontSize="4xl"
+                fontWeight="bold"
+                color={{ base: "slate.900", _dark: "white" }}
+                mb="6"
+              >
                 Board of Directors
               </Heading>
-              <Text fontSize="lg" color="slate.600">
-                Our leadership team comprises distinguished researchers and educators
-                dedicated to steering the society towards excellence in computational
-                biology.
+              <Text
+                fontSize="lg"
+                color={{ base: "slate.600", _dark: "gray.300" }}
+              >
+                Our leadership team comprises distinguished researchers and
+                educators dedicated to steering the society towards excellence
+                in computational biology.
               </Text>
             </Box>
-            <Flex gap="2" p="1" bg="white" rounded="xl" shadow="sm" borderWidth="1px" borderColor="slate.200">
+            <Flex
+              gap="2"
+              p="1"
+              bg={{ base: "white", _dark: "gray.800" }}
+              rounded="xl"
+              shadow="sm"
+              borderWidth="1px"
+              borderColor={{ base: "slate.200", _dark: "gray.700" }}
+            >
               <Button
                 px="4"
                 py="2"
@@ -343,8 +407,13 @@ export default function Page() {
                 fontWeight="bold"
                 fontSize="sm"
                 bg={boardView === "current" ? "indigo.600" : "transparent"}
-                color={boardView === "current" ? "white" : "slate.500"}
-                _hover={{ bg: boardView === "current" ? "indigo.700" : "slate.50" }}
+                color={{
+                  _light: boardView === "current" ? "slate.500" : "blackAlpha.800",
+                  _dark: boardView === "current" ? "slate.500" : "white",
+                }}
+                _hover={{
+                  bg: boardView === "current" ? "indigo.700" : "slate.50",
+                }}
                 onClick={() => setBoardView("current")}
               >
                 Current Board
@@ -356,8 +425,13 @@ export default function Page() {
                 fontWeight="bold"
                 fontSize="sm"
                 bg={boardView === "past" ? "indigo.600" : "transparent"}
-                color={boardView === "past" ? "white" : "slate.500"}
-                _hover={{ bg: boardView === "past" ? "indigo.700" : "slate.50" }}
+                color={{
+                  _light: boardView === "past" ? "white" : "blackAlpha.800",
+                  _dark: boardView === "past" ? "slate.500" : "white",
+                }}
+                _hover={{
+                  bg: boardView === "past" ? "indigo.700" : "slate.50",
+                }}
                 onClick={() => setBoardView("past")}
               >
                 Past Presidents
@@ -370,11 +444,11 @@ export default function Page() {
               {boardMembers.map((member, index) => (
                 <Box
                   key={index}
-                  bg="white"
+                  bg={{ base: "white", _dark: "gray.800" }}
                   p="6"
                   rounded="3xl"
                   borderWidth="1px"
-                  borderColor="slate.200"
+                  borderColor={{ base: "slate.200", _dark: "gray.700" }}
                   transition="all 0.2s"
                   _hover={{ borderColor: "indigo.600" }}
                   role="group"
@@ -394,7 +468,7 @@ export default function Page() {
                       w="16"
                       h="16"
                       rounded="2xl"
-                      bg="slate.100"
+                      bg={{ base: "slate.100", _dark: "gray.700" }}
                       mb="6"
                       align="center"
                       justify="center"
@@ -416,22 +490,35 @@ export default function Page() {
                     as="h4"
                     fontSize="lg"
                     fontWeight="bold"
-                    color="slate.900"
+                    color={{ base: "slate.900", _dark: "white" }}
                     mb="1"
                     _groupHover={{ color: "indigo.600" }}
                     transition="all 0.2s"
                   >
                     {member.name}
                   </Heading>
-                  <Text color="indigo.600" fontSize="sm" fontWeight="semibold" mb="2">
+                  <Text
+                    color="indigo.600"
+                    fontSize="sm"
+                    fontWeight="semibold"
+                    mb="2"
+                  >
                     {member.title}
                   </Text>
                   {member.department && (
-                    <Text color="slate.500" fontSize="xs" mb="1">
+                    <Text
+                      color={{ base: "slate.500", _dark: "gray.400" }}
+                      fontSize="xs"
+                      mb="1"
+                    >
                       {member.department}
                     </Text>
                   )}
-                  <Text color="slate.500" fontSize="xs" mb="6">
+                  <Text
+                    color={{ base: "slate.500", _dark: "gray.400" }}
+                    fontSize="xs"
+                    mb="6"
+                  >
                     {member.affiliation}
                   </Text>
 
@@ -465,11 +552,11 @@ export default function Page() {
               {pastPrez.map((member, index) => (
                 <Box
                   key={index}
-                  bg="white"
+                  bg={{ base: "white", _dark: "gray.800" }}
                   p="6"
                   rounded="3xl"
                   borderWidth="1px"
-                  borderColor="slate.200"
+                  borderColor={{ base: "slate.200", _dark: "gray.700" }}
                   transition="all 0.2s"
                   _hover={{ borderColor: "indigo.600" }}
                   role="group"
@@ -499,22 +586,35 @@ export default function Page() {
                     as="h4"
                     fontSize="lg"
                     fontWeight="bold"
-                    color="slate.900"
+                    color={{ base: "slate.900", _dark: "white" }}
                     mb="1"
                     _groupHover={{ color: "indigo.600" }}
                     transition="all 0.2s"
                   >
                     {member.name}
                   </Heading>
-                  <Text color="indigo.600" fontSize="sm" fontWeight="semibold" mb="2">
+                  <Text
+                    color="indigo.600"
+                    fontSize="sm"
+                    fontWeight="semibold"
+                    mb="2"
+                  >
                     {member.title}
                   </Text>
                   {member.department && (
-                    <Text color="slate.500" fontSize="xs" mb="1">
+                    <Text
+                      color={{ base: "slate.500", _dark: "gray.400" }}
+                      fontSize="xs"
+                      mb="1"
+                    >
                       {member.department}
                     </Text>
                   )}
-                  <Text color="slate.500" fontSize="xs" mb="6">
+                  <Text
+                    color={{ base: "slate.500", _dark: "gray.400" }}
+                    fontSize="xs"
+                    mb="6"
+                  >
                     {member.affiliation}
                   </Text>
 
