@@ -1,5 +1,6 @@
+import { Avatar } from "@/components/ui/avatar";
 import { Database } from "@/lib/supabase/types";
-import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 type RoleProp =
   | Database["public"]["Tables"]["member"]["Row"]["role"]

@@ -6,7 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useCallback } from "react";
 
 const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
 );
 
 export type PaymentHandlerType =
@@ -37,7 +37,7 @@ export const PaymentHandler = ({
 }: PaymentBody) => {
   const fetchClientSecret = useCallback(async () => {
     // Create a Checkout Session
-    const res = await fetch("/api/checkout", {
+    const res = await fetch("/checkout", {
       method: "POST",
       body: JSON.stringify({
         tier,
@@ -50,7 +50,7 @@ export const PaymentHandler = ({
     });
     const data = await res.json();
     return data.clientSecret;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email, tier, userId]);
 
   const options = { fetchClientSecret };

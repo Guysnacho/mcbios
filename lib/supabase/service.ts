@@ -1,11 +1,15 @@
-import { createClient as createSupaClient } from "@supabase/supabase-js";
-import { Database } from "./types";
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
+import { Database } from './types'
 
+/**
+ * Creates a Supabase client with service role permissions.
+ * Use this for API routes that need elevated database access.
+ *
+ * WARNING: Only use server-side. Never expose service role key to client.
+ */
 export default function createClient() {
-  const supabase = createSupaClient<Database>(
+  return createSupabaseClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVER_KEY!
-  );
-
-  return supabase;
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
 }

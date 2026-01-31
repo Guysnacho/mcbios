@@ -26,7 +26,7 @@ export const authFetcher = async (client: SupabaseClient<Database>) => {
 };
 
 export const couponFetcher = async (): Promise<CouponList> => {
-  const data = await fetch("/api/admin");
+  const data = await fetch("/admin");
   return await data.json();
 };
 

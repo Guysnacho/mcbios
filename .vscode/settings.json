@@ -6,5 +6,6 @@
   },
   "editor.quickSuggestions": {
     "strings": true
-  }
+  },
+  "deno.enable": false
 }

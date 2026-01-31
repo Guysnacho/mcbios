@@ -57,3 +57,12 @@ export const ConfYears = [
 ];
 
 export const DUPLICATE_ROW = "23505";
+
+export const membershipBenefits = [
+  "Conference Registration Discounts",
+  "Leadership Opportunity Eligibility",
+  "Access to Member-Only Events",
+  "Reduced Publication Fees",
+  "Student Awards and Grants",
+  "Local Chapter Participation",
+];

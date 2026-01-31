@@ -1,5 +1,4 @@
 import { Footer } from "@/components/Footer";
-import Nav from "./Nav";
 
 // const poppins = Poppins({
 //   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -20,7 +19,7 @@ export default function RootLayout({
   // const { data, error } = useSWR('/auth/user', fetcher)
   return (
     <>
-      <Nav />
+      {/* <Nav /> */}
       <main>{children}</main>
       <Footer />
     </>

@@ -1,15 +1,9 @@
-import { createClient } from "@/lib/supabase/component";
+"use client";
+
+import { createClient } from "@/lib/supabase/client";
 import { Database } from "@/lib/supabase/types";
-import {
-  Button,
-  Flex,
-  Heading,
-  Input,
-  Stack,
-  Text,
-  useToast,
-  VStack,
-} from "@chakra-ui/react";
+import { Button, Flex, Input, Stack, Text } from "@chakra-ui/react";
+import { toaster } from "@/components/ui/toaster";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 
@@ -25,7 +19,6 @@ export const VideoUploader = () => {
   const [vidList, setVidList] =
     useState<Database["public"]["Tables"]["videos"]["Row"][]>();
   const [loading, setLoading] = useState(false);
-  const toast = useToast();
 
   const client = createClient();
 
@@ -51,13 +44,12 @@ export const VideoUploader = () => {
   };
 
   const handleSubmit = async () => {
-    const isValid = await isValidUpload();
+    const isValid = isValidUpload();
     if (!isValid) {
       setLoading(false);
-      toast({
+      toaster.warning({
         title: "Bad upload Request",
         duration: 5000,
-        status: "warning",
       });
       throw new Error();
     }
@@ -78,17 +70,15 @@ export const VideoUploader = () => {
 
     if (data) {
       setVidList(vidList?.concat(data));
-      toast({
+      toaster.success({
         title: "Mission accomplished",
         duration: 5000,
-        status: "success",
       });
     } else if (error) {
-      toast({
+      toaster.error({
         title: "Something went wrong",
         description: error.message,
         duration: 5000,
-        status: "error",
       });
       setLoading(false);
       return;
@@ -120,7 +110,7 @@ export const VideoUploader = () => {
             id="title"
             onChange={(e) => setTitle(e.currentTarget.value)}
             placeholder="Speaker Series II"
-            isDisabled={loading}
+            disabled={loading}
           />
           <Text>{titleError}</Text>
         </div>
@@ -135,14 +125,14 @@ export const VideoUploader = () => {
               setVideo(e.target.value);
             }}
             placeholder="drive.google.com/file/d/asdf1234/preview"
-            isDisabled={loading}
+            disabled={loading}
           />
           <Text>{videoError}</Text>
         </div>
 
         <Flex justify="center">
           <Button
-            colorScheme={
+            colorPalette={
               dateError || titleError || videoError ? "red" : "green"
             }
             onClick={() => handleSubmit().catch((err) => console.error(err))}

@@ -1,30 +1,19 @@
 import { User } from "@/components/User";
 import { Database } from "@/lib/supabase/types";
-import { CheckIcon, ChevronDownIcon, DeleteIcon } from "@chakra-ui/icons";
+import { Check, Trash2 } from "lucide-react";
+import { Button, Input, NativeSelect, Spinner, Table } from "@chakra-ui/react";
 import {
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Select,
-  Spinner,
-  Table,
-  TableCaption,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  useToast,
-} from "@chakra-ui/react";
+  DialogRoot,
+  DialogContent,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  DialogTitle,
+  DialogCloseTrigger,
+} from "@/components/ui/dialog";
+import { Field } from "@/components/ui/field";
+import { Tooltip } from "@/components/ui/tooltip";
+import { toaster } from "@/components/ui/toaster";
 import { SupabaseClient } from "@supabase/supabase-js";
 import {
   Dispatch,
@@ -70,7 +59,6 @@ export const UserConfirm = ({
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState<UserRequest[]>([]);
-  const toast = useToast();
 
   useEffect(() => {
     setLoading(true);
@@ -79,11 +67,10 @@ export const UserConfirm = ({
       .select(`id, user_id, ...member(*)`)
       .then(({ data, error, statusText }) => {
         if (error) {
-          toast({
+          toaster.error({
             title: "Something went wrong collecting confirmation requests",
             description: statusText,
             duration: 5000,
-            status: "error",
           });
           console.error(error);
         } else {
@@ -103,11 +90,10 @@ export const UserConfirm = ({
         .select(`id, user_id, ...member(*)`)
         .then(({ data, error, statusText }) => {
           if (error) {
-            toast({
+            toaster.error({
               title: "Something went wrong collecting user info",
               description: statusText,
               duration: 5000,
-              status: "error",
             });
             console.error(error);
           } else {
@@ -130,29 +116,28 @@ export const UserConfirm = ({
       case "actions":
         return (
           <div className="relative flex items-center justify-center gap-2">
-            <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-              <CheckIcon
-                color="green"
-                onClick={() => {
-                  setId(user.user_id);
-                  setOpen(true);
-                }}
-              />
-            </span>
-            <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-              <DeleteIcon
-                color="red"
-                onClick={() => {
-                  setId(user.user_id);
-                  setDeleteOpen(true);
-                }}
-              />
-            </span>
-            {/* <Tooltip color="danger" content="Reject user">
-              <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                <DeleteIcon />
+            <Tooltip content="Confirm">
+              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                <Check
+                  color="green"
+                  onClick={() => {
+                    setId(user.user_id);
+                    setOpen(true);
+                  }}
+                />
               </span>
-            </Tooltip> */}
+            </Tooltip>
+            <Tooltip content="Delete">
+              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                <Trash2
+                  color="red"
+                  onClick={() => {
+                    setId(user.user_id);
+                    setDeleteOpen(true);
+                  }}
+                />
+              </span>
+            </Tooltip>
           </div>
         );
       default:
@@ -178,41 +163,45 @@ export const UserConfirm = ({
         setOpen={setDeleteOpen}
       />
       <div className="flex flex-col gap-5 mx-auto mt-8">
-        <TableContainer maxH="lg" overflowY="auto">
-          <Table variant="striped" size="md">
-            <TableCaption>
+        <Table.ScrollArea maxH="lg" overflowY="auto">
+          <Table.Root variant="outline" striped>
+            <Table.Caption>
               {users.length
                 ? users.length + " members pending admin confirmation"
                 : "No users pending admin confirmation"}
-            </TableCaption>
-            <Thead>
-              <Tr>
+            </Table.Caption>
+            <Table.Header>
+              <Table.Row>
                 {columns.map(({ name }) => (
-                  <Th key={name}>{name}</Th>
+                  <Table.ColumnHeader key={name}>{name}</Table.ColumnHeader>
                 ))}
-              </Tr>
-            </Thead>
+              </Table.Row>
+            </Table.Header>
 
-            <Tbody>
+            <Table.Body>
               {users.map((user) => (
-                <Tr key={user.id}>
-                  <Td>{renderCell(user, "id")}</Td>
-                  <Td>{renderCell(user, "member")}</Td>
-                  <Td>{renderCell(user, "actions")}</Td>
-                </Tr>
+                <Table.Row key={user.id}>
+                  <Table.Cell>{renderCell(user, "id")}</Table.Cell>
+                  <Table.Cell>{renderCell(user, "member")}</Table.Cell>
+                  <Table.Cell>{renderCell(user, "actions")}</Table.Cell>
+                </Table.Row>
               ))}
-            </Tbody>
-          </Table>
-        </TableContainer>
+            </Table.Body>
+          </Table.Root>
+        </Table.ScrollArea>
       </div>
     </div>
   );
 };
 
-function saveRegistration(sessionId: string) {
-  return fetch(`/api/checkout?session_id=${sessionId}`, {
-    method: "GET",
-  })
+function saveRegistration(session_id: string) {
+  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/checkout`,
+    {
+      method: "GET",
+      headers: {
+        session_id,
+      },
+    })
     .then((res) => res.json())
     .catch((err) => {
       console.error(err.message);
@@ -223,16 +212,14 @@ function saveRegistration(sessionId: string) {
 const RetroactiveRegistration = () => {
   const [sessionId, setSessionId] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const toast = useToast();
 
   const handleSubmit = async () => {
     if (!sessionId.trim()) {
-      toast({
+      toaster.create({
         title: "Session ID required",
         description: "Please enter a Stripe session ID",
-        status: "warning",
+        type: "warning",
         duration: 4000,
-        isClosable: true,
       });
       return;
     }
@@ -241,31 +228,25 @@ const RetroactiveRegistration = () => {
     try {
       const result = await saveRegistration(sessionId.trim());
       if (result.error) {
-        toast({
+        toaster.error({
           title: "Registration failed",
           description: result.error,
-          status: "error",
           duration: 6000,
-          isClosable: true,
         });
       } else {
-        toast({
+        toaster.success({
           title: "Registration confirmed",
           description: "User registration has been processed successfully",
-          status: "success",
           duration: 5000,
-          isClosable: true,
         });
         setSessionId("");
       }
     } catch (err) {
-      toast({
+      toaster.error({
         title: "Something went wrong",
         description:
           err instanceof Error ? err.message : "Failed to process registration",
-        status: "error",
         duration: 6000,
-        isClosable: true,
       });
     } finally {
       setIsSubmitting(false);
@@ -280,8 +261,7 @@ const RetroactiveRegistration = () => {
         service or database outage. Pressing submit will fetch the transaction
         and re-save the user's form fields.
       </p>
-      <FormControl>
-        <FormLabel>Stripe Session ID</FormLabel>
+      <Field label="Stripe Session ID">
         <div className="flex gap-2">
           <Input
             placeholder="cs_live_..."
@@ -290,15 +270,15 @@ const RetroactiveRegistration = () => {
             disabled={isSubmitting}
           />
           <Button
-            colorScheme="blue"
+            colorPalette="blue"
             onClick={handleSubmit}
-            isLoading={isSubmitting}
+            loading={isSubmitting}
             loadingText="Processing"
           >
             Submit
           </Button>
         </div>
-      </FormControl>
+      </Field>
     </div>
   );
 };
@@ -321,7 +301,11 @@ const ConfirmModal = ({
     "student" | "postdoctorial" | "professional" | "admin" | undefined
   >();
   const [updateLoading, setUpdateLoading] = useState(false);
-  const toast = useToast();
+
+  const handleClose = () => {
+    setId("");
+    setOpen(false);
+  };
 
   const handleUpdate = async (
     uid: string,
@@ -354,20 +338,16 @@ const ConfirmModal = ({
     );
 
     if (error || appendError) {
-      toast({
-        status: "error",
+      toaster.error({
         duration: 6000,
-        isClosable: true,
         description:
           "Something went wrong while we were updating this user's membership - " +
-          (error! || appendError!).message,
+          (error || appendError)!.message,
       });
       console.error(error?.message ?? appendError?.message);
     } else {
-      toast({
-        status: "success",
+      toaster.success({
         duration: 6000,
-        isClosable: true,
         title: "Mission Accomplished",
         description: `Successfully updated membership for ${
           data.fname + " " + data.lname
@@ -375,43 +355,31 @@ const ConfirmModal = ({
       });
     }
   };
+
   return (
-    <Modal
-      isOpen={open}
-      onClose={() => {
-        setId("");
-        setOpen(false);
-      }}
-      closeOnOverlayClick
-      blockScrollOnMount
-      autoFocus
-      onOverlayClick={() => {
-        setId("");
-        setOpen(false);
-      }}
-    >
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">
-          Confirm User Properties
-        </ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <Select
-            variant="outline"
-            icon={<ChevronDownIcon />}
-            onChange={(e) => {
-              // @ts-expect-error Type mismatch because inputs are nullable
-              setRole(e.target.value || undefined);
-            }}
-            placeholder="Select a Membership"
-          >
-            {tiers.map((tier) => (
-              <option key={tier.key} value={tier.label.toLowerCase()}>
-                {tier.label}
-              </option>
-            ))}
-          </Select>
+    <DialogRoot open={open} onOpenChange={(e) => !e.open && handleClose()}>
+      <DialogContent>
+        <DialogHeader className="flex flex-col gap-1">
+          <DialogTitle>Confirm User Properties</DialogTitle>
+        </DialogHeader>
+        <DialogCloseTrigger />
+        <DialogBody>
+          <NativeSelect.Root>
+            <NativeSelect.Field
+              onChange={(e) => {
+                // @ts-expect-error Type mismatch because inputs are nullable
+                setRole(e.target.value || undefined);
+              }}
+              placeholder="Select a Membership"
+            >
+              {tiers.map((tier) => (
+                <option key={tier.key} value={tier.label.toLowerCase()}>
+                  {tier.label}
+                </option>
+              ))}
+            </NativeSelect.Field>
+            <NativeSelect.Indicator />
+          </NativeSelect.Root>
           <DatePicker
             aria-label="Paid On"
             className="mt-4"
@@ -419,18 +387,17 @@ const ConfirmModal = ({
             maxDate={new Date()}
             onChange={setDate}
           />
-        </ModalBody>
-        <ModalFooter>
-          <Button color="danger" variant="light" onClick={() => setOpen(false)}>
+        </DialogBody>
+        <DialogFooter>
+          <Button variant="ghost" onClick={() => setOpen(false)}>
             Cancel
           </Button>
           <Button
-            color="primary"
+            colorPalette="green"
             variant={
               role === undefined || date === undefined ? "ghost" : "solid"
             }
-            // @ts-expect-error Ignore sumn
-            isDisabled={role === undefined || role === "" || date === undefined}
+            disabled={role === undefined || date === undefined}
             onClick={() =>
               handleUpdate(id, date, role!)
                 .then(() => {
@@ -442,9 +409,9 @@ const ConfirmModal = ({
           >
             {updateLoading ? <Spinner /> : "Submit"}
           </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </DialogFooter>
+      </DialogContent>
+    </DialogRoot>
   );
 };
 
@@ -462,7 +429,11 @@ const DeleteModal = ({
   setId: Dispatch<SetStateAction<string>>;
 }) => {
   const [deleteLoading, setDeleteLoading] = useState(false);
-  const toast = useToast();
+
+  const handleClose = () => {
+    setId("");
+    setOpen(false);
+  };
 
   const handleDelete = async (uid: string) => {
     setDeleteLoading(true);
@@ -473,20 +444,16 @@ const DeleteModal = ({
       .eq("user_id", uid);
 
     if (error) {
-      toast({
-        status: "error",
+      toaster.error({
         duration: 6000,
-        isClosable: true,
         description:
           "Something went wrong while deleting the confirmation request - " +
           error.message,
       });
       console.error(error);
     } else {
-      toast({
-        status: "success",
+      toaster.success({
         duration: 6000,
-        isClosable: true,
         title: "Request Deleted",
         description: "Successfully deleted the confirmation request",
       });
@@ -494,38 +461,24 @@ const DeleteModal = ({
   };
 
   return (
-    <Modal
-      isOpen={open}
-      onClose={() => {
-        setId("");
-        setOpen(false);
-      }}
-      closeOnOverlayClick
-      blockScrollOnMount
-      autoFocus
-      onOverlayClick={() => {
-        setId("");
-        setOpen(false);
-      }}
-    >
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">
-          Delete Confirmation Request
-        </ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
+    <DialogRoot open={open} onOpenChange={(e) => !e.open && handleClose()}>
+      <DialogContent>
+        <DialogHeader className="flex flex-col gap-1">
+          <DialogTitle>Delete Confirmation Request</DialogTitle>
+        </DialogHeader>
+        <DialogCloseTrigger />
+        <DialogBody>
           <p>
             Are you sure you want to delete this confirmation request? This
             action cannot be undone.
           </p>
-        </ModalBody>
-        <ModalFooter>
-          <Button color="danger" variant="light" onClick={() => setOpen(false)}>
+        </DialogBody>
+        <DialogFooter>
+          <Button variant="ghost" onClick={() => setOpen(false)}>
             Cancel
           </Button>
           <Button
-            colorScheme="red"
+            colorPalette="red"
             onClick={() =>
               handleDelete(id)
                 .then(() => {
@@ -537,9 +490,9 @@ const DeleteModal = ({
           >
             {deleteLoading ? <Spinner /> : "Delete"}
           </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </DialogFooter>
+      </DialogContent>
+    </DialogRoot>
   );
 };
 

@@ -1,20 +1,21 @@
-import { Card, CardBody, CardProps } from "@chakra-ui/react";
+import { Card } from "@chakra-ui/react";
 
 export default function EmbeddedVideo(
-  props: { src: string; className?: string | undefined } & CardProps
+  props: { src: string; className?: string | undefined } & Card.RootProps
 ) {
+  const { src, ...cardProps } = props;
   return (
-    <Card {...props}>
-      <CardBody>
+    <Card.Root {...cardProps}>
+      <Card.Body>
         <iframe
           className="mx-auto"
-          src={props.src}
+          src={src}
           width="100%"
           allow="autoplay"
           loading="lazy"
           allowFullScreen
         ></iframe>
-      </CardBody>
-    </Card>
+      </Card.Body>
+    </Card.Root>
   );
 }
