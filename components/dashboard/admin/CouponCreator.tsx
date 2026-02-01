@@ -1,5 +1,6 @@
+import { Field } from "@/components/ui/field";
+import { toaster } from "@/components/ui/toaster";
 import { couponFetcher } from "@/lib";
-import { Trash2 } from "lucide-react";
 import {
   Box,
   Button,
@@ -7,14 +8,13 @@ import {
   Heading,
   Input,
   NativeSelect,
+  NumberInput,
   Spinner,
   Stack,
   Table,
   VStack,
 } from "@chakra-ui/react";
-import { Field } from "@/components/ui/field";
-import { InputGroup } from "@/components/ui/input-group";
-import { toaster } from "@/components/ui/toaster";
+import { Trash2 } from "lucide-react";
 import { useState } from "react";
 import useSWR from "swr";
 
@@ -32,9 +32,9 @@ const columns = [
 
 export const CouponCreator = () => {
   const [coupon, setCoupon] = useState<string | undefined>();
-  const [couponName, setCouponName] = useState<string | undefined>();
-  const [discount, setDiscount] = useState<number | undefined>();
-  const [percentage, setPercentage] = useState<number | undefined>();
+  const [couponName, setCouponName] = useState<string>("");
+  const [discount, setDiscount] = useState("");
+  const [percentage, setPercentage] = useState("");
 
   const { data, error, isLoading, mutate } = useSWR(
     "/admin/coupon",
@@ -56,10 +56,12 @@ export const CouponCreator = () => {
         discount
           ? {
               couponName,
-              discount,
+              discount: discount.includes("USD")
+                ? Number(discount.split(" ")[1])
+                : Number(discount),
             }
           : percentage
-            ? { couponName, percentage }
+            ? { couponName, percentage: Number(percentage.replace("%", "")) }
             : {
                 coupon,
               },
@@ -73,10 +75,7 @@ export const CouponCreator = () => {
         description: `Please notify the webmaster at team@tunjiproductions.com - ${err.message}`,
       });
     }
-    setCoupon(undefined);
-    setCouponName(undefined);
-    setDiscount(undefined);
-    setPercentage(undefined);
+    resetFields();
   };
 
   const deletePromo = async (promo: string) => {
@@ -94,10 +93,7 @@ export const CouponCreator = () => {
         });
       }
     } finally {
-      setCoupon(undefined);
-      setCouponName(undefined);
-      setDiscount(undefined);
-      setPercentage(undefined);
+      resetFields();
     }
   };
 
@@ -116,12 +112,16 @@ export const CouponCreator = () => {
         });
       }
     } finally {
-      setCoupon(undefined);
-      setCouponName(undefined);
-      setDiscount(undefined);
-      setPercentage(undefined);
+      resetFields();
     }
   };
+
+  function resetFields() {
+    setCoupon(undefined);
+    setCouponName("");
+    setDiscount("");
+    setPercentage("");
+  }
 
   return (
     <Stack direction={["column"]} gap={10} mx="auto" justify="space-around">
@@ -138,40 +138,48 @@ export const CouponCreator = () => {
             />
           </Field>
           <Flex gap={3}>
-            <Field label="% off - Provide a whole number" disabled={!!discount}>
-              <InputGroup endElement={<span>%</span>}>
-                <Input
-                  type="number"
-                  inputMode="numeric"
-                  placeholder="80"
-                  onChange={(e) =>
-                    setPercentage(Number.parseInt(e.currentTarget.value))
-                  }
-                  value={percentage}
-                />
-              </InputGroup>
+            <Field label="% off" disabled={!!discount}>
+              <NumberInput.Root
+                value={percentage}
+                step={0.1}
+                formatOptions={{
+                  style: "percent",
+                }}
+                onValueChange={(e) => setPercentage(e.value)}
+              >
+                <NumberInput.Control />
+                <NumberInput.Input />
+              </NumberInput.Root>
             </Field>
-            <Field label="$ off - Provide a dollar amount" disabled={!!percentage}>
-              <InputGroup startElement={<span>$</span>}>
-                <Input
-                  type="number"
-                  inputMode="numeric"
-                  placeholder="50"
-                  onChange={(e) =>
-                    setDiscount(Number.parseInt(e.currentTarget.value))
-                  }
-                  value={discount}
-                />
-              </InputGroup>
-            </Field>
+            {/* <Field label="$ off (whole numbers only)" disabled={!!percentage}>
+              <NumberInput.Root
+                value={discount}
+                onValueChange={(e) => {
+                  console.log(e.value);
+                  setDiscount(e.value);
+                }}
+                step={1}
+                formatOptions={{
+                  style: "currency",
+                  currency: "USD",
+                  currencyDisplay: "code",
+                  currencySign: "accounting",
+                  unitDisplay: "narrow",
+                  trailingZeroDisplay: "stripIfInteger",
+                }}
+              >
+                <NumberInput.Control />
+                <NumberInput.Input />
+              </NumberInput.Root>
+            </Field> */}
           </Flex>
           <Heading my={5}>Or</Heading>
           <NativeSelect.Root>
             <NativeSelect.Field
               onChange={(e) => {
-                setCoupon(e.target.value || undefined);
+                setCoupon(e.currentTarget.value || undefined);
               }}
-              value={couponName}
+              value={coupon}
               placeholder="Select a coupon to duplicate"
             >
               {data &&
@@ -186,7 +194,11 @@ export const CouponCreator = () => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Box>
-        <Button colorPalette="green" onClick={() => createCoupon()}>
+        <Button
+          colorPalette="green"
+          disabled={(!couponName || (!percentage && !discount)) && !coupon}
+          onClick={() => createCoupon()}
+        >
           Submit
         </Button>
       </VStack>
@@ -215,9 +227,14 @@ export const CouponCreator = () => {
               <Table.Body>
                 {data &&
                   data.map((couponItem, idx) => (
-                    <Table.Row key={idx} display={!couponItem ? "none" : undefined}>
+                    <Table.Row
+                      key={idx}
+                      display={!couponItem ? "none" : undefined}
+                    >
                       <Table.Cell>{idx + 1}</Table.Cell>
-                      <Table.Cell>{couponItem.coupon.name || "null"}</Table.Cell>
+                      <Table.Cell>
+                        {couponItem.coupon.name || "null"}
+                      </Table.Cell>
                       <Table.Cell>{couponItem.promo_code}</Table.Cell>
                       <Table.Cell>
                         {couponItem.coupon.percent_off
@@ -240,7 +257,9 @@ export const CouponCreator = () => {
                               couponItem.expires_at! * 1000,
                             ).toLocaleDateString()}
                       </Table.Cell>
-                      <Table.Cell>{new Date(couponItem.created).toLocaleDateString()}</Table.Cell>
+                      <Table.Cell>
+                        {new Date(couponItem.created).toLocaleDateString()}
+                      </Table.Cell>
                       <Table.Cell>
                         <Stack>
                           <Button
