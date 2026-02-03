@@ -1,5 +1,15 @@
 import { Database } from "@/lib/supabase/types";
-import { Card, CardBody } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Card,
+  Container,
+  Flex,
+  Heading,
+  Icon,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { useCallback, useState } from "react";
 
@@ -40,143 +50,285 @@ export const MemberContent = ({ videos }: { videos?: Video[] }) => {
 
   if (!videos?.length) {
     return (
-      <div className="flex flex-col items-center justify-center py-16 text-center">
-        <div className="text-6xl mb-4">🎬</div>
-        <h3 className="text-xl font-semibold text-gray-700 mb-2">
+      <Flex
+        direction="column"
+        align="center"
+        justify="center"
+        py="16"
+        textAlign="center"
+      >
+        <Text fontSize="6xl" mb="4">
+          🎬
+        </Text>
+        <Heading
+          as="h3"
+          fontSize="xl"
+          fontWeight="semibold"
+          color={{ base: "gray.700", _dark: "gray.300" }}
+          mb="2"
+        >
           No Recordings Available Yet
-        </h3>
-        <p className="text-gray-500 max-w-md">
+        </Heading>
+        <Text color={{ base: "gray.500", _dark: "gray.400" }} maxW="md">
           Conference recordings will appear here once they are uploaded. Check
           back after the next conference session.
-        </p>
-      </div>
+        </Text>
+      </Flex>
     );
   }
 
   const currentVideo = videos[currentIndex];
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-4 py-8">
+    <Container maxW="5xl" px={{ base: 4, sm: 6, lg: 8 }} py="8">
       {/* Header Section */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">
+      <Stack gap="2" textAlign="center" mb="8">
+        <Heading
+          as="h2"
+          fontSize="2xl"
+          fontWeight="bold"
+          color={{ base: "gray.800", _dark: "white" }}
+        >
           Conference Recordings
-        </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        </Heading>
+        <Text
+          color={{ base: "gray.600", _dark: "gray.300" }}
+          maxW="2xl"
+          mx="auto"
+        >
           Catch up on sessions you missed or revisit your favorite
           presentations. Browse through our archive of past conference
           recordings below.
-        </p>
-      </div>
+        </Text>
+      </Stack>
 
       {/* Main Video Player */}
-      <Card className="mb-6 overflow-hidden shadow-lg">
-        <CardBody className="p-0">
-          <div className="relative aspect-video bg-gray-900">
+      <Card.Root
+        mb="6"
+        overflow="hidden"
+        shadow="lg"
+        borderWidth="1px"
+        borderColor={{ base: "gray.200", _dark: "gray.700" }}
+      >
+        <Card.Body p="0">
+          <Box
+            position="relative"
+            paddingBottom="56.25%"
+            bg={{ base: "gray.900", _dark: "gray.950" }}
+            overflow="hidden"
+          >
             {!isCurrentLoaded ? (
               // Placeholder State - prevents iframe preloading
-              <div
-                className="absolute inset-0 flex items-center justify-center cursor-pointer group"
+              <Box
+                position="absolute"
+                inset="0"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                cursor="pointer"
                 onClick={handleLoadVideo}
+                role="group"
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="z-10 flex flex-col items-center">
-                  <div className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
-                    <Play className="w-8 h-8 text-gray-800 ml-1" />
-                  </div>
-                  <span className="mt-4 text-white text-sm font-medium">
+                <Box
+                  position="absolute"
+                  inset="0"
+                  bgGradient="to-t"
+                  gradientFrom="blackAlpha.600"
+                  gradientVia="transparent"
+                  gradientTo="transparent"
+                />
+                <Stack gap="4" align="center" zIndex="10">
+                  <Flex
+                    w="20"
+                    h="20"
+                    rounded="full"
+                    bg="whiteAlpha.900"
+                    align="center"
+                    justify="center"
+                    shadow="lg"
+                    transition="transform 0.2s"
+                    _groupHover={{ transform: "scale(1.1)" }}
+                  >
+                    <Icon boxSize="8" color="gray.800" ml="1">
+                      <Play />
+                    </Icon>
+                  </Flex>
+                  <Text color="white" fontSize="sm" fontWeight="medium">
                     Click to play
-                  </span>
-                </div>
-              </div>
+                  </Text>
+                </Stack>
+              </Box>
             ) : (
               <iframe
                 src={currentVideo.path}
-                className="w-full h-full"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                }}
                 allow="autoplay; fullscreen"
                 allowFullScreen
               />
             )}
-          </div>
+          </Box>
 
           {/* Video Info */}
-          <div className="p-6">
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-1">
+          <Box p="6">
+            <Flex align="start" justify="space-between">
+              <Box>
+                <Heading
+                  as="h3"
+                  fontSize="xl"
+                  fontWeight="semibold"
+                  color={{ base: "gray.800", _dark: "white" }}
+                  mb="1"
+                >
                   {currentVideo.title || "Untitled Session"}
-                </h3>
-                <p className="text-gray-500 text-sm">
+                </Heading>
+                <Text
+                  color={{ base: "gray.500", _dark: "gray.400" }}
+                  fontSize="sm"
+                >
                   {formatDate(currentVideo.date)}
-                </p>
-              </div>
-              <span className="text-sm text-gray-400">
+                </Text>
+              </Box>
+              <Text
+                fontSize="sm"
+                color={{ base: "gray.400", _dark: "gray.500" }}
+              >
                 {currentIndex + 1} of {videos.length}
-              </span>
-            </div>
-          </div>
-        </CardBody>
-      </Card>
+              </Text>
+            </Flex>
+          </Box>
+        </Card.Body>
+      </Card.Root>
 
       {/* Navigation Controls */}
-      <div className="flex items-center justify-center gap-4 mb-8">
-        <button
+      <Flex align="center" justify="center" gap="4" mb="8">
+        <Button
           onClick={handlePrevious}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700 font-medium"
+          variant="outline"
+          colorPalette="gray"
           aria-label="Previous video"
         >
-          <ChevronLeft className="w-5 h-5" />
+          <Icon boxSize="5">
+            <ChevronLeft />
+          </Icon>
           Previous
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={handleNext}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700 font-medium"
+          variant="outline"
+          colorPalette="gray"
           aria-label="Next video"
         >
           Next
-          <ChevronRight className="w-5 h-5" />
-        </button>
-      </div>
+          <Icon boxSize="5">
+            <ChevronRight />
+          </Icon>
+        </Button>
+      </Flex>
 
       {/* Thumbnail Strip */}
       {videos.length > 1 && (
-        <div className="border-t pt-6">
-          <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-4">
+        <Box
+          borderTopWidth="1px"
+          borderColor={{ base: "gray.200", _dark: "gray.700" }}
+          pt="6"
+        >
+          <Heading
+            as="h4"
+            fontSize="sm"
+            fontWeight="medium"
+            color={{ base: "gray.500", _dark: "gray.400" }}
+            textTransform="uppercase"
+            letterSpacing="wide"
+            mb="4"
+          >
             All Recordings ({videos.length})
-          </h4>
-          <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-300">
+          </Heading>
+          <Flex
+            gap="3"
+            overflowX="auto"
+            pb="4"
+            css={{
+              "&::-webkit-scrollbar": {
+                height: "6px",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                background: "gray.300",
+                borderRadius: "3px",
+              },
+            }}
+          >
             {videos.map((video, index) => (
-              <button
+              <Box
+                as="button"
                 key={video.id}
                 onClick={() => handleThumbnailClick(index)}
-                className={`flex-shrink-0 w-48 rounded-lg overflow-hidden transition-all duration-200 ${
+                flexShrink={0}
+                w="48"
+                rounded="lg"
+                overflow="hidden"
+                transition="all 0.2s"
+                borderWidth="2px"
+                borderColor={
                   index === currentIndex
-                    ? "ring-2 ring-blue-500 ring-offset-2"
-                    : "opacity-70 hover:opacity-100"
-                }`}
+                    ? { base: "blue.500", _dark: "blue.400" }
+                    : "transparent"
+                }
+                opacity={index === currentIndex ? 1 : 0.7}
+                _hover={{ opacity: 1 }}
               >
-                <div className="bg-gray-800 aspect-video flex items-center justify-center">
-                  <Play className="w-8 h-8 text-white/60" />
-                </div>
-                <div className="p-2 bg-gray-50 text-left">
-                  <p className="text-xs font-medium text-gray-700 truncate">
+                <Flex
+                  bg={{ base: "gray.800", _dark: "gray.900" }}
+                  aspectRatio="16/9"
+                  align="center"
+                  justify="center"
+                >
+                  <Icon boxSize="8" color="whiteAlpha.600">
+                    <Play />
+                  </Icon>
+                </Flex>
+                <Box
+                  p="2"
+                  bg={{ base: "gray.50", _dark: "gray.800" }}
+                  textAlign="left"
+                >
+                  <Text
+                    fontSize="xs"
+                    fontWeight="medium"
+                    color={{ base: "gray.700", _dark: "gray.300" }}
+                    lineClamp={1}
+                  >
                     {video.title || "Untitled"}
-                  </p>
-                  <p className="text-xs text-gray-400">
+                  </Text>
+                  <Text
+                    fontSize="xs"
+                    color={{ base: "gray.400", _dark: "gray.500" }}
+                  >
                     {formatDate(video.date)}
-                  </p>
-                </div>
-              </button>
+                  </Text>
+                </Box>
+              </Box>
             ))}
-          </div>
-        </div>
+          </Flex>
+        </Box>
       )}
 
       {/* Helper Text */}
-      <p className="text-center text-sm text-gray-400 mt-6">
+      <Text
+        textAlign="center"
+        fontSize="sm"
+        color={{ base: "gray.400", _dark: "gray.500" }}
+        mt="6"
+      >
         Having trouble viewing? Try refreshing the page or contact support.
-      </p>
-    </div>
+      </Text>
+    </Container>
   );
 };
 

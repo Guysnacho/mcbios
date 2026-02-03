@@ -1,16 +1,15 @@
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
   AccordionItem,
-  AccordionPanel,
-  Box,
+  AccordionItemContent,
+  AccordionItemTrigger,
+  AccordionRoot,
+} from "@/components/ui/accordion";
+import {
   Card,
-  CardBody,
-  CardFooter,
-  Divider,
   Heading,
   Image,
+  Separator,
+  Span,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -39,8 +38,8 @@ export default function ElectionNominee({
   electionOver,
 }: ElectionProps) {
   return (
-    <Card w={{ base: "90%", md: "xl", xl: "2xl" }}>
-      <CardBody>
+    <Card.Root w={{ base: "90%", md: "xl", xl: "2xl" }}>
+      <Card.Body>
         {avatar ? (
           <Image
             src={avatar}
@@ -49,27 +48,24 @@ export default function ElectionNominee({
             borderRadius="lg"
           />
         ) : undefined}
-        <Stack mt="6" spacing="3">
+        <Stack mt="6" gap="3">
           {name ? <Heading size="md">{name}</Heading> : undefined}
           <Text color="blue.600" fontSize="lg">
             Brief overview {electionOver ? undefined : "of candidate"} for{" "}
             {isPrez ? "President" : "Student Board"}-Elect
           </Text>
-          <Accordion allowMultiple>
+          <AccordionRoot multiple>
             {overview?.map(({ content, heading }) => (
-              <AccordionItem key={heading} aria-label={heading}>
-                <h2>
-                  <AccordionButton>
-                    <Box as="span" flex="1" textAlign="left">
-                      {heading}
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel>{content}</AccordionPanel>
+              <AccordionItem key={heading} value={heading} aria-label={heading}>
+                <AccordionItemTrigger>
+                  <Span flex="1" textAlign="left">
+                    {heading}
+                  </Span>
+                </AccordionItemTrigger>
+                <AccordionItemContent>{content}</AccordionItemContent>
               </AccordionItem>
             ))}
-          </Accordion>
+          </AccordionRoot>
           <Text color="blue.600" fontSize="lg">
             {isPrez &&
               electionOver &&
@@ -85,28 +81,25 @@ export default function ElectionNominee({
               "If elected, how do you plan to contribute to MCBIOS as a board member?"}
           </Text>
           {plans ? (
-            <Accordion allowToggle>
+            <AccordionRoot collapsible>
               {plans.map((plan, idx) => (
-                <AccordionItem key={idx} aria-label={"plans " + idx}>
-                  <h2>
-                    <AccordionButton>
-                      <Box as="span" flex="1" textAlign="left">
-                        {`${plan.split(":")[0]}`}
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel>{plan.split(":")[1]}</AccordionPanel>
+                <AccordionItem key={idx} value={`plan-${idx}`} aria-label={"plans " + idx}>
+                  <AccordionItemTrigger>
+                    <Span flex="1" textAlign="left">
+                      {`${plan.split(":")[0]}`}
+                    </Span>
+                  </AccordionItemTrigger>
+                  <AccordionItemContent>{plan.split(":")[1]}</AccordionItemContent>
                 </AccordionItem>
               ))}
-            </Accordion>
+            </AccordionRoot>
           ) : undefined}
         </Stack>
-      </CardBody>
-      <Divider />
+      </Card.Body>
+      <Separator />
       {recording && !electionOver ? (
-        <CardFooter display="flex" flexDirection="column" alignItems="center">
-          <Text align="center" color="blue.600" fontSize="lg">
+        <Card.Footer display="flex" flexDirection="column" alignItems="center">
+          <Text textAlign="center" color="blue.600" fontSize="lg">
             {name}&apos;s Address
           </Text>
           <EmbeddedVideo
@@ -115,8 +108,8 @@ export default function ElectionNominee({
             mx="auto"
             src={recording!}
           />
-        </CardFooter>
+        </Card.Footer>
       ) : undefined}
-    </Card>
+    </Card.Root>
   );
 }
