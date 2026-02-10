@@ -75,25 +75,37 @@ export async function GET(req: NextRequest) {
     );
 
     if (session.status === "complete") {
-      console.log(`Payment completed for user ${session!.metadata!.userId}!`);
+      console.log(
+        session!.metadata!.userId
+          ? `Payment completed for user ${session!.metadata!.userId}!`
+          : `Payment completed for an unauthenticated user - ${session.metadata!.fname} ${session.metadata!.lname}!`,
+      );
       const client = createClient();
-      if (session!.metadata!.userId ?? false) {
+      if (session && session.metadata && session.metadata["userId"]) {
         console.log("Updated authed user");
         await handleUpdate(client, session);
         console.log(
           `Table update complete | user_role=${
-            session!.metadata!.tier
-          } | user_id=${session!.metadata!.userId} | member_only=${
-            session!.metadata!.memberOnly
+            session.metadata.tier
+          } | user_id=${session.metadata.userId} | member_only=${
+            session.metadata.memberOnly
           }`,
         );
-      } else await handleRawUpdate(client, session);
+      } else {
+        console.log("Handling unauthenticated registration update");
+        await handleRawUpdate(client, session);
+      }
     }
 
-    return Response.json({
-      status: session.status,
-      customer_email: session!.customer_details!.email,
-    });
+    return Response.json(
+      {
+        status: session.status,
+        customer_email: session!.customer_details!.email,
+      },
+      {
+        status: 201,
+      },
+    );
   } catch (err) {
     return Response.json(
       // @ts-expect-error should be an error message somewhere
@@ -257,7 +269,6 @@ async function handleRawUpdate(
     },
     {
       ignoreDuplicates: false,
-      onConflict: "email",
     },
   );
 }

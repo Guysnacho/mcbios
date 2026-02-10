@@ -79,9 +79,10 @@ export default async function Page({
                   Thank you for your contribution to the society! A confirmation
                   email has been sent to{" "}
                   <Text as="span" fontWeight="medium">
-                    {customer_email}
+                    {customer_email
+                      ? customer_email + "."
+                      : "the provided email."}
                   </Text>
-                  .
                 </>
               ) : (
                 <>
