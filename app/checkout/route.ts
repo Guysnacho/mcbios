@@ -328,10 +328,11 @@ function isValidUpdateBody(body: PaymentBody) {
  */
 function isValidSessionCreateBody(body: PaymentBody) {
   return (
+    ((isPresent(body.fname) &&
+      isPresent(body.lname) &&
+      isPresent(body.institution)) ||
+      isPresent(body.userId)) &&
     isPresent(body.email) &&
-    isPresent(body.fname) &&
-    isPresent(body.lname) &&
-    (body.tier satisfies PaymentBody["tier"]) &&
-    isPresent(body.institution)
+    (body.tier satisfies PaymentBody["tier"])
   );
 }
