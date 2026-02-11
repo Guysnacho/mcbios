@@ -390,7 +390,7 @@ const ConfirmModal = ({
       toaster.error({
         duration: 6000,
         description:
-          "Something went wrong while deleting the raw registration - " +
+          "Something went wrong while deleting the unauthenticated registration - " +
           error.message,
       });
       console.error(error);
@@ -413,7 +413,7 @@ const ConfirmModal = ({
           <DialogTitle>
             {step === "confirm"
               ? "Confirm User Properties"
-              : "Clean Up Raw Registration"}
+              : "Clean Up Unauthenticated Registration"}
           </DialogTitle>
         </DialogHeader>
         <DialogCloseTrigger />
@@ -477,7 +477,7 @@ const ConfirmModal = ({
                   fontSize="sm"
                   color={{ base: "gray.600", _dark: "gray.300" }}
                 >
-                  Would you like to remove a raw registration entry for this
+                  Would you like to remove a unauthenticated registration entry for this
                   user? This is optional.
                 </Text>
 
@@ -486,7 +486,7 @@ const ConfirmModal = ({
                     fontSize="sm"
                     color={{ base: "gray.400", _dark: "gray.500" }}
                   >
-                    No raw registrations found.
+                    No unauthenticated registrations found.
                   </Text>
                 ) : (
                   <Table.ScrollArea maxH="xs" overflowY="auto">

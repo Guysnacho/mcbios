@@ -256,7 +256,7 @@ async function handleRawUpdate(
   client: SupabaseClient<Database>,
   session: Stripe.Response<Stripe.Checkout.Session>,
 ) {
-  console.log("Recording raw registration");
+  console.log("Recording unauthenticated registration");
   await client.from("raw_registration").upsert(
     {
       org_id: process.env.NEXT_PUBLIC_ORG_ID,
@@ -282,7 +282,7 @@ async function handleInstitutionUpdate(
   client: SupabaseClient<Database>,
   body: PaymentBody,
 ) {
-  console.log("Recording raw registration");
+  console.log("Recording unauthenticated registration");
   const { data, error } = await client
     .from("raw_registration")
     .upsert({
@@ -297,11 +297,11 @@ async function handleInstitutionUpdate(
     .select();
   if (error || !data || data.length == 0) {
     console.error(
-      "Issue updating raw registration - ",
+      "Issue updating unauthenticated registration - ",
       error?.message || "Upsert failed",
     );
     throw new Error(
-      "Issue updating raw registration - " + error?.message || "Upsert failed",
+      "Issue updating unauthenticated registration - " + error?.message || "Upsert failed",
     );
   } else {
     console.log("Successfully updated registration for user - ", data);
