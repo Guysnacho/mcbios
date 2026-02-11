@@ -43,3 +43,5 @@ next-env.d.ts
 
 # Sensitive files
 sensa_*.csv
+
+.next
