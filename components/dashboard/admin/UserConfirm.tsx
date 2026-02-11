@@ -1,20 +1,30 @@
 import { User } from "@/components/User";
-import { Database } from "@/lib/supabase/types";
-import { Check, Trash2 } from "lucide-react";
-import { Button, Input, NativeSelect, Spinner, Table } from "@chakra-ui/react";
 import {
-  DialogRoot,
-  DialogContent,
-  DialogHeader,
   DialogBody,
-  DialogFooter,
-  DialogTitle,
   DialogCloseTrigger,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Field } from "@/components/ui/field";
-import { Tooltip } from "@/components/ui/tooltip";
 import { toaster } from "@/components/ui/toaster";
+import { Tooltip } from "@/components/ui/tooltip";
+import { Database } from "@/lib/supabase/types";
+import { registrationFetcher } from "@/lib/swrFetchers";
+import {
+  Badge,
+  Button,
+  Input,
+  NativeSelect,
+  Spinner,
+  Stack,
+  Table,
+  Text,
+} from "@chakra-ui/react";
 import { SupabaseClient } from "@supabase/supabase-js";
+import { Check, Trash2 } from "lucide-react";
 import {
   Dispatch,
   Key,
@@ -24,6 +34,7 @@ import {
   useState,
 } from "react";
 import DatePicker from "react-datepicker";
+import useSWR, { mutate } from "swr";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -195,13 +206,12 @@ export const UserConfirm = ({
 };
 
 function saveRegistration(session_id: string) {
-  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/checkout`,
-    {
-      method: "GET",
-      headers: {
-        session_id,
-      },
-    })
+  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/checkout`, {
+    method: "GET",
+    headers: {
+      session_id,
+    },
+  })
     .then((res) => res.json())
     .catch((err) => {
       console.error(err.message);
@@ -301,10 +311,20 @@ const ConfirmModal = ({
     "student" | "postdoctorial" | "professional" | "admin" | undefined
   >();
   const [updateLoading, setUpdateLoading] = useState(false);
+  const [step, setStep] = useState<"confirm" | "cleanup">("confirm");
+  const [selectedEmail, setSelectedEmail] = useState<string | null>(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
+  const { data: rawRegistrations } = useSWR(
+    open && step === "cleanup" ? "/admin/registration/raw" : null,
+    () => registrationFetcher(client),
+  );
 
   const handleClose = () => {
     setId("");
     setOpen(false);
+    setStep("confirm");
+    setSelectedEmail(null);
   };
 
   const handleUpdate = async (
@@ -356,60 +376,201 @@ const ConfirmModal = ({
     }
   };
 
+  const handleDeleteRawRegistration = async () => {
+    if (!selectedEmail) return;
+    setDeleteLoading(true);
+
+    const { error } = await client
+      .from("raw_registration")
+      .delete()
+      .eq("email", selectedEmail)
+      .eq("org_id", process.env.NEXT_PUBLIC_ORG_ID!);
+
+    if (error) {
+      toaster.error({
+        duration: 6000,
+        description:
+          "Something went wrong while deleting the raw registration - " +
+          error.message,
+      });
+      console.error(error);
+    } else {
+      toaster.success({
+        duration: 6000,
+        title: "Registration Removed",
+        description: `Deleted unauthenticated registration for ${selectedEmail}`,
+      });
+      mutate("/admin/registration/raw");
+    }
+    setDeleteLoading(false);
+    handleClose();
+  };
+
   return (
     <DialogRoot open={open} onOpenChange={(e) => !e.open && handleClose()}>
       <DialogContent>
         <DialogHeader className="flex flex-col gap-1">
-          <DialogTitle>Confirm User Properties</DialogTitle>
+          <DialogTitle>
+            {step === "confirm"
+              ? "Confirm User Properties"
+              : "Clean Up Raw Registration"}
+          </DialogTitle>
         </DialogHeader>
         <DialogCloseTrigger />
-        <DialogBody>
-          <NativeSelect.Root>
-            <NativeSelect.Field
-              onChange={(e) => {
-                // @ts-expect-error Type mismatch because inputs are nullable
-                setRole(e.target.value || undefined);
-              }}
-              placeholder="Select a Membership"
-            >
-              {tiers.map((tier) => (
-                <option key={tier.key} value={tier.label.toLowerCase()}>
-                  {tier.label}
-                </option>
-              ))}
-            </NativeSelect.Field>
-            <NativeSelect.Indicator />
-          </NativeSelect.Root>
-          <DatePicker
-            aria-label="Paid On"
-            className="mt-4"
-            selected={date}
-            maxDate={new Date()}
-            onChange={setDate}
-          />
-        </DialogBody>
-        <DialogFooter>
-          <Button variant="ghost" onClick={() => setOpen(false)}>
-            Cancel
-          </Button>
-          <Button
-            colorPalette="green"
-            variant={
-              role === undefined || date === undefined ? "ghost" : "solid"
-            }
-            disabled={role === undefined || date === undefined}
-            onClick={() =>
-              handleUpdate(id, date, role!)
-                .then(() => {
-                  setId("");
-                  setOpen(false);
-                })
-                .finally(() => setUpdateLoading(false))
-            }
-          >
-            {updateLoading ? <Spinner /> : "Submit"}
-          </Button>
-        </DialogFooter>
+
+        {step === "confirm" && (
+          <>
+            <DialogBody>
+              <NativeSelect.Root>
+                <NativeSelect.Field
+                  onChange={(e) => {
+                    // @ts-expect-error Type mismatch because inputs are nullable
+                    setRole(e.target.value || undefined);
+                  }}
+                  placeholder="Select a Membership"
+                >
+                  {tiers.map((tier) => (
+                    <option key={tier.key} value={tier.label.toLowerCase()}>
+                      {tier.label}
+                    </option>
+                  ))}
+                </NativeSelect.Field>
+                <NativeSelect.Indicator />
+              </NativeSelect.Root>
+              <DatePicker
+                aria-label="Paid On"
+                className="mt-4"
+                selected={date}
+                maxDate={new Date()}
+                onChange={setDate}
+              />
+            </DialogBody>
+            <DialogFooter>
+              <Button variant="ghost" onClick={() => setOpen(false)}>
+                Cancel
+              </Button>
+              <Button
+                colorPalette="green"
+                variant={
+                  role === undefined || date === undefined ? "ghost" : "solid"
+                }
+                disabled={role === undefined || date === undefined}
+                onClick={() =>
+                  handleUpdate(id, date, role!)
+                    .then(() => {
+                      setStep("cleanup");
+                    })
+                    .finally(() => setUpdateLoading(false))
+                }
+              >
+                {updateLoading ? <Spinner /> : "Submit"}
+              </Button>
+            </DialogFooter>
+          </>
+        )}
+
+        {step === "cleanup" && (
+          <>
+            <DialogBody>
+              <Stack gap="3">
+                <Text
+                  fontSize="sm"
+                  color={{ base: "gray.600", _dark: "gray.300" }}
+                >
+                  Would you like to remove a raw registration entry for this
+                  user? This is optional.
+                </Text>
+
+                {!rawRegistrations?.length ? (
+                  <Text
+                    fontSize="sm"
+                    color={{ base: "gray.400", _dark: "gray.500" }}
+                  >
+                    No raw registrations found.
+                  </Text>
+                ) : (
+                  <Table.ScrollArea maxH="xs" overflowY="auto">
+                    <Table.Root size="sm" variant="outline">
+                      <Table.Header>
+                        <Table.Row>
+                          <Table.ColumnHeader>Name</Table.ColumnHeader>
+                          <Table.ColumnHeader>Email</Table.ColumnHeader>
+                          <Table.ColumnHeader>Role</Table.ColumnHeader>
+                        </Table.Row>
+                      </Table.Header>
+                      <Table.Body>
+                        {rawRegistrations.map((reg) => (
+                          <Table.Row
+                            key={reg.email}
+                            cursor="pointer"
+                            onClick={() => setSelectedEmail(reg.email)}
+                            bg={
+                              selectedEmail === reg.email
+                                ? { base: "blue.100", _dark: "blue.900" }
+                                : undefined
+                            }
+                            borderLeft={
+                              selectedEmail === reg.email
+                                ? "3px solid"
+                                : "3px solid transparent"
+                            }
+                            borderLeftColor={
+                              selectedEmail === reg.email
+                                ? { base: "blue.500", _dark: "blue.400" }
+                                : "transparent"
+                            }
+                            _hover={{
+                              bg: {
+                                base:
+                                  selectedEmail === reg.email
+                                    ? "blue.100"
+                                    : "gray.100",
+                                _dark:
+                                  selectedEmail === reg.email
+                                    ? "blue.900"
+                                    : "gray.700",
+                              },
+                            }}
+                          >
+                            <Table.Cell>
+                              <Text fontSize="sm">
+                                {reg.fname} {reg.lname}
+                              </Text>
+                            </Table.Cell>
+                            <Table.Cell>
+                              <Text
+                                fontSize="xs"
+                                color={{ base: "gray.500", _dark: "gray.400" }}
+                              >
+                                {reg.email}
+                              </Text>
+                            </Table.Cell>
+                            <Table.Cell>
+                              <Badge size="sm">{reg.role}</Badge>
+                            </Table.Cell>
+                          </Table.Row>
+                        ))}
+                      </Table.Body>
+                    </Table.Root>
+                  </Table.ScrollArea>
+                )}
+              </Stack>
+            </DialogBody>
+            <DialogFooter>
+              <Button variant="ghost" onClick={handleClose}>
+                Skip
+              </Button>
+              <Button
+                colorPalette="red"
+                disabled={!selectedEmail}
+                variant={!selectedEmail ? "ghost" : "solid"}
+                onClick={handleDeleteRawRegistration}
+              >
+                {deleteLoading ? <Spinner /> : "Delete Selected"}
+              </Button>
+            </DialogFooter>
+          </>
+        )}
       </DialogContent>
     </DialogRoot>
   );
