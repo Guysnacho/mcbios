@@ -1,12 +1,7 @@
+import { toaster } from "@/components/ui/toaster";
 import { memberRegistrationFetcher, registrationFetcher } from "@/lib";
 import { createClient } from "@/lib/supabase/client";
-import { toaster } from "@/components/ui/toaster";
-import {
-  Box,
-  Flex,
-  Spinner,
-  Table,
-} from "@chakra-ui/react";
+import { Box, Flex, Spinner, Table, Text } from "@chakra-ui/react";
 import useSWR from "swr";
 
 export const Registrations = ({
@@ -44,7 +39,13 @@ export const Registrations = ({
 
   return (
     <Box>
-      <Table.ScrollArea maxH="500px" overflowY="auto" borderWidth="1px" borderColor={{ base: "gray.200", _dark: "gray.700" }} rounded="lg">
+      <Table.ScrollArea
+        maxH="500px"
+        overflowY="auto"
+        borderWidth="1px"
+        borderColor={{ base: "gray.200", _dark: "gray.700" }}
+        rounded="lg"
+      >
         {(currentMembers ? membersLoading : isLoading) ? (
           <Flex justify="center" align="center" minH="200px">
             <Spinner size="lg" color="purple.500" />
@@ -53,8 +54,8 @@ export const Registrations = ({
           <Table.Root variant="outline" striped size="sm">
             <Table.Caption color={{ base: "slate.600", _dark: "gray.400" }}>
               A view into all{" "}
-              {currentMembers ? "authenticated" : "unauthenticated"}{" "}
-              conference registrations.
+              {currentMembers ? "authenticated" : "unauthenticated"} conference
+              registrations.
             </Table.Caption>
             <Table.Header>
               <Table.Row bg={{ base: "gray.50", _dark: "gray.800" }}>
@@ -78,34 +79,106 @@ export const Registrations = ({
                 data &&
                 data.map((user, idx) => (
                   <Table.Row key={user.lname + " " + user.institution + idx}>
-                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>{idx + 1}</Table.Cell>
-                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>{user.email}</Table.Cell>
-                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>
+                    <Table.Cell
+                      fontSize="sm"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                    >
+                      {idx + 1}
+                    </Table.Cell>
+                    <Table.Cell
+                      fontSize="sm"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                    >
+                      {user.email}
+                    </Table.Cell>
+                    <Table.Cell
+                      fontSize="sm"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                    >
                       {user.fname} {user.lname}
                     </Table.Cell>
-                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>{user.role}</Table.Cell>
-                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>{user.institution}</Table.Cell>
+                    <Table.Cell
+                      fontSize="sm"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                    >
+                      {user.role}
+                    </Table.Cell>
+                    <Table.Cell
+                      fontSize="sm"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                    >
+                      {user.institution}
+                    </Table.Cell>
                   </Table.Row>
                 ))}
               {currentMembers &&
                 memberData &&
                 memberData.map((user, idx) => (
                   <Table.Row key={user.lname + " " + user.institution + idx}>
-                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>{idx + 1}</Table.Cell>
-                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>
+                    <Table.Cell
+                      fontSize="sm"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                    >
+                      {idx + 1}
+                    </Table.Cell>
+                    <Table.Cell
+                      fontSize="sm"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                    >
                       {user.fname} {user.lname}
                     </Table.Cell>
-                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>{user.role}</Table.Cell>
-                    <Table.Cell fontSize="sm" color={{ base: "slate.700", _dark: "gray.300" }}>{user.institution}</Table.Cell>
+                    <Table.Cell
+                      fontSize="sm"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                    >
+                      {user.role}
+                    </Table.Cell>
+                    <Table.Cell
+                      fontSize="sm"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                    >
+                      {user.institution}
+                    </Table.Cell>
                   </Table.Row>
                 ))}
             </Table.Body>
           </Table.Root>
         )}
       </Table.ScrollArea>
+      {currentMembers && !membersLoading && memberData && (
+        <SummaryBox data={memberData} />
+      )}
+      {!currentMembers && !isLoading && data && <SummaryBox data={data} />}
     </Box>
   );
 };
+
+function SummaryBox({
+  data,
+}: {
+  data: {
+    role: "professional" | "student" | "admin" | "postdoctorial";
+  }[];
+}) {
+  const professionalCount = data.filter(
+    (item) => item.role === "professional",
+  ).length;
+  const studentCount = data.filter((item) => item.role === "student").length;
+  const postdocCount = data.filter(
+    (item) => item.role === "postdoctorial",
+  ).length;
+  return (
+    <Text
+      textAlign="center"
+      mt={1}
+      color={{ base: "slate.600", _dark: "gray.400" }}
+    >
+      There are {professionalCount} professionals, {studentCount} students,
+      {" and "}
+      {postdocCount} postdoctorial registrations.
+    </Text>
+  );
+}
 
 const memberColumns = ["#", "Name", "Type", "Institution"];
 const columns = ["#", "Email", "Name", "Type", "Institution"];
