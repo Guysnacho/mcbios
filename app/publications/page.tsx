@@ -82,15 +82,42 @@ export default function Page() {
           >
             Publications
           </Heading>
-          <Text fontSize="lg" color={{ base: "slate.600", _dark: "gray.300" }} lineHeight="relaxed">
-            Explore peer-reviewed research from the MCBIOS community, published
-            in collaboration with BMC Bioinformatics.
+          <Text
+            fontSize="lg"
+            color={{ base: "slate.600", _dark: "gray.300" }}
+            lineHeight="relaxed"
+          >
+            MCBIOS society has entering a strategic partnership with{" "}
+            <Link
+              href="https://bioinform.jmir.org"
+              target="_blank"
+              textDecorationLine="underline"
+            >
+              JMIR
+            </Link>{" "}
+            Bioinformatics and Biotechnology journal to formally designates JMIR
+            Bioinformatics and Biotechnology as the official journal of MCBIOS,
+            effective as of October 10, 2025. Learn more here at{" "}
+            <Link
+              href="https://bioinform.jmir.org/announcements/625"
+              target="_blank"
+              textDecorationLine="underline"
+            >
+              this press release
+            </Link>
+            .
           </Text>
         </Container>
       </Box>
 
       {/* Main Content */}
-      <Box as="section" pb="8" bg={{ base: "white", _dark: "gray.950" }} position="relative" overflow="hidden">
+      <Box
+        as="section"
+        pb="8"
+        bg={{ base: "white", _dark: "gray.950" }}
+        position="relative"
+        overflow="hidden"
+      >
         <Box
           position="absolute"
           left="-60px"
@@ -130,12 +157,16 @@ export default function Page() {
                   Conference Proceedings
                 </Heading>
               </Flex>
-              <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="relaxed">
+              <Text
+                color={{ base: "slate.700", _dark: "gray.300" }}
+                lineHeight="relaxed"
+              >
                 Individuals whose poster or platform abstracts are accepted for
                 presentation at the MCBIOS conference are eligible to submit a
                 full paper to be considered for formal, peer-reviewed
-                publication in the conference proceedings. The proceedings
-                appear in a{" "}
+                publication in the conference proceedings. Prior to the recent
+                partnership with JMIR Bioinformatics and Biotechnology,
+                proceedings have appeared in{" "}
                 <Link
                   href="http://www.biomedcentral.com/bmcbioinformatics/"
                   color="red.700"
@@ -144,7 +175,7 @@ export default function Page() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  special issue of BMC Bioinformatics
+                  special issues of BMC Bioinformatics
                 </Link>
                 .
               </Text>
@@ -171,7 +202,10 @@ export default function Page() {
                   MCBIOS on Google Scholar
                 </Heading>
               </Flex>
-              <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="relaxed">
+              <Text
+                color={{ base: "slate.700", _dark: "gray.300" }}
+                lineHeight="relaxed"
+              >
                 Proceedings papers for all previous MCBIOS meetings are now
                 available on Google Scholar. For a listing of the papers and
                 citation metrics,{" "}
@@ -206,7 +240,7 @@ export default function Page() {
                 </Heading>
               </Flex>
               <Text color={{ base: "slate.600", _dark: "gray.300" }} mb="6">
-                Browse through the MCBIOS conference proceedings at the{" "}
+                Browse through past MCBIOS conference proceedings at the{" "}
                 <Text as="span" fontStyle="italic">
                   BMC Bioinformatics
                 </Text>{" "}
@@ -292,10 +326,17 @@ export default function Page() {
                     justify="space-between"
                     align="center"
                   >
-                    <Text color={{ base: "slate.600", _dark: "gray.300" }} fontWeight="medium">
+                    <Text
+                      color={{ base: "slate.600", _dark: "gray.300" }}
+                      fontWeight="medium"
+                    >
                       {item.year}
                     </Text>
-                    <Text color={{ base: "red.700", _dark: "red.400" }} fontWeight="bold" fontSize="lg">
+                    <Text
+                      color={{ base: "red.700", _dark: "red.400" }}
+                      fontWeight="bold"
+                      fontSize="lg"
+                    >
                       {item.factor}
                     </Text>
                   </Flex>
