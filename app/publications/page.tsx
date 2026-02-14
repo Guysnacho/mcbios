@@ -97,7 +97,8 @@ export default function Page() {
             </Link>{" "}
             Bioinformatics and Biotechnology journal to formally designates JMIR
             Bioinformatics and Biotechnology as the official journal of MCBIOS,
-            effective as of October 10, 2025. Learn more here at{" "}
+            effective as of October 10, 2025. Learn more about the new partnership
+            and the article publishing discount here in{" "}
             <Link
               href="https://bioinform.jmir.org/announcements/625"
               target="_blank"
