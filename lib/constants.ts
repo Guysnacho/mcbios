@@ -1,26 +1,3 @@
-export const PathMap = {
-  "/": {
-    name: "HOME",
-    path: "/",
-  },
-  "/leadership": {
-    name: "LEADERSHIP",
-    path: "/leadership",
-  },
-  // "/membership": {
-  //   name: "MEMBERSHIP",
-  //   path: "/membership",
-  // },
-  "/conferences": {
-    name: "CONFERENCES",
-    path: "/conferences",
-  },
-  "/events": { name: "EVENTS", path: "/events" },
-  "/forms": { name: "FORMS", path: "/forms" },
-  "/publications": { name: "PUBLICATIONS", path: "/publications" },
-  "/about": { name: "ABOUT", path: "/about" },
-};
-
 export const ConfYears = [
   {
     year: 2018,

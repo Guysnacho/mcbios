@@ -174,7 +174,7 @@ export default function Page({
                     color="gray.700"
                     _dark={{ borderColor: "gray.600", color: "gray.200" }}
                     fontWeight={500}
-                    onClick={() => router.push("/about")}
+                    onClick={() => router.push("/leadership")}
                   >
                     Learn More
                   </Button>

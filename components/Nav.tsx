@@ -398,7 +398,7 @@ export default function Nav() {
                   <ColorModeButton />
                 </Flex>
 
-                <Button
+                {/* <Button
                   w="full"
                   size="lg"
                   variant="outline"
@@ -412,7 +412,7 @@ export default function Nav() {
                   }}
                 >
                   Learn More
-                </Button>
+                </Button> */}
 
                 {store && store.id ? (
                   <>
