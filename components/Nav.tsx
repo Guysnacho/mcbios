@@ -1,14 +1,15 @@
 "use client";
 
+import { ColorModeButton } from "@/components/ui/color-mode";
 import {
   MenuContent,
   MenuItem,
   MenuRoot,
   MenuTrigger,
 } from "@/components/ui/menu";
-import { ConfYears } from "@/lib";
-import { useUserStore } from "@/lib/store/userStore";
+import { ConfYears, Events, useAnalytics } from "@/lib";
 import useStore from "@/lib/store/useStore";
+import { useUserStore } from "@/lib/store/userStore";
 import { createClient } from "@/lib/supabase/client";
 import {
   Avatar,
@@ -31,7 +32,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import AuthListener from "./AuthListener";
 import { AuthModal } from "./AuthModal";
-import { ColorModeButton } from "@/components/ui/color-mode";
 
 const NAV_ITEMS: Array<NavItem> = [
   {
@@ -76,6 +76,7 @@ export default function Nav() {
   const router = useRouter();
   const path = usePathname();
   const store = useStore(useUserStore, (store) => store);
+  const { trackEvent } = useAnalytics();
 
   const [isAuthOpen, setAuthOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
@@ -199,6 +200,11 @@ export default function Nav() {
                                 textDecoration: "none",
                                 _dark: { bg: "red.900", color: "red.200" },
                               }}
+                              onClick={() =>
+                                trackEvent(Events.NAV.CONF_YEAR, {
+                                  to: child.label,
+                                })
+                              }
                             >
                               <a
                                 href={child.href}
@@ -489,6 +495,7 @@ const MobileNavItem = ({
 }: MobileNavItemProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const router = useRouter();
+  const { trackEvent } = useAnalytics();
 
   if (children) {
     return (
