@@ -43,3 +43,19 @@ export const membershipBenefits = [
   "Student Awards and Grants",
   "Local Chapter Participation",
 ];
+
+export const Events = {
+  NAV: {
+    HOME: "nav_home",
+    CONF_YEAR: "nav_conf_year",
+  },
+  AUTH: {
+    MODAL_OPEN: "auth_modal_open",
+  },
+  REGISTRATION: {
+    ATTEMPT: "registration_attempt",
+  },
+  CONTENT: {
+    VIDEO_TILE_CLICK: "video_tile_click",
+  }
+}
