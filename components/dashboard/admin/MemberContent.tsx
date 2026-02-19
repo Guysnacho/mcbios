@@ -1,3 +1,4 @@
+import { Events, useAnalytics } from "@/lib";
 import { Database } from "@/lib/supabase/types";
 import {
   Box,
@@ -18,10 +19,15 @@ type Video = Database["public"]["Tables"]["videos"]["Row"];
 export const MemberContent = ({ videos }: { videos?: Video[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loadedVideos, setLoadedVideos] = useState<Set<number>>(new Set());
+  const { trackEvent } = useAnalytics();
 
   const isCurrentLoaded = loadedVideos.has(currentIndex);
 
   const handleLoadVideo = useCallback(() => {
+    trackEvent(Events.CONTENT.VIDEO_LOAD, {
+      selected: videos![currentIndex].title,
+    });
+
     setLoadedVideos((prev) => new Set(prev).add(currentIndex));
   }, [currentIndex]);
 
@@ -36,6 +42,7 @@ export const MemberContent = ({ videos }: { videos?: Video[] }) => {
   }, [videos?.length]);
 
   const handleThumbnailClick = useCallback((index: number) => {
+    trackEvent(Events.CONTENT.VIDEO_TILE_CLICK, undefined);
     setCurrentIndex(index);
   }, []);
 

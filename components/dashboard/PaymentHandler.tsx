@@ -1,3 +1,4 @@
+import { Events, useAnalytics } from "@/lib";
 import {
   EmbeddedCheckout,
   EmbeddedCheckoutProvider,
@@ -35,6 +36,7 @@ export const PaymentHandler = ({
   lname,
   institution,
 }: PaymentBody) => {
+  const { trackEvent } = useAnalytics();
   const fetchClientSecret = useCallback(async () => {
     // Create a Checkout Session
     const res = await fetch("/checkout", {
@@ -49,6 +51,7 @@ export const PaymentHandler = ({
       } as PaymentBody),
     });
     const data = await res.json();
+    trackEvent(Events.REGISTRATION.CHECKOUT_FORM_CREATED, undefined);
     return data.clientSecret;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email, tier, userId]);

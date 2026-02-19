@@ -1,6 +1,7 @@
 "use client";
 
 import { DnaHelix } from "@/components/svg/DnaHelix";
+import { Events, useAnalytics } from "@/lib";
 import {
   Box,
   Button,
@@ -24,7 +25,7 @@ import {
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { use } from "react";
+import { use, useEffect } from "react";
 import { LuCircleCheck, LuPartyPopper } from "react-icons/lu";
 
 export default function Page({
@@ -34,6 +35,15 @@ export default function Page({
 }) {
   const params = use(searchParams);
   const isValid = params.token;
+  const { trackEvent } = useAnalytics();
+
+  useEffect(() => {
+    if (isValid) {
+      trackEvent(Events.AUTH.SIGNUP_RESULT, {
+        success: true,
+      });
+    }
+  });
 
   return (
     <>

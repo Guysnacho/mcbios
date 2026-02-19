@@ -1,33 +1,33 @@
 "use client";
 
-import { useUserStore } from "@/lib/store/userStore";
+import { Alert } from "@/components/ui/alert";
+import {
+  DialogBody,
+  DialogCloseTrigger,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Field } from "@/components/ui/field";
+import { InputGroup } from "@/components/ui/input-group";
+import { toaster } from "@/components/ui/toaster";
+import { Events, useAnalytics } from "@/lib";
 import useStore from "@/lib/store/useStore";
+import { useUserStore } from "@/lib/store/userStore";
 import { createClient } from "@/lib/supabase/client";
-import { Info, Eye, EyeOff } from "lucide-react";
 import {
   Box,
   Button,
   Code,
   Heading,
-  HStack,
   Input,
   Link,
   Stack,
   Text,
 } from "@chakra-ui/react";
-import {
-  DialogRoot,
-  DialogContent,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
-  DialogTitle,
-  DialogCloseTrigger,
-} from "@/components/ui/dialog";
-import { Field } from "@/components/ui/field";
-import { InputGroup } from "@/components/ui/input-group";
-import { Alert } from "@/components/ui/alert";
-import { toaster } from "@/components/ui/toaster";
+import { Eye, EyeOff, Info } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
 import { z } from "zod";
@@ -55,6 +55,7 @@ export const AuthModal = ({
   const client = createClient();
   const store = useStore(useUserStore, (store) => store);
   const [showPassword, setShowPassword] = useState(false);
+  const { trackEvent } = useAnalytics();
 
   const handleClose = () => {
     setEmail("");
@@ -79,6 +80,9 @@ export const AuthModal = ({
       const { data, error } = await client.auth.signInWithPassword({
         email,
         password,
+      });
+      trackEvent(Events.AUTH.LOGIN_ATTEMPT, {
+        error: error ? error.message : false,
       });
       // Handle response
       if (error) {
@@ -128,6 +132,9 @@ export const AuthModal = ({
           },
         },
       });
+      trackEvent(Events.AUTH.SIGNUP_ATTEMPT, {
+        error: error ? error.message : false,
+      });
       // Handle response
       if (error) {
         throw error;
@@ -159,6 +166,9 @@ export const AuthModal = ({
     if (success) {
       // Perform auth
       const { error } = await client.auth.resetPasswordForEmail(email);
+      trackEvent(Events.AUTH.PASSWORD_RESET_ATTEMPT, {
+        error: error ? error.message : false,
+      });
       // Handle response
       if (error) {
         if (error.message.toLocaleLowerCase().includes("rate limit")) {

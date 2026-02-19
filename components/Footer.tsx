@@ -1,6 +1,6 @@
 "use client";
 
-import { ConfYears } from "@/lib";
+import { ConfYears, Events, useAnalytics } from "@/lib";
 import {
   Box,
   Container,
@@ -85,41 +85,57 @@ const socialLinks = [
 interface FooterLinkGroupProps {
   title: string;
   links: { label: string; href: string; external?: boolean }[];
+  analyticsEnabled?: boolean;
 }
 
-const FooterLinkGroup = ({ title, links }: FooterLinkGroupProps) => (
-  <Stack gap={3}>
-    <Text
-      fontSize="xs"
-      fontWeight={600}
-      textTransform="uppercase"
-      letterSpacing="wider"
-      color="gray.500"
-    >
-      {title}
-    </Text>
-    <Stack gap={2}>
-      {links.map((link) => (
-        <Link
-          key={link.label}
-          asChild
-          fontSize="sm"
-          color="gray.600"
-          _dark={{ color: "gray.400" }}
-          _hover={{ color: "red.700", _dark: { color: "red.400" } }}
-        >
-          {link.external ? (
-            <a href={link.href} target="_blank" rel="noopener noreferrer">
-              {link.label}
-            </a>
-          ) : (
-            <NextLink href={link.href}>{link.label}</NextLink>
-          )}
-        </Link>
-      ))}
+const FooterLinkGroup = ({
+  title,
+  links,
+  analyticsEnabled,
+}: FooterLinkGroupProps) => {
+  const { trackEvent } = useAnalytics();
+
+  return (
+    <Stack gap={3}>
+      <Text
+        fontSize="xs"
+        fontWeight={600}
+        textTransform="uppercase"
+        letterSpacing="wider"
+        color="gray.500"
+      >
+        {title}
+      </Text>
+      <Stack gap={2}>
+        {links.map((link) => (
+          <Link
+            key={link.label}
+            asChild
+            fontSize="sm"
+            onClick={() => {
+              if (analyticsEnabled) {
+                trackEvent(Events.NAV.CONF_YEAR, {
+                  to: link.label,
+                });
+              }
+            }}
+            color="gray.600"
+            _dark={{ color: "gray.400" }}
+            _hover={{ color: "red.700", _dark: { color: "red.400" } }}
+          >
+            {link.external ? (
+              <a href={link.href} target="_blank" rel="noopener noreferrer">
+                {link.label}
+              </a>
+            ) : (
+              <NextLink href={link.href}>{link.label}</NextLink>
+            )}
+          </Link>
+        ))}
+      </Stack>
     </Stack>
-  </Stack>
-);
+  );
+};
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -197,7 +213,7 @@ export const Footer = () => {
             <FooterLinkGroup {...footerLinks.society} />
           </GridItem>
           <GridItem>
-            <FooterLinkGroup {...footerLinks.conferences} />
+            <FooterLinkGroup {...footerLinks.conferences} analyticsEnabled />
           </GridItem>
           <GridItem>
             <FooterLinkGroup {...footerLinks.resources} />
