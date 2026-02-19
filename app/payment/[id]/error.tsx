@@ -1,5 +1,6 @@
 "use client";
 
+import { PaymentAnalyticsTrigger } from "@/components/payment/PaymentAnalyticsTrigger";
 import { Box, Button, Center, Container } from "@chakra-ui/react";
 import { useEffect } from "react";
 
@@ -17,6 +18,7 @@ export default function Error({
 
   return (
     <Container>
+      <PaymentAnalyticsTrigger error={error.message} />
       <Center>
         <Box my="36">
           <h2 className="text-2xl text-center">

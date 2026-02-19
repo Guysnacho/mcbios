@@ -1,3 +1,4 @@
+import { PaymentAnalyticsTrigger } from "@/components/payment/PaymentAnalyticsTrigger";
 import {
   Alert,
   Box,
@@ -61,6 +62,8 @@ export default async function Page({
               }}
             />
           </Box>
+
+          {isComplete && <PaymentAnalyticsTrigger />}
 
           {/* Title */}
           <Heading size="lg">

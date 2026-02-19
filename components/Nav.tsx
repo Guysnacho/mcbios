@@ -551,6 +551,11 @@ const MobileNavItem = ({
                 _hover={{ color: "red.700", _dark: { color: "red.400" } }}
                 borderBottomWidth="1px"
                 borderColor="gray.100"
+                onClick={() =>
+                  trackEvent(Events.NAV.CONF_YEAR, {
+                    to: child.label,
+                  })
+                }
               >
                 <a href={child.href} target="_blank" rel="noopener noreferrer">
                   {child.label}

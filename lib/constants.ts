@@ -48,14 +48,22 @@ export const Events = {
   NAV: {
     HOME: "nav_home",
     CONF_YEAR: "nav_conf_year",
+    LEADERSHIP: 'nav_leadership',
   },
   AUTH: {
     MODAL_OPEN: "auth_modal_open",
+    SIGNUP_ATTEMPT: "auth_signup_attempt",
+    SIGNUP_RESULT: "auth_signup_result",
+    LOGIN_ATTEMPT: "auth_login_attempt",
+    PASSWORD_RESET_ATTEMPT: "auth_reset_attempt",
+    PASSWORD_RESET_RESULT: "auth_reset_result",
   },
   REGISTRATION: {
-    ATTEMPT: "registration_attempt",
+    CHECKOUT_FORM_CREATED: "checkout_init",
+    RESULT: "registration_result",
   },
   CONTENT: {
+    VIDEO_LOAD: "video_load_request",
     VIDEO_TILE_CLICK: "video_tile_click",
   }
 }

@@ -3,7 +3,8 @@
 import { MembershipPlans } from "@/components/MembershipPlans";
 import { DnaHelix } from "@/components/svg/DnaHelix";
 import { toaster } from "@/components/ui/toaster";
-import { membershipBenefits } from "@/lib/constants";
+import { useAnalytics } from "@/lib";
+import { Events, membershipBenefits } from "@/lib/constants";
 import {
   Badge,
   Box,
@@ -32,7 +33,7 @@ import {
   Users,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { use } from "react";
+import { use, useEffect } from "react";
 
 export default function Page({
   searchParams,
@@ -41,6 +42,7 @@ export default function Page({
 }) {
   const params = use(searchParams);
   const router = useRouter();
+  const { trackEvent } = useAnalytics();
 
   setTimeout(() => {
     if (params.error_description) {
@@ -61,6 +63,10 @@ export default function Page({
       });
     }
   }, 500);
+
+  useEffect(() => {
+    trackEvent(Events.NAV.HOME, undefined);
+  }, []);
 
   return (
     <Box>

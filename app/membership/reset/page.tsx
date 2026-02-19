@@ -3,6 +3,7 @@
 import { Field } from "@/components/ui/field";
 import { InputGroup } from "@/components/ui/input-group";
 import { toaster } from "@/components/ui/toaster";
+import { Events, useAnalytics } from "@/lib";
 import { createClient } from "@/lib/supabase/client";
 import { Database } from "@/lib/supabase/types";
 import {
@@ -38,6 +39,7 @@ export default function Page({
   const [valid, setValid] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(true);
+  const { trackEvent } = useAnalytics();
 
   async function verifyResetSession(client: SupabaseClient<Database>) {
     const { error } = await client.auth.verifyOtp({
@@ -45,6 +47,9 @@ export default function Page({
       token_hash: params.tokenHash as string,
     });
 
+    trackEvent(Events.AUTH.PASSWORD_RESET_ATTEMPT, {
+      error: error ? error.message : false,
+    });
     if (error) {
       toaster.error({
         title: "Ran into an issue verifying your email session",
@@ -62,6 +67,9 @@ export default function Page({
       password,
     });
 
+    trackEvent(Events.AUTH.PASSWORD_RESET_RESULT, {
+      error: error ? error.message : false,
+    });
     if (error) {
       toaster.error({
         title: "Ran into an issue updating your password",
