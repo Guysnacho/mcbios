@@ -32,6 +32,7 @@ declare global {
       SUPABASE_SIGNING_KEY: string;
       NEXT_PUBLIC_ORG_ID: string;
       NEXT_PUBLIC_APP_URL: string;
+      NEXT_PUBLIC_ANALYTICS_KEY: string;
     }
   }
 }
