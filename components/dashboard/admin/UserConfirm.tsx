@@ -1,3 +1,4 @@
+import type { BatchSessionResult } from "@/app/checkout/batch/route";
 import { User } from "@/components/User";
 import {
   DialogBody,
@@ -11,17 +12,19 @@ import {
 import { Field } from "@/components/ui/field";
 import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
+import { createClient } from "@/lib/supabase/client";
 import { Database } from "@/lib/supabase/types";
-import { registrationFetcher } from "@/lib/swrFetchers";
+import { Registration, registrationFetcher } from "@/lib/swrFetchers";
 import {
   Badge,
   Button,
-  Input,
+  Checkbox,
   NativeSelect,
   Spinner,
   Stack,
   Table,
   Text,
+  Textarea,
 } from "@chakra-ui/react";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { Check, Trash2 } from "lucide-react";
@@ -207,26 +210,35 @@ export const UserConfirm = ({
   );
 };
 
-function saveRegistration(session_id: string) {
-  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/checkout/${session_id}`, {
-    method: "GET",
-  })
-    .then((res) => res.json())
-    .catch((err) => {
-      console.error(err.message);
-      throw err;
-    });
+async function saveBatchRegistrations(
+  sessionIds: string[],
+): Promise<BatchSessionResult[]> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/checkout/batch`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ sessionIds }),
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message ?? "Batch request failed");
+  return json.results as BatchSessionResult[];
 }
 
 const RetroactiveRegistration = () => {
-  const [sessionId, setSessionId] = useState("");
+  const [sessionIds, setSessionIds] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [reportOpen, setReportOpen] = useState(false);
+  const [results, setResults] = useState<BatchSessionResult[]>([]);
 
   const handleSubmit = async () => {
-    if (!sessionId.trim()) {
+    const ids = sessionIds
+      .split(/[\n,]+/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    if (ids.length === 0) {
       toaster.create({
         title: "Session ID required",
-        description: "Please enter a Stripe session ID",
+        description: "Please enter at least one Stripe session ID",
         type: "warning",
         duration: 4000,
       });
@@ -235,27 +247,18 @@ const RetroactiveRegistration = () => {
 
     setIsSubmitting(true);
     try {
-      const result = await saveRegistration(sessionId.trim());
-      console.log(result);
-      if (result.error) {
-        toaster.error({
-          title: "Registration failed",
-          description: result.error,
-          duration: 6000,
-        });
-      } else {
-        toaster.success({
-          title: "Registration confirmed",
-          description: "User registration has been processed successfully",
-          duration: 5000,
-        });
-        setSessionId("");
-      }
+      const batchResults = await saveBatchRegistrations(ids);
+      setResults(batchResults);
+      setReportOpen(true);
+      mutate("/admin/registration/raw");
+      mutate("/admin/registration/member");
     } catch (err) {
       toaster.error({
         title: "Something went wrong",
         description:
-          err instanceof Error ? err.message : "Failed to process registration",
+          err instanceof Error
+            ? err.message
+            : "Failed to process registrations",
         duration: 6000,
       });
     } finally {
@@ -264,32 +267,329 @@ const RetroactiveRegistration = () => {
   };
 
   return (
-    <div className="mb-8 p-4 max-w-md border rounded-lg bg-gray-50">
-      <h3 className="text-lg font-semibold mb-4">Retroactive Registration</h3>
-      <p className="text-sm text-gray-600 mb-4">
-        Use this to confirm user registrations retroactively if there was a
-        service or database outage. Pressing submit will fetch the transaction
-        and re-save the user's form fields.
-      </p>
-      <Field label="Stripe Session ID">
-        <div className="flex gap-2">
-          <Input
-            placeholder="cs_live_..."
-            value={sessionId}
-            onChange={(e) => setSessionId(e.target.value)}
+    <>
+      <div className="mb-8 p-4 max-w-md border rounded-lg bg-gray-50">
+        <h3 className="text-lg font-semibold mb-4">Retroactive Registration</h3>
+        <p className="text-sm text-gray-600 mb-4">
+          Use this to confirm user registrations retroactively if there was a
+          service or database outage. Enter one or more Stripe session IDs (one
+          per line or comma-separated). A 5-second pause is added after every 25
+          sessions to avoid rate limits.
+        </p>
+        <Field label="Stripe Session ID(s)">
+          <Textarea
+            placeholder={"cs_live_abc123\ncs_live_def456"}
+            value={sessionIds}
+            onChange={(e) => setSessionIds(e.target.value)}
             disabled={isSubmitting}
+            rows={4}
           />
           <Button
+            mt={2}
             colorPalette="blue"
             onClick={handleSubmit}
             loading={isSubmitting}
-            loadingText="Processing"
+            loadingText="Processing…"
+            width="full"
           >
             Submit
           </Button>
-        </div>
-      </Field>
-    </div>
+        </Field>
+      </div>
+
+      <BatchReportModal
+        open={reportOpen}
+        results={results}
+        onClose={() => setReportOpen(false)}
+      />
+    </>
+  );
+};
+
+const BatchReportModal = ({
+  open,
+  results,
+  onClose,
+}: {
+  open: boolean;
+  results: BatchSessionResult[];
+  onClose: () => void;
+}) => {
+  const client = createClient();
+  const successCount = results.filter((r) => r.success).length;
+  const errorCount = results.filter((r) => !r.success).length;
+
+  const [selectedEmails, setSelectedEmails] = useState<Set<string>>(new Set());
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [expandedEmail, setExpandedEmail] = useState<string | null>(null);
+
+  const { data: rawRegistrations } = useSWR(
+    open ? "/admin/registration/raw" : null,
+    () => registrationFetcher(client),
+  );
+
+  const toggleEmail = (email: string) => {
+    setSelectedEmails((prev) => {
+      const next = new Set(prev);
+      next.has(email) ? next.delete(email) : next.add(email);
+      return next;
+    });
+  };
+
+  const handleDeleteSelected = async () => {
+    if (selectedEmails.size === 0) return;
+    setDeleteLoading(true);
+    const { error } = await client
+      .from("raw_registration")
+      .delete()
+      .in("email", Array.from(selectedEmails))
+      .eq("org_id", process.env.NEXT_PUBLIC_ORG_ID!);
+
+    if (error) {
+      toaster.error({
+        duration: 6000,
+        description: "Failed to delete registrations: " + error.message,
+      });
+    } else {
+      toaster.success({
+        duration: 5000,
+        title: "Deleted",
+        description: `Removed ${selectedEmails.size} raw registration(s)`,
+      });
+      mutate("/admin/registration/raw");
+      mutate("/admin/registration/member");
+      setSelectedEmails(new Set());
+    }
+    setDeleteLoading(false);
+  };
+
+  const handleClose = () => {
+    setSelectedEmails(new Set());
+    setExpandedEmail(null);
+    onClose();
+  };
+
+  const getRegDetails = (email: string): Registration | undefined =>
+    rawRegistrations?.find((r) => r.email === email) ?? undefined;
+
+  return (
+    <DialogRoot open={open} onOpenChange={(e) => !e.open && handleClose()}>
+      <DialogContent maxW="2xl">
+        <DialogHeader>
+          <DialogTitle>Batch Registration Report</DialogTitle>
+        </DialogHeader>
+        <DialogCloseTrigger />
+
+        <DialogBody>
+          <Stack gap="4">
+            {/* Summary badges */}
+            <div className="flex gap-2">
+              <Badge colorPalette="green">{successCount} succeeded</Badge>
+              {errorCount > 0 && (
+                <Badge colorPalette="red">{errorCount} failed</Badge>
+              )}
+            </div>
+
+            {/* Per-session results */}
+            <Table.ScrollArea maxH="xs" overflowY="auto">
+              <Table.Root size="sm" variant="outline">
+                <Table.Header>
+                  <Table.Row>
+                    <Table.ColumnHeader>Session ID</Table.ColumnHeader>
+                    <Table.ColumnHeader>Status</Table.ColumnHeader>
+                    <Table.ColumnHeader>Details</Table.ColumnHeader>
+                  </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                  {results.map((r) => (
+                    <Table.Row key={r.sessionId}>
+                      <Table.Cell>
+                        <Text fontSize="xs" fontFamily="mono">
+                          {r.sessionId}
+                        </Text>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Badge
+                          colorPalette={r.success ? "green" : "red"}
+                          size="sm"
+                        >
+                          {r.success ? "Success" : "Error"}
+                        </Badge>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Text
+                          fontSize="xs"
+                          color={
+                            r.success
+                              ? { base: "gray.600", _dark: "gray.400" }
+                              : { base: "red.600", _dark: "red.400" }
+                          }
+                        >
+                          {r.success ? (r.customer_email ?? "—") : r.message}
+                        </Text>
+                      </Table.Cell>
+                    </Table.Row>
+                  ))}
+                </Table.Body>
+              </Table.Root>
+            </Table.ScrollArea>
+
+            {/* Raw registration cleanup */}
+            {successCount > 0 && (
+              <>
+                <Text
+                  fontSize="sm"
+                  fontWeight="semibold"
+                  borderTopWidth="1px"
+                  pt="3"
+                >
+                  Clean Up Raw Registrations (optional)
+                </Text>
+                <Text
+                  fontSize="sm"
+                  color={{ base: "gray.600", _dark: "gray.300" }}
+                >
+                  Select unauthenticated registrations to delete. Click a row to
+                  expand its details.
+                </Text>
+
+                {!rawRegistrations?.length ? (
+                  <Text
+                    fontSize="sm"
+                    color={{ base: "gray.400", _dark: "gray.500" }}
+                  >
+                    No unauthenticated registrations found.
+                  </Text>
+                ) : (
+                  <Table.ScrollArea maxH="xs" overflowY="auto">
+                    <Table.Root size="sm" variant="outline">
+                      <Table.Header>
+                        <Table.Row>
+                          <Table.ColumnHeader w="8" />
+                          <Table.ColumnHeader>Name</Table.ColumnHeader>
+                          <Table.ColumnHeader>Email</Table.ColumnHeader>
+                          <Table.ColumnHeader>Role</Table.ColumnHeader>
+                        </Table.Row>
+                      </Table.Header>
+                      <Table.Body>
+                        {rawRegistrations.map((reg) => {
+                          const isSelected = selectedEmails.has(reg.email);
+                          const isExpanded = expandedEmail === reg.email;
+                          const details = getRegDetails(reg.email);
+                          return (
+                            <>
+                              <Table.Row
+                                key={reg.email}
+                                cursor="pointer"
+                                bg={
+                                  isSelected
+                                    ? { base: "blue.50", _dark: "blue.900" }
+                                    : undefined
+                                }
+                                _hover={{
+                                  bg: {
+                                    base: isSelected ? "blue.50" : "gray.50",
+                                    _dark: isSelected ? "blue.900" : "gray.700",
+                                  },
+                                }}
+                                onClick={() =>
+                                  setExpandedEmail(
+                                    isExpanded ? null : reg.email,
+                                  )
+                                }
+                              >
+                                <Table.Cell
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    toggleEmail(reg.email);
+                                  }}
+                                >
+                                  <Checkbox.Root
+                                    checked={isSelected}
+                                    colorPalette="blue"
+                                    onCheckedChange={() =>
+                                      toggleEmail(reg.email)
+                                    }
+                                  >
+                                    <Checkbox.HiddenInput />
+                                    <Checkbox.Control>
+                                      <Checkbox.Indicator />
+                                    </Checkbox.Control>
+                                  </Checkbox.Root>
+                                </Table.Cell>
+                                <Table.Cell>
+                                  <Text fontSize="sm">
+                                    {reg.fname} {reg.lname}
+                                  </Text>
+                                </Table.Cell>
+                                <Table.Cell>
+                                  <Text
+                                    fontSize="xs"
+                                    color={{
+                                      base: "gray.500",
+                                      _dark: "gray.400",
+                                    }}
+                                  >
+                                    {reg.email}
+                                  </Text>
+                                </Table.Cell>
+                                <Table.Cell>
+                                  <Badge size="sm">{reg.role}</Badge>
+                                </Table.Cell>
+                              </Table.Row>
+                              {isExpanded && details && (
+                                <Table.Row
+                                  key={reg.email + "-details"}
+                                  bg={{
+                                    base: "gray.50",
+                                    _dark: "gray.800",
+                                  }}
+                                >
+                                  <Table.Cell colSpan={4}>
+                                    <Stack gap="1" px="2" py="1">
+                                      <Text fontSize="xs">
+                                        <strong>Institution:</strong>{" "}
+                                        {details.institution ?? "—"}
+                                      </Text>
+                                      <Text fontSize="xs">
+                                        <strong>Role:</strong> {details.role}
+                                      </Text>
+                                      <Text fontSize="xs">
+                                        <strong>Email:</strong> {details.email}
+                                      </Text>
+                                    </Stack>
+                                  </Table.Cell>
+                                </Table.Row>
+                              )}
+                            </>
+                          );
+                        })}
+                      </Table.Body>
+                    </Table.Root>
+                  </Table.ScrollArea>
+                )}
+              </>
+            )}
+          </Stack>
+        </DialogBody>
+
+        <DialogFooter>
+          <Button variant="ghost" onClick={handleClose}>
+            Close
+          </Button>
+          {successCount > 0 && selectedEmails.size > 0 && (
+            <Button
+              colorPalette="red"
+              onClick={handleDeleteSelected}
+              loading={deleteLoading}
+              loadingText="Deleting…"
+            >
+              Delete {selectedEmails.size} Selected
+            </Button>
+          )}
+        </DialogFooter>
+      </DialogContent>
+    </DialogRoot>
   );
 };
 
