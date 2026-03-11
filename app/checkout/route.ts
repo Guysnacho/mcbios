@@ -70,6 +70,11 @@ export async function GET(req: NextRequest) {
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
+    console.info(
+      "Starting checkout session confirmation. Session Id",
+      req.headers.get("session_id"),
+    );
+
     const session = await stripe.checkout.sessions.retrieve(
       req.headers.get("session_id")!,
     );
@@ -301,7 +306,8 @@ async function handleInstitutionUpdate(
       error?.message || "Upsert failed",
     );
     throw new Error(
-      "Issue updating unauthenticated registration - " + error?.message || "Upsert failed",
+      "Issue updating unauthenticated registration - " + error?.message ||
+        "Upsert failed",
     );
   } else {
     console.log("Successfully updated registration for user - ", data);

@@ -239,6 +239,7 @@ const RetroactiveRegistration = () => {
     setIsSubmitting(true);
     try {
       const result = await saveRegistration(sessionId.trim());
+      console.log(result);
       if (result.error) {
         toaster.error({
           title: "Registration failed",
@@ -604,7 +605,8 @@ const DeleteModal = ({
     const { error } = await client
       .from("confirm_request")
       .delete()
-      .eq("user_id", uid);
+      .eq("user_id", uid)
+      .eq("org_id", process.env.NEXT_PUBLIC_ORG_ID);
 
     if (error) {
       toaster.error({
