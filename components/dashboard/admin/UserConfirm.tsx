@@ -208,11 +208,8 @@ export const UserConfirm = ({
 };
 
 function saveRegistration(session_id: string) {
-  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/checkout`, {
+  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/checkout/${session_id}`, {
     method: "GET",
-    headers: {
-      session_id,
-    },
   })
     .then((res) => res.json())
     .catch((err) => {

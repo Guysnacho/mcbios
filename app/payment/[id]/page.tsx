@@ -30,12 +30,9 @@ export default async function Page({
 
   // Fetch customer session
   const { customer_email, status } = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/checkout`,
+    `${process.env.NEXT_PUBLIC_APP_URL}/checkout/${id}`,
     {
       method: "GET",
-      headers: {
-        session_id: id,
-      },
     },
   ).then(async (res) => {
     return (await res.json()) as {
