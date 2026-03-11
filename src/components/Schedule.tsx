@@ -1,9 +1,47 @@
+"use client";
+
+import { FileText, LayoutList } from "lucide-react";
 import { Clock, MapPin, Users } from "lucide-react";
+import { useState } from "react";
 import { Badge } from "./ui/badge";
 import { Card } from "./ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
+type ViewMode = "scroll" | "pdf";
+
+function PdfPlaceholder() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[60vh] py-20 text-center">
+      <div className="bg-white/80 backdrop-blur-sm border border-[var(--maroon)]/20 rounded-2xl p-12 max-w-lg shadow-lg space-y-6">
+        <div className="flex justify-center">
+          <div className="w-20 h-20 rounded-full bg-[var(--maroon)]/10 flex items-center justify-center">
+            <FileText className="w-10 h-10 text-[var(--maroon)]" />
+          </div>
+        </div>
+        <div className="space-y-2">
+          <h3 className="text-2xl font-bold text-[var(--maroon)]">
+            PDF Viewer Coming Soon
+          </h3>
+          <p className="text-[var(--maroon)]/70 leading-relaxed">
+            An embedded view of the official program booklet will appear here,
+            powered by{" "}
+            <span className="font-semibold text-[var(--maroon)]">
+              react-pdf
+            </span>
+            . For now, use the scrollable schedule view.
+          </p>
+        </div>
+        <div className="text-xs text-[var(--maroon)]/40 font-mono border-t border-[var(--maroon)]/10 pt-4">
+          {"// TODO: integrate react-pdf renderer"}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Schedule() {
+  const [view, setView] = useState<ViewMode>("scroll");
+
   const getTypeColor = (type: string) => {
     const colors = {
       keynote: "bg-[var(--gold)] text-[var(--maroon)]",
@@ -61,9 +99,39 @@ export function Schedule() {
             speakers, and parallel sessions bridging genomics, AI, and precision
             medicine - March 27-29, 2026.
           </p>
+
+          <div className="flex justify-center mt-8">
+            <div className="inline-flex rounded-lg border border-[var(--maroon)]/20 bg-white/60 p-1 gap-1">
+              <button
+                onClick={() => setView("scroll")}
+                className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                  view === "scroll"
+                    ? "bg-[var(--maroon)] text-[var(--off-white)] shadow-sm"
+                    : "text-[var(--maroon)]/60 hover:text-[var(--maroon)]"
+                }`}
+              >
+                <LayoutList className="w-4 h-4" />
+                Scrollable
+              </button>
+              <button
+                onClick={() => setView("pdf")}
+                className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                  view === "pdf"
+                    ? "bg-[var(--maroon)] text-[var(--off-white)] shadow-sm"
+                    : "text-[var(--maroon)]/60 hover:text-[var(--maroon)]"
+                }`}
+              >
+                <FileText className="w-4 h-4" />
+                PDF View
+              </button>
+            </div>
+          </div>
         </div>
 
-        <Tabs defaultValue="Day 1" className="w-full">
+        {view === "pdf" ? (
+          <PdfPlaceholder />
+        ) : (
+          <Tabs defaultValue="Day 1" className="w-full">
           <TabsList className="grid w-full grid-cols-3 mb-8 bg-[var(--maroon)]/10">
             {Object.keys(scheduleData).map((date) => (
               <TabsTrigger
@@ -134,6 +202,7 @@ export function Schedule() {
             </TabsContent>
           ))}
         </Tabs>
+        )}
       </div>
     </section>
   );
