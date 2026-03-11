@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
       mode: "payment",
       return_url: `${req.headers.get("origin")}/payment/{CHECKOUT_SESSION_ID}`,
       customer_email: body.email,
-      customer_creation: "if_required",
+      customer_creation: "always",
       metadata: {
         userId: body.userId!,
         email: body.email!,
