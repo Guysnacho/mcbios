@@ -1,15 +1,24 @@
 "use client";
 
-import { FileText, LayoutList } from "lucide-react";
-import { Clock, MapPin, Users } from "lucide-react";
+import { Clock, FileText, LayoutList, MapPin, Users } from "lucide-react";
 import { useState } from "react";
+import { Document, Page } from "react-pdf";
 import { Badge } from "./ui/badge";
 import { Card } from "./ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
+import "react-pdf/dist/Page/TextLayer.css";
+
 type ViewMode = "scroll" | "pdf";
 
 function PdfPlaceholder() {
+  const [numPages, setNumPages] = useState<number>();
+  const [pageNumber, setPageNumber] = useState<number>(1);
+
+  function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
+    setNumPages(numPages);
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] py-20 text-center">
       <div className="bg-white/80 backdrop-blur-sm border border-[var(--maroon)]/20 rounded-2xl p-12 max-w-lg shadow-lg space-y-6">
@@ -19,20 +28,12 @@ function PdfPlaceholder() {
           </div>
         </div>
         <div className="space-y-2">
-          <h3 className="text-2xl font-bold text-[var(--maroon)]">
-            PDF Viewer Coming Soon
-          </h3>
-          <p className="text-[var(--maroon)]/70 leading-relaxed">
-            An embedded view of the official program booklet will appear here,
-            powered by{" "}
-            <span className="font-semibold text-[var(--maroon)]">
-              react-pdf
-            </span>
-            . For now, use the scrollable schedule view.
-          </p>
-        </div>
-        <div className="text-xs text-[var(--maroon)]/40 font-mono border-t border-[var(--maroon)]/10 pt-4">
-          {"// TODO: integrate react-pdf renderer"}
+          <Document
+            file="/doc/MCBIOS 2026 Program.pdf"
+            onLoadSuccess={onDocumentLoadSuccess}
+          >
+            <Page pageNumber={pageNumber} />
+          </Document>
         </div>
       </div>
     </div>
@@ -61,10 +62,7 @@ export function Schedule() {
   };
 
   return (
-    <section
-      id="schedule"
-      className="py-20 px-4 relative"
-    >
+    <section id="schedule" className="py-20 px-4 relative">
       <div className="absolute inset-0 opacity-5">
         <div
           className="h-full w-full"
@@ -132,76 +130,76 @@ export function Schedule() {
           <PdfPlaceholder />
         ) : (
           <Tabs defaultValue="Day 1" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8 bg-[var(--maroon)]/10">
-            {Object.keys(scheduleData).map((date) => (
-              <TabsTrigger
-                key={date}
-                value={date}
-                className="data-[state=active]:bg-[var(--maroon)] data-[state=active]:text-[var(--off-white)]"
-              >
-                {date}
-              </TabsTrigger>
+            <TabsList className="grid w-full grid-cols-3 mb-8 bg-[var(--maroon)]/10">
+              {Object.keys(scheduleData).map((date) => (
+                <TabsTrigger
+                  key={date}
+                  value={date}
+                  className="data-[state=active]:bg-[var(--maroon)] data-[state=active]:text-[var(--off-white)]"
+                >
+                  {date}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+
+            {Object.entries(scheduleData).map(([day, data]) => (
+              <TabsContent key={day} value={day} className="space-y-6">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-[var(--maroon)] mb-2">
+                    {data.title}
+                  </h3>
+                  <p className="text-[var(--maroon)]/70">{data.date}</p>
+                </div>
+
+                <div className="space-y-4">
+                  {data.events.map((event, index) => (
+                    <Card
+                      key={index}
+                      className="p-6 bg-white/90 backdrop-blur-sm border-[var(--maroon)]/20 hover:shadow-lg transition-all duration-300"
+                    >
+                      <div className="flex flex-col md:flex-row md:items-center gap-4">
+                        <div className="flex items-center space-x-4 md:w-1/4">
+                          <div className="text-2xl font-bold text-[var(--maroon)]">
+                            {event.time}
+                          </div>
+                          {event.duration && (
+                            <div className="flex items-center space-x-1 text-[var(--maroon)]/60 text-sm">
+                              <Clock className="w-4 h-4" />
+                              <span>{event.duration}</span>
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="flex-1 space-y-2">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <h4 className="font-bold text-[var(--maroon)] text-lg">
+                              {event.title}
+                            </h4>
+                            <Badge className={getTypeColor(event.type)}>
+                              {event.type.charAt(0).toUpperCase() +
+                                event.type.slice(1)}
+                            </Badge>
+                          </div>
+
+                          {event.speaker && (
+                            <div className="flex items-center space-x-1 text-[var(--pink)]">
+                              <Users className="w-4 h-4" />
+                              <span>{event.speaker}</span>
+                            </div>
+                          )}
+
+                          <div className="flex items-center space-x-1 text-[var(--maroon)]/60">
+                            <MapPin className="w-4 h-4" />
+                            <span>{event.location}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
             ))}
-          </TabsList>
-
-          {Object.entries(scheduleData).map(([day, data]) => (
-            <TabsContent key={day} value={day} className="space-y-6">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-[var(--maroon)] mb-2">
-                  {data.title}
-                </h3>
-                <p className="text-[var(--maroon)]/70">{data.date}</p>
-              </div>
-
-              <div className="space-y-4">
-                {data.events.map((event, index) => (
-                  <Card
-                    key={index}
-                    className="p-6 bg-white/90 backdrop-blur-sm border-[var(--maroon)]/20 hover:shadow-lg transition-all duration-300"
-                  >
-                    <div className="flex flex-col md:flex-row md:items-center gap-4">
-                      <div className="flex items-center space-x-4 md:w-1/4">
-                        <div className="text-2xl font-bold text-[var(--maroon)]">
-                          {event.time}
-                        </div>
-                        {event.duration && (
-                          <div className="flex items-center space-x-1 text-[var(--maroon)]/60 text-sm">
-                            <Clock className="w-4 h-4" />
-                            <span>{event.duration}</span>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="flex-1 space-y-2">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <h4 className="font-bold text-[var(--maroon)] text-lg">
-                            {event.title}
-                          </h4>
-                          <Badge className={getTypeColor(event.type)}>
-                            {event.type.charAt(0).toUpperCase() +
-                              event.type.slice(1)}
-                          </Badge>
-                        </div>
-
-                        {event.speaker && (
-                          <div className="flex items-center space-x-1 text-[var(--pink)]">
-                            <Users className="w-4 h-4" />
-                            <span>{event.speaker}</span>
-                          </div>
-                        )}
-
-                        <div className="flex items-center space-x-1 text-[var(--maroon)]/60">
-                          <MapPin className="w-4 h-4" />
-                          <span>{event.location}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-          ))}
-        </Tabs>
+          </Tabs>
         )}
       </div>
     </section>
