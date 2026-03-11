@@ -70,13 +70,15 @@ export function Hero() {
                   Register Now
                 </Button>
               </Link>
-              {/* <Button
-                variant="outline"
-                size="lg"
-                className="border-2 border-[var(--off-white)] text-[var(--maroon)] bg-[var(--gold)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] px-8 py-3 font-semibold"
-              >
-                View Schedule
-              </Button> */}
+              <Link href="/schedule">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-2 border-[var(--off-white)] text-[var(--maroon)] bg-[var(--gold)] hover:bg-[var(--off-white)] hover:text-[var(--maroon)] px-8 py-3 font-semibold"
+                >
+                  View Schedule
+                </Button>
+              </Link>
             </div>
           </div>
 
