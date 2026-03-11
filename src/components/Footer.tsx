@@ -7,7 +7,7 @@ export function Footer() {
     { name: "Venue", href: "/#venue" },
     { name: "Accomodations", href: "/accomodations" },
     // { name: "Speakers", href: "#speakers" },
-    // { name: "Schedule", href: "#schedule" },
+    { name: "Schedule", href: "/schedule" },
     // { name: "Registration", href: "#registration" },
   ];
 
@@ -206,9 +206,9 @@ export function Footer() {
               {/* <a href="#" className="hover:text-[var(--gold)] transition-colors">Privacy Policy</a> */}
               {/* <a href="#" className="hover:text-[var(--gold)] transition-colors">Terms of Service</a> */}
               <a
-                href="https://mcbios.com/about"
+                href="https://mcbios.com/bylaws"
                 target="_blank"
-                className="hover:text-[var(--gold)] transition-colors"
+                className="hover:text-(--gold) transition-colors"
               >
                 Bylaws
               </a>
