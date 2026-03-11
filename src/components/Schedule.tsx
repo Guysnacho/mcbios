@@ -2,40 +2,34 @@
 
 import { Clock, FileText, LayoutList, MapPin, Users } from "lucide-react";
 import { useState } from "react";
-import { Document, Page } from "react-pdf";
 import { Badge } from "./ui/badge";
 import { Card } from "./ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
-import "react-pdf/dist/Page/TextLayer.css";
-
 type ViewMode = "scroll" | "pdf";
 
-function PdfPlaceholder() {
-  const [numPages, setNumPages] = useState<number>();
-  const [pageNumber, setPageNumber] = useState<number>(1);
+const PDF_URL = "/doc/MCBIOS_2026_Program.pdf";
 
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
-    setNumPages(numPages);
-  }
-
+function PdfViewer() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] py-20 text-center">
-      <div className="bg-white/80 backdrop-blur-sm border border-[var(--maroon)]/20 rounded-2xl p-12 max-w-lg shadow-lg space-y-6">
-        <div className="flex justify-center">
-          <div className="w-20 h-20 rounded-full bg-[var(--maroon)]/10 flex items-center justify-center">
-            <FileText className="w-10 h-10 text-[var(--maroon)]" />
-          </div>
-        </div>
-        <div className="space-y-2">
-          <Document
-            file="/doc/MCBIOS 2026 Program.pdf"
-            onLoadSuccess={onDocumentLoadSuccess}
-          >
-            <Page pageNumber={pageNumber} />
-          </Document>
-        </div>
+    <div className="w-full space-y-4">
+      <div className="flex justify-end">
+        <a
+          href={PDF_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium bg-[var(--maroon)] text-[var(--off-white)] hover:bg-[var(--maroon)]/90 transition-colors"
+        >
+          <FileText className="w-4 h-4" />
+          Open PDF in new tab
+        </a>
       </div>
+      <iframe
+        src={PDF_URL}
+        className="w-full rounded-xl border border-[var(--maroon)]/20 shadow-lg"
+        style={{ height: "80vh" }}
+        title="MCBIOS 2026 Program Schedule"
+      />
     </div>
   );
 }
@@ -127,7 +121,7 @@ export function Schedule() {
         </div>
 
         {view === "pdf" ? (
-          <PdfPlaceholder />
+          <PdfViewer />
         ) : (
           <Tabs defaultValue="Day 1" className="w-full">
             <TabsList className="grid w-full grid-cols-3 mb-8 bg-[var(--maroon)]/10">
