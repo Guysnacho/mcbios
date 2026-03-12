@@ -89,7 +89,6 @@ export const UserConfirm = ({
           });
           console.error(error);
         } else {
-          // @ts-expect-error dw bout it
           setUsers(data);
         }
         setLoading(false);
@@ -113,7 +112,6 @@ export const UserConfirm = ({
             });
             console.error(error);
           } else {
-            // @ts-expect-error dw bout it
             setUsers(data);
           }
           setLoading(false);
