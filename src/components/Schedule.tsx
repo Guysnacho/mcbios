@@ -210,7 +210,7 @@ const scheduleData = {
         title: "Registration & Breakfast",
         type: "networking",
         location:
-          "Ted & Mary Couch Auditorium / SRB Ferman Family Room / SRB David Murphey Room",
+          "Ted & Marty Couch Auditorium / SRB Ferman Family Room / SRB David Murphey Room",
         duration: "60 min",
       },
       {
@@ -234,7 +234,7 @@ const scheduleData = {
           "Session 101: Innovative Computational Approaches for Decoding Biological Complexity from Single-Cell Data",
         speaker: "Chair: Shenglin Mei",
         type: "session",
-        location: "Ted & Mary Couch Auditorium",
+        location: "Ted & Marty Couch Auditorium",
         duration: "75 min",
       },
       {
@@ -267,7 +267,7 @@ const scheduleData = {
           "Session 201: Computational Digital Twins for Translational Biomedical Informatics",
         speaker: "Chair: Jing Su",
         type: "session",
-        location: "Ted & Mary Couch Auditorium",
+        location: "Ted & Marty Couch Auditorium",
         duration: "75 min",
       },
       {
@@ -316,7 +316,7 @@ const scheduleData = {
           "Session 301: Adverse Event: A Gold Mine for Data Science in Cancer Research",
         speaker: "Chairs: Dung-Tsa Chen, Aik Choon Tan",
         type: "session",
-        location: "Ted & Mary Couch Auditorium",
+        location: "Ted & Marty Couch Auditorium",
         duration: "75 min",
       },
       {
@@ -350,7 +350,7 @@ const scheduleData = {
           "Session 304: Single-Cell and Multi-Omics Genomics: Bridging Data and Innovation to Transform Health",
         speaker: "Chair: Zhaotong Lin",
         type: "session",
-        location: "Ted & Mary Couch Auditorium",
+        location: "Ted & Marty Couch Auditorium",
         duration: "75 min",
       },
       {
@@ -394,7 +394,7 @@ const scheduleData = {
         title: "Breakfast",
         type: "networking",
         location:
-          "Ted & Mary Couch Auditorium / SRB Ferman Family Room / SRB David Murphey Room",
+          "Ted & Marty Couch Auditorium / SRB Ferman Family Room / SRB David Murphey Room",
         duration: "60 min",
       },
       {
@@ -418,7 +418,7 @@ const scheduleData = {
           "Session 401: Advanced Computational Methods in Single-cell and Spatial Omics",
         speaker: "Chairs: Zhana Duren, Xiuwei Zhang, Peng Qiu",
         type: "session",
-        location: "Ted & Mary Couch Auditorium",
+        location: "Ted & Marty Couch Auditorium",
         duration: "75 min",
       },
       {
@@ -451,7 +451,7 @@ const scheduleData = {
         title: "Session 501: AI in Precision Medicine",
         speaker: "Chairs: Sophia Song, Mingxiang Teng",
         type: "session",
-        location: "Ted & Mary Couch Auditorium",
+        location: "Ted & Marty Couch Auditorium",
         duration: "75 min",
       },
       {
@@ -493,7 +493,7 @@ const scheduleData = {
           "Session 601: AI Applications in Genomics and Bioinformatics (Genomics & Translational Bioinformatics Working Group)",
         speaker: "Chair: Ece Uzun",
         type: "session",
-        location: "Ted & Mary Couch Auditorium",
+        location: "Ted & Marty Couch Auditorium",
         duration: "75 min",
       },
       {
@@ -525,7 +525,7 @@ const scheduleData = {
         title: "Session 701: Machine Learning Advances in Single-cell Omics",
         speaker: "Chairs: Peng Qiu, Xiuwei Zhang, Zhana Duren",
         type: "session",
-        location: "Ted & Mary Couch Auditorium",
+        location: "Ted & Marty Couch Auditorium",
         duration: "75 min",
       },
       {
@@ -551,7 +551,7 @@ const scheduleData = {
         title: "Lightning Talks",
         type: "talks",
         location:
-          "Ted & Mary Couch Auditorium / SRB Ferman Family Room / SRB David Murphey Room",
+          "Ted & Marty Couch Auditorium / SRB Ferman Family Room / SRB David Murphey Room",
         duration: "30 min",
       },
     ],
@@ -565,7 +565,7 @@ const scheduleData = {
         title: "Breakfast",
         type: "networking",
         location:
-          "Ted & Mary Couch Auditorium / SRB Ferman Family Room / SRB David Murphey Room",
+          "Ted & Marty Couch Auditorium / SRB Ferman Family Room / SRB David Murphey Room",
         duration: "60 min",
       },
       {
@@ -581,7 +581,7 @@ const scheduleData = {
           "Session 801: Electronic Notebooks for Data Science: Strategies, Suggestions, Experiences",
         speaker: "Chair: Jamie Teer",
         type: "session",
-        location: "Ted & Mary Couch Auditorium",
+        location: "Ted & Marty Couch Auditorium",
         duration: "75 min",
       },
       {
@@ -616,7 +616,7 @@ const scheduleData = {
           "Session 901: Statistical Learning and Applications in Multi-Omics",
         speaker: "Chairs: Sophia Song, Mingxiang Teng",
         type: "session",
-        location: "Ted & Mary Couch Auditorium",
+        location: "Ted & Marty Couch Auditorium",
         duration: "75 min",
       },
       {
