@@ -59,7 +59,7 @@ export const Registrations = ({
             </Table.Caption>
             <Table.Header>
               <Table.Row bg={{ base: "gray.50", _dark: "gray.800" }}>
-                {(currentMembers ? memberColumns : columns).map((header) => (
+                {(columns).map((header) => (
                   <Table.ColumnHeader
                     key={header}
                     color={{ base: "slate.900", _dark: "white" }}
@@ -125,6 +125,12 @@ export const Registrations = ({
                       fontSize="sm"
                       color={{ base: "slate.700", _dark: "gray.300" }}
                     >
+                      {user.email}
+                    </Table.Cell>
+                    <Table.Cell
+                      fontSize="sm"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                    >
                       {user.fname} {user.lname}
                     </Table.Cell>
                     <Table.Cell
@@ -180,7 +186,6 @@ function SummaryBox({
   );
 }
 
-const memberColumns = ["#", "Name", "Type", "Institution"];
 const columns = ["#", "Email", "Name", "Type", "Institution"];
 
 export default Registrations;

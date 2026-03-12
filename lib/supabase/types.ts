@@ -19,33 +19,120 @@ export type Database = {
           created_at: string;
           id: number;
           org_id: string;
-          user_id: string | null;
+          user_id: string;
         };
         Insert: {
           created_at?: string;
           id?: number;
           org_id?: string;
-          user_id?: string | null;
+          user_id?: string;
         };
         Update: {
           created_at?: string;
           id?: number;
           org_id?: string;
-          user_id?: string | null;
+          user_id?: string;
         };
         Relationships: [
           {
-            foreignKeyName: "confirm_request_user_id_fkey";
-            columns: ["user_id"];
-            isOneToOne: true;
+            foreignKeyName: "confirm_request_user_id_org_id_fkey";
+            columns: ["user_id", "org_id"];
+            isOneToOne: false;
             referencedRelation: "member";
-            referencedColumns: ["user_id"];
+            referencedColumns: ["user_id", "org_id"];
+          },
+        ];
+      };
+      form: {
+        Row: {
+          created_at: string;
+          id: string;
+          meta: Json | null;
+          org_id: string;
+          schema: string | null;
+          type: Database["public"]["Enums"]["form_type"];
+          updated_at: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          meta?: Json | null;
+          org_id: string;
+          schema?: string | null;
+          type: Database["public"]["Enums"]["form_type"];
+          updated_at?: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          meta?: Json | null;
+          org_id?: string;
+          schema?: string | null;
+          type?: Database["public"]["Enums"]["form_type"];
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "form_org_id_fkey";
+            columns: ["org_id"];
+            isOneToOne: false;
+            referencedRelation: "organization";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      form_uploads: {
+        Row: {
+          created_at: string;
+          form_id: string | null;
+          id: string;
+          name: string | null;
+          org_id: string;
+          public_url: string | null;
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          form_id?: string | null;
+          id: string;
+          name?: string | null;
+          org_id: string;
+          public_url?: string | null;
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          form_id?: string | null;
+          id?: string;
+          name?: string | null;
+          org_id?: string;
+          public_url?: string | null;
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "form_uploads_form_id_fkey";
+            columns: ["form_id"];
+            isOneToOne: false;
+            referencedRelation: "form";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "form_uploads_user_id_org_id_fkey";
+            columns: ["user_id", "org_id"];
+            isOneToOne: false;
+            referencedRelation: "member";
+            referencedColumns: ["user_id", "org_id"];
           },
         ];
       };
       member: {
         Row: {
           attended: number[];
+          email: string | null;
           fees_paid_at: string | null;
           fname: string;
           institution: string;
@@ -56,6 +143,7 @@ export type Database = {
         };
         Insert: {
           attended?: number[];
+          email?: string | null;
           fees_paid_at?: string | null;
           fname: string;
           institution?: string;
@@ -66,6 +154,7 @@ export type Database = {
         };
         Update: {
           attended?: number[];
+          email?: string | null;
           fees_paid_at?: string | null;
           fname?: string;
           institution?: string;
@@ -86,18 +175,21 @@ export type Database = {
       };
       organization: {
         Row: {
+          base_url: string;
           cre_ts: string;
           id: string;
           name: string;
           short_name: string | null;
         };
         Insert: {
+          base_url: string;
           cre_ts?: string;
           id?: string;
           name: string;
           short_name?: string | null;
         };
         Update: {
+          base_url?: string;
           cre_ts?: string;
           id?: string;
           name?: string;
@@ -135,6 +227,44 @@ export type Database = {
         };
         Relationships: [];
       };
+      submission: {
+        Row: {
+          created_at: string;
+          data: Json;
+          form_id: string;
+          id: string;
+          updated_at: string;
+          uploads: string[] | null;
+          user_id: string | null;
+        };
+        Insert: {
+          created_at?: string;
+          data: Json;
+          form_id: string;
+          id?: string;
+          updated_at?: string;
+          uploads?: string[] | null;
+          user_id?: string | null;
+        };
+        Update: {
+          created_at?: string;
+          data?: Json;
+          form_id?: string;
+          id?: string;
+          updated_at?: string;
+          uploads?: string[] | null;
+          user_id?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "submission_form_id_fkey";
+            columns: ["form_id"];
+            isOneToOne: false;
+            referencedRelation: "form";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       videos: {
         Row: {
           date: string;
@@ -168,6 +298,7 @@ export type Database = {
         Args: { target_user: string };
         Returns: {
           attended: number[];
+          email: string | null;
           fees_paid_at: string | null;
           fname: string;
           institution: string;
@@ -183,12 +314,40 @@ export type Database = {
           isSetofReturn: false;
         };
       };
-      custom_access_token_hook: { Args: { event: Json }; Returns: Json };
+      get_submission: {
+        Args: { p_submission_id: string };
+        Returns: {
+          id: string;
+          member: Json;
+          submission: Json;
+        }[];
+      };
+      get_submissions: {
+        Args: { p_form_id: string };
+        Returns: {
+          id: string;
+          member: Json;
+          submission: Json;
+        }[];
+      };
       get_user_id: { Args: never; Returns: string };
       get_user_org_id: { Args: never; Returns: string };
       is_admin: { Args: never; Returns: boolean };
+      update_fname: { Args: { new_fname: string }; Returns: undefined };
+      update_lname: { Args: { new_lname: string }; Returns: undefined };
+      upsert_submission: {
+        Args: { p_data: Json; p_form_id: string; p_user_id: string };
+        Returns: {
+          data: Json;
+          form_id: string;
+          id: string;
+          updated_at: string;
+          user_id: string;
+        }[];
+      };
     };
     Enums: {
+      form_type: "abstract" | "session" | "general";
       user_role: "professional" | "student" | "admin" | "postdoctorial";
     };
     CompositeTypes: {
@@ -320,6 +479,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      form_type: ["abstract", "session", "general"],
       user_role: ["professional", "student", "admin", "postdoctorial"],
     },
   },
