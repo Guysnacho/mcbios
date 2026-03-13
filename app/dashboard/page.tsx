@@ -1,6 +1,8 @@
 "use client";
 
 import { AdminPanel } from "@/components/dashboard/admin/AdminPanel";
+import { PageViewTracker } from "@/components/PageViewTracker";
+import { Events } from "@/lib/constants";
 import { MemberContent } from "@/components/dashboard/admin/MemberContent";
 import {
   PaymentHandler,
@@ -216,6 +218,7 @@ export default function Page() {
 
   return (
     <>
+      <PageViewTracker event={Events.NAV.DASHBOARD} />
       <Head>
         <title>Dashboard</title>
         <meta content="Dashboard | MidSouth Computational Biology and Bioinformatics Society" />

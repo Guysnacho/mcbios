@@ -1,4 +1,6 @@
+import { PageViewTracker } from "@/components/PageViewTracker";
 import { DnaHelix } from "@/components/svg/DnaHelix";
+import { Events } from "@/lib/constants";
 import {
   Box,
   Container,
@@ -14,14 +16,34 @@ import { Metadata } from "next";
 import { LuBookOpen, LuFileText, LuScale } from "react-icons/lu";
 
 export const metadata: Metadata = {
-  title: "Bylaws | MidSouth Computational Biology and Bioinformatics Society",
+  title: "Bylaws",
   description:
-    "MCBIOS is a non-profit organization founded in 2003. What began as a grassroots effort led by a small group of researchers at the FDA NCTR (located in Little Rock, Arkansas) has since grown significantly. We are now one of only two regional societies in North America (alongside GLBIO) affiliated with ISCB, the world's largest bioinformatics society.",
+    "Read the official bylaws of MCBIOS — the governing document defining the structure, membership, board of directors, and operational procedures of the society.",
+  keywords: [
+    "MCBIOS bylaws",
+    "society governance",
+    "bioinformatics society rules",
+    "MCBIOS membership",
+    "board of directors",
+    "non-profit bylaws",
+  ],
+  openGraph: {
+    title: "MCBIOS Bylaws",
+    description:
+      "The official governing document of the MidSouth Computational Biology and Bioinformatics Society, defining its structure, membership, and procedures.",
+    type: "article",
+  },
+  twitter: {
+    title: "MCBIOS Bylaws",
+    description:
+      "Official bylaws of the MidSouth Computational Biology and Bioinformatics Society.",
+  },
 };
 
 export default function Page() {
   return (
     <>
+      <PageViewTracker event={Events.NAV.BYLAWS} />
       {/* Hero Section */}
       <Box
         as="section"
@@ -81,7 +103,11 @@ export default function Page() {
             Bylaws of the MidSouth Computational Biology and Bioinformatics
             Society
           </Heading>
-          <Text fontSize="lg" color={{ base: "slate.600", _dark: "gray.300" }} lineHeight="relaxed">
+          <Text
+            fontSize="lg"
+            color={{ base: "slate.600", _dark: "gray.300" }}
+            lineHeight="relaxed"
+          >
             The governing document that defines the structure, purpose, and
             operational procedures of MCBIOS.
           </Text>
@@ -133,7 +159,12 @@ export default function Page() {
       <Separator />
 
       {/* Bylaws Content */}
-      <Box as="section" py="16" bg={{ base: "white", _dark: "gray.950" }} position="relative">
+      <Box
+        as="section"
+        py="16"
+        bg={{ base: "white", _dark: "gray.950" }}
+        position="relative"
+      >
         <Box
           position="absolute"
           left="-80px"
@@ -153,7 +184,10 @@ export default function Page() {
           <Stack gap="16">
             {/* Article I */}
             <ArticleSection id="Article_I_Name" title="Article I. Name">
-              <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+              <Text
+                color={{ base: "slate.700", _dark: "gray.300" }}
+                lineHeight="tall"
+              >
                 The name of the Society shall be the{" "}
                 <Text as="span" fontWeight="bold">
                   MidSouth Computational Biology and Bioinformatics Society
@@ -175,36 +209,63 @@ export default function Page() {
                   >
                     Section 1. Purposes.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The purposes of the Society are scientific, educational,
                     literary, charitable, and no other. In furtherance of these
                     purposes, the business and objectives of the Society shall
                     be:
                   </Text>
                   <Stack as="ul" gap="2" mt="4" pl="6">
-                    <Text as="li" color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                    <Text
+                      as="li"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                      lineHeight="tall"
+                    >
                       (a) to advance the understanding of bioinformatics and
                       computational biology;
                     </Text>
-                    <Text as="li" color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                    <Text
+                      as="li"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                      lineHeight="tall"
+                    >
                       (b) to bring together scientists of various backgrounds
                       and disciplines;
                     </Text>
-                    <Text as="li" color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                    <Text
+                      as="li"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                      lineHeight="tall"
+                    >
                       (c) to facilitate the collaboration of researchers with
                       similar or complementary backgrounds to solve biological,
                       health, and/or medical problems;
                     </Text>
-                    <Text as="li" color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                    <Text
+                      as="li"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                      lineHeight="tall"
+                    >
                       (d) to promote education in bioinformatics and
                       computational biology;
                     </Text>
-                    <Text as="li" color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                    <Text
+                      as="li"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                      lineHeight="tall"
+                    >
                       (e) to inform the general public on the results and
                       implications of current research in bioinformatics and
                       computational biology; and
                     </Text>
-                    <Text as="li" color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                    <Text
+                      as="li"
+                      color={{ base: "slate.700", _dark: "gray.300" }}
+                      lineHeight="tall"
+                    >
                       (f) to promote other activities that will contribute to
                       the development of bioinformatics and computational
                       biology.
@@ -225,7 +286,10 @@ export default function Page() {
                   >
                     Section 2. Non-Profit Status.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The Society is organized and shall be operated as a
                     not-for-profit membership corporation. If the Board of
                     Directors of the Society elects to seek and obtains an
@@ -259,7 +323,10 @@ export default function Page() {
                   >
                     Section 1. Members.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The Society shall consist of two classes of members:
                     Professional and Trainee. Both member classes are eligible
                     to vote if they are in good standing.
@@ -275,7 +342,10 @@ export default function Page() {
                   >
                     Section 2. Professional Members.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     Any person who has a professional interest in bioinformatics
                     or computational biology is eligible to be a Professional
                     Member unless he/she is eligible for Trainee Member and
@@ -298,7 +368,10 @@ export default function Page() {
                   >
                     Section 3. Trainee Members.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     Trainee members would comprise of both Students and
                     Postdoctoral Fellows. Any person enrolled in an educational
                     institution and any postdoctoral fellow affiliated to an
@@ -320,7 +393,10 @@ export default function Page() {
                   >
                     Section 4. Dues and Assessments.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The Board of Directors shall set annual dues and special
                     assessments to the Members according to the needs of the
                     Society. Trainee Members shall receive a discounted
@@ -349,7 +425,10 @@ export default function Page() {
                   >
                     Section 1. Annual Meeting.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The Society membership shall meet annually at a place and
                     time designated by the Board of Directors. The Board of
                     Directors may also call Special Meetings of the membership.
@@ -365,7 +444,10 @@ export default function Page() {
                   >
                     Section 2. Notice of Meetings.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The President shall notify members of Annual Meetings and
                     Special Meetings of the membership as a whole, indicating
                     the place and time of the meeting and, in case of a Special
@@ -388,7 +470,10 @@ export default function Page() {
                   >
                     Section 3. Quorum.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     Ten percent of all of the Members at the meeting constitutes
                     a quorum for all purposes at any meeting of the Members. In
                     the absence of a quorum at any meeting or any adjournment
@@ -407,7 +492,10 @@ export default function Page() {
                   >
                     Section 4. Voting by Members.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     Each Member has one vote. Except as provided herein, a
                     plurality of the votes cast determines all elections and a
                     majority of the votes cast determines all other matters. The
@@ -429,7 +517,10 @@ export default function Page() {
                   >
                     Section 5. No Proxy Voting.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     Voting by proxy is not permitted.
                   </Text>
                 </Box>
@@ -443,7 +534,10 @@ export default function Page() {
                   >
                     Section 6. Written Consent.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The Members may take any action that they could take at any
                     Annual or Special Meeting without a meeting, with prior
                     notice, a vote, and signing consent in writing, setting
@@ -473,7 +567,10 @@ export default function Page() {
                   >
                     Section 1. The Presidential Officers.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The Presidential Officers consist of the President-Elect,
                     President, and Past President. The President shall preside
                     at meetings of the Board of Directors, Annual Meetings, and
@@ -508,7 +605,10 @@ export default function Page() {
                   >
                     Section 2. Election and Succession of Presidential Officers.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The President-Elect shall be elected annually for a period
                     of one year by a vote of the Members in good standing of the
                     Society during the Annual Meeting. The President-Elect, the
@@ -537,7 +637,10 @@ export default function Page() {
                   >
                     Section 3. The Secretaries.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     Both Secretary and Past Secretary shall assist the President
                     and shall be responsible for recording, transcribing, and
                     organizing the minutes of all meetings of the Board of
@@ -563,7 +666,10 @@ export default function Page() {
                   >
                     Section 4. The Treasurer.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The Treasurer and Backup Treasurer shall be responsible for
                     timely oversight of all moneys and valuable effects in the
                     name and to the credit of the Society, and for overseeing
@@ -596,7 +702,10 @@ export default function Page() {
                   >
                     Section 5. Contracts.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The Board of Directors may authorize any officer or
                     officers, agent or agents, to enter into any contract or
                     execute and deliver any instrument in the name and on behalf
@@ -623,7 +732,10 @@ export default function Page() {
                   >
                     Section 1. Board of Directors.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The Society&apos;s affairs shall be conducted through a
                     Board of Directors consisting of 11 total members, including
                     the President, the President-Elect, the Past President, the
@@ -650,7 +762,10 @@ export default function Page() {
                   >
                     Section 2. Quorum.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     A quorum of the Board of Directors shall consist of 60% of
                     the total number of Directors. In the absence of a quorum, a
                     majority of the Directors present at any meeting may adjourn
@@ -668,7 +783,10 @@ export default function Page() {
                   >
                     Section 3. Meetings.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The Board of Directors shall meet at the Annual Meeting,
                     notice of which need not be given. The Board may meet at
                     other times and places as it deems necessary and shall
@@ -691,7 +809,10 @@ export default function Page() {
                   >
                     Section 4. Election of Board of Directors.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     A Board Member shall be elected for a three-year term. Each
                     year, at least one seat for a new Board of Directors
                     position and one seat for re-election of a current Board of
@@ -719,7 +840,10 @@ export default function Page() {
                   >
                     Section 5. Resignation of Board of Directors Members.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     In the event that a Director resigns, the Board of Directors
                     is authorized to name an acting replacement to serve the
                     remainder of the current term year until the next Annual
@@ -737,7 +861,10 @@ export default function Page() {
                   >
                     Section 6. Removal of Board of Directors Members.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     One Director may propose the removal of another Director
                     with a strong justification such as their improper behavior
                     during their term, gross negligence, or failure to properly
@@ -770,7 +897,10 @@ export default function Page() {
                   >
                     Section 7. Replacement of a Presidential Officer.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     If a Director who held a Presidential Office resigns or is
                     removed from office, the Board is authorized to name an
                     acting replacement Director as described above. In addition,
@@ -800,7 +930,10 @@ export default function Page() {
                   >
                     Section 8. Limits on Liability of Directors.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     To the fullest extent permitted by the General Corporation
                     Act, as the same exists or may be amended, a Director of the
                     Society shall not be personally liable to the Society or its
@@ -818,7 +951,10 @@ export default function Page() {
                   >
                     Section 9. Official Declaration of Duties.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     Members of the Board of Directors, when assuming their
                     positions, are required to sign the MCBIOS Board Guidelines
                     (more in Article VII) for which their positions are
@@ -846,7 +982,10 @@ export default function Page() {
                   >
                     Section 1. Context.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The Board Guidelines summarize key responsibilities and the
                     societies&apos; expectations for each position in the
                     Society. They also provide a list of standing committees in
@@ -867,7 +1006,10 @@ export default function Page() {
                   >
                     Section 2. Execution.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     Each new Board member must sign the Guidelines before
                     officially taking a position. The Guidelines needs to be
                     reviewed every year for Board approval.
@@ -892,7 +1034,10 @@ export default function Page() {
                   >
                     Section 1. Recognition.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     Chapters are membership subgroups of MCBIOS within a
                     specifically defined geographical region or institution.
                     Working groups are membership subgroups of MCBIOS within a
@@ -920,7 +1065,10 @@ export default function Page() {
                   >
                     Section 2. Meeting Requirements.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     Each Chapter or Working Group needs to inform the Board of
                     Directors about their meetings. A minimum of one meeting per
                     year and a meeting report are required to maintain the
@@ -937,7 +1085,10 @@ export default function Page() {
                   >
                     Section 3. Hosting Annual Meetings.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     Only recognized Chapters or Working Groups may host the
                     Society&apos;s Annual Meetings, upon approval by Board of
                     Directors by following the established conference approval
@@ -963,7 +1114,10 @@ export default function Page() {
                   >
                     Section 1. Actions Other Than in the Right of the Society.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The Society shall indemnify any person who was or is a party
                     or is threatened to be made a party to any threatened,
                     pending or completed action, suit or proceeding whether
@@ -993,7 +1147,10 @@ export default function Page() {
                   >
                     Section 2. Actions by or in the Right of the Society.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The Society shall indemnify any person who was or is a party
                     or is threatened to be made a party to any threatened,
                     pending or completed action or suit by or in the right of
@@ -1020,7 +1177,10 @@ export default function Page() {
                   >
                     Section 3. Advancement of Expenses.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     Expenses incurred in defending a civil or criminal action,
                     suit or proceeding, in advance of the final disposition of
                     such action, suit or proceeding shall be repaid upon receipt
@@ -1040,7 +1200,10 @@ export default function Page() {
                   >
                     Section 4. Insurance.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The Society may purchase (upon resolution duly adopted by
                     the Board of Directors) and maintain insurance on behalf of
                     any person who is or was a Director, officer, employee or
@@ -1061,7 +1224,10 @@ export default function Page() {
                   >
                     Section 5. Indemnification Required.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     To the extent that a Director, officer, employee or agent of
                     the Society has been successful on the merits or otherwise
                     in defense of any action, suit, or proceeding referred to
@@ -1081,7 +1247,10 @@ export default function Page() {
                   >
                     Section 6. Entitlement.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     Every such person shall be entitled, without demand upon the
                     Society or any action by the Society, to enforce their right
                     to such indemnity in an action at law against the Society.
@@ -1106,7 +1275,10 @@ export default function Page() {
                   >
                     Section 1. Definitions.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     (a) Interested Person: Any Director or officer who has a
                     material direct or indirect financial interest, as defined
                     in this Article, is an interested person apply. (b)
@@ -1133,7 +1305,10 @@ export default function Page() {
                   >
                     Section 2. Disclosure.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     An Interested Person shall disclose to the Directors the
                     existence and nature of their financial interest in any
                     proposed transaction or arrangement involving the Society.
@@ -1149,7 +1324,10 @@ export default function Page() {
                   >
                     Section 3. Procedures for Addressing Conflicts of Interest.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The President or the Chair of a committee considering a
                     transaction or arrangement involving an Interested Person
                     shall, if appropriate, appoint a disinterested person or
@@ -1167,7 +1345,10 @@ export default function Page() {
                   >
                     Section 4. Violations.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     If the Board or committee has reasonable cause to believe
                     that an Interested Person has failed to disclose a conflict
                     of interest as required in this Article, the Board or
@@ -1186,7 +1367,10 @@ export default function Page() {
                   >
                     Section 5. Record of Proceedings.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The minutes of the Board or committee shall contain the
                     names of the persons who disclosed or otherwise were found
                     to have a financial interest in connection with a conflict
@@ -1206,7 +1390,10 @@ export default function Page() {
                   >
                     Section 6. Compensation.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     A Director or committee member who receives compensation,
                     directly or indirectly, from the Society shall not vote on
                     matters pertaining to their compensation.
@@ -1222,7 +1409,10 @@ export default function Page() {
                   >
                     Section 7. Annual Statements.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     Each Director, officer and committee Chair shall annually
                     sign a statement which affirms such person has received,
                     read, understands, and agrees to comply with the conflicts
@@ -1239,7 +1429,10 @@ export default function Page() {
                   >
                     Section 8. Periodic Reviews.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     To ensure the Society operates in a manner consistent with
                     charitable purposes and does not engage in activities that
                     could jeopardize its tax-exempt status, periodic reviews
@@ -1265,7 +1458,10 @@ export default function Page() {
                   >
                     Section 1. Period.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     The fiscal year of the Society shall be the calendar year
                     commencing on the 1st day of January and ending on the 31st
                     day of the following December.
@@ -1281,7 +1477,10 @@ export default function Page() {
                   >
                     Section 2. Treasurer&apos;s Report.
                   </Heading>
-                  <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall">
+                  <Text
+                    color={{ base: "slate.700", _dark: "gray.300" }}
+                    lineHeight="tall"
+                  >
                     A report of the fiscal state of the Society shall be made by
                     the Treasurer at the Annual Meeting and whenever requested
                     by the Board of Directors.
@@ -1361,15 +1560,27 @@ export default function Page() {
                   Certification
                 </Heading>
               </Flex>
-              <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall" mb="4">
+              <Text
+                color={{ base: "slate.700", _dark: "gray.300" }}
+                lineHeight="tall"
+                mb="4"
+              >
                 The undersigned hereby certifies that the foregoing constitutes
                 a true and correct copy of the Bylaws of the Society, as adopted
                 by the Board on 2/19/2021.
               </Text>
-              <Text color={{ base: "slate.700", _dark: "gray.300" }} lineHeight="tall" mb="4">
+              <Text
+                color={{ base: "slate.700", _dark: "gray.300" }}
+                lineHeight="tall"
+                mb="4"
+              >
                 Executed as of 3/19/2021, in the presence of our attorney.
               </Text>
-              <Text color={{ base: "slate.600", _dark: "gray.400" }} fontWeight="medium" fontStyle="italic">
+              <Text
+                color={{ base: "slate.600", _dark: "gray.400" }}
+                fontWeight="medium"
+                fontStyle="italic"
+              >
                 Dr. Robert Doerksen, Secretary, Updated 3/19/2021
               </Text>
             </Box>

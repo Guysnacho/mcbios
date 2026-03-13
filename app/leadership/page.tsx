@@ -1,6 +1,7 @@
 "use client";
 
-import { useAnalytics, Events } from "@/lib";
+import { Events } from "@/lib";
+import { PageViewTracker } from "@/components/PageViewTracker";
 import AikChoonTan from "@/public/images/leadership/Aik-Choon-Tan.jpg";
 import BernieDaigle from "@/public/images/leadership/Bernie-Daigle.jpg";
 import ChangSu from "@/public/images/leadership/Chang-Su.jpg";
@@ -26,7 +27,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LuHistory, LuQuote, LuTrophy, LuUsers } from "react-icons/lu";
 
 // President greeting sections
@@ -56,14 +57,10 @@ const greetingSections = [
 export default function Page() {
   const [activeTab, setActiveTab] = useState(0);
   const [boardView, setBoardView] = useState<"current" | "past">("current");
-  const { trackEvent } = useAnalytics();
-
-  useEffect(() => {
-    trackEvent(Events.NAV.LEADERSHIP, undefined);
-  }, []);
 
   return (
     <Box bg={{ base: "white", _dark: "gray.950" }}>
+      <PageViewTracker event={Events.NAV.LEADERSHIP} />
       {/* Leadership Hero */}
       <Box
         as="section"

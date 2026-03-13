@@ -1,6 +1,7 @@
 "use client";
 
 import { DnaHelix } from "@/components/svg/DnaHelix";
+import { PageViewTracker } from "@/components/PageViewTracker";
 import { Events, useAnalytics } from "@/lib";
 import {
   Box,
@@ -47,6 +48,7 @@ export default function Page({
 
   return (
     <>
+      <PageViewTracker event={Events.NAV.CONFIRM} />
       <Head>
         <title>Signup Confirmation</title>
         <meta content="MCBIOS Membership Confirmation | MidSouth Computational Biology and Bioinformatics Society" />

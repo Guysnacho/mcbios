@@ -1,4 +1,6 @@
 import { ConferenceRegistration } from "@/components/ConferenceRegistration";
+import { PageViewTracker } from "@/components/PageViewTracker";
+import { Events } from "@/lib/constants";
 import CareerDev from "@/public/images/banners/career-development.jpg";
 import {
   Box,
@@ -22,6 +24,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <Container maxW="6xl" py={10}>
+      <PageViewTracker event={Events.NAV.EVENTS} />
       <Stack gap={10}>
         <Heading textAlign="center">Events</Heading>
 

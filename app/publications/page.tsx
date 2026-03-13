@@ -1,3 +1,5 @@
+import { PageViewTracker } from "@/components/PageViewTracker";
+import { Events } from "@/lib/constants";
 import { DnaHelix } from "@/components/svg/DnaHelix";
 import {
   Box,
@@ -15,15 +17,34 @@ import { Metadata } from "next";
 import { LuBookOpen, LuFileText, LuTrendingUp } from "react-icons/lu";
 
 export const metadata: Metadata = {
-  title:
-    "MCBIOS Publications | MidSouth Computational Biology and Bioinformatics Society",
+  title: "Publications",
   description:
-    "MCBIOS is a non-profit organization founded in 2003. Here you can find an archive of our publications.",
+    "Browse MCBIOS conference proceedings published in partnership with JMIR Bioinformatics and Biotechnology, and archived in BMC Bioinformatics since 2004.",
+  keywords: [
+    "MCBIOS publications",
+    "bioinformatics conference proceedings",
+    "BMC Bioinformatics",
+    "JMIR Bioinformatics",
+    "computational biology research",
+    "MidSouth bioinformatics",
+  ],
+  openGraph: {
+    title: "MCBIOS Publications",
+    description:
+      "Conference proceedings and research publications from the MidSouth Computational Biology and Bioinformatics Society, archived since 2004.",
+    type: "website",
+  },
+  twitter: {
+    title: "MCBIOS Publications",
+    description:
+      "Conference proceedings from MCBIOS, published in JMIR Bioinformatics and BMC Bioinformatics.",
+  },
 };
 
 export default function Page() {
   return (
     <Box>
+      <PageViewTracker event={Events.NAV.PUBLICATIONS} />
       {/* Hero Section */}
       <Box
         as="section"

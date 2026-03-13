@@ -1,6 +1,8 @@
 "use client";
 
 import { AuthModal } from "@/components/AuthModal";
+import { PageViewTracker } from "@/components/PageViewTracker";
+import { Events } from "@/lib/constants";
 import { MembershipPlan, MembershipPlans } from "@/components/MembershipPlans";
 import { DnaHelix } from "@/components/svg/DnaHelix";
 import { membershipBenefits } from "@/lib/constants";
@@ -62,6 +64,7 @@ export default function Page({
 
   return (
     <>
+      <PageViewTracker event={Events.NAV.MEMBERSHIP} />
       <AuthModal
         isOpen={isAuthOpen}
         setIsOpen={setAuthOpen}

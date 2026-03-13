@@ -1,6 +1,8 @@
 "use client";
 
 import { ConferenceRegistration } from "@/components/ConferenceRegistration";
+import { PageViewTracker } from "@/components/PageViewTracker";
+import { Events } from "@/lib/constants";
 import { DnaHelix } from "@/components/svg/DnaHelix";
 import {
   Box,
@@ -21,6 +23,7 @@ export default function Page() {
 
   return (
     <>
+      <PageViewTracker event={Events.NAV.LATE_REGISTRATION} />
       <Head>
         <title>MCBIOS Late Registration</title>
         <meta content="Late Registration | MidSouth Computational Biology and Bioinformatics Society" />

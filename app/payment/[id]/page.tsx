@@ -1,4 +1,6 @@
 import { PaymentAnalyticsTrigger } from "@/components/payment/PaymentAnalyticsTrigger";
+import { PageViewTracker } from "@/components/PageViewTracker";
+import { Events } from "@/lib/constants";
 import {
   Alert,
   Box,
@@ -45,6 +47,7 @@ export default async function Page({
 
   return (
     <Container maxW="lg" py={10}>
+      <PageViewTracker event={Events.NAV.PAYMENT} />
       <Center>
         <Stack gap={6} textAlign="center">
           {/* Logo */}
