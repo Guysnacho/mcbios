@@ -1,6 +1,8 @@
 "use client";
 
 import { NameTagForm } from "@/components/forms/NameTagForm";
+import { PageViewTracker } from "@/components/PageViewTracker";
+import { Events } from "@/lib/constants";
 import { DnaHelix } from "@/components/svg/DnaHelix";
 import {
   Box,
@@ -22,6 +24,7 @@ export default function Page() {
 
   return (
     <>
+      <PageViewTracker event={Events.NAV.FORMS} />
       <Head>
         <title>MCBIOS Forms</title>
         <meta content="MCBIOS Forms | MidSouth Computational Biology and Bioinformatics Society" />

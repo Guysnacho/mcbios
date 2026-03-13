@@ -48,7 +48,17 @@ export const Events = {
   NAV: {
     HOME: "nav_home",
     CONF_YEAR: "nav_conf_year",
-    LEADERSHIP: 'nav_leadership',
+    LEADERSHIP: "nav_leadership",
+    EVENTS: "nav_events",
+    MEMBERSHIP: "nav_membership",
+    MEMBERSHIP_RESET: "nav_membership_reset",
+    DASHBOARD: "nav_dashboard",
+    BYLAWS: "nav_bylaws",
+    PUBLICATIONS: "nav_publications",
+    FORMS: "nav_forms",
+    LATE_REGISTRATION: "nav_late_registration",
+    CONFIRM: "nav_confirm",
+    PAYMENT: "nav_payment",
   },
   AUTH: {
     MODAL_OPEN: "auth_modal_open",
@@ -61,6 +71,11 @@ export const Events = {
   REGISTRATION: {
     CHECKOUT_FORM_CREATED: "checkout_init",
     RESULT: "registration_result",
+    CONTACT_INFO_SUBMITTED: "reg_contact_info_submitted",
+    TIER_SELECTED: "reg_tier_selected",
+    TIER_STEP_SUBMITTED: "reg_tier_step_submitted",
+    BACK_FROM_TIER: "reg_back_from_tier",
+    BACK_FROM_PAYMENT: "reg_back_from_payment",
   },
   CONTENT: {
     VIDEO_LOAD: "video_load_request",

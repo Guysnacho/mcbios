@@ -99,12 +99,12 @@ export const useAnalytics = () => {
 
   function trackEvent(
     eventName: string,
-    eventBody: Record<string, string | number | boolean> | undefined,
+    eventBody?: Record<string, string | number | boolean>,
   ) {
     aptabaseTrackEvent(eventName, {
       ...eventBody,
-      org: process.env.NEXT_PUBLIC_ORG_ID,
-      url: process.env.NEXT_PUBLIC_APP_URL,
+      org: process.env.NEXT_PUBLIC_ORG_ID ?? "",
+      url: process.env.NEXT_PUBLIC_APP_URL ?? "",
     });
   }
 

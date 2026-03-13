@@ -3,6 +3,7 @@
 import { Field } from "@/components/ui/field";
 import { InputGroup } from "@/components/ui/input-group";
 import { toaster } from "@/components/ui/toaster";
+import { PageViewTracker } from "@/components/PageViewTracker";
 import { Events, useAnalytics } from "@/lib";
 import { createClient } from "@/lib/supabase/client";
 import { Database } from "@/lib/supabase/types";
@@ -104,6 +105,7 @@ export default function Page({
 
   return (
     <>
+      <PageViewTracker event={Events.NAV.MEMBERSHIP_RESET} />
       <Head>
         <title>MCBIOS Account Recovery</title>
         <meta content="MCBIOS Membership Recovery | MidSouth Computational Biology and Bioinformatics Society" />

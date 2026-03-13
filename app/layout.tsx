@@ -5,9 +5,33 @@ import { Toaster } from "@/components/ui/toaster";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MCBIOS | MidSouth Computational Biology and Bioinformatics Society",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "https://mcbios.org"),
+  title: {
+    default: "MCBIOS | MidSouth Computational Biology and Bioinformatics Society",
+    template: "%s | MCBIOS",
+  },
   description:
-    "MCBIOS is a non-profit organization founded in 2003. What began as a grassroots effort led by a small group of researchers at the FDA NCTR (located in Little Rock, Arkansas) has since grown significantly. We are now one of only two regional societies in North America (alongside GLBIO) affiliated with ISCB, the world's largest bioinformatics society.",
+    "MCBIOS is a non-profit organization founded in 2003. One of only two regional societies in North America affiliated with ISCB, the world's largest bioinformatics society.",
+  keywords: [
+    "bioinformatics",
+    "computational biology",
+    "MidSouth",
+    "MCBIOS",
+    "ISCB",
+    "conference",
+    "research",
+    "genomics",
+    "data science",
+  ],
+  openGraph: {
+    siteName: "MCBIOS",
+    type: "website",
+    images: [{ url: "/images/logo.jpg", alt: "MCBIOS Logo" }],
+  },
+  twitter: {
+    card: "summary",
+    images: ["/images/logo.jpg"],
+  },
 };
 
 export default function RootLayout(props: { children: React.ReactNode }) {
