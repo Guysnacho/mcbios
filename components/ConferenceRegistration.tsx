@@ -1,11 +1,12 @@
 "use client";
 
+import { Field } from "@/components/ui/field";
+import { Events, useAnalytics } from "@/lib";
 import {
   Box,
   Button,
   Flex,
   Heading,
-  HStack,
   Input,
   NativeSelect,
   Separator,
@@ -13,7 +14,6 @@ import {
   Steps,
   Text,
 } from "@chakra-ui/react";
-import { Field } from "@/components/ui/field";
 import { useState } from "react";
 import { PaymentHandler, PaymentHandlerType } from "./dashboard/PaymentHandler";
 
@@ -28,6 +28,7 @@ export const ConferenceRegistration = ({
   const [lname, setLname] = useState("");
   const [institution, setInstitution] = useState("");
   const [activeStep, setActiveStep] = useState(0);
+  const { trackEvent } = useAnalytics();
 
   const goToNext = () => setActiveStep((prev) => prev + 1);
   const goToPrevious = () => setActiveStep((prev) => prev - 1);
@@ -90,6 +91,25 @@ export const ConferenceRegistration = ({
             <Box rounded="lg" bg={{ base: "white", _dark: "black" }} p={8}>
               {/* Form fields */}
               <Stack gap={4}>
+                <Box
+                  bg={{ base: "blue.50", _dark: "blue.900" }}
+                  border="1px solid"
+                  borderColor={{ base: "blue.200", _dark: "blue.700" }}
+                  rounded="md"
+                  p={4}
+                >
+                  <Text
+                    fontSize="sm"
+                    color={{ base: "blue.800", _dark: "blue.200" }}
+                    fontWeight="medium"
+                  >
+                    Important: Please enter the name and email address of the
+                    person who will be attending the conference — not the
+                    purchaser&apos;s information (if different). We use this
+                    information to identify attendees, and registrations with
+                    mismatched names or emails may not be found.
+                  </Text>
+                </Box>
                 <Stack
                   direction={["column", null, "row"]}
                   justify="space-evenly"
@@ -137,7 +157,13 @@ export const ConferenceRegistration = ({
                 <Flex justify="space-around" my={5}>
                   <Button
                     type="submit"
-                    onClick={goToNext}
+                    onClick={() => {
+                      trackEvent(Events.REGISTRATION.CONTACT_INFO_SUBMITTED, {
+                        institution,
+                        tier: "unknown",
+                      });
+                      goToNext();
+                    }}
                     colorPalette="green"
                     disabled={isInvalid}
                     className="mx-auto"
@@ -157,7 +183,14 @@ export const ConferenceRegistration = ({
                   <NativeSelect.Field
                     placeholder="Select a membership level"
                     onChange={(e) => {
-                      setTier(e.currentTarget.value as PaymentHandlerType);
+                      const selected = e.currentTarget
+                        .value as PaymentHandlerType;
+                      setTier(selected);
+                      if (selected) {
+                        trackEvent(Events.REGISTRATION.TIER_SELECTED, {
+                          tier: selected,
+                        });
+                      }
                     }}
                   >
                     <option value="student">
@@ -174,10 +207,22 @@ export const ConferenceRegistration = ({
                 </NativeSelect.Root>
               </Flex>
               <Flex justify="center" gap={2} my={5}>
-                <Button onClick={goToPrevious}>Back</Button>
+                <Button
+                  onClick={() => {
+                    trackEvent(Events.REGISTRATION.BACK_FROM_TIER, {});
+                    goToPrevious();
+                  }}
+                >
+                  Back
+                </Button>
                 <Button
                   type="submit"
-                  onClick={goToNext}
+                  onClick={() => {
+                    trackEvent(Events.REGISTRATION.TIER_STEP_SUBMITTED, {
+                      tier: tier ?? "none",
+                    });
+                    goToNext();
+                  }}
                   colorPalette="green"
                   disabled={tier === undefined}
                 >
@@ -199,6 +244,9 @@ export const ConferenceRegistration = ({
               <Flex justify="space-around" my={5}>
                 <Button
                   onClick={() => {
+                    trackEvent(Events.REGISTRATION.BACK_FROM_PAYMENT, {
+                      tier: tier ?? "none",
+                    });
                     goToPrevious();
                     setTier(undefined);
                   }}
