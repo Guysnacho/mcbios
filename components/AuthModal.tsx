@@ -447,7 +447,7 @@ const SignUpSchema = z.object({
     .describe("User's given name // Please provide your given name"),
   lname: z
     .string()
-    .min(3, { error: "Invalid given name, minimum of 2 characters" })
+    .min(2, { error: "Invalid given name, minimum of 2 characters" })
     .describe("User's family name // Please provide your family name"),
   institution: z
     .string()
