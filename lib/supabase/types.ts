@@ -43,6 +43,47 @@ export type Database = {
           },
         ];
       };
+      connect_account: {
+        Row: {
+          account_link: string | null;
+          country_code: string;
+          created_at: string;
+          id: string;
+          org_id: string | null;
+          subscription_id: string | null;
+          subscription_status: string | null;
+          updated_at: string;
+        };
+        Insert: {
+          account_link?: string | null;
+          country_code: string;
+          created_at?: string;
+          id: string;
+          org_id?: string | null;
+          subscription_id?: string | null;
+          subscription_status?: string | null;
+          updated_at?: string;
+        };
+        Update: {
+          account_link?: string | null;
+          country_code?: string;
+          created_at?: string;
+          id?: string;
+          org_id?: string | null;
+          subscription_id?: string | null;
+          subscription_status?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "connect_account_org_id_fkey";
+            columns: ["org_id"];
+            isOneToOne: true;
+            referencedRelation: "organization";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       form: {
         Row: {
           created_at: string;
@@ -132,6 +173,7 @@ export type Database = {
       member: {
         Row: {
           attended: number[];
+          created_at: string | null;
           email: string | null;
           fees_paid_at: string | null;
           fname: string;
@@ -139,10 +181,12 @@ export type Database = {
           lname: string;
           org_id: string;
           role: Database["public"]["Enums"]["user_role"];
+          updated_at: string | null;
           user_id: string;
         };
         Insert: {
           attended?: number[];
+          created_at?: string | null;
           email?: string | null;
           fees_paid_at?: string | null;
           fname: string;
@@ -150,10 +194,12 @@ export type Database = {
           lname: string;
           org_id: string;
           role?: Database["public"]["Enums"]["user_role"];
+          updated_at?: string | null;
           user_id: string;
         };
         Update: {
           attended?: number[];
+          created_at?: string | null;
           email?: string | null;
           fees_paid_at?: string | null;
           fname?: string;
@@ -161,6 +207,7 @@ export type Database = {
           lname?: string;
           org_id?: string;
           role?: Database["public"]["Enums"]["user_role"];
+          updated_at?: string | null;
           user_id?: string;
         };
         Relationships: [
@@ -298,6 +345,7 @@ export type Database = {
         Args: { target_user: string };
         Returns: {
           attended: number[];
+          created_at: string | null;
           email: string | null;
           fees_paid_at: string | null;
           fname: string;
@@ -305,6 +353,7 @@ export type Database = {
           lname: string;
           org_id: string;
           role: Database["public"]["Enums"]["user_role"];
+          updated_at: string | null;
           user_id: string;
         };
         SetofOptions: {
@@ -313,6 +362,15 @@ export type Database = {
           isOneToOne: true;
           isSetofReturn: false;
         };
+      };
+      fetch_member_by_email_org: {
+        Args: { p_email: string; p_org_id: string };
+        Returns: {
+          authed: boolean;
+          email: string;
+          org_id: string;
+          role: Database["public"]["Enums"]["user_role"];
+        }[];
       };
       get_submission: {
         Args: { p_submission_id: string };
@@ -345,9 +403,24 @@ export type Database = {
           user_id: string;
         }[];
       };
+      upsert_submission_unauthed: {
+        Args: {
+          p_form_id: string;
+          p_org_id: string;
+          p_submission: Json;
+          p_user_json: Json;
+        };
+        Returns: {
+          out_form_id: string;
+          out_user_id: string;
+          submission_data: Json;
+          submission_id: string;
+          submission_updated_at: string;
+        }[];
+      };
     };
     Enums: {
-      form_type: "abstract" | "session" | "general";
+      form_type: "abstract" | "session" | "general" | "registration";
       user_role: "professional" | "student" | "admin" | "postdoctorial";
     };
     CompositeTypes: {
@@ -479,7 +552,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      form_type: ["abstract", "session", "general"],
+      form_type: ["abstract", "session", "general", "registration"],
       user_role: ["professional", "student", "admin", "postdoctorial"],
     },
   },
