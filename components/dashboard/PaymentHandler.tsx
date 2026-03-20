@@ -4,7 +4,7 @@ import {
   EmbeddedCheckoutProvider,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
@@ -53,10 +53,9 @@ export const PaymentHandler = ({
     const data = await res.json();
     trackEvent(Events.REGISTRATION.CHECKOUT_FORM_CREATED, undefined);
     return data.clientSecret;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email, tier, userId]);
+  }, [email, tier, userId, fname, lname, institution]);
 
-  const options = { fetchClientSecret };
+  const options = useMemo(() => ({ fetchClientSecret }), [fetchClientSecret]);
 
   return (
     <div id="checkout">

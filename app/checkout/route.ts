@@ -24,6 +24,7 @@ export async function POST(req: NextRequest) {
     const price = derivePriceId(body.tier as PaymentHandlerType);
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+    const idempotencyKey = `checkout-${body.email}-${body.fname}-${body.tier}`;
     const session = await stripe.checkout.sessions.create({
       ui_mode: "embedded",
       allow_promotion_codes: true,
@@ -35,7 +36,7 @@ export async function POST(req: NextRequest) {
         },
       ],
       mode: "payment",
-      return_url: `${req.headers.get("origin")}/payment/{CHECKOUT_SESSION_ID}`,
+      return_url: `${process.env.NEXT_PUBLIC_APP_URL!}/payment/{CHECKOUT_SESSION_ID}`,
       customer_email: body.email,
       customer_creation: "always",
       metadata: {
@@ -47,7 +48,7 @@ export async function POST(req: NextRequest) {
         tier: price.tier || "student",
         memberOnly: price.memberOnly!,
       },
-    });
+    }, { idempotencyKey });
 
     return Response.json({ clientSecret: session.client_secret });
   } catch (err) {

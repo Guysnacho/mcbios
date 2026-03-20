@@ -31,11 +31,25 @@ export async function GET(
       );
       const client = createClient();
       if (session && session.metadata && session.metadata["userId"]) {
-        console.log("Updated authed user");
-        await handleStripeSessionUpdate(client, session);
-        console.log(
-          `Table update complete | user_role=${session.metadata.tier} | user_id=${session.metadata.userId} | member_only=${session.metadata.memberOnly}`,
-        );
+        // Guard against duplicate DB updates if confirmation page is refreshed
+        const { data: member } = await client
+          .from("member")
+          .select("fees_paid_at")
+          .eq("user_id", session.metadata.userId)
+          .eq("org_id", process.env.NEXT_PUBLIC_ORG_ID)
+          .maybeSingle();
+
+        if (!member?.fees_paid_at) {
+          console.log("Updated authed user");
+          await handleStripeSessionUpdate(client, session);
+          console.log(
+            `Table update complete | user_role=${session.metadata.tier} | user_id=${session.metadata.userId} | member_only=${session.metadata.memberOnly}`,
+          );
+        } else {
+          console.log(
+            `Skipping duplicate update — user already processed | user_id=${session.metadata.userId}`,
+          );
+        }
       } else {
         console.log("Handling unauthenticated registration update");
         await handleStripeRawUpdate(client, session);
