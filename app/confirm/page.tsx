@@ -29,19 +29,28 @@ import Link from "next/link";
 import { use, useEffect } from "react";
 import { LuCircleCheck, LuPartyPopper } from "react-icons/lu";
 
+// The MCBIOS org_id. When a confirmed user's org matches this we route them
+// to the MCBIOS membership dashboard; otherwise we fall back to the home page.
+const MCBIOS_ORG_ID = process.env.NEXT_PUBLIC_ORG_ID;
+
 export default function Page({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const params = use(searchParams);
+  // Accept both `token` (legacy) and the token_hash we now embed in the
+  // redirect_to when the email-pub edge function builds the confirm URL.
   const isValid = params.token;
+  const orgId = params.org_id as string | undefined;
+  const isMcbiosOrg = orgId === MCBIOS_ORG_ID;
   const { trackEvent } = useAnalytics();
 
   useEffect(() => {
     if (isValid) {
       trackEvent(Events.AUTH.SIGNUP_RESULT, {
         success: true,
+        org_id: orgId,
       });
     }
   });
@@ -193,9 +202,17 @@ export default function Page({
                 fontWeight="bold"
                 _hover={{ bg: isValid ? "red.800" : "orange.700" }}
               >
-                <Link href="/">
+                <Link
+                  href={
+                    isValid && isMcbiosOrg
+                      ? "/membership?confirmed=true"
+                      : isValid
+                        ? "https://mcbios.com"
+                        : "/"
+                  }
+                >
                   <ChevronLeft size={18} />
-                  Return Home
+                  {isValid && isMcbiosOrg ? "Go to Membership" : "Return Home"}
                 </Link>
               </Button>
             </Box>
