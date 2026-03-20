@@ -1,7 +1,7 @@
 "use client";
 
-import { DnaHelix } from "@/components/svg/DnaHelix";
 import { PageViewTracker } from "@/components/PageViewTracker";
+import { DnaHelix } from "@/components/svg/DnaHelix";
 import { Events, useAnalytics } from "@/lib";
 import {
   Box,
@@ -29,10 +29,6 @@ import Link from "next/link";
 import { use, useEffect } from "react";
 import { LuCircleCheck, LuPartyPopper } from "react-icons/lu";
 
-// The MCBIOS org_id. When a confirmed user's org matches this we route them
-// to the MCBIOS membership dashboard; otherwise we fall back to the home page.
-const MCBIOS_ORG_ID = process.env.NEXT_PUBLIC_ORG_ID;
-
 export default function Page({
   searchParams,
 }: {
@@ -43,14 +39,16 @@ export default function Page({
   // redirect_to when the email-pub edge function builds the confirm URL.
   const isValid = params.token;
   const orgId = params.org_id as string | undefined;
-  const isMcbiosOrg = orgId === MCBIOS_ORG_ID;
+  // The MCBIOS org_id. When a confirmed user's org matches this we route them
+  // to the MCBIOS membership dashboard; otherwise we fall back to the home page.
+  const isMcbiosOrg = orgId === process.env.NEXT_PUBLIC_ORG_ID!;
   const { trackEvent } = useAnalytics();
 
   useEffect(() => {
     if (isValid) {
       trackEvent(Events.AUTH.SIGNUP_RESULT, {
         success: true,
-        org_id: orgId,
+        org_id: orgId!,
       });
     }
   });
