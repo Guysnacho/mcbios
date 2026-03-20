@@ -292,7 +292,7 @@ const scheduleData = {
         time: "12:30 PM",
         title: "Group Pictures",
         type: "ceremony",
-        location: "Auditorium",
+        location: "SRB Atrium",
         duration: "10 min",
       },
       {
@@ -380,7 +380,7 @@ const scheduleData = {
         time: "6:30 PM",
         title: "MCBIOS Business Session (By Invitation Only)",
         type: "social",
-        location: "Auditorium",
+        location: "SRB Admin Trustees Board Room",
         duration: "",
       },
     ],
