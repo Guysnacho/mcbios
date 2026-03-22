@@ -66,7 +66,7 @@ export default function Page({
         as="section"
         pt="40"
         pb="16"
-        bg="slate.50"
+        bg={{ base: "slate.50", _dark: "gray.900" }}
         position="relative"
         overflow="hidden"
       >
@@ -114,12 +114,12 @@ export default function Page({
                   <Flex align="center" gap="3" mb="4">
                     <Flex
                       p="3"
-                      bg="emerald.100"
+                      bg={{ base: "emerald.100", _dark: "emerald.900" }}
                       rounded="xl"
                       align="center"
                       justify="center"
                     >
-                      <Icon color="emerald.700" boxSize="6">
+                      <Icon color={{ base: "emerald.700", _dark: "emerald.300" }} boxSize="6">
                         <LuPartyPopper />
                       </Icon>
                     </Flex>
@@ -128,7 +128,7 @@ export default function Page({
                       fontWeight="bold"
                       textTransform="uppercase"
                       letterSpacing="widest"
-                      color="emerald.700"
+                      color={{ base: "emerald.700", _dark: "emerald.300" }}
                     >
                       Welcome Aboard
                     </Text>
@@ -137,13 +137,13 @@ export default function Page({
                     as="h1"
                     fontSize={{ base: "3xl", md: "4xl" }}
                     fontWeight="black"
-                    color="slate.900"
+                    color={{ base: "slate.900", _dark: "white" }}
                     mb="4"
                     lineHeight="tight"
                   >
                     Thank You for Joining MCBIOS
                   </Heading>
-                  <Text fontSize="lg" color="slate.600" lineHeight="relaxed">
+                  <Text fontSize="lg" color={{ base: "slate.600", _dark: "gray.300" }} lineHeight="relaxed">
                     We appreciate your contribution and time! Your membership
                     helps advance computational biology and bioinformatics in
                     the MidSouth region.
@@ -154,12 +154,12 @@ export default function Page({
                   <Flex align="center" gap="3" mb="4">
                     <Flex
                       p="3"
-                      bg="orange.100"
+                      bg={{ base: "orange.100", _dark: "orange.900" }}
                       rounded="xl"
                       align="center"
                       justify="center"
                     >
-                      <Icon color="orange.700" boxSize="6">
+                      <Icon color={{ base: "orange.700", _dark: "orange.300" }} boxSize="6">
                         <AlertTriangle />
                       </Icon>
                     </Flex>
@@ -168,7 +168,7 @@ export default function Page({
                       fontWeight="bold"
                       textTransform="uppercase"
                       letterSpacing="widest"
-                      color="orange.700"
+                      color={{ base: "orange.700", _dark: "orange.300" }}
                     >
                       Oops
                     </Text>
@@ -177,13 +177,13 @@ export default function Page({
                     as="h1"
                     fontSize={{ base: "3xl", md: "4xl" }}
                     fontWeight="black"
-                    color="slate.900"
+                    color={{ base: "slate.900", _dark: "white" }}
                     mb="4"
                     lineHeight="tight"
                   >
                     Something Went Wrong
                   </Heading>
-                  <Text fontSize="lg" color="slate.600" lineHeight="relaxed">
+                  <Text fontSize="lg" color={{ base: "slate.600", _dark: "gray.300" }} lineHeight="relaxed">
                     If you were in the middle of a registration, please try
                     again later or reach out to us. If you got here by accident,
                     no worries!
@@ -223,7 +223,7 @@ export default function Page({
         <Box
           as="section"
           py="20"
-          bg="white"
+          bg={{ base: "white", _dark: "gray.950" }}
           position="relative"
           overflow="hidden"
         >
@@ -262,7 +262,7 @@ export default function Page({
               as="h2"
               fontSize={{ base: "2xl", md: "3xl" }}
               fontWeight="black"
-              color="slate.900"
+              color={{ base: "slate.900", _dark: "white" }}
               mb="12"
               textAlign="center"
             >
@@ -274,10 +274,10 @@ export default function Page({
                 <Box
                   key={idx}
                   p="6"
-                  bg="slate.50"
+                  bg={{ base: "slate.50", _dark: "gray.800" }}
                   rounded="2xl"
                   borderWidth="1px"
-                  borderColor="slate.200"
+                  borderColor={{ base: "slate.200", _dark: "gray.700" }}
                   transition="all 0.2s"
                   _hover={{ borderColor: "red.200", shadow: "md" }}
                 >
@@ -298,12 +298,12 @@ export default function Page({
                     as="h3"
                     fontSize="md"
                     fontWeight="bold"
-                    color="slate.900"
+                    color={{ base: "slate.900", _dark: "white" }}
                     mb="2"
                   >
                     {perk.heading}
                   </Heading>
-                  <Text fontSize="sm" color="slate.600" lineHeight="relaxed">
+                  <Text fontSize="sm" color={{ base: "slate.600", _dark: "gray.300" }} lineHeight="relaxed">
                     {perk.blurb}
                   </Text>
                 </Box>
@@ -313,18 +313,18 @@ export default function Page({
             <Flex
               mt="12"
               p="6"
-              bg="emerald.50"
+              bg={{ base: "emerald.50", _dark: "emerald.950" }}
               rounded="2xl"
               borderWidth="1px"
-              borderColor="emerald.200"
+              borderColor={{ base: "emerald.200", _dark: "emerald.800" }}
               align="center"
               justify="center"
               gap="3"
             >
-              <Icon color="emerald.600" boxSize="5">
+              <Icon color={{ base: "emerald.600", _dark: "emerald.400" }} boxSize="5">
                 <LuCircleCheck />
               </Icon>
-              <Text color="emerald.800" fontWeight="medium">
+              <Text color={{ base: "emerald.800", _dark: "emerald.200" }} fontWeight="medium">
                 Your membership is now active. Check your email for next steps!
               </Text>
             </Flex>

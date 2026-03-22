@@ -24,7 +24,6 @@ declare global {
       POSTDOC_PRODUCT: string;
       PROFESSIONAL: string;
       PROFESSIONAL_PRODUCT: string;
-      SERVER_RESEND_KEY: string;
       STRIPE_SECRET_KEY: string;
       STUDENT: string;
       STUDENT_PRODUCT: string;
