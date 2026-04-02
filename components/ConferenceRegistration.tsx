@@ -59,7 +59,7 @@ export const ConferenceRegistration = ({
               1 year of MCBIOS membership. Membership gives you access to past
               conference recordings, upcomming elections, and more!
             </Text>
-            <Text>The deadline for registration was March 17th, 2025.</Text>
+            <Text>The deadline for registration was March 17th, 2026.</Text>
           </Stack>
         </div>
       ) : (
