@@ -141,13 +141,15 @@ export function Registration() {
             <Button
               className="bg-[var(--gold)] text-[var(--maroon)] hover:bg-[var(--bronze)] mt-5"
               size="lg"
+              disabled
             >
-              <a
+              {/* <a
                 href="https://mcbios.com/membership?registration=true"
                 target="_blank"
               >
                 Register Now
-              </a>
+              </a> */}
+              Registration Closed
             </Button>
           </div>
         </div>
