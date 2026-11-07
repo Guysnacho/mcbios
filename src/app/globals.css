@@ -79,6 +79,23 @@
   --noise: 0;
 }
 
+@layer base {
+  body {
+    font-size: 1.0625rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .card-title {
+    font-family: var(--font-display);
+  }
+}
+
 @theme inline {
-  --font-sans: var(--font-bacasime), Georgia, serif;
+  --font-sans: var(--font-amiko), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bacasime), Georgia, serif;
 }

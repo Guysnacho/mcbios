@@ -90,7 +90,7 @@ export default function Home() {
         <div className="card card-border bg-base-100/80 backdrop-blur-md">
           <div className="card-body space-y-4">
             <h2 className="text-3xl text-center">Key conference dates</h2>
-            <ul className="timeline timeline-vertical lg:timeline-horizontal">
+            <ul className="timeline timeline-vertical lg:timeline-horizontal lg:justify-center">
               {KEY_DATES.map((d, i) => (
                 <li key={d.label}>
                   {i > 0 && <hr />}
@@ -151,7 +151,7 @@ export default function Home() {
               <span className="badge badge-outline">Single-cell genomics</span>
               <span className="badge badge-outline">Precision oncology</span>
             </div>
-            <div className="card-actions">
+            <div className="card-actions pt-5">
               <Link href="/sessions" className="btn btn-outline">
                 See topics and submit <ArrowRight className="size-4" />
               </Link>
@@ -163,9 +163,11 @@ export default function Home() {
       {/* Coming up */}
       <section className="mx-auto max-w-6xl px-4 space-y-8">
         <div className="card card-border bg-base-100/80 backdrop-blur-md mx-auto w-fit">
-          <h2 className="card-body py-4 text-3xl text-center">
-            What&apos;s <span className="text-primary">coming up</span>
-          </h2>
+          <div className="card-body py-5 px-10">
+            <h2 className="text-3xl">
+              What&apos;s <span className="text-primary">coming up</span>
+            </h2>
+          </div>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {COMING_UP.map(({ href, title, badge, desc, Icon }) => (
