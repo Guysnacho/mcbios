@@ -32,33 +32,28 @@ export function VeinBackground() {
       opacity: 0.4 + Math.random() * 0.5,
     }));
 
+    // A smooth, meandering path: layered sine waves give long lazy bends
+    // plus a tighter secondary wiggle, with slight horizontal drift of the
+    // path in y so the bends feel organic rather than mechanical.
     const pointAt = (t: number, w: number, h: number) => {
-      const pts = [
-        { x: w * 0.82, y: 0 },
-        { x: w * 0.18, y: h * 0.25 },
-        { x: w * 0.85, y: h * 0.5 },
-        { x: w * 0.15, y: h * 0.75 },
-        { x: w * 0.78, y: h },
-      ];
-      const seg = pts.length - 1;
-      const s = Math.min(t, 0.9999) * seg;
-      const i = Math.floor(s);
-      const f = s - i;
-      return {
-        x: pts[i].x + (pts[i + 1].x - pts[i].x) * f,
-        y: pts[i].y + (pts[i + 1].y - pts[i].y) * f,
-      };
+      // Slow, wide S-curve (about one bend per screen height). The amplitude
+      // exceeds half the width so it sweeps off the edges and back.
+      const x =
+        w * 0.5 +
+        w * 0.55 * Math.sin(t * Math.PI * 2 * 0.9 + step * 0.5) +
+        w * 0.08 * Math.sin(t * Math.PI * 2 * 1.7 - step * 0.7 + 1.3);
+      const y = h * (-0.05 + 1.1 * t);
+      return { x, y };
     };
 
     const draw = () => {
       const { width: w, height: h } = canvas;
       ctx.clearRect(0, 0, w, h);
 
-      const spine = Array.from({ length: 61 }, (_, i) => {
-        const t = i / 60;
-        const p = pointAt(t, w, h);
-        return { x: p.x + Math.sin(step + t * 10) * 10, y: p.y };
-      });
+      const SAMPLES = 160;
+      const spine = Array.from({ length: SAMPLES + 1 }, (_, i) =>
+        pointAt(i / SAMPLES, w, h),
+      );
 
       const stroke = (width: number, color: string) => {
         ctx.beginPath();

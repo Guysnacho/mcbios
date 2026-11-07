@@ -86,41 +86,49 @@ export default function Home() {
       </section>
 
       {/* Key dates */}
-      <section className="mx-auto max-w-6xl px-4 space-y-8">
-        <h2 className="text-3xl text-center">Key conference dates</h2>
-        <ul className="timeline timeline-vertical lg:timeline-horizontal">
-          {KEY_DATES.map((d, i) => (
-            <li key={d.label}>
-              {i > 0 && <hr />}
-              <div className="timeline-start font-bold">{d.date}</div>
-              <div className="timeline-middle">
-                <span
-                  className={`status status-lg ${d.tbd ? "" : "status-primary"}`}
-                />
-              </div>
-              <div
-                className={`timeline-end timeline-box ${d.tbd ? "opacity-60" : ""}`}
-              >
-                {d.label}
-              </div>
-              {i < KEY_DATES.length - 1 && <hr />}
-            </li>
-          ))}
-        </ul>
+      <section className="mx-auto max-w-6xl px-4">
+        <div className="card card-border bg-base-100/80 backdrop-blur-md">
+          <div className="card-body space-y-4">
+            <h2 className="text-3xl text-center">Key conference dates</h2>
+            <ul className="timeline timeline-vertical lg:timeline-horizontal">
+              {KEY_DATES.map((d, i) => (
+                <li key={d.label}>
+                  {i > 0 && <hr />}
+                  <div className="timeline-start font-bold">{d.date}</div>
+                  <div className="timeline-middle">
+                    <span
+                      className={`status status-lg ${d.tbd ? "" : "status-primary"}`}
+                    />
+                  </div>
+                  <div
+                    className={`timeline-end timeline-box ${d.tbd ? "opacity-60" : ""}`}
+                  >
+                    {d.label}
+                  </div>
+                  {i < KEY_DATES.length - 1 && <hr />}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </section>
 
       {/* About the theme */}
-      <section className="mx-auto max-w-3xl px-4 space-y-4 text-center">
-        <h2 className="text-3xl">
-          Late-breaking <span className="text-primary">AI in biology</span>
-        </h2>
-        <p className="text-lg">
-          MCBIOS 2027 features late-breaking research on data science, machine
-          learning, and artificial intelligence applied to disease biology
-          modeling, genomics, systems biology, translational bioinformatics,
-          computational drug discovery, and clinical informatics, all aimed at
-          improving human health.
-        </p>
+      <section className="mx-auto max-w-3xl px-4">
+        <div className="card card-border bg-base-100/80 backdrop-blur-md">
+          <div className="card-body items-center space-y-2 text-center">
+            <h2 className="text-3xl">
+              Late-breaking <span className="text-primary">AI in biology</span>
+            </h2>
+            <p className="text-lg">
+              MCBIOS 2027 features late-breaking research on data science,
+              machine learning, and artificial intelligence applied to disease
+              biology modeling, genomics, systems biology, translational
+              bioinformatics, computational drug discovery, and clinical
+              informatics, all aimed at improving human health.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* Call for session proposals */}
@@ -154,9 +162,11 @@ export default function Home() {
 
       {/* Coming up */}
       <section className="mx-auto max-w-6xl px-4 space-y-8">
-        <h2 className="text-3xl text-center">
-          What&apos;s <span className="text-primary">coming up</span>
-        </h2>
+        <div className="card card-border bg-base-100/80 backdrop-blur-md mx-auto w-fit">
+          <h2 className="card-body py-4 text-3xl text-center">
+            What&apos;s <span className="text-primary">coming up</span>
+          </h2>
+        </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {COMING_UP.map(({ href, title, badge, desc, Icon }) => (
             <Link
@@ -178,19 +188,24 @@ export default function Home() {
       </section>
 
       {/* About MCBIOS */}
-      <section className="mx-auto max-w-3xl px-4 space-y-4 text-center">
-        <h2 className="text-3xl">
-          About the <span className="text-primary">MCBIOS Society</span>
-        </h2>
-        <p className="text-lg">
-          MCBIOS is a non-profit founded in 2003 and one of only two regional
-          North American societies affiliated with ISCB, the world&apos;s
-          largest bioinformatics society. Its mission is to foster networking,
-          collaboration, and professional development at every career level.
-        </p>
-        <Link href="/about" className="btn btn-link">
-          Learn more about MCBIOS <ArrowRight className="size-4" />
-        </Link>
+      <section className="mx-auto max-w-3xl px-4">
+        <div className="card card-border bg-base-100/80 backdrop-blur-md">
+          <div className="card-body items-center space-y-2 text-center">
+            <h2 className="text-3xl">
+              About the <span className="text-primary">MCBIOS Society</span>
+            </h2>
+            <p className="text-lg">
+              MCBIOS is a non-profit founded in 2003 and one of only two
+              regional North American societies affiliated with ISCB, the
+              world&apos;s largest bioinformatics society. Its mission is to
+              foster networking, collaboration, and professional development at
+              every career level.
+            </p>
+            <Link href="/about" className="btn btn-link">
+              Learn more about MCBIOS <ArrowRight className="size-4" />
+            </Link>
+          </div>
+        </div>
       </section>
     </div>
   );
