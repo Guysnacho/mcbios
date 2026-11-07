@@ -57,7 +57,7 @@ export default function SessionsPage() {
             in 2027!
           </p>
           <div className="divider my-1" />
-          <p className="font-bold">Inimary Toby-Ogundeji, PhD</p>
+          <p className="font-bold">Conference Chair Inimary Toby-Ogundeji, PhD</p>
         </div>
       </div>
 
