@@ -1,26 +1,101 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@plugin "daisyui" {
+  themes: false;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Dark is the default; the navbar toggle switches to mcbios-light. */
+@plugin "daisyui/theme" {
+  name: "mcbios-dark";
+  default: true;
+  prefersdark: false;
+  color-scheme: dark;
+
+  --color-base-100: #0f1307;
+  --color-base-200: #1a2009;
+  --color-base-300: #2b3415;
+  --color-base-content: #f3f8ec;
+  --color-primary: #88be41;
+  --color-primary-content: #0e1307;
+  --color-secondary: #407fbf;
+  --color-secondary-content: #f5f9fd;
+  --color-accent: #7367cb;
+  --color-accent-content: #ffffff;
+  --color-neutral: #1f250e;
+  --color-neutral-content: #e8f2d9;
+  --color-info: #6699cc;
+  --color-info-content: #060d13;
+  --color-success: #6dbf6d;
+  --color-success-content: #0e1307;
+  --color-warning: #e0b341;
+  --color-warning-content: #1f1600;
+  --color-error: #ff2a5f;
+  --color-error-content: #ffffff;
+
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@plugin "daisyui/theme" {
+  name: "mcbios-light";
+  default: false;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: #f5f8ec;
+  --color-base-200: #ebf1da;
+  --color-base-300: #d6e4b4;
+  --color-base-content: #0e1307;
+  --color-primary: #88be41;
+  --color-primary-content: #0e1307;
+  --color-secondary: #336699;
+  --color-secondary-content: #ffffff;
+  --color-accent: #403498;
+  --color-accent-content: #ffffff;
+  --color-neutral: #384b1b;
+  --color-neutral-content: #f3f8ec;
+  --color-info: #336699;
+  --color-info-content: #ffffff;
+  --color-success: #517227;
+  --color-success-content: #ffffff;
+  --color-warning: #e0b341;
+  --color-warning-content: #1f1600;
+  --color-error: #c4153f;
+  --color-error-content: #ffffff;
+
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@layer base {
+  body {
+    font-size: 1.0625rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .card-title {
+    font-family: var(--font-display);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme inline {
+  --font-sans: var(--font-amiko), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bacasime), Georgia, serif;
 }

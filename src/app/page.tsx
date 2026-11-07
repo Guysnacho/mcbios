@@ -1,69 +1,214 @@
-import Image from "next/image";
+import { Countdown } from "@/components/Countdown";
+import { KEY_DATES } from "@/lib/site";
+import {
+  ArrowRight,
+  Award,
+  BookOpen,
+  Calendar,
+  Clock,
+  Globe,
+  Layers,
+  Users,
+} from "lucide-react";
+import Link from "next/link";
+
+const COMING_UP = [
+  {
+    href: "/register",
+    title: "Registration",
+    badge: "Opens Jan 8",
+    desc: "Register for three days of sessions, workshops, and networking.",
+    Icon: Users,
+  },
+  {
+    href: "/abstracts",
+    title: "Abstracts",
+    badge: "Coming soon",
+    desc: "Oral and poster presentation opportunities for all members.",
+    Icon: BookOpen,
+  },
+  {
+    href: "/ysea",
+    title: "YSEA",
+    badge: "Coming soon",
+    desc: "Young Scientist Excellence Podium and Poster Awards for graduate students and postdocs.",
+    Icon: Award,
+  },
+  {
+    href: "/schedule",
+    title: "Schedule",
+    badge: "Coming soon",
+    desc: "Workshops, networking, and the full three-day program.",
+    Icon: Layers,
+  },
+  {
+    href: "/accommodations",
+    title: "Accommodations",
+    badge: "Coming soon",
+    desc: "Venue and travel details will be announced.",
+    Icon: Globe,
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-25"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="space-y-20 pb-20">
+      {/* Hero */}
+      <section className="hero min-h-[80vh]">
+        <div className="hero-content text-center">
+          <div className="max-w-3xl space-y-6">
+            <h1 className="text-6xl sm:text-7xl">
+              MCBIOS <span className="text-primary">2027</span>
+            </h1>
+            <div className="badge badge-lg badge-outline gap-2">
+              <Calendar className="size-4" /> March 17–19, 2027
+            </div>
+            <h2 className="text-3xl sm:text-4xl">
+              The Role of Artificial Intelligence in{" "}
+              <span className="text-primary">Biology and Medicine</span>
+            </h2>
+            <p className="text-xl italic opacity-80">
+              New intelligence. Deeper biological insights. Better medicine.
+            </p>
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link href="/sessions" className="btn btn-primary btn-lg">
+                Submit a session proposal <ArrowRight className="size-5" />
+              </Link>
+              <button className="btn btn-lg" disabled>
+                <Clock className="size-5" /> Registration opens Jan 8
+              </button>
+            </div>
+            <div className="max-w-xl mx-auto">
+              <Countdown />
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Key dates */}
+      <section className="mx-auto max-w-6xl px-4">
+        <div className="card card-border bg-base-100/80 backdrop-blur-md">
+          <div className="card-body space-y-4">
+            <h2 className="text-3xl text-center">Key conference dates</h2>
+            <ul className="timeline timeline-vertical lg:timeline-horizontal lg:justify-center">
+              {KEY_DATES.map((d, i) => (
+                <li key={d.label}>
+                  {i > 0 && <hr />}
+                  <div className="timeline-start font-bold">{d.date}</div>
+                  <div className="timeline-middle">
+                    <span
+                      className={`status status-lg ${d.tbd ? "" : "status-primary"}`}
+                    />
+                  </div>
+                  <div
+                    className={`timeline-end timeline-box ${d.tbd ? "opacity-60" : ""}`}
+                  >
+                    {d.label}
+                  </div>
+                  {i < KEY_DATES.length - 1 && <hr />}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* About the theme */}
+      <section className="mx-auto max-w-3xl px-4">
+        <div className="card card-border bg-base-100/80 backdrop-blur-md">
+          <div className="card-body items-center space-y-2 text-center">
+            <h2 className="text-3xl">
+              Late-breaking <span className="text-primary">AI in biology</span>
+            </h2>
+            <p className="text-lg">
+              MCBIOS 2027 features late-breaking research on data science,
+              machine learning, and artificial intelligence applied to disease
+              biology modeling, genomics, systems biology, translational
+              bioinformatics, computational drug discovery, and clinical
+              informatics, all aimed at improving human health.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Call for session proposals */}
+      <section className="mx-auto max-w-6xl px-4">
+        <div className="card card-border bg-base-200/80 backdrop-blur-md lg:card-side">
+          <div className="card-body">
+            <span className="badge badge-secondary badge-soft">
+              Call for proposals
+            </span>
+            <h2 className="card-title text-3xl">
+              Shape the MCBIOS 2027 program
+            </h2>
+            <p>
+              We welcome session proposals across 16 suggested topics, from drug
+              discovery and precision oncology to single-cell genomics and LLMs
+              for drug safety. Proposals are due December 15, 2026.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <span className="badge badge-outline">AI in drug discovery</span>
+              <span className="badge badge-outline">Single-cell genomics</span>
+              <span className="badge badge-outline">Precision oncology</span>
+            </div>
+            <div className="card-actions pt-5">
+              <Link href="/sessions" className="btn btn-outline">
+                See topics and submit <ArrowRight className="size-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Coming up */}
+      <section className="mx-auto max-w-6xl px-4 space-y-8">
+        <div className="card card-border bg-base-100/80 backdrop-blur-md mx-auto w-fit">
+          <div className="card-body py-5 px-10">
+            <h2 className="text-3xl">
+              What&apos;s <span className="text-primary">coming up</span>
+            </h2>
+          </div>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {COMING_UP.map(({ href, title, badge, desc, Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className="card card-border bg-base-100/80 backdrop-blur-md transition hover:border-primary"
+            >
+              <div className="card-body">
+                <div className="flex items-center justify-between">
+                  <Icon className="size-6 text-primary" />
+                  <span className="badge badge-outline">{badge}</span>
+                </div>
+                <h3 className="card-title">{title}</h3>
+                <p className="opacity-80">{desc}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* About MCBIOS */}
+      <section className="mx-auto max-w-3xl px-4">
+        <div className="card card-border bg-base-100/80 backdrop-blur-md">
+          <div className="card-body items-center space-y-2 text-center">
+            <h2 className="text-3xl">
+              About the <span className="text-primary">MCBIOS Society</span>
+            </h2>
+            <p className="text-lg">
+              MCBIOS is a non-profit founded in 2003 and one of only two
+              regional North American societies affiliated with ISCB, the
+              world&apos;s largest bioinformatics society. Its mission is to
+              foster networking, collaboration, and professional development at
+              every career level.
+            </p>
+            <Link href="/about" className="btn btn-link">
+              Learn more about MCBIOS <ArrowRight className="size-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
