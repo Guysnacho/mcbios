@@ -38,13 +38,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Head from "next/head";
-import {
-  ChevronLeft,
-  Menu,
-  Shield,
-  User,
-  Video,
-} from "lucide-react";
+import { ChevronLeft, Menu, Shield, User, Video } from "lucide-react";
 import { useState } from "react";
 import useSWR from "swr";
 
@@ -96,11 +90,8 @@ export default function Page() {
   const isAdmin = data?.user?.role === "admin";
   const isPaid = !!data?.user?.fees_paid_at;
 
-  const defaultSection: DashboardSection = isAdmin
-    ? "admin"
-    : "profile";
-  const [activeSection, setActiveSection] =
-    useState<DashboardSection>();
+  const defaultSection: DashboardSection = isAdmin ? "admin" : "profile";
+  const [activeSection, setActiveSection] = useState<DashboardSection>();
 
   const section = activeSection ?? defaultSection;
 
@@ -130,17 +121,11 @@ export default function Page() {
   const sidebarContent = (
     <Stack gap="6">
       {/* User card */}
-      <Box
-        p="4"
-        rounded="xl"
-        bg={{ base: "gray.50", _dark: "gray.800" }}
-      >
+      <Box p="4" rounded="xl" bg={{ base: "gray.50", _dark: "gray.800" }}>
         <Flex align="center" gap="3">
           <Avatar
             name={
-              data?.user
-                ? `${data.user.fname} ${data.user.lname}`
-                : undefined
+              data?.user ? `${data.user.fname} ${data.user.lname}` : undefined
             }
             src="https://api.dicebear.com/9.x/thumbs/png?seed=Lily&size=75"
             size="lg"
@@ -238,8 +223,8 @@ export default function Page() {
                 We ran into an issue
               </Heading>
               <Text color={{ base: "gray.600", _dark: "gray.300" }}>
-                There was an error fetching your account information. If
-                an issue persists, please reach out to{" "}
+                There was an error fetching your account information. If an
+                issue persists, please reach out to{" "}
                 <Link
                   href="mailto:team@tunjiproductions.com"
                   color="blue.600"
@@ -457,7 +442,7 @@ function DashboardContent({
                             <Table.ColumnHeader>
                               Early Bird
                               <br />
-                              (Until Jan. 15th, 2026)
+                              (Until Jan. 15th, 2027)
                             </Table.ColumnHeader>
                             <Table.ColumnHeader>Standard</Table.ColumnHeader>
                           </Table.Row>
@@ -521,6 +506,7 @@ function DashboardContent({
                     </Text>
                     <Button
                       colorPalette="green"
+                      disabled
                       onClick={() => {
                         client
                           .from("confirm_request")
@@ -590,10 +576,10 @@ function DashboardContent({
                         <NativeSelect.Field
                           placeholder="Select a membership level"
                           onChange={(
-                            e: React.ChangeEvent<HTMLSelectElement>
+                            e: React.ChangeEvent<HTMLSelectElement>,
                           ) => {
                             setTier(
-                              e.currentTarget.value as PaymentHandlerType
+                              e.currentTarget.value as PaymentHandlerType,
                             );
                           }}
                         >
@@ -611,11 +597,14 @@ function DashboardContent({
                       </NativeSelect.Root>
                     )}
                     {tier && data?.user ? (
-                      <PaymentHandler
-                        tier={tier}
-                        userId={data.user.user_id}
-                        email={data.user.email!}
-                      />
+                      // <PaymentHandler
+                      //   tier={tier}
+                      //   userId={data.user.user_id}
+                      //   email={data.user.email!}
+                      // />
+                      <h6 className="text-center">
+                        2027 Registration Coming Soon
+                      </h6>
                     ) : undefined}
                   </Flex>
                 </Card.Body>

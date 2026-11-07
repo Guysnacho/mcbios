@@ -119,7 +119,7 @@ export default function Page({
                 >
                   <Flex align="center" gap={2}>
                     <Box w={2} h={2} bg="red.500" borderRadius="full" />
-                    MCBIOS 2026 Registration is Open
+                    MCBIOS 2027 Registration opening soon!
                   </Flex>
                 </Badge>
 
@@ -164,9 +164,11 @@ export default function Page({
                     color="white"
                     fontWeight={600}
                     _hover={{ bg: "red.800" }}
+                    disabled
                     onClick={() => router.push("/events")}
                   >
-                    Register for 2026
+                    {/* Register for 2027 */}
+                    Registration Open Soon
                     <ArrowRight size={18} />
                   </Button>
                   <Button
@@ -487,9 +489,11 @@ export default function Page({
                   borderColor="white"
                   color="white"
                   _hover={{ bg: "whiteAlpha.100" }}
+                  disabled
                   onClick={() => router.push("/membership")}
                 >
-                  Join for 2026
+                  {/* Join for 2026 */}
+                  2027 Registration Coming Soon
                 </Button>
               </Flex>
             </Stack>
@@ -559,7 +563,8 @@ export default function Page({
                   fontWeight={500}
                   onClick={() => router.push("/events")}
                 >
-                  Register for 2026
+                  {/* Register for 2026 */}
+                  2027 Registration Coming Soon
                 </Button>
                 <Button
                   size="lg"

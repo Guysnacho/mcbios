@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { PaymentHandler, PaymentHandlerType } from "./dashboard/PaymentHandler";
+import { HiExclamationCircle } from "react-icons/hi";
 
 export const ConferenceRegistration = ({
   registrationPassed,
@@ -47,9 +48,9 @@ export const ConferenceRegistration = ({
         <div className="w-3/4 xl:w-1/2 mx-auto space-y-5">
           <Stack align="center" my={5} gap={3}>
             <Heading fontSize="4xl" textAlign="center">
-              MCBIOS 2026
+              MCBIOS 2027
             </Heading>
-            <Text>March 26-29, 2026</Text>
+            <Text>March 17-19, 2027</Text>
             <Separator />
             <Text color={{ base: "gray.600", _dark: "gray.300" }}>
               We want to thank everyone whose contributed to the conference via
@@ -59,14 +60,14 @@ export const ConferenceRegistration = ({
               1 year of MCBIOS membership. Membership gives you access to past
               conference recordings, upcomming elections, and more!
             </Text>
-            <Text>The deadline for registration was March 17th, 2026.</Text>
+            <Text>The deadline for registration was March __th, 2027.</Text>
           </Stack>
         </div>
       ) : (
         <div className="w-3/4 xl:w-1/2 mx-auto space-y-5">
           <Stack align="center" my={5} gap={3}>
             <Heading fontSize="4xl" textAlign="center">
-              MCBIOS 2026 Registration
+              MCBIOS 2027 Registration
             </Heading>
             <Separator />
             <Text color={{ base: "gray.600", _dark: "gray.300" }}>
@@ -90,7 +91,29 @@ export const ConferenceRegistration = ({
           {activeStep === 0 && (
             <Box rounded="lg" bg={{ base: "white", _dark: "black" }} p={8}>
               {/* Form fields */}
-              <Stack gap={4}>
+              <Box
+                bg={{ base: "blue.50", _dark: "blue.900" }}
+                border="1px solid"
+                borderColor={{ base: "blue.200", _dark: "blue.700" }}
+                rounded="md"
+                p={4}
+              >
+                <Text
+                  fontSize="sm"
+                  color={{ base: "blue.800", _dark: "blue.200" }}
+                  fontWeight="medium"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  gap={1}
+                >
+                  {/* @ts-expect-error colors, they work thooooo */}
+                  <HiExclamationCircle color={{ base: "blue.800", _dark: "blue.200" }} />
+                  Conference registration with or without an MCBIOS conference
+                  account is coming soon!
+                </Text>
+              </Box>
+              {/* <Stack gap={4}>
                 <Box
                   bg={{ base: "blue.50", _dark: "blue.900" }}
                   border="1px solid"
@@ -172,7 +195,7 @@ export const ConferenceRegistration = ({
                     Next
                   </Button>
                 </Flex>
-              </Stack>
+              </Stack> */}
             </Box>
           )}
 

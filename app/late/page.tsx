@@ -112,7 +112,7 @@ export default function Page() {
                   Access granted. You may proceed with registration.
                 </Text>
               </Flex>
-              <ConferenceRegistration registrationPassed />
+              <ConferenceRegistration />
             </Box>
           ) : (
             <Box maxW="md" mx="auto">

@@ -43,7 +43,7 @@ export default function Page() {
 
           {/* Upcoming Events */}
           <Tabs.Content value="upcoming">
-            <ConferenceRegistration registrationPassed />
+            <ConferenceRegistration />
           </Tabs.Content>
 
           {/* Career Development */}

@@ -395,7 +395,7 @@ export default function Nav() {
                     router.push("/events");
                   }}
                 >
-                  Register for 2026
+                  Register for 2027
                   <ArrowRight size={18} />
                 </Button> */}
 
@@ -414,7 +414,7 @@ export default function Nav() {
                   fontWeight={500}
                   onClick={() => {
                     setIsOpen(false);
-                    router.push("/about");
+                    router.push("/leadership");
                   }}
                 >
                   Learn More

@@ -31,6 +31,10 @@ export const ConfYears = [
     year: 2026,
     url: "https://2026.mcbios.com",
   },
+  {
+    year: 2027,
+    url: "https://2027.mcbios.com",
+  },
 ];
 
 export const DUPLICATE_ROW = "23505";
@@ -80,5 +84,5 @@ export const Events = {
   CONTENT: {
     VIDEO_LOAD: "video_load_request",
     VIDEO_TILE_CLICK: "video_tile_click",
-  }
-}
+  },
+};

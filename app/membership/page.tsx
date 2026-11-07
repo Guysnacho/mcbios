@@ -200,8 +200,10 @@ export default function Page({
                     _hover={{ bg: "slate.50" }}
                     shadow="2xl"
                     onClick={handleJoinClick}
+                    disabled
                   >
-                    Join for 2026
+                    {/* Join for 2026 */}
+                    2027 Registration Coming Soon
                   </Button>
                 </Flex>
               </GridItem>
@@ -281,7 +283,7 @@ export default function Page({
                   <Text as="span" fontWeight="bold">
                     Direct Membership:{" "}
                   </Text>
-                  Prefer to join or renew without attending? For 2026, enjoy our
+                  Prefer to join or renew without attending? For 2027, enjoy our
                   introductory rates starting at a low{" "}
                   <Text as="span" fontWeight="bold">
                     $10 for Students
