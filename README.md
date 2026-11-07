@@ -1,10 +1,10 @@
-# MCBIOS 2026 Conference Site - created with [next.js](https://github.com/vercel/next.js)
+# MCBIOS 2027 Conference Site - created with [next.js](https://github.com/vercel/next.js)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e4477398-f378-49cb-99ec-b2b506e0c1dd/deploy-status)](https://app.netlify.com/sites/mcbios/deploys)
 
-[Pallete](https://www.realtimecolors.com/?colors=100217-f4f2f1-ae2a0f-bfd9d0-764091&fonts=Poppins-DM%20Sans) created with Realtime Colors! @juxtopposed
+[Pallete](https://www.realtimecolors.com/?colors=111708-f9fbf4-8dc149-9cbdde-8176d0&fonts=Bacasime%20Antique-Bacasime%20Antique) created with Realtime Colors! @juxtopposed
 
-Everything you need to build a [Next.js](https://nextjs.org/) project, powered by [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Everything you need to build a [Next.js](https://nextjs.org/) project, powered by `next-app@latest`.
 
 ## Getting Started
 
@@ -28,10 +28,6 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 - [NextUI](https://nextui.org/docs/guide/introduction) - NextUI docs.
 
-## Deploy on ~~Vercel~~ Netlify
+## Deploy on Netlify
 
 This project will be deployed with Netlify, after tying the repo to a Netlify project deployments will be handled by merge to the main or other configured branches.
-
-## Work Cited
-
-Thank you to [Jason Davies](https://www.jasondavies.com/wordcloud/) for the word cloud generator, chef's kiss.
