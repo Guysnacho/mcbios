@@ -121,8 +121,8 @@ export function SubmitPanel() {
         <Send className="size-10 text-primary" />
         <h2 className="card-title text-3xl">Ready to submit?</h2>
         <p className="max-w-xl">
-          Submissions will be managed through Conference Suite. Prepare your
-          proposal summary and speaker details before opening the form.
+          Proposals are submitted through a Google Form. Prepare your proposal
+          summary and speaker details before opening the form.
         </p>
         <div className="card-actions pt-2">
           {passed ? (

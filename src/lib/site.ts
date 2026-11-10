@@ -1,5 +1,5 @@
-// Single place to swap in the Conference Suite form once it exists.
-export const SESSION_PROPOSAL_URL = "";
+// Interim Google Form. Single place to swap in the Conference Suite form once it exists.
+export const SESSION_PROPOSAL_URL = "https://forms.gle/VDm53L7xTU91XXRi9";
 
 // End of day, Dec 15 2026, in the viewer's local time. No time of day has been announced.
 export const PROPOSAL_DEADLINE = "2026-12-15T23:59:59";
