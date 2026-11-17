@@ -2,6 +2,7 @@
 
 import { MembershipPlans } from "@/components/MembershipPlans";
 import { DnaHelix } from "@/components/svg/DnaHelix";
+import { useRegistrationStatus } from "@/lib/registration";
 import { toaster } from "@/components/ui/toaster";
 import { Events, membershipBenefits } from "@/lib/constants";
 import { PageViewTracker } from "@/components/PageViewTracker";
@@ -42,6 +43,7 @@ export default function Page({
 }) {
   const params = use(searchParams);
   const router = useRouter();
+  const registration = useRegistrationStatus();
 
   setTimeout(() => {
     if (params.error_description) {
@@ -119,7 +121,7 @@ export default function Page({
                 >
                   <Flex align="center" gap={2}>
                     <Box w={2} h={2} bg="red.500" borderRadius="full" />
-                    MCBIOS 2027 Registration opening soon!
+                    {registration.open ? "MCBIOS 2027 Registration is open!" : "MCBIOS 2027 Registration opening soon!"}
                   </Flex>
                 </Badge>
 
@@ -164,11 +166,10 @@ export default function Page({
                     color="white"
                     fontWeight={600}
                     _hover={{ bg: "red.800" }}
-                    disabled
+                    disabled={!registration.open}
                     onClick={() => router.push("/events")}
                   >
-                    {/* Register for 2027 */}
-                    Registration Open Soon
+                    {registration.open ? "Register for 2027" : registration.label}
                     <ArrowRight size={18} />
                   </Button>
                   <Button
@@ -489,11 +490,10 @@ export default function Page({
                   borderColor="white"
                   color="white"
                   _hover={{ bg: "whiteAlpha.100" }}
-                  disabled
-                  onClick={() => router.push("/membership")}
+                  disabled={!registration.open}
+                  onClick={() => router.push("/events")}
                 >
-                  {/* Join for 2026 */}
-                  2027 Registration Coming Soon
+                  {registration.open ? "Register for 2027" : registration.label}
                 </Button>
               </Flex>
             </Stack>
@@ -561,10 +561,10 @@ export default function Page({
                   color="gray.700"
                   _dark={{ borderColor: "gray.600", color: "gray.200" }}
                   fontWeight={500}
+                  disabled={!registration.open}
                   onClick={() => router.push("/events")}
                 >
-                  {/* Register for 2026 */}
-                  2027 Registration Coming Soon
+                  {registration.open ? "Register for 2027" : registration.label}
                 </Button>
                 <Button
                   size="lg"

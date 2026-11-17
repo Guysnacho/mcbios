@@ -43,6 +43,62 @@ export type Database = {
           },
         ];
       };
+      connect_account: {
+        Row: {
+          account_link: string | null;
+          country_code: string;
+          created_at: string;
+          id: string;
+          livemode: boolean;
+          org_id: string | null;
+          subscription_id: string | null;
+          subscription_status: string | null;
+          subscription_type:
+            | Database["public"]["Enums"]["subscription_type"]
+            | null;
+          updated_at: string;
+          usage: Json;
+        };
+        Insert: {
+          account_link?: string | null;
+          country_code: string;
+          created_at?: string;
+          id: string;
+          livemode?: boolean;
+          org_id?: string | null;
+          subscription_id?: string | null;
+          subscription_status?: string | null;
+          subscription_type?:
+            | Database["public"]["Enums"]["subscription_type"]
+            | null;
+          updated_at?: string;
+          usage?: Json;
+        };
+        Update: {
+          account_link?: string | null;
+          country_code?: string;
+          created_at?: string;
+          id?: string;
+          livemode?: boolean;
+          org_id?: string | null;
+          subscription_id?: string | null;
+          subscription_status?: string | null;
+          subscription_type?:
+            | Database["public"]["Enums"]["subscription_type"]
+            | null;
+          updated_at?: string;
+          usage?: Json;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "connect_account_org_id_fkey";
+            columns: ["org_id"];
+            isOneToOne: true;
+            referencedRelation: "organization";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       form: {
         Row: {
           created_at: string;
@@ -81,57 +137,70 @@ export type Database = {
           },
         ];
       };
-      form_uploads: {
+      mail_queue: {
+        Row: {
+          created_at: string | null;
+          job_data: Json;
+          job_id: string;
+          max_retries: number | null;
+          priority: number | null;
+          retry_count: number | null;
+          scheduled_at: string | null;
+          status: Database["public"]["Enums"]["email_status"];
+        };
+        Insert: {
+          created_at?: string | null;
+          job_data: Json;
+          job_id?: string;
+          max_retries?: number | null;
+          priority?: number | null;
+          retry_count?: number | null;
+          scheduled_at?: string | null;
+          status?: Database["public"]["Enums"]["email_status"];
+        };
+        Update: {
+          created_at?: string | null;
+          job_data?: Json;
+          job_id?: string;
+          max_retries?: number | null;
+          priority?: number | null;
+          retry_count?: number | null;
+          scheduled_at?: string | null;
+          status?: Database["public"]["Enums"]["email_status"];
+        };
+        Relationships: [];
+      };
+      mail_queue_logs: {
         Row: {
           created_at: string;
-          form_id: string | null;
-          id: string;
-          name: string | null;
-          org_id: string;
-          public_url: string | null;
-          updated_at: string;
-          user_id: string;
+          job_id: string | null;
+          level: string;
+          log_id: number;
+          message: string;
+          meta: Json | null;
         };
         Insert: {
           created_at?: string;
-          form_id?: string | null;
-          id: string;
-          name?: string | null;
-          org_id: string;
-          public_url?: string | null;
-          updated_at?: string;
-          user_id: string;
+          job_id?: string | null;
+          level: string;
+          log_id?: number;
+          message: string;
+          meta?: Json | null;
         };
         Update: {
           created_at?: string;
-          form_id?: string | null;
-          id?: string;
-          name?: string | null;
-          org_id?: string;
-          public_url?: string | null;
-          updated_at?: string;
-          user_id?: string;
+          job_id?: string | null;
+          level?: string;
+          log_id?: number;
+          message?: string;
+          meta?: Json | null;
         };
-        Relationships: [
-          {
-            foreignKeyName: "form_uploads_form_id_fkey";
-            columns: ["form_id"];
-            isOneToOne: false;
-            referencedRelation: "form";
-            referencedColumns: ["id"];
-          },
-          {
-            foreignKeyName: "form_uploads_user_id_org_id_fkey";
-            columns: ["user_id", "org_id"];
-            isOneToOne: false;
-            referencedRelation: "member";
-            referencedColumns: ["user_id", "org_id"];
-          },
-        ];
+        Relationships: [];
       };
       member: {
         Row: {
           attended: number[];
+          created_at: string | null;
           email: string | null;
           fees_paid_at: string | null;
           fname: string;
@@ -139,10 +208,12 @@ export type Database = {
           lname: string;
           org_id: string;
           role: Database["public"]["Enums"]["user_role"];
+          updated_at: string | null;
           user_id: string;
         };
         Insert: {
           attended?: number[];
+          created_at?: string | null;
           email?: string | null;
           fees_paid_at?: string | null;
           fname: string;
@@ -150,10 +221,12 @@ export type Database = {
           lname: string;
           org_id: string;
           role?: Database["public"]["Enums"]["user_role"];
+          updated_at?: string | null;
           user_id: string;
         };
         Update: {
           attended?: number[];
+          created_at?: string | null;
           email?: string | null;
           fees_paid_at?: string | null;
           fname?: string;
@@ -161,6 +234,7 @@ export type Database = {
           lname?: string;
           org_id?: string;
           role?: Database["public"]["Enums"]["user_role"];
+          updated_at?: string | null;
           user_id?: string;
         };
         Relationships: [
@@ -176,6 +250,8 @@ export type Database = {
       organization: {
         Row: {
           base_url: string;
+          conference_date: string | null;
+          registration_start_date: string | null;
           cre_ts: string;
           id: string;
           name: string;
@@ -183,6 +259,8 @@ export type Database = {
         };
         Insert: {
           base_url: string;
+          conference_date?: string | null;
+          registration_start_date?: string | null;
           cre_ts?: string;
           id?: string;
           name: string;
@@ -190,6 +268,8 @@ export type Database = {
         };
         Update: {
           base_url?: string;
+          conference_date?: string | null;
+          registration_start_date?: string | null;
           cre_ts?: string;
           id?: string;
           name?: string;
@@ -291,13 +371,19 @@ export type Database = {
       };
     };
     Views: {
-      [_ in never]: never;
+      platform_meta: {
+        Row: {
+          organization: Json | null;
+        };
+        Relationships: [];
+      };
     };
     Functions: {
       append_current_year_to_attended: {
         Args: { target_user: string };
         Returns: {
           attended: number[];
+          created_at: string | null;
           email: string | null;
           fees_paid_at: string | null;
           fname: string;
@@ -305,6 +391,7 @@ export type Database = {
           lname: string;
           org_id: string;
           role: Database["public"]["Enums"]["user_role"];
+          updated_at: string | null;
           user_id: string;
         };
         SetofOptions: {
@@ -314,6 +401,47 @@ export type Database = {
           isSetofReturn: false;
         };
       };
+      apply_registration_payment: {
+        Args: {
+          p_email: string;
+          p_fname?: string;
+          p_institution?: string;
+          p_lname?: string;
+          p_org_id: string;
+          p_paid_at: string;
+          p_role: Database["public"]["Enums"]["user_role"];
+          p_user_id?: string;
+        };
+        Returns: {
+          member_user_id: string;
+          was_applied: boolean;
+          was_created: boolean;
+        }[];
+      };
+      cleanup_mail_queue_logs: { Args: never; Returns: number };
+      decrement_jsonb_int_key: {
+        Args: {
+          p_column: string;
+          p_delta?: number;
+          p_floor?: number;
+          p_key: string;
+          p_pk_column: string;
+          p_pk_value: string;
+          p_table: string;
+        };
+        Returns: undefined;
+      };
+      dequeue_and_run_email_jobs: { Args: never; Returns: undefined };
+      fetch_member_by_email_org: {
+        Args: { p_email: string; p_org_id: string };
+        Returns: {
+          authed: boolean;
+          email: string;
+          org_id: string;
+          role: Database["public"]["Enums"]["user_role"];
+        }[];
+      };
+      file_cleanup: { Args: never; Returns: undefined };
       get_submission: {
         Args: { p_submission_id: string };
         Returns: {
@@ -332,7 +460,42 @@ export type Database = {
       };
       get_user_id: { Args: never; Returns: string };
       get_user_org_id: { Args: never; Returns: string };
+      increment_jsonb_int_key: {
+        Args: {
+          p_column: string;
+          p_delta?: number;
+          p_key: string;
+          p_pk_column: string;
+          p_pk_value: string;
+          p_table: string;
+        };
+        Returns: undefined;
+      };
       is_admin: { Args: never; Returns: boolean };
+      is_org_admin: { Args: { p_org: string }; Returns: boolean };
+      is_org_member: { Args: { p_org: string }; Returns: boolean };
+      patch_jsonb_key: {
+        Args: {
+          p_column: string;
+          p_key: string;
+          p_pk_column: string;
+          p_pk_value: string;
+          p_table: string;
+          p_value: Json;
+        };
+        Returns: undefined;
+      };
+      refresh_platform_meta: { Args: never; Returns: undefined };
+      send_email: { Args: { event: Json }; Returns: Json };
+      submission_object_readable: {
+        Args: { p_name: string };
+        Returns: boolean;
+      };
+      submission_path_ok: { Args: { p_name: string }; Returns: boolean };
+      submission_path_parts: {
+        Args: { p_name: string };
+        Returns: Record<string, unknown>;
+      };
       update_fname: { Args: { new_fname: string }; Returns: undefined };
       update_lname: { Args: { new_lname: string }; Returns: undefined };
       upsert_submission: {
@@ -345,9 +508,30 @@ export type Database = {
           user_id: string;
         }[];
       };
+      upsert_submission_unauthed: {
+        Args: {
+          p_form_id: string;
+          p_org_id: string;
+          p_submission: Json;
+          p_user_json: Json;
+        };
+        Returns: {
+          out_form_id: string;
+          out_user_id: string;
+          submission_data: Json;
+          submission_id: string;
+          submission_updated_at: string;
+        }[];
+      };
     };
     Enums: {
-      form_type: "abstract" | "session" | "general";
+      email_status: "pending" | "processing" | "success" | "failed";
+      form_type: "abstract" | "session" | "general" | "registration";
+      subscription_type:
+        | "frontier"
+        | "professional"
+        | "advanced"
+        | "enterprise";
       user_role: "professional" | "student" | "admin" | "postdoctorial";
     };
     CompositeTypes: {
@@ -479,7 +663,9 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      form_type: ["abstract", "session", "general"],
+      email_status: ["pending", "processing", "success", "failed"],
+      form_type: ["abstract", "session", "general", "registration"],
+      subscription_type: ["frontier", "professional", "advanced", "enterprise"],
       user_role: ["professional", "student", "admin", "postdoctorial"],
     },
   },

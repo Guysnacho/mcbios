@@ -8,6 +8,11 @@ import {
   PaymentHandler,
   PaymentHandlerType,
 } from "@/components/dashboard/PaymentHandler";
+import {
+  registrationOptions,
+  useRegistrationProducts,
+  useRegistrationStatus,
+} from "@/lib/registration";
 import { toaster } from "@/components/ui/toaster";
 import { Avatar } from "@/components/ui/avatar";
 import {
@@ -34,7 +39,6 @@ import {
   Link,
   NativeSelect,
   Stack,
-  Table,
   Text,
 } from "@chakra-ui/react";
 import Head from "next/head";
@@ -88,6 +92,9 @@ export default function Page() {
   });
 
   const isAdmin = data?.user?.role === "admin";
+  // Registered for the upcoming conference (payment inside the org's window)
+  const isRegistered = !!data?.user?.paidThisCycle;
+  // Conference recordings stay available to anyone who has ever paid
   const isPaid = !!data?.user?.fees_paid_at;
 
   const defaultSection: DashboardSection = isAdmin ? "admin" : "profile";
@@ -359,6 +366,12 @@ function DashboardContent({
   tier: PaymentHandlerType | undefined;
   setTier: (tier: PaymentHandlerType | undefined) => void;
 }) {
+  // Registration levels and whether registration is open come from the suite
+  const { data: productData, isLoading: productsLoading } =
+    useRegistrationProducts();
+  const options = registrationOptions(productData?.products ?? []);
+  const registration = useRegistrationStatus();
+
   return (
     <>
       {section === "admin" && data?.user?.role === "admin" && (
@@ -414,7 +427,7 @@ function DashboardContent({
           </Card.Root>
 
           {/* Registration / Payment Section */}
-          {(!data?.user || !data?.user?.fees_paid_at) && (
+          {(!data?.user || !data.user.paidThisCycle) && (
             <Stack gap="6">
               <Card.Root
                 variant="outline"
@@ -430,42 +443,6 @@ function DashboardContent({
                 </Card.Header>
                 <Card.Body>
                   <Stack gap="6">
-                    {/* Registration Tiers */}
-                    <Table.ScrollArea overflowX="auto">
-                      <Table.Root striped colorPalette="green" size="sm">
-                        <Table.Caption>Registration Pricing</Table.Caption>
-                        <Table.Header>
-                          <Table.Row>
-                            <Table.ColumnHeader>
-                              Membership Level
-                            </Table.ColumnHeader>
-                            <Table.ColumnHeader>
-                              Early Bird
-                              <br />
-                              (Until Jan. 15th, 2027)
-                            </Table.ColumnHeader>
-                            <Table.ColumnHeader>Standard</Table.ColumnHeader>
-                          </Table.Row>
-                        </Table.Header>
-                        <Table.Body>
-                          <Table.Row>
-                            <Table.Cell>Student</Table.Cell>
-                            <Table.Cell>$200</Table.Cell>
-                            <Table.Cell>$250</Table.Cell>
-                          </Table.Row>
-                          <Table.Row>
-                            <Table.Cell>Postdoctorial</Table.Cell>
-                            <Table.Cell>$300</Table.Cell>
-                            <Table.Cell>$350</Table.Cell>
-                          </Table.Row>
-                          <Table.Row>
-                            <Table.Cell>Professional</Table.Cell>
-                            <Table.Cell>$400</Table.Cell>
-                            <Table.Cell>$450</Table.Cell>
-                          </Table.Row>
-                        </Table.Body>
-                      </Table.Root>
-                    </Table.ScrollArea>
 
                     <Text
                       color={{ base: "gray.600", _dark: "gray.300" }}
@@ -506,7 +483,7 @@ function DashboardContent({
                     </Text>
                     <Button
                       colorPalette="green"
-                      disabled
+                      disabled={registration.open === false}
                       onClick={() => {
                         client
                           .from("confirm_request")
@@ -557,7 +534,7 @@ function DashboardContent({
                     fontSize="md"
                     color={{ base: "gray.900", _dark: "white" }}
                   >
-                    Select Membership Tier
+                    Select Registration Tier
                   </Card.Title>
                 </Card.Header>
                 <Card.Body>
@@ -572,39 +549,50 @@ function DashboardContent({
                         Select a different tier
                       </Button>
                     ) : (
-                      <NativeSelect.Root>
+                      <NativeSelect.Root
+                        disabled={productsLoading || !registration.open}
+                      >
                         <NativeSelect.Field
-                          placeholder="Select a membership level"
+                          placeholder={
+                            productsLoading
+                              ? "Loading registration levels..."
+                              : "Select a registration level"
+                          }
                           onChange={(
                             e: React.ChangeEvent<HTMLSelectElement>,
                           ) => {
                             setTier(
-                              e.currentTarget.value as PaymentHandlerType,
+                              (e.currentTarget.value ||
+                                undefined) as PaymentHandlerType,
                             );
                           }}
                         >
-                          <option value="student">
-                            Conference and Membership | Student | $250
-                          </option>
-                          <option value="postdoctorial">
-                            Conference and Membership | Postdoctorial | $350
-                          </option>
-                          <option value="professional">
-                            Conference and Membership | Professional | $450
-                          </option>
+                          {options.map((option) => (
+                            <option key={option.role} value={option.role}>
+                              {option.price
+                                ? `${option.label} | ${option.price}`
+                                : option.label}
+                            </option>
+                          ))}
                         </NativeSelect.Field>
                         <NativeSelect.Indicator />
                       </NativeSelect.Root>
                     )}
+                    {registration.open === false && (
+                      <Text fontSize="sm" color="gray.500" role="status">
+                        {registration.label}. You will be able to pay here once
+                        registration opens.
+                      </Text>
+                    )}
                     {tier && data?.user ? (
-                      // <PaymentHandler
-                      //   tier={tier}
-                      //   userId={data.user.user_id}
-                      //   email={data.user.email!}
-                      // />
-                      <h6 className="text-center">
-                        2027 Registration Coming Soon
-                      </h6>
+                      <PaymentHandler
+                        tier={tier}
+                        userId={data.user.user_id}
+                        email={data.user.email!}
+                        fname={data.user.fname}
+                        lname={data.user.lname}
+                        institution={data.user.institution ?? undefined}
+                      />
                     ) : undefined}
                   </Flex>
                 </Card.Body>

@@ -1,6 +1,5 @@
 "use client";
 
-import { NameTagForm } from "@/components/forms/NameTagForm";
 import { PageViewTracker } from "@/components/PageViewTracker";
 import { Events } from "@/lib/constants";
 import { DnaHelix } from "@/components/svg/DnaHelix";
@@ -16,12 +15,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Head from "next/head";
-import { useState } from "react";
 import { LuClipboardList, LuFileText, LuLock } from "react-icons/lu";
 
 export default function Page() {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
       <PageViewTracker event={Events.NAV.FORMS} />
@@ -29,8 +25,6 @@ export default function Page() {
         <title>MCBIOS Forms</title>
         <meta content="MCBIOS Forms | MidSouth Computational Biology and Bioinformatics Society" />
       </Head>
-      <NameTagForm isOpen={isOpen} setIsOpen={setIsOpen} />
-
       {/* Hero Section */}
       <Box as="section" pt="40" pb="16" bg={{ base: "slate.50", _dark: "gray.900" }} position="relative" overflow="hidden">
         <Box
@@ -146,7 +140,7 @@ export default function Page() {
                   </Flex>
                   <Box>
                     <Heading as="h3" fontSize="lg" fontWeight="bold" color={{ base: "slate.900", _dark: "white" }} mb="1">
-                      2025 Conference - Name Tag Confirmation
+                      Name Tag Confirmation
                     </Heading>
                     <Text fontSize="sm" color={{ base: "slate.500", _dark: "gray.400" }}>
                       Confirm your name tag details for the upcoming conference
@@ -155,7 +149,6 @@ export default function Page() {
                 </Flex>
                 <Button
                   colorPalette="red"
-                  onClick={() => setIsOpen(true)}
                   disabled
                   flexShrink={0}
                 >

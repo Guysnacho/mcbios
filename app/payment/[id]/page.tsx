@@ -15,7 +15,6 @@ import {
 } from "@chakra-ui/react";
 import { ChevronLeft } from "lucide-react";
 import { Metadata } from "next";
-import Stripe from "stripe";
 
 export const metadata: Metadata = {
   title:
@@ -30,18 +29,26 @@ export default async function Page({
 }) {
   const { id } = await params;
 
-  // Fetch customer session
+  // Fetch the checkout session from the Conference Suite (payment is on the
+  // org's Stripe Connect account; the suite's webhook applies it)
+  const suiteUrl =
+    process.env.NEXT_PUBLIC_SUITE_URL ||
+    (process.env.NODE_ENV === "development"
+      ? "http://localhost:3001"
+      : "https://www.conferencesuite.net");
   const { customer_email, status } = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/checkout/${id}`,
-    {
-      method: "GET",
-    },
-  ).then(async (res) => {
-    return (await res.json()) as {
-      status: Stripe.Checkout.Session.Status;
-      customer_email: Stripe.Checkout.Session.CustomerDetails["email"];
-    };
-  });
+    `${suiteUrl}/api/stripe/registration-checkout?org_id=${process.env.NEXT_PUBLIC_ORG_ID}&session_id=${encodeURIComponent(id)}`,
+    { cache: "no-store" },
+  )
+    .then(async (res) =>
+      res.ok
+        ? ((await res.json()) as {
+            status: "open" | "complete" | "expired" | null;
+            customer_email: string | null;
+          })
+        : { status: null, customer_email: null },
+    )
+    .catch(() => ({ status: null, customer_email: null }));
 
   const isComplete = status === "complete";
 

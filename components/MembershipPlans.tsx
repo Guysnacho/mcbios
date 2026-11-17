@@ -2,7 +2,6 @@
 
 import {
   Box,
-  Badge,
   Card,
   Flex,
   Heading,
@@ -10,6 +9,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { registrationPrices, useRegistrationProducts } from "@/lib/registration";
 import { LuStar, LuSparkles, LuZap } from "react-icons/lu";
 
 export type MembershipTier = "professional" | "postdoc" | "student";
@@ -18,8 +18,6 @@ export interface MembershipPlan {
   id: MembershipTier;
   name: string;
   subtitle: string;
-  price: number;
-  earlyBirdPrice: number;
   benefits: string[];
   icon: typeof LuStar;
   color: string;
@@ -30,8 +28,6 @@ export const membershipPlans: MembershipPlan[] = [
     id: "professional",
     name: "Professional",
     subtitle: "For Researchers & Faculty",
-    price: 450,
-    earlyBirdPrice: 400,
     benefits: ["Full voting rights in society", "Leadership board eligibility"],
     icon: LuZap,
     color: "red",
@@ -40,8 +36,6 @@ export const membershipPlans: MembershipPlan[] = [
     id: "postdoc",
     name: "Postdoc",
     subtitle: "For Postdoctoral Researchers",
-    price: 350,
-    earlyBirdPrice: 300,
     benefits: ["Career development resources", "Mentorship opportunities"],
     icon: LuSparkles,
     color: "red",
@@ -50,8 +44,6 @@ export const membershipPlans: MembershipPlan[] = [
     id: "student",
     name: "Student",
     subtitle: "For Undergraduates & PhDs",
-    price: 250,
-    earlyBirdPrice: 200,
     benefits: ["Scholarship & award eligibility", "Career networking access"],
     icon: LuStar,
     color: "red",
@@ -69,6 +61,12 @@ export const MembershipPlans = ({
   showNote = true,
   variant = "card",
 }: MembershipPlansProps) => {
+  // Prices come from the org's products in the Conference Suite
+  const { data: productData } = useRegistrationProducts();
+  const prices = registrationPrices(productData?.products ?? []);
+  const priceFor = (plan: MembershipPlan) =>
+    prices[plan.id === "postdoc" ? "postdoctorial" : plan.id] ?? "—";
+
   if (variant === "inline") {
     return (
       <Stack gap="8">
@@ -128,11 +126,8 @@ export const MembershipPlans = ({
               </Box>
               <Box>
                 <Text fontSize="4xl" fontWeight="black" color="#800000">
-                  ${plan.price}
+                  {priceFor(plan)}
                 </Text>
-                <Badge colorPalette="green" variant="subtle" fontSize="xs">
-                  ${plan.earlyBirdPrice} Early Bird
-                </Badge>
               </Box>
             </Flex>
           </Box>
@@ -238,12 +233,9 @@ export const MembershipPlans = ({
                       color="red.700"
                       _dark={{ color: "red.400" }}
                     >
-                      ${plan.price}
+                      {priceFor(plan)}
                     </Text>
                   </Flex>
-                  <Badge colorPalette="green" variant="subtle" fontSize="xs">
-                    ${plan.earlyBirdPrice} Early Bird
-                  </Badge>
                 </Box>
               </Flex>
               <Stack gap="2">

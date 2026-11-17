@@ -1,9 +1,8 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import Stripe from "stripe";
+import { isPaidThisCycle } from "./paid";
 import { Database } from "./supabase/types";
 
 export const authFetcher = async (client: SupabaseClient<Database>) => {
-  // Fetch data from external API
   const { data: token } = await client.auth.getClaims();
   const { data } = await client
     .from("member")
@@ -16,32 +15,33 @@ export const authFetcher = async (client: SupabaseClient<Database>) => {
     .select("*")
     .eq("org_id", process.env.NEXT_PUBLIC_ORG_ID)
     .order("date", { ascending: false });
+  // Members can read their own org: it carries the registration window that
+  // decides whether a payment counts for the upcoming conference.
+  const { data: org } = await client
+    .from("organization")
+    .select("registration_start_date, conference_date")
+    .eq("id", process.env.NEXT_PUBLIC_ORG_ID!)
+    .maybeSingle();
   const user = await client.auth.getUser();
 
   if (data) {
-    if (videos) {
-      return { user: { ...data, email: user.data.user?.email }, videos };
-    }
-    return { user: { ...data, email: user.data.user?.email }, videos: [] };
+    return {
+      user: {
+        ...data,
+        email: user.data.user?.email,
+        // Paid for the UPCOMING conference (not just ever paid)
+        paidThisCycle: isPaidThisCycle(data.fees_paid_at, {
+          registrationStart: org?.registration_start_date,
+          conferenceDate: org?.conference_date,
+        }),
+      },
+      videos: videos ?? [],
+    };
   }
   return { user: undefined, videos: [] };
 };
 
-export const couponFetcher = async (): Promise<CouponList> => {
-  const data = await fetch("/admin");
-  return await data.json();
-};
-
-export const registrationFetcher = async (client: SupabaseClient<Database>) => {
-  const { data } = await client
-    .from("raw_registration")
-    .select(`fname, lname, role, email, institution`)
-    .eq("org_id", process.env.NEXT_PUBLIC_ORG_ID)
-    .throwOnError();
-
-  return data;
-};
-
+/** Everyone registered for this year's conference (members with this year in `attended`). */
 export const memberRegistrationFetcher = async (
   client: SupabaseClient<Database>,
 ) => {
@@ -55,17 +55,6 @@ export const memberRegistrationFetcher = async (
 
   return data;
 };
-
-type CouponList = {
-  coupon: Stripe.Coupon;
-  active: boolean;
-  promo_code: string;
-  promo_id: string;
-  created: number;
-  max_redemptions: number | null;
-  times_redeemed: number;
-  expires_at: number | null;
-}[];
 
 export type Registration = {
   fname: string;

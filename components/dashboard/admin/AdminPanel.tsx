@@ -1,6 +1,8 @@
+import { getBaseServiceURL } from "@/lib";
 import { Database } from "@/lib/supabase/types";
 import {
   Box,
+  Button,
   Card,
   Flex,
   Grid,
@@ -12,7 +14,6 @@ import {
 import { SupabaseClient } from "@supabase/supabase-js";
 import { ChevronLeft, Ticket, Upload, UserCheck, Users } from "lucide-react";
 import { useState } from "react";
-import { CouponCreator } from "./CouponCreator";
 import Registrations from "./Registrations";
 import UserConfirm from "./UserConfirm";
 import VideoUploader from "./VideoUploader";
@@ -32,14 +33,14 @@ const adminCards = [
   {
     key: "registrations" as const,
     title: "Registrations",
-    description: "View authenticated and unauthenticated registrations",
+    description: "View everyone registered for the conference",
     icon: Users,
     color: "blue",
   },
   {
     key: "confirm" as const,
     title: "Member Confirmation",
-    description: "Confirm user memberships and retroactive registrations",
+    description: "Confirm user memberships and re-apply missed registration payments",
     icon: UserCheck,
     color: "green",
   },
@@ -52,8 +53,8 @@ const adminCards = [
   },
   {
     key: "coupon" as const,
-    title: "Coupon Creator",
-    description: "Create and manage discount coupons",
+    title: "Promotions",
+    description: "Create and manage discount codes in the Conference Suite",
     icon: Ticket,
     color: "orange",
   },
@@ -102,24 +103,7 @@ export function AdminPanel({ client }: AdminPanelProps) {
                   fontSize="md"
                   color={{ base: "gray.900", _dark: "white" }}
                 >
-                  Authenticated Registrations
-                </Card.Title>
-              </Card.Header>
-              <Card.Body pt="0">
-                <Registrations currentMembers />
-              </Card.Body>
-            </Card.Root>
-
-            <Card.Root
-              variant="outline"
-              borderColor={{ base: "gray.200", _dark: "gray.700" }}
-            >
-              <Card.Header>
-                <Card.Title
-                  fontSize="md"
-                  color={{ base: "gray.900", _dark: "white" }}
-                >
-                  Un-Authenticated Registrations
+                  Registrations
                 </Card.Title>
               </Card.Header>
               <Card.Body pt="0">
@@ -175,7 +159,41 @@ export function AdminPanel({ client }: AdminPanelProps) {
           </Card.Root>
         )}
 
-        {activeSection === "coupon" && <CouponCreator />}
+        {activeSection === "coupon" && (
+          <Card.Root
+            variant="outline"
+            maxW="4xl"
+            mx="auto"
+            w="full"
+            borderColor={{ base: "gray.200", _dark: "gray.700" }}
+          >
+            <Card.Header>
+              <Card.Title
+                fontSize="md"
+                color={{ base: "gray.900", _dark: "white" }}
+              >
+                Manage promotions in the Conference Suite
+              </Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Stack gap="4" align="start">
+                <Text fontSize="sm" color={{ base: "gray.600", _dark: "gray.300" }}>
+                  Discount codes for registration are created and managed in the
+                  Conference Suite, so they apply to this conference&apos;s checkout.
+                </Text>
+                <Button asChild colorPalette="blue">
+                  <a
+                    href={`${getBaseServiceURL()}/dashboard/${process.env.NEXT_PUBLIC_ORG_ID}/promotions`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Open Promotions
+                  </a>
+                </Button>
+              </Stack>
+            </Card.Body>
+          </Card.Root>
+        )}
       </Stack>
     );
   }

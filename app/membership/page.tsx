@@ -3,6 +3,7 @@
 import { AuthModal } from "@/components/AuthModal";
 import { PageViewTracker } from "@/components/PageViewTracker";
 import { Events } from "@/lib/constants";
+import { useRegistrationStatus } from "@/lib/registration";
 import { MembershipPlan, MembershipPlans } from "@/components/MembershipPlans";
 import { DnaHelix } from "@/components/svg/DnaHelix";
 import { membershipBenefits } from "@/lib/constants";
@@ -31,6 +32,7 @@ export default function Page({
 }) {
   const store = useStore(useUserStore, (store) => store);
   const router = useRouter();
+  const registration = useRegistrationStatus();
   const params = use(searchParams);
   const [isAuthOpen, setAuthOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(true);
@@ -200,10 +202,9 @@ export default function Page({
                     _hover={{ bg: "slate.50" }}
                     shadow="2xl"
                     onClick={handleJoinClick}
-                    disabled
+                    disabled={!registration.open}
                   >
-                    {/* Join for 2026 */}
-                    2027 Registration Coming Soon
+                    {registration.open ? "Join for 2027" : registration.label}
                   </Button>
                 </Flex>
               </GridItem>

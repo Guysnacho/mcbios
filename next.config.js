@@ -15,6 +15,10 @@ const nextConfig = {
   env: {
     version,
   },
+  async redirects() {
+    // Late registration is now just the registration window set in the suite
+    return [{ source: "/late", destination: "/events", permanent: true }];
+  },
 };
 
 module.exports = nextConfig;
