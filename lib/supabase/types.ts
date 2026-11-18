@@ -14,6 +14,21 @@ export type Database = {
   };
   public: {
     Tables: {
+      billing_email_log: {
+        Row: {
+          created_at: string;
+          id: string;
+        };
+        Insert: {
+          created_at?: string;
+          id: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+        };
+        Relationships: [];
+      };
       confirm_request: {
         Row: {
           created_at: string;
@@ -45,6 +60,7 @@ export type Database = {
       };
       connect_account: {
         Row: {
+          access_until: string | null;
           account_link: string | null;
           country_code: string;
           created_at: string;
@@ -60,6 +76,7 @@ export type Database = {
           usage: Json;
         };
         Insert: {
+          access_until?: string | null;
           account_link?: string | null;
           country_code: string;
           created_at?: string;
@@ -75,6 +92,7 @@ export type Database = {
           usage?: Json;
         };
         Update: {
+          access_until?: string | null;
           account_link?: string | null;
           country_code?: string;
           created_at?: string;
@@ -251,28 +269,28 @@ export type Database = {
         Row: {
           base_url: string;
           conference_date: string | null;
-          registration_start_date: string | null;
           cre_ts: string;
           id: string;
           name: string;
+          registration_start_date: string | null;
           short_name: string | null;
         };
         Insert: {
           base_url: string;
           conference_date?: string | null;
-          registration_start_date?: string | null;
           cre_ts?: string;
           id?: string;
           name: string;
+          registration_start_date?: string | null;
           short_name?: string | null;
         };
         Update: {
           base_url?: string;
           conference_date?: string | null;
-          registration_start_date?: string | null;
           cre_ts?: string;
           id?: string;
           name?: string;
+          registration_start_date?: string | null;
           short_name?: string | null;
         };
         Relationships: [];
@@ -442,6 +460,7 @@ export type Database = {
         }[];
       };
       file_cleanup: { Args: never; Returns: undefined };
+      form_plan_ok: { Args: { p_form: string }; Returns: boolean };
       get_submission: {
         Args: { p_submission_id: string };
         Returns: {
@@ -474,6 +493,8 @@ export type Database = {
       is_admin: { Args: never; Returns: boolean };
       is_org_admin: { Args: { p_org: string }; Returns: boolean };
       is_org_member: { Args: { p_org: string }; Returns: boolean };
+      org_plan_ok: { Args: { p_org: string }; Returns: boolean };
+      org_upload_bytes: { Args: { p_org: string }; Returns: number };
       patch_jsonb_key: {
         Args: {
           p_column: string;
@@ -528,9 +549,13 @@ export type Database = {
       email_status: "pending" | "processing" | "success" | "failed";
       form_type: "abstract" | "session" | "general" | "registration";
       subscription_type:
-        | "frontier"
-        | "professional"
-        | "advanced"
+        | "professional_monthly"
+        | "professional_annual"
+        | "frontier_monthly"
+        | "frontier_annual"
+        | "advanced_monthly"
+        | "advanced_annual"
+        | "event_pass"
         | "enterprise";
       user_role: "professional" | "student" | "admin" | "postdoctorial";
     };
@@ -665,7 +690,16 @@ export const Constants = {
     Enums: {
       email_status: ["pending", "processing", "success", "failed"],
       form_type: ["abstract", "session", "general", "registration"],
-      subscription_type: ["frontier", "professional", "advanced", "enterprise"],
+      subscription_type: [
+        "professional_monthly",
+        "professional_annual",
+        "frontier_monthly",
+        "frontier_annual",
+        "advanced_monthly",
+        "advanced_annual",
+        "event_pass",
+        "enterprise",
+      ],
       user_role: ["professional", "student", "admin", "postdoctorial"],
     },
   },
