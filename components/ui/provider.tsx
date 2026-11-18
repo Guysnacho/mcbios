@@ -6,12 +6,7 @@ import { ColorModeProvider, type ColorModeProviderProps } from "./color-mode";
 
 export function Provider(props: ColorModeProviderProps) {
   return (
-    <AptabaseProvider
-      appKey={process.env.NEXT_PUBLIC_ANALYTICS_KEY}
-      options={{
-        appVersion: process.env.version,
-      }}
-    >
+    <AptabaseProvider appKey={process.env.NEXT_PUBLIC_ANALYTICS_KEY}>
       <ChakraProvider value={defaultSystem}>
         <ColorModeProvider {...props} />
       </ChakraProvider>
