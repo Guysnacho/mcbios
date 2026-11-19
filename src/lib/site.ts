@@ -1,5 +1,14 @@
-// Interim Google Form. Single place to swap in the Conference Suite form once it exists.
+// Conference Suite (canonical host: browsers won't follow redirects on CORS preflights).
+export const SUITE_URL =
+  process.env.NEXT_PUBLIC_SUITE_URL || "https://www.conferencesuite.net";
+
+// Session proposals. When NEXT_PUBLIC_PROPOSAL_FORM_ID is set the suite form is
+// embedded; until then the interim Google Form is linked.
+export const PROPOSAL_FORM_ID = process.env.NEXT_PUBLIC_PROPOSAL_FORM_ID ?? "";
 export const SESSION_PROPOSAL_URL = "https://forms.gle/VDm53L7xTU91XXRi9";
+
+/** Full suite page for a form: signed-in members see and can edit their submission here. */
+export const suiteFormUrl = (formId: string) => `${SUITE_URL}/form/${formId}`;
 
 // End of day, Dec 15 2026, in the viewer's local time. No time of day has been announced.
 export const PROPOSAL_DEADLINE = "2026-12-15T23:59:59";

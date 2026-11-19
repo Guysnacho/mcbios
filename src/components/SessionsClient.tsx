@@ -2,9 +2,12 @@
 
 import {
   PROPOSAL_DEADLINE_LABEL,
+  PROPOSAL_FORM_ID,
   SESSION_PROPOSAL_URL,
+  suiteFormUrl,
   SUGGESTED_TOPICS,
 } from "@/lib/site";
+import { SuiteFormEmbed } from "@/components/SuiteFormEmbed";
 import {
   AlertCircle,
   Clock,
@@ -115,6 +118,49 @@ export function TopicExplorer() {
 export function SubmitPanel() {
   const passed = useDeadlinePassed();
 
+  if (passed) {
+    return (
+      <div className="card card-border bg-base-200/80 backdrop-blur-md">
+        <div className="card-body items-center text-center">
+          <Send className="size-10 text-primary" />
+          <div role="alert" className="alert alert-error">
+            Session proposals for MCBIOS 2027 are now closed. Thank you!
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (PROPOSAL_FORM_ID) {
+    return (
+      <div id="submit" className="space-y-4">
+        <div className="text-center space-y-1">
+          <h2 className="text-3xl">Submit your proposal</h2>
+          <p className="max-w-xl mx-auto">
+            No account needed. Prepare your proposal summary and speaker
+            details first.
+          </p>
+        </div>
+        <SuiteFormEmbed
+          formId={PROPOSAL_FORM_ID}
+          title="MCBIOS 2027 session proposal"
+        />
+        <p className="text-center text-sm opacity-80">
+          Already submitted and need to change something?{" "}
+          <a
+            href={suiteFormUrl(PROPOSAL_FORM_ID)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link link-primary"
+          >
+            Sign in on Conference Suite to edit your proposal
+          </a>
+          .
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="card card-border bg-base-200/80 backdrop-blur-md">
       <div className="card-body items-center text-center">
@@ -125,24 +171,14 @@ export function SubmitPanel() {
           summary and speaker details before opening the form.
         </p>
         <div className="card-actions pt-2">
-          {passed ? (
-            <div role="alert" className="alert alert-error">
-              Session proposals for MCBIOS 2027 are now closed. Thank you!
-            </div>
-          ) : SESSION_PROPOSAL_URL ? (
-            <a
-              href={SESSION_PROPOSAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary btn-lg"
-            >
-              Open submission form <ExternalLink className="size-5" />
-            </a>
-          ) : (
-            <button className="btn btn-lg" disabled>
-              Submission link coming soon
-            </button>
-          )}
+          <a
+            href={SESSION_PROPOSAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary btn-lg"
+          >
+            Open submission form <ExternalLink className="size-5" />
+          </a>
         </div>
       </div>
     </div>
