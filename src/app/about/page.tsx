@@ -1,3 +1,4 @@
+import { MAIN_SITE_URL } from "@/lib/site";
 import { ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -161,6 +162,15 @@ export default function AboutPage() {
           About <span className="text-primary">MCBIOS</span>
         </h1>
         <p>MidSouth Computational Biology and Bioinformatics Society</p>
+        <a
+          href={MAIN_SITE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link link-primary inline-flex items-center gap-1"
+        >
+          Visit the main MCBIOS site
+          <ExternalLink className="size-4" />
+        </a>
       </header>
 
       <div className="mx-auto max-w-3xl space-y-3">
