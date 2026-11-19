@@ -5,6 +5,9 @@ export const SESSION_PROPOSAL_URL = "https://forms.gle/VDm53L7xTU91XXRi9";
 export const PROPOSAL_DEADLINE = "2026-12-15T23:59:59";
 export const PROPOSAL_DEADLINE_LABEL = "December 15, 2026";
 
+export const VENUE_NAME = "University of Dallas";
+export const VENUE_LOCATION = "Irving, Texas";
+
 export const MAIN_SITE_URL = "https://mcbios.com";
 
 export const NAV_ITEMS = [

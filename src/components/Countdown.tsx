@@ -1,8 +1,13 @@
 "use client";
 
-import { PROPOSAL_DEADLINE, PROPOSAL_DEADLINE_LABEL } from "@/lib/site";
+import {
+  PROPOSAL_DEADLINE,
+  PROPOSAL_DEADLINE_LABEL,
+  VENUE_LOCATION,
+  VENUE_NAME,
+} from "@/lib/site";
 import { useNow } from "@/lib/useNow";
-import { Clock } from "lucide-react";
+import { Clock, MapPin } from "lucide-react";
 
 const DEADLINE_MS = new Date(PROPOSAL_DEADLINE).getTime();
 
@@ -46,6 +51,10 @@ export function Countdown() {
   return (
     <div className="card bg-base-200/80 backdrop-blur-md card-border">
       <div className="card-body items-center text-center">
+        <div className="flex items-center gap-2 opacity-80">
+          <MapPin className="size-4 text-primary" />
+          <p>{VENUE_NAME} - {VENUE_LOCATION}</p>
+        </div>
         <div className="flex items-center gap-2 opacity-80">
           <Clock className="size-4 text-primary" />
           Session proposals due {PROPOSAL_DEADLINE_LABEL}
