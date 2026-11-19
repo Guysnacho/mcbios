@@ -45,7 +45,7 @@ const COMING_UP = [
     href: "/accommodations",
     title: "Accommodations",
     badge: "Coming soon",
-    desc: "Venue and travel details will be announced.",
+    desc: "University of Dallas, Irving, Texas. Travel details to follow.",
     Icon: Globe,
   },
 ];

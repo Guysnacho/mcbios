@@ -1,5 +1,10 @@
-import { MAIN_SITE_URL, NAV_ITEMS } from "@/lib/site";
-import { Calendar, Dna, ExternalLink } from "lucide-react";
+import {
+  MAIN_SITE_URL,
+  NAV_ITEMS,
+  VENUE_LOCATION,
+  VENUE_NAME,
+} from "@/lib/site";
+import { Calendar, Dna, ExternalLink, MapPin } from "lucide-react";
 import Link from "next/link";
 
 export function Footer() {
@@ -18,7 +23,10 @@ export function Footer() {
           <Calendar className="size-4 text-primary" />
           March 17-19, 2027
         </p>
-        <p className="opacity-70">Venue details coming soon</p>
+        <p className="flex items-center gap-2">
+          <MapPin className="size-4 text-primary" />
+          {VENUE_NAME}, {VENUE_LOCATION}
+        </p>
       </aside>
 
       <nav>

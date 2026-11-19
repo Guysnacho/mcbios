@@ -6,7 +6,8 @@ export const metadata: Metadata = { title: "Accommodations" };
 export default function Page() {
   return (
     <ComingSoon title="Accommodations">
-      Venue and travel information will be announced soon.
+      MCBIOS 2027 will be held at the University of Dallas in Irving, Texas.
+      Travel and lodging information will be announced soon.
     </ComingSoon>
   );
 }
