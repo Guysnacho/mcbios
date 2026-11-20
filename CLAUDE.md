@@ -25,3 +25,7 @@ MCBIOS main conference site: Next.js (App Router, `--webpack`), Chakra UI v3 + T
 ## Conventions
 
 Chakra dark mode via `_dark` props, e.g. `color={{ base: "gray.800", _dark: "gray.100" }}`; brand red `#800000`/`red.700`. Page-view analytics via `PageViewTracker` + `Events` in `lib/constants.ts`. Videos/content upload still writes directly via the anon client under RLS.
+
+## Roadmap: SDK extraction
+
+Auth, registration and paid-state logic here is the source being ported into a shared SDK (first built in `../2027/src/suite/`, then extracted to a package, with this site as the second consumer). **Canonical plan: `../conf_suite/suite/docs/sdk-roadmap.md`** (milestones M0-M5; tick the checkbox when you finish one). Until M4, keep the logic here working and don't restructure it; when porting, fix the a11y gaps listed in M1 rather than copying them (links without `href`, unlabeled icon buttons, no Enter on the email step, toast-only status). Chakra is being phased out in favour of Tailwind + Ark UI, page by page, only behind passing axe/keyboard tests.
