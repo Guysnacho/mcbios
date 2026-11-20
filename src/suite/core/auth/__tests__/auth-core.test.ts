@@ -13,22 +13,32 @@ const config: SuiteConfig = {
 const json = (status: number, body: unknown = {}) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
 
-describe("decideEmailCheck (the AuthModal decision table)", () => {
-  const cases: Array<[Mode, EmailCheck["kind"], { step: 0 | 1; linking: boolean; status: string }]> = [
-    ["signin", "registered", { step: 1, linking: false, status: "info" }],
-    ["signup", "registered", { step: 1, linking: true, status: "info" }], // account exists: sign in and link
-    ["signin", "guest", { step: 0, linking: false, status: "error" }], // no account to sign in to
-    ["signup", "guest", { step: 1, linking: false, status: "info" }], // sign-up claims the guest row
-    ["signin", "not_found", { step: 0, linking: false, status: "error" }],
-    ["signup", "not_found", { step: 1, linking: false, status: "info" }],
-    ["signin", "other_org", { step: 1, linking: true, status: "info" }],
-    ["signup", "other_org", { step: 1, linking: true, status: "info" }],
-    ["signin", "rate_limited", { step: 0, linking: false, status: "error" }],
-    ["signup", "error", { step: 0, linking: false, status: "error" }],
+describe("decideEmailCheck (the AuthModal decision table, with the existing-account fix)", () => {
+  type Want = { mode: Mode; step: 0 | 1; linking: boolean; needsProfile: boolean; status: string };
+  const cases: Array<[Mode, EmailCheck["kind"], Want]> = [
+    ["signin", "registered", { mode: "signin", step: 1, linking: false, needsProfile: false, status: "info" }],
+    // Signing up with an email that already has an account: switch to sign-in, password only
+    ["signup", "registered", { mode: "signin", step: 1, linking: false, needsProfile: false, status: "info" }],
+    ["signin", "guest", { mode: "signin", step: 0, linking: false, needsProfile: false, status: "error" }], // nothing to sign in to
+    ["signup", "guest", { mode: "signup", step: 1, linking: false, needsProfile: true, status: "info" }], // sign-up claims the guest row
+    ["signin", "not_found", { mode: "signin", step: 0, linking: false, needsProfile: false, status: "error" }],
+    ["signup", "not_found", { mode: "signup", step: 1, linking: false, needsProfile: true, status: "info" }],
+    // Another org's account: signing up there needs the profile (it creates this org's member row)
+    ["signin", "other_org", { mode: "signin", step: 1, linking: true, needsProfile: false, status: "info" }],
+    ["signup", "other_org", { mode: "signup", step: 1, linking: true, needsProfile: true, status: "info" }],
+    ["signin", "rate_limited", { mode: "signin", step: 0, linking: false, needsProfile: false, status: "error" }],
+    ["signup", "rate_limited", { mode: "signup", step: 0, linking: false, needsProfile: false, status: "error" }],
+    ["signup", "error", { mode: "signup", step: 0, linking: false, needsProfile: false, status: "error" }],
   ];
   it.each(cases)("%s + %s", (mode, kind, want) => {
     const got = decideEmailCheck(mode, { kind } as EmailCheck);
-    expect({ step: got.step, linking: got.linking, status: got.status.kind }).toEqual(want);
+    expect({ mode: got.mode, step: got.step, linking: got.linking, needsProfile: got.needsProfile, status: got.status.kind }).toEqual(want);
+  });
+
+  it("tells a person who is signing up that they already have an account", () => {
+    const got = decideEmailCheck("signup", { kind: "registered" });
+    expect(got.status).toMatchObject({ kind: "info" });
+    expect((got.status as { message: string }).message).toContain("already have an account");
   });
 });
 
@@ -44,9 +54,17 @@ describe("reduce", () => {
     let s: AuthState = reduce(open, { type: "emailChecking", email: "a@b.co" });
     expect(s.status.kind).toBe("busy");
     s = reduce(s, { type: "emailChecked", check: { kind: "other_org" } });
-    expect(s).toMatchObject({ step: 1, linking: true, email: "a@b.co" });
+    expect(s).toMatchObject({ step: 1, linking: true, needsProfile: true, email: "a@b.co" });
     s = reduce(s, { type: "back" });
-    expect(s).toMatchObject({ step: 0, linking: false, email: "a@b.co" });
+    expect(s).toMatchObject({ step: 0, linking: false, needsProfile: false, email: "a@b.co" });
+  });
+
+  it("an existing account found while signing up becomes a password-only sign-in, and Back returns to the email step", () => {
+    let s = reduce(open, { type: "emailChecking", email: "a@b.co" });
+    s = reduce(s, { type: "emailChecked", check: { kind: "registered" } });
+    expect(s).toMatchObject({ mode: "signin", step: 1, needsProfile: false, linking: false });
+    s = reduce(s, { type: "back" });
+    expect(s).toMatchObject({ mode: "signin", step: 0, email: "a@b.co" });
   });
 
   it("switching mode keeps the email but restarts the flow and stays open", () => {

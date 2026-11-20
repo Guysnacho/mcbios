@@ -27,8 +27,10 @@ export type AuthState = {
   /** 0: ask for the email. 1: ask for the password (and profile when signing up). */
   step: 0 | 1;
   email: string;
-  /** The account lives in another org (or already exists here): sign in, then link it. */
+  /** The account lives in another org: sign in with its password, then link it to this org. */
   linking: boolean;
+  /** Ask for name and institution: a brand-new account, or linking one from another org. */
+  needsProfile: boolean;
   status: Status;
 };
 
@@ -49,27 +51,41 @@ export const initialAuthState: AuthState = {
   step: 0,
   email: "",
   linking: false,
+  needsProfile: false,
   status: { kind: "idle" },
 };
 
 const idle: Status = { kind: "idle" };
 
-/** The email-check decision table (mirrors the original AuthModal). */
-export function decideEmailCheck(
-  mode: Mode,
-  check: EmailCheck,
-): { step: 0 | 1; linking: boolean; status: Status } {
+/** What the email check decides: where to go next, and which form to show. */
+export type EmailDecision = {
+  mode: Mode;
+  step: 0 | 1;
+  linking: boolean;
+  needsProfile: boolean;
+  status: Status;
+};
+
+/**
+ * The email-check decision table. Differs from the original AuthModal in one
+ * case: signing up with an email that already has an account here switches to
+ * sign-in (password only) instead of showing the full sign-up form, since the
+ * member row already exists and the profile would be thrown away.
+ */
+export function decideEmailCheck(mode: Mode, check: EmailCheck): EmailDecision {
+  const stay = (status: Status): EmailDecision => ({ mode, step: 0, linking: false, needsProfile: false, status });
   switch (check.kind) {
     case "registered":
       return {
+        mode: "signin",
         step: 1,
-        // Signing up with an email that already has an account: sign in instead, then link
-        linking: mode === "signup",
+        linking: false,
+        needsProfile: false,
         status: {
           kind: "info",
           message:
             mode === "signup"
-              ? "Account found. Enter your password to continue."
+              ? "You already have an account, so there is nothing to create. Enter your password to sign in."
               : "Email verified. Enter your password to continue.",
         },
       };
@@ -77,39 +93,32 @@ export function decideEmailCheck(
     case "not_found":
       return mode === "signup"
         ? {
+            mode,
             step: 1,
             linking: false,
+            needsProfile: true,
             status: { kind: "info", message: "Email available. Complete the sign-up form." },
           }
-        : {
-            step: 0,
-            linking: false,
-            status: { kind: "error", message: "This email is not registered. Sign up first." },
-          };
+        : stay({ kind: "error", message: "This email is not registered. Sign up first." });
     case "other_org":
       return {
+        mode,
         step: 1,
         linking: true,
+        // Linking creates this org's member row, which needs a name and institution
+        needsProfile: mode === "signup",
         status: {
           kind: "info",
           message:
             mode === "signup"
-              ? "This email has a Conference Suite account with another organization. Create your profile here and we will link it."
+              ? "This email has a Conference Suite account with another organization. Add your details here and we will link it."
               : "This email has a Conference Suite account with another organization. Sign in with the same password to link it.",
         },
       };
     case "rate_limited":
-      return {
-        step: 0,
-        linking: false,
-        status: { kind: "error", message: "Too many attempts. Wait a minute and try again." },
-      };
+      return stay({ kind: "error", message: "Too many attempts. Wait a minute and try again." });
     case "error":
-      return {
-        step: 0,
-        linking: false,
-        status: { kind: "error", message: "We could not check that email. Try again." },
-      };
+      return stay({ kind: "error", message: "We could not check that email. Try again." });
   }
 }
 
@@ -123,7 +132,7 @@ export function reduce(state: AuthState, event: AuthEvent): AuthState {
       // Switching mode keeps the typed email but restarts the flow
       return { ...initialAuthState, open: state.open, mode: event.mode, email: state.email };
     case "back":
-      return { ...state, step: 0, linking: false, status: idle };
+      return { ...state, step: 0, linking: false, needsProfile: false, status: idle };
     case "emailChecking":
       return { ...state, email: event.email, status: { kind: "busy" } };
     case "emailChecked":

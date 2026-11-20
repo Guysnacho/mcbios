@@ -112,7 +112,7 @@ function AuthForm() {
 
   const busy = state.status.kind === "busy";
   const id = (n: string) => `${base}-${n}`;
-  const needsProfile = state.mode === "signup" && state.step === 1;
+  const needsProfile = state.step === 1 && state.needsProfile;
   const status = state.status;
 
   async function submit(e: React.FormEvent) {
