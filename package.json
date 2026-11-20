@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "@ark-ui/react": "^5.40.0",
-    "@supabase/supabase-js": "^2.119.2",
+    "@supabase/ssr": "0.7.0",
+    "@supabase/supabase-js": "2.78.0",
     "@tailwindcss/postcss": "^4.3.5",
     "daisyui": "^5.7.50",
     "lucide-react": "^1.70.0",

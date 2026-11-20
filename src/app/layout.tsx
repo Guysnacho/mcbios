@@ -1,6 +1,8 @@
 import { Footer } from "@/components/Footer";
 import { HelixBackground } from "@/components/HelixBackground";
 import { Navbar } from "@/components/Navbar";
+import { suiteConfig } from "@/suite/config";
+import { SuiteAuth } from "@/suite/ui/SuiteAuth";
 import type { Metadata } from "next";
 import { Amiko, Bacasime_Antique } from "next/font/google";
 import "./globals.css";
@@ -33,10 +35,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${bacasime.variable} ${amiko.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <HelixBackground />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SuiteAuth config={suiteConfig}>
+          <HelixBackground />
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SuiteAuth>
       </body>
     </html>
   );
