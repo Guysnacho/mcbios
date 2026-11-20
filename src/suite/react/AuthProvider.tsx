@@ -115,9 +115,9 @@ export function AuthProvider({
 
       signIn: ({ email, password }) =>
         run(async (svc) => {
-          const { user: u, linkFailed } = await svc.signIn({ email, password, linking: state.linking });
+          const { user: u, linkError } = await svc.signIn({ email, password, linking: state.linking });
           dispatch({ type: "done" });
-          setNotice(linkFailed ? "Signed in. We could not link your account to this organization yet; try again from your profile." : "Welcome back!");
+          setNotice(linkError ? `Signed in, but we could not add your account to this organization: ${linkError}.` : "Welcome back!");
           onSignedInRef.current?.(u);
         }),
 
@@ -126,18 +126,19 @@ export function AuthProvider({
           const res = await svc.signUp({ ...v, linking: state.linking });
           dispatch({ type: "done" });
           if (res.kind === "confirmEmail") {
-            setNotice("Check your email for a confirmation link to finish creating your account.");
+            setNotice("Check your email and open the confirmation link, then come back and sign in.");
           } else {
-            setNotice("Welcome!");
+            setNotice(res.linkError ? `Welcome! We could not add your account to this organization: ${res.linkError}.` : "Welcome!");
             onSignedInRef.current?.(res.user);
           }
         }),
 
       reset: (email) =>
         run(async (svc) => {
-          await svc.resetPassword(email, typeof window === "undefined" ? undefined : `${window.location.origin}/`);
+          // No redirectTo: the suite's email function decides where the link goes (the Conference Suite reset page)
+          await svc.resetPassword(email);
           dispatch({ type: "done" });
-          setNotice("If an account exists for that email, a reset link is on its way.");
+          setNotice("If an account exists for that email, a reset link is on its way. It opens Conference Suite, where you choose a new password; then sign in here again.");
         }),
 
       signOut: async () => {

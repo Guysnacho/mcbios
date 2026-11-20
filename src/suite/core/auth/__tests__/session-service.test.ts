@@ -132,7 +132,7 @@ describe("auth service", () => {
     const signInWithPassword = vi.fn(async () => ({ data: { user, session }, error: null }));
     const f = vi.fn(async () => new Response("{}", { status: 201 })) as unknown as typeof fetch;
     const { svc, ensureCookieDomain } = setup({ signInWithPassword }, f);
-    expect(await svc.signIn({ email: "a@b.co", password: "pw", linking: false })).toEqual({ user, linkFailed: false });
+    expect(await svc.signIn({ email: "a@b.co", password: "pw", linking: false })).toEqual({ user, linkError: null });
     expect(f).not.toHaveBeenCalled();
     await svc.signIn({ email: "a@b.co", password: "pw", linking: true });
     expect(f).toHaveBeenCalledTimes(1);
@@ -144,7 +144,23 @@ describe("auth service", () => {
     const signInWithPassword = vi.fn(async () => ({ data: { user, session }, error: null }));
     const bad = vi.fn(async () => new Response(JSON.stringify({ message: "Member limit", code: "member_limit" }), { status: 402 })) as unknown as typeof fetch;
     const { svc } = setup({ signInWithPassword }, bad);
-    expect(await svc.signIn({ email: "a@b.co", password: "pw", linking: true })).toEqual({ user, linkFailed: true });
+    expect(await svc.signIn({ email: "a@b.co", password: "pw", linking: true })).toEqual({
+      user,
+      linkError: "this organization has reached its member limit",
+    });
+  });
+
+  it("a sign-up for an email that already has an account (no identities) is not 'check your email'", async () => {
+    const signUp = vi.fn(async () => ({ data: { user: { ...user, identities: [] }, session: null }, error: null }));
+    const { svc } = setup({ signUp });
+    await expect(
+      svc.signUp({ email: "a@b.co", password: "secret1", fname: "Al", lname: "Li", institution: "MIT", linking: false }),
+    ).rejects.toMatchObject({ code: "already_registered" });
+  });
+
+  it("network failures get a plain message", async () => {
+    const { svc } = setup({ signInWithPassword: async () => ({ data: {}, error: { message: "Failed to fetch", status: 0 } }) });
+    await expect(svc.signIn({ email: "a@b.co", password: "x", linking: false })).rejects.toMatchObject({ code: "network" });
   });
 
   it("maps Supabase errors to friendly messages with codes", async () => {
@@ -179,7 +195,7 @@ describe("auth service", () => {
     const f = vi.fn(async () => new Response("{}", { status: 201 })) as unknown as typeof fetch;
     const { svc } = setup({ signInWithPassword, signUp }, f);
     const res = await svc.signUp({ email: "a@b.co", password: "old-pass", fname: "Al", lname: "Li", institution: "MIT", linking: true });
-    expect(res).toEqual({ kind: "signedIn", user, linkFailed: false });
+    expect(res).toEqual({ kind: "signedIn", user, linkError: null });
     expect(signUp).not.toHaveBeenCalled();
     const [, init] = (f as unknown as { mock: { calls: [string, RequestInit][] } }).mock.calls[0];
     expect((init.headers as Record<string, string>).signup).toBe("true");

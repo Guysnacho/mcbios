@@ -11,10 +11,9 @@ type Deps = {
   fetch?: typeof fetch;
 };
 
-export type SignInResult = { user: User; /** linking to this org failed (the sign-in itself worked) */ linkFailed: boolean };
-export type SignUpResult =
-  | { kind: "signedIn"; user: User; linkFailed: boolean }
-  | { kind: "confirmEmail" };
+/** `linkError` is why adding the account to this org failed; the sign-in itself still worked. */
+export type SignInResult = { user: User; linkError: string | null };
+export type SignUpResult = { kind: "signedIn"; user: User; linkError: string | null } | { kind: "confirmEmail" };
 
 function firstIssue(error: { issues: { message: string }[] }): SuiteError {
   return new SuiteError(error.issues[0]?.message ?? "Check the form and try again.", "invalid_input");
@@ -25,6 +24,9 @@ function authError(message: string, status?: number): SuiteError {
   if (m.includes("invalid login credentials")) return new SuiteError("Wrong email or password.", "invalid_credentials", status);
   if (m.includes("email not confirmed")) return new SuiteError("Confirm your email first. Check your inbox for the link.", "email_not_confirmed", status);
   if (m.includes("rate limit")) return new SuiteError("Too many requests for this email. Try again later.", "rate_limited", status);
+  if (m.includes("failed to fetch") || m.includes("network") || m.includes("fetch failed"))
+    return new SuiteError("We could not reach the server. Check your connection and try again.", "network", status);
+  if (m.includes("already registered")) return new SuiteError("An account with this email already exists. Sign in instead.", "already_registered", status);
   return new SuiteError(message, undefined, status);
 }
 
@@ -39,13 +41,14 @@ export function createAuthService(config: SuiteConfig, deps: Deps) {
     return { user: data.user, session: data.session };
   }
 
-  /** Link failures never undo a sign-in: report them and move on. */
-  async function tryLink(token: string, profile?: Parameters<typeof linkAccount>[2]): Promise<boolean> {
+  /** Link failures never undo a sign-in: report why and move on. */
+  async function tryLink(token: string, profile?: Parameters<typeof linkAccount>[2]): Promise<string | null> {
     try {
       await linkAccount(config, token, profile, deps.fetch);
-      return false;
-    } catch {
-      return true;
+      return null;
+    } catch (e) {
+      if (e instanceof SuiteError && e.code === "member_limit") return "this organization has reached its member limit";
+      return e instanceof SuiteError && e.message ? e.message : "an unexpected error";
     }
   }
 
@@ -56,8 +59,8 @@ export function createAuthService(config: SuiteConfig, deps: Deps) {
       const parsed = signInSchema.safeParse(input);
       if (!parsed.success) throw firstIssue(parsed.error);
       const { user, session } = await signInWithPassword(parsed.data.email, parsed.data.password);
-      const linkFailed = input.linking ? await tryLink(session.access_token) : false;
-      return { user, linkFailed };
+      const linkError = input.linking ? await tryLink(session.access_token) : null;
+      return { user, linkError };
     },
 
     async signUp(input: {
@@ -75,7 +78,7 @@ export function createAuthService(config: SuiteConfig, deps: Deps) {
         const profile = linkProfileSchema.safeParse(input);
         if (!profile.success) throw firstIssue(profile.error);
         const { user, session } = await signInWithPassword(creds.data.email, creds.data.password);
-        return { kind: "signedIn", user, linkFailed: await tryLink(session.access_token, profile.data) };
+        return { kind: "signedIn", user, linkError: await tryLink(session.access_token, profile.data) };
       }
 
       const parsed = signUpSchema.safeParse(input);
@@ -89,8 +92,13 @@ export function createAuthService(config: SuiteConfig, deps: Deps) {
         options: { data: { fname, lname, role: "student", institution, org_id: config.orgId } },
       });
       if (error) throw authError(error.message, error.status);
+      // With email confirmation on, Supabase answers a sign-up for an existing email with a
+      // user that has no identities (and sends nothing). Don't tell them to check their email.
+      if (data.user && data.user.identities?.length === 0) {
+        throw new SuiteError("An account with this email already exists. Sign in instead.", "already_registered");
+      }
       return data.session && data.user
-        ? { kind: "signedIn", user: data.user, linkFailed: false }
+        ? { kind: "signedIn", user: data.user, linkError: null }
         : { kind: "confirmEmail" };
     },
 

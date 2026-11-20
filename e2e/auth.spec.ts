@@ -16,7 +16,7 @@ const USER = {
 };
 const SESSION = { access_token: "tok", token_type: "bearer", expires_in: 3600, refresh_token: "ref", user: USER };
 
-type Mock = { emailStatus: number; authed?: boolean; signedUpWithSession?: boolean };
+type Mock = { emailStatus: number; authed?: boolean; signedUpWithSession?: boolean; signupIdentities?: unknown[] };
 
 /** Mocks the suite (/api/auth, /api/org) and Supabase auth; returns the calls that were made. */
 async function mockBackend(page: Page, m: Mock) {
@@ -40,7 +40,7 @@ async function mockBackend(page: Page, m: Mock) {
   await page.route(/\/auth\/v1\/token/, (r) => json(r, 200, SESSION));
   await page.route(/\/auth\/v1\/signup/, (r) => {
     calls.signup.push(r.request().postDataJSON());
-    return json(r, 200, m.signedUpWithSession ? SESSION : USER);
+    return json(r, 200, m.signedUpWithSession ? SESSION : { ...USER, ...(m.signupIdentities ? { identities: m.signupIdentities } : {}) });
   });
   await page.route(/\/auth\/v1\/recover/, (r) => {
     calls.reset++;
@@ -189,6 +189,72 @@ test.describe("sign up", () => {
   });
 });
 
+test.describe("sign up with an email that already has an account", () => {
+  test("in this org: becomes a password-only sign-in (no profile form)", async ({ page }) => {
+    await mockBackend(page, { emailStatus: 200, authed: true });
+    const dialog = await openSignIn(page);
+    await dialog.getByRole("button", { name: "New here? Create an account" }).click();
+    await dialog.getByLabel("Email").fill("ada@example.com");
+    await page.keyboard.press("Enter");
+
+    // The dialog is now a sign-in: the title says so, and only the password is asked for
+    await expect(page.getByRole("dialog", { name: "Sign in" })).toBeVisible();
+    await expect(dialog.getByRole("status")).toContainText("already have an account");
+    await expect(dialog.getByLabel("Password", { exact: true })).toBeFocused();
+    await expect(dialog.getByLabel("Given name")).toHaveCount(0);
+    await expect(dialog.getByLabel("Family name")).toHaveCount(0);
+    await expect(dialog.getByLabel("Institution")).toHaveCount(0);
+    await expect(dialog.locator('input[autocomplete="current-password"]')).toHaveCount(1);
+    await expectNoViolations(page);
+
+    await dialog.getByLabel("Password", { exact: true }).fill("secret1");
+    await page.keyboard.press("Enter");
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+    await expect(page.getByRole("button", { name: /Account menu for ada@example.com/ })).toBeVisible();
+  });
+
+  test("in another org: asks for the profile, signs in with the existing password, then links", async ({ page }) => {
+    const calls = await mockBackend(page, { emailStatus: 406 });
+    const dialog = await openSignIn(page);
+    await dialog.getByRole("button", { name: "New here? Create an account" }).click();
+    await dialog.getByLabel("Email").fill("ada@example.com");
+    await page.keyboard.press("Enter");
+
+    await expect(dialog.getByLabel("Given name")).toBeVisible();
+    await expect(dialog.locator('input[autocomplete="current-password"]')).toHaveCount(1); // their password, not a new one
+    await expect(dialog.getByLabel("Password", { exact: true })).toBeVisible();
+    await expect(dialog.getByRole("button", { name: "Link my account" })).toBeVisible();
+    await expectNoViolations(page);
+
+    await dialog.getByLabel("Given name").fill("Ada");
+    await dialog.getByLabel("Family name").fill("Lovelace");
+    await dialog.getByLabel("Institution").fill("Analytical Engines");
+    await dialog.getByLabel("Password", { exact: true }).fill("secret1");
+    await page.keyboard.press("Enter");
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+    await expect.poll(() => calls.elevate.length).toBe(1);
+    expect(calls.elevate[0].headers.signup).toBe("true");
+    expect(calls.elevate[0].body).toMatchObject({ token: "tok", fname: "Ada", lname: "Lovelace", institution: "Analytical Engines" });
+  });
+
+  test("if Supabase hides an existing account, we don't say 'check your email'", async ({ page }) => {
+    // Email confirmation on: signing up an existing email returns a user with no identities and sends nothing
+    await mockBackend(page, { emailStatus: 404, signupIdentities: [] });
+    const dialog = await openSignIn(page);
+    await dialog.getByRole("button", { name: "New here? Create an account" }).click();
+    await dialog.getByLabel("Email").fill("ada@example.com");
+    await page.keyboard.press("Enter");
+    await dialog.getByLabel("Given name").fill("Ada");
+    await dialog.getByLabel("Family name").fill("Lovelace");
+    await dialog.getByLabel("Institution").fill("Analytical Engines");
+    await dialog.getByLabel("Choose a password").fill("secret123");
+    await page.keyboard.press("Enter");
+    await expect(dialog.getByRole("alert")).toContainText("already exists");
+    await expect(page.getByRole("status").filter({ hasText: "Check your email" })).toHaveCount(0);
+    await expect(page.getByRole("dialog")).toBeVisible();
+  });
+});
+
 test.describe("reset", () => {
   test("sends a reset link and announces it", async ({ page }) => {
     const calls = await mockBackend(page, { emailStatus: 200 });
@@ -198,7 +264,11 @@ test.describe("reset", () => {
     await expectNoViolations(page);
     await dialog.getByLabel("Email").fill("ada@example.com");
     await page.keyboard.press("Enter");
-    await expect(page.getByRole("status").filter({ hasText: "reset link" })).toBeVisible();
+    const notice = page.getByRole("status").filter({ hasText: "reset link" });
+    await expect(notice).toBeVisible();
+    // The link opens Conference Suite, so say so and say to come back
+    await expect(notice).toContainText("Conference Suite");
+    await expect(notice).toContainText("sign in here again");
     expect(calls.reset).toBe(1);
   });
 });
