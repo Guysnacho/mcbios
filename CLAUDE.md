@@ -10,7 +10,7 @@ MCBIOS 2027 conference site (`2027.mcbios.com`): Next.js App Router, daisyUI + T
 
 ## Commands
 
-`yarn dev`, `yarn build`, `yarn lint`.
+`yarn dev` (webpack: Turbopack's dev CSS pipeline fails on daisyUI's `@scope` output with a 500, `next build` is fine), `yarn build`, `yarn lint`, `yarn test` (vitest, `src/**`), `yarn test:e2e` (Playwright + axe in `e2e/`, Chromium; first run: `npx playwright install chromium`).
 
 ## Where things stand / where to pick up
 
@@ -21,7 +21,7 @@ Rules for `src/suite/` (so extraction is a folder move):
 2. Layers with one-way dependency: `core/` (plain TS, no React) ← `react/` (hooks) ← `ui/` (Tailwind + Ark UI components).
 3. Use `@supabase/supabase-js` with a custom cookie storage adapter, not `@supabase/ssr`.
 4. Normalize API errors to `{message, code?}`; add every endpoint you rely on to the suite's OpenAPI spec.
-5. Accessibility ratchet: a component ships only with axe + keyboard tests passing.
+5. Accessibility ratchet: a component ships only with axe + keyboard tests passing. `e2e/a11y.spec.ts` scans every page in light and dark (dark is the default theme; light is the navbar toggle) for WCAG 2.x A/AA violations. Add new pages to its `PAGES` list. Theme colors in `globals.css` are contrast-checked (text on both base colors >= 4.5:1), so check a new color before adding it.
 
 ## Conventions
 
