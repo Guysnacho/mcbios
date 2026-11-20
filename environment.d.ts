@@ -9,6 +9,7 @@ declare global {
       NEXT_PUBLIC_ORG_ID: string;
       NEXT_PUBLIC_APP_URL: string;
       NEXT_PUBLIC_SUITE_URL?: string;
+      NEXT_PUBLIC_COOKIE_DOMAIN?: string;
       NEXT_PUBLIC_ANALYTICS_KEY: string;
     }
   }

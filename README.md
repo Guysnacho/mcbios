@@ -20,6 +20,7 @@ yarn build                    # production build (webpack)
 | `NEXT_PUBLIC_ORG_ID` | This conference's org id in the suite |
 | `NEXT_PUBLIC_APP_URL` | This site's origin (must match the org's `base_url` in the suite) |
 | `NEXT_PUBLIC_SUITE_URL` | Optional suite override (default `https://www.conferencesuite.net`, `http://localhost:3001` in dev) |
+| `NEXT_PUBLIC_COOKIE_DOMAIN` | Optional. The org's base domain (e.g. `mcbios.com`): sites on it and its subdomains (like `2027.mcbios.com`) share one sign-in. Unset = host-only cookies |
 | `NEXT_PUBLIC_ANALYTICS_KEY` | Aptabase |
 
 Locally, run the suite on port 3001 and use an org whose `base_url` covers `http://localhost:3000`, or CORS will block the calls.
