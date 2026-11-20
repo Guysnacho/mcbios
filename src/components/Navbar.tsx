@@ -1,6 +1,7 @@
 "use client";
 
-import { NAV_ITEMS } from "@/lib/site";
+import { NAV_ITEMS, SUITE_URL } from "@/lib/site";
+import { AuthButton } from "@/suite/ui/AuthButton";
 import { Dna, Menu, Moon, Sun } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -68,6 +69,11 @@ export function Navbar() {
           <Moon className="swap-on size-5" />
           <Sun className="swap-off size-5" />
         </label>
+        <AuthButton
+          accountLinks={[
+            { label: "My submissions and registration (Conference Suite)", href: `${SUITE_URL}/dashboard` },
+          ]}
+        />
         <Link
           href="/sessions"
           className="btn btn-primary hidden sm:inline-flex"
