@@ -19,7 +19,7 @@ MCBIOS 2027 conference site (`2027.mcbios.com`): Next.js App Router, daisyUI + T
 Rules for `src/suite/` (so extraction is a folder move):
 1. No imports from the rest of the app; only `src/suite/config.ts` reads `process.env`.
 2. Layers with one-way dependency: `core/` (plain TS, no React) ← `react/` (hooks) ← `ui/` (Tailwind + Ark UI components).
-3. Use `@supabase/supabase-js` with a custom cookie storage adapter, not `@supabase/ssr`.
+3. Sessions use `@supabase/ssr`'s framework-neutral `createBrowserClient` with explicit cookie handlers (`core/auth/cookies.ts`), pinned to the same `@supabase/ssr` and `@supabase/supabase-js` versions as the main site (0.7.0 / 2.78.0) so both sites write and read the same cookie format. Never use its server helpers in `src/suite/`. Bump the versions together with `../mcbios`.
 4. Normalize API errors to `{message, code?}`; add every endpoint you rely on to the suite's OpenAPI spec.
 5. Accessibility ratchet: a component ships only with axe + keyboard tests passing. `e2e/a11y.spec.ts` scans every page in light and dark (dark is the default theme; light is the navbar toggle) for WCAG 2.x A/AA violations. Add new pages to its `PAGES` list. Theme colors in `globals.css` are contrast-checked (text on both base colors >= 4.5:1), so check a new color before adding it.
 
