@@ -14,7 +14,7 @@ MCBIOS 2027 conference site (`2027.mcbios.com`): Next.js App Router, daisyUI + T
 
 ## Where things stand / where to pick up
 
-**Canonical plan: `../conf_suite/suite/docs/sdk-roadmap.md`.** Find the first unchecked milestone, do it, tick the checkbox and note the commit. This repo hosts the first build of the SDK in `src/suite/` (auth M1, registration M2, schedule attendee view M3c), which is later extracted into a package.
+**Canonical plan: `../conf_suite/suite/docs/sdk-roadmap.md`.** Find the first unchecked milestone, do it, tick the checkbox and note the commit. This repo hosts the first build of the SDK in `src/suite/` (auth M1, registration M2, schedule attendee view M3c: all built), which is later extracted into a package.
 
 Rules for `src/suite/` (so extraction is a folder move):
 1. No imports from the rest of the app; only `src/suite/config.ts` reads `process.env`.
@@ -23,6 +23,15 @@ Rules for `src/suite/` (so extraction is a folder move):
 4. Normalize API errors to `{message, code?}`; add every endpoint you rely on to the suite's OpenAPI spec.
 5. Database-first: the suite keeps rules (registration guards, limits, paid state, invariants) in Postgres functions and triggers. `core/` calls the endpoint or RPC and maps its `{message, code}`; it does not re-implement the rule (so no new copy of `isPaidThisCycle`/window math: read `windowOpen` and `my_membership`). See `../conf_suite/suite/docs/db-offload-review.md`.
 6. Accessibility ratchet: a component ships only with axe + keyboard tests passing. `e2e/a11y.spec.ts` scans every page in light and dark (dark is the default theme; light is the navbar toggle) for WCAG 2.x A/AA violations. Add new pages to its `PAGES` list. Theme colors in `globals.css` are contrast-checked (text on both base colors >= 4.5:1), so check a new color before adding it.
+
+## Schedule (M3c)
+
+`/schedule` is `src/suite/ui/SchedulePage.tsx` over `core/schedule/` (fetch with ETag, filters, agenda sync, time zones, theme) and `react/{useSchedule,useAgenda}`. Everything comes from the suite's `GET /api/schedule` (published sessions only, speakers without emails, plus the org's `timezone` and `theme`); admins build it in the suite dashboard. Things to keep true:
+- **A day is a date in the schedule's zone** (`core/schedule/time.ts`, mirrors the suite's `schedule-time.ts`; same fixtures in both test suites). Never group by the UTC date.
+- **"My schedule" is local-first** (`cs:agenda:<org>` in localStorage) and, signed in, synced through `GET/PUT /api/schedule/me` with a 3-way merge (`mergeAgenda`), so removals and adds on either side both survive. Overlaps are flagged only among the sessions you picked.
+- **Theme** arrives as `--cs-*` CSS variables on the schedule wrapper (`themeVars`, which accepts only `#rrggbb`); `ui/scheduleClasses.ts` falls back to the site's daisyUI tokens, so no theme means the schedule follows the site. Colors from the network are never put in a style unless they pass `safeColor`/`themeVars`.
+- **Layout:** day-by-room grid at `lg` and up, agenda list below (`useMediaQuery`), print layout (`print:` classes, `window.print()`), `prefers-reduced-motion` honored in `globals.css`. The grid is rooms as labelled lists with a roving tabindex (arrows between sessions, Enter opens, B bookmarks); buttons get their accessible name from their visible content (axe `label-content-name-mismatch`).
+- e2e: `e2e/schedule.spec.ts` mocks the suite (axe on grid, agenda, dialog, themes; keyboard; signed-in sync; print; other time zone). `yarn test:e2e` can't start its server while a `yarn dev` of this repo is running (Next locks `.next`): stop it, or run from a copy. `/sessions` in `a11y.spec.ts` never reaches network idle while a dev suite is running on the `NEXT_PUBLIC_SUITE_URL` host (its HMR stream keeps the iframe busy).
 
 ## Conventions
 
