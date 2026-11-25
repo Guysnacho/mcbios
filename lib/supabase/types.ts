@@ -70,8 +70,7 @@ export type Database = {
           subscription_id: string | null;
           subscription_status: string | null;
           subscription_type:
-            | Database["public"]["Enums"]["subscription_type"]
-            | null;
+            Database["public"]["Enums"]["subscription_type"] | null;
           updated_at: string;
           usage: Json;
         };
@@ -86,8 +85,7 @@ export type Database = {
           subscription_id?: string | null;
           subscription_status?: string | null;
           subscription_type?:
-            | Database["public"]["Enums"]["subscription_type"]
-            | null;
+            Database["public"]["Enums"]["subscription_type"] | null;
           updated_at?: string;
           usage?: Json;
         };
@@ -102,8 +100,7 @@ export type Database = {
           subscription_id?: string | null;
           subscription_status?: string | null;
           subscription_type?:
-            | Database["public"]["Enums"]["subscription_type"]
-            | null;
+            Database["public"]["Enums"]["subscription_type"] | null;
           updated_at?: string;
           usage?: Json;
         };
@@ -274,6 +271,8 @@ export type Database = {
           name: string;
           registration_start_date: string | null;
           short_name: string | null;
+          theme: Json;
+          timezone: string;
         };
         Insert: {
           base_url: string;
@@ -283,6 +282,8 @@ export type Database = {
           name: string;
           registration_start_date?: string | null;
           short_name?: string | null;
+          theme?: Json;
+          timezone?: string;
         };
         Update: {
           base_url?: string;
@@ -292,6 +293,53 @@ export type Database = {
           name?: string;
           registration_start_date?: string | null;
           short_name?: string | null;
+          theme?: Json;
+          timezone?: string;
+        };
+        Relationships: [];
+      };
+      plan_limits: {
+        Row: {
+          admin_seats: number | null;
+          forms: number | null;
+          max_file_size: number | null;
+          members: number | null;
+          registrations: number | null;
+          tier: string;
+          upload_storage: number | null;
+        };
+        Insert: {
+          admin_seats?: number | null;
+          forms?: number | null;
+          max_file_size?: number | null;
+          members?: number | null;
+          registrations?: number | null;
+          tier: string;
+          upload_storage?: number | null;
+        };
+        Update: {
+          admin_seats?: number | null;
+          forms?: number | null;
+          max_file_size?: number | null;
+          members?: number | null;
+          registrations?: number | null;
+          tier?: string;
+          upload_storage?: number | null;
+        };
+        Relationships: [];
+      };
+      plan_settings: {
+        Row: {
+          key: string;
+          value: number;
+        };
+        Insert: {
+          key: string;
+          value: number;
+        };
+        Update: {
+          key?: string;
+          value?: number;
         };
         Relationships: [];
       };
@@ -322,6 +370,177 @@ export type Database = {
           lname?: string;
           org_id?: string;
           role?: Database["public"]["Enums"]["user_role"];
+        };
+        Relationships: [];
+      };
+      member_schedule: {
+        Row: {
+          created_at: string;
+          org_id: string;
+          session_id: string;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          org_id: string;
+          session_id: string;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          org_id?: string;
+          session_id?: string;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
+      member_schedule_feed: {
+        Row: {
+          created_at: string;
+          org_id: string;
+          token: string;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          org_id: string;
+          token?: string;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          org_id?: string;
+          token?: string;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
+      schedule_room: {
+        Row: {
+          created_at: string;
+          id: string;
+          name: string;
+          org_id: string;
+          sort: number;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          name: string;
+          org_id: string;
+          sort?: number;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          name?: string;
+          org_id?: string;
+          sort?: number;
+        };
+        Relationships: [];
+      };
+      schedule_session: {
+        Row: {
+          created_at: string;
+          description: string;
+          ends_at: string | null;
+          id: string;
+          kind: string;
+          org_id: string;
+          published: boolean;
+          published_at: string | null;
+          room_id: string | null;
+          starts_at: string | null;
+          submission_id: string | null;
+          title: string;
+          track_id: string | null;
+          updated_at: string;
+        };
+        Insert: {
+          created_at?: string;
+          description?: string;
+          ends_at?: string | null;
+          id?: string;
+          kind?: string;
+          org_id: string;
+          published?: boolean;
+          published_at?: string | null;
+          room_id?: string | null;
+          starts_at?: string | null;
+          submission_id?: string | null;
+          title: string;
+          track_id?: string | null;
+          updated_at?: string;
+        };
+        Update: {
+          created_at?: string;
+          description?: string;
+          ends_at?: string | null;
+          id?: string;
+          kind?: string;
+          org_id?: string;
+          published?: boolean;
+          published_at?: string | null;
+          room_id?: string | null;
+          starts_at?: string | null;
+          submission_id?: string | null;
+          title?: string;
+          track_id?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      schedule_session_speaker: {
+        Row: {
+          id: string;
+          member_user_id: string | null;
+          org_id: string;
+          session_id: string;
+          snapshot: Json;
+          sort: number;
+        };
+        Insert: {
+          id?: string;
+          member_user_id?: string | null;
+          org_id: string;
+          session_id: string;
+          snapshot?: Json;
+          sort?: number;
+        };
+        Update: {
+          id?: string;
+          member_user_id?: string | null;
+          org_id?: string;
+          session_id?: string;
+          snapshot?: Json;
+          sort?: number;
+        };
+        Relationships: [];
+      };
+      schedule_track: {
+        Row: {
+          color: string;
+          created_at: string;
+          id: string;
+          name: string;
+          org_id: string;
+          sort: number;
+        };
+        Insert: {
+          color?: string;
+          created_at?: string;
+          id?: string;
+          name: string;
+          org_id: string;
+          sort?: number;
+        };
+        Update: {
+          color?: string;
+          created_at?: string;
+          id?: string;
+          name?: string;
+          org_id?: string;
+          sort?: number;
         };
         Relationships: [];
       };
@@ -479,6 +698,50 @@ export type Database = {
       };
       get_user_id: { Args: never; Returns: string };
       get_user_org_id: { Args: never; Returns: string };
+      hex_luminance: { Args: { p_hex: string }; Returns: number };
+      is_valid_timezone: { Args: { p_tz: string }; Returns: boolean };
+      public_schedule: { Args: { p_org: string }; Returns: Json };
+      schedule_conflicts: {
+        Args: { p_org: string };
+        Returns: {
+          kind: string;
+          session_a: string;
+          session_b: string;
+          who: string;
+        }[];
+      };
+      schedule_feed_token: { Args: { p_org: string }; Returns: string };
+      schedule_promote_submission: {
+        Args: { p_submission: string };
+        Returns: string;
+      };
+      schedule_proposals: {
+        Args: { p_org: string };
+        Returns: {
+          chair: string;
+          submission_id: string;
+          title: string;
+        }[];
+      };
+      schedule_save_session: {
+        Args: { p_org: string; p_session: Json };
+        Returns: string;
+      };
+      schedule_set_agenda: {
+        Args: { p_ids: string[]; p_org: string };
+        Returns: number;
+      };
+      schedule_speaker_status: {
+        Args: { p_org: string };
+        Returns: {
+          linked: boolean;
+          paid_this_cycle: boolean;
+          session_id: string;
+          speaker_id: string;
+        }[];
+      };
+      theme_valid: { Args: { p_theme: Json }; Returns: boolean };
+      contrast_ratio: { Args: { p_a: string; p_b: string }; Returns: number };
       increment_jsonb_int_key: {
         Args: {
           p_column: string;
@@ -493,8 +756,35 @@ export type Database = {
       is_admin: { Args: never; Returns: boolean };
       is_org_admin: { Args: { p_org: string }; Returns: boolean };
       is_org_member: { Args: { p_org: string }; Returns: boolean };
+      is_paid_this_cycle: {
+        Args: { p_fees_paid_at: string; p_org: string };
+        Returns: boolean;
+      };
+      member_paid_this_cycle: {
+        Args: { p_email?: string; p_org: string; p_user_id?: string };
+        Returns: boolean;
+      };
+      my_membership: {
+        Args: { p_org: string };
+        Returns: {
+          fees_paid_at: string;
+          paid_this_cycle: boolean;
+          registration_open: boolean;
+          role: Database["public"]["Enums"]["user_role"];
+        }[];
+      };
+      org_admin_seats_full: { Args: { p_org: string }; Returns: boolean };
+      org_forms_full: { Args: { p_org: string }; Returns: boolean };
+      org_members_full: { Args: { p_org: string }; Returns: boolean };
       org_plan_ok: { Args: { p_org: string }; Returns: boolean };
+      org_registrations_full: { Args: { p_org: string }; Returns: boolean };
+      org_subscription_active: { Args: { p_org: string }; Returns: boolean };
+      org_tier: { Args: { p_org: string }; Returns: string };
       org_upload_bytes: { Args: { p_org: string }; Returns: number };
+      org_usage_value: {
+        Args: { p_key: string; p_org: string };
+        Returns: number;
+      };
       patch_jsonb_key: {
         Args: {
           p_column: string;
@@ -507,6 +797,14 @@ export type Database = {
         Returns: undefined;
       };
       refresh_platform_meta: { Args: never; Returns: undefined };
+      registration_guard: {
+        Args: { p_email?: string; p_org: string; p_user_id?: string };
+        Returns: string;
+      };
+      registration_open: {
+        Args: { p_on?: string; p_org: string };
+        Returns: boolean;
+      };
       send_email: { Args: { event: Json }; Returns: Json };
       submission_object_readable: {
         Args: { p_name: string };
@@ -576,12 +874,12 @@ export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals;
   }
     ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
         DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals;
 }
@@ -603,13 +901,12 @@ export type Tables<
 
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+    keyof DefaultSchema["Tables"] | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals;
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals;
 }
@@ -628,13 +925,12 @@ export type TablesInsert<
 
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+    keyof DefaultSchema["Tables"] | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals;
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals;
 }
@@ -653,13 +949,12 @@ export type TablesUpdate<
 
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
-    | keyof DefaultSchema["Enums"]
-    | { schema: keyof DatabaseWithoutInternals },
-  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+    keyof DefaultSchema["Enums"] | { schema: keyof DatabaseWithoutInternals },
+  EnumName extends (DefaultSchemaEnumNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals;
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaEnumNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals;
 }
@@ -672,11 +967,11 @@ export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof DatabaseWithoutInternals },
-  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+  CompositeTypeName extends (PublicCompositeTypeNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals;
   }
     ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
-    : never = never,
+    : never) = never,
 > = PublicCompositeTypeNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals;
 }
