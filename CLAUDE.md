@@ -21,7 +21,8 @@ Rules for `src/suite/` (so extraction is a folder move):
 2. Layers with one-way dependency: `core/` (plain TS, no React) ← `react/` (hooks) ← `ui/` (Tailwind + Ark UI components).
 3. Sessions use `@supabase/ssr`'s framework-neutral `createBrowserClient` with explicit cookie handlers (`core/auth/cookies.ts`), pinned to the same `@supabase/ssr` and `@supabase/supabase-js` versions as the main site (0.7.0 / 2.78.0) so both sites write and read the same cookie format. Never use its server helpers in `src/suite/`. Bump the versions together with `../mcbios`.
 4. Normalize API errors to `{message, code?}`; add every endpoint you rely on to the suite's OpenAPI spec.
-5. Accessibility ratchet: a component ships only with axe + keyboard tests passing. `e2e/a11y.spec.ts` scans every page in light and dark (dark is the default theme; light is the navbar toggle) for WCAG 2.x A/AA violations. Add new pages to its `PAGES` list. Theme colors in `globals.css` are contrast-checked (text on both base colors >= 4.5:1), so check a new color before adding it.
+5. Database-first: the suite keeps rules (registration guards, limits, paid state, invariants) in Postgres functions and triggers. `core/` calls the endpoint or RPC and maps its `{message, code}`; it does not re-implement the rule (so no new copy of `isPaidThisCycle`/window math: read `windowOpen` and `my_membership`). See `../conf_suite/suite/docs/db-offload-review.md`.
+6. Accessibility ratchet: a component ships only with axe + keyboard tests passing. `e2e/a11y.spec.ts` scans every page in light and dark (dark is the default theme; light is the navbar toggle) for WCAG 2.x A/AA violations. Add new pages to its `PAGES` list. Theme colors in `globals.css` are contrast-checked (text on both base colors >= 4.5:1), so check a new color before adding it.
 
 ## Conventions
 
