@@ -15,6 +15,7 @@ const PAGES = [
   "/accommodations",
   "/about",
   "/register",
+  "/register/status",
 ];
 
 // Dark is the default theme; light is switched on with the navbar toggle.

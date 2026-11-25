@@ -11,4 +11,5 @@ export const suiteConfig: SuiteConfig = {
   supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_PUB_KEY ?? "",
   // Optional. When unset the domain is derived from the org's base_url (see core/cookie-domain).
   cookieDomain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN || undefined,
+  registrationFormId: process.env.NEXT_PUBLIC_REGISTRATION_FORM_ID || undefined,
 };

@@ -27,4 +27,15 @@ export const ui = {
     "bg-base-100 border border-base-300 rounded-box shadow-lg p-2 min-w-56 z-[70] outline-none",
   menuItem:
     "flex items-center rounded-field px-3 py-2 text-sm cursor-pointer data-[highlighted]:bg-base-200 outline-none",
+  select: "select select-bordered w-full",
+  textarea: "textarea textarea-bordered w-full min-h-28",
+  secondary: "btn btn-ghost",
+  section: "card card-border bg-base-100/80 backdrop-blur-md",
+  fieldset: "flex flex-col gap-3 rounded-box border border-base-300 p-4",
+  legend: "px-1 text-sm font-medium",
+  // Ark RadioGroup: a bordered card per price; the hidden input is the native control
+  radioItem:
+    "flex cursor-pointer items-center gap-3 rounded-box border border-base-300 p-4 data-[state=checked]:border-primary data-[state=checked]:bg-base-200 data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-primary",
+  radioDot:
+    "grid size-5 shrink-0 place-items-center rounded-full border-2 border-base-content/60 data-[state=checked]:border-primary data-[state=checked]:bg-primary",
 } as const;

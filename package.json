@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@ark-ui/react": "^5.40.0",
+    "@stripe/stripe-js": "5.2.0",
     "@supabase/ssr": "0.7.0",
     "@supabase/supabase-js": "2.78.0",
     "@tailwindcss/postcss": "^4.3.5",

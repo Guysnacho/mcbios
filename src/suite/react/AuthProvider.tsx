@@ -1,11 +1,12 @@
 "use client";
 
-import type { User } from "@supabase/supabase-js";
+import type { SupabaseClient, User } from "@supabase/supabase-js";
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { createSuiteSession } from "../core/auth/session";
 import { type AuthService, createAuthService } from "../core/auth/service";
 import { type AuthState, type Mode, initialAuthState, reduce } from "../core/auth/machine";
 import { SuiteError } from "../core/errors";
+import { useStableConfig } from "./useStableConfig";
 import type { SuiteConfig } from "../core/types";
 
 export type AuthApi = {
@@ -17,6 +18,10 @@ export type AuthApi = {
   /** A message to announce after the dialog closes ("Welcome back", "Check your email"). */
   notice: string | null;
   dismissNotice: () => void;
+  /** The Bearer token for the suite's API, or null when signed out. */
+  accessToken: () => Promise<string | null>;
+  /** The org-scoped Supabase client (RLS reads the member's own row with it). Client only. */
+  supabase: () => SupabaseClient;
   /** Where focus goes when the dialog closes: whatever opened it. */
   returnFocusEl: () => HTMLElement | null;
   open: (mode?: Mode) => void;
@@ -33,7 +38,7 @@ export type AuthApi = {
 const AuthContext = createContext<AuthApi | null>(null);
 
 export function AuthProvider({
-  config,
+  config: rawConfig,
   onSignedIn,
   children,
 }: {
@@ -42,16 +47,17 @@ export function AuthProvider({
   onSignedIn?: (user: User) => void;
   children: React.ReactNode;
 }) {
+  const config = useStableConfig(rawConfig);
   const [state, dispatch] = useReducer(reduce, initialAuthState);
   const [user, setUser] = useState<User | null>(null);
   const [ready, setReady] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   // Created on first use (an effect or a click), so it never runs during server rendering
-  const sessionRef = useRef<{ svc: AuthService; ensureCookieDomain: () => Promise<void> } | null>(null);
+  const sessionRef = useRef<{ svc: AuthService; supabase: SupabaseClient; ensureCookieDomain: () => Promise<void> } | null>(null);
   const getSession = useCallback(() => {
     if (!sessionRef.current) {
       const session = createSuiteSession(config);
-      sessionRef.current = { svc: createAuthService(config, session), ensureCookieDomain: session.ensureCookieDomain };
+      sessionRef.current = { svc: createAuthService(config, session), supabase: session.supabase, ensureCookieDomain: session.ensureCookieDomain };
     }
     return sessionRef.current;
   }, [config]);
@@ -99,6 +105,8 @@ export function AuthProvider({
       ready,
       notice,
       dismissNotice: () => setNotice(null),
+      accessToken: () => getSession().svc.getAccessToken(),
+      supabase: () => getSession().supabase,
       returnFocusEl: () => (returnFocusRef.current?.isConnected ? returnFocusRef.current : null),
       open: (mode) => {
         returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;

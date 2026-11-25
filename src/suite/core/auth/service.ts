@@ -121,6 +121,12 @@ export function createAuthService(config: SuiteConfig, deps: Deps) {
       return data.user;
     },
 
+    /** The current access token (the Bearer the suite's API takes), or null when signed out. */
+    async getAccessToken(): Promise<string | null> {
+      const { data } = await supabase.auth.getSession();
+      return data.session?.access_token ?? null;
+    },
+
     onChange(cb: (user: User | null) => void): () => void {
       const { data } = supabase.auth.onAuthStateChange((_event, session) => cb(session?.user ?? null));
       return () => data.subscription.unsubscribe();

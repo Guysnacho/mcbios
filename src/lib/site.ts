@@ -30,7 +30,8 @@ export const NAV_ITEMS = [
 
 export const KEY_DATES = [
   { date: "Dec 15, 2026", label: "Session proposals due", tbd: false },
-  { date: "Jan 8, 2027", label: "Registration portal opens", tbd: false },
+  // The date comes from the suite (the org's registration window), never from here
+  { date: "TBD", label: "Registration portal opens", tbd: false, registration: true },
   { date: "TBD", label: "Abstract submission deadline", tbd: true },
   { date: "TBD", label: "YSEA application deadline", tbd: true },
   { date: "Mar 17-19, 2027", label: "MCBIOS 2027 conference", tbd: false },

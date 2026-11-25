@@ -1,11 +1,12 @@
 import { Countdown } from "@/components/Countdown";
 import { KEY_DATES } from "@/lib/site";
+import { suiteConfig } from "@/suite/config";
+import { RegistrationBadge, RegistrationCta, RegistrationDate } from "@/suite/ui/RegistrationCta";
 import {
   ArrowRight,
   Award,
   BookOpen,
   Calendar,
-  Clock,
   Globe,
   Layers,
   Users,
@@ -16,7 +17,7 @@ const COMING_UP = [
   {
     href: "/register",
     title: "Registration",
-    badge: "Opens Jan 8",
+    badge: <RegistrationBadge config={suiteConfig} />,
     desc: "Register for three days of sessions, workshops, and networking.",
     Icon: Users,
   },
@@ -74,9 +75,7 @@ export default function Home() {
               <Link href="/sessions" className="btn btn-primary btn-lg">
                 Submit a session proposal <ArrowRight className="size-5" />
               </Link>
-              <button className="btn btn-lg" disabled>
-                <Clock className="size-5" /> Registration opens Jan 8
-              </button>
+              <RegistrationCta config={suiteConfig} />
             </div>
             <div className="max-w-xl mx-auto">
               <Countdown />
@@ -94,7 +93,9 @@ export default function Home() {
               {KEY_DATES.map((d, i) => (
                 <li key={d.label}>
                   {i > 0 && <hr />}
-                  <div className="timeline-start font-bold">{d.date}</div>
+                  <div className="timeline-start font-bold">
+                    {"registration" in d && d.registration ? <RegistrationDate config={suiteConfig} /> : d.date}
+                  </div>
                   <div className="timeline-middle">
                     <span
                       className={`status status-lg ${d.tbd ? "" : "status-primary"}`}

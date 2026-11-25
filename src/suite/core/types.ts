@@ -9,4 +9,6 @@ export type SuiteConfig = {
   supabaseKey: string;
   /** Explicit shared-cookie domain, e.g. "mcbios.com". Omit to derive it from the org's base_url. */
   cookieDomain?: string;
+  /** The suite `registration` form people fill in (a form with a payment field). Interim: replaced by "the active registration form" lookup when the suite has form archival. */
+  registrationFormId?: string;
 };
