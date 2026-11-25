@@ -133,7 +133,7 @@ export function HelixBackground() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 -z-10 size-full opacity-70"
+      className="pointer-events-none fixed inset-0 -z-10 size-full opacity-70 print:hidden"
     />
   );
 }

@@ -99,3 +99,18 @@
   --font-sans: var(--font-amiko), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-bacasime), Georgia, serif;
 }
+
+/* Reduced motion: no slide/fade on dialogs, no smooth scrolling, no spinner-style motion beyond what the OS allows */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-scope="dialog"],
+  [data-scope="menu"],
+  [data-scope="tabs"] * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media print {
+  body { background: #fff !important; }
+}

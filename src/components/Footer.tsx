@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="footer footer-vertical sm:footer-horizontal bg-base-200 text-base-content p-10">
+    <footer className="print:hidden footer footer-vertical sm:footer-horizontal bg-base-200 text-base-content p-10">
       <aside className="max-w-xs gap-2">
         <div className="flex items-center gap-2 text-xl">
           <Dna className="size-6 text-primary" />

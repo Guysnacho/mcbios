@@ -1,6 +1,7 @@
 import { Countdown } from "@/components/Countdown";
 import { KEY_DATES } from "@/lib/site";
 import { suiteConfig } from "@/suite/config";
+import { ScheduleBadge } from "@/suite/ui/ScheduleBadge";
 import { RegistrationBadge, RegistrationCta, RegistrationDate } from "@/suite/ui/RegistrationCta";
 import {
   ArrowRight,
@@ -38,7 +39,7 @@ const COMING_UP = [
   {
     href: "/schedule",
     title: "Schedule",
-    badge: "Coming soon",
+    badge: <ScheduleBadge config={suiteConfig} />,
     desc: "Workshops, networking, and the full three-day program.",
     Icon: Layers,
   },

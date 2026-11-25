@@ -26,7 +26,7 @@ export function Navbar() {
   ));
 
   return (
-    <header className="navbar bg-base-100/80 backdrop-blur-md border-b border-base-300 sticky top-0 z-50 px-4">
+    <header className="print:hidden navbar bg-base-100/80 backdrop-blur-md border-b border-base-300 sticky top-0 z-50 px-4">
       <div className="navbar-start">
         <div className="dropdown lg:hidden">
           <div
