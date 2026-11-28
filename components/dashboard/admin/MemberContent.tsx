@@ -1,5 +1,5 @@
 import { Events, useAnalytics } from "@/lib";
-import { Database } from "@/lib/supabase/types";
+import type { Recording } from "@/lib/swrFetchers";
 import {
   Box,
   Button,
@@ -14,9 +14,7 @@ import {
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { useCallback, useState } from "react";
 
-type Video = Database["public"]["Tables"]["videos"]["Row"];
-
-export const MemberContent = ({ videos }: { videos?: Video[] }) => {
+export const MemberContent = ({ videos }: { videos?: Recording[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loadedVideos, setLoadedVideos] = useState<Set<number>>(new Set());
   const { trackEvent } = useAnalytics();
@@ -166,8 +164,25 @@ export const MemberContent = ({ videos }: { videos?: Video[] }) => {
                 </Stack>
               </Box>
             ) : (
+              currentVideo.source === "upload" ? (
+                <video
+                  src={currentVideo.url ?? undefined}
+                  controls
+                  autoPlay
+                  preload="metadata"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    background: "black",
+                  }}
+                />
+              ) : (
               <iframe
-                src={currentVideo.path}
+                title={currentVideo.title}
+                src={currentVideo.url ?? undefined}
                 style={{
                   position: "absolute",
                   top: 0,
@@ -179,6 +194,7 @@ export const MemberContent = ({ videos }: { videos?: Video[] }) => {
                 allow="autoplay; fullscreen"
                 allowFullScreen
               />
+              )
             )}
           </Box>
 

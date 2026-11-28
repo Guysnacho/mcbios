@@ -16,7 +16,6 @@ import { ChevronLeft, Ticket, Upload, UserCheck, Users } from "lucide-react";
 import { useState } from "react";
 import Registrations from "./Registrations";
 import UserConfirm from "./UserConfirm";
-import VideoUploader from "./VideoUploader";
 
 type AdminPanelProps = {
   client: SupabaseClient<Database>;
@@ -148,13 +147,26 @@ export function AdminPanel({ client }: AdminPanelProps) {
                 fontSize="md"
                 color={{ base: "gray.900", _dark: "white" }}
               >
-                Add Conference Content
+                Manage recordings in the Conference Suite
               </Card.Title>
             </Card.Header>
             <Card.Body>
-              <Flex justify="center">
-                <VideoUploader />
-              </Flex>
+              <Stack gap="4" align="start">
+                <Text fontSize="sm" color={{ base: "gray.600", _dark: "gray.300" }}>
+                  Recordings are uploaded (or linked from YouTube) in the Conference
+                  Suite, which tracks your video storage. Existing recordings keep
+                  playing here.
+                </Text>
+                <Button asChild colorPalette="blue">
+                  <a
+                    href={`${getBaseServiceURL()}/dashboard/${process.env.NEXT_PUBLIC_ORG_ID}/videos`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Open Videos
+                  </a>
+                </Button>
+              </Stack>
             </Card.Body>
           </Card.Root>
         )}
